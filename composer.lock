@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apexstudios/yamwlib.git",
-                "reference": "bbc282328ca874e1742b6efa75d1e3ec082f302e"
+                "reference": "151bd4f31929a5bbb877a364d84e7bb5e11bfc06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apexstudios/yamwlib/zipball/bbc282328ca874e1742b6efa75d1e3ec082f302e",
-                "reference": "bbc282328ca874e1742b6efa75d1e3ec082f302e",
+                "url": "https://api.github.com/repos/apexstudios/yamwlib/zipball/151bd4f31929a5bbb877a364d84e7bb5e11bfc06",
+                "reference": "151bd4f31929a5bbb877a364d84e7bb5e11bfc06",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,7 @@
                 }
             ],
             "homepage": "http://github.com/apexstudios/yamwlib",
-            "time": "2013-12-11 17:01:33"
+            "time": "2013-12-11 21:40:18"
         },
         {
             "name": "facebook/libphutil",
