@@ -1,7 +1,8 @@
 {
     "name": "anhnhan/modhub",
     "require": {
-        "apexstudios/yamwlib": "dev-master"
+        "apexstudios/yamwlib": "dev-master",
+        "facebook/libphutil": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.6",
@@ -17,8 +18,14 @@
     ],
     "autoload": {
         "psr-0": {
-            "AnhNhan/ModHub":	"src/"
+            "AnhNhan\\ModHub":	"src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/AnhNhan/libphutil"
+        }
+    ]
 }
