@@ -1,0 +1,19 @@
+{
+    "name": "anhnhan/modhub",
+    "require": {
+        "apexstudios/yamwlib": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=3.6",
+        "phpunit/php-code-coverage": "*",
+        "satooshi/php-coveralls": "*"
+    },
+    "license": "Apache",
+    "authors": [
+        {
+            "name": "Anh Nhan Nguyen",
+            "email": "anhnhan@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
