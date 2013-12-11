@@ -15,5 +15,10 @@
             "email": "anhnhan@outlook.com"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "AnhNhan/ModHub":	"src/"
+        }
+    },
     "minimum-stability": "dev"
 }
