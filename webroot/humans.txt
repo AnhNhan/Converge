@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Anh Nhan Nguyen -- Lead Developer -- @AnhNhan
+
+# THANKS
+
+    The projects united behind the Mod Hub!
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Normalize.css, jQuery, Modernizr
+    Libphutil, Phabricator
