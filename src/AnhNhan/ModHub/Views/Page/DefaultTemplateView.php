@@ -28,27 +28,30 @@ final class DefaultTemplateView extends AbstractView
         $header_contents->push(ModHub\ht("h1", "hMod Hub"));
         $header_contents->push(ModHub\ht("h3", "A Great Journey is to be pursued. Greatness Awaits."));
 
-        $head_wrapper = HF::divTag()->addClass("header-wrap");
+        $head_wrapper = HF::divTag()->addClass("header-wrap container row width12");
         $header = HF::divTag()
-            ->addClass("header")
+            ->addClass("header width12")
             ->setContent(
             $header_contents
         );
         $head_wrapper->appendContent($header);
 
-        $sidebar = HF::divTag()
-            ->addClass("sidebar")
-            ->setContent(ModHub\ht("p", "Menu comes here"));
-
         $content = HF::divTag()
-            ->addClass("content")
+            ->addClass("content width8")
             ->setContent($this->content);
 
-        $container = HF::divTag('', 'content-container', 'content-container');
+        $sidebar = HF::divTag()
+            ->addClass("sidebar width4")
+            ->setContent(ModHub\ht("p", "Sidebar goes here"));
+
+        $contentContainerContent = ModHub\ht("div")->addClass("row-flex");
+        $contentContainerContent->appendContent($sidebar);
+        $contentContainerContent->appendContent($content);
+
+        $container = HF::divTag('', 'content-container', 'content-container container');
 
         $container->appendContent($head_wrapper);
-        $container->appendContent($sidebar);
-        $container->appendContent($content);
+        $container->appendContent($contentContainerContent);
         $container->appendContent(FooterView::getDefaultFooter()->render());
 
         $wrapper = HF::divTag($container, 'wrapper', 'wrapper');
