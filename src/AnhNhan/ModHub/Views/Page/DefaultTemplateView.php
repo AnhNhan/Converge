@@ -14,6 +14,7 @@ final class DefaultTemplateView extends AbstractView
 {
     private $title;
     private $content;
+    private $header;
 
     public function __construct($title, $content)
     {
@@ -55,12 +56,19 @@ final class DefaultTemplateView extends AbstractView
         return $wrapper;
     }
 
+    public function setHeader($header)
+    {
+        $this->header = $header;
+
+        return $this;
+    }
+
     public function render()
     {
         $htmlDocument = new HtmlDocumentView(
             $this->title,
             $this->getContent(),
-            null
+            $this->header
         );
         return $htmlDocument->render();
     }
