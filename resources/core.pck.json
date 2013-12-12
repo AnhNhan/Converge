@@ -9,6 +9,7 @@
         "layout-core",
         "layout-form",
         "layout-grid",
+        "layout-buttons",
         "layout-objects"
     ]
 }

@@ -40,6 +40,11 @@ return array(
       "path" => "layout/boilerplate.less",
       "hash" => "b608413a",
     ),
+    "layout-buttons" => array(
+      "name" => "layout-buttons",
+      "path" => "layout/buttons.less",
+      "hash" => "f57b3b3b",
+    ),
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
@@ -67,7 +72,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "49a5ea45",
+      "hash" => "8fd2b54f",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "ed07efce",
@@ -76,6 +81,7 @@ return array(
         "layout-core" => "5cb7c617",
         "layout-form" => "4cc597e4",
         "layout-grid" => "330face9",
+        "layout-buttons" => "f57b3b3b",
         "layout-objects" => "e3eca9bb",
       ),
     ),
