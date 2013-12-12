@@ -1,0 +1,9 @@
+{
+    "name": "core-pck",
+    "type": "css",
+    "contents": [
+        "external-bootstrap-responsive-utilities",
+        "external-bootstrap-sprites",
+        "external-html5-boilerplate-main"
+    ]
+}

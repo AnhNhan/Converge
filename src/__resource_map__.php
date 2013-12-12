@@ -15,6 +15,16 @@
 
 return array(
   "css" => array(
+    "external-bootstrap-responsive-utilities" => array(
+      "name" => "external-bootstrap-responsive-utilities",
+      "path" => "external/bootstrap/responsive-utilities.less",
+      "hash" => "37915821",
+    ),
+    "external-bootstrap-sprites" => array(
+      "name" => "external-bootstrap-sprites",
+      "path" => "external/bootstrap/sprites.less",
+      "hash" => "ed07efce",
+    ),
     "external-html5-boilerplate-main" => array(
       "name" => "external-html5-boilerplate-main",
       "path" => "external/html5-boilerplate/main.css",
@@ -29,5 +39,15 @@ return array(
   "js" => array(
   ),
   "pck" => array(
+    "core-pck" => array(
+      "name" => "core-pck",
+      "type" => "pck",
+      "hash" => "c2b16687",
+      "contents" => array(
+        "external-bootstrap-responsive-utilities" => "37915821",
+        "external-bootstrap-sprites" => "ed07efce",
+        "external-html5-boilerplate-main" => "93f2241c",
+      ),
+    ),
   ),
 );

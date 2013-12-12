@@ -132,6 +132,7 @@ if ($pckFiles) {
         ModHub\println("  - " . $name);
     }
 }
+ModHub\println();
 
 // Process JS (not supported yet)
 ModHub\println("Skipping on JS resources, since they are not supported yet.");
