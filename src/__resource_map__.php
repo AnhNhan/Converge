@@ -15,14 +15,14 @@
 
 return array(
   "css" => array(
-    "external-html5-boilerplate-4.3.0-main" => array(
-      "name" => "external-html5-boilerplate-4.3.0-main",
-      "path" => "external/html5-boilerplate-4.3.0/main.css",
+    "external-html5-boilerplate-main" => array(
+      "name" => "external-html5-boilerplate-main",
+      "path" => "external/html5-boilerplate/main.css",
       "hash" => "93f2241c",
     ),
-    "external-html5-boilerplate-4.3.0-normalize" => array(
-      "name" => "external-html5-boilerplate-4.3.0-normalize",
-      "path" => "external/html5-boilerplate-4.3.0/normalize.css",
+    "external-html5-boilerplate-normalize" => array(
+      "name" => "external-html5-boilerplate-normalize",
+      "path" => "external/html5-boilerplate/normalize.css",
       "hash" => "71670d22",
     ),
   ),
