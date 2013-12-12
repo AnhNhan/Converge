@@ -40,6 +40,7 @@ class HtmlDocumentView extends AbstractView
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <base href="%s/" />
 %s
+<style>%s</style>
 <script src="/js/external/modernizr.js"></script>
 </head>
 <body>
@@ -51,6 +52,7 @@ EOT
             $this->title,
             $baseUrl,
             $this->renderHead(),
+            file_get_contents(\AnhNhan\ModHub\get_root_super() . "cache/core-pck"),
             $this->content
         );
         } catch(\Exception $e) {
