@@ -1,4 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
-require_once __DIR__ . "/AnhNhan/ModHub/functions.php";
+
+$symbolLoader = SymbolLoader::getInstance();
+$symbolLoader->register();
+$symbolLoader->loadAllFunctions();
