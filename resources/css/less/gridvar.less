@@ -5,12 +5,12 @@
 @gridTotalWidth: 90%;
 @gridColumnCount: 12;
 
-@gridColumnWidth: (@gridTotalWidth / @gridColumnCount);
+@gridColumnWidth: (@baseTotalWidth / @gridColumnCount);
 @gridGutterWidth: 15px;
 @gridRawWidth: (@gridColumnWidth - @gridGutterWidth);
 
 .grid-width (@width) {
-    width: @width * @baseTotalWidth;
+    width: @width * @gridColumnWidth;
 }
 
 .grid-width-flex (@width) {
