@@ -45,7 +45,7 @@ foreach ($files as $file) {
         $skipped[] = $file;
         continue;
     }
-    $symbolGenerator->parseFiles(array(ModHub\path($file)));
+    $symbolGenerator->parseFiles(array($file), ModHub\path());
     echo ".";
 }
 

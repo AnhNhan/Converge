@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$symbolLoader = SymbolLoader::getInstance();
+use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+
+$symbolLoader = new SymbolLoader(__DIR__);
 $symbolLoader->register();
 $symbolLoader->loadAllFunctions();
