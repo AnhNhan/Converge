@@ -24,15 +24,11 @@ final class DefaultTemplateView extends AbstractView
 
     public function getContent()
     {
-        $header_contents = new MarkupContainer;
-        $header_contents->push(ModHub\ht("h1", "hMod Hub"));
-        $header_contents->push(ModHub\ht("h3", "A Great Journey is to be pursued. Greatness Awaits."));
-
         $head_wrapper = HF::divTag()->addClass("header-wrap container row width12");
         $header = HF::divTag()
             ->addClass("header width12")
             ->setContent(
-            $header_contents
+            id(new HeaderView)->render()
         );
         $head_wrapper->appendContent($header);
 
@@ -42,7 +38,7 @@ final class DefaultTemplateView extends AbstractView
 
         $sidebar = HF::divTag()
             ->addClass("sidebar width4")
-            ->setContent(ModHub\ht("p", "Sidebar goes here"));
+            ->setContent(id(new SidebarView)->render());
 
         $contentContainerContent = ModHub\ht("div")->addClass("row-flex");
         $contentContainerContent->appendContent($sidebar);
