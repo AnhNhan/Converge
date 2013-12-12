@@ -24,6 +24,9 @@ return array(
       "println" => "AnhNhan/ModHub/functions.php",
       "sdx" => "AnhNhan/ModHub/functions.php",
       "pdx" => "AnhNhan/ModHub/functions.php",
+      "safeHtml" => "AnhNhan/ModHub/functions_html.php",
+      "ht" => "AnhNhan/ModHub/functions_html.php",
+      "icon_text" => "AnhNhan/ModHub/functions_html.php",
     ),
     "classes" => array(
     ),
