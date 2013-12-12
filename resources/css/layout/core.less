@@ -1,4 +1,141 @@
 
-.derp {
-    .no-margin-padding;
+.wrapper {
+    @media screen and (max-width: @breakPointMobile) {
+        width: 100%;
+    }
+
+    @media screen and (min-width: @breakPointMobile) {
+        margin: 10px auto;
+    }
+
+    @media screen and (min-width: @breakPointDesktop) {
+        width: 90%;
+    }
+
+    text-align: left;
+    background-color: @white;
+}
+
+.header-wrap {
+    width: 100%;
+    background: @veryLightGrey;
+    height: 240px;
+    background-image: url('../../images/header_bg.png');
+    background-repeat: repeat-x;
+
+    @media screen and (max-width: @breakPointMobile) {
+        background: none;
+        width: auto;
+        height: auto;
+    }
+}
+
+.header {
+    height: 240px;
+    background-image: url('../../images/header.png');
+    background-repeat: no-repeat;
+    background-position: left;
+
+    @media screen and (max-width: @breakPointMobile) {
+        background: none;
+        width: auto;
+        height: auto;
+    }
+}
+
+.sidebar {
+    float: right;
+    width: @sidebarWidth;
+
+    @media screen and (max-width: @breakPointMobile) {
+        float: none;
+        width: 100%;
+    }
+
+    @media screen and (min-width: @breakPointMobile) and (max-width: @breakPointTablet) {
+        width: (@sidebarWidth * 0.75);
+    }
+}
+
+.content-container > .content {
+    background-color: #fff;
+    margin-right: (@sidebarWidth + 10px);
+    padding: @defaultContentPadding;
+    padding-top: (@defaultContentPadding + 10px);
+
+    @media screen and (max-width: @breakPointMobile) {
+        width: 100%;
+        margin: 0;
+    }
+
+    @media screen and (min-width: @breakPointMobile) and (max-width: @breakPointTablet) {
+        margin-left: ((@sidebarWidth * 0.75) + 10px);
+    }
+
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    div {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    ul,
+    ol {
+        list-style-position: inside;
+        padding: 0 @defaultFontSize;
+    }
+
+    a {
+        color: @linkColor;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active {
+        color: @linkColorActive;
+        text-decoration: underline;
+    }
+
+    a:visited {
+        color: @linkColorVisited;
+    }
+}
+
+.footer {
+    clear: left;
+    width: 100%;
+    margin: 0;
+    padding: @defaultContentPadding;
+    font-size: 0.85em;
+    color: #999;
+    min-height: 140px;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    .footer-section {
+        float: left;
+        margin: 0;
+        margin-right: 2em;
+
+        .footer-section-entry {
+            list-style: none;
+
+            a {
+                color: #666666;
+
+                &:hover, &:focus {
+                    color: @darkGrey;
+                }
+            }
+        }
+    }
 }

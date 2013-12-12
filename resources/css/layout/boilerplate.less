@@ -1,0 +1,151 @@
+
+* {
+    .no-margin-padding;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+// IE10 Metro responsive
+// Required for Windows 8 Metro split-screen snapping with IE10
+// Source: http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+@-ms-viewport {
+    width: device-width;
+}
+@-o-viewport {
+    width: device-width;
+}
+@viewport {
+    width: device-width;
+}
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    color: @fontColor;
+    font: @fontNormal;
+    line-height: @fontBaseLine;
+    background-color: #d8d8d8;
+    background-image: url('../../images/background.jpg');
+    background-position: top;
+    background-repeat: repeat-x;
+    direction: ltr;
+    unicode-bidi: embed;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    -moz-outline-style: none;
+    text-decoration: none;
+    color: #18559D;
+    cursor: pointer;
+}
+
+code,
+pre,
+tt {
+    font: @fontMonospaced;
+}
+
+pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: @defaultFontSize;
+    line-height: @fontBaseLine;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
+    background-color: #f5f5f5;
+    border: 1px solid @lightGrey;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    .round-border (4px);
+}
+
+tt,
+code {
+    background-color: #EEEEEE;
+    color: #991144;
+    border: 1px solid #999999;
+    .round-border (3px);
+    padding: 0 3px;
+    display: inline-block;
+}
+
+img {
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+}
+
+img,
+object,
+embed,
+video {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+#map_canvas img,
+.google-maps img {
+    max-width: none;
+}
+
+.ie6 {
+    img,
+    object {
+        width: 100%;
+    }
+}
+
+table {
+    font-size: @defaultFontSize;
+
+    th,
+    td {
+        padding: 10px;
+        margin: 0;
+        text-align: left;
+        vertical-align: top;
+    }
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+ul,
+ol,
+dl {
+    .no-margin-padding;
+}
+
+p {
+    padding-top: 0.2em;
+    padding-bottom: 0.5em;
+    display: block;
+    -webkit-margin-before: 0.2em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    color: @headerColor;
+    margin-top: 1em;
+    margin-bottom: 0.1em;
+    // text-rendering: optimizelegibility;
+}

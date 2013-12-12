@@ -35,10 +35,15 @@ return array(
       "path" => "external/html5-boilerplate/normalize.css",
       "hash" => "71670d22",
     ),
+    "layout-boilerplate" => array(
+      "name" => "layout-boilerplate",
+      "path" => "layout/boilerplate.less",
+      "hash" => "b608413a",
+    ),
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "ff8016f5",
+      "hash" => "f42d046b",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -62,12 +67,13 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "25e65805",
+      "hash" => "18288de1",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "ed07efce",
         "external-html5-boilerplate-main" => "93f2241c",
-        "layout-core" => "ff8016f5",
+        "layout-boilerplate" => "b608413a",
+        "layout-core" => "f42d046b",
         "layout-form" => "4cc597e4",
         "layout-grid" => "330face9",
         "layout-objects" => "7a181638",
