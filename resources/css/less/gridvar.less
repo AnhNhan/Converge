@@ -1,0 +1,18 @@
+
+@baseTotalWidth: 1200px;
+@sidebarWidth: 200px;
+
+@gridTotalWidth: 90%;
+@gridColumnCount: 12;
+
+@gridColumnWidth: (@gridTotalWidth / @gridColumnCount);
+@gridGutterWidth: 15px;
+@gridRawWidth: (@gridColumnWidth - @gridGutterWidth);
+
+.grid-width (@width) {
+    width: @width * @baseTotalWidth;
+}
+
+.grid-width-flex (@width) {
+    width: percentage(@width * @gridColumnWidth / @baseTotalWidth);
+}

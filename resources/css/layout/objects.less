@@ -1,0 +1,35 @@
+
+.objects-list-container {
+    margin-top: 2em;
+}
+
+.objects-list-title {
+    margin-bottom: @defaultFontSize;
+}
+
+.objects-object-container {
+    margin: 5px 0;
+    padding: 5px;
+    padding-left: 7px;
+    border: 0;
+    border-left: @darkGrey 5px solid;
+    background-color: lighten(@grey, 30%);
+}
+
+.objects-object-title {
+    font-size: @fontSizeH4;
+    font-weight: bold;
+}
+
+a.objects-object-title {
+    color: mix(@black, @linkColor, 30%) !important;
+
+    &:hover {
+        color: mix(@black, @linkColorActive, 30%) !important;
+    }
+}
+
+.objects-object-attributes {
+    color: @darkGrey;
+    font-size: 0.9em;
+}

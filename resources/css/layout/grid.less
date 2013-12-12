@@ -1,0 +1,131 @@
+
+.container {
+    .no-margin-padding;
+    padding: 0 (@gridGutterWidth / 2);
+}
+
+.container .row, .container .row-flex {
+    .no-margin-padding;
+    margin: 0 (@gridGutterWidth / -2);
+    width: 100%;
+
+    .clearfix;
+
+    .div-grid, .width1, .width2, .width3, .width4, .width5, .width6, .width7, .width8, .width9, .width10, .width11, .width12 {
+        .no-margin-padding;
+        font-family: @fontFamilyDefault;
+        font-size: @defaultFontSize;
+        color: @fontColor;
+        line-height: @fontBaseLine;
+        .float-left;
+        position: relative;
+        // Prevent columns from collapsing when empty
+        min-height: 1px;
+
+        margin: @gridGutterWidth;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+.container .row {
+    .width1 {
+        .grid-width(1);
+    }
+
+    .width2 {
+        .grid-width(2);
+    }
+
+    .width3 {
+        .grid-width(3);
+    }
+
+    .width4 {
+        .grid-width(4);
+    }
+
+    .width5 {
+        .grid-width(5);
+    }
+
+    .width6 {
+        .grid-width(6);
+    }
+
+    .width7 {
+        .grid-width(7);
+    }
+
+    .width8 {
+        .grid-width(8);
+    }
+
+    .width9 {
+        .grid-width(9);
+    }
+
+    .width10 {
+        .grid-width(10);
+    }
+
+    .width11 {
+        .grid-width(11);
+    }
+
+    .width12 {
+        .grid-width(12);
+    }
+}
+
+.container .row-flex {
+    .width1 {
+        .grid-width-flex(1);
+    }
+
+    .width2 {
+        .grid-width-flex(2);
+    }
+
+    .width3 {
+        .grid-width-flex(3);
+    }
+
+    .width4 {
+        .grid-width-flex(4);
+    }
+
+    .width5 {
+        .grid-width-flex(5);
+    }
+
+    .width6 {
+        .grid-width-flex(6);
+    }
+
+    .width7 {
+        .grid-width-flex(7);
+    }
+
+    .width8 {
+        .grid-width-flex(8);
+    }
+
+    .width9 {
+        .grid-width-flex(9);
+    }
+
+    .width10 {
+        .grid-width-flex(10);
+    }
+
+    .width11 {
+        .grid-width-flex(11);
+    }
+
+    .width12 {
+        .grid-width-flex(12);
+    }
+}
