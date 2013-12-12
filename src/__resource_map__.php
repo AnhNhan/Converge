@@ -43,7 +43,7 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "f42d046b",
+      "hash" => "5cb7c617",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -58,7 +58,7 @@ return array(
     "layout-objects" => array(
       "name" => "layout-objects",
       "path" => "layout/objects.less",
-      "hash" => "7a181638",
+      "hash" => "e3eca9bb",
     ),
   ),
   "js" => array(
@@ -67,16 +67,16 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "18288de1",
+      "hash" => "49a5ea45",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "ed07efce",
         "external-html5-boilerplate-main" => "93f2241c",
         "layout-boilerplate" => "b608413a",
-        "layout-core" => "f42d046b",
+        "layout-core" => "5cb7c617",
         "layout-form" => "4cc597e4",
         "layout-grid" => "330face9",
-        "layout-objects" => "7a181638",
+        "layout-objects" => "e3eca9bb",
       ),
     ),
   ),

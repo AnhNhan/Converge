@@ -1,4 +1,6 @@
 
+@colorObjectBackground: mix(@oliveGreen, @boneMeal);
+
 .objects-list-container {
     margin-top: 2em;
 }
@@ -12,8 +14,8 @@
     padding: 5px;
     padding-left: 7px;
     border: 0;
-    border-left: @darkGrey 5px solid;
-    background-color: lighten(@grey, 30%);
+    border-left: @colorObjectBackground 5px solid;
+    background-color: lighten(@colorObjectBackground, 30%);
 }
 
 .objects-object-title {
@@ -30,6 +32,6 @@ a.objects-object-title {
 }
 
 .objects-object-attributes {
-    color: @darkGrey;
+    color: darken(@colorObjectBackground, 20%);
     font-size: 0.9em;
 }

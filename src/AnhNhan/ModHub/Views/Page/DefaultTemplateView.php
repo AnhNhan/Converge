@@ -5,6 +5,7 @@ use AnhNhan\ModHub;
 use AnhNhan\ModHub\Views\AbstractView;
 use AnhNhan\ModHub\Views\Page\HtmlDocumentView;
 use YamwLibs\Libs\Html\HtmlFactory as HF;
+use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -22,11 +23,15 @@ final class DefaultTemplateView extends AbstractView
 
     public function getContent()
     {
+        $header_contents = new MarkupContainer;
+        $header_contents->push(ModHub\ht("h1", "hMod Hub"));
+        $header_contents->push(ModHub\ht("h3", "A Great Journey is to be pursued. Greatness Awaits."));
+
         $head_wrapper = HF::divTag()->addClass("header-wrap");
         $header = HF::divTag()
             ->addClass("header")
             ->setContent(
-            ModHub\ht("p", "Header comes here")
+            $header_contents
         );
         $head_wrapper->appendContent($header);
 
