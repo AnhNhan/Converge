@@ -34,7 +34,7 @@ final class DefaultTemplateView extends AbstractView
 
         $content = HF::divTag()
             ->addClass("content width8")
-            ->setContent($this->content);
+            ->setContent(ModHub\ht("div", $this->content)->addClass("content-content"));
 
         $sidebar = HF::divTag()
             ->addClass("sidebar width4")
@@ -44,7 +44,7 @@ final class DefaultTemplateView extends AbstractView
         $contentContainerContent->appendContent($sidebar);
         $contentContainerContent->appendContent($content);
 
-        $container = HF::divTag('', 'content-container', 'content-container container');
+        $container = HF::divTag('', 'layout-container', 'layout-container container');
 
         $container->appendContent($head_wrapper);
         $container->appendContent($contentContainerContent);
