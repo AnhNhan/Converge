@@ -11,6 +11,7 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
 class ForumObject extends Object
 {
     private $tags;
+    private $added = false;
 
     public function __construct()
     {
@@ -26,8 +27,9 @@ class ForumObject extends Object
 
     public function render()
     {
-        if (count($this->tags)) {
+        if (!$this->added && count($this->tags)) {
             $this->addAttributeAsFirst($this->tags);
+            $this->added = true;
         }
         $object = parent::render();
         return $object;
