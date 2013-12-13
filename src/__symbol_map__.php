@@ -29,12 +29,97 @@ return array(
       "icon_text" => "AnhNhan/ModHub/functions_html.php",
     ),
     "classes" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
+      "AnhNhan\ModHub\Modules\Tag\Views\TagView" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
+      "AnhNhan\ModHub\Views\AbstractView" => "AnhNhan/ModHub/Views/AbstractView.php",
+      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => "AnhNhan/ModHub/Views/Form/Controls/AbstractFormControl.php",
+      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl" => "AnhNhan/ModHub/Views/Form/Controls/HiddenControl.php",
+      "AnhNhan\ModHub\Views\Form\Controls\SubmitControl" => "AnhNhan/ModHub/Views/Form/Controls/SubmitControl.php",
+      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl" => "AnhNhan/ModHub/Views/Form/Controls/TextAreaControl.php",
+      "AnhNhan\ModHub\Views\Form\Controls\TextControl" => "AnhNhan/ModHub/Views/Form/Controls/TextControl.php",
+      "AnhNhan\ModHub\Views\Form\FormView" => "AnhNhan/ModHub/Views/Form/FormView.php",
+      "AnhNhan\ModHub\Views\Objects\AbstractObject" => "AnhNhan/ModHub/Views/Objects/AbstractObject.php",
+      "AnhNhan\ModHub\Views\Objects\Listing" => "AnhNhan/ModHub/Views/Objects/Listing.php",
+      "AnhNhan\ModHub\Views\Objects\Object" => "AnhNhan/ModHub/Views/Objects/Object.php",
+      "AnhNhan\ModHub\Views\Page\BarePageView" => "AnhNhan/ModHub/Views/Page/BarePageView.php",
+      "AnhNhan\ModHub\Views\Page\DefaultTemplateView" => "AnhNhan/ModHub/Views/Page/DefaultTemplateView.php",
+      "AnhNhan\ModHub\Views\Page\FooterView" => "AnhNhan/ModHub/Views/Page/FooterView.php",
+      "AnhNhan\ModHub\Views\Page\HeaderView" => "AnhNhan/ModHub/Views/Page/HeaderView.php",
+      "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => "AnhNhan/ModHub/Views/Page/HtmlDocumentView.php",
+      "AnhNhan\ModHub\Views\Page\PageView" => "AnhNhan/ModHub/Views/Page/PageView.php",
+      "AnhNhan\ModHub\Views\Page\SidebarView" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
+      "AnhNhan\ModHub\Web\Core" => "AnhNhan/ModHub/Web/Core.php",
     ),
   ),
   "xmap" => array(
     "derivations" => array(
+      "AnhNhan\ModHub\Views\Objects\Listing" => array(
+        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+      ),
+      "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
+        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+        "AnhNhan\ModHub\Views\Objects\Object",
+      ),
+      "YamwLibs\Libs\Assertions\BasicAssertions" => array(
+        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+      ),
+      "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
+        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+      ),
+      "AnhNhan\ModHub\Views\Objects\Object" => array(
+        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+      ),
+      "YamwLibs\Libs\Html\Markup\MarkupContainer" => array(
+        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      ),
+      "AnhNhan\ModHub\Views\AbstractView" => array(
+        "AnhNhan\ModHub\Modules\Tag\Views\TagView",
+        "AnhNhan\ModHub\Views\Form\FormView",
+        "AnhNhan\ModHub\Views\Objects\AbstractObject",
+        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+        "AnhNhan\ModHub\Views\Page\HeaderView",
+        "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+        "AnhNhan\ModHub\Views\Page\SidebarView",
+      ),
+      "YamwLibs\Libs\Html\HtmlFactory" => array(
+        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      ),
+      "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
+        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+        "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      ),
+      "YamwLibs\Libs\Html\Markup\SafeTextNode" => array(
+        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+      ),
+      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
+        "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
+        "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
+        "AnhNhan\ModHub\Views\Form\Controls\TextControl",
+      ),
+      "AnhNhan\ModHub\Views\Page\PageView" => array(
+        "AnhNhan\ModHub\Views\Page\BarePageView",
+      ),
+      "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => array(
+        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      ),
+      "YamwLibs\Infrastructure\ResMgmt\ResMgr" => array(
+        "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      ),
     ),
     "implementations" => array(
+      "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
+        "AnhNhan\ModHub\Views\AbstractView",
+      ),
+      "YamwLibs\Libs\View\ViewInterface" => array(
+        "AnhNhan\ModHub\Views\AbstractView",
+        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+        "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
+        "AnhNhan\ModHub\Views\Objects\Listing",
+        "AnhNhan\ModHub\Views\Page\FooterView",
+      ),
     ),
   ),
 );
