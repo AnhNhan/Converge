@@ -10,6 +10,8 @@
         "layout-form",
         "layout-grid",
         "layout-buttons",
-        "layout-objects"
+        "layout-objects",
+        "layout-forum-object",
+        "layout-tag-tag"
     ]
 }

@@ -1,0 +1,27 @@
+
+.tag-color (@color) {
+    border: @color 1px solid;
+    background-color: lighten(@color, 10%);
+}
+
+.tag-object {
+    display: inline-block;
+    margin: 0 2px;
+    .round-border(5px);
+    .tag-color(@darkBlue);
+
+    & > span {
+        color: @white;
+        padding: 0px 5px;
+    }
+
+    &.tag-color-green {
+        .tag-color(@colorUNSC);
+    }
+    &.tag-color-blue {
+        .tag-color(@colorInfo);
+    }
+    &.tag-color-dark {
+        .tag-color(@tintedGrey);
+    }
+}

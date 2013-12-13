@@ -3,6 +3,9 @@
 require_once __DIR__ . "/../src/__init__.php";
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing;
+use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject;
+use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Form\FormView;
 use AnhNhan\ModHub\Views\Form\Controls\SubmitControl;
 use AnhNhan\ModHub\Views\Form\Controls\TextControl;
@@ -16,11 +19,9 @@ ob_start();
 $core = new Core;
 $core->init($_REQUEST['page']);
 
-$content = "<p>This is supposed to be the content</p>";
+// TODO: Actually to all the processing here
 
 $overflow = ob_get_clean();
-
-// echo $content;
 
 if ($overflow) {
     echo "<p>We had overflow!</p>";
@@ -29,51 +30,38 @@ if ($overflow) {
 }
 
 $container = new MarkupContainer;
-$container->push(ModHub\safeHtml($content));
-$container->push(ModHub\ht("p", "Hello"));
 
-$listing1 = new Objects\Listing;
+$listing = new ForumListing;
+$listing->setTitle('Forum Listing');
 
-$listing1->addObject(
-    id(new Objects\Object)
-        ->setHeadline('News of the day')
-);
-$listing1->addObject(
-    id(new Objects\Object)
-        ->setHeadline('Breaking news')
-);
-$listing1->addObject(
-    id(new Objects\Object)
-        ->setHeadline('Paper of tomorrow')
-        ->setHeadHref('http://www.cnn.com/')
-);
-$container->push($listing1->render());
-
-
-$listing2 = new Objects\Listing;
-$listing2->setTitle('Basic Listing with header and attributes');
-
-$listing2->addObject(
-    id(new Objects\Object)
+$listing->addObject(
+    id(new ForumObject)
         ->setHeadline('A little story of the future')
         ->addAttribute('Christian Müller')
         ->addAttribute('Yesterday')
         ->addAttribute('Don\'t believe me? ¬.¬')
+        ->addTag(new TagView("caw", "green"))
+        ->addTag(new TagView("internal"))
 );
-$listing2->addObject(
-    id(new Objects\Object)
+$listing->addObject(
+    id(new ForumObject)
         ->setHeadline('Why the future is the future')
         ->addAttribute('Christoph Müller')
         ->addAttribute('Two days before')
+        ->addTag(new TagView("caw", "green"))
+        ->addTag(new TagView("sotp", "blue"))
+        ->addTag(new TagView("homefront", "dark"))
+        ->addTag(new TagView("discussion"))
 );
-$listing2->addObject(
-    id(new Objects\Object)
+$listing->addObject(
+    id(new ForumObject)
         ->setHeadline('Future, I am your father')
         ->addAttribute('Hans Müller')
         ->addAttribute('Two days before')
+        ->addTag(new TagView("caw", "green"))
+        ->addTag(new TagView("sotp", "blue"))
 );
-$container->push($listing2->render());
-
+$container->push($listing->render());
 
 $form = new FormView();
 $form->enableFileUpload()

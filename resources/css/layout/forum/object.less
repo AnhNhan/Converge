@@ -1,0 +1,21 @@
+
+@colorObjectBackground: @veryLightGrey;
+@colorObjectHardBackground: @darkGrey;
+@colorAttributes: @darkGrey;
+
+.forum-list-container {
+
+    .objects-object-container {
+        padding: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-left: @colorObjectHardBackground 5px solid;
+        background-color: @colorObjectBackground;
+
+        .round-border(5px);
+    }
+
+    .objects-object-attributes {
+        color: @colorAttributes;
+    }
+}
