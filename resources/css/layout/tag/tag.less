@@ -1,12 +1,13 @@
 
 .tag-color (@color) {
-    border: @color 1px solid;
+    // border: @color 1px solid;
     background-color: lighten(@color, 10%);
 }
 
 .tag-object {
     display: inline-block;
-    margin: 0 2px;
+    margin: 0 0px;
+    .no-padding;
     .round-border(5px);
     .tag-color(@darkBlue);
 

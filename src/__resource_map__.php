@@ -73,7 +73,7 @@ return array(
     "layout-tag-tag" => array(
       "name" => "layout-tag-tag",
       "path" => "layout/tag/tag.less",
-      "hash" => "dc4d3e21",
+      "hash" => "dcbb6ac0",
     ),
   ),
   "js" => array(
@@ -82,7 +82,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "165eb8cb",
+      "hash" => "e147b273",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "ed07efce",
@@ -94,7 +94,7 @@ return array(
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "b6a40561",
         "layout-forum-object" => "13c162f4",
-        "layout-tag-tag" => "dc4d3e21",
+        "layout-tag-tag" => "dcbb6ac0",
       ),
     ),
   ),
