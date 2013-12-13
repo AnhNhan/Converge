@@ -31,6 +31,12 @@ class Object extends AbstractObject
         return $this;
     }
 
+    protected function addAttributeAsFirst($attr)
+    {
+        array_unshift($this->attributes, $attr);
+        return $this;
+    }
+
     public function setBody($body)
     {
         $this->body = $body;
