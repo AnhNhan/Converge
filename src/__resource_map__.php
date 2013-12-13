@@ -58,7 +58,7 @@ return array(
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
       "path" => "layout/forum/object.less",
-      "hash" => "a39d4425",
+      "hash" => "13c162f4",
     ),
     "layout-grid" => array(
       "name" => "layout-grid",
@@ -82,7 +82,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "62f9a501",
+      "hash" => "165eb8cb",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "ed07efce",
@@ -93,7 +93,7 @@ return array(
         "layout-grid" => "eb9f991e",
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "b6a40561",
-        "layout-forum-object" => "a39d4425",
+        "layout-forum-object" => "13c162f4",
         "layout-tag-tag" => "dc4d3e21",
       ),
     ),
