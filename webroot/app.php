@@ -26,7 +26,7 @@ $request = $core->init($_REQUEST['page']);
 
 // TODO: Actually do all the processing here
 
-$controller = $core->routeToController($request);
+$controller = $core->dispatchRequest($request);
 
 $overflow = ob_get_clean();
 

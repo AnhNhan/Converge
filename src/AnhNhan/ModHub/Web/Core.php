@@ -15,7 +15,7 @@ use YamwLibs\Libs\Routing\Router;
  */
 final class Core
 {
-    private $renderWithTemplate;
+    private $router;
 
     public function init($page)
     {
@@ -43,41 +43,13 @@ final class Core
         return $request;
     }
 
-    public function routeToController(Request $request)
+    public function dispatchRequest(Request $request)
     {
-        $routingResult = $this->routeToApplication($request->getValue("uri-action-string"));
-        if ($routingResult) {
-            $app = $routingResult["target"];
-            unset($routingResult["target"]);
-            $request->populate($routingResult);
-            $controller = $app->routeToController($request);
-            return $controller;
-        } else {
-            // TODO: Get default/404 controller
-            return null;
-        }
-    }
-
-    public function routeToApplication($uri, array $applications = null)
-    {
-        if (!$applications) {
-            $applications = $this->buildAppList();
-        }
-        $apps = array();
-        foreach ($applications as $class_name) {
-            $apps[] = new $class_name;
+        if (!$this->router) {
+            $this->router = new AppRouting($this->buildAppList());
         }
 
-        $app_routes = mpull($apps, "getRoutes");
-
-        $router = new Router;
-        foreach ($app_routes as $routes) {
-            foreach ($routes as $route) {
-                $router->registerRoute($route);
-            }
-        }
-
-        return $router->route($uri);
+        return $this->router->routeToController($request);
     }
 
     private function buildAppList()
