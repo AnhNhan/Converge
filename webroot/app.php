@@ -19,18 +19,31 @@ ob_start();
 
 ResMgr::init(ModHub\path("__resource_map__.php"));
 ResMgr::getInstance()
-	->requireCSS("core-pck");
+    ->requireCSS("core-pck");
 
 $core = new Core;
-$core->init($_REQUEST['page']);
+$request = $core->init($_REQUEST['page']);
 
 // TODO: Actually do all the processing here
 
+$routeResult = $core->routeToApplication($request->getValue("uri-action-string"));
+// Hack-job
+if ($routeResult) {
+$app = $routeResult["target"];
+unset($routeResult["target"]);
+$request->populate($routeResult);
+$controller = $app->routeToController($request);
+
 $overflow = ob_get_clean();
+
+// TODO: Put this above ob_get_clean after we have implemented Response
+$payload = $controller->setRequest($request)->handle();
 
 if ($overflow) {
     echo "<h3>We had overflow!</h3>";
     echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
+}
+
 }
 
 $container = new MarkupContainer;
@@ -88,4 +101,6 @@ $container->push($form->render());
 
 $instance = new \AnhNhan\ModHub\Views\Page\DefaultTemplateView("title", $container);
 
-echo $instance->render();
+if (!$routeResult) {
+    echo $instance->render();
+}

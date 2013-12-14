@@ -28,9 +28,12 @@ abstract class BaseApplicationController
         return $this->app;
     }
 
+    /**
+     * @return Request
+     */
     final public function request()
     {
-        return $this->request();
+        return $this->request;
     }
 
     final public function setRequest(Request $request)
@@ -38,4 +41,6 @@ abstract class BaseApplicationController
         $this->request = $request;
         return $this;
     }
+
+    abstract public function handle();
 }

@@ -43,8 +43,11 @@ final class Core
         return $request;
     }
 
-    public function routeToApplication($uri, array $applications)
+    public function routeToApplication($uri, array $applications = null)
     {
+        if (!$applications) {
+            $applications = $this->buildAppList();
+        }
         $apps = array();
         foreach ($applications as $class_name) {
             $apps[] = new $class_name;

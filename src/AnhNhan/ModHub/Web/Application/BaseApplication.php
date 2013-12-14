@@ -22,10 +22,7 @@ abstract class BaseApplication
 
     abstract public function getRoutes();
 
-    abstract public function routeToController(Request $request)
-    {
-        //
-    }
+    abstract public function routeToController(Request $request);
 
     protected function generateRoutesFromYaml($file)
     {
