@@ -38,7 +38,7 @@ return array(
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "b608413a",
+      "hash" => "ecb60e7c",
     ),
     "layout-buttons" => array(
       "name" => "layout-buttons",
@@ -48,7 +48,7 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "0d720b4e",
+      "hash" => "a8db603c",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -82,13 +82,13 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "da1c1968",
+      "hash" => "ea4665d6",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
-        "layout-boilerplate" => "b608413a",
-        "layout-core" => "0d720b4e",
+        "layout-boilerplate" => "ecb60e7c",
+        "layout-core" => "a8db603c",
         "layout-form" => "4cc597e4",
         "layout-grid" => "eb9f991e",
         "layout-buttons" => "f57b3b3b",
