@@ -40,7 +40,7 @@ class HtmlDocumentView extends AbstractView
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <base href="%s/" />
 %s
-<script src="/js/external/modernizr.js"></script>
+<!--<script src="/js/external/modernizr.js"></script>-->
 </head>
 <body>
     %s
