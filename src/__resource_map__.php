@@ -23,7 +23,7 @@ return array(
     "external-bootstrap-sprites" => array(
       "name" => "external-bootstrap-sprites",
       "path" => "external/bootstrap/sprites.less",
-      "hash" => "ed07efce",
+      "hash" => "7f8d1ffb",
     ),
     "external-html5-boilerplate-main" => array(
       "name" => "external-html5-boilerplate-main",
@@ -82,10 +82,10 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "e147b273",
+      "hash" => "da1c1968",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
-        "external-bootstrap-sprites" => "ed07efce",
+        "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
         "layout-boilerplate" => "b608413a",
         "layout-core" => "0d720b4e",
