@@ -1,0 +1,3 @@
+
+routes:
+  - pattern: "/rsrc/:type/:name/:rsrc-hash"

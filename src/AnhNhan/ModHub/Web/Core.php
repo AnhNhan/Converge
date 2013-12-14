@@ -4,7 +4,9 @@ namespace AnhNhan\ModHub\Web;
 use AnhNhan\ModHub;
 use YamwLibs\Infrastructure\Config\Config;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
+use YamwLibs\Infrastructure\Symbols\SymbolLoader;
 use YamwLibs\Libs\Http\Request;
+use YamwLibs\Libs\Routing\Router;
 
 /**
  * Bootstrap of the application
@@ -29,14 +31,53 @@ final class Core
 
         $this->action_string = explode('/', $page);
 
-        $request->populateFromGet(array("template" => true));
-        $this->renderWithTemplate = $request->getValue("get-template");
+        $get_params_from_uri = $this->findOutUriGetParams($request, $page);
+        $host_name = $this->findOutHostName($request, $get_params_from_uri);
 
+        $request->populate(array(
+            "uri-action-string" => $page,
+            "uri-get-params" => $get_params_from_uri,
+            "uri-hostname" => $host_name,
+        ));
+
+        return $request;
+    }
+
+    public function routeToApplication($uri, array $applications)
+    {
+        $apps = array();
+        foreach ($applications as $class_name) {
+            $apps[] = new $class_name;
+        }
+
+        $app_routes = mpull($apps, "getRoutes");
+
+        $router = new Router;
+        foreach ($app_routes as $routes) {
+            foreach ($routes as $route) {
+                $router->registerRoute($route);
+            }
+        }
+
+        return $router->route($uri);
+    }
+
+    private function buildAppList()
+    {
+        static $classes;
+        if (!$classes) {
+            $classes = SymbolLoader::getInstance()
+                ->getClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
+        }
+        return $classes;
+    }
+
+    private function findOutUriGetParams($request, $page)
+    {
         $request->populateFromServer(
             array(
                 'QUERY_STRING' => '/',
                 'REQUEST_URI' => '/',
-                'HTTP_HOST' => 'localhost',
                 'PHP_SELF' => 'index.php'
             )
         );
@@ -47,12 +88,22 @@ final class Core
 
         // Remove the base URL
         // http://localhost.dev/yourapp/home/index => http://localhost.dev/yourapp
-        $temp_page = str_replace($opage, '', $temp_page);
         $temp_page = str_replace($page, '', $temp_page);
+
+        return $temp_page;
+    }
+
+    private function findOutHostName($request, $remaining_uri)
+    {
+        $request->populateFromServer(
+            array(
+                'HTTP_HOST' => 'localhost',
+            )
+        );
 
         // If we pass additional url parameters, they shouldn't appear in the base url
         // /home/index?bla=2hi => /home/index
-        $temp_page = preg_replace("/(.*?)\?.*?$/i", '$1', $temp_page);
+        $temp_page = preg_replace("/(.*?)\?.*?$/i", '$1', $remaining_uri);
         $temp_page = preg_replace("/(.*?)&.*?$/i", '$1', $temp_page);
 
         $temp_page = str_replace("\n", '', $temp_page);
@@ -69,10 +120,12 @@ final class Core
         }
 
         $host = $request->getValue('server-http_host');
-        $this->page = "http://{$host}{$temp_page}";
+        $page = "http://{$host}{$temp_page}";
 
-        if (!preg_match('/\/$/si', $this->page)) {
-            $this->page .= '/';
+        if (!preg_match('/\/$/si', $page)) {
+            $page .= '/';
         }
+
+        return $page;
     }
 }

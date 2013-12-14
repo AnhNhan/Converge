@@ -31,6 +31,7 @@ return array(
     "classes" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
+      "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
       "AnhNhan\ModHub\Modules\Tag\Views\TagView" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
       "AnhNhan\ModHub\Views\AbstractView" => "AnhNhan/ModHub/Views/AbstractView.php",
       "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => "AnhNhan/ModHub/Views/Form/Controls/AbstractFormControl.php",
@@ -49,6 +50,8 @@ return array(
       "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => "AnhNhan/ModHub/Views/Page/HtmlDocumentView.php",
       "AnhNhan\ModHub\Views\Page\PageView" => "AnhNhan/ModHub/Views/Page/PageView.php",
       "AnhNhan\ModHub\Views\Page\SidebarView" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
+      "AnhNhan\ModHub\Web\Application\BaseApplication" => "AnhNhan/ModHub/Web/Application/BaseApplication.php",
+      "AnhNhan\ModHub\Web\Application\BaseApplicationController" => "AnhNhan/ModHub/Web/Application/BaseApplicationController.php",
       "AnhNhan\ModHub\Web\Core" => "AnhNhan/ModHub/Web/Core.php",
     ),
   ),
@@ -73,6 +76,9 @@ return array(
       "YamwLibs\Libs\Html\Markup\MarkupContainer" => array(
         "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
         "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      ),
+      "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
       ),
       "AnhNhan\ModHub\Views\AbstractView" => array(
         "AnhNhan\ModHub\Modules\Tag\Views\TagView",
