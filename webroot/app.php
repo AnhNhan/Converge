@@ -26,16 +26,11 @@ $request = $core->init($_REQUEST['page']);
 
 // TODO: Actually do all the processing here
 
-$routeResult = $core->routeToApplication($request->getValue("uri-action-string"));
-// Hack-job
-if ($routeResult) {
-$app = $routeResult["target"];
-unset($routeResult["target"]);
-$request->populate($routeResult);
-$controller = $app->routeToController($request);
+$controller = $core->routeToController($request);
 
 $overflow = ob_get_clean();
 
+if ($controller) {
 // TODO: Put this above ob_get_clean after we have implemented Response
 $payload = $controller->setRequest($request)->handle();
 
@@ -44,7 +39,7 @@ if ($overflow) {
     echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
 }
 
-}
+} else {
 
 $container = new MarkupContainer;
 
@@ -101,6 +96,5 @@ $container->push($form->render());
 
 $instance = new \AnhNhan\ModHub\Views\Page\DefaultTemplateView("title", $container);
 
-if (!$routeResult) {
-    echo $instance->render();
+echo $instance->render();
 }

@@ -43,6 +43,21 @@ final class Core
         return $request;
     }
 
+    public function routeToController(Request $request)
+    {
+        $routingResult = $this->routeToApplication($request->getValue("uri-action-string"));
+        if ($routingResult) {
+            $app = $routingResult["target"];
+            unset($routingResult["target"]);
+            $request->populate($routingResult);
+            $controller = $app->routeToController($request);
+            return $controller;
+        } else {
+            // TODO: Get default/404 controller
+            return null;
+        }
+    }
+
     public function routeToApplication($uri, array $applications = null)
     {
         if (!$applications) {
