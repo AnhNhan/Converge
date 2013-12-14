@@ -12,21 +12,25 @@ use AnhNhan\ModHub\Views\Form\Controls\TextControl;
 use AnhNhan\ModHub\Views\Form\Controls\TextAreaControl;
 use AnhNhan\ModHub\Views\Objects;
 use AnhNhan\ModHub\Web\Core;
+use YamwLibs\Infrastructure\ResMgmt\ResMgr;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 ob_start();
 
+ResMgr::init(ModHub\path("__resource_map__.php"));
+ResMgr::getInstance()
+	->requireCSS("core-pck");
+
 $core = new Core;
 $core->init($_REQUEST['page']);
 
-// TODO: Actually to all the processing here
+// TODO: Actually do all the processing here
 
 $overflow = ob_get_clean();
 
 if ($overflow) {
-    echo "<p>We had overflow!</p>";
-    echo "<p>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</p>";
-    var_dump($overflow);
+    echo "<h3>We had overflow!</h3>";
+    echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
 }
 
 $container = new MarkupContainer;
@@ -37,17 +41,12 @@ $listing->setTitle('Forum Listing');
 $listing->addObject(
     id(new ForumObject)
         ->setHeadline('A little story of the future')
-        ->addAttribute('Christian Müller')
-        ->addAttribute('Yesterday')
-        ->addAttribute('Don\'t believe me? ¬.¬')
         ->addTag(new TagView("caw", "green"))
         ->addTag(new TagView("internal"))
 );
 $listing->addObject(
     id(new ForumObject)
         ->setHeadline('Why the future is the future')
-        ->addAttribute('Christoph Müller')
-        ->addAttribute('Two days before')
         ->addTag(new TagView("caw", "green"))
         ->addTag(new TagView("sotp", "blue"))
         ->addTag(new TagView("homefront", "dark"))
@@ -56,12 +55,12 @@ $listing->addObject(
 $listing->addObject(
     id(new ForumObject)
         ->setHeadline('Future, I am your father')
-        ->addAttribute('Hans Müller')
-        ->addAttribute('Two days before')
         ->addTag(new TagView("caw", "green"))
         ->addTag(new TagView("sotp", "blue"))
 );
-$container->push($listing->render());
+$row = ModHub\ht("div")->addClass("row");
+$row->appendContent($listing->render())->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render());
+$container->push($row);
 
 $form = new FormView();
 $form->enableFileUpload()
