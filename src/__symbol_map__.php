@@ -29,8 +29,10 @@ return array(
       "icon_text" => "AnhNhan/ModHub/functions_html.php",
     ),
     "classes" => array(
+      "AnhNhan\ModHub\Console\ConsoleCommand" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
@@ -60,6 +62,9 @@ return array(
   ),
   "xmap" => array(
     "derivations" => array(
+      "Symfony\Component\Console\Command\Command" => array(
+        "AnhNhan\ModHub\Console\ConsoleCommand",
+      ),
       "AnhNhan\ModHub\Views\Objects\Listing" => array(
         "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       ),
@@ -80,6 +85,24 @@ return array(
         "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
         "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
       ),
+      "AnhNhan\ModHub\Console\ConsoleCommand" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
+      "Symfony\Component\Console\Input\InputOption" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
+      "Symfony\Component\Console\Input\InputDefinition" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
+      "YamwLibs\Infrastructure\Printers\ArrayPrinter" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
+      "YamwLibs\Infrastructure\ResMgmt\Builders\CssBuilder" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
+      "YamwLibs\Functions\FileFunc" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
       "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
       ),
@@ -87,6 +110,9 @@ return array(
         "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
       ),
       "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
+      ),
+      "YamwLibs\Libs\Http\Request" => array(
         "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
       ),
       "AnhNhan\ModHub\Views\AbstractView" => array(
