@@ -24,7 +24,7 @@ final class DefaultTemplateView extends AbstractView
 
     public function getContent()
     {
-        $head_wrapper = HF::divTag()->addClass("header-wrap container row-flex width12");
+        $head_wrapper = HF::divTag()->addClass("header-wrap row-flex width12");
         $header = HF::divTag()
             ->addClass("header width12")
             ->setContent(
@@ -44,7 +44,7 @@ final class DefaultTemplateView extends AbstractView
         $contentContainerContent->appendContent($content);
         $contentContainerContent->appendContent($sidebar);
 
-        $container = HF::divTag('', 'layout-container', 'layout-container container');
+        $container = HF::divTag('', 'layout-container', 'layout-container grid-system');
 
         $container->appendContent($head_wrapper);
         $container->appendContent($contentContainerContent);

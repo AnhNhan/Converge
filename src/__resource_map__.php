@@ -48,7 +48,7 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "4757ab70",
+      "hash" => "44a83fc9",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -63,7 +63,7 @@ return array(
     "layout-grid" => array(
       "name" => "layout-grid",
       "path" => "layout/grid.less",
-      "hash" => "124fc933",
+      "hash" => "e1cb993f",
     ),
     "layout-objects" => array(
       "name" => "layout-objects",
@@ -82,15 +82,15 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "pck",
-      "hash" => "b7462f95",
+      "hash" => "e2aead88",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
         "layout-boilerplate" => "ecb60e7c",
-        "layout-core" => "4757ab70",
+        "layout-core" => "44a83fc9",
         "layout-form" => "4cc597e4",
-        "layout-grid" => "124fc933",
+        "layout-grid" => "e1cb993f",
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "b6a40561",
         "layout-forum-object" => "13c162f4",

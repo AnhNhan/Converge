@@ -67,7 +67,7 @@ $listing->addObject(
         ->addTag(new TagView("sotp", "blue"))
 );
 $row = ModHub\ht("div")->addClass("row");
-$row->appendContent($listing->render())->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render());
+$row->appendContent($listing->render()->addClass("width12"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width12"));
 $container->push($row);
 
 $form = new FormView();

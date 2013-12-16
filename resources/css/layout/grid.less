@@ -1,16 +1,19 @@
 
-.container {
+.grid-system {
     .no-margin-padding;
 }
 
-.container .row, .container .row-flex {
-    .no-margin-padding;
+.grid-system .row, .grid-system .row-flex {
+    .no-padding;
     width: 100%;
+
+    margin-left: (@gridGutterWidth / -2);
+    margin-right: (@gridGutterWidth / -2);
 
     .clearfix;
 
     .div-grid, .width1, .width2, .width3, .width4, .width5, .width6, .width7, .width8, .width9, .width10, .width11, .width12 {
-        .no-margin-padding;
+        .no-margin;
         font-family: @fontFamilyDefault;
         font-size: @defaultFontSize;
         color: @fontColor;
@@ -19,6 +22,9 @@
         position: relative;
         // Prevent columns from collapsing when empty
         min-height: 1px;
+
+        padding-left: (@gridGutterWidth / 2);
+        padding-right: (@gridGutterWidth / 2);
 
         img {
             max-width: 100%;
@@ -31,7 +37,7 @@
     }
 }
 
-.container .row {
+.grid-system .row {
     .width1 {
         .grid-width(1);
     }
@@ -81,7 +87,7 @@
     }
 }
 
-.container .row-flex {
+.grid-system .row-flex {
     .width1 {
         .grid-width-flex(1);
     }
