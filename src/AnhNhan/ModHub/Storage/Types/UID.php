@@ -42,7 +42,7 @@ class UID
 
     public static function generate($name = self::NAME_DEFAULT)
     {
-        if (strlen($name) !== 4) {
+        if (preg_match("/^[A-Z]{4}$/", $name) === 0) {
             throw new \InvalidArgumentException("\$name should be 4 characters long!");
         }
 

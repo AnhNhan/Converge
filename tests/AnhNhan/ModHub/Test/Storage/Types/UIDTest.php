@@ -45,6 +45,16 @@ class UIDTest extends TestCase
         self::assertFalse(UID::checkValidity($uidString), $message);
     }
 
+    /**
+     * @dataProvider provideInvalidUIDs
+     * @testdox Can't construct with invalid UIDs
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCantConstructInvalidUIDs($uidString, $name, $id, $message)
+    {
+        new UID($uidString);
+    }
+
     public function provideInvalidUIDs()
     {
         return array(
@@ -57,5 +67,25 @@ class UIDTest extends TestCase
     {
         $uid = UID::generate();
         self::assertTrue(UID::checkValidity($uid), "The generated string '$uid' should be a valid UID");
+    }
+
+    /**
+     * @dataProvider provideInvalidNames
+     * @testdox Can't generate with invalid names
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCantGenerateWithInvalidNames($invalidName, $message)
+    {
+        UID::generate($invalidName, $message);
+    }
+
+    public function provideInvalidNames()
+    {
+        return array(
+            array("ABCDE", "Name has to be four characters long"),
+            array("ABC", "Name has to be four characters long"),
+            array("1234", "Name has to be alphanumeric"),
+            array("abcd", "Name has to be uppercase"),
+        );
     }
 }
