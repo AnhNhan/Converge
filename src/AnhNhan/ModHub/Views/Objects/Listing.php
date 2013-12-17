@@ -10,7 +10,7 @@ use YamwLibs\Libs\View\ViewInterface;
 class Listing implements ViewInterface
 {
     private $title;
-    private $objects = [];
+    private $objects = array();
 
     public function setTitle($title)
     {

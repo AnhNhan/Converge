@@ -26,9 +26,9 @@ class HtmlDocumentView extends AbstractView
         try {
         // TODO: Edit this in the future. A lot.
         $reqObj = new \YamwLibs\Libs\Http\Request;
-        $reqObj->populateFromServer([
+        $reqObj->populateFromServer(array(
             'HTTP_HOST'
-        ]);
+        ));
         $baseUrl = 'http://'.$reqObj->getServerValue('http_host', 'localhost');
         return sprintf(<<<EOT
 <!DOCTYPE html>
@@ -60,17 +60,17 @@ EOT
 
     private function renderHead()
     {
-        $head = [];
+        $head = array();
         foreach (ResMgr::getInstance()->fetchRequiredCSSResources() as $css) {
             $head[] = new HtmlTag(
                 'link',
                 null,
-                [
+                array(
                     'rel'     => 'stylesheet',
                     'type'    => 'text/css',
                     'charset' => 'utf-8',
                     'href'    => '/rsrc/css/' . $css,
-                ]
+                )
             );
         }
 

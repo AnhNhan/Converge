@@ -9,7 +9,7 @@ use YamwLibs\Libs\View\ViewInterface;
  */
 class FooterView implements ViewInterface
 {
-    private $columns = [];
+    private $columns = array();
 
     public function column($name, array $entries)
     {
@@ -33,7 +33,7 @@ class FooterView implements ViewInterface
                     ModHub\ht(
                         'a',
                         ModHub\ht('span', $entry['label']),
-                        ['href' => $entry['href']]
+                        array('href' => $entry['href'])
                     )
                 );
 
@@ -50,36 +50,36 @@ class FooterView implements ViewInterface
     {
         $footer = new static();
 
-        $column1 = [
-            [
+        $column1 = array(
+            array(
                 "label" => "Mailaddressensuche",
                 "href"  => "/allg/mailsearch/",
-            ],
-            [
+            ),
+            array(
                 "label" => "Telefonliste",
                 "href"  => "/allg/phonesearch/",
-            ],
-            [
+            ),
+            array(
                 "label" => "Umfragen",
                 "href"  => "/allg/umfragen/",
-            ],
-        ];
+            ),
+        );
         $footer->column('Allgemeines', $column1);
 
-        $column2 = [
-            [
+        $column2 = array(
+            array(
                 "label" => "Netiquette",
                 "href"  => "/allg/netiquette/",
-            ],
-            [
+            ),
+            array(
                 "label" => "WLAN",
                 "href"  => "/allg/wifi/",
-            ],
-            [
+            ),
+            array(
                 "label" => "Ergebnisse der Umfragen",
                 "href"  => "/allg/mailsearch/",
-            ],
-        ];
+            ),
+        );
         $footer->column('Infos', $column2);
 
         return $footer;

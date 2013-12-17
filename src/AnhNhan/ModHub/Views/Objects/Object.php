@@ -10,7 +10,7 @@ class Object extends AbstractObject
 {
     private $headline;
     private $headHref;
-    private $attributes = [];
+    private $attributes = array();
     private $body;
 
     public function setHeadline($headline)
@@ -50,7 +50,7 @@ class Object extends AbstractObject
         $headline = ModHub\ht('div')->addClass('objects-object-title');
         $headlineClass = 'objects-object-title';
         if ($this->headHref) {
-            $headline = ModHub\ht('a', $this->headline, ['href' => $this->headHref])
+            $headline = ModHub\ht('a', $this->headline, array('href' => $this->headHref))
                 ->addClass($headlineClass);
         } else {
             $headline = ModHub\ht('div', $this->headline)->addClass($headlineClass);
