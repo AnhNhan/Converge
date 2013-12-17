@@ -92,7 +92,7 @@ $form->append(id(new TextAreaControl())
 $form->append(id(new SubmitControl())
     ->addCancelButton('/')
     ->addSubmitButton('Hasta la vista!'));
-$container->push($form->render());
+$container->push(ModHub\ht("div", $form->render()->addClass("width12"))->addClass("row-flex"));
 
 $instance = new \AnhNhan\ModHub\Views\Page\DefaultTemplateView("title", $container);
 
