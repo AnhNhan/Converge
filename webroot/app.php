@@ -17,28 +17,33 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 ob_start();
 
+// TODO: Put this somewhere reasonable
 ResMgr::init(ModHub\path("__resource_map__.php"));
 ResMgr::getInstance()
     ->requireCSS("core-pck");
 
-$core = new Core;
-$request = $core->init($_REQUEST['page']);
+$argv = isset($argv) ? $argv : array();
+ModHub\sdx($argv);
+$page = ModHub\is_cli() ? ModHub\sdx($argv, "/") : $_REQUEST['page'];
 
-// TODO: Actually do all the processing here
+$core = new Core;
+$request = $core->init($page);
 
 $controller = $core->dispatchRequest($request);
+// TODO: Handle more processing here
 
 $overflow = ob_get_clean();
-
-if ($controller) {
-// TODO: Put this above ob_get_clean after we have implemented Response
-$payload = $controller->setRequest($request)->handle();
 
 if ($overflow) {
     echo "<h3>We had overflow!</h3>";
     echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
 }
 
+if ($controller) {
+// TODO: Put this above ob_get_clean after we have implemented Response
+$payload = $controller->setRequest($request)->handle();
+
+// TODO: Put this in some demo application
 } else {
 
 $container = new MarkupContainer;
