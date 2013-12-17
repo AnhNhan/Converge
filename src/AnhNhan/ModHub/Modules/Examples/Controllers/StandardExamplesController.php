@@ -4,7 +4,7 @@ namespace AnhNhan\ModHub\Modules\Examples\Controllers;
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Web\Application\BaseApplicationController;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
-use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -17,7 +17,7 @@ final class StandardExamplesController extends BaseApplicationController
         $exampleName = $request->getValue("name");
 
         $classes = SymbolLoader::getInstance()
-            ->getClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
+            ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
         $instances = array();
         foreach ($classes as $class) {
             $instances[] = new $class;

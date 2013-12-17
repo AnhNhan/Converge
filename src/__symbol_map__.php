@@ -14,203 +14,451 @@
 // -----------------------------------------------------------------------------
 
 return array(
-  "locations" => array(
-    "functions" => array(
-      "get_root" => "AnhNhan/ModHub/functions.php",
-      "get_root_super" => "AnhNhan/ModHub/functions.php",
-      "path" => "AnhNhan/ModHub/functions.php",
-      "is_cli" => "AnhNhan/ModHub/functions.php",
-      "is_windows" => "AnhNhan/ModHub/functions.php",
-      "println" => "AnhNhan/ModHub/functions.php",
-      "sdx" => "AnhNhan/ModHub/functions.php",
-      "pdx" => "AnhNhan/ModHub/functions.php",
-      "safeHtml" => "AnhNhan/ModHub/functions_html.php",
-      "ht" => "AnhNhan/ModHub/functions_html.php",
-      "icon_text" => "AnhNhan/ModHub/functions_html.php",
+  "classes" => array(
+    "AnhNhan\ModHub\Console\ConsoleCommand" => array(
+      "file" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
+      "deriv" => "Symfony\Component\Console\Command\Command",
+      "impls" => array(
+      ),
+      "abstr" => "1",
     ),
-    "classes" => array(
-      "AnhNhan\ModHub\Console\ConsoleCommand" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
-      "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
-      "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => "AnhNhan/ModHub/Modules/Examples/Examples/AbstractExample.php",
-      "AnhNhan\ModHub\Modules\Examples\Examples\FormExample" => "AnhNhan/ModHub/Modules/Examples/Examples/FormExample.php",
-      "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
-      "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
-      "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
-      "AnhNhan\ModHub\Modules\Front\FrontApplication" => "AnhNhan/ModHub/Modules/Front/FrontApplication.php",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
-      "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => "AnhNhan/ModHub/Modules/Symbols/Console/AbstractSymbolsCommand.php",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand" => "AnhNhan/ModHub/Modules/Symbols/Console/SymbolGenerationCommand.php",
-      "AnhNhan\ModHub\Modules\Tag\Views\TagView" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
-      "AnhNhan\ModHub\Storage\Types\DateTime" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
-      "AnhNhan\ModHub\Storage\Types\UID" => "AnhNhan/ModHub/Storage/Types/UID.php",
-      "AnhNhan\ModHub\Views\AbstractView" => "AnhNhan/ModHub/Views/AbstractView.php",
-      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => "AnhNhan/ModHub/Views/Form/Controls/AbstractFormControl.php",
-      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl" => "AnhNhan/ModHub/Views/Form/Controls/HiddenControl.php",
-      "AnhNhan\ModHub\Views\Form\Controls\SubmitControl" => "AnhNhan/ModHub/Views/Form/Controls/SubmitControl.php",
-      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl" => "AnhNhan/ModHub/Views/Form/Controls/TextAreaControl.php",
-      "AnhNhan\ModHub\Views\Form\Controls\TextControl" => "AnhNhan/ModHub/Views/Form/Controls/TextControl.php",
-      "AnhNhan\ModHub\Views\Form\FormView" => "AnhNhan/ModHub/Views/Form/FormView.php",
-      "AnhNhan\ModHub\Views\Objects\AbstractObject" => "AnhNhan/ModHub/Views/Objects/AbstractObject.php",
-      "AnhNhan\ModHub\Views\Objects\Listing" => "AnhNhan/ModHub/Views/Objects/Listing.php",
-      "AnhNhan\ModHub\Views\Objects\Object" => "AnhNhan/ModHub/Views/Objects/Object.php",
-      "AnhNhan\ModHub\Views\Page\BarePageView" => "AnhNhan/ModHub/Views/Page/BarePageView.php",
-      "AnhNhan\ModHub\Views\Page\DefaultTemplateView" => "AnhNhan/ModHub/Views/Page/DefaultTemplateView.php",
-      "AnhNhan\ModHub\Views\Page\FooterView" => "AnhNhan/ModHub/Views/Page/FooterView.php",
-      "AnhNhan\ModHub\Views\Page\HeaderView" => "AnhNhan/ModHub/Views/Page/HeaderView.php",
-      "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => "AnhNhan/ModHub/Views/Page/HtmlDocumentView.php",
-      "AnhNhan\ModHub\Views\Page\PageView" => "AnhNhan/ModHub/Views/Page/PageView.php",
-      "AnhNhan\ModHub\Views\Page\SidebarView" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
-      "AnhNhan\ModHub\Web\AppRouting" => "AnhNhan/ModHub/Web/AppRouting.php",
-      "AnhNhan\ModHub\Web\Application\AbstractPayload" => "AnhNhan/ModHub/Web/Application/AbstractPayload.php",
-      "AnhNhan\ModHub\Web\Application\BaseApplication" => "AnhNhan/ModHub/Web/Application/BaseApplication.php",
-      "AnhNhan\ModHub\Web\Application\BaseApplicationController" => "AnhNhan/ModHub/Web/Application/BaseApplicationController.php",
-      "AnhNhan\ModHub\Web\Application\HtmlPayload" => "AnhNhan/ModHub/Web/Application/HtmlPayload.php",
-      "AnhNhan\ModHub\Web\Application\HttpPayload" => "AnhNhan/ModHub/Web/Application/HttpPayload.php",
-      "AnhNhan\ModHub\Web\Application\RawHttpPayload" => "AnhNhan/ModHub/Web/Application/RawHttpPayload.php",
-      "AnhNhan\ModHub\Web\Core" => "AnhNhan/ModHub/Web/Core.php",
+    "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/AbstractExample.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\FormExample" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/FormExample.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
+      "deriv" => "AnhNhan\ModHub\Views\Objects\Listing",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
+      "deriv" => "AnhNhan\ModHub\Views\Objects\Object",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Front\FrontApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/Front/FrontApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
+      "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
+      "file" => "AnhNhan/ModHub/Modules/Symbols/Console/AbstractSymbolsCommand.php",
+      "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand" => array(
+      "file" => "AnhNhan/ModHub/Modules/Symbols/Console/SymbolGenerationCommand.php",
+      "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Storage\Types\DateTime" => array(
+      "file" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Storage\Types\UID" => array(
+      "file" => "AnhNhan/ModHub/Storage/Types/UID.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\AbstractView" => array(
+      "file" => "AnhNhan/ModHub/Views/AbstractView.php",
+      "deriv" => "",
+      "impls" => array(
+        "YamwLibs\Libs\View\ViewInterface",
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
+      "file" => "AnhNhan/ModHub/Views/Form/Controls/AbstractFormControl.php",
+      "deriv" => "YamwLibs\Libs\Html\Markup\HtmlTag",
+      "impls" => array(
+        "YamwLibs\Libs\View\ViewInterface",
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Views\Form\Controls\HiddenControl" => array(
+      "file" => "AnhNhan/ModHub/Views/Form/Controls/HiddenControl.php",
+      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Form\Controls\SubmitControl" => array(
+      "file" => "AnhNhan/ModHub/Views/Form/Controls/SubmitControl.php",
+      "deriv" => "",
+      "impls" => array(
+        "YamwLibs\Libs\View\ViewInterface",
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl" => array(
+      "file" => "AnhNhan/ModHub/Views/Form/Controls/TextAreaControl.php",
+      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Form\Controls\TextControl" => array(
+      "file" => "AnhNhan/ModHub/Views/Form/Controls/TextControl.php",
+      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Form\FormView" => array(
+      "file" => "AnhNhan/ModHub/Views/Form/FormView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
+      "file" => "AnhNhan/ModHub/Views/Objects/AbstractObject.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Views\Objects\Listing" => array(
+      "file" => "AnhNhan/ModHub/Views/Objects/Listing.php",
+      "deriv" => "",
+      "impls" => array(
+        "YamwLibs\Libs\View\ViewInterface",
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Objects\Object" => array(
+      "file" => "AnhNhan/ModHub/Views/Objects/Object.php",
+      "deriv" => "AnhNhan\ModHub\Views\Objects\AbstractObject",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\BarePageView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/BarePageView.php",
+      "deriv" => "AnhNhan\ModHub\Views\Page\PageView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\DefaultTemplateView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/DefaultTemplateView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\FooterView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/FooterView.php",
+      "deriv" => "",
+      "impls" => array(
+        "YamwLibs\Libs\View\ViewInterface",
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\HeaderView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/HeaderView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/HtmlDocumentView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\PageView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/PageView.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Views\Page\SidebarView" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Web\AppRouting" => array(
+      "file" => "AnhNhan/ModHub/Web/AppRouting.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/AbstractPayload.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/BaseApplication.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/BaseApplicationController.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Web\Application\HtmlPayload" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/HtmlPayload.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/HttpPayload.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\AbstractPayload",
+      "impls" => array(
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Web\Application\RawHttpPayload" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/RawHttpPayload.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+      "impls" => array(
+      ),
+      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Web\Core" => array(
+      "file" => "AnhNhan/ModHub/Web/Core.php",
+      "deriv" => "",
+      "impls" => array(
+      ),
+      "abstr" => "",
     ),
   ),
+  "functions" => array(
+    "AnhNhan\ModHub\get_root" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\get_root_super" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\path" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\is_cli" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\is_windows" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\println" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\sdx" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\pdx" => "AnhNhan/ModHub/functions.php",
+    "AnhNhan\ModHub\safeHtml" => "AnhNhan/ModHub/functions_html.php",
+    "AnhNhan\ModHub\ht" => "AnhNhan/ModHub/functions_html.php",
+    "AnhNhan\ModHub\icon_text" => "AnhNhan/ModHub/functions_html.php",
+  ),
   "xmap" => array(
-    "derivations" => array(
-      "Symfony\Component\Console\Command\Command" => array(
-        "AnhNhan\ModHub\Console\ConsoleCommand",
-      ),
-      "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
-        "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
-        "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
-        "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
-      ),
-      "AnhNhan\ModHub\Web\Application\HtmlPayload" => array(
-        "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
-        "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
-      ),
-      "YamwLibs\Infrastructure\Symbols\SymbolLoader" => array(
-        "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
-      ),
-      "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
-        "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
-        "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
-      ),
-      "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
-        "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
-        "AnhNhan\ModHub\Modules\Front\FrontApplication",
-        "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
-      ),
-      "YamwLibs\Libs\Http\Request" => array(
-        "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
-        "AnhNhan\ModHub\Modules\Front\FrontApplication",
-        "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
-      ),
-      "AnhNhan\ModHub\Views\Objects\Listing" => array(
-        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-      ),
-      "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
-        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-        "AnhNhan\ModHub\Views\Objects\Object",
-      ),
-      "YamwLibs\Libs\Assertions\BasicAssertions" => array(
-        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-      ),
-      "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
-        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
-      ),
-      "AnhNhan\ModHub\Views\Objects\Object" => array(
-        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
-      ),
-      "YamwLibs\Libs\Html\Markup\MarkupContainer" => array(
-        "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
-        "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
-        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-      ),
-      "YamwLibs\Libs\Routing\Route" => array(
-        "AnhNhan\ModHub\Modules\Front\FrontApplication",
-      ),
-      "AnhNhan\ModHub\Console\ConsoleCommand" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-        "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
-      ),
-      "Symfony\Component\Console\Input\InputArgument" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      ),
-      "Symfony\Component\Console\Input\InputOption" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      ),
-      "Symfony\Component\Console\Input\InputDefinition" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      ),
-      "YamwLibs\Infrastructure\Printers\ArrayPrinter" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      ),
-      "YamwLibs\Infrastructure\ResMgmt\Builders\CssBuilder" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      ),
-      "YamwLibs\Functions\FileFunc" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      ),
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
-      ),
-      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
-        "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
-      ),
-      "AnhNhan\ModHub\Views\AbstractView" => array(
-        "AnhNhan\ModHub\Modules\Tag\Views\TagView",
-        "AnhNhan\ModHub\Views\Form\FormView",
-        "AnhNhan\ModHub\Views\Objects\AbstractObject",
-        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-        "AnhNhan\ModHub\Views\Page\HeaderView",
-        "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
-        "AnhNhan\ModHub\Views\Page\SidebarView",
-      ),
-      "YamwLibs\Libs\Html\HtmlFactory" => array(
-        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-      ),
-      "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
-        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-        "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
-      ),
-      "YamwLibs\Libs\Html\Markup\SafeTextNode" => array(
-        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      ),
-      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
-        "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
-        "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
-        "AnhNhan\ModHub\Views\Form\Controls\TextControl",
-      ),
-      "AnhNhan\ModHub\Views\Page\PageView" => array(
-        "AnhNhan\ModHub\Views\Page\BarePageView",
-      ),
-      "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => array(
-        "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-      ),
-      "YamwLibs\Infrastructure\ResMgmt\ResMgr" => array(
-        "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
-      ),
-      "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
-        "AnhNhan\ModHub\Web\Application\HtmlPayload",
-        "AnhNhan\ModHub\Web\Application\RawHttpPayload",
-      ),
-      "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
-        "AnhNhan\ModHub\Web\Application\HttpPayload",
-      ),
+    "Symfony\Component\Console\Command\Command" => array(
+      "AnhNhan\ModHub\Console\ConsoleCommand",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
     ),
-    "implementations" => array(
-      "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
-        "AnhNhan\ModHub\Views\AbstractView",
-      ),
-      "YamwLibs\Libs\View\ViewInterface" => array(
-        "AnhNhan\ModHub\Views\AbstractView",
-        "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-        "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
-        "AnhNhan\ModHub\Views\Objects\Listing",
-        "AnhNhan\ModHub\Views\Page\FooterView",
-      ),
+    "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
+      "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
+      "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
+      "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
+    ),
+    "" => array(
+      "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+      "AnhNhan\ModHub\Storage\Types\DateTime",
+      "AnhNhan\ModHub\Storage\Types\UID",
+      "AnhNhan\ModHub\Views\AbstractView",
+      "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
+      "AnhNhan\ModHub\Views\Objects\Listing",
+      "AnhNhan\ModHub\Views\Page\FooterView",
+      "AnhNhan\ModHub\Views\Page\PageView",
+      "AnhNhan\ModHub\Web\AppRouting",
+      "AnhNhan\ModHub\Web\Application\AbstractPayload",
+      "AnhNhan\ModHub\Web\Application\BaseApplication",
+      "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "AnhNhan\ModHub\Web\Core",
+      "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
+      "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
+      "AnhNhan\ModHub\Modules\Tag\Views\TagView",
+      "AnhNhan\ModHub\Views\Form\FormView",
+      "AnhNhan\ModHub\Views\Objects\AbstractObject",
+      "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      "AnhNhan\ModHub\Views\Page\HeaderView",
+      "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      "AnhNhan\ModHub\Views\Page\SidebarView",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+      "AnhNhan\ModHub\Views\Page\BarePageView",
+      "AnhNhan\ModHub\Web\Application\HttpPayload",
+      "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
+      "AnhNhan\ModHub\Modules\Front\FrontApplication",
+      "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
+      "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
+      "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
+      "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
+    ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
+      "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
+      "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
+    ),
+    "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
+      "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
+      "AnhNhan\ModHub\Modules\Front\FrontApplication",
+      "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
+    ),
+    "AnhNhan\ModHub\Views\Objects\Listing" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+    ),
+    "AnhNhan\ModHub\Views\Objects\Object" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+    ),
+    "AnhNhan\ModHub\Console\ConsoleCommand" => array(
+      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
+      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
+      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
+    ),
+    "AnhNhan\ModHub\Views\AbstractView" => array(
+      "AnhNhan\ModHub\Modules\Tag\Views\TagView",
+      "AnhNhan\ModHub\Views\Form\FormView",
+      "AnhNhan\ModHub\Views\Objects\AbstractObject",
+      "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      "AnhNhan\ModHub\Views\Page\HeaderView",
+      "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      "AnhNhan\ModHub\Views\Page\SidebarView",
+      "AnhNhan\ModHub\Views\Objects\Object",
+    ),
+    "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
+      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
+      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
+      "AnhNhan\ModHub\Views\Form\Controls\TextControl",
+    ),
+    "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
+      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
+      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
+      "AnhNhan\ModHub\Views\Form\Controls\TextControl",
+    ),
+    "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
+      "AnhNhan\ModHub\Views\Objects\Object",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+    ),
+    "AnhNhan\ModHub\Views\Page\PageView" => array(
+      "AnhNhan\ModHub\Views\Page\BarePageView",
+    ),
+    "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
+      "AnhNhan\ModHub\Web\Application\HtmlPayload",
+      "AnhNhan\ModHub\Web\Application\RawHttpPayload",
+    ),
+    "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
+      "AnhNhan\ModHub\Web\Application\HttpPayload",
+      "AnhNhan\ModHub\Web\Application\HtmlPayload",
+      "AnhNhan\ModHub\Web\Application\RawHttpPayload",
+    ),
+  ),
+  "implementations" => array(
+    "YamwLibs\Libs\View\ViewInterface" => array(
+      "AnhNhan\ModHub\Views\AbstractView",
+      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+      "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
+      "AnhNhan\ModHub\Views\Objects\Listing",
+      "AnhNhan\ModHub\Views\Page\FooterView",
     ),
   ),
 );

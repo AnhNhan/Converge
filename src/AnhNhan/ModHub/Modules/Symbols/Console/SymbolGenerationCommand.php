@@ -2,15 +2,13 @@
 namespace AnhNhan\ModHub\Modules\StaticResources\Console;
 
 use AnhNhan\ModHub;
-use Symfony\Component\Console\Input\InputArgument;
+use AnhNhan\ModHub\Modules\Symbols\Generator\SymbolGenerator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputDefinition;
 use YamwLibs\Functions\FileFunc;
 use YamwLibs\Infrastructure\Printers\ArrayPrinter;
-use YamwLibs\Infrastructure\Symbols\SymbolGenerator;
-use YamwLibs\Infrastructure\Symbols\SymbolTreeGenerator;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -49,42 +47,33 @@ final class SymbolGenerationCommand extends AbstractSymbolsCommand
         $output->writeln("Analyzing $fileCount files...");
 
         // Now begins the cool part :D
-        $symbolGenerator = new SymbolGenerator();
+        $symbolGenerator = new SymbolGenerator(ModHub\path());
         $skipped = array();
 
+        $filesToBeParsed = array();
         foreach ($files as $file) {
             if (preg_match("/Test\\.php$/i", $file)) {
                 echo "S";
                 $skipped[] = $file;
                 continue;
             }
-            $symbolGenerator->parseFiles(array($file), ModHub\path());
-            echo ".";
+            $filesToBeParsed[] = $file;
         }
-        $nodes = $symbolGenerator->getNodes();
+        $symbolGenerator->addFiles($filesToBeParsed);
+
+        $symbolGenerator->onFileTraverse(function ($fileName) use ($output) {
+            $output->write(".");
+        });
+
+        $symbolGenerator->start();
+
+        $symbolTree = $symbolGenerator->getTree();
 
         $output->writeln("");
-
-        if ($skipped) {
-            $output->writeln("Skipped " . count($skipped) . " files:");
-
-            $output->write("  - ");
-            $output->write(implode("\n  - ", $skipped));
-
-            $output->writeln("");
-            $output->writeln("");
-        }
-        $output->writeln("Successfully analyzed $fileCount files!");
-        $output->writeln("Found " . count($nodes) . " symbols.");
-
-        $output->writeln("");
-
-        $output->writeln("Generating symbol tree...");
-        $symbolTree = $this->generateSymbolTree($nodes);
 
         $output->writeln("Writing to disk...");
 
-        $this->printToDisk($symbolTree);
+        $this->printToDisk($symbolTree->toSymbolMap());
 
         $output->writeln("Successfully wrote to disk!");
     }

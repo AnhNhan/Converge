@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Views\Page;
 
 use AnhNhan\ModHub;
-use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 use YamwLibs\Libs\View\ViewInterface;
 
 /**
@@ -85,7 +85,7 @@ class FooterView implements ViewInterface
 
         $column3 = array();
         $classes = SymbolLoader::getInstance()
-            ->getClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
+            ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
         $instances = array();
         foreach ($classes as $class) {
             $instances[] = new $class;

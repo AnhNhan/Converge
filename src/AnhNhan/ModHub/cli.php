@@ -4,10 +4,10 @@ namespace AnhNhan\ModHub;
 require_once __DIR__ . "/../../__init__.php";
 
 use Symfony\Component\Console\Application;
-use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 $command_classes = SymbolLoader::getInstance()
-    ->getClassesThatDeriveFromThisOne('AnhNhan\ModHub\Console\ConsoleCommand');
+    ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Console\ConsoleCommand');
 
 $cli_application = new Application("ModHub CLI Interface Manager", "0.0.0.0.1");
 

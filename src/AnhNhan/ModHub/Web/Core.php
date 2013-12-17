@@ -4,9 +4,8 @@ namespace AnhNhan\ModHub\Web;
 use AnhNhan\ModHub;
 use YamwLibs\Infrastructure\Config\Config;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
-use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 use YamwLibs\Libs\Http\Request;
-use YamwLibs\Libs\Routing\Router;
 
 /**
  * Bootstrap of the application
@@ -57,7 +56,7 @@ final class Core
         static $classes;
         if (!$classes) {
             $classes = SymbolLoader::getInstance()
-                ->getClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
+                ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
         }
         return $classes;
     }

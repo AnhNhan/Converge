@@ -1,8 +1,9 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/AnhNhan/ModHub/Modules/Symbols/SymbolLoader.php";
 
-use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 SymbolLoader::setStaticRootDir(__DIR__);
 $symbolLoader = SymbolLoader::getInstance();
