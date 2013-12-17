@@ -18,139 +18,95 @@ return array(
     "AnhNhan\ModHub\Console\ConsoleCommand" => array(
       "file" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
       "deriv" => "Symfony\Component\Console\Command\Command",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/AbstractExample.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\FormExample" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/FormExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
       "deriv" => "AnhNhan\ModHub\Views\Objects\Listing",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
       "deriv" => "AnhNhan\ModHub\Views\Objects\Object",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => array(
       "file" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\Front\FrontApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Front/FrontApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
       "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
       "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
       "file" => "AnhNhan/ModHub/Modules/Symbols/Console/AbstractSymbolsCommand.php",
       "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand" => array(
       "file" => "AnhNhan/ModHub/Modules/Symbols/Console/SymbolGenerationCommand.php",
       "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
-      "impls" => array(
-      ),
-      "abstr" => "",
+    ),
+    "AnhNhan\ModHub\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter" => array(
+      "file" => "AnhNhan/ModHub/Modules/Symbols/Generator/NodeVisitor/SymbolEmitter.php",
+      "deriv" => "PHPParser_NodeVisitorAbstract",
+    ),
+    "AnhNhan\ModHub\Modules\Symbols\Generator\SymbolGenerator" => array(
+      "file" => "AnhNhan/ModHub/Modules/Symbols/Generator/SymbolGenerator.php",
+    ),
+    "AnhNhan\ModHub\Modules\Symbols\Generator\SymbolTree" => array(
+      "file" => "AnhNhan/ModHub/Modules/Symbols/Generator/SymbolTree.php",
+    ),
+    "AnhNhan\ModHub\Modules\Symbols\SymbolLoader" => array(
+      "file" => "AnhNhan/ModHub/Modules/Symbols/SymbolLoader.php",
     ),
     "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Storage\Types\DateTime" => array(
       "file" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Storage\Types\UID" => array(
       "file" => "AnhNhan/ModHub/Storage/Types/UID.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "file" => "AnhNhan/ModHub/Views/AbstractView.php",
-      "deriv" => "",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
@@ -167,166 +123,99 @@ return array(
     "AnhNhan\ModHub\Views\Form\Controls\HiddenControl" => array(
       "file" => "AnhNhan/ModHub/Views/Form/Controls/HiddenControl.php",
       "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Form\Controls\SubmitControl" => array(
       "file" => "AnhNhan/ModHub/Views/Form/Controls/SubmitControl.php",
-      "deriv" => "",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl" => array(
       "file" => "AnhNhan/ModHub/Views/Form/Controls/TextAreaControl.php",
       "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Form\Controls\TextControl" => array(
       "file" => "AnhNhan/ModHub/Views/Form/Controls/TextControl.php",
       "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Form\FormView" => array(
       "file" => "AnhNhan/ModHub/Views/Form/FormView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
       "file" => "AnhNhan/ModHub/Views/Objects/AbstractObject.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "file" => "AnhNhan/ModHub/Views/Objects/Listing.php",
-      "deriv" => "",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Objects\Object" => array(
       "file" => "AnhNhan/ModHub/Views/Objects/Object.php",
       "deriv" => "AnhNhan\ModHub\Views\Objects\AbstractObject",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\BarePageView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/BarePageView.php",
       "deriv" => "AnhNhan\ModHub\Views\Page\PageView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\DefaultTemplateView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/DefaultTemplateView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\FooterView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/FooterView.php",
-      "deriv" => "",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\HeaderView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/HeaderView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/HtmlDocumentView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\PageView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/PageView.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Views\Page\SidebarView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Web\AppRouting" => array(
       "file" => "AnhNhan/ModHub/Web/AppRouting.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
       "file" => "AnhNhan/ModHub/Web/Application/AbstractPayload.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
       "file" => "AnhNhan/ModHub/Web/Application/BaseApplication.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
       "file" => "AnhNhan/ModHub/Web/Application/BaseApplicationController.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Web\Application\HtmlPayload" => array(
       "file" => "AnhNhan/ModHub/Web/Application/HtmlPayload.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
       "file" => "AnhNhan/ModHub/Web/Application/HttpPayload.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\AbstractPayload",
-      "impls" => array(
-      ),
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Web\Application\RawHttpPayload" => array(
       "file" => "AnhNhan/ModHub/Web/Application/RawHttpPayload.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
     "AnhNhan\ModHub\Web\Core" => array(
       "file" => "AnhNhan/ModHub/Web/Core.php",
-      "deriv" => "",
-      "impls" => array(
-      ),
-      "abstr" => "",
     ),
   ),
   "functions" => array(
@@ -349,40 +238,6 @@ return array(
       "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
-      "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
-      "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
-    ),
-    "" => array(
-      "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
-      "AnhNhan\ModHub\Storage\Types\DateTime",
-      "AnhNhan\ModHub\Storage\Types\UID",
-      "AnhNhan\ModHub\Views\AbstractView",
-      "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
-      "AnhNhan\ModHub\Views\Objects\Listing",
-      "AnhNhan\ModHub\Views\Page\FooterView",
-      "AnhNhan\ModHub\Views\Page\PageView",
-      "AnhNhan\ModHub\Web\AppRouting",
-      "AnhNhan\ModHub\Web\Application\AbstractPayload",
-      "AnhNhan\ModHub\Web\Application\BaseApplication",
-      "AnhNhan\ModHub\Web\Application\BaseApplicationController",
-      "AnhNhan\ModHub\Web\Core",
-      "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
-      "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
-      "AnhNhan\ModHub\Modules\Tag\Views\TagView",
-      "AnhNhan\ModHub\Views\Form\FormView",
-      "AnhNhan\ModHub\Views\Objects\AbstractObject",
-      "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-      "AnhNhan\ModHub\Views\Page\HeaderView",
-      "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
-      "AnhNhan\ModHub\Views\Page\SidebarView",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-      "AnhNhan\ModHub\Views\Page\BarePageView",
-      "AnhNhan\ModHub\Web\Application\HttpPayload",
-      "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
-      "AnhNhan\ModHub\Modules\Front\FrontApplication",
-      "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
       "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
@@ -413,6 +268,9 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
       "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
+    ),
+    "PHPParser_NodeVisitorAbstract" => array(
+      "AnhNhan\ModHub\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",

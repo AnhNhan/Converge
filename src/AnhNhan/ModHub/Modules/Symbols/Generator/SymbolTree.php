@@ -21,6 +21,10 @@ final class SymbolTree
             "abstr" => $abstract,
         );
 
+        if (!$deriv) {
+            return;
+        }
+
         if (!isset($this->derivs[$deriv])) {
             $this->derivs[$deriv] = array();
         }
@@ -64,6 +68,11 @@ final class SymbolTree
                     $this->derivs[$baseName] = array_merge($this->derivs[$baseName], $this->derivs[$deriv]);
                 }
             }
+        }
+
+        $classes = array();
+        foreach ($this->classes as $className => &$classArr) {
+            $classArr = array_filter($classArr);
         }
 
         $symbolMap = array(

@@ -150,7 +150,7 @@ final class SymbolLoader
         $concreteClasses = array();
 
         foreach ($derivs as $deriv) {
-            if (!$this->classes[$deriv]["abstr"]) {
+            if (!idx($this->classes[$deriv], "abstr")) {
                 $concreteClasses[] = $deriv;
             }
         }
