@@ -80,7 +80,7 @@ final class CompileCommand extends ConsoleCommand
 
         $output->writeln("Resource path:\t" . self::$path_resource);
         $output->writeln("Cache path:\t" . self::$path_cache);
-        $output->writeln("Resource map path:\t" . self::$path_resource_map);
+        $output->writeln("ResMap path:\t" . self::$path_resource_map);
         $output->writeln("CSS path:\t" . self::$path_css);
         $output->writeln("JS path:\t" . self::$path_js);
         $output->writeln("");
