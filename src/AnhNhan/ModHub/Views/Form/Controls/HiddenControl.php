@@ -30,4 +30,17 @@ class HiddenControl extends AbstractFormControl
         }
         return $thisTag;
     }
+
+    public function getClasses()
+    {
+        // Overwrite so we don't get any styles for hidden inputs
+        return null;
+    }
+
+    public function getOptions()
+    {
+        $parent = parent::getOptions();
+        unset($parent["class"]);
+        return $parent;
+    }
 }
