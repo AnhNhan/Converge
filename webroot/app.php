@@ -34,47 +34,23 @@ $controller = $core->dispatchRequest($request);
 
 if ($controller) {
 $payload = $controller->setRequest($request)->handle();
+$renderedPayload = $payload->render();
 
 $overflow = ob_get_clean();
 
 if ($overflow) {
+    echo "<div style=\"text-align: left; margin: 1em;\">";
     echo "<h3>We had overflow!</h3>";
     echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
+    echo "</div>";
 }
 
-echo $payload;
+echo $renderedPayload;
 
 // TODO: Put this in some demo application
 } else {
 
 $container = new MarkupContainer;
-
-$listing = new ForumListing;
-$listing->setTitle('Forum Listing');
-
-$listing->addObject(
-    id(new ForumObject)
-        ->setHeadline('A little story of the future')
-        ->addTag(new TagView("caw", "green"))
-        ->addTag(new TagView("internal"))
-);
-$listing->addObject(
-    id(new ForumObject)
-        ->setHeadline('Why the future is the future')
-        ->addTag(new TagView("caw", "green"))
-        ->addTag(new TagView("sotp", "blue"))
-        ->addTag(new TagView("homefront", "dark"))
-        ->addTag(new TagView("discussion"))
-);
-$listing->addObject(
-    id(new ForumObject)
-        ->setHeadline('Future, I am your father')
-        ->addTag(new TagView("caw", "green"))
-        ->addTag(new TagView("sotp", "blue"))
-);
-$row = ModHub\ht("div")->addClass("row-flex");
-$row->appendContent($listing->render()->addClass("width12"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width12"));
-$container->push($row);
 
 $form = new FormView();
 $form->enableFileUpload()
