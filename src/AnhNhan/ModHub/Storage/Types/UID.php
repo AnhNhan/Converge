@@ -8,9 +8,9 @@ namespace AnhNhan\ModHub\Storage\Types;
  */
 class UID
 {
-    const UID_LENGTH = 8;
+    const UID_LENGTH = 14;
 
-    const NAME_DEFAULT = "XXXX";
+    const NAME_DEFAULT = "UIDX";
 
     private $uid;
     private $name;
@@ -24,7 +24,7 @@ class UID
         $this->uid = $uid;
 
         $matches = array();
-        preg_match("/^(?P<name>[A-Z]{4})-(?P<random>(.*){8})$/", $uid, $matches);
+        preg_match("/^(?P<name>[A-Z]{4})-(?P<random>(.*){14})$/", $uid, $matches);
 
         $this->name = $matches["name"];
         $this->random = $matches["random"];
@@ -53,6 +53,6 @@ class UID
 
     public static function checkValidity($uid)
     {
-        return preg_match("/^[A-Z]{4}-(.*){8}$/", $uid) === 1;
+        return preg_match("/^[A-Z]{4}-[a-z0-9]{14}$/", $uid) === 1;
     }
 }
