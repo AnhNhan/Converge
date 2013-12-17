@@ -43,6 +43,8 @@ return array(
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => "AnhNhan/ModHub/Modules/Symbols/Console/AbstractSymbolsCommand.php",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand" => "AnhNhan/ModHub/Modules/Symbols/Console/SymbolGenerationCommand.php",
       "AnhNhan\ModHub\Modules\Tag\Views\TagView" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
       "AnhNhan\ModHub\Storage\Types\DateTime" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
       "AnhNhan\ModHub\Storage\Types\UID" => "AnhNhan/ModHub/Storage/Types/UID.php",
@@ -130,6 +132,7 @@ return array(
       ),
       "AnhNhan\ModHub\Console\ConsoleCommand" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+        "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
       ),
       "Symfony\Component\Console\Input\InputArgument" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
@@ -151,6 +154,9 @@ return array(
       ),
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
+      ),
+      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
       ),
       "AnhNhan\ModHub\Views\AbstractView" => array(
         "AnhNhan\ModHub\Modules\Tag\Views\TagView",
