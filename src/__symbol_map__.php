@@ -32,6 +32,7 @@ return array(
       "AnhNhan\ModHub\Console\ConsoleCommand" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
       "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
       "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => "AnhNhan/ModHub/Modules/Examples/Examples/AbstractExample.php",
+      "AnhNhan\ModHub\Modules\Examples\Examples\FormExample" => "AnhNhan/ModHub/Modules/Examples/Examples/FormExample.php",
       "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
       "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
@@ -86,6 +87,7 @@ return array(
         "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
       ),
       "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
+        "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
         "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
       ),
       "AnhNhan\ModHub\Web\Application\BaseApplication" => array(

@@ -52,30 +52,6 @@ echo $renderedPayload;
 
 $container = new MarkupContainer;
 
-$form = new FormView();
-$form->enableFileUpload()
-    ->setAction("user/login");
-$form->append(id(new TextControl())
-    ->setLabel('Reason for your coming')
-    ->setValue('Peace'));
-
-$textControl = new TextControl();
-$textControl->setName('username')
-    ->setValue('Your name')
-    ->setLabel('This is the label for your name');
-$form->append($textControl);
-
-$form->append(id(new TextControl())
-    ->setLabel('Name of your mom')
-    ->setValue('Dorothy'));
-$form->append(id(new TextAreaControl())
-    ->setValue("This is some text")
-    ->setLabel("Description"));
-$form->append(id(new SubmitControl())
-    ->addCancelButton('/')
-    ->addSubmitButton('Hasta la vista!'));
-$container->push(ModHub\ht("div", $form->render()->addClass("width12"))->addClass("row-flex"));
-
 $instance = new \AnhNhan\ModHub\Views\Page\DefaultTemplateView("title", $container);
 
 echo $instance->render();
