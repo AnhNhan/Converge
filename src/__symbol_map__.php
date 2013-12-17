@@ -132,7 +132,7 @@ return array(
       ),
       "AnhNhan\ModHub\Console\ConsoleCommand" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-        "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+        "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
       ),
       "Symfony\Component\Console\Input\InputArgument" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
