@@ -159,7 +159,11 @@ final class CompileCommand extends ConsoleCommand
 
             $result = null;
 
-            if (isset($this->origResMap["css"][$resName]) && $this->origResMap["css"][$resName]["time"] == $resEntry["time"]) {
+            if (
+                isset($this->origResMap["css"][$resName])
+                && $this->origResMap["css"][$resName]["time"] == $resEntry["time"]
+                && file_exists(self::$path_cache . $resName)
+                ) {
                 $result = "in-cache";
             } else {
                 try {
