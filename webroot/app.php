@@ -11,6 +11,7 @@ use AnhNhan\ModHub\Views\Form\Controls\SubmitControl;
 use AnhNhan\ModHub\Views\Form\Controls\TextControl;
 use AnhNhan\ModHub\Views\Form\Controls\TextAreaControl;
 use AnhNhan\ModHub\Views\Objects;
+use AnhNhan\ModHub\Views\Page\DefaultTemplateView;
 use AnhNhan\ModHub\Web\Core;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -38,6 +39,17 @@ $controller = $core->dispatchRequest($request);
 
 if ($controller) {
 $payload = $controller->setRequest($request)->handle();
+} else {
+    ob_start();
+    echo "<h2>Failed to find a controller for '$page'</h2>";
+    echo "<pre>";
+    print_r($core);
+    echo "</pre>";
+    $contents = ModHub\safeHtml(ob_get_clean());
+    $view = new DefaultTemplateView("Routing error", $contents);
+    echo $view;
+    exit(1);
+}
 $renderedPayload = $payload->render();
 
 $overflow = ob_get_clean();
@@ -51,12 +63,3 @@ if ($overflow) {
 
 echo $renderedPayload;
 
-// TODO: Put this in some demo application
-} else {
-
-$container = new MarkupContainer;
-
-$instance = new \AnhNhan\ModHub\Views\Page\DefaultTemplateView("title", $container);
-
-echo $instance->render();
-}
