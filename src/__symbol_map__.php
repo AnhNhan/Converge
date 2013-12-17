@@ -37,6 +37,8 @@ return array(
       "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
+      "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
+      "AnhNhan\ModHub\Modules\Front\FrontApplication" => "AnhNhan/ModHub/Modules/Front/FrontApplication.php",
       "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
@@ -78,10 +80,12 @@ return array(
       ),
       "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
         "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
+        "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
         "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
       ),
       "AnhNhan\ModHub\Web\Application\HtmlPayload" => array(
         "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
+        "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
       ),
       "YamwLibs\Infrastructure\Symbols\SymbolLoader" => array(
         "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
@@ -92,10 +96,12 @@ return array(
       ),
       "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
         "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
+        "AnhNhan\ModHub\Modules\Front\FrontApplication",
         "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
       ),
       "YamwLibs\Libs\Http\Request" => array(
         "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
+        "AnhNhan\ModHub\Modules\Front\FrontApplication",
         "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
       ),
       "AnhNhan\ModHub\Views\Objects\Listing" => array(
@@ -116,7 +122,11 @@ return array(
       ),
       "YamwLibs\Libs\Html\Markup\MarkupContainer" => array(
         "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+        "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
         "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      ),
+      "YamwLibs\Libs\Routing\Route" => array(
+        "AnhNhan\ModHub\Modules\Front\FrontApplication",
       ),
       "AnhNhan\ModHub\Console\ConsoleCommand" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
