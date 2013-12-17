@@ -1,2 +1,9 @@
+
+# Composer vendor dir
 /vendor/
+
+# Application cache
 /cache/
+
+# Local config (may contain sensitive information)
+/conf/local/
