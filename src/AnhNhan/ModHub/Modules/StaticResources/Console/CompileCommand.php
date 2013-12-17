@@ -116,7 +116,7 @@ final class CompileCommand extends ConsoleCommand
     private function genericBuild($dir, $ext, $builder)
     {
         // First get all interesting resource files
-        $rawFiles = FileFunc::recursiveScanForDirectories($dir, "$ext");
+        $rawFiles = FileFunc::recursiveScanForDirectories($dir, $ext);
         $files = FileFunc::sanitizeStringsFromPrefix($rawFiles, $dir);
 
         $prependFiles = preg_grep("/^prepend\\//", $files);
@@ -161,10 +161,8 @@ final class CompileCommand extends ConsoleCommand
 
             if (isset($this->origResMap["css"][$resName]) && $this->origResMap["css"][$resName]["time"] == $resEntry["time"]) {
                 $result = "in-cache";
-                // Do nothing
             } else {
                 try {
-                    // TODO: Replace file URIs to CDN URIs
                     $resContents = file_get_contents($resPath);
                     $resContents = $builder::buildString(
                         $prependContents . $resContents
@@ -180,7 +178,7 @@ final class CompileCommand extends ConsoleCommand
                 }
             }
 
-            $this->output->writeln("  - " . str_pad($resName, 40) . " [$result]");
+            $this->output->writeln(sprintf("  - %s [%s]", str_pad($resName, 40), $result));
 
             $this->resMap["css"][$resName] = $resEntry;
         }
