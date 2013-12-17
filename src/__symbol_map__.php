@@ -37,6 +37,8 @@ return array(
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
       "AnhNhan\ModHub\Modules\Tag\Views\TagView" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
+      "AnhNhan\ModHub\Storage\Types\DateTime" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
+      "AnhNhan\ModHub\Storage\Types\UID" => "AnhNhan/ModHub/Storage/Types/UID.php",
       "AnhNhan\ModHub\Views\AbstractView" => "AnhNhan/ModHub/Views/AbstractView.php",
       "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => "AnhNhan/ModHub/Views/Form/Controls/AbstractFormControl.php",
       "AnhNhan\ModHub\Views\Form\Controls\HiddenControl" => "AnhNhan/ModHub/Views/Form/Controls/HiddenControl.php",
@@ -55,8 +57,11 @@ return array(
       "AnhNhan\ModHub\Views\Page\PageView" => "AnhNhan/ModHub/Views/Page/PageView.php",
       "AnhNhan\ModHub\Views\Page\SidebarView" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
       "AnhNhan\ModHub\Web\AppRouting" => "AnhNhan/ModHub/Web/AppRouting.php",
+      "AnhNhan\ModHub\Web\Application\AbstractPayload" => "AnhNhan/ModHub/Web/Application/AbstractPayload.php",
       "AnhNhan\ModHub\Web\Application\BaseApplication" => "AnhNhan/ModHub/Web/Application/BaseApplication.php",
       "AnhNhan\ModHub\Web\Application\BaseApplicationController" => "AnhNhan/ModHub/Web/Application/BaseApplicationController.php",
+      "AnhNhan\ModHub\Web\Application\HttpPayload" => "AnhNhan/ModHub/Web/Application/HttpPayload.php",
+      "AnhNhan\ModHub\Web\Application\RawHttpPayload" => "AnhNhan/ModHub/Web/Application/RawHttpPayload.php",
       "AnhNhan\ModHub\Web\Core" => "AnhNhan/ModHub/Web/Core.php",
     ),
   ),
@@ -86,6 +91,9 @@ return array(
         "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
       ),
       "AnhNhan\ModHub\Console\ConsoleCommand" => array(
+        "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      ),
+      "Symfony\Component\Console\Input\InputArgument" => array(
         "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
       ),
       "Symfony\Component\Console\Input\InputOption" => array(
@@ -148,6 +156,12 @@ return array(
       ),
       "YamwLibs\Infrastructure\ResMgmt\ResMgr" => array(
         "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      ),
+      "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
+        "AnhNhan\ModHub\Web\Application\HttpPayload",
+      ),
+      "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
+        "AnhNhan\ModHub\Web\Application\RawHttpPayload",
       ),
     ),
     "implementations" => array(
