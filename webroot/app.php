@@ -32,6 +32,9 @@ $request = $core->init($page);
 $controller = $core->dispatchRequest($request);
 // TODO: Handle more processing here
 
+if ($controller) {
+$payload = $controller->setRequest($request)->handle();
+
 $overflow = ob_get_clean();
 
 if ($overflow) {
@@ -39,9 +42,7 @@ if ($overflow) {
     echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
 }
 
-if ($controller) {
-// TODO: Put this above ob_get_clean after we have implemented Response
-$payload = $controller->setRequest($request)->handle();
+echo $payload;
 
 // TODO: Put this in some demo application
 } else {
@@ -71,7 +72,7 @@ $listing->addObject(
         ->addTag(new TagView("caw", "green"))
         ->addTag(new TagView("sotp", "blue"))
 );
-$row = ModHub\ht("div")->addClass("row");
+$row = ModHub\ht("div")->addClass("row-flex");
 $row->appendContent($listing->render()->addClass("width12"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width12"));
 $container->push($row);
 
