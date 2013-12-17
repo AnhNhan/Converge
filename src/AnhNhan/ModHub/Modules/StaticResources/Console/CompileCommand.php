@@ -38,10 +38,12 @@ final class CompileCommand extends ConsoleCommand
     private static $path_css;
     private static $path_js;
 
+    private $origResMap = array();
+
     private $resMap = array(
-        "css" => [],
-        "js" => [],
-        "pck" => [],
+        "css" => array(),
+        "js" => array(),
+        "pck" => array(),
     );
 
     private $input;
@@ -55,6 +57,8 @@ final class CompileCommand extends ConsoleCommand
         self::$path_resource_map = ModHub\get_root() . "__resource_map__.php";
         self::$path_css = self::$path_resource . "css" . DIRECTORY_SEPARATOR;
         self::$path_js = self::$path_resource . "js" . DIRECTORY_SEPARATOR;
+
+        $this->origResMap = include self::$path_resource_map;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -118,10 +122,12 @@ final class CompileCommand extends ConsoleCommand
         $this->output->writeln("");
 
         $this->output->writeln("Using the following prepend files:");
-        $prependContents = [];
+        $prependContents = array();
+        $prependMTimes = array();
         foreach ($prependFiles as $prependFile) {
             $this->output->writeln("  - " . $prependFile);
             $prependContents[] = file_get_contents($dir . $prependFile);
+            $prependMTimes[] = filemtime($dir . $prependFile);
         }
         $prependContents = implode("\n\n", $prependContents);
         $this->output->writeln("");
@@ -129,7 +135,7 @@ final class CompileCommand extends ConsoleCommand
         $this->output->writeln("Status:");
 
         foreach ($files as $fileName) {
-            $cssPath = $dir . $fileName;
+            $resPath = $dir . $fileName;
             $resName = preg_replace("/{$ext}$/", "", $fileName);
             $resName = preg_replace(
                 "/([\\|\/])+/",
@@ -137,25 +143,39 @@ final class CompileCommand extends ConsoleCommand
                 $resName
             );
 
-            $cssEntry = array(
+            $resEntry = array(
                 "name" => $resName,
                 "path" => $fileName,
-                "hash" => hash_file("crc32", $cssPath),
+                "hash" => hash_file("crc32", $resPath),
+                "time" => $this->calcModDate(array_merge($prependMTimes, array(filemtime($resPath)))),
             );
 
-            // TODO: Replace file URIs to CDN URIs
-            $resContents = file_get_contents($cssPath);
-            $resContents = $builder::buildString(
-                $prependContents . $resContents
-            );
+            $result = null;
 
-            if (file_put_contents(self::$path_cache . $resName, $resContents)) {
-                $this->output->writeln("  - " . str_pad($resName, 40) . " [x]");
+            if (isset($this->origResMap["css"][$resName]) && $this->origResMap["css"][$resName]["time"] == $resEntry["time"]) {
+                $result = "in-cache";
+                // Do nothing
             } else {
-                $this->output->writeln("  - " . str_pad($resName, 40) . " [ ]");
+                try {
+                    // TODO: Replace file URIs to CDN URIs
+                    $resContents = file_get_contents($resPath);
+                    $resContents = $builder::buildString(
+                        $prependContents . $resContents
+                    );
+                } catch (\Exception $e) {
+                    $result = "fail";
+                    echo $e->getMessage();
+                }
+
+                if (!$result) {
+                    $result = file_put_contents(self::$path_cache . $resName, $resContents)
+                                ? "x" : "write-error";
+                }
             }
 
-            $this->resMap["css"][$resName] = $cssEntry;
+            $this->output->writeln("  - " . str_pad($resName, 40) . " [$result]");
+
+            $this->resMap["css"][$resName] = $resEntry;
         }
 
         $this->output->writeln("");
@@ -179,11 +199,17 @@ final class CompileCommand extends ConsoleCommand
                 }
                 $pckFile = (array)$pckFile;
                 $name = $pckFile["name"];
+                $type = $pckFile["type"];
+                $typeResMapEntries = $this->resMap[$type];
 
-                $contents = [];
-                $fileContents = [];
+                $contents = array();
+                $fileContents = array();
                 foreach ($pckFile["contents"] as $contentName) {
-                    $contents[$contentName] = $this->resMap[$pckFile["type"]][$contentName]["hash"];
+                    if (!isset($typeResMapEntries[$contentName])) {
+                        throw new \Exception("Resource '$contentName' does not exist!");
+                    }
+
+                    $contents[$contentName] = $typeResMapEntries[$contentName]["hash"];
                     $fileContents[] = file_get_contents(self::$path_cache . $contentName);
                 }
                 file_put_contents(
@@ -193,7 +219,7 @@ final class CompileCommand extends ConsoleCommand
 
                 $this->resMap["pck"][$name] = array(
                     "name" => $name,
-                    "type" => "pck",
+                    "type" => $type,
                     "hash" => hash_hmac(
                         "crc32",
                         implode("", $contents),
@@ -241,5 +267,10 @@ EOT;
         } else {
             $this->output->writeln("Saving the resource map failed!");
         }
+    }
+
+    private function calcModDate(array $dates)
+    {
+        return hash_hmac("crc32", implode("-", $dates), "random string");
     }
 }
