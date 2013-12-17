@@ -3,6 +3,7 @@ namespace AnhNhan\ModHub\Modules\StaticResources\Console;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Console\ConsoleCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -27,8 +28,8 @@ final class CompileCommand extends ConsoleCommand
     private function createDefinition()
     {
         return new InputDefinition(array(
-            new InputOption("js", null, InputOption::VALUE_OPTIONAL, "Compile JS"),
-            new InputOption("css", null, InputOption::VALUE_OPTIONAL, "Compile LESS/CSS"),
+            new InputOption("js", null, InputOption::VALUE_NONE, "Compile JS"),
+            new InputOption("css", null, InputOption::VALUE_NONE, "Compile LESS/CSS"),
         ));
     }
 
@@ -66,7 +67,7 @@ final class CompileCommand extends ConsoleCommand
         $js = $input->getOption("js");
         $css = $input->getOption("css");
 
-        if (!($js && $css)) {
+        if (!$js && !$css) {
             $js = true;
             $css = true;
         }
@@ -94,11 +95,17 @@ final class CompileCommand extends ConsoleCommand
 
             $cssBuilderClass = 'YamwLibs\Infrastructure\ResMgmt\Builders\CssBuilder';
             $this->genericBuild(self::$path_css, "\\.(less|css)", $cssBuilderClass);
+        } else {
+            // Copy old values
+            $this->resMap["css"] = idx($this->origResMap, "css", array());
         }
 
         if ($js) {
             $this->output->writeln("Skipping on JS resources, since they are not supported yet.");
             $this->output->writeln("");
+        } else {
+            // Copy old values
+            $this->resMap["js"] = idx($this->origResMap, "js", array());
         }
 
         $this->buildPackFiles();
