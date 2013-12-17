@@ -15,6 +15,10 @@ use AnhNhan\ModHub\Web\Core;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use Symfony\Component\Debug\Debug;
+
+Debug::enable();
+
 ob_start();
 
 // TODO: Put this somewhere reasonable
