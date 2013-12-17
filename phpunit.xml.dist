@@ -7,8 +7,8 @@
          verbose="true">
 
   <testsuites>
-    <testsuite name="YamwTests">
-      <directory suffix="Test.php">Tests/</directory>
+    <testsuite name="ModHub Tests">
+      <directory suffix="Test.php">tests/</directory>
     </testsuite>
   </testsuites>
 
