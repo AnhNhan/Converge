@@ -21,9 +21,9 @@ form.submit(function () {
     $.ajax({
         url: 'markup/process',
         type: 'POST',
-        data: 'text=' + encodeURIComponent($('textarea').text()),
+        data: 'text=' + encodeURIComponent($('textarea').val()),
         dataType: 'json',
-        error: function (x,e) {ajax_error_handling(x,e);},
+        error: function (x,e) {console.log(x, e);},
         success: function (data) {
                 if (data.status === 'ok') {
                     output_area.html(data.payloads);
