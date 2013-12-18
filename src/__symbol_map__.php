@@ -56,6 +56,29 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Front/FrontApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
     ),
+    "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/AbstractMarkupController.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/MarkupProcessingController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/MarkupTestingController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\MarkupApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/MarkupApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\MarkupEngine" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/MarkupEngine.php",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Builders\JsBuilder" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/JsBuilder.php",
+    ),
     "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
       "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
@@ -210,6 +233,10 @@ return array(
       "deriv" => "AnhNhan\ModHub\Web\Application\AbstractPayload",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Web\Application\JsonPayload" => array(
+      "file" => "AnhNhan/ModHub/Web/Application/JsonPayload.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+    ),
     "AnhNhan\ModHub\Web\Application\RawHttpPayload" => array(
       "file" => "AnhNhan/ModHub/Web/Application/RawHttpPayload.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
@@ -240,7 +267,10 @@ return array(
     "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
       "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
+      "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
+      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
@@ -250,6 +280,7 @@ return array(
     "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
       "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
       "AnhNhan\ModHub\Modules\Front\FrontApplication",
+      "AnhNhan\ModHub\Modules\Markup\MarkupApplication",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
@@ -257,6 +288,10 @@ return array(
     ),
     "AnhNhan\ModHub\Views\Objects\Object" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
+      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
+      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
     ),
     "AnhNhan\ModHub\Console\ConsoleCommand" => array(
       "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
@@ -302,11 +337,13 @@ return array(
     ),
     "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
       "AnhNhan\ModHub\Web\Application\HtmlPayload",
+      "AnhNhan\ModHub\Web\Application\JsonPayload",
       "AnhNhan\ModHub\Web\Application\RawHttpPayload",
     ),
     "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
       "AnhNhan\ModHub\Web\Application\HttpPayload",
       "AnhNhan\ModHub\Web\Application\HtmlPayload",
+      "AnhNhan\ModHub\Web\Application\JsonPayload",
       "AnhNhan\ModHub\Web\Application\RawHttpPayload",
     ),
   ),
