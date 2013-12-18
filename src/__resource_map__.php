@@ -42,8 +42,8 @@ return array(
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "a7211ae5",
-      "time" => "e118486c",
+      "hash" => "69aeae67",
+      "time" => "66a3c85c",
     ),
     "layout-buttons" => array(
       "name" => "layout-buttons",
@@ -60,8 +60,8 @@ return array(
     "layout-form" => array(
       "name" => "layout-form",
       "path" => "layout/form.less",
-      "hash" => "4cc597e4",
-      "time" => "01e1e39f",
+      "hash" => "148e0b57",
+      "time" => "056d474e",
     ),
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
@@ -118,14 +118,14 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "88644fab",
+      "hash" => "23e2bc6e",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
-        "layout-boilerplate" => "a7211ae5",
+        "layout-boilerplate" => "69aeae67",
         "layout-core" => "e08092ed",
-        "layout-form" => "4cc597e4",
+        "layout-form" => "148e0b57",
         "layout-grid" => "490f9225",
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "a39e7363",
