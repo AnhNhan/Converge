@@ -26,6 +26,8 @@ class FormView extends AbstractView
 
     const ENC_MULTI   = 'multipart/form-data';
 
+    private $is_double_column = true;
+
     public function __call($name, $arguments)
     {
         $matches = array();
@@ -73,10 +75,22 @@ class FormView extends AbstractView
         return $this;
     }
 
+    public function setDualColumnMode($dual_column = true)
+    {
+        $this->is_double_column = $dual_column;
+        return $this;
+    }
+
     public function render()
     {
         $formTag = ModHub\ht('form')
-        ->addClass('rz-form');
+        ->addClass('form');
+
+        if ($this->is_double_column) {
+            $formTag->addClass("form-dual-column");
+        } else {
+            $formTag->addClass("form-single-column");
+        }
 
         if ($this->action) {
             $formTag->addOption('action', $this->action);

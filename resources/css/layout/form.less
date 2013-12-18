@@ -4,8 +4,34 @@
 .form {
     @media screen and (min-width: @breakPointTablet) {
         padding: 2em;
-        width: 90%;
+        padding-top: 0;
     }
+}
+
+.form.form-dual-column {
+    .form-control-label {
+        @media screen and (max-width: @breakPointTablet) {
+
+        }
+
+        @media screen and (min-width: @breakPointTablet) {
+            float: left;
+            padding: @controlPadding;
+            padding-right: 15px;
+            width: 30%;
+            text-align: right;
+        }
+    }
+
+    .form-control-element {
+        @media screen and (min-width: @breakPointTablet) {
+            width: 70%;
+            margin-left: 30%;
+        }
+    }
+}
+
+.form.form-single-column {
 }
 
 .form-control-container {
@@ -14,25 +40,9 @@
 
 .form-control-label {
     font-weight: bold;
-
-    @media screen and (max-width: @breakPointTablet) {
-
-    }
-
-    @media screen and (min-width: @breakPointTablet) {
-        float: left;
-        padding: @controlPadding;
-        padding-right: 15px;
-        width: 30%;
-        text-align: right;
-    }
 }
 
 .form-control-element {
-    @media screen and (min-width: @breakPointTablet) {
-        width: 70%;
-        margin-left: 30%;
-    }
 }
 
 .form-control {
