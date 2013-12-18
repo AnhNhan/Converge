@@ -54,8 +54,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "6df2fa21",
-      "time" => "e1b9a047",
+      "hash" => "7c92549f",
+      "time" => "d961fa66",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -118,13 +118,13 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "399ff3e7",
+      "hash" => "95a6d0b4",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
         "layout-boilerplate" => "bda7009e",
-        "layout-core" => "6df2fa21",
+        "layout-core" => "7c92549f",
         "layout-form" => "148e0b57",
         "layout-grid" => "5cd5c19d",
         "layout-buttons" => "f57b3b3b",
