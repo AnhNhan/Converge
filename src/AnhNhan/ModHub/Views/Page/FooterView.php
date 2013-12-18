@@ -51,37 +51,17 @@ class FooterView implements ViewInterface
     {
         $footer = new static();
 
-        $column1 = array(
-            array(
-                "label" => "Mailaddressensuche",
-                "href"  => "/allg/mailsearch/",
-            ),
-            array(
-                "label" => "Telefonliste",
-                "href"  => "/allg/phonesearch/",
-            ),
-            array(
-                "label" => "Umfragen",
-                "href"  => "/allg/umfragen/",
-            ),
-        );
-        $footer->column('Allgemeines', $column1);
-
         $column2 = array(
             array(
-                "label" => "Netiquette",
-                "href"  => "/allg/netiquette/",
+                "label" => "Front page",
+                "href"  => "/",
             ),
             array(
-                "label" => "WLAN",
-                "href"  => "/allg/wifi/",
-            ),
-            array(
-                "label" => "Ergebnisse der Umfragen",
-                "href"  => "/allg/mailsearch/",
+                "label" => "Markup Test",
+                "href"  => "/markup/test/",
             ),
         );
-        $footer->column('Infos', $column2);
+        $footer->column('All kinds of stuff', $column2);
 
         $column3 = array();
         $classes = SymbolLoader::getInstance()
