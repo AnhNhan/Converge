@@ -34,6 +34,7 @@ final class MarkupTestingController extends AbstractMarkupController
     {
         $form = new FormView;
         $form->setDualColumnMode(false);
+        $form->setTitle("Markup Test Form");
 
         $form->append(id(new TextAreaControl())
             ->setValue(<<<EOT

@@ -11,6 +11,8 @@ use AnhNhan\ModHub\Views\AbstractView;
  * @method mixed setAction($action)
  * @method mixed setMethod($method)
  * @method mixed setEncoding($encoding)
+ * @method mixed getTitle()
+ * @method mixed setTitle($title)
  *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -27,6 +29,7 @@ class FormView extends AbstractView
     const ENC_MULTI   = 'multipart/form-data';
 
     private $is_double_column = true;
+    private $title = '';
 
     public function __call($name, $arguments)
     {
@@ -38,7 +41,7 @@ class FormView extends AbstractView
         );
 
         if (!$match) {
-            throw new \Exception('Bad Getter/Setter call');
+            throw new \Exception('Bad Getter/Setter call: \'$name\'');
         }
 
         $type = strtolower($matches['type']);
@@ -105,6 +108,10 @@ class FormView extends AbstractView
             $method = $this->method;
         }
         $formTag->addOption('method', $method);
+
+        if ($this->title) {
+            $formTag->appendContent(ModHub\ht("h2", $this->title));
+        }
 
         foreach ($this->retrieveChilds()->getMarkupData() as $child) {
             $formTag->appendContent($child);

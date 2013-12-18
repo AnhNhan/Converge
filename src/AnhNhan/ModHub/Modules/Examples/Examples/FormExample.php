@@ -23,11 +23,9 @@ final class FormExample extends AbstractExample
         $container = ModHub\ht("div")->addClass("row-flex");
 
         $form1 = $this->getForm1();
-        $container->appendContent(ModHub\ht("h1", "Dual column (default)"));
         $container->appendContent($form1);
 
         $form2 = $this->getForm2();
-        $container->appendContent(ModHub\ht("h1", "Single column"));
         $container->appendContent($form2);
 
         return $container;
@@ -38,6 +36,7 @@ final class FormExample extends AbstractExample
         $form = new FormView();
         $form->enableFileUpload()
             ->setAction("user/login");
+        $form->setTitle("Dual column (default)");
         $form->append(id(new TextControl())
             ->setLabel('Reason for your coming')
             ->setValue('Peace'));
@@ -64,6 +63,7 @@ final class FormExample extends AbstractExample
     {
         $form = new FormView();
         $form->setDualColumnMode(false);
+        $form->setTitle("Single column");
         $form->enableFileUpload()
             ->setAction("user/login");
         $form->append(id(new TextControl())
