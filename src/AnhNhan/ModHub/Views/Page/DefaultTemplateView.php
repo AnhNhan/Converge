@@ -33,11 +33,11 @@ final class DefaultTemplateView extends AbstractView
         $head_wrapper->appendContent($header);
 
         $content = HF::divTag()
-            ->addClass("content width8")
+            ->addClass("content width9")
             ->setContent($this->content);
 
         $sidebar = HF::divTag()
-            ->addClass("sidebar width4")
+            ->addClass("sidebar width3")
             ->setContent(id(new SidebarView)->render());
 
         $contentContainerContent = ModHub\ht("div")->addClass("row-flex");
