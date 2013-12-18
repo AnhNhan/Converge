@@ -67,6 +67,16 @@ pre {
     border: 1px solid @lightGrey;
     border: 1px solid rgba(0, 0, 0, 0.15);
     .round-border (4px);
+
+    tt,
+    code {
+        background: none;
+        color: inherit;
+        border: none;
+        display: inherit;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 tt,
@@ -77,6 +87,18 @@ code {
     .round-border (3px);
     padding: 0 3px;
     display: inline-block;
+}
+
+blockquote {
+    background-color: @veryLightGrey;
+    color: lighten(@darkGrey, 20%);
+    padding: 1em;
+    padding-left: 2em;
+    margin: 1em;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
 img {
