@@ -1,0 +1,5 @@
+
+routes:
+  - pattern: "/markup/process/"
+  - pattern: "/markup/test/"
+  - pattern: "/markup/help/"

@@ -1,0 +1,38 @@
+<div class="row-flex">
+    <div class="row-flex">
+        <div class="width12">
+            <h1>Markup Testing</h1>
+        </div>
+    </div>
+    <div class="width6 markup-form">
+        {FORM}
+    </div>
+    <div class="width6 markup-output">
+        <!-- Put output here -->
+    </div>
+</div>
+
+<script>
+
+var form = $('.markup-form .rz-form');
+var output_area = $('.markup-output');
+
+form.submit(function () {
+    $.ajax({
+        url: 'markup/process',
+        type: 'POST',
+        data: 'text=' + encodeURIComponent($('textarea').text()),
+        dataType: 'json',
+        error: function (x,e) {ajax_error_handling(x,e);},
+        success: function (data) {
+                if (data.status === 'ok') {
+                    output_area.html(data.payloads);
+                } else {
+                    console.log("Error while processing markup!");
+                }
+            }
+        });
+    return false;
+});
+
+</script>
