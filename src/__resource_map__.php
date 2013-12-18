@@ -89,6 +89,30 @@ return array(
     ),
   ),
   "js" => array(
+    "external-html5bp-plugin" => array(
+      "name" => "external-html5bp-plugin",
+      "path" => "external/html5bp-plugin.js",
+      "hash" => "c035fc51",
+      "time" => "baac588a",
+    ),
+    "external-jquery-1.10.2" => array(
+      "name" => "external-jquery-1.10.2",
+      "path" => "external/jquery-1.10.2.js",
+      "hash" => "a802852e",
+      "time" => "92d47b8f",
+    ),
+    "external-jquery-2.0.3" => array(
+      "name" => "external-jquery-2.0.3",
+      "path" => "external/jquery-2.0.3.js",
+      "hash" => "0cb3a00f",
+      "time" => "ded053a3",
+    ),
+    "external-modernizr" => array(
+      "name" => "external-modernizr",
+      "path" => "external/modernizr.js",
+      "hash" => "4ad114ad",
+      "time" => "ee2d146a",
+    ),
   ),
   "pck" => array(
     "core-pck" => array(
@@ -107,6 +131,16 @@ return array(
         "layout-objects" => "a39e7363",
         "layout-forum-object" => "fe743c98",
         "layout-tag-tag" => "81515898",
+      ),
+    ),
+    "libs-pck" => array(
+      "name" => "libs-pck",
+      "type" => "js",
+      "hash" => "c25504f1",
+      "contents" => array(
+        "external-html5bp-plugin" => "c035fc51",
+        "external-modernizr" => "4ad114ad",
+        "external-jquery-2.0.3" => "0cb3a00f",
       ),
     ),
   ),

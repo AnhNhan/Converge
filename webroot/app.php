@@ -25,7 +25,8 @@ ob_start();
 // TODO: Put this somewhere reasonable
 ResMgr::init(ModHub\path("__resource_map__.php"));
 ResMgr::getInstance()
-    ->requireCSS("core-pck");
+    ->requireCSS("core-pck")
+    ->requireJS("libs-pck");
 
 $argv = isset($argv) ? $argv : array();
 ModHub\sdx($argv);

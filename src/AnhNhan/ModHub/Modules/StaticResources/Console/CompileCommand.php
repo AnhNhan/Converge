@@ -57,7 +57,7 @@ final class CompileCommand extends ConsoleCommand
         self::$path_cache = ModHub\get_root_super() . "cache" . DIRECTORY_SEPARATOR;
         self::$path_resource_map = ModHub\get_root() . "__resource_map__.php";
         self::$path_css = self::$path_resource . "css" . DIRECTORY_SEPARATOR;
-        self::$path_js = self::$path_resource . "js" . DIRECTORY_SEPARATOR;
+        self::$path_js = self::$path_resource . "javascript" . DIRECTORY_SEPARATOR;
 
         $this->origResMap = include self::$path_resource_map;
     }
@@ -94,15 +94,17 @@ final class CompileCommand extends ConsoleCommand
             $this->output->writeln("Will now process LESS/CSS");
 
             $cssBuilderClass = 'YamwLibs\Infrastructure\ResMgmt\Builders\CssBuilder';
-            $this->genericBuild(self::$path_css, "\\.(less|css)", $cssBuilderClass);
+            $this->genericBuild(self::$path_css, 'css', "\\.(less|css)", $cssBuilderClass);
         } else {
             // Copy old values
             $this->resMap["css"] = idx($this->origResMap, "css", array());
         }
 
         if ($js) {
-            $this->output->writeln("Skipping on JS resources, since they are not supported yet.");
-            $this->output->writeln("");
+            $this->output->writeln("Will now process JavaScript files (beta)");
+
+            $jsBuilderClass = 'AnhNhan\ModHub\Modules\StaticResources\Builders\JsBuilder';
+            $this->genericBuild(self::$path_js, 'js', "\\.(js)", $jsBuilderClass);
         } else {
             // Copy old values
             $this->resMap["js"] = idx($this->origResMap, "js", array());
@@ -113,7 +115,7 @@ final class CompileCommand extends ConsoleCommand
         $this->printResMap($this->resMap, self::$path_resource_map);
     }
 
-    private function genericBuild($dir, $ext, $builder)
+    private function genericBuild($dir, $type, $ext, $builder)
     {
         // First get all interesting resource files
         $rawFiles = FileFunc::recursiveScanForDirectories($dir, $ext);
@@ -160,10 +162,10 @@ final class CompileCommand extends ConsoleCommand
             $result = null;
 
             if (
-                isset($this->origResMap["css"][$resName])
-                && $this->origResMap["css"][$resName]["time"] == $resEntry["time"]
+                isset($this->origResMap[$type][$resName])
+                && $this->origResMap[$type][$resName]["time"] == $resEntry["time"]
                 && file_exists(self::$path_cache . $resName)
-                ) {
+            ) {
                 $result = "in-cache";
             } else {
                 try {
@@ -184,7 +186,7 @@ final class CompileCommand extends ConsoleCommand
 
             $this->output->writeln(sprintf("  - %s [%s]", str_pad($resName, 40), $result));
 
-            $this->resMap["css"][$resName] = $resEntry;
+            $this->resMap[$type][$resName] = $resEntry;
         }
 
         $this->output->writeln("");

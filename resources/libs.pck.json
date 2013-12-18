@@ -1,0 +1,9 @@
+{
+    "name": "libs-pck",
+    "type": "js",
+    "contents": [
+        "external-html5bp-plugin",
+        "external-modernizr",
+        "external-jquery-2.0.3"
+    ]
+}

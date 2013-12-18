@@ -40,7 +40,6 @@ class HtmlDocumentView extends AbstractView
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <base href="%s/" />
 %s
-<!--<script src="/js/external/modernizr.js"></script>-->
 </head>
 <body>
     %s
@@ -70,6 +69,15 @@ EOT
                     'type'    => 'text/css',
                     'charset' => 'utf-8',
                     'href'    => '/rsrc/css/' . $css,
+                )
+            );
+        }
+        foreach (ResMgr::getInstance()->fetchRequiredJSResources() as $js) {
+            $head[] = new HtmlTag(
+                'script',
+                '',
+                array(
+                    'src' => '/rsrc/js/' . $js,
                 )
             );
         }
