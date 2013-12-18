@@ -14,10 +14,10 @@
 
 <script>
 
-var form = $('.markup-form .rz-form');
+var form = $('.markup-form .form');
 var output_area = $('.markup-output');
 
-form.submit(function () {
+function on_submit () {
     $.ajax({
         url: 'markup/process',
         type: 'POST',
@@ -33,6 +33,10 @@ form.submit(function () {
             }
         });
     return false;
-});
+}
+form.submit(on_submit);
+
+// Init the page
+on_submit();
 
 </script>
