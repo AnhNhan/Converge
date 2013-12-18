@@ -37,18 +37,53 @@ final class MarkupTestingController extends AbstractMarkupController
 
         $form->append(id(new TextAreaControl())
             ->setValue(<<<EOT
+Welcome to Markdown
+===================
+
+Introduction
+------------
+
 Hello, this is some *Markdown*. Make some **bold** text. Or write some `code`.
 
 Links:
  - [Google][1]
  - [Microsoft][2]
 
- [1]: http://google.com/
- [2]: http://microsoft.com/
+Add in some other paragraph. Two line breaks, and you are set!
+This way, single line breaks can act as a continuation of the previous sentence.
+That's cool, hm?
+
+* * *
+
+Who put that line in the way!?
+
+Let me put some code here
+-------------------------
+
+```
+// TODO: Put this somewhere reasonable
+ResMgr::init(ModHub\path("__resource_map__.php"));
+ResMgr::getInstance()
+    ->requireCSS("core-pck")
+    ->requireJS("libs-pck");
+```
+
+Steps until world domination
+----------------------------
+
+ 1. Declare your own country.
+ 2. Declare war against everybody.
+ 3. ???
+ 4. Profit!
 
 > This is a quote!
 
 Have fun!
+
+Notice: Link references added here (only visible in source)
+
+ [1]: http://google.com/
+ [2]: http://microsoft.com/
 EOT
             )
             ->setLabel("Text"));
