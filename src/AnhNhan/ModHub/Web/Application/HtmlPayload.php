@@ -22,4 +22,9 @@ final class HtmlPayload extends HttpPayload
     {
         return new DefaultTemplateView($this->title, $this->getPayloadContents());
     }
+
+    protected function getDefaultContentType()
+    {
+        return "text/html";
+    }
 }

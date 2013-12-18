@@ -45,11 +45,16 @@ abstract class HttpPayload extends AbstractPayload
         $headers = array_replace(
             array(
                 0 => "HTTP/1.1 " . $this->getHttpCode() . " " . $this->getHttpCodeText(),
-                "Content-Type" => "text/html",
+                "Content-Type" => $this->getDefaultContentType(),
             ),
             $this->httpHeaders
         ) + $this->httpHeaders;
         return $headers;
+    }
+
+    protected function getDefaultContentType()
+    {
+        return "text/text";
     }
 
     /**
