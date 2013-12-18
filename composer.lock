@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "469e2ef189c2f0b3b82232c3404e71ea",
+    "hash": "d81cfadf9b543866e676f143fb6a399d",
     "packages": [
         {
             "name": "apexstudios/yamwlib",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apexstudios/yamwlib.git",
-                "reference": "2156906d9c77848876c7ea3b3cbfda6f0980b827"
+                "reference": "d88743ff8af5236e5098a9a7a14839a150daac20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apexstudios/yamwlib/zipball/2156906d9c77848876c7ea3b3cbfda6f0980b827",
-                "reference": "2156906d9c77848876c7ea3b3cbfda6f0980b827",
+                "url": "https://api.github.com/repos/apexstudios/yamwlib/zipball/d88743ff8af5236e5098a9a7a14839a150daac20",
+                "reference": "d88743ff8af5236e5098a9a7a14839a150daac20",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,46 @@
                 }
             ],
             "homepage": "http://github.com/apexstudios/yamwlib",
-            "time": "2013-12-13 17:04:03"
+            "time": "2013-12-16 20:07:09"
+        },
+        {
+            "name": "erusev/parsedown",
+            "version": "0.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erusev/parsedown.git",
+                "reference": "51a08fad85be42abf1db08f5e646118762a16a2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/51a08fad85be42abf1db08f5e646118762a16a2f",
+                "reference": "51a08fad85be42abf1db08f5e646118762a16a2f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Parsedown": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuil Rusev",
+                    "email": "hello@erusev.com",
+                    "homepage": "http://erusev.com"
+                }
+            ],
+            "description": "Parser for Markdown.",
+            "homepage": "http://parsedown.org",
+            "keywords": [
+                "markdown",
+                "parser"
+            ],
+            "time": "2013-12-07 15:21:36"
         },
         {
             "name": "facebook/libphutil",
@@ -322,12 +361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "9566ace63dfc5bd6554a917f1b4f1fe54ba2e109"
+                "reference": "a1dd7dc6d7862dc1593e528fa870e44a31015d5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/9566ace63dfc5bd6554a917f1b4f1fe54ba2e109",
-                "reference": "9566ace63dfc5bd6554a917f1b4f1fe54ba2e109",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/a1dd7dc6d7862dc1593e528fa870e44a31015d5f",
+                "reference": "a1dd7dc6d7862dc1593e528fa870e44a31015d5f",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +407,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-12 16:10:54"
+            "time": "2013-12-16 10:52:16"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -610,12 +649,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Security.git",
-                "reference": "320cb8cd71bedcd58b7c83ab8a65a240c48faf2b"
+                "reference": "49f10dca93e35402dcf32f6b701417e1537475b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Security/zipball/320cb8cd71bedcd58b7c83ab8a65a240c48faf2b",
-                "reference": "320cb8cd71bedcd58b7c83ab8a65a240c48faf2b",
+                "url": "https://api.github.com/repos/symfony/Security/zipball/49f10dca93e35402dcf32f6b701417e1537475b7",
+                "reference": "49f10dca93e35402dcf32f6b701417e1537475b7",
                 "shasum": ""
             },
             "require": {
@@ -675,7 +714,7 @@
             ],
             "description": "Symfony Security Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-26 16:43:09"
+            "time": "2013-12-17 08:13:13"
         },
         {
             "name": "symfony/translation",
