@@ -194,7 +194,7 @@ final class CompileCommand extends ConsoleCommand
 
     private function buildPackFiles()
     {
-        $rawPckFiles = FileFunc::recursiveScanForDirectories(self::$path_resource, "\\.json");
+        $rawPckFiles = FileFunc::recursiveScanForDirectories(self::$path_resource, "\\.pck\\.json");
         $pckFiles = preg_grep(
             "/json$/",
             FileFunc::sanitizeStringsFromPrefix($rawPckFiles, self::$path_resource)
