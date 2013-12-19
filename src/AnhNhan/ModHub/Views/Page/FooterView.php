@@ -3,12 +3,13 @@ namespace AnhNhan\ModHub\Views\Page;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Views\AbstractView;
 use YamwLibs\Libs\View\ViewInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class FooterView implements ViewInterface
+class FooterView extends AbstractView implements ViewInterface
 {
     private $columns = array();
 

@@ -1,12 +1,13 @@
 <?php
 namespace AnhNhan\ModHub\Views\Page;
 
+use AnhNhan\ModHub\Views\AbstractView;
 use YamwLibs\Libs\View\ViewInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class PageView
+class PageView extends AbstractView
 {
     private $title;
     private $content;

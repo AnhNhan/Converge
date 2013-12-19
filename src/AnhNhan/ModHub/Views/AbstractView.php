@@ -10,7 +10,7 @@ use YamwLibs\Libs\View\ViewInterface;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-abstract class AbstractView implements ViewInterface
+abstract class AbstractView implements ViewInterface, YamwMarkupInterface
 {
     /**
      * @var MarkupContainer
