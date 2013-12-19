@@ -60,8 +60,8 @@ return array(
     "layout-form" => array(
       "name" => "layout-form",
       "path" => "layout/form.less",
-      "hash" => "148e0b57",
-      "time" => "0d4ca041",
+      "hash" => "45da22db",
+      "time" => "474a275f",
     ),
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
@@ -118,14 +118,14 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "a20e1489",
+      "hash" => "9232bcae",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
         "layout-boilerplate" => "98ef8b63",
         "layout-core" => "08aa6bbf",
-        "layout-form" => "148e0b57",
+        "layout-form" => "45da22db",
         "layout-grid" => "5cd5c19d",
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "a39e7363",
