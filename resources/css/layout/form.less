@@ -47,10 +47,17 @@
 .form-control {
     width: 100%;
     padding: @controlPadding;
-    .round-border(5px);
     border: 1px @grey solid;
     .box-shadow(inset 0 0 5px rgba(0, 0, 0, .25));
     .transition(~"background-color 0.2s, border-color 0.2s");
+
+    &:first-child {
+        .round-border-left(5px);
+    }
+
+    &:last-child {
+        .round-border-right(5px);
+    }
 
     &:hover {
         background-color: #EEEEEE;
