@@ -6,13 +6,26 @@
     -webkit-box-sizing: border-box;
 }
 
+/*
 // IE10 Metro responsive
 // Required for Windows 8 Metro split-screen snapping with IE10
 // Source: http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
 @-ms-viewport {
     width: device-width;
 }
+*/
+@media screen and (max-width:400px) {
+    @-ms-viewport{
+        width:320px;
+    }
+}
 @-o-viewport {
+    width: device-width;
+}
+@-moz-viewport {
+    width: device-width;
+}
+@-webkit-viewport {
     width: device-width;
 }
 @viewport {
