@@ -23,7 +23,7 @@ function on_submit () {
     $.ajax({
         url: 'markup/process',
         type: 'POST',
-        data: 'text=' + encodeURIComponent($('textarea').val()),
+        data: { text: $('textarea').val() },
         dataType: 'json',
         error: function (x,e) {console.log(x, e);},
         success: function (data) {
