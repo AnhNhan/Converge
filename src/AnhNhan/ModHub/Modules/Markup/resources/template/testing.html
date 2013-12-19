@@ -1,6 +1,9 @@
 <div class="row-flex">
     <div class="width6 markup-form">
         {FORM}
+        <div class="markup-time">
+            <!-- Put time here -->
+        </div>
     </div>
     <div class="width6 markup-output">
         <!-- Put output here -->
@@ -21,7 +24,8 @@ function on_submit () {
         error: function (x,e) {console.log(x, e);},
         success: function (data) {
                 if (data.status === 'ok') {
-                    output_area.html(data.payloads);
+                    output_area.html(data.payloads.contents);
+                    $('.markup-time').html('Took me ' + data.payloads.time + 'ms!');
                 } else {
                     console.log("Error while processing markup!");
                 }
