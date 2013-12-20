@@ -89,6 +89,12 @@ return array(
     ),
   ),
   "js" => array(
+    "external-backbone" => array(
+      "name" => "external-backbone",
+      "path" => "external/backbone.js",
+      "hash" => "89d22732",
+      "time" => "284c0972",
+    ),
     "external-html5bp-plugin" => array(
       "name" => "external-html5bp-plugin",
       "path" => "external/html5bp-plugin.js",
@@ -107,11 +113,23 @@ return array(
       "hash" => "0cb3a00f",
       "time" => "ded053a3",
     ),
+    "external-json2" => array(
+      "name" => "external-json2",
+      "path" => "external/json2.js",
+      "hash" => "9051a75f",
+      "time" => "f0137f44",
+    ),
     "external-modernizr" => array(
       "name" => "external-modernizr",
       "path" => "external/modernizr.js",
       "hash" => "4ad114ad",
       "time" => "ee2d146a",
+    ),
+    "external-underscore" => array(
+      "name" => "external-underscore",
+      "path" => "external/underscore.js",
+      "hash" => "a9ec7935",
+      "time" => "663718aa",
     ),
   ),
   "pck" => array(
@@ -136,11 +154,14 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "c25504f1",
+      "hash" => "d8427a54",
       "contents" => array(
         "external-html5bp-plugin" => "c035fc51",
         "external-modernizr" => "4ad114ad",
         "external-jquery-2.0.3" => "0cb3a00f",
+        "external-json2" => "9051a75f",
+        "external-underscore" => "a9ec7935",
+        "external-backbone" => "89d22732",
       ),
     ),
   ),
