@@ -59,12 +59,10 @@ abstract class BaseApplication
      */
     protected function getDatabaseConfigForDoctrine()
     {
+        $dbPath = ModHub\get_root_super() . "cache/db/" . $this->getInternalName() . ".sqlite";
         return array(
-            "driver"   => "pdo_mysql",
-            "host"     => "127.0.0.1",
-            "user"     => "modhub",
-            "password" => "",
-            "dbname"   => "modhub_" . $this->getInternalName(),
+            'driver' => 'pdo_sqlite',
+            'path' => $dbPath,
         );
     }
 
