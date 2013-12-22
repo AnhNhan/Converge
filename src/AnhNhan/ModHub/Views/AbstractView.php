@@ -68,6 +68,13 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
      */
     public function __toString()
     {
-        return (string)$this->render();
+        try {
+            $viewObject = $this->render();
+            return (string)$viewObject;
+        } catch (\Exception $exc) {
+            echo $exc->getMessage() . "\n";
+            echo $exc->getTraceAsString();
+            return "<Invalid String>";
+        }
     }
 }
