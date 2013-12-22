@@ -36,6 +36,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
     ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\UserExample" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/UserExample.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    ),
     "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
@@ -122,6 +126,25 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
+    "AnhNhan\ModHub\Modules\User\UserApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/UserApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\ModHub\Modules\User\Users\AbstractUser" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Users/AbstractUser.php",
+      "impls" => array(
+        "Symfony\Component\Security\Core\User\AdvancedUserInterface",
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\User\Users\DefaultUser" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Users/DefaultUser.php",
+      "deriv" => "AnhNhan\ModHub\Modules\User\Users\AbstractUser",
+    ),
+    "AnhNhan\ModHub\Modules\User\Views\UserPlateView" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Views/UserPlateView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
     "AnhNhan\ModHub\Storage\Types\DateTime" => array(
       "file" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
     ),
@@ -132,6 +155,7 @@ return array(
       "file" => "AnhNhan/ModHub/Views/AbstractView.php",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
+        "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface",
       ),
       "abstr" => "1",
     ),
@@ -190,6 +214,7 @@ return array(
     ),
     "AnhNhan\ModHub\Views\Page\FooterView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/FooterView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
@@ -204,6 +229,7 @@ return array(
     ),
     "AnhNhan\ModHub\Views\Page\PageView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/PageView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
     "AnhNhan\ModHub\Views\Page\SidebarView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
@@ -276,12 +302,14 @@ return array(
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
       "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
+      "AnhNhan\ModHub\Modules\Examples\Examples\UserExample",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
       "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
       "AnhNhan\ModHub\Modules\Front\FrontApplication",
       "AnhNhan\ModHub\Modules\Markup\MarkupApplication",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
+      "AnhNhan\ModHub\Modules\User\UserApplication",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
@@ -309,13 +337,20 @@ return array(
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
+      "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
       "AnhNhan\ModHub\Views\Form\FormView",
       "AnhNhan\ModHub\Views\Objects\AbstractObject",
       "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      "AnhNhan\ModHub\Views\Page\FooterView",
       "AnhNhan\ModHub\Views\Page\HeaderView",
       "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      "AnhNhan\ModHub\Views\Page\PageView",
       "AnhNhan\ModHub\Views\Page\SidebarView",
       "AnhNhan\ModHub\Views\Objects\Object",
+      "AnhNhan\ModHub\Views\Page\BarePageView",
+    ),
+    "AnhNhan\ModHub\Modules\User\Users\AbstractUser" => array(
+      "AnhNhan\ModHub\Modules\User\Users\DefaultUser",
     ),
     "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
       "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
@@ -348,12 +383,18 @@ return array(
     ),
   ),
   "implementations" => array(
+    "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
+      "AnhNhan\ModHub\Modules\User\Users\AbstractUser",
+    ),
     "YamwLibs\Libs\View\ViewInterface" => array(
       "AnhNhan\ModHub\Views\AbstractView",
       "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
       "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
       "AnhNhan\ModHub\Views\Objects\Listing",
       "AnhNhan\ModHub\Views\Page\FooterView",
+    ),
+    "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
+      "AnhNhan\ModHub\Views\AbstractView",
     ),
   ),
 );
