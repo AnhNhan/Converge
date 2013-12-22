@@ -51,4 +51,26 @@ abstract class BaseApplication
 
         return $routeObjects;
     }
+
+    /**
+     * Dummy until we get containers going
+     *
+     * @return array
+     */
+    protected function getDatabaseConfigForDoctrine()
+    {
+        $dbPath = ModHub\get_root_super() . "cache/db/" . $this->getInternalName() . ".sqlite";
+        return array(
+            'driver' => 'pdo_sqlite',
+            'path' => $dbPath,
+        );
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function getEntityManager()
+    {
+        throw new \Exception("This application has no entity manager!");
+    }
 }
