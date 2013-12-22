@@ -1,0 +1,14 @@
+
+routes:
+
+  - route-name: main-listing
+    pattern: /disq
+
+  - route-name: disq-creation
+    pattern: /disq/create
+
+  - route-name: disq-display
+    pattern: /disq/:id
+
+  - route-name: disq-posting
+    pattern: /disq/:id/post
