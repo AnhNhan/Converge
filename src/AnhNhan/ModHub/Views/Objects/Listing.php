@@ -2,12 +2,12 @@
 namespace AnhNhan\ModHub\Views\Objects;
 
 use AnhNhan\ModHub;
-use YamwLibs\Libs\View\ViewInterface;
+use AnhNhan\ModHub\Views\AbstractView;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class Listing implements ViewInterface
+class Listing extends AbstractView
 {
     private $title;
     private $objects = array();
