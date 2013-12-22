@@ -65,8 +65,13 @@ final class AppRouting
         $routingResult = $this->routeToApplication($request->getValue("uri-action-string"));
         if ($routingResult) {
             $app = $routingResult["target"];
+
+            $routeName = $routingResult["route"]->getName();
+            $routingResult["route-name"] = $routeName;
+
             // Remove the target app again. It ain't supposed to appear in the Request
             unset($routingResult["target"]);
+            unset($routingResult["route"]);
             $request->populate($routingResult);
             $controller = $app->routeToController($request);
             return $controller;
