@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Web\Application;
 
+use AnhNhan\ModHub;
 use YamwLibs\Libs\Http\Request;
 use YamwLibs\Libs\Routing\Route;
 
@@ -32,7 +33,7 @@ abstract class BaseApplication
         $routeObjects = array();
         $ii = 0;
         foreach ($routes as $blob) {
-            $route = new Route("route-$file-$ii", $blob["pattern"], $this);
+            $route = new Route(idx($blob, "route-name", "route-$file-$ii"), $blob["pattern"], $this);
 
             $reqs = idx($blob, "requirements");
             $params = idx($blob, "parameters");
