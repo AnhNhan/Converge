@@ -82,6 +82,14 @@ class FooterView extends AbstractView implements ViewInterface
         }
         $footer->column("Examples", $column3);
 
+        $column2 = array(
+            array(
+                "label" => "Disq listing",
+                "href"  => "/disq/",
+            ),
+        );
+        $footer->column('Discussions', $column2);
+
         return $footer;
     }
 }
