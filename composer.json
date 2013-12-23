@@ -6,18 +6,18 @@
         "ircmaxell/password-compat": "*",
         "symfony/security": "~2.5",
         "symfony/validator": "~2.5",
-        "symfony/console": "~2.5",
         "erusev/parsedown": "~0.7",
         "doctrine/dbal": "~2.4",
         "doctrine/cache": "~1.4",
         "doctrine/orm": "~2.4",
-        "monolog/monolog": "*",
-        "fzaninotto/faker": "~1.3"
+        "monolog/monolog": "*"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.6",
         "phpunit/php-code-coverage": "*",
-        "satooshi/php-coveralls": "*"
+        "satooshi/php-coveralls": "*",
+        "symfony/console": "~2.5",
+        "fzaninotto/faker": "~1.3"
     },
     "license": "Apache",
     "authors": [
