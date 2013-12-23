@@ -59,11 +59,16 @@ final class ForumApplication extends BaseApplication
         return $em;
     }
 
-    public function buildEntityManager()
+    private function buildEntityManager()
     {
         $isDevMode = true;
         $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Storage"), $isDevMode);
 
-        return EntityManager::create($this->getDatabaseConfigForDoctrine(), $config);
+        $entityManager = EntityManager::create($this->getDatabaseConfigForDoctrine(), $config);
+        $eventManager  = $entityManager->getEventManager();
+
+        $eventManager->addEventListener(array(\Doctrine\ORM\Events::postLoad), new Events\DiscussionTagExternalEntityLoader);
+
+        return $entityManager;
     }
 }

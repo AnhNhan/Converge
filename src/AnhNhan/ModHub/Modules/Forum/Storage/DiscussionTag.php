@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Modules\Forum\Storage;
 
+use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
 use AnhNhan\ModHub\Storage\EntityDefinition;
 
 /**
@@ -24,10 +25,18 @@ class DiscussionTag extends EntityDefinition
      */
     private $t_id;
 
-    public function __construct(Discussion $disq, $tag_uid)
+    /**
+     * Will be loaded from Donctrine event subscriber
+     *
+     * @var Tag
+     */
+    private $t_obj;
+
+    public function __construct(Discussion $disq, Tag $tag)
     {
         $this->disq = $disq;
-        $this->t_id = $tag_uid;
+        $this->t_id = $tag->tagId();
+        $this->t_obj = $tag;
     }
 
     public function discussion()
@@ -42,7 +51,10 @@ class DiscussionTag extends EntityDefinition
 
     public function tag()
     {
-        throw new \Exception("Method not supported yet!");
+        if (!$this->t_obj) {
+            throw new \Exception("This object hasn't been initialized with a tag yet!");
+        }
+        return $this->t_obj;
     }
 
     public function tagId()
