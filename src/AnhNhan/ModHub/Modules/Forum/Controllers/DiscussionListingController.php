@@ -31,7 +31,7 @@ final class DiscussionListingController extends AbstractForumController
             $object = new ForumObject;
             $object
                 ->setHeadline($discussion->label())
-                ->setHeadHref("/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()) . "/")
+                ->setHeadHref("/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))
                 ->addAttribute(ModHub\icon_text($discussion->posts()->count(), "th-list", false));
 
             $tags = mpull($discussion->tags()->toArray(), "tagId");
