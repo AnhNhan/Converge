@@ -58,12 +58,12 @@ class Discussion extends EntityDefinition
 
     public function __construct(
         $label,
-        \DateTime $createdAt,
-        \DateTime $lastActivity
+        \DateTime $createdAt = null,
+        \DateTime $lastActivity = null
     ) {
         $this->label = $label;
-        $this->createdAt = $createdAt;
-        $this->lastActivity = $lastActivity;
+        $this->createdAt = $createdAt ?: new \DateTime;
+        $this->lastActivity = $lastActivity ?: new \DateTime;
     }
 
     public function uid()

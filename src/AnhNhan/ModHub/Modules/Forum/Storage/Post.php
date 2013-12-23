@@ -57,15 +57,14 @@ class Post extends EntityDefinition
         Discussion $discussion,
         $author_uid,
         $rawText,
-        \DateTime
-        $createdAt,
-        \DateTime $modifiedAt
+        \DateTime $createdAt = null,
+        \DateTime $modifiedAt = null
     ) {
         $this->disq = $discussion;
         $this->author = $author_uid;
         $this->rawText = $rawText;
-        $this->createdAt = $createdAt;
-        $this->modifiedAt = $modifiedAt;
+        $this->createdAt = $createdAt ?: new \DateTime;
+        $this->modifiedAt = $modifiedAt ?: new \DateTime;
     }
 
     public function uid()
