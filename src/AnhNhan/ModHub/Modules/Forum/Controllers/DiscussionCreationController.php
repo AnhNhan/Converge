@@ -58,7 +58,6 @@ final class DiscussionCreationController extends AbstractForumController
                 $discussion->firstPost($post);
 
                 $em->persist($discussion);
-                $em->persist($post);
                 $em->flush();
 
                 $container->push(ModHub\ht("h1", "Successfully inserted discussion '$label'!"));

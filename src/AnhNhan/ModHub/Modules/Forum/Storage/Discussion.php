@@ -23,7 +23,7 @@ class Discussion extends EntityDefinition
     private $label;
 
     /**
-     * @OneToOne(targetEntity="Post", fetch="EAGER")
+     * @OneToOne(targetEntity="Post", fetch="EAGER", cascade="persist")
      * @var Post
      */
     private $firstPost;
