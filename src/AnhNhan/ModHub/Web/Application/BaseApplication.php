@@ -74,11 +74,20 @@ abstract class BaseApplication
         static $em;
         if (!$em) {
             $em = $this->buildEntityManager();
+            if (!\Doctrine\DBAL\Types\Type::hasType("uid")) {
+                \Doctrine\DBAL\Types\Type::addType("uid", 'AnhNhan\ModHub\Storage\UIDType');
+            }
+            $conn = $em->getConnection();
+            $platform = $conn->getDatabasePlatform();
+            $platform->registerDoctrineTypeMapping("varchar", \Doctrine\DBAL\Types\Type::getType("uid")->getName());
         }
 
         return $em;
     }
 
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
     protected function buildEntityManager()
     {
         throw new \Exception("This application does not have an entity manager!");

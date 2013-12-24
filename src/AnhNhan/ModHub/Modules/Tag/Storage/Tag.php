@@ -11,7 +11,7 @@ class Tag extends EntityDefinition
 {
     /**
      * @Id
-     * @Column(type="string")
+     * @Column(type="uid")
      * @GeneratedValue(strategy="CUSTOM")
      * @CustomIdGenerator(class="AnhNhan\ModHub\Storage\Doctrine\UIDGenerator")
      */
