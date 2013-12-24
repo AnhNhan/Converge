@@ -13,6 +13,8 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
  */
 final class DiscussionListingController extends AbstractForumController
 {
+    private $discussionsPerPage = 20;
+
     public function handle()
     {
         $request = $this->request();
@@ -20,7 +22,11 @@ final class DiscussionListingController extends AbstractForumController
 
         $forumEntityManager = $app->getEntityManager();
         $disqRepo = $forumEntityManager->getRepository("AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion");
-        $disqs = $disqRepo->findBy(array(), array("lastActivity" => "DESC"));
+
+        $pageNr = 0;
+        $offset = $pageNr * $this->discussionsPerPage;
+
+        $disqs = $disqRepo->findBy(array(), array("lastActivity" => "DESC"), $this->discussionsPerPage, $offset);
 
         $container = new MarkupContainer();
 
