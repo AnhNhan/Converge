@@ -27,4 +27,12 @@ class UserApplication extends BaseApplication
     {
         return null;
     }
+
+    protected function buildEntityManager()
+    {
+        $isDevMode = true;
+        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Storage"), $isDevMode);
+
+        return EntityManager::create($this->getDatabaseConfigForDoctrine(), $config);
+    }
 }
