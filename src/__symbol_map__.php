@@ -36,10 +36,6 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\UserExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/UserExample.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
-    ),
     "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
@@ -61,9 +57,8 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionListingController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionPostingController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionPostingController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    "AnhNhan\ModHub\Modules\Forum\Events\DiscussionTagExternalEntityLoader" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Events/DiscussionTagExternalEntityLoader.php",
     ),
     "AnhNhan\ModHub\Modules\Forum\ForumApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/ForumApplication.php",
@@ -73,15 +68,12 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Storage/Discussion.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTags" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/DiscussionTags.php",
+    "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/DiscussionTag.php",
+      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
     ),
     "AnhNhan\ModHub\Modules\Forum\Storage\Post" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Storage/Post.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
-    ),
-    "AnhNhan\ModHub\Storage\PostDraft" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/PostDraft.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
@@ -162,9 +154,26 @@ return array(
     "AnhNhan\ModHub\Modules\Symbols\SymbolLoader" => array(
       "file" => "AnhNhan/ModHub/Modules/Symbols/SymbolLoader.php",
     ),
+    "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/AbstractTagController.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagCreationController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagListingController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
+    ),
     "AnhNhan\ModHub\Modules\Tag\Storage\Tag" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Storage/Tag.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\TagApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/TagApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
     ),
     "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
@@ -174,13 +183,6 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/User/Controllers/AbstractUserController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
       "abstr" => "1",
-    ),
-    "AnhNhan\ModHub\Modules\User\Storage\User" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/User.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
-      "impls" => array(
-        "Symfony\Component\Security\Core\User\AdvancedUserInterface",
-      ),
     ),
     "AnhNhan\ModHub\Modules\User\UserApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/User/UserApplication.php",
@@ -260,9 +262,7 @@ return array(
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "file" => "AnhNhan/ModHub/Views/Objects/Listing.php",
-      "impls" => array(
-        "YamwLibs\Libs\View\ViewInterface",
-      ),
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
     "AnhNhan\ModHub\Views\Objects\Object" => array(
       "file" => "AnhNhan/ModHub/Views/Objects/Object.php",
@@ -360,19 +360,20 @@ return array(
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
       "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionCreationController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionPostingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
+      "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
+      "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
       "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
-      "AnhNhan\ModHub\Modules\Examples\Examples\UserExample",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
       "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
@@ -380,20 +381,19 @@ return array(
       "AnhNhan\ModHub\Modules\Front\FrontApplication",
       "AnhNhan\ModHub\Modules\Markup\MarkupApplication",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
+      "AnhNhan\ModHub\Modules\Tag\TagApplication",
       "AnhNhan\ModHub\Modules\User\UserApplication",
     ),
     "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController" => array(
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionCreationController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionPostingController",
     ),
     "AnhNhan\ModHub\Storage\EntityDefinition" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
+      "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
-      "AnhNhan\ModHub\Storage\PostDraft",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
-      "AnhNhan\ModHub\Modules\User\Storage\User",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
@@ -419,11 +419,16 @@ return array(
     "PHPParser_NodeVisitorAbstract" => array(
       "AnhNhan\ModHub\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter",
     ),
+    "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
+      "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
+      "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
+    ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
       "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
       "AnhNhan\ModHub\Views\Form\FormView",
       "AnhNhan\ModHub\Views\Objects\AbstractObject",
+      "AnhNhan\ModHub\Views\Objects\Listing",
       "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
       "AnhNhan\ModHub\Views\Page\FooterView",
       "AnhNhan\ModHub\Views\Page\HeaderView",
@@ -431,6 +436,7 @@ return array(
       "AnhNhan\ModHub\Views\Page\PageView",
       "AnhNhan\ModHub\Views\Page\SidebarView",
       "AnhNhan\ModHub\Views\Objects\Object",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\ModHub\Views\Page\BarePageView",
     ),
     "AnhNhan\ModHub\Modules\User\Users\AbstractUser" => array(
@@ -471,14 +477,12 @@ return array(
   ),
   "implementations" => array(
     "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
-      "AnhNhan\ModHub\Modules\User\Storage\User",
       "AnhNhan\ModHub\Modules\User\Users\AbstractUser",
     ),
     "YamwLibs\Libs\View\ViewInterface" => array(
       "AnhNhan\ModHub\Views\AbstractView",
       "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
       "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
-      "AnhNhan\ModHub\Views\Objects\Listing",
       "AnhNhan\ModHub\Views\Page\FooterView",
     ),
     "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
