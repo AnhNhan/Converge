@@ -46,17 +46,7 @@ final class TagApplication extends BaseApplication
         return null;
     }
 
-    public function getEntityManager()
-    {
-        static $em;
-        if (!$em) {
-            $em = $this->buildEntityManager();
-        }
-
-        return $em;
-    }
-
-    private function buildEntityManager()
+    protected function buildEntityManager()
     {
         $isDevMode = true;
         $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Storage"), $isDevMode);

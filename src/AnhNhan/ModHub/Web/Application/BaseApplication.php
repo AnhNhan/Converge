@@ -71,6 +71,16 @@ abstract class BaseApplication
      */
     public function getEntityManager()
     {
-        throw new \Exception("This application has no entity manager!");
+        static $em;
+        if (!$em) {
+            $em = $this->buildEntityManager();
+        }
+
+        return $em;
+    }
+
+    protected function buildEntityManager()
+    {
+        throw new \Exception("This application does not have an entity manager!");
     }
 }
