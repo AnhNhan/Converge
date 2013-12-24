@@ -42,8 +42,10 @@ class ForumObject extends Object
             if (count($this->tags)) {
                 $this->addAttributeAsFirst($this->tags);
             }
-            
-            $this->addAttributeAsFirst(ModHub\icon_text(ModHub\ht("div", $this->postCount, array("style" => "display: inline-block; min-width: 1em;")), "th-list", false));
+
+            if ($this->postCount) {
+                $this->addAttributeAsFirst(ModHub\icon_text(ModHub\ht("div", $this->postCount, array("style" => "display: inline-block; min-width: 1em;")), "th-list", false));
+            }
             
             $this->tagsAdded = true;
         }
