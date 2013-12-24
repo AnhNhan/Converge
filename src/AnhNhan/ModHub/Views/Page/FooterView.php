@@ -87,6 +87,10 @@ class FooterView extends AbstractView implements ViewInterface
                 "label" => "Disq listing",
                 "href"  => "/disq/",
             ),
+            array(
+                "label" => "Tag listing",
+                "href"  => "/tag/",
+            ),
         );
         $footer->column('Discussions', $column2);
 

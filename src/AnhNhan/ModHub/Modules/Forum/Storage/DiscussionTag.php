@@ -35,7 +35,7 @@ class DiscussionTag extends EntityDefinition
     public function __construct(Discussion $disq, Tag $tag)
     {
         $this->disq = $disq;
-        $this->t_id = $tag->tagId();
+        $this->t_id = $tag->uid();
         $this->t_obj = $tag;
     }
 

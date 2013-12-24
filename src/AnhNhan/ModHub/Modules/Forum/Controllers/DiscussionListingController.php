@@ -34,10 +34,10 @@ final class DiscussionListingController extends AbstractForumController
                 ->setHeadHref("/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))
                 ->addAttribute(ModHub\icon_text($discussion->posts()->count(), "th-list", false));
 
-            $tags = mpull($discussion->tags()->toArray(), "tagId");
+            $tags = mpull(mpull($discussion->tags()->toArray(), "tag"), "label");
             foreach ($tags as $tagLabel) {
                 if (!empty($tagLabel)) {
-                    $object->addTag(new TagView(substr(preg_replace("/^(.*?-)/", "", $tagLabel), 0, rand(3, 8))));
+                    $object->addTag(new TagView($tagLabel));
                 }
             }
 

@@ -1,0 +1,11 @@
+
+routes:
+
+  - route-name: tag-listing
+    pattern: /tag/
+
+  - route-name: tag-display
+    pattern: /tag/:id
+
+  - route-name: tag-creation
+    pattern: /tag/create

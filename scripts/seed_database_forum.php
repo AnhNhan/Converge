@@ -6,6 +6,10 @@ use AnhNhan\ModHub\Modules\Forum\ForumApplication;
 use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
 use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag;
 use AnhNhan\ModHub\Modules\Forum\Storage\Post;
+
+use AnhNhan\ModHub\Modules\Tag\TagApplication;
+use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
+
 use AnhNhan\ModHub\Storage\Types\UID;
 
 // De-register libphutil autoloader, can't be used with Faker
@@ -13,6 +17,10 @@ spl_autoload_unregister('__phutil_autoload');
 
 $forumApp = new ForumApplication();
 $forumEm = $forumApp->getEntityManager();
+
+$tagApp = new TagApplication;
+$tagEm = $tagApp->getEntityManager();
+
 $faker = \Faker\Factory::create();
 
 $num_tags = 12;
@@ -22,8 +30,11 @@ $num_users = 40;
 
 $tags = array();
 for ($ii = 0; $ii < $num_tags; $ii++) {
-    $tags[] = UID::generate("TTAG");
+    $tag = new Tag($faker->unique()->city);
+    $tagEm->persist($tag);
+    $tags[] = $tag;
 }
+$tagEm->flush();
 
 $users = array();
 for ($ii = 0; $ii < $num_users; $ii++) {
@@ -58,11 +69,11 @@ for ($ii = 0; $ii < $num_discussions; $ii++) {
         $chosenTag = $tags[array_rand($tags)];
         $chosenDisq = $discussions[$ii];
 
-        if (isset($derp[$chosenTag])) {
+        if (isset($derp[$chosenTag->uid()])) {
             continue;
         }
 
-        $derp += array($chosenTag => true);
+        $derp += array($chosenTag->uid() => true);
         $discussion_tags[] = new DiscussionTag($chosenDisq, $chosenTag);
     }
 }
@@ -71,9 +82,11 @@ foreach ($discussions as $derp) {
     $forumEm->persist($derp);
 }
 
+/*
 foreach ($discussion_firstPosts as $derp) {
     $forumEm->persist($derp);
 }
+*/
 
 foreach ($posts as $derp) {
     $forumEm->persist($derp);

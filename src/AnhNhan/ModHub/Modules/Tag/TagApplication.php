@@ -24,12 +24,25 @@ final class TagApplication extends BaseApplication
 
     public function getRoutes()
     {
-        return array();
+        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
     public function routeToController(Request $request)
     {
-        // TODO:
+        $routeName = $request->getValue("route-name");
+
+        switch ($routeName) {
+            case "tag-listing":
+                return new Controllers\TagListingController($this);
+                break;
+            case "tag-display":
+                return new Controllers\TagCreationController($this);
+                break;
+            case "tag-creation":
+                return new Controllers\TagDisplayController($this);
+                break;
+        }
+
         return null;
     }
 
