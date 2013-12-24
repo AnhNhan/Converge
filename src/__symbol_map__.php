@@ -294,6 +294,7 @@ return array(
     "AnhNhan\ModHub\Views\Page\PageView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/PageView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "abstr" => "1",
     ),
     "AnhNhan\ModHub\Views\Page\SidebarView" => array(
       "file" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
