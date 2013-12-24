@@ -11,11 +11,17 @@ use AnhNhan\ModHub\Views\Form\Controls\TextControl;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
 final class DiscussionCreationController extends AbstractForumController
 {
+    private $defaultLabelValue = "Something pretty descriptive, like 'I want cheezburgrs!'";
+    private $defaultTextValue  = "Tell us more about your favourite Pokémon!";
+
     public function handle()
     {
         $request = $this->request();
@@ -25,31 +31,23 @@ final class DiscussionCreationController extends AbstractForumController
         $payload = new HtmlPayload;
         $payload->setPayloadContents($container);
 
-        // TODO: Replace these through some MOTD-like strings
-        $defaultLabelValue = "Something pretty descriptive, like 'I want cheezburgrs!'";
-        $defaultTextValue  = "Tell us more about your favourite Pokémon!";
-
-        $errors  = array();
-        $e_label = null;
-        $e_text  = null;
+        $violations = null;
 
         if ($requestMethod == "POST") {
             $request->populateFromRequest(array(
                 "label",
                 "text",
             ));
+
             $label = trim($request->getRequestValue("label"));
             $text = trim($request->getRequestValue("text"));
+            $validatorInput = array(
+                "label" => $label,
+                "text"  => $text,
+            );
+            $violations = $this->validateDiscussion($validatorInput);
 
-            if (empty($label)) {
-                $errors[] = "Label is empty";
-                $e_label  = "Empty";
-            } else if (phutil_utf8_strtolower($defaultLabelValue) == phutil_utf8_strtolower($label)) {
-                $errors[] = "Label is still the default one";
-                $e_label  = "Please change this";
-            }
-
-            if (!$errors) {
+            if (!$violations->count()) {
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
@@ -67,9 +65,9 @@ final class DiscussionCreationController extends AbstractForumController
             }
         }
 
-        if ($errors) {
+        if ($violations->count()) {
             $container->push(ModHub\ht("h1", "There had been errors!"));
-            $container->push(ModHub\ht("pre", print_r($errors, true)));
+            $container->push(ModHub\ht("pre", print_r($violations, true)));
         }
 
         $form = new FormView;
@@ -81,12 +79,12 @@ final class DiscussionCreationController extends AbstractForumController
         $form->append(id(new TextControl())
             ->setLabel("Label")
             ->setName("label")
-            ->setValue($defaultLabelValue));
+            ->setValue($this->defaultLabelValue));
 
         $form->append(id(new TextAreaControl())
             ->setLabel("Text")
             ->setName("text")
-            ->setValue($defaultTextValue));
+            ->setValue($this->defaultTextValue));
 
         $form->append(id(new SubmitControl())
             ->addCancelButton("/")
@@ -95,5 +93,26 @@ final class DiscussionCreationController extends AbstractForumController
         $container->push($form);
 
         return $payload;
+    }
+
+    private function validateDiscussion(array $input)
+    {
+        $validator = Validation::createValidator();
+        return $validator->validateValue($input, $this->getValidatorConstraintsForDiscussion());
+    }
+
+    private function getValidatorConstraintsForDiscussion()
+    {
+        $constraints = new Assert\Collection(array(
+            "label" => array(
+                new Assert\NotEqualTo(array("value" => $this->defaultLabelValue)),
+                new Assert\NotBlank,
+            ),
+            "text" => array(
+                new Assert\NotEqualTo(array("value" => $this->defaultTextValue)),
+                new Assert\NotBlank,
+            ),
+        ));
+        return $constraints;
     }
 }
