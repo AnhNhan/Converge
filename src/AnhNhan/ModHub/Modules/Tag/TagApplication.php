@@ -35,10 +35,10 @@ final class TagApplication extends BaseApplication
             case "tag-listing":
                 return new Controllers\TagListingController($this);
                 break;
-            case "tag-display":
+            case "tag-creation":
                 return new Controllers\TagCreationController($this);
                 break;
-            case "tag-creation":
+            case "tag-display":
                 return new Controllers\TagDisplayController($this);
                 break;
         }
