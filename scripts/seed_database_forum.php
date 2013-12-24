@@ -42,14 +42,10 @@ for ($ii = 0; $ii < $num_users; $ii++) {
 }
 
 $discussions = array();
-$discussion_firstPosts = array();
 for ($ii = 0; $ii < $num_discussions; $ii++) {
-    $discussion = new Discussion($faker->unique()->catchPhrase, $faker->dateTime, $faker->dateTime);
-    $firstPost = new Post($discussion, $users[array_rand($users)], $faker->text, $faker->dateTime, $faker->dateTime);
-    $discussion->firstPost($firstPost);
+    $discussion = new Discussion($users[array_rand($users)], $faker->unique()->catchPhrase, $faker->text, $faker->dateTime, $faker->dateTime);
 
     $discussions[] = $discussion;
-    $discussion_firstPosts[] = $firstPost;
 }
 
 $posts = array();
