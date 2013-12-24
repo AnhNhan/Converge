@@ -20,7 +20,7 @@ final class DiscussionListingController extends AbstractForumController
 
         $forumEntityManager = $app->getEntityManager();
         $disqRepo = $forumEntityManager->getRepository("AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion");
-        $disqs = $disqRepo->findAll();
+        $disqs = $disqRepo->findBy(array(), array("lastActivity" => "DESC"));
 
         $container = new MarkupContainer();
 
@@ -32,7 +32,7 @@ final class DiscussionListingController extends AbstractForumController
             $object
                 ->setHeadline($discussion->label())
                 ->setHeadHref("/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))
-                ->addAttribute(ModHub\icon_text($discussion->posts()->count(), "th-list", false));
+                ->postCount($discussion->posts()->count());
 
             $tags = mpull(mpull($discussion->tags()->toArray(), "tag"), "label");
             foreach ($tags as $tagLabel) {

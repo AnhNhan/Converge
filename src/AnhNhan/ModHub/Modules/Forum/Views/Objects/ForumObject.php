@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Modules\Forum\Views\Objects;
 
+use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Objects\Object;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -11,7 +12,8 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
 class ForumObject extends Object
 {
     private $tags;
-    private $added = false;
+    private $postCount;
+    private $tagsAdded = false;
 
     public function __construct()
     {
@@ -25,12 +27,27 @@ class ForumObject extends Object
         return $this;
     }
 
+    public function postCount($postCount = null) {
+        if ($postCount === null) {
+            return $this->postCount;
+        } else {
+            $this->postCount = $postCount;
+            return $this;
+        }
+    }
+
     public function render()
     {
-        if (!$this->added && count($this->tags)) {
-            $this->addAttributeAsFirst($this->tags);
-            $this->added = true;
+        if (!$this->tagsAdded) {
+            if (count($this->tags)) {
+                $this->addAttributeAsFirst($this->tags);
+            }
+            
+            $this->addAttributeAsFirst(ModHub\icon_text(ModHub\ht("div", $this->postCount, array("style" => "display: inline-block; min-width: 1em;")), "th-list", false));
+            
+            $this->tagsAdded = true;
         }
+
         $object = parent::render();
         return $object;
     }
