@@ -7,7 +7,7 @@ use YamwLibs\Libs\View\ViewInterface;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class PageView extends AbstractView
+abstract class PageView extends AbstractView
 {
     private $title;
     private $content;
