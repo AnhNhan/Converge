@@ -25,8 +25,13 @@ final class DiscussionCreationController extends AbstractForumController
         $payload = new HtmlPayload;
         $payload->setPayloadContents($container);
 
+        // TODO: Replace these through some MOTD-like strings
         $defaultLabelValue = "Something pretty descriptive, like 'I want cheezburgrs!'";
         $defaultTextValue  = "Tell us more about your favourite Pokémon!";
+
+        $errors  = array();
+        $e_label = null;
+        $e_text  = null;
 
         if ($requestMethod == "POST") {
             $request->populateFromRequest(array(
@@ -36,26 +41,41 @@ final class DiscussionCreationController extends AbstractForumController
             $label = trim($request->getRequestValue("label"));
             $text = trim($request->getRequestValue("text"));
 
-            $app = $this->app();
-            $em = $app->getEntityManager();
+            if (empty($label)) {
+                $errors[] = "Label is empty";
+                $e_label  = "Empty";
+            } else if (phutil_utf8_strtolower($defaultLabelValue) == phutil_utf8_strtolower($label)) {
+                $errors[] = "Label is still the default one";
+                $e_label  = "Please change this";
+            }
 
-            $discussion = new Discussion($label);
-            $post = new Post($discussion, \AnhNhan\ModHub\Storage\Types\UID::generate("USER"), $text);
-            $discussion->firstPost($post);
+            if (!$errors) {
+                $app = $this->app();
+                $em = $app->getEntityManager();
 
-            $em->persist($discussion);
-            $em->persist($post);
-            $em->flush();
-            
-            $container->push(ModHub\ht("h1", "Successfully inserted discussion '$label'!"));
-            $container->push(ModHub\ht("a", "Link", array("href" => "/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))));
+                $discussion = new Discussion($label);
+                $post = new Post($discussion, \AnhNhan\ModHub\Storage\Types\UID::generate("USER"), $text);
+                $discussion->firstPost($post);
 
-            return $payload;
+                $em->persist($discussion);
+                $em->persist($post);
+                $em->flush();
+
+                $container->push(ModHub\ht("h1", "Successfully inserted discussion '$label'!"));
+                $container->push(ModHub\ht("a", "Link", array("href" => "/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))));
+
+                return $payload;
+            }
+        }
+
+        if ($errors) {
+            $container->push(ModHub\ht("h1", "There had been errors!"));
+            $container->push(ModHub\ht("pre", print_r($errors, true)));
         }
 
         $form = new FormView;
         $form
-            ->setTitle("Create new discussion")
+            ->setTitle("New discussion")
             ->setAction("/disq/create")
             ->setMethod("POST");
 
@@ -65,7 +85,7 @@ final class DiscussionCreationController extends AbstractForumController
             ->setValue($defaultLabelValue));
 
         $form->append(id(new TextAreaControl())
-            ->setLabel("text")
+            ->setLabel("Text")
             ->setName("text")
             ->setValue($defaultTextValue));
 
