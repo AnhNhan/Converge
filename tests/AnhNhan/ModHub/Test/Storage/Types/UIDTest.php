@@ -69,6 +69,12 @@ class UIDTest extends TestCase
         self::assertTrue(UID::checkValidity($uid), "The generated string '$uid' should be a valid UID");
     }
 
+    public function testCanGenerateUIDInstances()
+    {
+        $uid = UID::generateNew();
+        self::assertInstanceOf('AnhNhan\ModHub\Storage\Types\UID', $uid);
+    }
+
     /**
      * @dataProvider provideInvalidNames
      * @testdox Can't generate with invalid names

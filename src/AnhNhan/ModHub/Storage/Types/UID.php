@@ -61,6 +61,11 @@ class UID
         return sprintf("%s-%s", strtoupper($name), $random);
     }
 
+    public static function generateNew($name = self::NAME_DEFAULT)
+    {
+        return new UID(self::generate($name));
+    }
+
     public static function checkValidity($uid)
     {
         return preg_match("/^[A-Z]{4}-[a-z0-9]{14}$/", $uid) === 1;
