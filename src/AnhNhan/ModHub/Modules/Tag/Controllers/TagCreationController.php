@@ -60,7 +60,7 @@ final class TagCreationController extends AbstractTagController
 
         $form = new FormView;
         $form
-            ->setTitle("Create new discussion")
+            ->setTitle("Create new tag")
             ->setAction("/disq/create")
             ->setMethod("POST");
 
