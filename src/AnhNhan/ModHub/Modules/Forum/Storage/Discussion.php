@@ -23,10 +23,19 @@ class Discussion extends EntityDefinition
     private $label;
 
     /**
-     * @OneToOne(targetEntity="Post", fetch="EAGER", cascade="persist")
-     * @var Post
+     * @Column(type="string")
      */
-    private $firstPost;
+    private $author;
+
+    /**
+     * @var \AnhNhan\ModHub\Modules\User\Storage\User
+     */
+    private $author_object;
+
+    /**
+     * @Column(type="string")
+     */
+    private $rawText;
 
     /**
      * @Column(type="datetime")
@@ -57,11 +66,15 @@ class Discussion extends EntityDefinition
     private $posts = array();
 
     public function __construct(
+        $author,
         $label,
+        $rawText,
         \DateTime $createdAt = null,
         \DateTime $lastActivity = null
     ) {
+        $this->author = $author;
         $this->label = $label;
+        $this->rawText = $rawText;
         $this->createdAt = $createdAt ?: new \DateTime;
         $this->lastActivity = $lastActivity ?: new \DateTime;
     }
@@ -76,14 +89,34 @@ class Discussion extends EntityDefinition
         return $this->label;
     }
 
-    public function firstPost(Post $firstPost = null)
+    public function authorId()
     {
-        if ($firstPost === null) {
-            return $this->firstPost;
+        return $this->author;
+    }
+
+    public function author()
+    {
+        return $this->author_object;
+    }
+
+    public function text($text = null)
+    {
+        if ($text === null) {
+            return $this->rawText;
         } else {
-            $this->firstPost = $firstPost;
+            $this->rawText = $text;
             return $this;
         }
+    }
+
+    /**
+     * @param \AnhNhan\ModHub\Modules\Forum\Storage\Post $firstPost
+     * @throws \Exception
+     * @deprecated
+     */
+    public function firstPost(Post $firstPost = null)
+    {
+        throw new \Exception("Deprecated.");
     }
 
     public function tags()

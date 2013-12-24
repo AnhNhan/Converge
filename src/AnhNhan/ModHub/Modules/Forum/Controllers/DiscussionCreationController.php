@@ -51,9 +51,7 @@ final class DiscussionCreationController extends AbstractForumController
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
-                $discussion = new Discussion($label);
-                $post = new Post($discussion, \AnhNhan\ModHub\Storage\Types\UID::generate("USER"), $text);
-                $discussion->firstPost($post);
+                $discussion = new Discussion(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"), $label, $text);
 
                 $em->persist($discussion);
                 $em->flush();
