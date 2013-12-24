@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Test;
 
 use AnhNhan\ModHub;
-use YamwLibs\Infrastructure\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
