@@ -211,9 +211,6 @@ return array(
       "file" => "AnhNhan/ModHub/Storage/EntityDefinition.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Storage\Types\DateTime" => array(
-      "file" => "AnhNhan/ModHub/Storage/Types/DateTime.php",
-    ),
     "AnhNhan\ModHub\Storage\Types\UID" => array(
       "file" => "AnhNhan/ModHub/Storage/Types/UID.php",
     ),
