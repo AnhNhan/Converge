@@ -49,12 +49,12 @@ final class ForumApplication extends BaseApplication
         return null;
     }
 
-    protected function buildEntityManager()
+    protected function buildEntityManager($dbConfig)
     {
         $isDevMode = true;
         $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Storage"), $isDevMode);
 
-        $entityManager = EntityManager::create($this->getDatabaseConfigForDoctrine(), $config);
+        $entityManager = EntityManager::create($dbConfig, $config);
         $eventManager  = $entityManager->getEventManager();
 
         $eventManager->addEventListener(array(\Doctrine\ORM\Events::postLoad), new Events\DiscussionTagExternalEntityLoader);

@@ -57,9 +57,9 @@ abstract class BaseApplication
      *
      * @return array
      */
-    protected function getDatabaseConfigForDoctrine()
+    protected function getDatabaseConfigForDoctrine($dbName)
     {
-        $dbPath = ModHub\get_root_super() . "cache/db/" . $this->getInternalName() . ".sqlite";
+        $dbPath = ModHub\get_root_super() . "cache/db/" . $dbName . ".sqlite";
         return array(
             'driver' => 'pdo_sqlite',
             'path' => $dbPath,
@@ -69,17 +69,17 @@ abstract class BaseApplication
     /**
      * @return \Doctrine\ORM\EntityManager
      */
-    public function getEntityManager()
+    public function getEntityManager($dbName = null)
     {
-        static $em;
-        if (!$em) {
-            $em = $this->buildEntityManager();
+        static $em = array();
+        if (!isset($em[$dbName])) {
+            $em = $this->buildEntityManager($this->getDatabaseConfigForDoctrine($dbName ?: $this->getInternalName()));
         }
 
         return $em;
     }
 
-    protected function buildEntityManager()
+    protected function buildEntityManager($dbConfig)
     {
         throw new \Exception("This application does not have an entity manager!");
     }
