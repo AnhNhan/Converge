@@ -11,7 +11,7 @@ class Discussion extends EntityDefinition
 {
     /**
      * @Id
-     * @Column(type="uid")
+     * @Column(type="string")
      * @GeneratedValue(strategy="CUSTOM")
      * @CustomIdGenerator(class="AnhNhan\ModHub\Storage\Doctrine\UIDGenerator")
      */

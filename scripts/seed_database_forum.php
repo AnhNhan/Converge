@@ -65,11 +65,11 @@ for ($ii = 0; $ii < $num_discussions; $ii++) {
         $chosenTag = $tags[array_rand($tags)];
         $chosenDisq = $discussions[$ii];
 
-        if (isset($derp[$chosenTag->uid()->getUID()])) {
+        if (isset($derp[$chosenTag->uid()])) {
             continue;
         }
 
-        $derp += array($chosenTag->uid()->getUID() => true);
+        $derp += array($chosenTag->uid() => true);
         $discussion_tags[] = new DiscussionTag($chosenDisq, $chosenTag);
     }
 }

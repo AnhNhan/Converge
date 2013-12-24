@@ -15,6 +15,6 @@ class UIDGenerator extends AbstractIdGenerator
         if (!($entity instanceof EntityDefinition)) {
             throw new \Exception("Only objects of type AnhNhan\\ModHub\\Storage\\EntityDefinition can be used!");
         }
-        return UID::generateNew($entity->getUIDType());
+        return UID::generate($entity->getUIDType());
     }
 }
