@@ -12,4 +12,9 @@ class BarePageView extends PageView
     {
         parent::__construct('', new SafeTextNode($content));
     }
+
+    public function render()
+    {
+        return $this->getContent();
+    }
 }
