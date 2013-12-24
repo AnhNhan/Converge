@@ -30,6 +30,11 @@ class UID
         $this->random = $matches["random"];
     }
 
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
     public function getName()
     {
         return $this->name;
@@ -38,6 +43,11 @@ class UID
     public function getId()
     {
         return $this->random;
+    }
+
+    public function __toString()
+    {
+        return $this->uid;
     }
 
     public static function generate($name = self::NAME_DEFAULT)
