@@ -2,6 +2,8 @@
 namespace AnhNhan\ModHub\Modules\User;
 
 use AnhNhan\ModHub\Web\Application\BaseApplication;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
