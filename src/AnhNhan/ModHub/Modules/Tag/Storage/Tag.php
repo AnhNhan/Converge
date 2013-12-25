@@ -2,12 +2,13 @@
 namespace AnhNhan\ModHub\Modules\Tag\Storage;
 
 use AnhNhan\ModHub\Storage\EntityDefinition;
+use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity @Table @OrderBy(value="displayOrder")
  */
-class Tag extends EntityDefinition
+class Tag extends EntityDefinition implements TransactionAwareEntityInterface
 {
     /**
      * @Id
@@ -36,6 +37,11 @@ class Tag extends EntityDefinition
      * @Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @OneToMany(targetEntity="TagTransaction", mappedBy="object", fetch="LAZY")
+     */
+    private $xacts = array();
 
     public function __construct($label, $color = null, $description = null)
     {
@@ -94,5 +100,23 @@ class Tag extends EntityDefinition
     public function getUIDType()
     {
         return "TTAG";
+    }
+
+    /**
+     * @return \Doctrine\ORM\PersistentCollection
+     */
+    public function transactions()
+    {
+        return $this->xacts;
+    }
+
+    public function getTransactionEntityClass()
+    {
+        return 'AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction';
+    }
+
+    public function getTransactionClass()
+    {
+        return 'AnhNhan\ModHub\Modules\Tag\Transaction\TagTransaction';
     }
 }
