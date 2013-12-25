@@ -61,23 +61,40 @@ abstract class BaseApplication
      *
      * @return array
      */
-    protected function getDatabaseConfigForDoctrine($dbName)
+    protected function getDatabaseConfigForDoctrine($dbName, $dbType = "mysql")
     {
-        $dbPath = ModHub\get_root_super() . "cache/db/" . $dbName . ".sqlite";
-        return array(
-            'driver' => 'pdo_sqlite',
-            'path' => $dbPath,
-        );
+        switch ($dbType) {
+            case "sqlite":
+                $dbPath = ModHub\get_root_super() . "cache/db/" . $dbName . ".sqlite";
+                return array(
+                    'driver' => 'pdo_sqlite',
+                    'path' => $dbPath,
+                );
+                break;
+            case "mysql":
+                $driver = "pdo_mysql";
+                return array(
+                    "driver"   => $driver,
+                    "host"     => "127.0.0.1",
+                    "user"     => "modhub",
+                    "password" => "",
+                    "dbname"   => "modhub_" . $dbName,
+                );
+                break;
+            default:
+                throw new \Exception("DB Type $dbType not supported yet!");
+                break;
+        }
     }
 
     /**
      * @return \Doctrine\ORM\EntityManager
      */
-    public function getEntityManager($dbName = null)
+    public function getEntityManager($dbName = null, $dbType = "mysql")
     {
         static $em = array();
         if (!isset($em[$dbName])) {
-            $em = $this->buildEntityManager($this->getDatabaseConfigForDoctrine($dbName ?: $this->getInternalName()));
+            $em = $this->buildEntityManager($this->getDatabaseConfigForDoctrine($dbName ?: $this->getInternalName(), $dbType));
         }
 
         return $em;
