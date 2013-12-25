@@ -1,0 +1,13 @@
+class_name: ForumGuy
+settings:
+    suite_class: \ForumTestCase
+modules:
+    enabled:
+      - Db
+      - ForumHelper
+    config:
+        Db:
+            dsn: 'mysql:host=127.0.0.1;dbname=modhub_forum'
+            user: 'modhub'
+            password: ''
+            dump: tests/unit_forum/_data/dump.sql
