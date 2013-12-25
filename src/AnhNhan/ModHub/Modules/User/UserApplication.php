@@ -2,8 +2,6 @@
 namespace AnhNhan\ModHub\Modules\User;
 
 use AnhNhan\ModHub\Web\Application\BaseApplication;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -32,9 +30,6 @@ class UserApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        $isDevMode = true;
-        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Storage"), $isDevMode);
-
-        return EntityManager::create($dbConfig, $config);
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
     }
 }

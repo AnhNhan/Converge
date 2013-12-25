@@ -4,9 +4,6 @@ namespace AnhNhan\ModHub\Modules\Forum;
 use AnhNhan\ModHub\Web\Application\BaseApplication;
 use YamwLibs\Libs\Http\Request;
 
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -51,10 +48,7 @@ final class ForumApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        $isDevMode = true;
-        $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Storage"), $isDevMode);
-
-        $entityManager = EntityManager::create($dbConfig, $config);
+        $entityManager = $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
         $eventManager  = $entityManager->getEventManager();
 
         $eventManager->addEventListener(array(\Doctrine\ORM\Events::postLoad), new Events\DiscussionTagExternalEntityLoader);

@@ -5,6 +5,9 @@ use AnhNhan\ModHub;
 use YamwLibs\Libs\Http\Request;
 use YamwLibs\Libs\Routing\Route;
 
+use Doctrine\ORM\Configuration;
+use Doctrine\ORM\EntityManager;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -82,5 +85,28 @@ abstract class BaseApplication
     protected function buildEntityManager($dbConfig)
     {
         throw new \Exception("This application does not have an entity manager!");
+    }
+
+    protected function buildDefaultEntityManager($dbConfig, array $paths)
+    {
+        $isDevMode = true;
+        // $proxyDir = ModHub\get_root_super() . "cache/proxies/";
+        $proxyDir = sys_get_temp_dir();
+
+        // TODO: Make this less static
+        $cache = new \Doctrine\Common\Cache\MongoDBCache(id(new \MongoClient)->selectCollection("modhub", "dc2"));
+        $cache->setNamespace("dc2_" . md5($proxyDir) . "_"); // to avoid collisions
+
+        $config = new Configuration();
+        $config->setMetadataCacheImpl($cache);
+        $config->setQueryCacheImpl($cache);
+        $config->setResultCacheImpl($cache);
+        $config->setProxyDir($proxyDir);
+        $config->setProxyNamespace('DoctrineProxies');
+        $config->setAutoGenerateProxyClasses($isDevMode);
+
+        $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver($paths, true));
+
+        return EntityManager::create($dbConfig, $config);
     }
 }
