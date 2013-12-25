@@ -31,20 +31,10 @@ final class DiscussionDisplayController extends AbstractForumController
         if ($disq) {
             $container->push(ModHub\ht("h1", $disq->label()));
 
-            if ($disq->firstPost()) {
-                $container->push(ModHub\ht("h2", $disq->firstPost()->rawText()));
-            }
-
-            $hadFirstPost = (bool)$disq->firstPost();
-            $ii = 0;
+            $container->push(ModHub\ht("h2", $disq->text()));
+            
             foreach ($disq->posts()->toArray() as $post) {
-                if ($ii === 0 && $hadFirstPost) { // Skip the first post if had first post
-                    $ii++;
-                    continue;
-                }
-
                 $container->push(ModHub\ht("p", $post->rawText()));
-                $ii++;
             }
         } else {
             $container->push(ModHub\ht("h1", "Could not find a discussion for '" . $currentId . "'"));
