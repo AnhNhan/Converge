@@ -13,6 +13,8 @@ use AnhNhan\ModHub\Views\AbstractView;
  * @method mixed setEncoding($encoding)
  * @method mixed getTitle()
  * @method mixed setTitle($title)
+ * @method mixed getId()
+ * @method mixed setId($id)
  *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -30,6 +32,8 @@ class FormView extends AbstractView
 
     private $is_double_column = true;
     private $title = '';
+
+    private $id = '';
 
     public function __call($name, $arguments)
     {
@@ -87,7 +91,8 @@ class FormView extends AbstractView
     public function render()
     {
         $formTag = ModHub\ht('form')
-        ->addClass('form');
+        ->addClass('form')
+        ->setId($this->id ?: null);
 
         if ($this->is_double_column) {
             $formTag->addClass("form-dual-column");
