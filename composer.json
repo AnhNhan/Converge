@@ -28,8 +28,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "AnhNhan\\ModHub":	"src/",
-            "AnhNhan\\ModHub\\Test":	"tests/"
+            "AnhNhan\\ModHub":	"src/"
         }
     },
     "minimum-stability": "dev",
