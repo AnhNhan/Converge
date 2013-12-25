@@ -10,7 +10,7 @@ use AnhNhan\ModHub\Test\TestCase;
  *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  *
- * @covers AnhNhan\ModHub\Web\Application\RawHttpPayload
+ * @covers AnhNhan\ModHub\Web\Application\JsonPayload
  * @covers AnhNhan\ModHub\Web\Application\HttpPayload
  * @covers AnhNhan\ModHub\Web\Application\AbstractPayload
  */
