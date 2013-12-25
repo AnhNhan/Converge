@@ -10,6 +10,9 @@ use AnhNhan\ModHub\Modules\Forum\Storage\Post;
 use AnhNhan\ModHub\Modules\Tag\TagApplication;
 use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
 
+use AnhNhan\ModHub\Modules\User\UserApplication;
+use AnhNhan\ModHub\Modules\User\Storage\User;
+
 use AnhNhan\ModHub\Storage\Types\UID;
 
 // De-register libphutil autoloader, can't be used with Faker
@@ -20,6 +23,9 @@ $forumEm = $forumApp->getEntityManager();
 
 $tagApp = new TagApplication;
 $tagEm = $tagApp->getEntityManager();
+
+$userApp = new UserApplication;
+$userEm  = $userApp->getEntityManager();
 
 $faker = \Faker\Factory::create();
 
