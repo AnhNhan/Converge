@@ -9,6 +9,6 @@ modules:
             dsn: 'mysql:host=127.0.0.1;dbname=modhub_tag'
             user: 'modhub'
             password: ''
-            dump: tests/acceptance_tag/_data/dump.sql
+            dump: tests/_data/db_tag.sql
         PhpBrowser:
             url: 'http://modhub.dev/'

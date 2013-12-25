@@ -10,4 +10,4 @@ modules:
             dsn: 'mysql:host=127.0.0.1;dbname=modhub_forum'
             user: 'modhub'
             password: ''
-            dump: tests/unit_forum/_data/dump.sql
+            dump: tests/_data/db_forum.sql
