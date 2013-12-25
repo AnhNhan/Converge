@@ -93,11 +93,12 @@ abstract class BaseApplication
     public function getEntityManager($dbName = null, $dbType = "mysql")
     {
         static $em = array();
-        if (!isset($em[$dbName])) {
-            $em = $this->buildEntityManager($this->getDatabaseConfigForDoctrine($dbName ?: $this->getInternalName(), $dbType));
+        $index = $dbName . $dbType;
+        if (!isset($em[$index])) {
+            $em[$index] = $this->buildEntityManager($this->getDatabaseConfigForDoctrine($dbName ?: $this->getInternalName(), $dbType));
         }
 
-        return $em;
+        return $em[$index];
     }
 
     protected function buildEntityManager($dbConfig)
