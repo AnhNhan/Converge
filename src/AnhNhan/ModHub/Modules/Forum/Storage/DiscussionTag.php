@@ -6,7 +6,7 @@ use AnhNhan\ModHub\Storage\EntityDefinition;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table(name="discussion_tags")
+ * @Entity @Table
  */
 class DiscussionTag extends EntityDefinition
 {

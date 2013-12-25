@@ -5,7 +5,7 @@ use AnhNhan\ModHub\Storage\EntityDefinition;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table(name="tags") @OrderBy(value="displayOrder")
+ * @Entity @Table @OrderBy(value="displayOrder")
  */
 class Tag extends EntityDefinition
 {

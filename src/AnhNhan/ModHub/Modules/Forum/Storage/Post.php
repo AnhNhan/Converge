@@ -5,7 +5,7 @@ use AnhNhan\ModHub\Storage\EntityDefinition;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table(name="posts")
+ * @Entity @Table
  */
 class Post extends EntityDefinition
 {
