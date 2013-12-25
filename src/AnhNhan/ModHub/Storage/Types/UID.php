@@ -9,11 +9,13 @@ namespace AnhNhan\ModHub\Storage\Types;
 class UID
 {
     const UID_LENGTH = 14;
+    const UID_LENGTH_EXTENDED = 22;
 
-    const NAME_DEFAULT = "UIDX";
+    const TYPE_DEFAULT = "UIDX";
 
     private $uid;
-    private $name;
+    private $type;
+    private $subtype;
     private $random;
 
     public function __construct($uid)
@@ -24,10 +26,11 @@ class UID
         $this->uid = $uid;
 
         $matches = array();
-        preg_match("/^(?P<name>[A-Z]{4})-(?P<random>(.*){14})$/", $uid, $matches);
+        preg_match("/^(?P<type>[A-Z]{4})(-(?P<subtype>[A-Z]{4}))?-(?P<random>((.*){14}|(.*){22}))$/", $uid, $matches);
 
-        $this->name = $matches["name"];
-        $this->random = $matches["random"];
+        $this->type    = $matches["type"];
+        $this->subtype = $matches["subtype"];
+        $this->random  = $matches["random"];
     }
 
     public function getUid()
@@ -35,9 +38,14 @@ class UID
         return $this->uid;
     }
 
-    public function getName()
+    public function getType()
     {
-        return $this->name;
+        return $this->type;
+    }
+
+    public function getSubType()
+    {
+        return $this->subtype;
     }
 
     public function getId()
@@ -50,24 +58,36 @@ class UID
         return $this->uid;
     }
 
-    public static function generate($name = self::NAME_DEFAULT)
+    public static function generate($type = self::TYPE_DEFAULT, $length = null)
     {
-        if (preg_match("/^[A-Z]{4}$/", $name) === 0) {
-            throw new \InvalidArgumentException("\$name should be 4 characters long!");
+        if (preg_match("/^[A-Z]{4}(-[A-Z]{4})?$/", $type) === 0) {
+            throw new \InvalidArgumentException("Type '{$type}' is invalid!");
         }
 
-        $random = \Filesystem::readRandomCharacters(self::UID_LENGTH);
+        if ($length === null) {
+            $length = (strlen($type) == 4) ? self::UID_LENGTH : self::UID_LENGTH_EXTENDED;
+        } else {
+            $allowedLengths = array(
+                self::UID_LENGTH => true,
+                self::UID_LENGTH_EXTENDED => true,
+            );
+            if (!isset($allowedLengths[$length])) {
+                throw new \InvalidArgumentException("Provided length '{$length}' is invalid.");
+            }
+        }
 
-        return sprintf("%s-%s", strtoupper($name), $random);
+        $random = \Filesystem::readRandomCharacters($length);
+
+        return sprintf("%s-%s", $type, $random);
     }
 
-    public static function generateNew($name = self::NAME_DEFAULT)
+    public static function generateNew($type = self::TYPE_DEFAULT, $length = null)
     {
-        return new UID(self::generate($name));
+        return new UID(self::generate($type, $length));
     }
 
     public static function checkValidity($uid)
     {
-        return preg_match("/^[A-Z]{4}-[a-z0-9]{14}$/", $uid) === 1;
+        return preg_match("/^[A-Z]{4}(-[A-Z]{4})?-([a-z0-9]{14}|[a-z0-9]{22})$/", $uid) === 1;
     }
 }
