@@ -39,15 +39,36 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
     private $description;
 
     /**
+     * @Column(type="datetime")
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @Column(type="datetime")
+     * @var \DateTime
+     */
+    private $modifiedAt;
+
+    /**
      * @OneToMany(targetEntity="TagTransaction", mappedBy="object", fetch="LAZY")
      */
     private $xacts = array();
 
-    public function __construct($label, $color = null, $description = null)
-    {
+    public function __construct(
+        $label,
+        $color = null,
+        $description = null,
+        $displayOrder = 0,
+        \DateTime $createdAt = null,
+        \DateTime $modifiedAt = null
+    ) {
         $this->label = $label;
         $this->color = $color;
         $this->description = $description;
+        $this->displayOrder = $displayOrder;
+        $this->createdAt  = $createdAt ?: new \DateTime;
+        $this->modifiedAt = $modifiedAt ?: new \DateTime;
     }
 
     public function uid()
