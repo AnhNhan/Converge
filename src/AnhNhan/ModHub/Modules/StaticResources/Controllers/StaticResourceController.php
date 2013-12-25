@@ -12,9 +12,9 @@ final class StaticResourceController extends AbstractStaticResourceController
     public function handle()
     {
         $request = $this->request();
-        $type = $request->getValue("type");
-        $name = $request->getValue("name");
-        $rsrc_hash = $request->getValue("rsrc-hash");
+        $type = $request->request->get("type");
+        $name = $request->request->get("name");
+        $rsrc_hash = $request->request->get("rsrc-hash");
 
         $payload = new RawHttpPayload();
 

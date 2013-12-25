@@ -14,11 +14,8 @@ final class MarkupProcessingController extends AbstractMarkupController
     public function handle()
     {
         $request = $this->request();
-        $request->populateFromServer(array("REQUEST_METHOD"));
-        $request->populateFromRequest(array("text"));
-
-        $requestMethod = $request->getServerValue("request_method");
-        $inputText = $request->getRequestValue("text");
+        $requestMethod = $request->getMethod();
+        $inputText = $request->request->get("text");
 
         if (!$inputText) {
             throw new \Exception("Input 'text' can't be empty!");

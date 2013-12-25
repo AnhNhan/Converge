@@ -2,8 +2,9 @@
 namespace AnhNhan\ModHub\Modules\Front;
 
 use AnhNhan\ModHub\Web\Application\BaseApplication;
-use YamwLibs\Libs\Http\Request;
 use YamwLibs\Libs\Routing\Route;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>

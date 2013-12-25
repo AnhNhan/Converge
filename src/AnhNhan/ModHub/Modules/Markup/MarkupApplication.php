@@ -2,7 +2,8 @@
 namespace AnhNhan\ModHub\Modules\Markup;
 
 use AnhNhan\ModHub\Web\Application\BaseApplication;
-use YamwLibs\Libs\Http\Request;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -26,7 +27,7 @@ final class MarkupApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $url = trim($request->getValue("uri-action-string"), "/ ");
+        $url = trim($request->query->get("page"), "/ ");
         switch ($url) {
             case "markup/test":
                 $controller = new Controllers\MarkupTestingController($this);

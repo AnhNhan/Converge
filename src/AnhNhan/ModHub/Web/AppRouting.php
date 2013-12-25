@@ -1,8 +1,9 @@
 <?php
 namespace AnhNhan\ModHub\Web;
 
-use YamwLibs\Libs\Http\Request;
 use YamwLibs\Libs\Routing\Router;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -62,17 +63,16 @@ final class AppRouting
 
     public function routeToController(Request $request)
     {
-        $routingResult = $this->routeToApplication($request->getValue("uri-action-string"));
+        $routingResult = $this->routeToApplication($request->query->get("page", "/"));
         if ($routingResult) {
             $app = $routingResult["target"];
+            unset($routingResult["target"]);
 
             $routeName = $routingResult["route"]->getName();
-            $routingResult["route-name"] = $routeName;
 
-            // Remove the target app again. It ain't supposed to appear in the Request
-            unset($routingResult["target"]);
-            unset($routingResult["route"]);
-            $request->populate($routingResult);
+            $request->request->add($routingResult);
+            $request->attributes->add(array("route-name" => $routeName));
+
             $controller = $app->routeToController($request);
             return $controller;
         } else {

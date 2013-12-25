@@ -1,7 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Web\Application;
 
-use YamwLibs\Libs\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>

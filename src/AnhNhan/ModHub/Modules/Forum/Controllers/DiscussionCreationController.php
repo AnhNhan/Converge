@@ -25,8 +25,8 @@ final class DiscussionCreationController extends AbstractForumController
     public function handle()
     {
         $request = $this->request();
-        $request->populateFromServer(array("REQUEST_METHOD"));
-        $requestMethod = $request->getServerValue("request_method");
+        $requestMethod = $request->getMethod();
+
         $container = new MarkupContainer;
         $payload = new HtmlPayload;
         $payload->setPayloadContents($container);
@@ -34,13 +34,8 @@ final class DiscussionCreationController extends AbstractForumController
         $violations = null;
 
         if ($requestMethod == "POST") {
-            $request->populateFromRequest(array(
-                "label",
-                "text",
-            ));
-
-            $label = trim($request->getRequestValue("label"));
-            $text = trim($request->getRequestValue("text"));
+            $label = trim($request->request->get("label"));
+            $text = trim($request->request->get("text"));
             $validatorInput = array(
                 "label" => $label,
                 "text"  => $text,
@@ -63,7 +58,7 @@ final class DiscussionCreationController extends AbstractForumController
             }
         }
 
-        if ($violations->count()) {
+        if ($violations && $violations->count()) {
             $container->push(ModHub\ht("h1", "There had been errors!"));
             $container->push(ModHub\ht("pre", print_r($violations, true)));
         }

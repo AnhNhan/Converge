@@ -2,11 +2,12 @@
 namespace AnhNhan\ModHub\Web\Application;
 
 use AnhNhan\ModHub;
-use YamwLibs\Libs\Http\Request;
 use YamwLibs\Libs\Routing\Route;
 
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>

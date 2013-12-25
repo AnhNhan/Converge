@@ -18,8 +18,7 @@ final class TagCreationController extends AbstractTagController
     public function handle()
     {
         $request = $this->request();
-        $request->populateFromServer(array("REQUEST_METHOD"));
-        $requestMethod = $request->getServerValue("request_method");
+        $requestMethod = $request->getMethod();
         $container = new MarkupContainer;
         $payload = new HtmlPayload;
         $payload->setPayloadContents($container);
@@ -29,13 +28,8 @@ final class TagCreationController extends AbstractTagController
         $e_text  = null;
 
         if ($requestMethod == "POST") {
-            $request->populateFromRequest(array(
-                "label",
-                "color",
-            ));
-
-            $label = trim($request->getRequestValue("label"));
-            $color = trim($request->getRequestValue("color"));
+            $label = trim($request->request->get("label"));
+            $color = trim($request->request->get("color"));
 
             if (!$color) {
                 // Just to be sure :)

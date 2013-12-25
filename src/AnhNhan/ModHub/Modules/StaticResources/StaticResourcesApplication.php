@@ -2,7 +2,8 @@
 namespace AnhNhan\ModHub\Modules\StaticResources;
 
 use AnhNhan\ModHub\Web\Application\BaseApplication;
-use YamwLibs\Libs\Http\Request;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>

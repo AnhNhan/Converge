@@ -5,6 +5,8 @@ use AnhNhan\ModHub\Views\AbstractView;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
 use YamwLibs\Libs\Html\Markup\HtmlTag;
 
+use Symfony\Component\HttpFoundation\Request;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -25,11 +27,8 @@ class HtmlDocumentView extends AbstractView
     {
         try {
         // TODO: Edit this in the future. A lot.
-        $reqObj = new \YamwLibs\Libs\Http\Request;
-        $reqObj->populateFromServer(array(
-            'HTTP_HOST'
-        ));
-        $baseUrl = 'http://'.$reqObj->getServerValue('http_host', 'localhost');
+        $reqObj = Request::createFromGlobals();
+        $baseUrl = $reqObj->getBaseUrl();
         return sprintf(<<<EOT
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

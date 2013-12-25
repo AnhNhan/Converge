@@ -2,7 +2,8 @@
 namespace AnhNhan\ModHub\Modules\Forum;
 
 use AnhNhan\ModHub\Web\Application\BaseApplication;
-use YamwLibs\Libs\Http\Request;
+
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -26,7 +27,7 @@ final class ForumApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->getValue("route-name");
+        $routeName = $request->attributes->get("route-name");
 
         switch ($routeName) {
             case "main-listing":

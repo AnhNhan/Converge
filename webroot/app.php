@@ -3,20 +3,13 @@
 require_once __DIR__ . "/../src/__init__.php";
 
 use AnhNhan\ModHub;
-use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing;
-use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject;
-use AnhNhan\ModHub\Modules\Tag\Views\TagView;
-use AnhNhan\ModHub\Views\Form\FormView;
-use AnhNhan\ModHub\Views\Form\Controls\SubmitControl;
-use AnhNhan\ModHub\Views\Form\Controls\TextControl;
-use AnhNhan\ModHub\Views\Form\Controls\TextAreaControl;
-use AnhNhan\ModHub\Views\Objects;
 use AnhNhan\ModHub\Views\Page\DefaultTemplateView;
 use AnhNhan\ModHub\Web\Core;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
-use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use Symfony\Component\Debug\Debug;
+
+use Symfony\Component\HttpFoundation\Request;
 
 Debug::enable();
 
@@ -33,7 +26,9 @@ ModHub\sdx($argv);
 $page = ModHub\is_cli() ? ModHub\sdx($argv, "/") : $_REQUEST['page'];
 
 $core = new Core;
-$request = $core->init($page);
+$request = Request::createFromGlobals();
+$request->request->add(array("page" => $page));
+$request->query->add(array("page" => $page));
 
 $controller = $core->dispatchRequest($request);
 // TODO: Handle more processing here

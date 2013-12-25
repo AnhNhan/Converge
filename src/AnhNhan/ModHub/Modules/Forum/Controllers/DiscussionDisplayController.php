@@ -15,7 +15,7 @@ final class DiscussionDisplayController extends AbstractForumController
         $request = $this->request();
         $app = $this->app();
 
-        $currentId = $request->getValue("id");
+        $currentId = $request->request->get("id");
 
         $forumEntityManager = $app->getEntityManager();
         $disqRepo = $forumEntityManager->getRepository("AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion");
