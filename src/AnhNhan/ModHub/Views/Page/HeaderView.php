@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Views\Page;
 
 use AnhNhan\ModHub;
-use AnhNhan\ModHub\Modules\User\Users\DefaultUser;
+use AnhNhan\ModHub\Modules\User\Storage\User;
 use AnhNhan\ModHub\Modules\User\Views\UserPlateView;
 use AnhNhan\ModHub\Views\AbstractView;
 
@@ -13,7 +13,7 @@ class HeaderView extends AbstractView
 {
     public function render()
     {
-        $userPlate = new UserPlateView(new DefaultUser("nyan-nyan", "An Nyan", "pw", "se"));
+        $userPlate = new UserPlateView(new User("nyan-nyan", "An Nyan", "pw", "se"));
         $userPlate->setAlignment(UserPlateView::IMAGE_ALIGN_RIGHT);
         $header_content = ModHub\ht("div")
             ->addClass("header-content")

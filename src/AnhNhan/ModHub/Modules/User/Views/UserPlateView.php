@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Modules\User\Views;
 
 use AnhNhan\ModHub;
-use AnhNhan\ModHub\Modules\User\Users\AbstractUser;
+use AnhNhan\ModHub\Modules\User\Storage\User;
 use AnhNhan\ModHub\Views\AbstractView;
 
 /**
@@ -21,7 +21,7 @@ class UserPlateView extends AbstractView
     const SIZE_LARGE  = "lg";
     private $size = self::SIZE_MEDIUM;
 
-    public function __construct(AbstractUser $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -45,7 +45,7 @@ class UserPlateView extends AbstractView
         $container->addClass("user-plate-size-" . $this->size);
         $container->addClass("user-plate-" . $this->alignment);
 
-        $profileImagePath = $user->getProfileImageRawPath();
+        $profileImagePath = $user->profileImageRawPath();
         $profileImageContainer = ModHub\ht("div",
             ModHub\ht("img", null, array("src" => $profileImagePath))
         )->addClass("user-plate-image-container");
