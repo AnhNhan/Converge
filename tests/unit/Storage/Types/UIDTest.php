@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\ModHub\Test\Storage\Types;
+namespace Storage\Types;
 
 use AnhNhan\ModHub\Storage\Types\UID;
 use AnhNhan\ModHub\Test\TestCase;
@@ -7,7 +7,7 @@ use AnhNhan\ModHub\Test\TestCase;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class UIDTest extends TestCase
+class UIDTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideValidUIDs

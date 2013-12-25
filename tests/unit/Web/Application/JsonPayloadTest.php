@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\ModHub\Test\Web\Application;
+namespace Web\Application;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Web\Application\JsonPayload;
@@ -14,7 +14,7 @@ use AnhNhan\ModHub\Test\TestCase;
  * @covers AnhNhan\ModHub\Web\Application\HttpPayload
  * @covers AnhNhan\ModHub\Web\Application\AbstractPayload
  */
-class JsonPayloadTest extends TestCase
+class JsonPayloadTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providePayloadContents

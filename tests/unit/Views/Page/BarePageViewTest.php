@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\ModHub\Test\Views\Page;
+namespace Views\Page;
 
 use AnhNhan\ModHub\Views\Page\BarePageView;
 use AnhNhan\ModHub\Test\TestCase;
@@ -7,7 +7,7 @@ use AnhNhan\ModHub\Test\TestCase;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class BarePageViewTest extends TestCase
+class BarePageViewTest extends \PHPUnit_Framework_TestCase
 {
     public function testEmptyPage()
     {

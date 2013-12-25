@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\ModHub\Test\Web\Application;
+namespace Web\Application;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Web\Application\RawHttpPayload;
@@ -14,7 +14,7 @@ use AnhNhan\ModHub\Test\TestCase;
  * @covers AnhNhan\ModHub\Web\Application\HttpPayload
  * @covers AnhNhan\ModHub\Web\Application\AbstractPayload
  */
-class RawHttpPayloadTest extends TestCase
+class RawHttpPayloadTest extends \PHPUnit_Framework_TestCase
 {
     public function testSimplePayload()
     {
