@@ -109,14 +109,9 @@ class Discussion extends EntityDefinition
         }
     }
 
-    /**
-     * @param \AnhNhan\ModHub\Modules\Forum\Storage\Post $firstPost
-     * @throws \Exception
-     * @deprecated
-     */
-    public function firstPost(Post $firstPost = null)
+    public function lastActivity()
     {
-        throw new \Exception("Deprecated.");
+        return $this->lastActivity;
     }
 
     public function tags()
