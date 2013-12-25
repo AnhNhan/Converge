@@ -257,5 +257,100 @@ class ForumGuy extends \Codeception\AbstractGuy
         }
         return new Maybe();
     }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\ForumHelper::getApplication()
+     * @return \Codeception\Maybe
+     */
+    public function getApplication() {
+        $this->scenario->addStep(new \Codeception\Step\Action('getApplication', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\ForumHelper::getEntityManager()
+     * @return \Codeception\Maybe
+     */
+    public function getEntityManager() {
+        $this->scenario->addStep(new \Codeception\Step\Action('getEntityManager', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\ForumHelper::getRepository()
+     * @return \Codeception\Maybe
+     */
+    public function getRepository($entity) {
+        $this->scenario->addStep(new \Codeception\Step\Action('getRepository', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\ForumHelper::generateAuthorId()
+     * @return \Codeception\Maybe
+     */
+    public function generateAuthorId() {
+        $this->scenario->addStep(new \Codeception\Step\Action('generateAuthorId', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\ForumHelper::generateTagId()
+     * @return \Codeception\Maybe
+     */
+    public function generateTagId() {
+        $this->scenario->addStep(new \Codeception\Step\Action('generateTagId', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
 }
 
