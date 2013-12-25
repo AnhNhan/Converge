@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\Tag\Controllers;
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Form\FormView;
 use AnhNhan\ModHub\Views\Form\Controls\SubmitControl;
@@ -30,6 +31,8 @@ final class TagCreationController extends AbstractTagController
         if ($requestMethod == "POST") {
             $label = trim($request->request->get("label"));
             $color = trim($request->request->get("color"));
+            $order = trim($request->request->get("disporder"));
+            $descr = trim($request->request->get("description"));
 
             if (!$color) {
                 // Just to be sure :)
@@ -40,7 +43,7 @@ final class TagCreationController extends AbstractTagController
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
-                $tag = new Tag($label, $color);
+                $tag = new Tag($label, $color, $descr, (int) $order);
 
                 $em->persist($tag);
                 $em->flush();
@@ -53,9 +56,10 @@ final class TagCreationController extends AbstractTagController
         }
 
         $form = new FormView;
+        $form->setId("tag-creation");
         $form
             ->setTitle("Create new tag")
-            ->setAction("/disq/create")
+            ->setAction("/tag/create")
             ->setMethod("POST");
 
         $form->append(id(new TextControl())
@@ -63,9 +67,19 @@ final class TagCreationController extends AbstractTagController
             ->setName("label")
             ->setValue(""));
 
-        $form->append(id(new TextAreaControl())
+        $form->append(id(new TextControl())
             ->setLabel("Color")
             ->setName("color")
+            ->setValue(""));
+
+        $form->append(id(new TextControl())
+            ->setLabel("Display order")
+            ->setName("disporder")
+            ->setValue("0"));
+
+        $form->append(id(new TextAreaControl())
+            ->setLabel("Description")
+            ->setName("description")
             ->setValue(""));
 
         $form->append(id(new SubmitControl())
