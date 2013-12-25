@@ -95,7 +95,8 @@ abstract class BaseApplication
         $proxyDir = sys_get_temp_dir();
 
         // TODO: Make this less static
-        $cache = new \Doctrine\Common\Cache\MongoDBCache(id(new \MongoClient)->selectCollection("modhub", "dc2"));
+        //$cache = new \Doctrine\Common\Cache\MongoDBCache(id(new \MongoClient)->selectCollection("modhub", "dc2"));
+        $cache = new \Doctrine\Common\Cache\ArrayCache;
         $cache->setNamespace("dc2_" . md5($proxyDir) . "_"); // to avoid collisions
 
         $config = new Configuration();
