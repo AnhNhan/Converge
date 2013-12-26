@@ -101,7 +101,9 @@ final class Core
             $this->router = new AppRouting($this->buildAppList());
         }
 
-        return $this->router->routeToController($request);
+        return $this->router
+            ->routeToApplication($request)
+            ->routeToController($request);
     }
 
     private function buildAppList()

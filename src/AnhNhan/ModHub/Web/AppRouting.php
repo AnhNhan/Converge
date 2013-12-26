@@ -49,21 +49,13 @@ final class AppRouting
         $this->router = $router;
     }
 
-    /**
-     * @return array The result dictionary from the router. The app is in $result["target"].
-     */
-    public function routeToApplication($uri)
+    public function routeToApplication(Request $request)
     {
         if (!count($this->appRoutes)) {
             throw new \RuntimeException("We have no routes. Check your applications!");
         }
 
-        return $this->router->route($uri);
-    }
-
-    public function routeToController(Request $request)
-    {
-        $routingResult = $this->routeToApplication($request->query->get("page", "/"));
+        $routingResult = $this->router->route($request->query->get("page", "/"));
         if ($routingResult) {
             $app = $routingResult["target"];
             unset($routingResult["target"]);
@@ -73,8 +65,7 @@ final class AppRouting
             $request->request->add($routingResult);
             $request->attributes->add(array("route-name" => $routeName));
 
-            $controller = $app->routeToController($request);
-            return $controller;
+            return $app;
         } else {
             // TODO: Get default/404 controller
             return null;
