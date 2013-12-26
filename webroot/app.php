@@ -3,13 +3,10 @@
 require_once __DIR__ . "/../src/__init__.php";
 
 use AnhNhan\ModHub;
-use AnhNhan\ModHub\Views\Page\DefaultTemplateView;
 use AnhNhan\ModHub\Web\Core;
 use YamwLibs\Infrastructure\ResMgmt\ResMgr;
 
 use Symfony\Component\Debug\Debug;
-
-use Symfony\Component\HttpFoundation\Request;
 
 Debug::enable();
 
