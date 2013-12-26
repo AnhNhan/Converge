@@ -6,7 +6,10 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table @OrderBy(value="displayOrder")
+ * @Entity
+ * @Table(indexes={
+ *   @Index(name="label_sorting", columns={"label", "displayOrder"})
+ * })
  */
 class Tag extends EntityDefinition implements TransactionAwareEntityInterface
 {
