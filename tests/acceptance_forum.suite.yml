@@ -1,0 +1,8 @@
+class_name: ForumWebGuy
+modules:
+    enabled:
+      - PhpBrowser
+      - ForumWebHelper
+    config:
+        PhpBrowser:
+            url: 'http://modhub.dev/'
