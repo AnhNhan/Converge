@@ -15,10 +15,15 @@ use Symfony\Component\HttpFoundation\Response;
  */
 final class Core
 {
-    public function handlePage($page = null)
+    public function handlePage($page = null, Request $request = null)
     {
         self::startOverFlowCapturing();
-        $request = $this->createNewRequest($page);
+        if (!$request) {
+            $request = Request::createFromGlobals();
+        }
+        $request->request->add(array("page" => $page));
+        $request->query->add(array("page" => $page));
+
         $controller = $this->dispatchRequestToController($request);
 
         if ($controller) {
@@ -61,14 +66,6 @@ final class Core
         ;
 
         return $response;
-    }
-
-    public function createNewRequest($page = null)
-    {
-        $request = Request::createFromGlobals();
-        $request->request->add(array("page" => $page));
-        $request->query->add(array("page" => $page));
-        return $request;
     }
 
     public static function startOverFlowCapturing()
