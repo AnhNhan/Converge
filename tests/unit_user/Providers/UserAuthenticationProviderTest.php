@@ -90,6 +90,7 @@ class UserAuthenticationProviderTest extends \Codeception\TestCase\Test
         $newToken = $this->authProvider->authenticate($this->token);
 
         $this->assertEquals(true, $newToken->isAuthenticated());
+        $this->assertSame($user, $newToken->getUser());
     }
 
     /**
