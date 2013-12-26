@@ -104,5 +104,10 @@ abstract class HttpPayload extends AbstractPayload
         return ob_get_clean();
     }
 
+    public function getRenderedHttpBody()
+    {
+        return $this->renderHttpBody();
+    }
+
     abstract protected function renderHttpBody();
 }

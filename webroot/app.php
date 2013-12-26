@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 Debug::enable();
 
-ob_start();
-
 // TODO: Put this somewhere reasonable
 ResMgr::init(ModHub\path("__resource_map__.php"));
 ResMgr::getInstance()
@@ -26,36 +24,5 @@ ModHub\sdx($argv);
 $page = ModHub\is_cli() ? ModHub\sdx($argv, "/") : $_REQUEST['page'];
 
 $core = new Core;
-$request = Request::createFromGlobals();
-$request->request->add(array("page" => $page));
-$request->query->add(array("page" => $page));
-
-$controller = $core->dispatchRequest($request);
-// TODO: Handle more processing here
-
-if ($controller) {
-$payload = $controller->setRequest($request)->handle();
-} else {
-    ob_start();
-    echo "<h2>Failed to find a controller for '$page'</h2>";
-    echo "<pre>";
-    print_r($core);
-    echo "</pre>";
-    $contents = ModHub\safeHtml(ob_get_clean());
-    $view = new DefaultTemplateView("Routing error", $contents);
-    echo $view;
-    exit(1);
-}
-$renderedPayload = $payload->render();
-
-$overflow = ob_get_clean();
-
-if ($overflow) {
-    echo "<div style=\"text-align: left; margin: 1em;\">";
-    echo "<h3>We had overflow!</h3>";
-    echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
-    echo "</div>";
-}
-
-echo $renderedPayload;
-
+$response = $core->handlePage($page);
+$response->send();
