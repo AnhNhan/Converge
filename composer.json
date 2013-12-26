@@ -1,16 +1,22 @@
 {
     "name": "anhnhan/modhub",
     "require": {
+        "php": ">=5.3.7",
         "apexstudios/yamwlib": "dev-master",
         "facebook/libphutil": "dev-master",
-        "ircmaxell/password-compat": "*",
+        "ircmaxell/password-compat": "~1.0",
+        "psr/log": "~1.0",
+        "symfony/dependency-injection": "~2.5",
+        "symfony/http-kernel": "~2.5",
         "symfony/security": "~2.5",
         "symfony/validator": "~2.5",
+        "symfony/stopwatch": "~2.5",
         "erusev/parsedown": "~0.7",
         "doctrine/dbal": "~2.4",
         "doctrine/cache": "~1.4",
         "doctrine/orm": "~2.4",
-        "monolog/monolog": "*"
+        "monolog/monolog": "*",
+        "symfony/config": "~2.5"
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.6",
