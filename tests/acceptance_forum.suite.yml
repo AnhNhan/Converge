@@ -3,6 +3,12 @@ modules:
     enabled:
       - PhpBrowser
       - ForumWebHelper
+      - Db
     config:
+        Db:
+            dsn: 'mysql:host=127.0.0.1;dbname=modhub_forum'
+            user: 'modhub'
+            password: ''
+            dump: tests/_data/db_forum.sql
         PhpBrowser:
             url: 'http://modhub.dev/'
