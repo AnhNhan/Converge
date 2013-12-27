@@ -7,6 +7,7 @@ use YamwLibs\Libs\Routing\Route;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -128,5 +129,24 @@ abstract class BaseApplication
         $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver($paths, true));
 
         return EntityManager::create($dbConfig, $config);
+    }
+
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * @return object|null The requested service or null if it does not exist (we
+     *                     ignore exceptions)
+     */
+    public function getService($service)
+    {
+        return $this->container->get($service, ContainerInterface::NULL_ON_INVALID_REFERENCE);
     }
 }

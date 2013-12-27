@@ -69,6 +69,7 @@ final class DefaultTemplateView extends AbstractView
             $this->getContent(),
             $this->header
         );
+        $htmlDocument->setResMgr($this->getResMgr());
         return $htmlDocument;
     }
 }

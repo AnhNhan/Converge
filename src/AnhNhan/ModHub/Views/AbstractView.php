@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Views;
 
+use YamwLibs\Infrastructure\ResMgmt\ResMgr;
 use YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 use YamwLibs\Libs\Html\Markup\TextNode;
@@ -76,5 +77,21 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
             echo $exc->getTraceAsString();
             return "<Invalid String>";
         }
+    }
+
+    /*
+     * @var ResMgr
+     */
+    private $resMgr;
+
+    public function setResMgr(ResMgr $resMgr)
+    {
+        $this->resMgr = $resMgr;
+        return $this;
+    }
+
+    public function getResMgr()
+    {
+        return $this->resMgr;
     }
 }

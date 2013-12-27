@@ -20,41 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 final class Core
 {
-    public function handlePage($page = null, Request $request = null)
-    {
-        self::startOverFlowCapturing();
-        if (!$request) {
-            $request = Request::createFromGlobals();
-        }
-        $request->request->add(array("page" => $page));
-        $request->query->add(array("page" => $page));
-
-        $controller = $this->dispatchRequestToController($request);
-
-        if ($controller) {
-            $payload = $controller->setRequest($request)->handle();
-        } else {
-            $payload = self::get404Page($page);
-        }
-        if (!($payload instanceof Application\HttpPayload)) {
-            throw new \RunTimeException(sprintf("Controller '%s' must return a HTTP payload!", get_class($controller)));
-        }
-
-        $overflow = self::endOverFlowCapturing();
-        $overflowContents = null;
-        if ($overflow) {
-            ob_start();
-            echo "<div style=\"text-align: left; margin: 1em;\">";
-            echo "<h3>We had overflow!</h3>";
-            echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
-            echo "</div>";
-            $overflowContents = ob_get_clean();
-        }
-
-        return $this->prepareResponse($request, $payload, $overflowContents);
-    }
-
-    public function prepareResponse(
+    public static function prepareResponse(
         Request $request,
         Application\HttpPayload $payload,
         $overflow
@@ -91,29 +57,6 @@ final class Core
         $payload->setPayloadContents($container);
         $payload->setTitle("Page not found");
         return $payload;
-    }
-
-    private $router;
-
-    public function dispatchRequestToController(Request $request)
-    {
-        if (!$this->router) {
-            $this->router = new AppRouting($this->buildAppList());
-        }
-
-        return $this->router
-            ->routeToApplication($request)
-            ->routeToController($request);
-    }
-
-    private function buildAppList()
-    {
-        static $classes;
-        if (!$classes) {
-            $classes = SymbolLoader::getInstance()
-                ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
-        }
-        return $classes;
     }
 
     const SERVICE_CONTAINER_NAME = 'AnhNhan\ServiceContainer';

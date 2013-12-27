@@ -67,7 +67,7 @@ EOT
     private function renderHead()
     {
         $head = array();
-        foreach (ResMgr::getInstance()->fetchRequiredCSSResources() as $css) {
+        foreach ($this->getResMgr()->fetchRequiredCSSResources() as $css) {
             $head[] = new HtmlTag(
                 'link',
                 null,
@@ -79,7 +79,7 @@ EOT
                 )
             );
         }
-        foreach (ResMgr::getInstance()->fetchRequiredJSResources() as $js) {
+        foreach ($this->getResMgr()->fetchRequiredJSResources() as $js) {
             $head[] = new HtmlTag(
                 'script',
                 '',
