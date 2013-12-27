@@ -58,6 +58,7 @@ class ModelTest extends \Codeception\TestCase\Test
         $discussion = $repository->findOneBy(array("label" => "foo"));
 
         $tagApp = new TagApplication;
+        $tagApp->setContainer(\AnhNhan\ModHub\Web\Core::loadSfDIContainer());
         $tagEm  = $tagApp->getEntityManager();
 
         $tag1 = new Tag(\Filesystem::readRandomCharacters(4), "green", null, -1);
