@@ -55,7 +55,7 @@ final class AppRouting
             throw new \RuntimeException("We have no routes. Check your applications!");
         }
 
-        $routingResult = $this->router->route($request->query->get("page", "/"));
+        $routingResult = $this->router->route($request->getPathInfo());
         if ($routingResult) {
             $app = $routingResult["target"];
             unset($routingResult["target"]);

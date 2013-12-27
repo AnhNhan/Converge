@@ -41,14 +41,6 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
 
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
-        if (!$request->query->has("page")) {
-            throw new \RunTimeException(<<<ERROR
-Request does not have page param. You have to configure your web server to
-inject the request URI as \$_GET["page"] param! We're hard at work to resolve this!
-ERROR
-            );
-        }
-
         Core::startOverFlowCapturing();
         $container = Core::loadSfDIContainer();
 

@@ -27,7 +27,7 @@ final class MarkupApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $url = trim($request->query->get("page"), "/ ");
+        $url = trim($request->getPathInfo(), "/ ");
         switch ($url) {
             case "markup/test":
                 $controller = new Controllers\MarkupTestingController($this);

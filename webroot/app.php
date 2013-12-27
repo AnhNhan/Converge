@@ -12,13 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 Debug::enable();
 
-$argv = isset($argv) ? $argv : array();
-ModHub\sdx($argv);
-$page = ModHub\is_cli() ? ModHub\sdx($argv, "/") : $_REQUEST['page'];
-
 $request = Request::createFromGlobals();
-$request->request->add(array("page" => $page));
-$request->query->add(array("page" => $page));
+if (ModHub\is_cli()) {
+    ModHub\sdx($argv);
+    $request->server->set("REQUEST_URI", ModHub\sdx($argv, "/"));
+}
 
 $classes = SymbolLoader::getInstance()
     ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
