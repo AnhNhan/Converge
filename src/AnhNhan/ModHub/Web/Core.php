@@ -102,14 +102,15 @@ final class Core
 
         $builder->setParameter("project.root", ModHub\get_root_super());
 
-        $loader  = new YamlFileLoader($builder, new FileLocator($confDir));
-        $loader->load("services.yml");
-
         $classes = SymbolLoader::getInstance()
-            ->getConcreteClassesThatDeriveFromThisOne('Symfony\Component\DependencyInjection\Extension\ExtensionInterface');
+            ->getConcreteClassesThatImplement('Symfony\Component\DependencyInjection\Extension\ExtensionInterface');
         foreach ($classes as $class) {
             $builder->registerExtension(new $class);
         }
+
+        $loader  = new YamlFileLoader($builder, new FileLocator($confDir));
+        $loader->load("services.yml");
+
         // Process through all registered extensions
         foreach ($builder->getExtensions() as $alias => $_) {
             $builder->loadFromExtension($alias);
