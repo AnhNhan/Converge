@@ -1,0 +1,81 @@
+
+parameters:
+    # Paths
+    # project.root: /path/to/project/
+    project.cache: cache/
+    project.src:   src/
+
+    # MongoDB
+    mongodb.host: localhost
+    mongodb.db:   modhub
+    mongodb.port: 27017
+    mongodb.collection.logger: monolog
+
+services:
+
+  # ----------------------------------------------------------------------------
+  # Generic
+  # ----------------------------------------------------------------------------
+
+  request:
+    class: Symfony\Componont\HttpFoundation\Request
+    synthetic: true
+
+  # ----------------------------------------------------------------------------
+  # MongoDB
+  # ----------------------------------------------------------------------------
+
+  mongoclient:
+    class: MongoClient
+    arguments: ["mongodb://%mongodb.host%:%mongodb.port%"]
+  mongodb:
+    class: MongoDB
+    factory_service: mongoclient
+    factory_method:  selectDB
+    arguments: ["%mongodb.db%"]
+
+  # ----------------------------------------------------------------------------
+  # Resource handling
+  # ----------------------------------------------------------------------------
+
+  resource_manager:
+    class: YamwLibs\Infrastructure\ResMgmt\ResMgr
+    synthetic: true
+
+  cache.default:
+    class: Doctrine\Common\Cache\FilesystemCache
+    arguments: ["%project.root%%project.cache%"]
+    tags:
+      - { name: cache }
+
+  cache.doctrine:
+    class: Doctrine\Common\Cache\ArrayCache
+    tags:
+      - { name: cache }
+
+  stopwatch:
+    class: Symfony\Componont\Stopwatch\Stopwatch
+
+  # ----------------------------------------------------------------------------
+  # Logging
+  # ----------------------------------------------------------------------------
+
+  logger_mongohandler:
+    class: Monolog\Handler\MongoDBHandler
+    arguments: ["@mongoclient", "%mongodb.db%", "%mongodb.collection.logger%"]
+    public: false
+  logger_psrprocessor:
+    class: Monolog\Processor\PsrLogMessageProcessor
+    public: false
+  logger_memoryprocessor:
+    class: Monolog\Processor\MemoryUsageProcessor
+    public: false
+  logger_introspectionprocessor:
+    class: Monolog\Processor\IntrospectionProcessor
+    public: false
+  logger:
+    class: Monolog\Logger
+    arguments:
+      - "default"
+      - ["@logger_mongohandler"]
+      - ["@logger_psrprocessor", "@logger_memoryprocessor", "@logger_introspectionprocessor"]
