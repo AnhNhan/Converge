@@ -2,12 +2,13 @@
 namespace AnhNhan\ModHub\Modules\Forum\Storage;
 
 use AnhNhan\ModHub\Storage\EntityDefinition;
+use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity @Table
  */
-class Post extends EntityDefinition
+class Post extends EntityDefinition implements TransactionAwareEntityInterface
 {
     /**
      * @Id
@@ -100,5 +101,23 @@ class Post extends EntityDefinition
     public function getUIDType()
     {
         return "POST";
+    }
+
+    /**
+     * @return \Doctrine\ORM\PersistentCollection
+     */
+    public function transactions()
+    {
+        return $this->xacts;
+    }
+
+    public function getTransactionClass()
+    {
+        return 'AnhNhan\ModHub\Modules\Forum\Transaction\PostTransaction';
+    }
+
+    public function getTransactionEntityClass()
+    {
+        return 'AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction';
     }
 }

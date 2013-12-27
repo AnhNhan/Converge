@@ -2,12 +2,13 @@
 namespace AnhNhan\ModHub\Modules\Forum\Storage;
 
 use AnhNhan\ModHub\Storage\EntityDefinition;
+use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity @Table
  */
-class Discussion extends EntityDefinition
+class Discussion extends EntityDefinition implements TransactionAwareEntityInterface
 {
     /**
      * @Id
@@ -64,6 +65,11 @@ class Discussion extends EntityDefinition
      * @OneToMany(targetEntity="Post", fetch="EXTRA_LAZY", mappedBy="disq")
      */
     private $posts = array();
+
+    /**
+     * @OneToMany(targetEntity="DiscussionTransaction", mappedBy="object", fetch="LAZY")
+     */
+    private $xacts = array();
 
     public function __construct(
         $author,
@@ -127,5 +133,23 @@ class Discussion extends EntityDefinition
     public function getUIDType()
     {
         return "DISQ";
+    }
+
+    /**
+     * @return \Doctrine\ORM\PersistentCollection
+     */
+    public function transactions()
+    {
+        return $this->xacts;
+    }
+
+    public function getTransactionClass()
+    {
+        return 'AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransaction';
+    }
+
+    public function getTransactionEntityClass()
+    {
+        return 'AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction';
     }
 }
