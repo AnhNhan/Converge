@@ -1,0 +1,20 @@
+
+parameters:
+  entity.user.user.class: AnhNhan\ModHub\Modules\User\Storage\User
+
+services:
+
+  application.user:
+    synthetic: true
+
+  application.user.entitymanager:
+    class: Doctrine\ORM\EntityManager
+    factory_service: application.user
+    factory_method:  getEntityManager
+
+  application.user.repository.user:
+    class: Doctrine\ORM\EntityRepository
+    factory_service: application.user.entitymanager
+    factory_method:  getRepository
+    arguments:
+      - "%entity.user.user.class%"

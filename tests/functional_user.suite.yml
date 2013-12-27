@@ -1,0 +1,14 @@
+class_name: UserTestGuy
+modules:
+    enabled:
+      - Db
+      - Doctrine2
+      - UserTestHelper
+    config:
+        Db:
+            dsn: 'mysql:host=127.0.0.1;dbname=modhub_user'
+            user: 'modhub'
+            password: ''
+            dump: tests/_data/db_user.sql
+        Doctrine2:
+            cleanup: true

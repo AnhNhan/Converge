@@ -14,6 +14,9 @@ parameters:
     # Doctrine
     doctrine.proxy.path: null
 
+user-security:
+  providerKey: ModHub
+
 services:
 
   # ----------------------------------------------------------------------------

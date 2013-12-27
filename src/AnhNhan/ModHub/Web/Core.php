@@ -92,7 +92,13 @@ final class Core
         }
 
         require_once $containerFileName;
-        return new $className;
+        $container = new $className;
+        $container->set(
+            "application.user",
+            id(new \AnhNhan\ModHub\Modules\User\UserApplication)->setContainer($container)
+        );
+
+        return $container;
     }
 
     public static function buildSfDIContainer($confDir = "conf/")

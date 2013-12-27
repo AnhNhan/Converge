@@ -209,9 +209,35 @@ return array(
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/DependencyInjection/SecurityExtension.php",
+      "impls" => array(
+        "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
+      ),
+    ),
+    "AnhNhan\ModHub\Modules\User\DependencyInjection\UserExtension" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/DependencyInjection/UserExtension.php",
+      "impls" => array(
+        "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
+      ),
+    ),
     "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Providers/UserAuthenticationProvider.php",
       "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
+    ),
+    "AnhNhan\ModHub\Modules\User\Storage\Role" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Storage/Role.php",
+      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+      "impls" => array(
+        "Symfony\Component\Security\Core\Role\RoleInterface",
+      ),
+    ),
+    "AnhNhan\ModHub\Modules\User\Storage\User" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Storage/User.php",
+      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+      "impls" => array(
+        "Symfony\Component\Security\Core\User\AdvancedUserInterface",
+      ),
     ),
     "AnhNhan\ModHub\Modules\User\UserApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/User/UserApplication.php",
@@ -426,6 +452,8 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
+      "AnhNhan\ModHub\Modules\User\Storage\Role",
+      "AnhNhan\ModHub\Modules\User\Storage\User",
       "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
@@ -524,6 +552,16 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
+    ),
+    "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
+      "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension",
+      "AnhNhan\ModHub\Modules\User\DependencyInjection\UserExtension",
+    ),
+    "Symfony\Component\Security\Core\Role\RoleInterface" => array(
+      "AnhNhan\ModHub\Modules\User\Storage\Role",
+    ),
+    "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
+      "AnhNhan\ModHub\Modules\User\Storage\User",
     ),
     "YamwLibs\Libs\View\ViewInterface" => array(
       "AnhNhan\ModHub\Views\AbstractView",
