@@ -19,11 +19,6 @@ class TagTransaction extends Transaction
         return 'AnhNhan\ModHub\Modules\Tag\Storage\Tag';
     }
 
-    public function applyTransaction($entity, $xactType, $value)
-    {
-        //...
-    }
-
     public function getTransactionTypes()
     {
         return array(

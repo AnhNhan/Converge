@@ -8,7 +8,10 @@ use AnhNhan\ModHub\Storage\EntityDefinition;
  */
 abstract class Transaction
 {
-    abstract public function applyTransaction($entity, $xactType, $value);
+    /**
+     * @return string
+     */
+    abstract public function getEntityClass();
 
     /**
      * @return array
