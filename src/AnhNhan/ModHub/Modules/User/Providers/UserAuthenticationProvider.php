@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider as BaseUserAuthenticationProvider;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -26,9 +26,9 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
     private $userRepository;
 
     /**
-     * @var \Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface
+     * @var \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface
      */
-    private $encoder;
+    private $encoderFactory;
 
     const USER_ENTITY_TYPE_NAME = "AnhNhan\ModHub\Modules\User\Storage\User";
 
@@ -50,9 +50,9 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
         return $this;
     }
 
-    public function setPasswordEncoder(PasswordEncoderInterface $encoder)
+    public function setPasswordEncoderFactory(EncoderFactoryInterface $encoderFactory)
     {
-        $this->encoder = $encoder;
+        $this->encoderFactory = $encoderFactory;
         return $this;
     }
 
@@ -73,7 +73,7 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 
     protected function checkAuthentication(UserInterface $user, UsernamePasswordToken $token)
     {
-        if (!$this->encoder->isPasswordValid($user->getPassword(), $token->getCredentials(), $user->getSalt())) {
+        if (!$this->encoderFactory->getEncoder($user)->isPasswordValid($user->getPassword(), $token->getCredentials(), $user->getSalt())) {
             throw new BadCredentialsException("Passwords do not match!");
         }
     }

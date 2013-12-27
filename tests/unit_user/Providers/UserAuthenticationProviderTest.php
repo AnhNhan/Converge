@@ -84,7 +84,12 @@ class UserAuthenticationProviderTest extends \Codeception\TestCase\Test
                         ->method("isPasswordValid")
                         ->with("bar", "bar", null)
                         ->will($this->returnValue(true));
-        $this->authProvider->setPasswordEncoder($passwordEncoder);
+        $encoderFactory = $this->getMock('Symfony\Component\Security\Core\Encoder\EncoderFactory', array(), array(), '', false);
+        $encoderFactory->expects($this->once())
+                       ->method("getEncoder")
+                       ->with($user)
+                       ->will($this->returnValue($passwordEncoder));
+        $this->authProvider->setPasswordEncoderFactory($encoderFactory);
 
         $this->assertEquals(false, $this->token->isAuthenticated());
         $newToken = $this->authProvider->authenticate($this->token);
@@ -113,7 +118,12 @@ class UserAuthenticationProviderTest extends \Codeception\TestCase\Test
                         ->method("isPasswordValid")
                         ->with("blurp", "bar", null) // Wrong password
                         ->will($this->returnValue(false));
-        $this->authProvider->setPasswordEncoder($passwordEncoder);
+        $encoderFactory = $this->getMock('Symfony\Component\Security\Core\Encoder\EncoderFactory', array(), array(), '', false);
+        $encoderFactory->expects($this->once())
+                       ->method("getEncoder")
+                       ->with($user)
+                       ->will($this->returnValue($passwordEncoder));
+        $this->authProvider->setPasswordEncoderFactory($encoderFactory);
 
         $this->assertEquals(false, $this->token->isAuthenticated());
         $newToken = $this->authProvider->authenticate($this->token);
