@@ -132,11 +132,11 @@ final class CompileCommand extends ConsoleCommand
 
         $this->output->writeln("Using the following prepend files:");
         $prependContents = array();
-        $prependMTimes = array();
+        $prependPaths = array();
         foreach ($prependFiles as $prependFile) {
             $this->output->writeln("  - " . $prependFile);
             $prependContents[] = file_get_contents($dir . $prependFile);
-            $prependMTimes[] = filemtime($dir . $prependFile);
+            $prependPaths[] = $dir . $prependFile;
         }
         $prependContents = implode("\n\n", $prependContents);
         $this->output->writeln("");
@@ -156,14 +156,14 @@ final class CompileCommand extends ConsoleCommand
                 "name" => $resName,
                 "path" => $fileName,
                 "hash" => hash_file("crc32", $resPath),
-                "time" => $this->calcModDate(array_merge($prependMTimes, array(filemtime($resPath)))),
+                "orig" => $this->calcContentHashes(array_merge($prependPaths, array($resPath))),
             );
 
             $result = null;
 
             if (
                 isset($this->origResMap[$type][$resName])
-                && $this->origResMap[$type][$resName]["time"] == $resEntry["time"]
+                && $this->origResMap[$type][$resName]["orig"] == $resEntry["orig"]
                 && file_exists(self::$path_cache . $resName)
             ) {
                 $result = "in-cache";
@@ -280,8 +280,11 @@ EOT;
         }
     }
 
-    private function calcModDate(array $dates)
+    private function calcContentHashes(array $files)
     {
-        return hash_hmac("crc32", implode("-", $dates), "random string");
+        array_walk($files, function (&$el) {
+            $el = file_get_contents($el);
+        });
+        return hash_hmac("crc32", implode("-", $files), "random string");
     }
 }
