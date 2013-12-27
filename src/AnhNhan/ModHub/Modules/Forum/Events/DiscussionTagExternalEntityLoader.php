@@ -16,9 +16,8 @@ final class DiscussionTagExternalEntityLoader
      */
     private $tagEntityManager;
 
-    public function __construct()
+    public function __construct(TagApplication $tagApp)
     {
-        $tagApp = new TagApplication;
         $this->tagEntityManager = $tagApp->getEntityManager();
     }
 

@@ -11,6 +11,9 @@ parameters:
     mongodb.port: 27017
     mongodb.collection.logger: monolog
 
+    # Doctrine
+    doctrine.proxy.path: null
+
 services:
 
   # ----------------------------------------------------------------------------

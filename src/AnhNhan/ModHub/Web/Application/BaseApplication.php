@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Web\Application;
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 use YamwLibs\Libs\Routing\Route;
 
 use Doctrine\ORM\Configuration;
@@ -110,12 +111,9 @@ abstract class BaseApplication
     protected function buildDefaultEntityManager($dbConfig, array $paths)
     {
         $isDevMode = true;
-        // $proxyDir = ModHub\get_root_super() . "cache/proxies/";
-        $proxyDir = sys_get_temp_dir();
+        $proxyDir = $this->getServiceParameter("doctrine.proxy.path") ?: sys_get_temp_dir();
 
-        // TODO: Make this less static
-        //$cache = new \Doctrine\Common\Cache\MongoDBCache(id(new \MongoClient)->selectCollection("modhub", "dc2"));
-        $cache = new \Doctrine\Common\Cache\ArrayCache;
+        $cache = $this->getService("cache.doctrine");
         $cache->setNamespace("dc2_" . md5($proxyDir) . "_"); // to avoid collisions
 
         $config = new Configuration();
@@ -129,6 +127,29 @@ abstract class BaseApplication
         $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver($paths, true));
 
         return EntityManager::create($dbConfig, $config);
+    }
+
+    /**
+     * @return BaseApplication The requested application
+     *
+     * @throws Exception If the app could not be found
+     */
+    protected function getExternalApplication($internalName)
+    {
+        // Hm, should we replace this with an app list from the container?
+        $classes = SymbolLoader::getInstance()
+            ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
+        $apps = array();
+        foreach ($classes as $class_name) {
+            $apps[] = new $class_name;
+        }
+        $apps = mpull($apps, null, "getInternalName");
+        $app = idx($apps, $internalName);
+        if (!$app) {
+            throw new \Exception("App '{$internalName}' does not exist!");
+        }
+        $app->setContainer($this->container);
+        return $app;
     }
 
     /**
@@ -148,5 +169,10 @@ abstract class BaseApplication
     public function getService($service)
     {
         return $this->container->get($service, ContainerInterface::NULL_ON_INVALID_REFERENCE);
+    }
+
+    public function getServiceParameter($parameter)
+    {
+        return $this->container->getParameter($parameter);
     }
 }

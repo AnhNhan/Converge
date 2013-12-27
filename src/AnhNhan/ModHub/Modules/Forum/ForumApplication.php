@@ -52,7 +52,10 @@ final class ForumApplication extends BaseApplication
         $entityManager = $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
         $eventManager  = $entityManager->getEventManager();
 
-        $eventManager->addEventListener(array(\Doctrine\ORM\Events::postLoad), new Events\DiscussionTagExternalEntityLoader);
+        $eventManager->addEventListener(
+            array(\Doctrine\ORM\Events::postLoad),
+            new Events\DiscussionTagExternalEntityLoader($this->getExternalApplication("tag"))
+        );
 
         return $entityManager;
     }

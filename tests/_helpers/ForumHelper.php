@@ -10,6 +10,7 @@ class ForumHelper extends \Codeception\Module
         static $app;
         if (!$app) {
             $app = new \AnhNhan\ModHub\Modules\Forum\ForumApplication;
+            $app->setContainer(\AnhNhan\ModHub\Web\Core::loadSfDIContainer());
         }
         return $app;
     }
