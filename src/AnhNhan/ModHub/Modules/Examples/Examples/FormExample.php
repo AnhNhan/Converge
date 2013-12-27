@@ -34,28 +34,8 @@ final class FormExample extends AbstractExample
     public function getForm1()
     {
         $form = new FormView();
-        $form->enableFileUpload()
-            ->setAction("user/login");
         $form->setTitle("Dual column (default)");
-        $form->append(id(new TextControl())
-            ->setLabel('Reason for your coming')
-            ->setValue('Peace'));
-
-        $textControl = new TextControl();
-        $textControl->setName('username')
-            ->setValue('Your name')
-            ->setLabel('This is the label for your name');
-        $form->append($textControl);
-
-        $form->append(id(new TextControl())
-            ->setLabel('Name of your mom')
-            ->setValue('Dorothy'));
-        $form->append(id(new TextAreaControl())
-            ->setValue("This is some text")
-            ->setLabel("Description"));
-        $form->append(id(new SubmitControl())
-            ->addCancelButton('/')
-            ->addSubmitButton('Hasta la vista!'));
+        $this->buildForm($form);
         return ModHub\ht("div", $form->render())->addClass("width12");
     }
 
@@ -64,6 +44,12 @@ final class FormExample extends AbstractExample
         $form = new FormView();
         $form->setDualColumnMode(false);
         $form->setTitle("Single column");
+        $this->buildForm($form);
+        return ModHub\ht("div", $form->render())->addClass("width12");
+    }
+
+    private function buildForm(FormView $form)
+    {
         $form->enableFileUpload()
             ->setAction("user/login");
         $form->append(id(new TextControl())
@@ -85,6 +71,5 @@ final class FormExample extends AbstractExample
         $form->append(id(new SubmitControl())
             ->addCancelButton('/')
             ->addSubmitButton('Hasta la vista!'));
-        return ModHub\ht("div", $form->render())->addClass("width12");
     }
 }
