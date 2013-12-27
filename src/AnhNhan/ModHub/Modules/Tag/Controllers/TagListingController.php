@@ -19,7 +19,7 @@ final class TagListingController extends AbstractTagController
 
         $tagEntityManager = $app->getEntityManager();
         $tagRepo = $tagEntityManager->getRepository("AnhNhan\\ModHub\\Modules\\Tag\\Storage\\Tag");
-        $tags = $tagRepo->findAll();
+        $tags = $tagRepo->findBy(array(), array("displayOrder" => "ASC", "label" => "ASC"));
 
         $container->push(ModHub\ht("h1", "Tags"));
 
