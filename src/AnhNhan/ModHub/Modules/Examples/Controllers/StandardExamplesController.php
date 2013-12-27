@@ -14,7 +14,7 @@ final class StandardExamplesController extends BaseApplicationController
     public function handle()
     {
         $request = $this->request();
-        $exampleName = $request->getValue("name");
+        $exampleName = $request->request->get("name");
 
         $classes = SymbolLoader::getInstance()
             ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
@@ -32,6 +32,10 @@ final class StandardExamplesController extends BaseApplicationController
         }
 
         $payload = new HtmlPayload($example);
+
+        $title = ucwords(preg_replace("/[-]/", " ", $exampleName)) . " Example";
+        $payload->setTitle($title);
+
         return $payload;
     }
 }
