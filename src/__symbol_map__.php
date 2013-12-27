@@ -75,9 +75,20 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Storage/DiscussionTag.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
     ),
+    "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/DiscussionTransaction.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+    ),
     "AnhNhan\ModHub\Modules\Forum\Storage\Post" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Storage/Post.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/PostTransaction.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
@@ -348,6 +359,13 @@ return array(
     "AnhNhan\ModHub\Web\Core" => array(
       "file" => "AnhNhan/ModHub/Web/Core.php",
     ),
+    "AnhNhan\ModHub\Web\HttpKernel" => array(
+      "file" => "AnhNhan/ModHub/Web/HttpKernel.php",
+      "impls" => array(
+        "Symfony\Component\HttpKernel\HttpKernelInterface",
+        "Symfony\Component\DependencyInjection\ContainerAwareInterface",
+      ),
+    ),
   ),
   "functions" => array(
     "AnhNhan\ModHub\get_root" => "AnhNhan/ModHub/functions.php",
@@ -409,6 +427,13 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
       "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+      "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
+      "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
+    ),
+    "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
+      "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
@@ -438,9 +463,6 @@ return array(
     "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
-    ),
-    "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
-      "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
     ),
     "AnhNhan\ModHub\Storage\Transaction\Transaction" => array(
       "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransaction",
@@ -500,6 +522,7 @@ return array(
   "implementations" => array(
     "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
+      "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
     ),
     "YamwLibs\Libs\View\ViewInterface" => array(
@@ -510,6 +533,12 @@ return array(
     ),
     "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
       "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "Symfony\Component\HttpKernel\HttpKernelInterface" => array(
+      "AnhNhan\ModHub\Web\HttpKernel",
+    ),
+    "Symfony\Component\DependencyInjection\ContainerAwareInterface" => array(
+      "AnhNhan\ModHub\Web\HttpKernel",
     ),
   ),
 );
