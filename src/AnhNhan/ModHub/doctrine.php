@@ -40,6 +40,7 @@ if (empty($appName)) {
 }
 
 $app = $appInstanceList[$appName];
+$app->setContainer(\AnhNhan\ModHub\Web\Core::loadSfDIContainer());
 $em = $app->getEntityManager();
 
 
