@@ -5,6 +5,7 @@ $I->lookForwardTo('am able to take part in the never ending discussion machine w
 
 $I->am('some random user (hopefully logged in)');
 $I->amOnPage('/disq/');
+$I->see('Forum Listing');
 
 $label = "Some random discussion";
 $text  = "Blurby text";

@@ -7,6 +7,7 @@ $I->amGoingTo('use the form to create a new tag');
 $label = "Foo";
 
 $I->amOnPage('/tag/');
+$I->see('Tag listing');
 $I->dontSee($label);
 
 $I->click('Create new tag!');
