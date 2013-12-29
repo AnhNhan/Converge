@@ -8,6 +8,7 @@ use AnhNhan\ModHub\Web\AppRouting;
 use AnhNhan\ModHub\Web\HttpKernel;
 
 use Symfony\Component\Debug\Debug;
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 
 Debug::enable();
@@ -22,6 +23,11 @@ $classes = SymbolLoader::getInstance()
     ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
 $router = new AppRouting($classes);
 
-$kernel = new HttpKernel($router);
+$container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+
+$eventDispatcher = new ContainerAwareEventDispatcher($container);
+
+$kernel = new HttpKernel($eventDispatcher, $router);
+$kernel->setContainer($container);
 $response = $kernel->handle($request);
 $response->send();
