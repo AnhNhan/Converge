@@ -36,6 +36,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
     ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/PanelExample.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    ),
     "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
@@ -350,6 +354,10 @@ return array(
       "file" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
+    "AnhNhan\ModHub\Views\Panel\Panel" => array(
+      "file" => "AnhNhan/ModHub/Views/Panel/Panel.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
     "AnhNhan\ModHub\Web\AppRouting" => array(
       "file" => "AnhNhan/ModHub/Web/AppRouting.php",
     ),
@@ -432,6 +440,7 @@ return array(
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
       "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
+      "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
       "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
@@ -507,6 +516,7 @@ return array(
       "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
       "AnhNhan\ModHub\Views\Page\PageView",
       "AnhNhan\ModHub\Views\Page\SidebarView",
+      "AnhNhan\ModHub\Views\Panel\Panel",
       "AnhNhan\ModHub\Views\Objects\Object",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\ModHub\Views\Page\BarePageView",
