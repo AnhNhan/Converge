@@ -116,8 +116,9 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         } else {
             $payload = self::get404Page($page);
         }
-        if (!($payload instanceof Application\HttpPayload)) {
-            throw new \RunTimeException(sprintf("Controller '%s' must return a HTTP payload!", get_class($controller)));
+
+        if (!($payload instanceof Application\HttpPayload) && !($payload instanceof Response)) {
+            throw new \RunTimeException(sprintf("Controller '%s' must return a HTTP payload or response!", get_class($controller)));
         }
 
         if ($payload instanceof Application\HtmlPayload) {
@@ -127,7 +128,16 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
             $payload->setResMgr($resMgr);
         }
 
-        $response = Core::prepareResponse($request, $payload, $this->getCapturedOverflow());
+        if ($payload instanceof Application\HttpPayload) {
+            $response = Core::prepareResponse($request, $payload, $this->getCapturedOverflow());
+        } else {
+            // Already a response, no need to convert
+            $response = $payload;
+
+            // Into the void!
+            $this->getCapturedOverflow();
+        }
+
         return $this->filterResponse($response, $request, $type);
     }
 
