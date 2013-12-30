@@ -54,14 +54,20 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "77b05b3a",
-      "orig" => "73626568",
+      "hash" => "fa6d79cf",
+      "orig" => "75cdab0d",
     ),
     "layout-form" => array(
       "name" => "layout-form",
       "path" => "layout/form.less",
       "hash" => "a6febb60",
       "orig" => "73b346e1",
+    ),
+    "layout-forum-disq-display" => array(
+      "name" => "layout-forum-disq-display",
+      "path" => "layout/forum/disq-display.less",
+      "hash" => "00000000",
+      "orig" => "d0a522fa",
     ),
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
@@ -310,13 +316,13 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "46cc3d84",
+      "hash" => "b3001f91",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-html5-boilerplate-main" => "93f2241c",
         "layout-boilerplate" => "4a2f68e3",
-        "layout-core" => "77b05b3a",
+        "layout-core" => "fa6d79cf",
         "layout-form" => "a6febb60",
         "layout-grid" => "5cd5c19d",
         "layout-buttons" => "f57b3b3b",
