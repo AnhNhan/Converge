@@ -16,6 +16,7 @@ class MarkupEngine
         }
 
         $this->inputTexts[$key] = $text;
+        return $this;
     }
 
     public function process()
@@ -24,6 +25,8 @@ class MarkupEngine
         foreach ($this->inputTexts as $key => $input) {
             $this->outputText[$key] = $parsedown->parse($input);
         }
+
+        return $this;
     }
 
     public function getOutputText($key = "default")
@@ -34,5 +37,11 @@ class MarkupEngine
     public function getOutputTexts()
     {
         return $this->outputText();
+    }
+
+    public static function fastParse($text)
+    {
+        $engine = new static;
+        return $engine->addInputText($text)->process()->getOutputText();
     }
 }
