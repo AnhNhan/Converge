@@ -11,6 +11,8 @@ use AnhNhan\ModHub\Views\Form\Controls\TextControl;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -48,10 +50,8 @@ final class TagCreationController extends AbstractTagController
                 $em->persist($tag);
                 $em->flush();
 
-                $container->push(ModHub\ht("h1", "Successfully inserted tag '$label'!"));
-                $container->push(ModHub\ht("a", "Link", array("href" => "/tag/" . preg_replace("/^(.*?-)/", "", $tag->uid()))));
-
-                return $payload;
+                $targetURI = "/tag/" . preg_replace("/^(.*?-)/", "", $tag->uid());
+                return new RedirectResponse($targetURI);
             }
         }
 

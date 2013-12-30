@@ -18,13 +18,12 @@ $I->fillField("label", $label);
 $I->fillField("text", $text);
 $I->click("Hasta la vista"); // Warning! May be changed!
 
-// Will be changed soon
-$I->see("Successfully inserted discussion");
-$I->click("Link");
+// Wait for redirect
+sleep(2);
 
 $I->see($label);
 $I->see($text);
 
 // Will be changed
-$I->click("Disq listing");
+$I->amOnPage('/disq/');
 $I->see($label);

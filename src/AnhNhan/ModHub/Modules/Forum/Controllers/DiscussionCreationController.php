@@ -11,6 +11,7 @@ use AnhNhan\ModHub\Views\Form\Controls\TextControl;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -51,10 +52,8 @@ final class DiscussionCreationController extends AbstractForumController
                 $em->persist($discussion);
                 $em->flush();
 
-                $container->push(ModHub\ht("h1", "Successfully inserted discussion '$label'!"));
-                $container->push(ModHub\ht("a", "Link", array("href" => "/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))));
-
-                return $payload;
+                $targetURI = "/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid());
+                return new RedirectResponse($targetURI);
             }
         }
 
