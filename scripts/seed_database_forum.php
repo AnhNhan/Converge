@@ -39,6 +39,19 @@ $num_discussions = 15;
 $num_posts = 200;
 $num_users = 40;
 
+function generateContent($faker)
+{
+    $paragraphCount = mt_rand(1, 5);
+
+    $paragraphs = array();
+    for ($ii = 0; $ii < $paragraphCount; $ii++) {
+        $paragraphLength = mt_rand(100, 2000);
+        $paragraphs[] = $faker->text($paragraphLength);
+    }
+
+    return implode("\n\n", $paragraphs);
+}
+
 $tags = array();
 for ($ii = 0; $ii < $num_tags; $ii++) {
     $tag = new Tag($faker->unique()->city);
@@ -54,14 +67,14 @@ for ($ii = 0; $ii < $num_users; $ii++) {
 
 $discussions = array();
 for ($ii = 0; $ii < $num_discussions; $ii++) {
-    $discussion = new Discussion($users[array_rand($users)], $faker->unique()->catchPhrase, $faker->text, $faker->dateTime, $faker->dateTime);
+    $discussion = new Discussion($users[array_rand($users)], $faker->unique()->catchPhrase, generateContent($faker), $faker->dateTime, $faker->dateTime);
 
     $discussions[] = $discussion;
 }
 
 $posts = array();
 for ($ii = 0; $ii < $num_posts; $ii++) {
-    $posts[] = new Post($discussions[array_rand($discussions)], $users[array_rand($users)], $faker->text, $faker->dateTime, $faker->dateTime);
+    $posts[] = new Post($discussions[array_rand($discussions)], $users[array_rand($users)], generateContent($faker), $faker->dateTime, $faker->dateTime);
 }
 
 $discussion_tags = array();
