@@ -92,6 +92,14 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
 
     public function getResMgr()
     {
+        if (!$this->resMgr) {
+            throw new \RunTimeException(
+                sprintf(
+                    "Tried to access non-existing ResMgr service from class '%s'!",
+                    get_class($this)
+                )
+            );
+        }
         return $this->resMgr;
     }
 }
