@@ -18,13 +18,18 @@ use AnhNhan\ModHub\Storage\Types\UID;
 // De-register libphutil autoloader, can't be used with Faker
 spl_autoload_unregister('__phutil_autoload');
 
+$container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+
 $forumApp = new ForumApplication();
+$forumApp->setContainer($container);
 $forumEm = $forumApp->getEntityManager();
 
 $tagApp = new TagApplication;
+$tagApp->setContainer($container);
 $tagEm = $tagApp->getEntityManager();
 
 $userApp = new UserApplication;
+$userApp->setContainer($container);
 $userEm  = $userApp->getEntityManager();
 
 $faker = \Faker\Factory::create();
