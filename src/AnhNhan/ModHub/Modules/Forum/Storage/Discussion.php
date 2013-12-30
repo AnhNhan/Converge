@@ -34,7 +34,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     private $author_object;
 
     /**
-     * @Column(type="string")
+     * @Column(type="text")
      */
     private $rawText;
 
