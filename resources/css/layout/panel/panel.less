@@ -1,0 +1,82 @@
+
+@radius: 3px;
+@padding: 10px;
+
+.panel-colorize (@color) {
+    border: 3px solid @color;
+
+    .panel-container-inner {
+        border: 1px solid mix(@grey, @color);
+    }
+
+    .panel-header {
+        background-color: lighten(@color, 15%);
+        border-bottom: 1px solid mix(@grey, @color);
+    }
+
+    .panel-midriff {
+        background-color: mix(@veryLightGrey, @color);
+        border-bottom: 1px solid mix(@grey, @color);
+    }
+}
+
+.panel-container {
+    margin: 20px 0;
+    .round-border (@radius);
+
+    .panel-colorize (@veryLightGrey);
+
+    .panel-header {
+        background-color: #F7F7F7;
+    }
+
+    &:first-child {
+        margin-top: 5px;
+    }
+
+    &:last-child {
+        margin-bottom: 5px;
+    }
+
+    &.danger {
+        .panel-colorize (@colorError);
+    }
+    &.info {
+        .panel-colorize (@colorInfo);
+    }
+    &.success {
+        .panel-colorize (@colorSuccess);
+    }
+}
+
+.panel-header {
+    padding: (@padding * 1.2) @padding;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.panel-midriff {
+    padding: @padding;
+}
+
+.panel-body {
+    padding: @padding;
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+}
