@@ -89,12 +89,6 @@ foreach ($discussions as $derp) {
     $forumEm->persist($derp);
 }
 
-/*
-foreach ($discussion_firstPosts as $derp) {
-    $forumEm->persist($derp);
-}
-*/
-
 foreach ($posts as $derp) {
     $forumEm->persist($derp);
 }
