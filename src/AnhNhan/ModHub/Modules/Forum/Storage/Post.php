@@ -98,6 +98,16 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
         return $this->rawText;
     }
 
+    public function createdAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function modifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
     public function getUIDType()
     {
         return "POST";
