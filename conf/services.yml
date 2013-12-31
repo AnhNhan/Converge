@@ -10,6 +10,7 @@ parameters:
     mongodb.db:   modhub
     mongodb.port: 27017
     mongodb.collection.logger: monolog
+    mongodb.collection.cache: cache
 
     # Doctrine
     doctrine.proxy.path: null
@@ -48,14 +49,40 @@ services:
     class: YamwLibs\Infrastructure\ResMgmt\ResMgr
     synthetic: true
 
-  cache.default:
+  # ----------------------------------------------------------------------------
+  # Caches
+  # ----------------------------------------------------------------------------
+
+  mongodb.collection.cache:
+    class: MongoCollection
+    public: false
+    factory_service: mongodb
+    factory_method: selectCollection
+    arguments: ["%mongodb.collection.cache%"]
+  cache.mongodb:
+    class: Doctrine\Common\Cache\MongoDBCache
+    arguments: ["@mongodb.collection.cache"]
+    tags:
+      - { name: cache }
+
+  cache.filesystem:
     class: Doctrine\Common\Cache\FilesystemCache
     arguments: ["%project.root%%project.cache%"]
     tags:
       - { name: cache }
 
+  cache.default:
+    alias: cache.filesystem
+    tags:
+      - { name: cache }
+
+  cache.resmgr:
+    alias: cache.default
+    tags:
+      - { name: cache }
+
   cache.doctrine:
-    class: Doctrine\Common\Cache\ArrayCache
+    alias: cache.mongodb
     tags:
       - { name: cache }
 
