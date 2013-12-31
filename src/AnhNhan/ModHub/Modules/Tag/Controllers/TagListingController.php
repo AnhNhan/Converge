@@ -4,6 +4,7 @@ namespace AnhNhan\ModHub\Modules\Tag\Controllers;
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
+use AnhNhan\ModHub\Web\Application\JsonPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 /**
@@ -11,10 +12,28 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
  */
 final class TagListingController extends AbstractTagController
 {
-    public function handle()
+    public function process()
     {
         $request = $this->request();
-        $app = $this->app();
+        $accepts = $request->getAcceptableContentTypes();
+
+        foreach ($accepts as $accept) {
+            switch ($accept) {
+                case 'application/json':
+                case 'text/json':
+                    return $this->handleJson();
+                    break;
+                case 'text/html':
+                    return $this->handle();
+                    break;
+            }
+        }
+
+        return $this->handle();
+    }
+
+    public function handle()
+    {
         $container = new MarkupContainer;
 
         $tags = $this->retrieveTags();
@@ -33,6 +52,29 @@ final class TagListingController extends AbstractTagController
         )));
 
         $payload = new HtmlPayload($container);
+        return $payload;
+    }
+
+    public function handleJson()
+    {
+        $result = array();
+
+        $stopWatch = $this->app()->getService("stopwatch");
+        $timer = $stopWatch->start("tag-listing-json");
+
+        $tags = $this->retrieveTags();
+
+        foreach ($tags as $tag) {
+            $result[] = $this->toDictionary($tag);
+        }
+
+        $time = $timer->stop()->getDuration();
+
+        $payload = new JsonPayload();
+        $payload->setPayloadContents(array(
+            "tags" => $result,
+            "time" => $time,
+        ));
         return $payload;
     }
 }

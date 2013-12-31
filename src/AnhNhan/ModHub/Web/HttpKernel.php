@@ -98,11 +98,11 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         $controller = $app->routeToController($request);
 
         if ($controller) {
-            $event = new FilterControllerEvent($this, array($controller, 'handle'), $request, $type);
+            $event = new FilterControllerEvent($this, array($controller, 'process'), $request, $type);
             $this->dispatcher->dispatch(KernelEvents::CONTROLLER, $event);
             $controller = $event->getController();
 
-            if (!is_object($controller) && is_callable($controller) && is_array($controller) && is_object(idx($controller, 0)) && idx($controller, 1) == 'handle') {
+            if (!is_object($controller) && is_callable($controller) && is_array($controller) && is_object(idx($controller, 0)) && idx($controller, 1) == 'process') {
                 // It's our lovely controllers!
                 $controller = $controller[0];
             }
@@ -112,7 +112,7 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
                     "handle controllers of type '" . get_class($controller) . "'.");
             }
 
-            $payload = $controller->setRequest($request)->handle();
+            $payload = $controller->setRequest($request)->process();
         } else {
             $payload = self::get404Page($page);
         }

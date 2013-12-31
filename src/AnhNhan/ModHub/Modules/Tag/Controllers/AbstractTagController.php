@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Modules\Tag\Controllers;
 
+use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
 use AnhNhan\ModHub\Web\Application\BaseApplicationController;
 
 /**
@@ -39,5 +40,16 @@ abstract class AbstractTagController extends BaseApplicationController
 
         $tags = $tagRepo->findBy(array("label" => $labels), array("displayOrder" => "ASC", "label" => "ASC"), $limit, $offset);
         return $tags;
+    }
+
+    protected function toDictionary(Tag $tag)
+    {
+        return array(
+            "uid"          => $tag->uid(),
+            "label"        => $tag->label(),
+            "color"        => $tag->color(),
+            "displayOrder" => $tag->displayOrder(),
+            "description"  => $tag->description(),
+        );
     }
 }

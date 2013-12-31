@@ -42,5 +42,18 @@ abstract class BaseApplicationController
         return $this;
     }
 
+    /**
+     * Override this method if you want to handle multiple types of data
+     *
+     * @return AnhNhan\ModHub\Web\HttpPayload|Symfony\Component\HttpFoundation\Response
+     */
+    public function process()
+    {
+        return $this->handle();
+    }
+
+    /**
+     * @return AnhNhan\ModHub\Web\HttpPayload|Symfony\Component\HttpFoundation\Response
+     */
     abstract public function handle();
 }
