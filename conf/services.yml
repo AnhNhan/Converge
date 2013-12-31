@@ -87,7 +87,7 @@ services:
       - { name: cache }
 
   stopwatch:
-    class: Symfony\Componont\Stopwatch\Stopwatch
+    class: Symfony\Component\Stopwatch\Stopwatch
 
   # ----------------------------------------------------------------------------
   # Logging
