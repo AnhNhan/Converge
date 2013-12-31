@@ -77,4 +77,17 @@ class UserAuthTest extends \Codeception\TestCase\Test
         $this->assertFalse($this->securityContext->isGranted("ROLE_DERP"));
     }
 
+    /**
+     * @expectedException \Symfony\Component\Security\Core\Exception\BadCredentialsException
+     */
+    public function testExceptionOnWrongCredentials()
+    {
+        $token = new UsernamePasswordToken($this->username, "some password", $this->providerKey);
+        $this->securityContext->setToken($token);
+
+        $this->assertTrue($this->securityContext->isGranted("ROLE_FOO"));
+
+        $this->fail();
+    }
+
 }
