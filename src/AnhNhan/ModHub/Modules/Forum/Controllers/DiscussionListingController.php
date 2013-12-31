@@ -48,7 +48,7 @@ final class DiscussionListingController extends AbstractForumController
             }
 
             $object->addAttribute($discussion->authorId());
-            $object->addAttribute($discussion->lastActivity()->format(DATE_RFC822));
+            $object->addAttribute($discussion->lastActivity()->format("D, d M 'y"));
 
             $listing->addObject($object);
         }
