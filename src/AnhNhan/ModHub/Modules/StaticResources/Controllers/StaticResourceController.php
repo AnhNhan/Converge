@@ -19,6 +19,13 @@ final class StaticResourceController extends AbstractStaticResourceController
         $name = $request->request->get("name");
         $rsrc_hash = $request->request->get("rsrc-hash");
 
+        if (!$request->request->has("rsrc-hash")) {
+            // $name is of format 'foo.eab25d.css'
+            preg_match("/(?P<name>.*?)\\.(?P<hash>.*?)\\.{$type}/", $name, $matches);
+            $name = $matches["name"];
+            $rsrc_hash = $matches["hash"];
+        }
+
         BA::assertIsEnum($type, array("css", "js"));
 
         $resMap = include ModHub\path("__resource_map__.php");

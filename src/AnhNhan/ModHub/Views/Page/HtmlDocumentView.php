@@ -68,6 +68,7 @@ EOT
     {
         $head = array();
         foreach ($this->getResMgr()->fetchRequiredCSSResources() as $css) {
+            list($name, $hash) = $css;
             $head[] = new HtmlTag(
                 'link',
                 null,
@@ -75,16 +76,17 @@ EOT
                     'rel'     => 'stylesheet',
                     'type'    => 'text/css',
                     'charset' => 'utf-8',
-                    'href'    => '/rsrc/css/' . $css,
+                    'href'    => sprintf('/rsrc/css/%s.%s.css', $name, $hash),
                 )
             );
         }
         foreach ($this->getResMgr()->fetchRequiredJSResources() as $js) {
+            list($name, $hash) = $js;
             $head[] = new HtmlTag(
                 'script',
                 '',
                 array(
-                    'src' => '/rsrc/js/' . $js,
+                    'src' => sprintf('/rsrc/js/%s.%s.js', $name, $hash),
                 )
             );
         }
