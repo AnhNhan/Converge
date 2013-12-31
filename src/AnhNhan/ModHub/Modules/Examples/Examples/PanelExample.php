@@ -25,7 +25,7 @@ final class PanelExample extends AbstractExample
         $faker = \Faker\Factory::create();
 
         $panel = new Panel;
-        $panel->setHeader("Some panel header");
+        $panel->setHeader(ModHub\ht("h3", "Some panel header"));
         $panel->append(ModHub\ht("p", "Random body. Somebody write something here!"));
         $container->push($panel->render());
         $container->push($panel->setColor(Panel::COLOR_DANGER)->render());
@@ -33,7 +33,7 @@ final class PanelExample extends AbstractExample
         $container->push($panel->setColor(Panel::COLOR_SUCCESS)->render());
 
         $panel = new Panel;
-        $panel->setHeader("Some terrible discussion");
+        $panel->setHeader(ModHub\ht("h2", "Some terrible discussion"));
         $panel->midriff()->push(ModHub\safeHtml("<strong>Anh Nhan</strong> did something <em>silly</em>."));
         $panel->setMidriffRight(date("D, d M 'y", time()));
         $panel->append(ModHub\ht("p", $faker->text(800)));

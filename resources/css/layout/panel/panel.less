@@ -51,8 +51,17 @@
 
 .panel-header {
     padding: (@padding * 1.2) @padding;
-    font-size: 21px;
-    font-weight: bold;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: @fontColor !important;
+
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .panel-midriff {
