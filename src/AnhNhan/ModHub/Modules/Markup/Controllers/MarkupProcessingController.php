@@ -4,7 +4,6 @@ namespace AnhNhan\ModHub\Modules\Markup\Controllers;
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
 use AnhNhan\ModHub\Web\Application\JsonPayload;
-use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -21,7 +20,7 @@ final class MarkupProcessingController extends AbstractMarkupController
             throw new \Exception("Input 'text' can't be empty!");
         }
 
-        $stopWatch = new Stopwatch;
+        $stopWatch = $this->app()->getService("stopwatch");
         $timer = $stopWatch->start("markup-processing");
 
         $engine = new MarkupEngine();
