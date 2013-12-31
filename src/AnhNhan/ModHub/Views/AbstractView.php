@@ -1,7 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Views;
 
-use YamwLibs\Infrastructure\ResMgmt\ResMgr;
+use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 use YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 use YamwLibs\Libs\Html\Markup\TextNode;

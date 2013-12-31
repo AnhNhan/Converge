@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Views\Page;
 
 use AnhNhan\ModHub\Views\AbstractView;
-use YamwLibs\Infrastructure\ResMgmt\ResMgr;
+use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 use YamwLibs\Libs\Html\Markup\HtmlTag;
 
 use Symfony\Component\HttpFoundation\Request;

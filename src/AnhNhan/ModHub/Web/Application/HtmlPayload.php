@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Web\Application;
 
 use AnhNhan\ModHub\Views\Page\DefaultTemplateView;
-use YamwLibs\Infrastructure\ResMgmt\ResMgr;
+use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 
 /**
  * Renders the payload with the default template

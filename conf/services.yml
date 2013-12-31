@@ -46,7 +46,7 @@ services:
   # ----------------------------------------------------------------------------
 
   resource_manager:
-    class: YamwLibs\Infrastructure\ResMgmt\ResMgr
+    class: AnhNhan\ModHub\Modules\StaticResources\ResMgr
     synthetic: true
 
   # ----------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 namespace AnhNhan\ModHub\Web;
 
 use AnhNhan\ModHub;
-use YamwLibs\Infrastructure\ResMgmt\ResMgr;
+use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 use Symfony\Component\HttpFoundation\Request;
