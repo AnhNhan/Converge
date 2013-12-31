@@ -35,6 +35,7 @@ final class PanelExample extends AbstractExample
         $panel = new Panel;
         $panel->setHeader("Some terrible discussion");
         $panel->midriff()->push(ModHub\safeHtml("<strong>Anh Nhan</strong> did something <em>silly</em>."));
+        $panel->setMidriffRight(date("D, d M 'y", time()));
         $panel->append(ModHub\ht("p", $faker->text(800)));
 
         $list = ModHub\ht("ul");

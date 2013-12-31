@@ -90,8 +90,8 @@ return array(
     "layout-panel-panel" => array(
       "name" => "layout-panel-panel",
       "path" => "layout/panel/panel.less",
-      "hash" => "b35792b5",
-      "orig" => "bf67c6c7",
+      "hash" => "768125a2",
+      "orig" => "166ae696",
     ),
     "layout-tag-tag" => array(
       "name" => "layout-tag-tag",
@@ -316,7 +316,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "b3001f91",
+      "hash" => "139a481b",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
@@ -329,7 +329,7 @@ return array(
         "layout-objects" => "9aa79efe",
         "layout-forum-object" => "2a8ef600",
         "layout-user-user-plate" => "11e046d6",
-        "layout-panel-panel" => "b35792b5",
+        "layout-panel-panel" => "768125a2",
         "layout-tag-tag" => "81515898",
       ),
     ),

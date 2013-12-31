@@ -19,6 +19,7 @@ class Panel extends AbstractView
     private $header;
     private $color = self::COLOR_NONE;
     private $midriff;
+    private $midriffRight;
 
     public function __construct()
     {
@@ -37,6 +38,11 @@ class Panel extends AbstractView
         // Return the object for direct interface
         // Not a public property, since they could change it to something else
         return $this->midriff;
+    }
+
+    public function setMidriffRight($midriffRight) {
+        $this->midriffRight = $midriffRight;
+        return $this;
     }
 
     private function getValidColors()
@@ -76,7 +82,17 @@ class Panel extends AbstractView
         }
 
         if (count($this->midriff)) {
-            $panelTag->appendContent(ModHub\ht("div", $this->midriff)->addClass("panel-midriff"));
+            $midriffRight = null;
+            if ($this->midriffRight) {
+                $midriffRight = ModHub\ht("div", $this->midriffRight)
+                    ->addClass("panel-midriff-right")
+                ;
+            }
+            $panelTag->appendContent(
+                ModHub\ht("div", $midriffRight)
+                    ->appendContent($this->midriff)
+                    ->addClass("panel-midriff")
+            );
         }
 
         $children = $this->retrieveChilds();
