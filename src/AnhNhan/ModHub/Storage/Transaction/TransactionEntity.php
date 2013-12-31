@@ -20,7 +20,7 @@ abstract class TransactionEntity extends EntityDefinition
     /**
      * @Column(type="string")
      */
-    protected $author;
+    protected $actor;
 
     /**
      * NOTE: May be overridden by subclasses
@@ -59,14 +59,14 @@ abstract class TransactionEntity extends EntityDefinition
      */
     protected $modifiedAt;
 
-    public function __construct($author, $object, $type, $oldValue, $newValue, array $metadata = null)
+    public function __construct($actor, $object, $type, $oldValue, $newValue, array $metadata = null)
     {
         if (!($object instanceof EntityDefinition) || ($object instanceof TransactionEntity)) {
             throw new \InvalidArgumentException("Invalid object type");
         }
-        UID::checkValidity($author);
+        UID::checkValidity($actor);
 
-        $this->author   = $author;
+        $this->actor    = $actor;
         $this->object   = $object;
         $this->type     = $type;
         $this->oldValue = $oldValue;
@@ -79,9 +79,9 @@ abstract class TransactionEntity extends EntityDefinition
         return $this->id;
     }
 
-    public function authorId()
+    public function actorId()
     {
-        return $this->author;
+        return $this->actor;
     }
 
     public function object()
