@@ -113,6 +113,12 @@ return array(
       "hash" => "3d9e2a8f",
       "orig" => "979ef8de",
     ),
+    "controller-tag-listing" => array(
+      "name" => "controller-tag-listing",
+      "path" => "controller/tag/listing.js",
+      "hash" => "65639d51",
+      "orig" => "d7b3aac4",
+    ),
     "external-backbone" => array(
       "name" => "external-backbone",
       "path" => "external/backbone.js",
@@ -344,8 +350,8 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "04b70549",
-      "orig" => "2cafa342",
+      "hash" => "6e8efb90",
+      "orig" => "461f164a",
     ),
     "model-abstract-entity" => array(
       "name" => "model-abstract-entity",
@@ -362,14 +368,20 @@ return array(
     "router-tag-tagrouter" => array(
       "name" => "router-tag-tagrouter",
       "path" => "router/tag/tagrouter.js",
-      "hash" => "db6878fb",
-      "orig" => "257f0f1d",
+      "hash" => "de9fddfb",
+      "orig" => "2e4bb315",
+    ),
+    "view-maincontentview" => array(
+      "name" => "view-maincontentview",
+      "path" => "view/maincontentview.js",
+      "hash" => "dc04c6a8",
+      "orig" => "22f55f83",
     ),
     "view-tag-taglistview" => array(
       "name" => "view-tag-taglistview",
       "path" => "view/tag/taglistview.js",
-      "hash" => "e94dd2a0",
-      "orig" => "5ecb4c33",
+      "hash" => "c8946181",
+      "orig" => "e9016a5f",
     ),
     "view-tag-tagview" => array(
       "name" => "view-tag-tagview",
@@ -402,12 +414,14 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "532530ed",
+      "hash" => "efbc7863",
       "contents" => array(
         "external-html5bp-plugin" => "c035fc51",
         "external-modernizr" => "4ad114ad",
         "external-jquery-1-10-2" => "a802852e",
         "external-json2" => "9051a75f",
+        "external-underscore" => "f0c3308b",
+        "external-backbone" => "fd5d38af",
       ),
     ),
   ),
