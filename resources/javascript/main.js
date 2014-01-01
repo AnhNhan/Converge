@@ -10,8 +10,7 @@ require.config({
         // `libs-pck` already
         jquery: '/rsrc/js/external-jquery-1-10-2',
         underscore: '/rsrc/js/external-underscore',
-        backbone: '/rsrc/js/external-backbone',
-        templates: '/rsrc/js/templates-'
+        backbone: '/rsrc/js/external-backbone'
     },
 
     // Add this map config in addition to any baseUrl or
