@@ -7,3 +7,5 @@
 
 # Local config (may contain sensitive information)
 /conf/local/
+
+/dist
