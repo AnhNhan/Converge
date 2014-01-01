@@ -15,7 +15,6 @@ define([
             this.render();
         },
         render: function () {
-            console.log(this.$el);
             $('.content').html(this.currentController.render().$el);
         }
     });
