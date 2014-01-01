@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Views\Page;
 
+use AnhNhan\ModHub;
 use AnhNhan\ModHub\Views\AbstractView;
 use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 use YamwLibs\Libs\Html\Markup\HtmlTag;
@@ -46,7 +47,7 @@ class HtmlDocumentView extends AbstractView
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
-
+%s
 </head>
 <body>
     %s
@@ -57,6 +58,7 @@ EOT
             $this->title,
             $baseUrl,
             $this->renderHead(),
+            $this->renderRequireJs(),
             $this->content
         );
         } catch(\Exception $e) {
@@ -94,5 +96,13 @@ EOT
         $head[] = $this->head;
 
         return implode("\n", $head);
+    }
+
+    public function renderRequireJs()
+    {
+        $tag = ModHub\ht("script");
+        $tag->addOption("src", sprintf("/rsrc/js/external-require.%s.js", $this->getResMgr()->getHashForResource("js", "external-require")));
+        $tag->addOption("data-main", sprintf("/rsrc/js/main.%s", $this->getResMgr()->getHashForResource("js", "main")));
+        return $tag;
     }
 }

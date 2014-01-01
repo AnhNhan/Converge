@@ -5,8 +5,6 @@
         "external-html5bp-plugin",
         "external-modernizr",
         "external-jquery-1-10-2",
-        "external-json2",
-        "external-underscore",
-        "external-backbone"
+        "external-json2"
     ]
 }
