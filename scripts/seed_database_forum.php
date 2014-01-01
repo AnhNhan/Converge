@@ -41,11 +41,11 @@ $num_users = 40;
 
 function generateContent($faker)
 {
-    $paragraphCount = mt_rand(1, 5);
+    $paragraphCount = mt_rand(1, 4);
 
     $paragraphs = array();
     for ($ii = 0; $ii < $paragraphCount; $ii++) {
-        $paragraphLength = mt_rand(100, 2000);
+        $paragraphLength = mt_rand(100, 1000);
         $paragraphs[] = $faker->text($paragraphLength);
     }
 
