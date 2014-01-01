@@ -27,6 +27,11 @@ function safeHtml($string)
  */
 function ht($name, $content = null, array $options = array())
 {
+    if (isset($options["backbone"]) || isset($options["bckbn"])) {
+        $options[] = "data-backbone-nav";
+        unset($options["backbone"]);
+        unset($options["bckbn"]);
+    }
     return new HtmlTag($name, $content, $options);
 }
 

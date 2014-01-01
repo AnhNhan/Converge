@@ -31,11 +31,13 @@ class FooterView extends AbstractView implements ViewInterface
             foreach ($list as $entry) {
                 $li = ModHub\ht('li')->addClass('footer-section-entry');
 
+                $linkOptions = array_select_keys($entry, array_diff(array_keys($entry), array('label')));
+
                 $li->setContent(
                     ModHub\ht(
                         'a',
                         ModHub\ht('span', $entry['label']),
-                        array('href' => $entry['href'])
+                        $linkOptions
                     )
                 );
 
@@ -86,10 +88,12 @@ class FooterView extends AbstractView implements ViewInterface
             array(
                 "label" => "Disq listing",
                 "href"  => "disq/",
+                "bckbn" => true,
             ),
             array(
                 "label" => "Tag listing",
                 "href"  => "tag/",
+                "bckbn" => true,
             ),
         );
         $footer->column('Discussions', $column2);

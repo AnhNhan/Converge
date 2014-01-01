@@ -48,6 +48,18 @@ class HtmlDocumentView extends AbstractView
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
 %s
+
+<script>
+$(function () {
+    $('a[data-backbone-nav]').click(function () {
+        that = $(this);
+        console.log('Navigating to ' + that.attr('href'));
+        Backbone.history.navigate(that.attr('href'));
+        return false;
+    });
+});
+
+</script>
 </head>
 <body>
     %s
