@@ -18,12 +18,20 @@ final class StaticResourceController extends AbstractStaticResourceController
         $type = $request->request->get("type");
         $name = $request->request->get("name");
         $rsrc_hash = $request->request->get("rsrc-hash");
+        $doCache = true;
 
         if (!$request->request->has("rsrc-hash")) {
             // $name is of format 'foo.eab25d.css'
-            preg_match("/(?P<name>.*?)\\.(?P<hash>.*?)\\.{$type}/", $name, $matches);
-            $name = $matches["name"];
-            $rsrc_hash = $matches["hash"];
+            if (1 === preg_match("/^(?P<name>.*?)(\\.(?P<hash>.*)\\.{$type})$/", $name, $matches)) {
+                $name = $matches["name"];
+                $rsrc_hash = $matches["hash"];
+            } else {
+                // Fresh serving of 'foo.css'
+                $doCache = false;
+                $parts = explode(".", $name);
+                array_pop($parts);
+                $name = implode(".", $parts);
+            }
         }
 
         BA::assertIsEnum($type, array("css", "js"));
@@ -46,17 +54,20 @@ final class StaticResourceController extends AbstractStaticResourceController
         }
 
         $maxAge = 60 * 60 * 24 * 360 * 2;
-        $response = Response::create()
-            ->setCache(array(
-                "etag" => $resource["hash"],
-                "public" => true,
-                "max_age" => $maxAge,
-                "s_maxage" => $maxAge,
-            ))
-        ;
+        $response = Response::create();
+        if ($doCache) {
+            $response
+                ->setCache(array(
+                    "etag" => $resource["hash"],
+                    "public" => true,
+                    "max_age" => $maxAge,
+                    "s_maxage" => $maxAge,
+                ))
+            ;
+        }
         $response->headers->set("Content-Type", $contentType);
 
-        if ($notModified = $response->isNotModified($request)) {
+        if ($doCache && $notModified = $response->isNotModified($request)) {
             return $response;
         }
 

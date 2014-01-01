@@ -147,7 +147,7 @@ final class CompileCommand extends ConsoleCommand
             $resPath = $dir . $fileName;
             $resName = preg_replace("/{$ext}$/", "", $fileName);
             $resName = preg_replace(
-                "/([\\|\/])+/",
+                "/([\\|\/|.])+/",
                 "-",
                 $resName
             );
