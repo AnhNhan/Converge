@@ -2,10 +2,8 @@
 
 define([
     'jquery',
-    'underscore',
-    'backbone',
-    'model-tag-tagmodel'
-], function($, _, Backbone, TagModel) {
+    'backbone'
+], function($, Backbone) {
     var TagView = Backbone.View.extend({
         className: 'tag-object',
         template: _.template($('<div><span></span></div>').html()),

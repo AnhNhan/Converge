@@ -4,10 +4,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'model-tag-tagmodel',
-    'collection-tag-tagcollection',
     'view-tag-tagview'
-], function($, _, Backbone, TagModel, TagCollection, TagView) {
+], function($, _, Backbone, TagView) {
     var TagListView = Backbone.View.extend({
         $el: $('<div />'),
         $list: [],
