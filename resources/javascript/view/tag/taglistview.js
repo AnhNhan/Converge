@@ -26,7 +26,7 @@ define([
         },
 
         addOne: function (model, collection, options) {
-            tag = new TagView({model: model, id: 'tag-' + model.cleanId()});
+            var tag = new TagView({model: model, id: 'tag-' + model.cleanId()});
             this.$el.append(tag.render().$el);
             this.$list.push(tag);
         },
