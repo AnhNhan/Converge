@@ -3,8 +3,10 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone) {
+    'backbone',
+    'view-maincontentview',
+    'controller-tag-listing'
+], function($, _, Backbone, MainContentView, TagListingController) {
     var TagRouter = Backbone.Router.extend({
         routes: {
             'tag/': 'listTags',
@@ -13,7 +15,7 @@ define([
         },
 
         listTags: function () {
-            console.log("Listing tags not implemented!");
+            MainContentView.displayController(new TagListingController);
         },
 
         createTag: function () {
@@ -26,8 +28,16 @@ define([
     });
 
     return {
+        _instance: null,
+        get: function () {
+            if (this._instance === null) {
+                this._instance = new TagRouter;
+            }
+
+            return this._instance;
+        },
         initialize: function () {
-            var tag_router = new TagRouter;
+            this.get();
         }
     };
 });
