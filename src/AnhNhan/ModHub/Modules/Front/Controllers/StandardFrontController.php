@@ -14,10 +14,10 @@ final class StandardFrontController extends BaseApplicationController
     public function handle()
     {
         $container = new MarkupContainer();
-        $container->push(ModHub\safeHtml(file_get_contents(__DIR__ . "/../resources/template/front-page.htm")));
+        $container->push(ModHub\safeHtml(file_get_contents(ModHub\path("/../resources/templates/front/frontpage.html"))));
 
         $payload = new HtmlPayload();
-        $payload->setPayloadContents(ModHub\ht("div", $container, array("style" => "padding: 1em;")));
+        $payload->setPayloadContents($container);
         return $payload;
     }
 }
