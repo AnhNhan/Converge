@@ -1,15 +1,13 @@
 'use strict';
 
 define([
+    'controller-base',
     'external-text!/tmpl-front-frontpage'
-], function(FrontPageTemplate) {
-    var FrontPageController = Backbone.View.extend({
+], function(BaseController, FrontPageTemplate) {
+    var FrontPageController = BaseController.extend({
         template: FrontPageTemplate,
         initialize: function () {
             this.$el = $(this.template);
-        },
-        render: function () {
-            return this;
         }
     });
 

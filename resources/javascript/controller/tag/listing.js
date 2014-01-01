@@ -2,12 +2,11 @@
 
 define([
     'jquery',
-    'underscore',
-    'backbone',
+    'controller-base',
     'collection-tag-tagcollection',
     'view-tag-taglistview'
-], function($, _, Backbone, TagCollection, TagListView) {
-    var TagListingController = Backbone.View.extend({
+], function($, BaseController, TagCollection, TagListView) {
+    var TagListingController = BaseController.extend({
         tags: null,
         taglist: null,
         initialize: function () {

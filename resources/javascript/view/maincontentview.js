@@ -8,7 +8,7 @@ define([
         currentController: null,
         displayController: function (controller) {
             if (this.currentController !== undefined && this.currentController !== null) {
-                this.currentController.destroy();
+                this.currentController.cleanup();
             }
 
             this.currentController = controller;
