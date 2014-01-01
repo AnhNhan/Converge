@@ -63,12 +63,6 @@ return array(
       "hash" => "a6febb60",
       "orig" => "73b346e1",
     ),
-    "layout-forum-disq-display" => array(
-      "name" => "layout-forum-disq-display",
-      "path" => "layout/forum/disq-display.less",
-      "hash" => "00000000",
-      "orig" => "d0a522fa",
-    ),
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
       "path" => "layout/forum/object.less",
@@ -107,11 +101,23 @@ return array(
     ),
   ),
   "js" => array(
+    "app" => array(
+      "name" => "app",
+      "path" => "app.js",
+      "hash" => "aeccf933",
+      "orig" => "b1e963e1",
+    ),
+    "collection-tag-tagcollection" => array(
+      "name" => "collection-tag-tagcollection",
+      "path" => "collection/tag/tagcollection.js",
+      "hash" => "3d9e2a8f",
+      "orig" => "979ef8de",
+    ),
     "external-backbone" => array(
       "name" => "external-backbone",
       "path" => "external/backbone.js",
-      "hash" => "89d22732",
-      "orig" => "2e5a9660",
+      "hash" => "fd5d38af",
+      "orig" => "08dc796b",
     ),
     "external-html5bp-plugin" => array(
       "name" => "external-html5bp-plugin",
@@ -119,176 +125,176 @@ return array(
       "hash" => "c035fc51",
       "orig" => "953927b5",
     ),
-    "external-jquery-1.10.2" => array(
-      "name" => "external-jquery-1.10.2",
+    "external-jquery-1-10-2" => array(
+      "name" => "external-jquery-1-10-2",
       "path" => "external/jquery-1.10.2.js",
       "hash" => "a802852e",
       "orig" => "9434c764",
     ),
-    "external-jquery-2.0.3" => array(
-      "name" => "external-jquery-2.0.3",
+    "external-jquery-2-0-3" => array(
+      "name" => "external-jquery-2-0-3",
       "path" => "external/jquery-2.0.3.js",
       "hash" => "0cb3a00f",
       "orig" => "789da44f",
     ),
-    "external-jquery-ui-1.10.3-external-globalize.culture.de-DE" => array(
-      "name" => "external-jquery-ui-1.10.3-external-globalize.culture.de-DE",
+    "external-jquery-ui-1-10-3-external-globalize-culture-de-DE" => array(
+      "name" => "external-jquery-ui-1-10-3-external-globalize-culture-de-DE",
       "path" => "external/jquery-ui-1.10.3/external/globalize.culture.de-DE.js",
       "hash" => "d91b30eb",
       "orig" => "83ba8194",
     ),
-    "external-jquery-ui-1.10.3-external-globalize.culture.ja-JP" => array(
-      "name" => "external-jquery-ui-1.10.3-external-globalize.culture.ja-JP",
+    "external-jquery-ui-1-10-3-external-globalize-culture-ja-JP" => array(
+      "name" => "external-jquery-ui-1-10-3-external-globalize-culture-ja-JP",
       "path" => "external/jquery-ui-1.10.3/external/globalize.culture.ja-JP.js",
       "hash" => "19bf46e0",
       "orig" => "7fb348b3",
     ),
-    "external-jquery-ui-1.10.3-external-globalize" => array(
-      "name" => "external-jquery-ui-1.10.3-external-globalize",
+    "external-jquery-ui-1-10-3-external-globalize" => array(
+      "name" => "external-jquery-ui-1-10-3-external-globalize",
       "path" => "external/jquery-ui-1.10.3/external/globalize.js",
       "hash" => "99055309",
       "orig" => "ead53d2b",
     ),
-    "external-jquery-ui-1.10.3-external-jquery.mousewheel" => array(
-      "name" => "external-jquery-ui-1.10.3-external-jquery.mousewheel",
+    "external-jquery-ui-1-10-3-external-jquery-mousewheel" => array(
+      "name" => "external-jquery-ui-1-10-3-external-jquery-mousewheel",
       "path" => "external/jquery-ui-1.10.3/external/jquery.mousewheel.js",
       "hash" => "c5171d70",
       "orig" => "9f5afe43",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery-ui-i18n" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery-ui-i18n",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-i18n" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-i18n",
       "path" => "external/jquery-ui-1.10.3/ui/jquery-ui-i18n.js",
       "hash" => "ed1bb4d5",
       "orig" => "c8ef3f67",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.autocomplete" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.autocomplete",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-autocomplete" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-autocomplete",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.autocomplete.js",
       "hash" => "9dddd1b1",
       "orig" => "4f94aed8",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.core" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.core",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-core" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-core",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.core.js",
       "hash" => "88bd862d",
       "orig" => "f0f99905",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.datepicker" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.datepicker",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-datepicker" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-datepicker",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.datepicker.js",
       "hash" => "1c10a58a",
       "orig" => "d557dfdc",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.draggable" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.draggable",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-draggable" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-draggable",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.draggable.js",
       "hash" => "b9af882f",
       "orig" => "90fb7469",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.droppable" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.droppable",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-droppable" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-droppable",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.droppable.js",
       "hash" => "9c539445",
       "orig" => "d0b49fb8",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect-blind" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect-blind",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect-blind" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect-blind",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect-blind.js",
       "hash" => "b66991fe",
       "orig" => "7ed99544",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect-clip" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect-clip",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect-clip" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect-clip",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect-clip.js",
       "hash" => "c38fa8b3",
       "orig" => "024306e5",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect-drop" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect-drop",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect-drop" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect-drop",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect-drop.js",
       "hash" => "d0485433",
       "orig" => "c96fbc1e",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect-fade" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect-fade",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect-fade" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect-fade",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect-fade.js",
       "hash" => "f4815894",
       "orig" => "d04a6a47",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect-slide" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect-slide",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect-slide" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect-slide",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect-slide.js",
       "hash" => "56ebaecb",
       "orig" => "451d9d4e",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect-transfer" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect-transfer",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect-transfer" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect-transfer",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect-transfer.js",
       "hash" => "08b36b25",
       "orig" => "8bdfcaf3",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.effect" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.effect",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-effect" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-effect",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.effect.js",
       "hash" => "a33c29f4",
       "orig" => "850ce733",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.menu" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.menu",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-menu" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-menu",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.menu.js",
       "hash" => "676a94ce",
       "orig" => "258c5b0b",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.mouse" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.mouse",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-mouse" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-mouse",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.mouse.js",
       "hash" => "8b28da55",
       "orig" => "63a99a75",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.position" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.position",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-position" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-position",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.position.js",
       "hash" => "327fc0d1",
       "orig" => "2c699e8d",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.resizable" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.resizable",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-resizable" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-resizable",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.resizable.js",
       "hash" => "f16946b1",
       "orig" => "7aa59731",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.selectable" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.selectable",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-selectable" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-selectable",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.selectable.js",
       "hash" => "43a593c1",
       "orig" => "36509746",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.slider" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.slider",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-slider" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-slider",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.slider.js",
       "hash" => "c5f03236",
       "orig" => "2e6f500d",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.sortable" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.sortable",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-sortable" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-sortable",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.sortable.js",
       "hash" => "4828f704",
       "orig" => "4adca1cd",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.spinner" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.spinner",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-spinner" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-spinner",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.spinner.js",
       "hash" => "2d7b99d1",
       "orig" => "534d2c48",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.tooltip" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.tooltip",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-tooltip" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-tooltip",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.tooltip.js",
       "hash" => "99028e5a",
       "orig" => "c43244ec",
     ),
-    "external-jquery-ui-1.10.3-ui-jquery.ui.widget" => array(
-      "name" => "external-jquery-ui-1.10.3-ui-jquery.ui.widget",
+    "external-jquery-ui-1-10-3-ui-jquery-ui-widget" => array(
+      "name" => "external-jquery-ui-1-10-3-ui-jquery-ui-widget",
       "path" => "external/jquery-ui-1.10.3/ui/jquery.ui.widget.js",
       "hash" => "134ce2a9",
       "orig" => "26930c42",
@@ -305,11 +311,71 @@ return array(
       "hash" => "4ad114ad",
       "orig" => "39022d11",
     ),
+    "external-r" => array(
+      "name" => "external-r",
+      "path" => "external/r.js",
+      "hash" => "a2eb944e",
+      "orig" => "6aa19df1",
+    ),
+    "external-require" => array(
+      "name" => "external-require",
+      "path" => "external/require.js",
+      "hash" => "ad5ef383",
+      "orig" => "2f8ee5f3",
+    ),
+    "external-text" => array(
+      "name" => "external-text",
+      "path" => "external/text.js",
+      "hash" => "33bf3f76",
+      "orig" => "215c81c9",
+    ),
     "external-underscore" => array(
       "name" => "external-underscore",
       "path" => "external/underscore.js",
-      "hash" => "a9ec7935",
-      "orig" => "339d4e59",
+      "hash" => "f0c3308b",
+      "orig" => "83a67faf",
+    ),
+    "jquery-private" => array(
+      "name" => "jquery-private",
+      "path" => "jquery-private.js",
+      "hash" => "08ee3b16",
+      "orig" => "28ef6174",
+    ),
+    "main" => array(
+      "name" => "main",
+      "path" => "main.js",
+      "hash" => "04b70549",
+      "orig" => "2cafa342",
+    ),
+    "model-abstract-entity" => array(
+      "name" => "model-abstract-entity",
+      "path" => "model/abstract-entity.js",
+      "hash" => "ebd29782",
+      "orig" => "5813bf33",
+    ),
+    "model-tag-tagmodel" => array(
+      "name" => "model-tag-tagmodel",
+      "path" => "model/tag/tagmodel.js",
+      "hash" => "5a413242",
+      "orig" => "6c69935a",
+    ),
+    "router-tag-tagrouter" => array(
+      "name" => "router-tag-tagrouter",
+      "path" => "router/tag/tagrouter.js",
+      "hash" => "db6878fb",
+      "orig" => "257f0f1d",
+    ),
+    "view-tag-taglistview" => array(
+      "name" => "view-tag-taglistview",
+      "path" => "view/tag/taglistview.js",
+      "hash" => "e94dd2a0",
+      "orig" => "5ecb4c33",
+    ),
+    "view-tag-tagview" => array(
+      "name" => "view-tag-tagview",
+      "path" => "view/tag/tagview.js",
+      "hash" => "1d9436e4",
+      "orig" => "111b8a0a",
     ),
   ),
   "pck" => array(
@@ -336,14 +402,12 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "d8427a54",
+      "hash" => "532530ed",
       "contents" => array(
         "external-html5bp-plugin" => "c035fc51",
         "external-modernizr" => "4ad114ad",
-        "external-jquery-2.0.3" => "0cb3a00f",
+        "external-jquery-1-10-2" => "a802852e",
         "external-json2" => "9051a75f",
-        "external-underscore" => "a9ec7935",
-        "external-backbone" => "89d22732",
       ),
     ),
   ),
