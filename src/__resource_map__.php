@@ -350,8 +350,8 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "6e8efb90",
-      "orig" => "461f164a",
+      "hash" => "5ab8588a",
+      "orig" => "56056dc1",
     ),
     "model-abstract-entity" => array(
       "name" => "model-abstract-entity",
@@ -374,20 +374,20 @@ return array(
     "view-maincontentview" => array(
       "name" => "view-maincontentview",
       "path" => "view/maincontentview.js",
-      "hash" => "dc04c6a8",
-      "orig" => "22f55f83",
+      "hash" => "656544e3",
+      "orig" => "e8ca2fc7",
     ),
     "view-tag-taglistview" => array(
       "name" => "view-tag-taglistview",
       "path" => "view/tag/taglistview.js",
-      "hash" => "c8946181",
-      "orig" => "e9016a5f",
+      "hash" => "9c118a40",
+      "orig" => "82da7fa4",
     ),
     "view-tag-tagview" => array(
       "name" => "view-tag-tagview",
       "path" => "view/tag/tagview.js",
-      "hash" => "1d9436e4",
-      "orig" => "111b8a0a",
+      "hash" => "20c21e57",
+      "orig" => "85fd0b44",
     ),
   ),
   "pck" => array(
@@ -423,6 +423,14 @@ return array(
         "external-underscore" => "f0c3308b",
         "external-backbone" => "fd5d38af",
       ),
+    ),
+  ),
+  "tmpls" => array(
+    "tmpl-tag-tagview" => array(
+      "name" => "tmpl-tag-tagview",
+      "path" => "tag/tagview.html",
+      "hash" => "982cf8a7",
+      "orig" => "37e09294",
     ),
   ),
 );

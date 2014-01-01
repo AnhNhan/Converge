@@ -20,24 +20,28 @@ final class StaticResourceController extends AbstractStaticResourceController
         $rsrc_hash = $request->request->get("rsrc-hash");
         $doCache = true;
 
-        if (!$request->request->has("rsrc-hash")) {
-            // $name is of format 'foo.eab25d.css'
-            if (1 === preg_match("/^(?P<name>.*?)(\\.(?P<hash>.*)\\.{$type})$/", $name, $matches)) {
-                $name = $matches["name"];
-                $rsrc_hash = $matches["hash"];
-            } else {
-                // Fresh serving of 'foo.css'
-                $doCache = false;
-                $parts = explode(".", $name);
-                array_pop($parts);
-                $name = implode(".", $parts);
+        BA::assertIsEnum($type, array("css", "js"));
+
+        if (strncmp("tmpl-", $name, strlen("tmpl-")) === 0) {
+            $type = "tmpls";
+        } else {
+            if (!$request->request->has("rsrc-hash")) {
+                // $name is of format 'foo.eab25d.css'
+                if (1 === preg_match("/^(?P<name>.*?)(\\.(?P<hash>.*)\\.{$type})$/", $name, $matches)) {
+                    $name = $matches["name"];
+                    $rsrc_hash = $matches["hash"];
+                } else {
+                    // Fresh serving of 'foo.css'
+                    $doCache = false;
+                    $parts = explode(".", $name);
+                    array_pop($parts);
+                    $name = implode(".", $parts);
+                }
             }
         }
 
-        BA::assertIsEnum($type, array("css", "js"));
-
         $resMap = include ModHub\path("__resource_map__.php");
-
+        var_dump($resMap[$type]);
         if (!$resource = idx($resMap[$type], $name)) {
             // Could be a pack file
             $resource = idx($resMap["pck"], $name);
@@ -51,20 +55,24 @@ final class StaticResourceController extends AbstractStaticResourceController
             $contentType = "text/css";
         } else if ($type == "js") {
             $contentType = "application/javascript";
+        } else if ($type == "tmpls") {
+            $contentType = "text/template";
         }
 
         $maxAge = 60 * 60 * 24 * 360 * 2;
-        $response = Response::create();
-        if ($doCache) {
-            $response
-                ->setCache(array(
-                    "etag" => $resource["hash"],
-                    "public" => true,
-                    "max_age" => $maxAge,
-                    "s_maxage" => $maxAge,
-                ))
-            ;
+        $cacheSettings = array(
+            "etag" => $resource["hash"],
+            "public" => true,
+        );
+        if ($doCache && !in_array($type, array("tmpls"))) {
+            $cacheSettings += array(
+                "max_age" => $maxAge,
+                "s_maxage" => $maxAge,
+            );
         }
+        $response = Response::create()
+            ->setCache($cacheSettings)
+        ;
         $response->headers->set("Content-Type", $contentType);
 
         if ($doCache && $notModified = $response->isNotModified($request)) {
