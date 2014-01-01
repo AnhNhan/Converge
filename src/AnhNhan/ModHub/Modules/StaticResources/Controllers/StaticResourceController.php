@@ -73,7 +73,10 @@ final class StaticResourceController extends AbstractStaticResourceController
 
         // Js resource and not pck file
         $fileExt = ($type == "js" && !isset($resource["type"])) ? ".js" : null;
-        $contents = file_get_contents(ModHub\get_root_super() . "/cache/" . $name . $fileExt);
+        $fileName = ($type == "js" && !isset($resource["type"])) ?
+                    ModHub\get_root_super() . "/resources/javascript/" . $resource["path"] :
+                    ModHub\get_root_super() . "/cache/" . $name . $fileExt;
+        $contents = file_get_contents($fileName);
         $response->setContent($contents);
         return $response;
     }
