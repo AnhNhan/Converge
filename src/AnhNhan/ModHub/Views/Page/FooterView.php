@@ -55,11 +55,11 @@ class FooterView extends AbstractView implements ViewInterface
         $column2 = array(
             array(
                 "label" => "Front page",
-                "href"  => "/",
+                "href"  => "",
             ),
             array(
                 "label" => "Markup Test",
-                "href"  => "/markup/test/",
+                "href"  => "markup/test/",
             ),
         );
         $footer->column('All kinds of stuff', $column2);
@@ -77,7 +77,7 @@ class FooterView extends AbstractView implements ViewInterface
             $title = ucwords($title);
             $column3[] = array(
                 "label" => $title,
-                "href"  => "/example/$example/"
+                "href"  => "example/$example/"
             );
         }
         $footer->column("Examples", $column3);
@@ -85,11 +85,11 @@ class FooterView extends AbstractView implements ViewInterface
         $column2 = array(
             array(
                 "label" => "Disq listing",
-                "href"  => "/disq/",
+                "href"  => "disq/",
             ),
             array(
                 "label" => "Tag listing",
-                "href"  => "/tag/",
+                "href"  => "tag/",
             ),
         );
         $footer->column('Discussions', $column2);
