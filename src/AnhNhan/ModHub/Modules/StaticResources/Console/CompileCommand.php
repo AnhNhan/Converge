@@ -160,11 +160,12 @@ final class CompileCommand extends ConsoleCommand
             );
 
             $result = null;
+            $fileExt = $type == "js" ? ".js" : null;
 
             if (
                 isset($this->origResMap[$type][$resName])
                 && $this->origResMap[$type][$resName]["orig"] == $resEntry["orig"]
-                && file_exists(self::$path_cache . $resName)
+                && file_exists(self::$path_cache . $resName . $fileExt)
             ) {
                 $result = "in-cache";
             } else {
@@ -179,7 +180,7 @@ final class CompileCommand extends ConsoleCommand
                 }
 
                 if (!$result) {
-                    $result = file_put_contents(self::$path_cache . $resName, $resContents)
+                    $result = file_put_contents(self::$path_cache . $resName . $fileExt, $resContents)
                                 ? "x" : "write-error";
                 }
             }
@@ -221,7 +222,8 @@ final class CompileCommand extends ConsoleCommand
                     }
 
                     $contents[$contentName] = $typeResMapEntries[$contentName]["hash"];
-                    $fileContents[] = file_get_contents(self::$path_cache . $contentName);
+                    $fileExt = $type == "js" ? ".js" : null;
+                    $fileContents[] = file_get_contents(self::$path_cache . $contentName . $fileExt);
                 }
                 file_put_contents(
                     self::$path_cache . $name,

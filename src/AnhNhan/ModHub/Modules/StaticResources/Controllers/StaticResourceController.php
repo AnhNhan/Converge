@@ -71,7 +71,9 @@ final class StaticResourceController extends AbstractStaticResourceController
             return $response;
         }
 
-        $contents = file_get_contents(ModHub\get_root_super() . "/cache/" . $name);
+        // Js resource and not pck file
+        $fileExt = ($type == "js" && !isset($resource["type"])) ? ".js" : null;
+        $contents = file_get_contents(ModHub\get_root_super() . "/cache/" . $name . $fileExt);
         $response->setContent($contents);
         return $response;
     }
