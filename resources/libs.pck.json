@@ -4,7 +4,7 @@
     "contents": [
         "external-html5bp-plugin",
         "external-modernizr",
-        "external-jquery-2.0.3",
+        "external-jquery-1-10-2",
         "external-json2",
         "external-underscore",
         "external-backbone"
