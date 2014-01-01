@@ -4,10 +4,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'router-front-frontrouter',
     'router-tag-tagrouter',
-], function($, _, Backbone, TagRouter) {
+], function($, _, Backbone, FrontPageRoter, TagRouter) {
     var initialize = function() {
         // TODO: Write all application routers, and start them here
+        FrontPageRoter.initialize();
         TagRouter.initialize();
 
         // Kicking off routing

@@ -58,6 +58,7 @@ class FooterView extends AbstractView implements ViewInterface
             array(
                 "label" => "Front page",
                 "href"  => "",
+                "bckbn" => true,
             ),
             array(
                 "label" => "Markup Test",
