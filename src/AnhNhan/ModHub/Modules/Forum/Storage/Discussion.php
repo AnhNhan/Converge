@@ -115,6 +115,11 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
         }
     }
 
+    public function createdAt()
+    {
+        return $this->createdAt;
+    }
+
     public function lastActivity()
     {
         return $this->lastActivity;
@@ -133,6 +138,25 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     public function getUIDType()
     {
         return "DISQ";
+    }
+
+    public function toDictionary()
+    {
+        $tags = mpull(mpull($this->tags()->toArray(), "tag"), "uid");
+        $author = $this->author();
+        $authorName = $author ? $author->dispname() : null;
+
+        return array(
+            "uid"          => $this->uid(),
+            "label"        => $this->label(),
+            "authorId"     => $this->authorId(),
+            "authorName"   => $authorName,
+            // "rawText"   => $this->rawText(),
+            "postCount"    => $this->posts()->count(),
+            "createdAt"    => $this->createdAt()->getTimestamp(),
+            "lastActivity" => $this->lastActivity()->getTimestamp(),
+            "tags"         => $tags,
+        );
     }
 
     /**

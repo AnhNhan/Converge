@@ -7,6 +7,7 @@ use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing;
 use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
+use AnhNhan\ModHub\Web\Application\JsonPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 /**
@@ -15,6 +16,26 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
 final class DiscussionListingController extends AbstractForumController
 {
     private $discussionsPerPage = 20;
+
+    public function process()
+    {
+        $request = $this->request();
+        $accepts = $request->getAcceptableContentTypes();
+
+        foreach ($accepts as $accept) {
+            switch ($accept) {
+                case 'application/json':
+                case 'text/json':
+                    return $this->handleJson();
+                    break;
+                case 'text/html':
+                    return $this->handle();
+                    break;
+            }
+        }
+
+        return $this->handle();
+    }
 
     public function handle()
     {
@@ -62,6 +83,33 @@ final class DiscussionListingController extends AbstractForumController
         )));
 
         $payload = new HtmlPayload($container);
+        return $payload;
+    }
+
+    public function handleJson()
+    {
+        $result = array();
+
+        $stopWatch = $this->app()->getService("stopwatch");
+        $timer = $stopWatch->start("discussion-listing-json");
+
+        $pageNr = 0;
+        $offset = $pageNr * $this->discussionsPerPage;
+        $disqs = id(new DiscussionQuery($this->app()))
+            ->retrieveDiscussions($this->discussionsPerPage, $offset)
+        ;
+
+        foreach ($disqs as $disq) {
+            $result[] = $disq->toDictionary();
+        }
+
+        $time = $timer->stop()->getDuration();
+
+        $payload = new JsonPayload();
+        $payload->setPayloadContents(array(
+            "discussions" => $result,
+            "time" => $time,
+        ));
         return $payload;
     }
 }
