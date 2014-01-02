@@ -110,8 +110,8 @@ return array(
     "backbone" => array(
       "name" => "backbone",
       "path" => "backbone.js",
-      "hash" => "aff26d17",
-      "orig" => "c1df42f5",
+      "hash" => "6c1106d1",
+      "orig" => "eff0ca3a",
     ),
     "collection-tag-tagcollection" => array(
       "name" => "collection-tag-tagcollection",
@@ -362,14 +362,14 @@ return array(
     "jquery" => array(
       "name" => "jquery",
       "path" => "jquery.js",
-      "hash" => "3c1bccd9",
-      "orig" => "37301d36",
+      "hash" => "cc90e210",
+      "orig" => "ea953c27",
     ),
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "dda53ae7",
-      "orig" => "28924c4f",
+      "hash" => "7f065bc5",
+      "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
       "name" => "model-abstract-entity",
@@ -398,8 +398,8 @@ return array(
     "underscore" => array(
       "name" => "underscore",
       "path" => "underscore.js",
-      "hash" => "07b8950c",
-      "orig" => "bb024f68",
+      "hash" => "13affc08",
+      "orig" => "7259327a",
     ),
     "view-maincontentview" => array(
       "name" => "view-maincontentview",
