@@ -24,8 +24,12 @@ services:
   # Generic
   # ----------------------------------------------------------------------------
 
-  request:
-    class: Symfony\Componont\HttpFoundation\Request
+  http_kernel:
+    class: AnhNhan\ModHub\Web\HttpKernel
+    synthetic: true
+
+  event_dispatcher:
+    class: Symfony\Component\EventDispatcher\EventDispatcher
     synthetic: true
 
   # ----------------------------------------------------------------------------

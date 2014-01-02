@@ -26,8 +26,10 @@ $router = new AppRouting($classes);
 $container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
 
 $eventDispatcher = new ContainerAwareEventDispatcher($container);
+$container->set('event_dispatcher', $eventDispatcher);
 
 $kernel = new HttpKernel($eventDispatcher, $router);
 $kernel->setContainer($container);
+$container->set('http_kernel', $kernel);
 $response = $kernel->handle($request);
 $response->send();
