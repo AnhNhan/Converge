@@ -1,0 +1,8 @@
+
+services:
+
+  # csrf.generator:
+  # csrf.storage:
+  # Simply using defaults for now (we may change session storage later on, though)
+  csrf.manager:
+    class: Symfony\Component\Security\Csrf\CsrfTokenManager

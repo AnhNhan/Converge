@@ -28,6 +28,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
             new FileLocator(__DIR__.'/../resources/')
         );
         $loader->load('security-services.yml');
+        $loader->load('csrf-services.yml');
     }
 
     /* - ( Anti-XML stuff ) - */
