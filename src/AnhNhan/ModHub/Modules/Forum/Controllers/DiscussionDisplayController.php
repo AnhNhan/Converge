@@ -35,7 +35,7 @@ final class DiscussionDisplayController extends AbstractForumController
         if ($disq) {
             $grid = new Grid;
             $row  = $grid->row();
-            $disqColumn = $row->column(10);
+            $disqColumn = $row->column(9);
             $dangerPanel = new Panel;
             $dangerPanel
                 ->setColor(Panel::COLOR_DANGER)
@@ -69,7 +69,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $disqColumn->push($postPanel);
             }
 
-            $tagColumn = $row->column(2);
+            $tagColumn = $row->column(3);
             $tagContainer = new Panel;
             $tagContainer->setHeader(ModHub\ht("h2", "Tags"));
             $tagColumn->push($tagContainer);
