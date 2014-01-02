@@ -11,6 +11,17 @@ final class DiscussionQuery extends Query
     const ENTITY_DISCUSSION = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion";
     const ENTITY_POST = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Post";
 
+    /**
+     * @return \AnhNhan\ModHub\Modules\Forum\Storage\Discussion
+     */
+    public function retrieveDiscussion($id)
+    {
+        return $this
+            ->repository(self::ENTITY_DISCUSSION)
+            ->find($id)
+        ;
+    }
+
     public function retrieveDiscussionForIDs(array $ids, $limit = null, $offset = null)
     {
         return $this

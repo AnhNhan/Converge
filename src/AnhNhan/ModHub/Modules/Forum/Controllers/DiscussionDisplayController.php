@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Grid\Grid;
@@ -21,13 +22,9 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $currentId = $request->request->get("id");
 
-        $forumEntityManager = $app->getEntityManager();
-        $disqRepo = $forumEntityManager->getRepository("AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion");
-
-        /**
-         * @var \AnhNhan\ModHub\Modules\Forum\Storage\Discussion
-         */
-        $disq = $disqRepo->find("DISQ-" . $currentId);
+        $disq = id(new DiscussionQuery($this->app()))
+            ->retrieveDiscussion("DISQ-" . $currentId)
+        ;
 
         $payload = new HtmlPayload;
         $container = new MarkupContainer;
