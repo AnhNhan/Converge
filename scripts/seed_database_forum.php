@@ -45,7 +45,7 @@ function generateContent($faker)
 
     $paragraphs = array();
     for ($ii = 0; $ii < $paragraphCount; $ii++) {
-        $paragraphLength = mt_rand(100, 1000);
+        $paragraphLength = mt_rand(100, 500);
         $paragraphs[] = $faker->text($paragraphLength);
     }
 
