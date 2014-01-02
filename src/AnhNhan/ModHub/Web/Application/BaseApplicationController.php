@@ -28,6 +28,13 @@ abstract class BaseApplicationController
         return $this->app;
     }
 
+    protected function getRepository($entityName)
+    {
+        $app = $this->app();
+        $entityManager = $app->getEntityManager();
+        return $entityManager->getRepository($entityName);
+    }
+
     /**
      * @return Request
      */

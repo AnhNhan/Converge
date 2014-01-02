@@ -11,13 +11,6 @@ abstract class AbstractTagController extends BaseApplicationController
 {
     const TAG_ENTITY = 'AnhNhan\ModHub\Modules\Tag\Storage\Tag';
 
-    protected function getRepository($entityName)
-    {
-        $app = $this->app();
-        $entityManager = $app->getEntityManager();
-        return $entityManager->getRepository($entityName);
-    }
-
     protected function retrieveTagsForIDs(array $ids, $limit = null, $offset = null)
     {
         $tagRepo = $this->getRepository(self::TAG_ENTITY);
