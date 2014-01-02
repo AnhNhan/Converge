@@ -3,6 +3,8 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
+use AnhNhan\ModHub\Modules\Tag\Views\TagView;
+use AnhNhan\ModHub\Views\Grid\Grid;
 use AnhNhan\ModHub\Views\Panel\Panel;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -31,6 +33,9 @@ final class DiscussionDisplayController extends AbstractForumController
         $container = new MarkupContainer;
 
         if ($disq) {
+            $grid = new Grid;
+            $row  = $grid->row();
+            $disqColumn = $row->column(10);
             $dangerPanel = new Panel;
             $dangerPanel
                 ->setColor(Panel::COLOR_DANGER)
@@ -50,7 +55,7 @@ final class DiscussionDisplayController extends AbstractForumController
             // Warning! Unsafe HTML!
             $discussionPanel->append(ModHub\safeHtml(MarkupEngine::fastParse($disq->text())));
 
-            $container->push($discussionPanel);
+            $disqColumn->push($discussionPanel);
 
             foreach ($disq->posts()->toArray() as $post) {
                 $postPanel = new Panel;
@@ -61,8 +66,19 @@ final class DiscussionDisplayController extends AbstractForumController
                 // Warning! Unsafe HTML!
                 $postPanel->append(ModHub\safeHtml(MarkupEngine::fastParse($post->rawText())));
 
-                $container->push($postPanel);
+                $disqColumn->push($postPanel);
             }
+
+            $tagColumn = $row->column(2);
+            $tagContainer = new Panel;
+            $tagContainer->setHeader(ModHub\ht("h2", "Tags"));
+            $tagColumn->push($tagContainer);
+            $tags = mpull($disq->tags()->toArray(), "tag");
+            foreach ($tags as $tag) {
+                $tagContainer->append(new TagView($tag->label(), $tag->color()));
+            }
+
+            $container->push($grid);
         } else {
             $container->push(ModHub\ht("h1", "Could not find a discussion for '" . $currentId . "'"));
         }
