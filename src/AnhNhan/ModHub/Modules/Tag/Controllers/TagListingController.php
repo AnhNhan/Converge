@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\Tag\Controllers;
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Tag\TagQuery;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use AnhNhan\ModHub\Web\Application\JsonPayload;
@@ -36,7 +37,9 @@ final class TagListingController extends AbstractTagController
     {
         $container = new MarkupContainer;
 
-        $tags = $this->retrieveTags();
+        $tags = id(new TagQuery($this->app()))
+            ->retrieveTags()
+        ;
 
         $container->push(ModHub\ht("h1", "Tags"));
 
@@ -62,10 +65,12 @@ final class TagListingController extends AbstractTagController
         $stopWatch = $this->app()->getService("stopwatch");
         $timer = $stopWatch->start("tag-listing-json");
 
-        $tags = $this->retrieveTags();
+        $tags = id(new TagQuery($this->app()))
+            ->retrieveTags()
+        ;
 
         foreach ($tags as $tag) {
-            $result[] = $this->toDictionary($tag);
+            $result[] = $tag->toDictionary();
         }
 
         $time = $timer->stop()->getDuration();

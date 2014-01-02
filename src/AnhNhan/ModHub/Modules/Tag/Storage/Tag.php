@@ -126,6 +126,17 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
         return "TTAG";
     }
 
+    public function toDictionary()
+    {
+        return array(
+            "uid"          => $this->uid(),
+            "label"        => $this->label(),
+            "color"        => $this->color(),
+            "displayOrder" => $this->displayOrder(),
+            "description"  => $this->description(),
+        );
+    }
+
     /**
      * @return \Doctrine\ORM\PersistentCollection
      */
