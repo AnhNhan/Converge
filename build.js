@@ -1,10 +1,7 @@
 ({
     baseUrl: "cache",
     name: "main",
-    out: "dist/main.js",
+    out: "cache/main-dist.js",
     paths: {
-        jquery: "empty:",
-        underscore: "empty:",
-        backbone: "empty:"
     }
 })
