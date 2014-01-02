@@ -72,8 +72,8 @@ return array(
     "layout-grid" => array(
       "name" => "layout-grid",
       "path" => "layout/grid.less",
-      "hash" => "5cd5c19d",
-      "orig" => "6ba782f8",
+      "hash" => "6ac5683a",
+      "orig" => "a987e78d",
     ),
     "layout-objects" => array(
       "name" => "layout-objects",
@@ -359,12 +359,6 @@ return array(
       "hash" => "f0c3308b",
       "orig" => "83a67faf",
     ),
-    "jquery-private" => array(
-      "name" => "jquery-private",
-      "path" => "jquery-private.js",
-      "hash" => "08ee3b16",
-      "orig" => "28ef6174",
-    ),
     "jquery" => array(
       "name" => "jquery",
       "path" => "jquery.js",
@@ -430,7 +424,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "fc87f95a",
+      "hash" => "c07eab61",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
@@ -438,7 +432,7 @@ return array(
         "layout-boilerplate" => "4a2f68e3",
         "layout-core" => "fa6d79cf",
         "layout-form" => "a6febb60",
-        "layout-grid" => "5cd5c19d",
+        "layout-grid" => "6ac5683a",
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "9aa79efe",
         "layout-forum-object" => "2a8ef600",

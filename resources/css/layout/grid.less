@@ -29,6 +29,12 @@
 
         padding: (@gridGutterWidth / 2);
 
+        .grid-system {
+            // Placing a grid within a column narrows it unnecessarily
+            // Fix that
+            margin-right: (@gridGutterWidth / -1);
+        }
+
         img {
             max-width: 100%;
         }
