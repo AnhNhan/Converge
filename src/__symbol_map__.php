@@ -68,6 +68,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/ForumApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
     ),
+    "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Query/DiscussionQuery.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    ),
     "AnhNhan\ModHub\Modules\Forum\Storage\Discussion" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Storage/Discussion.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
@@ -146,6 +150,9 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
       "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
     ),
+    "AnhNhan\ModHub\Modules\StaticResources\ResMgr" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/ResMgr.php",
+    ),
     "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
@@ -199,6 +206,10 @@ return array(
     "AnhNhan\ModHub\Modules\Tag\TagApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/TagApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\TagQuery" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/TagQuery.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Query",
     ),
     "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransaction" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Transaction/TagTransaction.php",
@@ -259,6 +270,10 @@ return array(
       "file" => "AnhNhan/ModHub/Storage/EntityDefinition.php",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Storage\Query" => array(
+      "file" => "AnhNhan/ModHub/Storage/Query.php",
+      "abstr" => "1",
+    ),
     "AnhNhan\ModHub\Storage\Transaction\Transaction" => array(
       "file" => "AnhNhan/ModHub/Storage/Transaction/Transaction.php",
       "abstr" => "1",
@@ -307,6 +322,18 @@ return array(
     ),
     "AnhNhan\ModHub\Views\Form\FormView" => array(
       "file" => "AnhNhan/ModHub/Views/Form/FormView.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "AnhNhan\ModHub\Views\Grid\Column" => array(
+      "file" => "AnhNhan/ModHub/Views/Grid/Column.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "AnhNhan\ModHub\Views\Grid\Grid" => array(
+      "file" => "AnhNhan/ModHub/Views/Grid/Grid.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "AnhNhan\ModHub\Views\Grid\Row" => array(
+      "file" => "AnhNhan/ModHub/Views/Grid/Row.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
     "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
@@ -456,6 +483,10 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
     ),
+    "AnhNhan\ModHub\Storage\Query" => array(
+      "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery",
+      "AnhNhan\ModHub\Modules\Tag\TagQuery",
+    ),
     "AnhNhan\ModHub\Storage\EntityDefinition" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag",
@@ -508,6 +539,9 @@ return array(
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
       "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
       "AnhNhan\ModHub\Views\Form\FormView",
+      "AnhNhan\ModHub\Views\Grid\Column",
+      "AnhNhan\ModHub\Views\Grid\Grid",
+      "AnhNhan\ModHub\Views\Grid\Row",
       "AnhNhan\ModHub\Views\Objects\AbstractObject",
       "AnhNhan\ModHub\Views\Objects\Listing",
       "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
