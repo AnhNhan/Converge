@@ -6,6 +6,9 @@ require.config({
         // patched them to call `define` already
     },
     paths: {
+        // Not adding jQuery, Underscore.js and Backbone.js here, since we
+        // already have them loaded in `libs-pck` already, and have our own
+        // loaders ready
     }
 });
 
