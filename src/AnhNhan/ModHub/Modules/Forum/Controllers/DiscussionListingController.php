@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing;
 use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
@@ -18,15 +19,13 @@ final class DiscussionListingController extends AbstractForumController
     public function handle()
     {
         $request = $this->request();
-        $app = $this->app();
-
-        $forumEntityManager = $app->getEntityManager();
-        $disqRepo = $forumEntityManager->getRepository("AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion");
 
         $pageNr = 0;
         $offset = $pageNr * $this->discussionsPerPage;
 
-        $disqs = $disqRepo->findBy(array(), array("lastActivity" => "DESC"), $this->discussionsPerPage, $offset);
+        $disqs = id(new DiscussionQuery($this->app()))
+            ->retrieveDiscussions($this->discussionsPerPage, $offset)
+        ;
 
         $container = new MarkupContainer();
 
