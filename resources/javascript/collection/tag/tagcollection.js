@@ -20,6 +20,17 @@ define([
             return this.filter(function (tag) {
                 return tag.get('color') == color;
             });
+        },
+
+        getTagsForDiscussion: function (disq) {
+            var _tags = disq.get('tags');
+
+            var result = [];
+            _.each(_tags, function (tag) {
+                result.push(this.get(tag));
+            }, this);
+
+            return result;
         }
     });
 

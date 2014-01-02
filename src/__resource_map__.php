@@ -104,8 +104,8 @@ return array(
     "app" => array(
       "name" => "app",
       "path" => "app.js",
-      "hash" => "7ba16afb",
-      "orig" => "86c2a397",
+      "hash" => "20f2ff9d",
+      "orig" => "1c187c64",
     ),
     "backbone" => array(
       "name" => "backbone",
@@ -113,17 +113,35 @@ return array(
       "hash" => "6c1106d1",
       "orig" => "eff0ca3a",
     ),
+    "collection-forum-discussions" => array(
+      "name" => "collection-forum-discussions",
+      "path" => "collection/forum/discussions.js",
+      "hash" => "9544c425",
+      "orig" => "fc5ad65f",
+    ),
+    "collection-forum-posts" => array(
+      "name" => "collection-forum-posts",
+      "path" => "collection/forum/posts.js",
+      "hash" => "3ed7d4ef",
+      "orig" => "53487aa7",
+    ),
     "collection-tag-tagcollection" => array(
       "name" => "collection-tag-tagcollection",
       "path" => "collection/tag/tagcollection.js",
-      "hash" => "3d9e2a8f",
-      "orig" => "979ef8de",
+      "hash" => "52f7ed84",
+      "orig" => "1aab3f33",
     ),
     "controller-base" => array(
       "name" => "controller-base",
       "path" => "controller/base.js",
       "hash" => "3bfc4b2d",
       "orig" => "65e5495a",
+    ),
+    "controller-forum-listing" => array(
+      "name" => "controller-forum-listing",
+      "path" => "controller/forum/listing.js",
+      "hash" => "04deab18",
+      "orig" => "8d103fd6",
     ),
     "controller-front-frontpage" => array(
       "name" => "controller-front-frontpage",
@@ -134,8 +152,8 @@ return array(
     "controller-tag-listing" => array(
       "name" => "controller-tag-listing",
       "path" => "controller/tag/listing.js",
-      "hash" => "ff42bfbd",
-      "orig" => "f2378c5e",
+      "hash" => "41313f26",
+      "orig" => "5bfee978",
     ),
     "external-backbone" => array(
       "name" => "external-backbone",
@@ -368,7 +386,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "7f065bc5",
+      "hash" => "uas6ial2",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
@@ -377,11 +395,23 @@ return array(
       "hash" => "ebd29782",
       "orig" => "5813bf33",
     ),
+    "model-forum-discussion" => array(
+      "name" => "model-forum-discussion",
+      "path" => "model/forum/discussion.js",
+      "hash" => "7150bdb9",
+      "orig" => "7cf5e5ca",
+    ),
     "model-tag-tagmodel" => array(
       "name" => "model-tag-tagmodel",
       "path" => "model/tag/tagmodel.js",
       "hash" => "5a413242",
       "orig" => "6c69935a",
+    ),
+    "router-forum-forumrouter" => array(
+      "name" => "router-forum-forumrouter",
+      "path" => "router/forum/forumrouter.js",
+      "hash" => "87a49444",
+      "orig" => "51556135",
     ),
     "router-front-frontrouter" => array(
       "name" => "router-front-frontrouter",
@@ -395,11 +425,29 @@ return array(
       "hash" => "de9fddfb",
       "orig" => "2e4bb315",
     ),
+    "storage-globalstorage" => array(
+      "name" => "storage-globalstorage",
+      "path" => "storage/globalstorage.js",
+      "hash" => "e733103c",
+      "orig" => "46f10fa1",
+    ),
     "underscore" => array(
       "name" => "underscore",
       "path" => "underscore.js",
       "hash" => "13affc08",
       "orig" => "7259327a",
+    ),
+    "view-forum-discussionlisting" => array(
+      "name" => "view-forum-discussionlisting",
+      "path" => "view/forum/discussionlisting.js",
+      "hash" => "22d3046f",
+      "orig" => "5ccbd656",
+    ),
+    "view-forum-discussionlistingitem" => array(
+      "name" => "view-forum-discussionlistingitem",
+      "path" => "view/forum/discussionlistingitem.js",
+      "hash" => "e4b6ee18",
+      "orig" => "42740035",
     ),
     "view-maincontentview" => array(
       "name" => "view-maincontentview",
@@ -456,6 +504,18 @@ return array(
     ),
   ),
   "tmpls" => array(
+    "tmpl-forum-discussionitem" => array(
+      "name" => "tmpl-forum-discussionitem",
+      "path" => "forum/discussionitem.html",
+      "hash" => "7f53d920",
+      "orig" => "ead5890d",
+    ),
+    "tmpl-forum-discussionlist" => array(
+      "name" => "tmpl-forum-discussionlist",
+      "path" => "forum/discussionlist.html",
+      "hash" => "5bcba49b",
+      "orig" => "2e773741",
+    ),
     "tmpl-front-frontpage" => array(
       "name" => "tmpl-front-frontpage",
       "path" => "front/frontpage.html",
