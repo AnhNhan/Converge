@@ -9,6 +9,14 @@ settings:
     colors: false
     memory_limit: 1024M
     log: true
+coverage:
+    enabled: true
+    include:
+        - src/*
+    exclude:
+        - src/__init__.php
+        - src/__symbol_map__.php
+        - src/__resource_map__.php
 modules:
     config:
         Db:
