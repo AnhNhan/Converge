@@ -2,7 +2,6 @@
 .btn-mixin(@bgColor, light) {
     color: @white !important;
     .box-shadow(inset 0 0 18px rgba(0, 0, 0, .15));
-    text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
 
     .btn-mixin-common(@bgColor);
 }
@@ -10,7 +9,6 @@
 .btn-mixin(@bgColor, dark) {
     color: @veryDarkGrey !important;
     .box-shadow(inset 0 0 18px rgba(0, 0, 0, .15));
-    text-shadow: 0 0 4px rgba(255, 255, 255, 1);
 
     .btn-mixin-common(@bgColor);
 
@@ -21,30 +19,22 @@
 
 .btn-mixin-common(@bgColor) {
     background-color: @bgColor;
-    .background-gradient (lighten(@bgColor, 10%), darken(@bgColor, 10%));
-    .reset-filter;
 
     &:hover,
     &:focus,
     &:active {
         text-decoration: none !important;
         background-color: darken(@bgColor, 10%);
-        .background-gradient (@bgColor, darken(@bgColor, 20%));
-        .reset-filter;
     }
 
     &[disabled] {
         @disabledColor: mix(@grey, darken(@bgColor, 10%), 20%);
         background: @disabledColor;
-        // .background-gradient (lighten(@disabledColor, 20%), @disabledColor);
-        // .reset-filter;
         cursor: default;
         color: @veryLightGrey !important;
 
         &:hover {
             background: @disabledColor;
-            // .background-gradient (lighten(@disabledColor, 20%), @disabledColor);
-            // .reset-filter;
         }
     }
 }

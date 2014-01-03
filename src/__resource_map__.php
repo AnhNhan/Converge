@@ -48,8 +48,8 @@ return array(
     "layout-buttons" => array(
       "name" => "layout-buttons",
       "path" => "layout/buttons.less",
-      "hash" => "f57b3b3b",
-      "orig" => "7c67d1c5",
+      "hash" => "d9a2a7dc",
+      "orig" => "32b25a18",
     ),
     "layout-core" => array(
       "name" => "layout-core",
@@ -386,7 +386,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "da6v62gv",
+      "hash" => "2lpauufh",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
@@ -466,7 +466,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "c44d8c09",
+      "hash" => "18034528",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
@@ -475,7 +475,7 @@ return array(
         "layout-core" => "fa6d79cf",
         "layout-form" => "a6febb60",
         "layout-grid" => "6ac5683a",
-        "layout-buttons" => "f57b3b3b",
+        "layout-buttons" => "d9a2a7dc",
         "layout-objects" => "9aa79efe",
         "layout-forum-object" => "70ed9aa5",
         "layout-user-user-plate" => "11e046d6",
