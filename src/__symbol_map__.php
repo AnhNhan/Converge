@@ -211,10 +211,6 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Tag/TagQuery.php",
       "deriv" => "AnhNhan\ModHub\Storage\Query",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransaction" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Transaction/TagTransaction.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\Transaction",
-    ),
     "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
@@ -272,10 +268,6 @@ return array(
     ),
     "AnhNhan\ModHub\Storage\Query" => array(
       "file" => "AnhNhan/ModHub/Storage/Query.php",
-      "abstr" => "1",
-    ),
-    "AnhNhan\ModHub\Storage\Transaction\Transaction" => array(
-      "file" => "AnhNhan/ModHub/Storage/Transaction/Transaction.php",
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
@@ -531,9 +523,6 @@ return array(
     "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
-    ),
-    "AnhNhan\ModHub\Storage\Transaction\Transaction" => array(
-      "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransaction",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
