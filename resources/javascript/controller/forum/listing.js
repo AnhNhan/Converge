@@ -13,10 +13,13 @@ define([
             this.discussions = new DiscussionCollection;
             this.discussions.fetch({reset: true});
 
-            this.discussionlist = new DiscussionListing({collection: this.discussions, title: 'Forum Listing'});
+            this.discussionlist = new DiscussionListing({collection: this.discussions});
+            this.discussionlist.setTitle('Forum Listing');
+            this.discussionlist.render();
         },
         render: function () {
             this.$el.html(this.discussionlist.$el);
+            this.$el.prepend($('<a href="/disq/create" class="btn primary" style="float: right;" data-backbone-nav>Create new discussion!</a>'));
             return this;
         }
     });

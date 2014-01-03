@@ -27,8 +27,12 @@ define([
             this.listenTo(this.collection, 'reset', this.addAll);
 
             // Add initial thingies
-            this.render();
             this.addAll();
+        },
+
+        setTitle: function (title) {
+            this.title = title;
+            return this;
         },
 
         render: function () {

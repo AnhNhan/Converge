@@ -140,8 +140,8 @@ return array(
     "controller-forum-listing" => array(
       "name" => "controller-forum-listing",
       "path" => "controller/forum/listing.js",
-      "hash" => "04deab18",
-      "orig" => "8d103fd6",
+      "hash" => "f0931a69",
+      "orig" => "b1ae45eb",
     ),
     "controller-front-frontpage" => array(
       "name" => "controller-front-frontpage",
@@ -353,12 +353,6 @@ return array(
       "hash" => "4ad114ad",
       "orig" => "39022d11",
     ),
-    "external-r" => array(
-      "name" => "external-r",
-      "path" => "external/r.js",
-      "hash" => "a2eb944e",
-      "orig" => "6aa19df1",
-    ),
     "external-require" => array(
       "name" => "external-require",
       "path" => "external/require.js",
@@ -386,7 +380,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "2lpauufh",
+      "hash" => "cfe5464d",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
@@ -434,8 +428,8 @@ return array(
     "view-forum-discussionlisting" => array(
       "name" => "view-forum-discussionlisting",
       "path" => "view/forum/discussionlisting.js",
-      "hash" => "22d3046f",
-      "orig" => "5ccbd656",
+      "hash" => "471c1840",
+      "orig" => "e3c3fa16",
     ),
     "view-forum-discussionlistingitem" => array(
       "name" => "view-forum-discussionlistingitem",
@@ -446,8 +440,8 @@ return array(
     "view-maincontentview" => array(
       "name" => "view-maincontentview",
       "path" => "view/maincontentview.js",
-      "hash" => "702da600",
-      "orig" => "5c683c63",
+      "hash" => "94df1b61",
+      "orig" => "0d5f5909",
     ),
     "view-tag-taglistview" => array(
       "name" => "view-tag-taglistview",
