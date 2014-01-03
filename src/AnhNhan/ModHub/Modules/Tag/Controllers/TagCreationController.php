@@ -48,7 +48,7 @@ final class TagCreationController extends AbstractTagController
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
-                $tag = new Tag($label, $color, $descr, (int) $order);
+                $tag = new Tag;
 
                 $editor = TagTransactionEditor::create($em)
                     ->setEntity($tag)
