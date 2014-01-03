@@ -68,19 +68,28 @@ final class PostTransactionEditor extends TransactionEditor
     protected function postApplyHook($entity, array $transactions)
     {
         // Fish for the 'create' transaction to pick the discussion uid
+        // This is mostly a check whether we are creating or not
         $transactions = mpull($transactions, "newValue", "type");
         $disqId = idx($transactions, TransactionEntity::TYPE_CREATE);
         if (!$disqId) {
             return;
         }
 
+        $disq = $entity->parentDisq();
+        if (!$disq) {
+            throw new \Exception(
+                "The post entity has no attached discussion!You can attach one " .
+                "during instantiation by calling `Post::initializeForDiscussion($disq)`."
+            );
+        }
+        if ($disq->uid() !== $disqId) {
+            throw new \Exception("WTF?? Please check your code. Thoroughly.");
+        }
+
         // Register the post with the discussion
-        $discussion = $this->em()
-            ->getRepository('AnhNhan\ModHub\Modules\Forum\Storage\Discussion')
-            ->find($disqId);
         $editor = DiscussionTransactionEditor::create($this->em())
             ->setActor($this->actor())
-            ->setEntity($discussion)
+            ->setEntity($disq)
             ->addTransaction(
                 DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_POST, $entity->uid())
             )
