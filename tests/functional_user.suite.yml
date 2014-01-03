@@ -10,5 +10,3 @@ modules:
             user: 'modhub'
             password: ''
             dump: tests/_data/db_user.sql
-        Doctrine2:
-            cleanup: true
