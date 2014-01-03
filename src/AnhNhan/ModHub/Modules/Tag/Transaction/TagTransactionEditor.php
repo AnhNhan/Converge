@@ -47,8 +47,9 @@ final class TagTransactionEditor extends TransactionEditor
             case TagTransaction::TYPE_EDIT_LABEL:
             case TagTransaction::TYPE_EDIT_DESC:
             case TagTransaction::TYPE_EDIT_COLOR:
+                return $transaction->newValue() ?: null;
             case TagTransaction::TYPE_EDIT_ORDER:
-                return $transaction->newValue();
+                return $transaction->newValue() ?: 0;
         }
     }
 
