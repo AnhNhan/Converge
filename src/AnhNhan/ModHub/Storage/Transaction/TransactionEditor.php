@@ -181,7 +181,14 @@ abstract class TransactionEditor
         }
         $this->em()->flush();
 
+        $this->postApplyHook($object, $xactions);
+
         return $xactions;
+    }
+
+    protected function postApplyHook($entity, array $xactions)
+    {
+        // <empty>
     }
 
     public function getTransactionTypes()

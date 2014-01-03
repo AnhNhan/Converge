@@ -54,18 +54,16 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
      */
     private $modifiedAt;
 
-    public function __construct(
-        Discussion $discussion,
-        $author_uid,
-        $rawText,
-        \DateTime $createdAt = null,
-        \DateTime $modifiedAt = null
-    ) {
-        $this->disq = $discussion;
-        $this->author = $author_uid;
-        $this->rawText = $rawText;
-        $this->createdAt = $createdAt ?: new \DateTime;
-        $this->modifiedAt = $modifiedAt ?: new \DateTime;
+    public function __construct() {
+        $this->createdAt = new \DateTime;
+        $this->modifiedAt = new \DateTime;
+    }
+
+    public static function initializeForDiscussion(Discussion $disq)
+    {
+        $post = new static;
+        $post->disq = $disq;
+        return $post;
     }
 
     public function uid()
@@ -98,6 +96,12 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
         return $this->rawText;
     }
 
+    public function setRawText($text)
+    {
+        $this->rawText = $text;
+        return $this;
+    }
+
     public function createdAt()
     {
         return $this->createdAt;
@@ -106,6 +110,12 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     public function modifiedAt()
     {
         return $this->modifiedAt;
+    }
+
+    public function updateModifiedAt()
+    {
+        $this->modifiedAt = new \DateTime;
+        return $this;
     }
 
     public function getUIDType()

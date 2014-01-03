@@ -9,6 +9,8 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
  */
 class PostTransaction extends TransactionEntity
 {
+    const TYPE_EDIT_POST = "post.edit.text";
+
     /**
      * @ManyToOne(targetEntity="Post", inversedBy="xacts", fetch="EAGER")
      */
