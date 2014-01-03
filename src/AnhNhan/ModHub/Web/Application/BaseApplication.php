@@ -113,7 +113,7 @@ abstract class BaseApplication
         $isDevMode = true;
         $proxyDir = $this->getServiceParameter("doctrine.proxy.path") ?: sys_get_temp_dir();
 
-        $cache = $this->getService("cache.doctrine");
+        $cache = $this->getService("cache.doctrine") ?: new \Doctrine\Common\Cache\ArrayCache;
         $cache->setNamespace("dc2_" . md5($proxyDir) . "_"); // to avoid collisions
 
         $config = new Configuration();
@@ -169,11 +169,17 @@ abstract class BaseApplication
      */
     public function getService($service)
     {
+        if (!$this->container) {
+            return null;
+        }
         return $this->container->get($service, ContainerInterface::NULL_ON_INVALID_REFERENCE);
     }
 
     public function getServiceParameter($parameter)
     {
+        if (!$this->container) {
+            return null;
+        }
         return $this->container->getParameter($parameter);
     }
 }
