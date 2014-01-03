@@ -12,4 +12,12 @@ abstract class EntityDefinition
     {
         throw new \Exception("This entity definition does not have a UID type!");
     }
+
+    public function cleanId()
+    {
+        if (!method_exists($this, "uid")) {
+            throw new \Exception("Error Processing Request");
+        }
+        return preg_replace("/^[A-Z]{4}-/", "", $this->uid());
+    }
 }
