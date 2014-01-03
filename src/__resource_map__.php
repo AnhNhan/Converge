@@ -66,8 +66,8 @@ return array(
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
       "path" => "layout/forum/object.less",
-      "hash" => "2a8ef600",
-      "orig" => "33d359e8",
+      "hash" => "70ed9aa5",
+      "orig" => "f269723e",
     ),
     "layout-grid" => array(
       "name" => "layout-grid",
@@ -386,7 +386,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "uas6ial2",
+      "hash" => "da6v62gv",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
@@ -424,12 +424,6 @@ return array(
       "path" => "router/tag/tagrouter.js",
       "hash" => "de9fddfb",
       "orig" => "2e4bb315",
-    ),
-    "storage-globalstorage" => array(
-      "name" => "storage-globalstorage",
-      "path" => "storage/globalstorage.js",
-      "hash" => "e733103c",
-      "orig" => "46f10fa1",
     ),
     "underscore" => array(
       "name" => "underscore",
@@ -472,7 +466,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "c07eab61",
+      "hash" => "c44d8c09",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-sprites" => "7f8d1ffb",
@@ -483,7 +477,7 @@ return array(
         "layout-grid" => "6ac5683a",
         "layout-buttons" => "f57b3b3b",
         "layout-objects" => "9aa79efe",
-        "layout-forum-object" => "2a8ef600",
+        "layout-forum-object" => "70ed9aa5",
         "layout-user-user-plate" => "11e046d6",
         "layout-panel-panel" => "474be167",
         "layout-tag-tag" => "ec490562",
@@ -507,8 +501,8 @@ return array(
     "tmpl-forum-discussionitem" => array(
       "name" => "tmpl-forum-discussionitem",
       "path" => "forum/discussionitem.html",
-      "hash" => "7f53d920",
-      "orig" => "ead5890d",
+      "hash" => "34881a43",
+      "orig" => "4217e3f0",
     ),
     "tmpl-forum-discussionlist" => array(
       "name" => "tmpl-forum-discussionlist",
