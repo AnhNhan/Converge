@@ -3,7 +3,10 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
+use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Storage\Post;
+use AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor;
+use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 use AnhNhan\ModHub\Views\Form\FormView;
 use AnhNhan\ModHub\Views\Form\Controls\SubmitControl;
 use AnhNhan\ModHub\Views\Form\Controls\TextAreaControl;
@@ -47,10 +50,23 @@ final class DiscussionCreationController extends AbstractForumController
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
-                $discussion = new Discussion(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"), $label, $text);
+                $discussion = new Discussion();
 
-                $em->persist($discussion);
-                $em->flush();
+                $editor = DiscussionTransactionEditor::create($em)
+                    ->setActor(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"))
+                    ->setEntity($discussion)
+                    ->addTransaction(
+                        DiscussionTransaction::create(TransactionEntity::TYPE_CREATE)
+                    )
+                    ->addTransaction(
+                        DiscussionTransaction::create(DiscussionTransaction::TYPE_EDIT_LABEL, $label)
+                    )
+                    ->addTransaction(
+                        DiscussionTransaction::create(DiscussionTransaction::TYPE_EDIT_TEXT, $text)
+                    )
+                ;
+
+                $editor->apply();
 
                 $targetURI = "/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid());
                 return new RedirectResponse($targetURI);

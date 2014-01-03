@@ -71,18 +71,9 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
      */
     private $xacts = array();
 
-    public function __construct(
-        $author,
-        $label,
-        $rawText,
-        \DateTime $createdAt = null,
-        \DateTime $lastActivity = null
-    ) {
-        $this->author = $author;
-        $this->label = $label;
-        $this->rawText = $rawText;
-        $this->createdAt = $createdAt ?: new \DateTime;
-        $this->lastActivity = $lastActivity ?: new \DateTime;
+    public function __construct() {
+        $this->createdAt = new \DateTime;
+        $this->lastActivity = new \DateTime;
     }
 
     public function uid()
@@ -93,6 +84,12 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     public function label()
     {
         return $this->label;
+    }
+
+    public function setLabel($label)
+    {
+        $this->label = $label;
+        return $this;
     }
 
     public function authorId()
@@ -123,6 +120,11 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     public function lastActivity()
     {
         return $this->lastActivity;
+    }
+
+    public function updateLastActivity()
+    {
+        $this->lastActivity = new \DateTime;
     }
 
     public function tags()

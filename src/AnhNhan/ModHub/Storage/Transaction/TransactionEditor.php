@@ -59,9 +59,17 @@ abstract class TransactionEditor
         return $this->entityManager;
     }
 
-    final private function persistTransaction(TransactionEntity $transaction)
+    private function persistTransaction(TransactionEntity $transaction)
     {
         return $this->em()->persist($transaction);
+    }
+
+    private $persistLater = array();
+
+    final protected function persistLater(EntityDefinition $entity)
+    {
+        $this->persistLater[] = $entity;
+        return $this;
     }
 
     private $entity;
@@ -98,6 +106,14 @@ abstract class TransactionEditor
 
     final public function apply()
     {
+        if (!$this->entity) {
+            throw new \Exception("You have to assign an entity through setEntity().");
+        }
+
+        if (!$this->actor()) {
+            throw new \Exception("We require an actor. Please set one through setActor().");
+        }
+
         $object   = $this->entity;
         $xactions = $this->transactions;
         $isNewObject = $object->uid() === null;
@@ -158,6 +174,11 @@ abstract class TransactionEditor
         }
 
         $this->em()->persist($object);
+        $this->em()->flush();
+
+        foreach ($this->persistLater as $entity) {
+            $this->em()->persist($entity);
+        }
         $this->em()->flush();
 
         return $xactions;

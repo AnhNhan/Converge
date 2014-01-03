@@ -36,7 +36,18 @@ class ModelTest extends \Codeception\TestCase\Test
         $this->forumGuy->dontSeeInDatabase("Discussion", array("label" => "foo"));
 
         $entityManager = $this->forumGuy->getEntityManager();
-        $discussion = new Discussion($this->forumGuy->generateAuthorId(), "foo", "sometext");
+        $discussion = id(new Discussion)
+            ->setLabel("foo")
+            ->text("sometext")
+        ;
+
+        $discussionReflProp = $entityManager->getClassMetadata('AnhNhan\ModHub\Modules\Forum\Storage\Discussion')
+            ->reflClass->getProperty('author');
+        $discussionReflProp->setAccessible(true);
+        $discussionReflProp->setValue(
+            $discussion, $this->forumGuy->generateAuthorId()
+        );
+
         $entityManager->persist($discussion);
         $entityManager->flush();
 
@@ -61,8 +72,16 @@ class ModelTest extends \Codeception\TestCase\Test
         $tagApp->setContainer(\AnhNhan\ModHub\Web\Core::loadSfDIContainer());
         $tagEm  = $tagApp->getEntityManager();
 
-        $tag1 = new Tag(\Filesystem::readRandomCharacters(4), "green", null, -1);
-        $tag2 = new Tag(\Filesystem::readRandomCharacters(4), "blue", null, 1);
+        $tag1 = id(new Tag())
+            ->setLabel(\Filesystem::readRandomCharacters(4))
+            ->setColor("green")
+            ->setDisplayOrder(-1)
+        ;
+        $tag2 = id(new Tag())
+            ->setLabel(\Filesystem::readRandomCharacters(4))
+            ->setColor("blue")
+            ->setDisplayOrder(1)
+        ;
         $tagEm->persist($tag1);
         $tagEm->persist($tag2);
         $tagEm->flush();
