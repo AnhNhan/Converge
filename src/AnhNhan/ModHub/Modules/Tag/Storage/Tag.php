@@ -58,20 +58,9 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
      */
     private $xacts = array();
 
-    public function __construct(
-        $label,
-        $color = null,
-        $description = null,
-        $displayOrder = 0,
-        \DateTime $createdAt = null,
-        \DateTime $modifiedAt = null
-    ) {
-        $this->label = $label;
-        $this->color = $color;
-        $this->description = $description;
-        $this->displayOrder = $displayOrder;
-        $this->createdAt  = $createdAt ?: new \DateTime;
-        $this->modifiedAt = $modifiedAt ?: new \DateTime;
+    public function __construct() {
+        $this->createdAt  = new \DateTime;
+        $this->modifiedAt = new \DateTime;
     }
 
     public function uid()
@@ -84,41 +73,71 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
         return $this->label;
     }
 
-    public function displayOrder($displayOrder = null)
+    public function setLabel($label)
     {
-        if ($displayOrder === null) {
-            return $this->displayOrder;
-        } else {
-            if (empty($displayOrder) || !is_numeric($displayOrder)) {
-                throw new \InvalidArgumentException;
-            }
-            $this->displayOrder = $displayOrder;
-            return $this;
-        }
+        $this->label = $label;
+        return $this;
     }
 
-    public function color($color = null)
+    public function displayOrder()
     {
-        if ($color === null) {
-            return $this->color;
-        } else {
-            $this->color = $color;
-            return $this;
-        }
+        return $this->displayOrder;
     }
 
-    public function description($description = null)
+    public function setDisplayOrder($displayOrder = 0)
     {
-        if ($description === null) {
-            return $this->description;
-        } else {
-            $description = trim($description);
-            if (empty($description)) {
-                $description = null;
-            }
-            $this->description = $description;
-            return $this;
+        if (
+            (empty($displayOrder) && $displayOrder !== 0 && $displayOrder !== '0')
+            || !is_numeric($displayOrder)
+        ) {
+            throw new \InvalidArgumentException;
         }
+        $this->displayOrder = $displayOrder;
+        return $this;
+    }
+
+    public function color()
+    {
+        return $this->color;
+    }
+
+    public function setColor($color = null)
+    {
+        if (empty($color)) {
+            $color = null;
+        }
+        $this->color = $color;
+        return $this;
+    }
+
+    public function description()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description = null)
+    {
+        $description = trim($description);
+        if (empty($description)) {
+            $description = null;
+        }
+        $this->description = $description;
+        return $this;
+    }
+
+    public function createdAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function modifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
+    public function updateModifiedDate()
+    {
+        $this->modifiedAt = new \DateTime;
     }
 
     public function getUIDType()

@@ -10,6 +10,17 @@ final class TagQuery extends Query
 {
     const TAG_ENTITY = 'AnhNhan\ModHub\Modules\Tag\Storage\Tag';
 
+    /**
+     * @return \AnhNhan\ModHub\Modules\Tag\Storage\Tag
+     */
+    public function retrieveTag($id)
+    {
+        return $this
+            ->repository(self::TAG_ENTITY)
+            ->find($id)
+        ;
+    }
+
     public function retrieveTagsForIDs(array $ids, $limit = null, $offset = null)
     {
         $tagRepo = $this->repository(self::TAG_ENTITY);

@@ -3,6 +3,9 @@ namespace AnhNhan\ModHub\Modules\Tag\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
+use AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction;
+use AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor;
+use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Form\FormView;
 use AnhNhan\ModHub\Views\Form\Controls\SubmitControl;
@@ -47,10 +50,28 @@ final class TagCreationController extends AbstractTagController
 
                 $tag = new Tag($label, $color, $descr, (int) $order);
 
-                $em->persist($tag);
-                $em->flush();
+                $editor = TagTransactionEditor::create($em)
+                    ->setEntity($tag)
+                    ->setActor("USER-1234567890abcd")
+                    ->addTransaction(
+                        TagTransaction::create(TransactionEntity::TYPE_CREATE)
+                    )
+                    ->addTransaction(
+                        TagTransaction::create(TagTransaction::TYPE_EDIT_LABEL, $label)
+                    )
+                    ->addTransaction(
+                        TagTransaction::create(TagTransaction::TYPE_EDIT_COLOR, $color)
+                    )
+                    ->addTransaction(
+                        TagTransaction::create(TagTransaction::TYPE_EDIT_DESC, $descr)
+                    )
+                    ->addTransaction(
+                        TagTransaction::create(TagTransaction::TYPE_EDIT_ORDER, (int) $order)
+                    )
+                ;
+                $editor->apply();
 
-                $targetURI = "/tag/" . preg_replace("/^(.*?-)/", "", $tag->uid());
+                $targetURI = "/tag/" . $tag->cleanId();
                 return new RedirectResponse($targetURI);
             }
         }

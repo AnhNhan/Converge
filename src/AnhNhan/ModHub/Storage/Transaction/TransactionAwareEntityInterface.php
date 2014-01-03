@@ -10,6 +10,13 @@ namespace AnhNhan\ModHub\Storage\Transaction;
 interface TransactionAwareEntityInterface
 {
     /**
+     * Returns the UID of this entity. Required for all transaction aware entities.
+     *
+     * @return string
+     */
+    public function uid();
+
+    /**
      * Returns the name of the entity class used to store transactions.
      *
      * @return string

@@ -9,6 +9,8 @@ use AnhNhan\ModHub\Storage\Types\UID;
  */
 abstract class TransactionEntity extends EntityDefinition
 {
+    const TYPE_CREATE = "entity.create";
+
     /**
      * @Id
      * @Column(type="string")
@@ -35,12 +37,12 @@ abstract class TransactionEntity extends EntityDefinition
     protected $type;
 
     /**
-     * @Column(type="text")
+     * @Column(type="text", nullable=true)
      */
     protected $oldValue;
 
     /**
-     * @Column(type="text")
+     * @Column(type="text", nullable=true)
      */
     protected $newValue;
 
@@ -59,19 +61,22 @@ abstract class TransactionEntity extends EntityDefinition
      */
     protected $modifiedAt;
 
-    public function __construct($actor, $object, $type, $oldValue, $newValue, array $metadata = null)
+    public function __construct(array $metadata = null)
     {
-        if (!($object instanceof EntityDefinition) || ($object instanceof TransactionEntity)) {
-            throw new \InvalidArgumentException("Invalid object type");
-        }
-        UID::checkValidity($actor);
-
-        $this->actor    = $actor;
-        $this->object   = $object;
-        $this->type     = $type;
-        $this->oldValue = $oldValue;
-        $this->newValue = $newValue;
         $this->metadata = json_encode($metadata);
+        $this->createdAt = new \DateTime;
+        $this->modifiedAt = new \DateTime;
+    }
+
+    /**
+     * Convenience method for fast chainability
+     */
+    public static function create($type, $newValue = null, array $metadata = null)
+    {
+        return id(new static($metadata))
+            ->setType($type)
+            ->setNewValue($newValue)
+        ;
     }
 
     public function uid()
@@ -84,9 +89,21 @@ abstract class TransactionEntity extends EntityDefinition
         return $this->actor;
     }
 
+    public function setActorId($id)
+    {
+        $this->actor = $id;
+        return $this;
+    }
+
     public function object()
     {
         return $this->object;
+    }
+
+    public function setObject($object)
+    {
+        $this->object = $object;
+        return $this;
     }
 
     public function type()
@@ -94,14 +111,32 @@ abstract class TransactionEntity extends EntityDefinition
         return $this->type;
     }
 
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
     public function oldValue()
     {
         return $this->oldValue;
     }
 
+    public function setOldValue($oldValue)
+    {
+        $this->oldValue = $oldValue;
+        return $this;
+    }
+
     public function newValue()
     {
         return $this->newValue;
+    }
+
+    public function setNewValue($newValue)
+    {
+        $this->newValue = $newValue;
+        return $this;
     }
 
     /**
@@ -136,9 +171,4 @@ abstract class TransactionEntity extends EntityDefinition
     {
         return sprintf("%s-XACT", $this->getUIDSubType());
     }
-
-    /**
-     * @return array
-     */
-    abstract public function getTransactionTypes();
 }
