@@ -74,8 +74,21 @@ final class DiscussionCreationController extends AbstractForumController
         }
 
         if ($violations && $violations->count()) {
-            $container->push(ModHub\ht("h1", "There had been errors!"));
-            $container->push(ModHub\ht("pre", print_r($violations, true)));
+            $panel = new \AnhNhan\ModHub\Views\Panel\Panel;
+            $panel->setColor("info");
+            $panel->setHeader(ModHub\ht("h3", "I'm sorry, but we can't continue until these issues have been resolved!"));
+            $midriff = $panel->midriff();
+            $midriff->push(ModHub\ht("span", "Our subtile watchdog ninjas have detected "));
+            $midriff->push(ModHub\ht("strong", $violations->count() . " issues"));
+
+            $violationContainer = ModHub\ht("ul");
+            foreach ($violations as $violation) {
+                $violationContainer->appendContent(ModHub\ht("li", $violation->getMessage()));
+                $violationContainer->appendContent($violation->getPropertyPath());
+            }
+            $panel->append($violationContainer);
+
+            $container->push($panel);
         }
 
         $form = new FormView;
