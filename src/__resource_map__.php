@@ -380,7 +380,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "cfe5464d",
+      "hash" => "kbjgtxuq",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
@@ -446,8 +446,8 @@ return array(
     "view-tag-taglistview" => array(
       "name" => "view-tag-taglistview",
       "path" => "view/tag/taglistview.js",
-      "hash" => "9c118a40",
-      "orig" => "82da7fa4",
+      "hash" => "549afeb1",
+      "orig" => "70c628d7",
     ),
     "view-tag-tagview" => array(
       "name" => "view-tag-tagview",

@@ -10,6 +10,9 @@ define([
         $el: $('<div />'),
         $list: [],
 
+        title: 'Tags',
+        createButton: true,
+
         initialize: function () {
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'remove', this.removeOne);
@@ -17,6 +20,16 @@ define([
 
             // Add initial thingies
             this.addAll();
+        },
+
+        render: function () {
+            if (this.title) {
+                this.$el.prepend($('<h1 />').text(this.title));
+            }
+            if (this.createButton) {
+                this.$el.prepend($('<a href="/tag/create" class="btn primary" style="float: right;">Create new tag!</a>'));
+            }
+            return this;
         },
 
         addAll: function () {
