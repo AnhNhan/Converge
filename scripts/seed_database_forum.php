@@ -4,15 +4,21 @@ require_once __DIR__ . '/../src/__init__.php';
 
 use AnhNhan\ModHub\Modules\Forum\ForumApplication;
 use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
-use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag;
 use AnhNhan\ModHub\Modules\Forum\Storage\Post;
+use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
+use AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction;
+use AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor;
+use AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor;
 
 use AnhNhan\ModHub\Modules\Tag\TagApplication;
 use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
+use AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction;
+use AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor;
 
 use AnhNhan\ModHub\Modules\User\UserApplication;
 use AnhNhan\ModHub\Modules\User\Storage\User;
 
+use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 use AnhNhan\ModHub\Storage\Types\UID;
 
 // De-register libphutil autoloader, can't be used with Faker
@@ -52,33 +58,56 @@ function generateContent($faker)
     return implode("\n\n", $paragraphs);
 }
 
-$tags = array();
-for ($ii = 0; $ii < $num_tags; $ii++) {
-    $tag = new Tag($faker->unique()->city);
-    $tagEm->persist($tag);
-    $tags[] = $tag;
-}
-$tagEm->flush();
 
 $users = array();
 for ($ii = 0; $ii < $num_users; $ii++) {
     $users[] = UID::generate("USER");
 }
 
+$randomUser = function () use ($users) {
+    return $users[array_rand($users)];
+};
+
+$tags = array();
+for ($ii = 0; $ii < $num_tags; $ii++) {
+    $tag = new Tag;
+    $editor = TagTransactionEditor::create($tagEm)
+        ->setEntity($tag)
+        ->setActor($randomUser())
+        ->addTransaction(
+            TagTransaction::create(TransactionEntity::TYPE_CREATE)
+        )
+        ->addTransaction(
+            TagTransaction::create(TagTransaction::TYPE_EDIT_LABEL, $faker->unique()->city)
+        )
+    ;
+    $editor->apply();
+
+    $tags[] = $tag;
+}
+
+$randomTag = function () use ($tags) {
+    return $tags[array_rand($tags)];
+};
+
 $discussions = array();
 for ($ii = 0; $ii < $num_discussions; $ii++) {
-    $discussion = new Discussion($users[array_rand($users)], $faker->unique()->catchPhrase, generateContent($faker), $faker->dateTime, $faker->dateTime);
+    $discussion = new Discussion();
 
-    $discussions[] = $discussion;
-}
+    $editor = DiscussionTransactionEditor::create($forumEm)
+        ->setActor($randomUser())
+        ->setEntity($discussion)
+        ->addTransaction(
+            DiscussionTransaction::create(TransactionEntity::TYPE_CREATE)
+        )
+        ->addTransaction(
+            DiscussionTransaction::create(DiscussionTransaction::TYPE_EDIT_LABEL, $faker->unique()->catchPhrase)
+        )
+        ->addTransaction(
+            DiscussionTransaction::create(DiscussionTransaction::TYPE_EDIT_TEXT, generateContent($faker))
+        )
+    ;
 
-$posts = array();
-for ($ii = 0; $ii < $num_posts; $ii++) {
-    $posts[] = new Post($discussions[array_rand($discussions)], $users[array_rand($users)], generateContent($faker), $faker->dateTime, $faker->dateTime);
-}
-
-$discussion_tags = array();
-for ($ii = 0; $ii < $num_discussions; $ii++) {
     $derp = array();
     for ($jj = 0; $jj < 7; $jj++) {
         // That int is the probability n/10 of skipping
@@ -86,28 +115,48 @@ for ($ii = 0; $ii < $num_discussions; $ii++) {
             continue;
         }
 
-        $chosenTag = $tags[array_rand($tags)];
-        $chosenDisq = $discussions[$ii];
+        $chosenTag = $randomTag();
 
         if (isset($derp[$chosenTag->uid()])) {
             continue;
         }
 
         $derp += array($chosenTag->uid() => true);
-        $discussion_tags[] = new DiscussionTag($chosenDisq, $chosenTag);
+
+        $editor->addTransaction(
+            DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag->uid())
+        );
     }
+
+    $editor->apply();
+
+    $discussions[] = $discussion;
 }
 
-foreach ($discussions as $derp) {
-    $forumEm->persist($derp);
+$randomDisq = function () use ($discussions) {
+    return $discussions[array_rand($discussions)];
+};
+
+$posts = array();
+for ($ii = 0; $ii < $num_posts; $ii++) {
+    $disq = $randomDisq();
+    $post = Post::initializeForDiscussion($disq);
+    $editor = PostTransactionEditor::create($forumEm)
+        ->setActor($randomUser())
+        ->setEntity($post)
+        ->addTransaction(
+            PostTransaction::create(TransactionEntity::TYPE_CREATE, $disq->uid())
+        )
+        ->addTransaction(
+            PostTransaction::create(PostTransaction::TYPE_EDIT_POST, generateContent($faker))
+        )
+        ->apply()
+    ;
+    $posts[] = $post;
 }
 
-foreach ($posts as $derp) {
-    $forumEm->persist($derp);
-}
+$randomPost = function () use ($posts) {
+    return $posts[array_rand($posts)];
+};
 
-foreach ($discussion_tags as $derp) {
-    $forumEm->persist($derp);
-}
-
-$forumEm->flush();
+echo "Done." . PHP_EOL;
