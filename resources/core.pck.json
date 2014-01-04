@@ -3,6 +3,7 @@
     "type": "css",
     "contents": [
         "external-bootstrap-responsive-utilities",
+        "external-bootstrap-other",
         "external-bootstrap-sprites",
         "external-bootstrap-progress-bars",
         "external-bootstrap-modals",
