@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class DiscussionCreationController extends AbstractForumController
+final class DiscussionEditController extends AbstractForumController
 {
     private $defaultLabelValue = "Something pretty descriptive, like 'I want cheezburgrs!'";
     private $defaultTextValue  = "Tell us more about your favourite Pokémon!";

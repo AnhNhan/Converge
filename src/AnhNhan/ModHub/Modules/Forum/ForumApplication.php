@@ -34,7 +34,7 @@ final class ForumApplication extends BaseApplication
                 return new Controllers\DiscussionListingController($this);
                 break;
             case "disq-creation":
-                return new Controllers\DiscussionCreationController($this);
+                return new Controllers\DiscussionEditController($this);
                 break;
             case "disq-display":
                 return new Controllers\DiscussionDisplayController($this);

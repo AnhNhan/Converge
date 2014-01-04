@@ -49,12 +49,12 @@ return array(
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionCreationController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionCreationController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
-    ),
     "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionDisplayController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionEditController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
     ),
     "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController" => array(
