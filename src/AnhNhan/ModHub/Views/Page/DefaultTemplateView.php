@@ -24,13 +24,8 @@ final class DefaultTemplateView extends AbstractView
 
     public function getContent()
     {
-        $head_wrapper = HF::divTag()->addClass("header-wrap row-flex width12");
-        $header = HF::divTag()
-            ->addClass("header width12")
-            ->setContent(
-            new HeaderView
-        );
-        $head_wrapper->appendContent($header);
+        $head_wrapper = HF::divTag()->addClass("header row-flex width12");
+        $head_wrapper->appendContent(id(new HeaderView)->render()->addClass("width12"));
 
         $content = HF::divTag()
             ->addClass("content width12")
