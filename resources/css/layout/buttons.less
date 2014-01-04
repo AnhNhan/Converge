@@ -53,7 +53,6 @@ input[type="submit"] {
     display: inline-block;
     -moz-outline-style: none;
     line-height: @fontBaseLine;
-    background: none;
     border: 1px solid transparent;
     .transition(~"background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease");
     -webkit-user-select: none;
@@ -67,16 +66,6 @@ input[type="submit"] {
     }
     &:last-child {
         margin-right: 0;
-    }
-
-    &.small {
-        font-size: (@defaultFontSize * 0.85);
-        padding:  0.2em 0.67em;
-    }
-
-    &.large {
-        font-size: (@defaultFontSize * 1.25);
-        font-weight: normal;
     }
 
     &.close {
@@ -108,28 +97,38 @@ input[type="submit"] {
             -webkit-appearance: none;
         }
     }
+}
 
-    &.primary, &.btn-primary {
-        .btn-mixin(mix(@darkBlue, @coolBlue, 30%), light);
-    }
+.btn-small {
+    font-size: (@defaultFontSize * 0.85);
+    padding:  0.2em 0.67em;
+}
 
-    &.grey, &.btn-default {
-        .btn-mixin(darken(@veryLightGrey, 5%), dark);
-    }
+.btn-large {
+    font-size: (@defaultFontSize * 1.25);
+    font-weight: normal;
+}
 
-    &.btn-danger, &.danger {
-        .btn-mixin(@color-danger-real, light);
-    }
+.btn-primary {
+    .btn-mixin(mix(@darkBlue, @coolBlue, 30%), light);
+}
 
-    &.btn-info, &.info {
-        .btn-mixin(@color-info-real, light);
-    }
+.btn-default {
+    .btn-mixin(darken(@veryLightGrey, 5%), dark);
+}
 
-    &.btn-success, &.success {
-        .btn-mixin(@color-success-real, light);
-    }
+.btn-danger {
+    .btn-mixin(@color-danger-real, light);
+}
 
-    &.btn-warning, &.warning {
-        .btn-mixin(@color-warning-real, light);
-    }
+.btn-info {
+    .btn-mixin(@color-info-real, light);
+}
+
+.btn-success {
+    .btn-mixin(@color-success-real, light);
+}
+
+.btn-warning {
+    .btn-mixin(@color-warning-real, light);
 }
