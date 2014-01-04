@@ -98,6 +98,14 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Storage/PostTransaction.php",
       "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
     ),
+    "AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Transaction/DiscussionTransactionEditor.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Transaction/PostTransactionEditor.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
       "deriv" => "AnhNhan\ModHub\Views\Objects\Listing",
@@ -136,6 +144,9 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Builders\JsBuilder" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/JsBuilder.php",
+    ),
+    "AnhNhan\ModHub\Modules\StaticResources\Builders\TemplateBuilder" => array(
+      "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/TemplateBuilder.php",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
@@ -188,6 +199,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagCreationController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
     ),
+    "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagDisplayController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
+    ),
     "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagListingController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
@@ -210,6 +225,10 @@ return array(
     "AnhNhan\ModHub\Modules\Tag\TagQuery" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/TagQuery.php",
       "deriv" => "AnhNhan\ModHub\Storage\Query",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Transaction/TagTransactionEditor.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
     ),
     "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
@@ -268,6 +287,10 @@ return array(
     ),
     "AnhNhan\ModHub\Storage\Query" => array(
       "file" => "AnhNhan/ModHub/Storage/Query.php",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Storage\Transaction\TransactionEditor" => array(
+      "file" => "AnhNhan/ModHub/Storage/Transaction/TransactionEditor.php",
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
@@ -447,13 +470,14 @@ return array(
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
       "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionCreationController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
+      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
+      "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
@@ -471,8 +495,8 @@ return array(
       "AnhNhan\ModHub\Modules\User\UserApplication",
     ),
     "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController" => array(
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionCreationController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
+      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
     ),
     "AnhNhan\ModHub\Storage\Query" => array(
@@ -495,6 +519,11 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
+    ),
+    "AnhNhan\ModHub\Storage\Transaction\TransactionEditor" => array(
+      "AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor",
+      "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor",
+      "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
@@ -522,6 +551,7 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
+      "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
