@@ -18,9 +18,24 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
      */
     private $objects;
 
+    private $classes = array();
+    private $id;
+
     public function __construct()
     {
         $this->objects = new MarkupContainer();
+    }
+
+    public function addClass($class)
+    {
+        $this->classes[] = $class;
+        return $this;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -62,6 +77,20 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
      */
     abstract public function render();
 
+    private function process()
+    {
+        $tag = $this->render();
+        if (!$tag || $tag instanceof TextNode) { // May be empty
+            return $tag;
+        }
+
+        if ($this->id) {
+            $tag->setId($this->id);
+        }
+        $tag->addClass(implode(" ", $this->classes));
+        return $tag;
+    }
+
     /**
      * Returns the string representation of this view
      *
@@ -70,7 +99,7 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
     public function __toString()
     {
         try {
-            $viewObject = $this->render();
+            $viewObject = $this->process();
             return (string)$viewObject;
         } catch (\Exception $exc) {
             echo $exc->getMessage() . "\n";

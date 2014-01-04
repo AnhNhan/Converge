@@ -30,7 +30,7 @@ class HtmlDocumentView extends AbstractView
         // TODO: Edit this in the future. A lot.
         $reqObj = Request::createFromGlobals();
         $baseUrl = $reqObj->getBaseUrl();
-        return sprintf(<<<EOT
+        return ModHub\safeHtml(sprintf(<<<EOT
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -70,7 +70,7 @@ EOT
             $this->renderHead(),
             $this->renderRequireJs(),
             $this->content
-        );
+        ));
         } catch(\Exception $e) {
             var_dump($e);
         }
