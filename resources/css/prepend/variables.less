@@ -67,4 +67,9 @@
 @colorError: rgb(234, 132, 132);
 @colorWarning: mix(@colorError, @yellow);
 
+@color-info-real: darken(desaturate(@colorInfo, 10%), 15%);
+@color-success-real: darken(desaturate(@colorSuccess, 10%), 15%);
+@color-danger-real: darken(desaturate(@colorError, 10%), 15%);
+@color-warning-real: darken(desaturate(@colorWarning, 10%), 15%);
+
 @textSelectColor: @darkGrey;
