@@ -28,6 +28,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/AbstractExample.php",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\BootstrapExample" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/BootstrapExample.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    ),
     "AnhNhan\ModHub\Modules\Examples\Examples\FormExample" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/FormExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
@@ -481,6 +485,7 @@ return array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
+      "AnhNhan\ModHub\Modules\Examples\Examples\BootstrapExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample",
