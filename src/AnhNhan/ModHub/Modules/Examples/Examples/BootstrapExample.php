@@ -33,16 +33,6 @@ final class BootstrapExample extends AbstractExample
   </div>
 </div>
 <div class="progress">
-  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-    <span class="sr-only">20% Complete</span>
-  </div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-    <span class="sr-only">60% Complete (warning)</span>
-  </div>
-</div>
-<div class="progress">
   <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
     <span class="sr-only">80% Complete</span>
   </div>
@@ -52,16 +42,6 @@ final class BootstrapExample extends AbstractExample
 <div class="progress progress-striped">
   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
     <span class="sr-only">40% Complete (success)</span>
-  </div>
-</div>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-    <span class="sr-only">20% Complete</span>
-  </div>
-</div>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-    <span class="sr-only">60% Complete (warning)</span>
   </div>
 </div>
 <div class="progress progress-striped">
@@ -124,8 +104,8 @@ final class BootstrapExample extends AbstractExample
             <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn" data-dismiss="modal">Close</button>
-            <button type="button" class="btn primary">Save changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
 
         </div><!-- /.modal-content -->
@@ -133,7 +113,7 @@ final class BootstrapExample extends AbstractExample
     </div><!-- /.modal -->
 
     <div class="bs-example" style="padding-bottom: 24px;">
-      <button class="btn primary large" data-toggle="modal" data-target="#myModal">
+      <button class="btn btn-primary btn-large" data-toggle="modal" data-target="#myModal">
         Launch demo modal
       </button>
     </div><!-- /example -->
@@ -149,6 +129,49 @@ final class BootstrapExample extends AbstractExample
           <button type="button" class="btn btn-default">Or do this</button>
         </p>
       </div>
+      <div class="alert alert-success fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4>Oh snap! You got an error!</h4>
+        <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+        <p>
+          <button type="button" class="btn btn-success">Take this action</button>
+          <button type="button" class="btn btn-default">Or do this</button>
+        </p>
+      </div>
+      <div class="alert alert-info fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4>Oh snap! You got an error!</h4>
+        <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+        <p>
+          <button type="button" class="btn btn-info">Take this action</button>
+          <button type="button" class="btn btn-default">Or do this</button>
+        </p>
+      </div>
+      <div class="alert alert-warning fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4>Oh snap! You got an error!</h4>
+        <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+        <p>
+          <button type="button" class="btn btn-warning">Take this action</button>
+          <button type="button" class="btn btn-default">Or do this</button>
+        </p>
+      </div>
+
+
+<div class="dropdown">
+  <a id="dLabel" class="btn btn-default" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+    Dropdown <span class="caret"></span>
+  </a>
+
+
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Separated link</a></li>
+  </ul>
+</div>
 
 
 </div>
