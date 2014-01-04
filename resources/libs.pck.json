@@ -6,6 +6,14 @@
         "external-modernizr",
         "external-jquery-1-10-2",
         "external-json2",
+        "external-bootstrap-transition",
+        "external-bootstrap-scrollspy",
+        "external-bootstrap-modal",
+        "external-bootstrap-affix",
+        "external-bootstrap-alert",
+        "external-bootstrap-dropdown",
+        "external-bootstrap-tooltip",
+        "external-bootstrap-popover",
         "external-underscore",
         "external-backbone"
     ]
