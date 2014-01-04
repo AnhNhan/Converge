@@ -48,7 +48,9 @@ class UserAuthTest extends \Codeception\TestCase\Test
 
         $roles = array();
         foreach ($this->userRoles as $roleName) {
-            $role = new Role($roleName, $roleName . "_LABEL");
+            $role = Role::initializeWithName($roleName)
+                ->setLabel($roleName . "_LABEL")
+            ;
             $this->userTestGuy->persistEntity($role);
             $roles[] = $role;
         }

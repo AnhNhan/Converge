@@ -34,11 +34,14 @@ class Role extends EntityDefinition implements RoleInterface
      */
     private $description;
 
-    public function __construct($name, $label, $description = null)
+    /**
+     * @internal For tests only
+     */
+    public static function initializeWithName($name)
     {
-        $this->name = $name;
-        $this->label($label);
-        $this->description($description);
+        $role = new static;
+        $role->name = $name;
+        return $role;
     }
 
     public function uid()
@@ -56,30 +59,32 @@ class Role extends EntityDefinition implements RoleInterface
         return $this->name;
     }
 
-    public function label($label = null)
+    public function label()
     {
-        if ($label === null) {
-            return $this->label;
-        } else {
-            if (empty($label)) {
-                throw new \InvalidArgumentException("Label can't be empty!");
-            }
-            $this->label = $label;
-            return $this;
-        }
+        return $this->label;
     }
 
-    public function description($description = null)
+    public function setLabel($label)
     {
-        if ($description === null) {
-            return $this->description;
-        } else {
-            if (!$description) {
-                $description = null;
-            }
-            $this->description = $description;
-            return $this;
+        if (empty($label)) {
+            throw new \InvalidArgumentException("Label can't be empty!");
         }
+        $this->label = $label;
+        return $this;
+    }
+
+    public function description()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        if (!$description) {
+            $description = null;
+        }
+        $this->description = $description;
+        return $this;
     }
 
     public function getRole()
