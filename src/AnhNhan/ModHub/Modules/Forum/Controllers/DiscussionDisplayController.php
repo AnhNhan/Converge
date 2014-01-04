@@ -31,15 +31,19 @@ final class DiscussionDisplayController extends AbstractForumController
 
         if ($disq) {
             $grid = new Grid;
-            $row  = $grid->row();
-            $disqColumn = $row->column(9);
+
+            $dangerRow  = $grid->row();
+            $dangerColumn = $dangerRow->column(12);
             $dangerPanel = new Panel;
             $dangerPanel
                 ->setColor(Panel::COLOR_DANGER)
                 ->setHeader(ModHub\ht("h3", "Warning!"))
                 ->append("The discussion display page may contain unsafe HTML!")
             ;
-            $container->push($dangerPanel);
+            $dangerColumn->push($dangerPanel);
+
+            $row = $grid->row();
+            $disqColumn = $row->column(9);
 
             $discussionPanel = new Panel;
             $discussionPanel->setHeader(ModHub\ht("h2", $disq->label()));
