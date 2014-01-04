@@ -79,6 +79,12 @@ final class DiscussionDisplayController extends AbstractForumController
                 $tagContainer->append(new TagView($tag->label(), $tag->color()));
             }
 
+            $linksContainer = new Panel;
+            $tagColumn->push($linksContainer);
+            $linksContainer->setHeader(ModHub\ht("h2", "Links"));
+            $linksContainer->append(ModHub\ht("a", "Add post")->addClass("btn btn-success")->addOption("href", "disq/{$currentId}?mode=post"));
+            $linksContainer->append(ModHub\ht("a", "Edit discussion")->addClass("btn btn-info")->addOption("href", "disq/{$currentId}?mode=edit"));
+
             $container->push($grid);
         } else {
             $container->push(ModHub\ht("h1", "Could not find a discussion for '" . $currentId . "'"));

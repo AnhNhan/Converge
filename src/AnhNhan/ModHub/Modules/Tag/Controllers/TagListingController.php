@@ -50,7 +50,7 @@ final class TagListingController extends AbstractTagController
         // Add link to create new tag
         $container->unshift(ModHub\ht("a", "Create new tag!", array(
             "href"  => "/tag/create",
-            "class" => "btn primary",
+            "class" => "btn btn-primary",
             "style" => "float: right;",
         )));
 

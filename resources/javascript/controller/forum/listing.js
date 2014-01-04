@@ -19,7 +19,7 @@ define([
         },
         render: function () {
             this.$el.html(this.discussionlist.$el);
-            this.$el.prepend($('<a href="/disq/create" class="btn primary" style="float: right;" data-backbone-nav>Create new discussion!</a>'));
+            this.$el.prepend($('<a href="/disq/create" class="btn btn-primary" style="float: right;" data-backbone-nav>Create new discussion!</a>'));
             return this;
         }
     });

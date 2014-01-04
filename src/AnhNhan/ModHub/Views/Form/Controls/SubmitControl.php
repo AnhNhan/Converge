@@ -39,7 +39,7 @@ class SubmitControl implements ViewInterface
                 'a',
                 ModHub\icon_text($this->cancel_label, 'chevron-left')
             )->addOption('href', $this->cancel_uri)
-                ->addClass('btn grey');
+                ->addClass('btn btn-default');
         }
         $container->appendContent($cancelButton);
 
@@ -49,7 +49,7 @@ class SubmitControl implements ViewInterface
                 'button',
                 ModHub\icon_text($this->submit_label, 'check')
             )->addOption('name', '__submit__')
-                ->addClass('btn primary');
+                ->addClass('btn btn-primary');
         }
         $container->appendContent($submitButton);
 

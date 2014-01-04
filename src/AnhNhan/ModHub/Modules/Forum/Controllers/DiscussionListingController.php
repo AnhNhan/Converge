@@ -78,7 +78,7 @@ final class DiscussionListingController extends AbstractForumController
         // Add link to create new discussion
         $container->unshift(ModHub\ht("a", "Create new discussion!", array(
             "href"  => "/disq/create",
-            "class" => "btn primary",
+            "class" => "btn btn-primary",
             "style" => "float: right;",
         )));
 

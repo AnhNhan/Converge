@@ -27,7 +27,7 @@ define([
                 this.$el.prepend($('<h1 />').text(this.title));
             }
             if (this.createButton) {
-                this.$el.prepend($('<a href="/tag/create" class="btn primary" style="float: right;">Create new tag!</a>'));
+                this.$el.prepend($('<a href="/tag/create" class="btn btn-primary" style="float: right;">Create new tag!</a>'));
             }
             return this;
         },
