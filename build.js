@@ -1,7 +1,7 @@
 ({
     baseUrl: "cache",
     name: "main",
-    out: "cache/main-dist.js",
+    out: "cache/main.js",
     paths: {
     }
 })
