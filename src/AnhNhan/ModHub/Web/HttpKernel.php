@@ -123,8 +123,8 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
 
         if ($payload instanceof Application\HtmlPayload) {
             $resMgr
-                ->requireCSS("core-pck")
-                ->requireJS("libs-pck");
+                ->prependCSS("core-pck")
+                ->prependJS("libs-pck");
             $payload->setResMgr($resMgr);
         }
 

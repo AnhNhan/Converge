@@ -35,6 +35,16 @@ class ResMgr
         return $this;
     }
 
+    private function prependResource($stackName, $resource)
+    {
+        BA::assertIsEnum($stackName, array('css', 'js'));
+
+        if (!isset($this->resources[$stackName][$resource])) {
+            $this->resources[$stackName] = array_merge(array($resource => true), $this->resources[$stackName]);
+        }
+        return $this;
+    }
+
     public function requireCSS($name)
     {
         return $this->pushResource('css', $name);
@@ -43,6 +53,16 @@ class ResMgr
     public function requireJS($name)
     {
         return $this->pushResource('js', $name);
+    }
+
+    public function prependCSS($name)
+    {
+        return $this->prependResource('css', $name);
+    }
+
+    public function prependJS($name)
+    {
+        return $this->prependResource('js', $name);
     }
 
     public function fetchIncludedResourcesForType($type)
