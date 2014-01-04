@@ -7,6 +7,16 @@
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal w/ bg and corners and shit
 
+@modal-content-bg: @white;
+@modal-content-fallback-border-color: #999;
+@modal-content-border-color: rgba(0,0,0,.2);;
+@modal-header-border-color: @veryLightGrey;
+@modal-footer-border-color: @modal-header-border-color;
+@modal-backdrop-bg: @black;
+@modal-inner-padding: @defaultContentPadding;
+@modal-title-padding: @defaultContentPadding * (3 / 4);
+@modal-title-line-height: @fontBaseLine;
+
 // Kill the scroll on the body
 .modal-open {
   overflow: hidden;
@@ -23,6 +33,9 @@
   bottom: 0;
   left: 0;
   z-index: @zindex-modal-background;
+
+  // hack? too simple.
+  padding: @defaultContentPadding;
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
@@ -63,8 +76,8 @@
   z-index: (@zindex-modal-background - 10);
   background-color: @modal-backdrop-bg;
   // Fade for backdrop
-  &.fade { .opacity(0); }
-  &.in { .opacity(.5); }
+  &.fade { opacity: 0; }
+  &.in { opacity: .5; }
 }
 
 // Modal header

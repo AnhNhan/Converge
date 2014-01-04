@@ -66,6 +66,43 @@ input[type="reset"] {
         padding:  0.2em 0.67em;
     }
 
+    &.large {
+        font-size: (@defaultFontSize * 1.25);
+        font-weight: normal;
+        padding:  0.4em 0.67em;
+    }
+
+    &.close {
+        float: right;
+        font-size: (@defaultFontSize * 1.25);
+        font-weight: bold;
+        line-height: 1;
+        background: none;
+        border: none;
+        color: @darkGrey !important;
+        .box-shadow(none);
+
+        &:hover {
+            background: @veryLightGrey;
+            color: @darkGrey !important;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            opacity: .5;
+        }
+
+        // Additional properties for button version
+        // iOS requires the button element instead of an anchor tag.
+        // If you want the anchor version, it requires `href="#"`.
+        button& {
+            padding: 0;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            -webkit-appearance: none;
+        }
+    }
+
     .btn-mixin(@coolBlue, light);
 
     &.primary {
