@@ -169,6 +169,6 @@ abstract class TransactionEntity extends EntityDefinition
 
     final public function getUIDType()
     {
-        return sprintf("%s-XACT", $this->getUIDSubType());
+        return sprintf("XACT-%s", $this->getUIDSubType());
     }
 }
