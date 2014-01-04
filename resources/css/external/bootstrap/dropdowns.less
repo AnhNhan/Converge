@@ -49,7 +49,7 @@
   display: none; // none by default, but block on "open" of the menu
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 5px 0 !important;
   margin: 2px 0 0; // override default ul
   list-style: none;
   font-size: @defaultFontSize;
@@ -74,7 +74,7 @@
   // Links within the dropdown menu
   > li > a {
     display: block;
-    padding: 3px 20px;
+    padding: 5px 22px;
     clear: both;
     font-weight: normal;
     line-height: @fontBaseLine;
@@ -122,8 +122,6 @@
   &:focus {
     text-decoration: none;
     background-color: transparent;
-    background-image: none; // Remove CSS gradient
-    .reset-filter();
     cursor: not-allowed;
   }
 }
@@ -144,7 +142,7 @@
 // Dropdown section headers
 .dropdown-header {
   display: block;
-  padding: 3px 20px;
+  padding: 5px 22px;
   font-size: @fontSizeSmall;
   line-height: @fontBaseLine;
   color: @dropdown-header-color;
@@ -190,13 +188,11 @@
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  #gradient > .vertical(@start-color: @dropdown-link-hover-bg; @end-color: darken(@dropdown-link-hover-bg, 5%));
   background-color: darken(@dropdown-link-hover-bg, 5%);
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-  #gradient > .vertical(@start-color: @dropdown-link-active-bg; @end-color: darken(@dropdown-link-active-bg, 5%));
   background-color: darken(@dropdown-link-active-bg, 5%);
 }
 
