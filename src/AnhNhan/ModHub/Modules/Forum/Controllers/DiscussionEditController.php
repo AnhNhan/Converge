@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
+use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
 use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Storage\Post;
@@ -37,6 +38,18 @@ final class DiscussionEditController extends AbstractForumController
 
         $errors = array();
 
+        if ($disqId = $request->request->get('id')) {
+            $discussion = id(new DiscussionQuery($this->app()))
+                ->retrieveDiscussion("DISQ-" . $disqId)
+            ;
+
+            if (!$discussion) {
+                return $payload->setPayloadContents(ModHub\ht("h1", "Discussion does not exist"));
+            }
+        } else {
+            $discussion = new Discussion;
+        }
+
         if ($requestMethod == "POST") {
             $label = trim($request->request->get("label"));
             $text = trim($request->request->get("text"));
@@ -45,14 +58,18 @@ final class DiscussionEditController extends AbstractForumController
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
-                $discussion = new Discussion();
-
                 $editor = DiscussionTransactionEditor::create($em)
                     ->setActor(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"))
                     ->setEntity($discussion)
-                    ->addTransaction(
+                ;
+
+                if (!$disqId) {
+                    $editor->addTransaction(
                         DiscussionTransaction::create(TransactionEntity::TYPE_CREATE)
-                    )
+                    );
+                }
+
+                $editor
                     ->addTransaction(
                         DiscussionTransaction::create(DiscussionTransaction::TYPE_EDIT_LABEL, $label)
                     )
@@ -63,7 +80,7 @@ final class DiscussionEditController extends AbstractForumController
 
                 $editor->apply();
 
-                $targetURI = "/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid());
+                $targetURI = "/disq/" . $discussion->cleanId();
                 return new RedirectResponse($targetURI);
             }
         }
@@ -71,21 +88,21 @@ final class DiscussionEditController extends AbstractForumController
         $form = new FormView;
         $form
             ->setTitle("New discussion")
-            ->setAction("/disq/create")
+            ->setAction($request->getPathInfo())
             ->setMethod("POST");
 
         $form->append(id(new TextControl())
             ->setLabel("Label")
             ->setName("label")
-            ->setValue($this->defaultLabelValue));
+            ->setValue($discussion->label()));
 
         $form->append(id(new TextAreaControl())
             ->setLabel("Text")
             ->setName("text")
-            ->setValue($this->defaultTextValue));
+            ->setValue($discussion->text()));
 
         $form->append(id(new SubmitControl())
-            ->addCancelButton("/")
+            ->addCancelButton("/disq/")
             ->addSubmitButton("Hasta la vista!"));
 
         $container->push($form);

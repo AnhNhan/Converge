@@ -6,6 +6,8 @@ routes:
 
   - route-name: disq-creation
     pattern: /disq/create
+  - route-name: disq-creation
+    pattern: /disq/:id/edit
 
   - route-name: disq-display
     pattern: /disq/:id
