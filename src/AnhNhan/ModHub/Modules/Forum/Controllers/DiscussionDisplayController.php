@@ -37,16 +37,32 @@ final class DiscussionDisplayController extends AbstractForumController
             $disqColumn->setId("disq-column");
 
             $discussionPanel = new Panel;
-            $discussionPanel->setHeader(ModHub\ht("h2", $disq->label()));
+            $discussionPanel->setId($disq->uid());
 
-            $midRiff = $discussionPanel->midriff();
-            $midRiff->push(ModHub\ht("strong", $disq->authorId()));
-            $midRiff->push(ModHub\ht("span", " created this discussion on "));
-            $midRiff->push(ModHub\ht("span", $disq->lastActivity()->format("D, d M 'y")));
+            $headerRiff = new MarkupContainer;
+            $headerRiff->push(ModHub\ht("h2", $disq->label()));
+
+            $small = ModHub\ht("small");
+            $small->appendContent(ModHub\ht("strong", $disq->authorId()));
+            $small->appendContent(ModHub\ht("span", " created this discussion on "));
+            $small->appendContent(ModHub\ht("span", $disq->lastActivity()->format("D, d M 'y")));
+
+            $headerRiff->push($small);
+            $discussionPanel->setHeader($headerRiff);
 
             $discussionPanel->append(ModHub\safeHtml(
                 preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($disq->text()) . "\n\n")
             ));
+
+            $midriff = $discussionPanel->midriff();
+            $tags = mpull($disq->tags()->toArray(), "tag");
+            foreach ($tags as $tag) {
+                $midriff->push(new TagView($tag->label(), $tag->color()));
+            }
+            $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_text(" Edit discussion", "edit", false, true))
+                    ->addClass("btn btn-info")
+                    ->addOption("href", "disq/{$currentId}/edit")
+            );
 
             $disqColumn->push($discussionPanel);
 
@@ -66,18 +82,6 @@ final class DiscussionDisplayController extends AbstractForumController
             }
 
             $tagColumn = $row->column(3)->addClass("tag-column");
-            $tagContainer = new Panel;
-            $tagContainer->setHeader(ModHub\ht("h2", "Tags"));
-            $tagColumn->push($tagContainer);
-            $tags = mpull($disq->tags()->toArray(), "tag");
-            foreach ($tags as $tag) {
-                $tagContainer->append(new TagView($tag->label(), $tag->color()));
-            }
-
-            $linksContainer = new Panel;
-            $tagColumn->push($linksContainer);
-            $linksContainer->append(ModHub\ht("a", "Add post")->addClass("btn btn-success")->addOption("href", "disq/{$currentId}?mode=post"));
-            $linksContainer->append(ModHub\ht("a", "Edit discussion")->addClass("btn btn-info")->addOption("href", "disq/{$currentId}?mode=edit"));
 
             $tocContainer = new Panel;
             $tocContainer->addClass("forum-toc-affix");
