@@ -15,6 +15,12 @@
 
 return array(
   "css" => array(
+    "application-forum-discussion-display" => array(
+      "name" => "application-forum-discussion-display",
+      "path" => "application/forum/discussion-display.less",
+      "hash" => "e004305f",
+      "orig" => "207cd342",
+    ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
       "path" => "external/bootstrap/alerts.less",
@@ -36,8 +42,8 @@ return array(
     "external-bootstrap-other" => array(
       "name" => "external-bootstrap-other",
       "path" => "external/bootstrap/other.less",
-      "hash" => "a0fa8008",
-      "orig" => "09eb31b7",
+      "hash" => "3e3a65cd",
+      "orig" => "f153787d",
     ),
     "external-bootstrap-popovers" => array(
       "name" => "external-bootstrap-popovers",
@@ -148,6 +154,12 @@ return array(
       "path" => "app.js",
       "hash" => "20f2ff9d",
       "orig" => "1c187c64",
+    ),
+    "application-forum-toc-affix" => array(
+      "name" => "application-forum-toc-affix",
+      "path" => "application/forum/toc-affix.js",
+      "hash" => "1b63d181",
+      "orig" => "0a1d21c5",
     ),
     "backbone" => array(
       "name" => "backbone",
@@ -544,10 +556,10 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "6ed26df3",
+      "hash" => "f6afa503",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
-        "external-bootstrap-other" => "a0fa8008",
+        "external-bootstrap-other" => "3e3a65cd",
         "external-bootstrap-sprites" => "7f8d1ffb",
         "external-bootstrap-alerts" => "ef9d6614",
         "external-bootstrap-progress-bars" => "54e18da5",
