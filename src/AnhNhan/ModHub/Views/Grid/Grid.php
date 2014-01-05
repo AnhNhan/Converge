@@ -20,7 +20,7 @@ class Grid extends AbstractView
 
     public function row($flex = true)
     {
-        $row = new Row($flex);
+        $row = new Row($flex, $this);
         $this->rows->push($row);
         return $row;
     }

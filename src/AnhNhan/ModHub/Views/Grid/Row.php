@@ -12,12 +12,14 @@ class Row extends AbstractView
 {
     private $elements;
     private $isFlex = true;
+    private $parent;
 
-    public function __construct($flex = true)
+    public function __construct($flex = true, $parent = null)
     {
         parent::__construct();
         $this->isFlex = $flex;
         $this->elements = new MarkupContainer;
+        $this->parent = $parent;
     }
 
     public function column($size = 12, MarkupContainer $contents = null)
@@ -29,9 +31,14 @@ class Row extends AbstractView
 
     public function row($flex = true)
     {
-        $row = new Row($flex);
+        $row = new Row($flex, $this->parent);
         $this->elements->push($row);
         return $row;
+    }
+
+    public function parent()
+    {
+        return $this->parent;
     }
 
     public function render()

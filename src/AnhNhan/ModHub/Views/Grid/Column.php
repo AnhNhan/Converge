@@ -25,9 +25,14 @@ class Column extends AbstractView
 
     public function column($size, MarkupContainer $elements = null)
     {
-        $column = new Column($size, $elements, $this->row);
+        $column = new Column($size, $elements, $this->parentRow);
         $this->elements->push($column);
         return $column;
+    }
+
+    public function parentRow()
+    {
+        return $this->parentRow;
     }
 
     public function push(YamwMarkupInterface $markup)
