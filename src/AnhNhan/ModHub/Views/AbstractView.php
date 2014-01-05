@@ -19,6 +19,7 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
     private $objects;
 
     private $classes = array();
+    private $options = array();
     private $id;
 
     public function __construct()
@@ -29,6 +30,12 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
     public function addClass($class)
     {
         $this->classes[] = $class;
+        return $this;
+    }
+
+    public function addOption($key, $value = null)
+    {
+        $this->options[] = array($key => $value);
         return $this;
     }
 
@@ -88,6 +95,9 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
             $tag->setId($this->id);
         }
         $tag->addClass(implode(" ", $this->classes));
+        foreach ($this->options as $opt) {
+            $tag->addOption(key($opt), current($opt));
+        }
         return $tag;
     }
 
