@@ -69,15 +69,6 @@
           animation: @animation;
 }
 
-// Opacity
-.opacity(@opacity) {
-  opacity: @opacity;
-  // IE8 filter
-  // We don't *require* IE (leafo/lessphp is failing here...)
-  //@opacity-ie: (@opacity * 100);
-  //filter: ~"alpha(opacity=@{opacity-ie})";
-}
-
 
 .pull-right () {
   float: right !important;
