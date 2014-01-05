@@ -114,8 +114,8 @@ return array(
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
       "path" => "layout/forum/object.less",
-      "hash" => "70ed9aa5",
-      "orig" => "accc55ac",
+      "hash" => "06e34af4",
+      "orig" => "96b48d07",
     ),
     "layout-grid" => array(
       "name" => "layout-grid",
@@ -556,7 +556,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "47900318",
+      "hash" => "f9fd2644",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-other" => "19e65a9f",
@@ -574,7 +574,7 @@ return array(
         "layout-grid" => "c1f0ab5f",
         "layout-buttons" => "7b9d013f",
         "layout-objects" => "9aa79efe",
-        "layout-forum-object" => "70ed9aa5",
+        "layout-forum-object" => "06e34af4",
         "layout-user-user-plate" => "11e046d6",
         "layout-panel-panel" => "1f74f4c7",
         "layout-tag-tag" => "ec490562",
