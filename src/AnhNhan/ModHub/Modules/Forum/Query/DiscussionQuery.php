@@ -46,4 +46,31 @@ final class DiscussionQuery extends Query
         $query = $this->em()->createQuery($queryString);
         return $query->getResult();
     }
+
+    /**
+     * @return \AnhNhan\ModHub\Modules\Forum\Storage\Post
+     */
+    public function retrievePost($id)
+    {
+        return $this
+            ->repository(self::ENTITY_POST)
+            ->find($id)
+        ;
+    }
+
+    public function retrievePostsForIDs(array $ids, $limit = null, $offset = null)
+    {
+        return $this
+            ->repository(self::ENTITY_POST)
+            ->findBy(array("id" => $ids), array("createdAt" => "DESC"), $limit, $offset)
+        ;
+    }
+
+    public function retrievePosts($limit = null, $offset = null)
+    {
+        return $this
+            ->repository(self::ENTITY_POST)
+            ->findBy(array(), array("createdAt" => "DESC"), $limit, $offset)
+        ;
+    }
 }
