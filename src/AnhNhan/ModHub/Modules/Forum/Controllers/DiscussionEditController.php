@@ -16,17 +16,12 @@ use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Validator\Validation;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
 final class DiscussionEditController extends AbstractForumController
 {
-    private $defaultLabelValue = "Something pretty descriptive, like 'I want cheezburgrs!'";
-    private $defaultTextValue  = "Tell us more about your favourite Pokémon!";
-
     public function handle()
     {
         $request = $this->request();
