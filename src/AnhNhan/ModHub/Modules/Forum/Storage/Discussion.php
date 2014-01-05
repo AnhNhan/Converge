@@ -63,11 +63,13 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
      *
      * // Extra lazy fetching since we *could* have a lot of posts in a discussion
      * @OneToMany(targetEntity="Post", fetch="EXTRA_LAZY", mappedBy="disq")
+     * @OrderBy({"createdAt"="ASC"})
      */
     private $posts = array();
 
     /**
      * @OneToMany(targetEntity="DiscussionTransaction", mappedBy="object", fetch="LAZY")
+     * @OrderBy({"createdAt"="ASC"})
      */
     private $xacts = array();
 

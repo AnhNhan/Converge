@@ -55,6 +55,7 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
 
     /**
      * @OneToMany(targetEntity="TagTransaction", mappedBy="object", fetch="LAZY")
+     * @OrderBy({"createdAt"="ASC"})
      */
     private $xacts = array();
 

@@ -49,6 +49,7 @@ class User extends EntityDefinition implements AdvancedUserInterface
 
     /**
      * @ManyToMany(targetEntity="Role")
+     * @OrderBy({"name"="ASC"})
      * @var \Doctrine\ORM\PersistentCollection
      */
     private $roles = array();

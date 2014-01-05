@@ -59,6 +59,13 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
      */
     private $modifiedAt;
 
+    /**
+     * @OneToMany(targetEntity="PostTransaction", mappedBy="object", fetch="LAZY")
+     * @OrderBy({"createdAt"="ASC"})
+     * @var \Doctrine\ORM\PersistentCollection
+     */
+    private $xacts = array();
+
     public function __construct() {
         $this->createdAt = new \DateTime;
         $this->modifiedAt = new \DateTime;
