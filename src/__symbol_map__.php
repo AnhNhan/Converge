@@ -118,6 +118,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
       "deriv" => "AnhNhan\ModHub\Views\Objects\Object",
     ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/PaneledForumListing.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+    ),
     "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => array(
       "file" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
@@ -532,9 +536,13 @@ return array(
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
     ),
     "AnhNhan\ModHub\Views\Objects\Object" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
     ),
     "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
@@ -577,6 +585,7 @@ return array(
       "AnhNhan\ModHub\Views\Panel\Panel",
       "AnhNhan\ModHub\Views\Objects\Object",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
       "AnhNhan\ModHub\Views\Page\BarePageView",
     ),
     "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
