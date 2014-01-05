@@ -43,6 +43,11 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     private $rawText;
 
     /**
+     * @Column(type="boolean")
+     */
+    private $deleted = false;
+
+    /**
      * @Column(type="datetime")
      * @var \DateTime
      */
@@ -100,6 +105,11 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     {
         $this->rawText = $text;
         return $this;
+    }
+
+    public function deleted()
+    {
+        return $this->deleted;
     }
 
     public function createdAt()
