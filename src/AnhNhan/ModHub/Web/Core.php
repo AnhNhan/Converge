@@ -49,11 +49,14 @@ final class Core
         return ob_get_clean();
     }
 
-    public static function get404Page($page)
+    public static function get404Page($page, $tt = null)
     {
         $payload = new Application\HtmlPayload;
         $container = new \YamwLibs\Libs\Html\Markup\MarkupContainer;
         $container->push(ModHub\ht("h1", "Failed to find a controller for '$page'"));
+
+        $container->push(ModHub\ht("pre", ModHub\ht("code", print_r($tt, true))));
+
         $payload->setPayloadContents($container);
         $payload->setTitle("Page not found");
         return $payload;
