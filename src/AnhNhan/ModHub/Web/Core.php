@@ -51,7 +51,7 @@ final class Core
 
     public static function get404Page($page)
     {
-        $payload = new AnhNhan\ModHub\Web\Application\HtmlPayload;
+        $payload = new Application\HtmlPayload;
         $container = new \YamwLibs\Libs\Html\Markup\MarkupContainer;
         $container->push(ModHub\ht("h1", "Failed to find a controller for '$page'"));
         $payload->setPayloadContents($container);

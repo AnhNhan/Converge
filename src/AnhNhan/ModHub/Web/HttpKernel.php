@@ -78,7 +78,7 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         if ($this->container) {
             $container = $this->container;
         } else {
-            $container = Core::loadSfDIContainer();
+            $this->container = $container = Core::loadSfDIContainer();
         }
 
         $container->set("request", $request);
@@ -94,6 +94,9 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         }
 
         $app = $this->appRouter->routeToApplication($request);
+        if (!$app) {
+            return $this->create404Response($request, $type);
+        }
         $app->setContainer($container);
         $controller = $app->routeToController($request);
 
@@ -114,7 +117,7 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
 
             $payload = $controller->setRequest($request)->process();
         } else {
-            $payload = self::get404Page($page);
+            return $this->create404Response($request, $type);
         }
 
         if (!($payload instanceof Application\HttpPayload) && !($payload instanceof Response)) {
@@ -122,9 +125,6 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         }
 
         if ($payload instanceof Application\HtmlPayload) {
-            $resMgr
-                ->prependCSS("core-pck")
-                ->prependJS("libs-pck");
             $payload->setResMgr($resMgr);
         }
 
@@ -138,6 +138,14 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
             $this->getCapturedOverflow();
         }
 
+        return $this->filterResponse($response, $request, $type);
+    }
+
+    private function create404Response($request, $type)
+    {
+        $payload = Core::get404Page($request->getPathInfo());
+        $payload->setResMgr($this->container->get('resource_manager'));
+        $response = Core::prepareResponse($request, $payload, $this->getCapturedOverflow());
         return $this->filterResponse($response, $request, $type);
     }
 

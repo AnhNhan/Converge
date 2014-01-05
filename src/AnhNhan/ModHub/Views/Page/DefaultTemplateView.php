@@ -59,7 +59,10 @@ final class DefaultTemplateView extends AbstractView
             $this->getContent(),
             $this->header
         );
-        $htmlDocument->setResMgr($this->getResMgr());
+        $resMgr = $this->getResMgr()
+            ->prependCSS("core-pck")
+            ->prependJS("libs-pck");
+        $htmlDocument->setResMgr($resMgr);
         return $htmlDocument;
     }
 }
