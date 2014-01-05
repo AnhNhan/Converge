@@ -83,7 +83,7 @@ class Panel extends AbstractView
             );
         }
 
-        if (count($this->midriff)) {
+        if (count($this->midriff) || $this->midriffRight) {
             $midriffRight = null;
             if ($this->midriffRight) {
                 $midriffRight = ModHub\ht("div", $this->midriffRight)

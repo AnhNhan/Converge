@@ -56,8 +56,12 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $midriff = $discussionPanel->midriff();
             $tags = mpull($disq->tags()->toArray(), "tag");
-            foreach ($tags as $tag) {
-                $midriff->push(new TagView($tag->label(), $tag->color()));
+            if ($tags) {
+                foreach ($tags as $tag) {
+                    $midriff->push(new TagView($tag->label(), $tag->color()));
+                }
+            } else {
+                $midriff->push(ModHub\ht("small", "No tags for this discussion")->addClass("muted"));
             }
             $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_text(" Edit discussion", "edit", false, true))
                     ->addClass("btn btn-info")
