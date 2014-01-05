@@ -26,7 +26,12 @@
   $('.forum-toc-affix .nav > li').on('activate.bs.scrollspy', fooFunc);
 
   $('.forum-toc-affix a[href^="#"]').click(function (e) {
+      // don't follow the link (it's a fake)
       e.preventDefault()
+
+      // instead scroll there!
+      // subtracted something since we scroll-spy with offset and have to scroll a little bit higher
+      $('html, body').animate({scrollTop: $($(this).attr('href')).offset().top - 280}, 800);
   });
 
   // Debounce + CSS transitions = 4wsum!
