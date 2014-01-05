@@ -2,7 +2,7 @@
 #disq-column {
     .post-being-read {
         .transition(~"background-color 0.3s ease");
-        background-color: mix(@grey, @colorWarning); // Don't be put off by the warning, it's just a read marker
+        background-color: lighten(desaturate(@colorInfo, 30%), 20%);
     }
 }
 

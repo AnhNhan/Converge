@@ -18,8 +18,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "e004305f",
-      "orig" => "207cd342",
+      "hash" => "982c703a",
+      "orig" => "27e0d34f",
     ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
@@ -158,8 +158,8 @@ return array(
     "application-forum-toc-affix" => array(
       "name" => "application-forum-toc-affix",
       "path" => "application/forum/toc-affix.js",
-      "hash" => "019941ab",
-      "orig" => "df5ff71b",
+      "hash" => "22b52671",
+      "orig" => "54232d5c",
     ),
     "backbone" => array(
       "name" => "backbone",
