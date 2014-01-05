@@ -60,6 +60,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             foreach ($disq->posts()->toArray() as $post) {
                 $postPanel = new Panel;
+                $postPanel->setId($post->uid());
                 $title = $postPanel->midriff();
                 $title->push(ModHub\ht("strong", $post->authorId()));
                 $title->push(ModHub\ht("span", " added a comment"));
@@ -67,10 +68,11 @@ final class DiscussionDisplayController extends AbstractForumController
                 // Warning! Unsafe HTML!
                 $postPanel->append(ModHub\safeHtml(MarkupEngine::fastParse($post->rawText())));
 
+                $disqColumn->push(ModHub\ht("a", $post->uid(), array("anchor" => $post->uid()))->addClass("hidden"));
                 $disqColumn->push($postPanel);
             }
 
-            $tagColumn = $row->column(3);
+            $tagColumn = $row->column(3)->addClass("tag-column");
             $tagContainer = new Panel;
             $tagContainer->setHeader(ModHub\ht("h2", "Tags"));
             $tagColumn->push($tagContainer);
@@ -81,11 +83,22 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $linksContainer = new Panel;
             $tagColumn->push($linksContainer);
-            $linksContainer->setHeader(ModHub\ht("h2", "Links"));
+            $linksContainer->setHeader(ModHub\ht("h2", "Voìlá!"));
             $linksContainer->append(ModHub\ht("a", "Add post")->addClass("btn btn-success")->addOption("href", "disq/{$currentId}?mode=post"));
             $linksContainer->append(ModHub\ht("a", "Edit discussion")->addClass("btn btn-info")->addOption("href", "disq/{$currentId}?mode=edit"));
 
+            $tocContainer = new Panel;
+            $tocContainer->addClass("forum-toc-affix");
+            $tocContainer->setHeader(ModHub\ht("h2", "Table of Contents"));
+            $tocContainer->append(ModHub\ht("p", "Coming soon"));
+            $tagColumn->push($tocContainer);
+
             $container->push($grid);
+
+            $this->app()->getService("resource_manager")
+                ->requireJs("application-forum-toc-affix")
+                ->requireCss("application-forum-discussion-display")
+            ;
         } else {
             $container->push(ModHub\ht("h1", "Could not find a discussion for '" . $currentId . "'"));
         }

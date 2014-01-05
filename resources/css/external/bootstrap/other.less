@@ -51,7 +51,18 @@
 // -------------------------
 
 .affix {
-  position: fixed;
+  // Don't affix by default
+  position: static;
+}
+
+.affix-bottom {
+  position: absolute;
+}
+
+@media (min-width: @breakPointTablet) {
+  .affix {
+    position: fixed;
+  }
 }
 
 .sr-only {
