@@ -32,16 +32,6 @@ final class DiscussionDisplayController extends AbstractForumController
         if ($disq) {
             $grid = new Grid;
 
-            $dangerRow  = $grid->row();
-            $dangerColumn = $dangerRow->column(12);
-            $dangerPanel = new Panel;
-            $dangerPanel
-                ->setColor(Panel::COLOR_DANGER)
-                ->setHeader(ModHub\ht("h3", "Warning!"))
-                ->append("The discussion display page may contain unsafe HTML!")
-            ;
-            $dangerColumn->push($dangerPanel);
-
             $row = $grid->row();
             $disqColumn = $row->column(9);
             $disqColumn->setId("disq-column");
@@ -54,8 +44,9 @@ final class DiscussionDisplayController extends AbstractForumController
             $midRiff->push(ModHub\ht("span", " created this discussion on "));
             $midRiff->push(ModHub\ht("span", $disq->lastActivity()->format("D, d M 'y")));
 
-            // Warning! Unsafe HTML!
-            $discussionPanel->append(ModHub\safeHtml(MarkupEngine::fastParse($disq->text())));
+            $discussionPanel->append(ModHub\safeHtml(
+                preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($disq->text()) . "\n\n")
+            ));
 
             $disqColumn->push($discussionPanel);
 
@@ -66,10 +57,11 @@ final class DiscussionDisplayController extends AbstractForumController
                 $title->push(ModHub\ht("strong", $post->authorId()));
                 $title->push(ModHub\ht("span", " added a comment"));
                 $postPanel->setMidriffRight($post->modifiedAt()->format("D, d M 'y"));
-                // Warning! Unsafe HTML!
-                $postPanel->append(ModHub\safeHtml(MarkupEngine::fastParse($post->rawText())));
 
-                //$disqColumn->push(ModHub\ht("a", $post->uid(), array("anchor" => $post->uid()))->addClass("hidden"));
+                $postPanel->append(ModHub\safeHtml(
+                    preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($post->rawText()) . "\n\n")
+                ));
+
                 $disqColumn->push($postPanel);
             }
 
@@ -98,7 +90,7 @@ final class DiscussionDisplayController extends AbstractForumController
                     ModHub\ht("li",
                         ModHub\ht("a",
                             ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId())),
-                            array("href" => /* $request->getRequestUri() .*/ "#" . $post->uid())
+                            array("href" => "#" . $post->uid())
                         )
                     )
                     ->addOption("data-toggle", "popover")
