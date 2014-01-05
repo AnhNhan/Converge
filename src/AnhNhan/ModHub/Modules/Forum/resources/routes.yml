@@ -13,4 +13,6 @@ routes:
     pattern: /disq/:id
 
   - route-name: disq-posting
-    pattern: /disq/:id/post
+    pattern: /disq/:disq-id/post
+  - route-name: disq-posting
+    pattern: /disq/:disq-id/:post-id/edit

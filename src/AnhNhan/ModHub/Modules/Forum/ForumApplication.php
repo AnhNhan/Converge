@@ -40,7 +40,7 @@ final class ForumApplication extends BaseApplication
                 return new Controllers\DiscussionDisplayController($this);
                 break;
             case "disq-posting":
-                return new Controllers\DiscussionPostingController($this);
+                return new Controllers\PostEditController($this);
                 break;
         }
 
