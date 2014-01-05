@@ -15,6 +15,7 @@
         "external-bootstrap-tooltip",
         "external-bootstrap-popover",
         "external-underscore",
-        "external-backbone"
+        "external-backbone",
+        "application-bootstrap"
     ]
 }
