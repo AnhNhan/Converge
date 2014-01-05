@@ -8,14 +8,20 @@
 
 .forum-toc-affix {
     background-color: @white;
+    min-width: 223px;
 
     &.affix-top {
         position: relative;
     }
 
+    @media (max-width: @breakPointDesktop) {
+        visibility: hidden;
+        display: none;
+    }
+
     @media (min-width: @breakPointTablet) {
         &.affix {
-            width: 15.65%; // 25% * 70% - all those margins
+            width: 18.15%; // 25% * 80% - all those margins
             top: 0;
         }
 
@@ -25,7 +31,7 @@
 
     .popover {
         .popover-content {
-            width: 240px;
+            width: 250px;
         }
     }
 
