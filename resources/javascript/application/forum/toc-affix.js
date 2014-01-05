@@ -15,6 +15,11 @@
     }
   });
 
+  $('.forum-toc-affix .nav > li').popover({
+    title: 'Preview',
+    trigger: 'hover'
+  });
+
   var fooFunc = function (e) {
     var clName = 'post-being-read';
     $('.panel-midriff').removeClass(clName);

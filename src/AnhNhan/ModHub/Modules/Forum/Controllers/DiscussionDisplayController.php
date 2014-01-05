@@ -93,7 +93,6 @@ final class DiscussionDisplayController extends AbstractForumController
             $tagColumn->push($tocContainer);
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
-            $isFirst = true;
             foreach ($disq->posts()->toArray() as $post) {
                 $ulCont->appendContent(
                     ModHub\ht("li",
@@ -101,9 +100,10 @@ final class DiscussionDisplayController extends AbstractForumController
                             ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId())),
                             array("href" => /* $request->getRequestUri() .*/ "#" . $post->uid())
                         )
-                    )->addClass($isFirst ? "active" : "")
+                    )
+                    ->addOption("data-toggle", "popover")
+                    ->addOption("data-content", phutil_utf8_shorten($post->rawText(), 140))
                 );
-                $isFirst = false;
             }
             $tocContainer->append($ulCont);
 
