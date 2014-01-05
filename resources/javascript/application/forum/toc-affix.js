@@ -15,12 +15,12 @@
     }
   });
 
-  var fooFunc = _.debounce(function (e) {
+  var fooFunc = function (e) {
     var clName = 'post-being-read';
     $('.panel-midriff').removeClass(clName);
     $($(this).children(0).attr('href') + ' .panel-midriff').addClass(clName);
     // Hm, send read-info to server?
-  }, 300);
+  };
   fooFunc.call($('.forum-toc-affix .nav > li.active'), 'e');
 
   $('.forum-toc-affix .nav > li').on('activate.bs.scrollspy', fooFunc);

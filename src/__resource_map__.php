@@ -158,8 +158,8 @@ return array(
     "application-forum-toc-affix" => array(
       "name" => "application-forum-toc-affix",
       "path" => "application/forum/toc-affix.js",
-      "hash" => "1b63d181",
-      "orig" => "0a1d21c5",
+      "hash" => "a6051d43",
+      "orig" => "30b17a9a",
     ),
     "backbone" => array(
       "name" => "backbone",
