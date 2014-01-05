@@ -26,7 +26,7 @@ final class PostTransactionEditor extends TransactionEditor
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
                 return null;
-            case TransactionEntity::TYPE_EDIT_DELETED:
+            case PostTransaction::TYPE_EDIT_DELETED:
                 return $entity->deleted();
             case PostTransaction::TYPE_EDIT_POST:
                 return $entity->rawText();
@@ -42,7 +42,7 @@ final class PostTransactionEditor extends TransactionEditor
                     throw new \Exception(sprintf("You have to pass in a valid DISQ UID! ('%s' given)", $transaction->newValue()));
                 }
                 // Fall through
-            case TransactionEntity::TYPE_EDIT_DELETED:
+            case PostTransaction::TYPE_EDIT_DELETED:
             case PostTransaction::TYPE_EDIT_POST:
                 return $transaction->newValue();
         }
@@ -61,7 +61,7 @@ final class PostTransactionEditor extends TransactionEditor
                     $entity, $this->actor()
                 );
                 break;
-            case TransactionEntity::TYPE_EDIT_DELETED:
+            case PostTransaction::TYPE_EDIT_DELETED:
                 // Set deleted field by hacking
                 $reflClass = $this->em()->getClassMetadata('AnhNhan\ModHub\Modules\Forum\Storage\Post')
                     ->reflClass;
