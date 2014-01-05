@@ -20,4 +20,30 @@ abstract class EntityDefinition
         }
         return preg_replace("/^[A-Z]{4}-/", "", $this->uid());
     }
+
+    // Magic properties :)
+    // $post->uid instead of $post->uid()
+    //
+    // Note: This method is extremely performance sensitive!
+    public function __get($name)
+    {
+        if (method_exists($this, $name)) {
+            return $this->$name();
+        }
+
+        throw new \RunTimeException(sprintf(
+            "Ayo, you tried to access '%s::%s' that does not exist in here!\n" .
+            "Better check your code!",
+            get_class($this),
+            $name
+        ));
+    }
+
+    public function __set($name, $value)
+    {
+        throw new \Exception(
+            "Heads up! This object does not have any public properties! It's " .
+            "all magic properties. Check if there is a method with the same name"
+        );
+    }
 }

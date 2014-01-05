@@ -17,12 +17,12 @@ final class DiscussionDisplayController extends AbstractForumController
 {
     public function handle()
     {
-        $request = $this->request();
-        $app = $this->app();
+        $request = $this->request;
+        $app = $this->app;
 
         $currentId = $request->request->get("id");
 
-        $disq = id(new DiscussionQuery($this->app()))
+        $disq = id(new DiscussionQuery($this->app))
             ->retrieveDiscussion("DISQ-" . $currentId)
         ;
 
@@ -37,28 +37,28 @@ final class DiscussionDisplayController extends AbstractForumController
             $disqColumn->setId("disq-column");
 
             $discussionPanel = new Panel;
-            $discussionPanel->setId($disq->uid());
+            $discussionPanel->setId($disq->uid);
 
             $headerRiff = new MarkupContainer;
-            $headerRiff->push(ModHub\ht("h2", $disq->label()));
+            $headerRiff->push(ModHub\ht("h2", $disq->label));
 
             $small = ModHub\ht("small");
-            $small->appendContent(ModHub\ht("strong", $disq->authorId()));
+            $small->appendContent(ModHub\ht("strong", $disq->authorId));
             $small->appendContent(ModHub\ht("span", " created this discussion on "));
-            $small->appendContent(ModHub\ht("span", $disq->lastActivity()->format("D, d M 'y")));
+            $small->appendContent(ModHub\ht("span", $disq->lastActivity->format("D, d M 'y")));
 
             $headerRiff->push($small);
             $discussionPanel->setHeader($headerRiff);
 
             $discussionPanel->append(ModHub\safeHtml(
-                preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($disq->text()) . "\n\n")
+                preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($disq->text) . "\n\n")
             ));
 
             $midriff = $discussionPanel->midriff();
-            $tags = mpull($disq->tags()->toArray(), "tag");
+            $tags = mpull($disq->tags->toArray(), "tag");
             if ($tags) {
                 foreach ($tags as $tag) {
-                    $midriff->push(new TagView($tag->label(), $tag->color()));
+                    $midriff->push(new TagView($tag->label, $tag->color));
                 }
             } else {
                 $midriff->push(ModHub\ht("small", "No tags for this discussion")->addClass("muted"));
@@ -70,16 +70,16 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $disqColumn->push($discussionPanel);
 
-            foreach ($disq->posts()->toArray() as $post) {
+            foreach ($disq->posts->toArray() as $post) {
                 $postPanel = new Panel;
-                $postPanel->setId($post->uid());
+                $postPanel->setId($post->uid);
                 $title = $postPanel->midriff();
-                $title->push(ModHub\ht("strong", $post->authorId()));
+                $title->push(ModHub\ht("strong", $post->authorId));
                 $title->push(ModHub\ht("span", " added a comment"));
-                $postPanel->setMidriffRight($post->modifiedAt()->format("D, d M 'y"));
+                $postPanel->setMidriffRight($post->modifiedAt->format("D, d M 'y"));
 
                 $postPanel->append(ModHub\safeHtml(
-                    preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($post->rawText()) . "\n\n")
+                    preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($post->rawText) . "\n\n")
                 ));
 
                 $disqColumn->push($postPanel);
@@ -93,23 +93,23 @@ final class DiscussionDisplayController extends AbstractForumController
             $tagColumn->push($tocContainer);
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
-            foreach ($disq->posts()->toArray() as $post) {
+            foreach ($disq->posts->toArray() as $post) {
                 $ulCont->appendContent(
                     ModHub\ht("li",
                         ModHub\ht("a",
-                            ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId())),
-                            array("href" => "#" . $post->uid())
+                            ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId)),
+                            array("href" => "#" . $post->uid)
                         )
                     )
                     ->addOption("data-toggle", "popover")
-                    ->addOption("data-content", phutil_utf8_shorten($post->rawText(), 140))
+                    ->addOption("data-content", phutil_utf8_shorten($post->rawText, 140))
                 );
             }
             $tocContainer->append($ulCont);
 
             $container->push($grid);
 
-            $this->app()->getService("resource_manager")
+            $this->app->getService("resource_manager")
                 ->requireJs("application-forum-toc-affix")
                 ->requireCss("application-forum-discussion-display")
             ;
