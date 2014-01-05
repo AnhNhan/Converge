@@ -47,6 +47,21 @@ final class PanelExample extends AbstractExample
         $panel->append(ModHub\ht("p", $faker->text(800)));
 
         $container->push($panel);
+
+        $panel = id(new Panel)
+            ->setColor(Panel::COLOR_DARK)
+        ;
+        $panel->midriff()->push(ModHub\icon_text("Deleted Post", "remove"));
+        $container->push($panel);
+
+        $panel = id(new Panel)
+            ->setColor(Panel::COLOR_DARK)
+            ->setHeader("Winter is coming")
+            ->append(ModHub\ht("p", $faker->text(200)))
+        ;
+        $panel->midriff()->push(ModHub\safeHtml("Said <em>who</em>?"));
+        $container->push($panel);
+
         return $container;
     }
 }

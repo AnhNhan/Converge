@@ -9,14 +9,20 @@
         border: 1px solid mix(@grey, @color);
     }
 
+    .panel-header, .panel-midriff {
+        border-bottom: 1px solid mix(@grey, @color);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
     .panel-header {
         background-color: lighten(@color, 15%);
-        border-bottom: 1px solid mix(@grey, @color);
     }
 
     .panel-midriff {
         background-color: mix(@veryLightGrey, @color);
-        border-bottom: 1px solid mix(@grey, @color);
     }
 }
 
@@ -90,6 +96,23 @@
         &:last-child {
             margin-bottom: 0;
             padding-bottom: 0;
+        }
+    }
+}
+
+.panel-container.dark {
+    @color: mix(@darkGrey, @grey);
+    .panel-colorize (@color);
+
+    .panel-container-inner {
+        border: 1px solid mix(@darkGrey, @color);
+    }
+
+    .panel-header, .panel-midriff {
+        border-bottom: 1px solid mix(@darkGrey, @color);
+
+        &:last-child {
+            border-bottom: none;
         }
     }
 }

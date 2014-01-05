@@ -15,6 +15,7 @@ class Panel extends AbstractView
     const COLOR_WARNING = "warning";
     const COLOR_INFO    = "info";
     const COLOR_SUCCESS = "success";
+    const COLOR_DARK    = "dark";
 
     private $header;
     private $color = self::COLOR_NONE;
@@ -53,6 +54,7 @@ class Panel extends AbstractView
             self::COLOR_WARNING => true,
             self::COLOR_INFO    => true,
             self::COLOR_SUCCESS => true,
+            self::COLOR_DARK    => true,
         );
     }
 
@@ -96,7 +98,7 @@ class Panel extends AbstractView
         }
 
         $children = $this->retrieveChilds();
-        if ($children) {
+        if ($children->count()) {
             $body = ModHub\ht("div")->addClass("panel-body");
             foreach ($children->getMarkupData() as $child) {
                 $body->appendContent($child);
