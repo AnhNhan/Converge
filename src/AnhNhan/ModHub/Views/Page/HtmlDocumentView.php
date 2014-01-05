@@ -54,7 +54,7 @@ $(function () {
     $('a[data-backbone-nav]').click(function () {
         that = $(this);
         Backbone.history.navigate(that.attr('href'), {trigger: true});
-        return false;
+        //return false;
     });
 });
 </script>
