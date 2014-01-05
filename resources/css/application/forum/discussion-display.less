@@ -1,24 +1,48 @@
 
+#disq-column {
+    .post-being-read {
+        .transition(~"background-color 0.3s ease");
+        background-color: mix(@grey, @colorWarning); // Don't be put off by the warning, it's just a read marker
+    }
+}
+
 .forum-toc-affix {
     background-color: @white;
-    .transition(~"position 0.6s ease");
 
     &.affix-top {
         position: relative;
     }
 
     @media (min-width: @breakPointTablet) {
-        &.affix, &.affix-bottom {
-            width: 15.65%; // 25% * 70% - all those margins
-        }
-
         &.affix {
-            top: 0 !important;
+            width: 15.65%; // 25% * 70% - all those margins
+            top: 0;
         }
 
-        /* Should be in other.less
-        &.affix-bottom {
-            position: absolute;
-        }*/
+        // Debounce + CSS transitions = 4wsum!
+        .transition(~"top 0.8s ease");
+    }
+
+    .nav {
+        margin: -10px 0;
+        padding: 0 !important;
+    }
+
+    li {
+        list-style: none;
+        margin: 0 -10px;
+        padding: 0;
+        background-color: transparent;
+        .transition(~"background-color 0.3s ease");
+
+        &.active {
+            background-color: lighten(desaturate(@colorInfo, 30%), 20%);
+        }
+
+        a {
+            display: inline-block;
+            padding: (@fontBaseLine / 2) 10px;
+            margin: 0;
+        }
     }
 }

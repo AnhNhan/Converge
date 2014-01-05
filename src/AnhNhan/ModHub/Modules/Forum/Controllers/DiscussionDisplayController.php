@@ -44,6 +44,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $row = $grid->row();
             $disqColumn = $row->column(9);
+            $disqColumn->setId("disq-column");
 
             $discussionPanel = new Panel;
             $discussionPanel->setHeader(ModHub\ht("h2", $disq->label()));
@@ -68,7 +69,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 // Warning! Unsafe HTML!
                 $postPanel->append(ModHub\safeHtml(MarkupEngine::fastParse($post->rawText())));
 
-                $disqColumn->push(ModHub\ht("a", $post->uid(), array("anchor" => $post->uid()))->addClass("hidden"));
+                //$disqColumn->push(ModHub\ht("a", $post->uid(), array("anchor" => $post->uid()))->addClass("hidden"));
                 $disqColumn->push($postPanel);
             }
 
@@ -83,15 +84,28 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $linksContainer = new Panel;
             $tagColumn->push($linksContainer);
-            $linksContainer->setHeader(ModHub\ht("h2", "Voìlá!"));
             $linksContainer->append(ModHub\ht("a", "Add post")->addClass("btn btn-success")->addOption("href", "disq/{$currentId}?mode=post"));
             $linksContainer->append(ModHub\ht("a", "Edit discussion")->addClass("btn btn-info")->addOption("href", "disq/{$currentId}?mode=edit"));
 
             $tocContainer = new Panel;
             $tocContainer->addClass("forum-toc-affix");
             $tocContainer->setHeader(ModHub\ht("h2", "Table of Contents"));
-            $tocContainer->append(ModHub\ht("p", "Coming soon"));
             $tagColumn->push($tocContainer);
+
+            $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
+            $isFirst = true;
+            foreach ($disq->posts()->toArray() as $post) {
+                $ulCont->appendContent(
+                    ModHub\ht("li",
+                        ModHub\ht("a",
+                            ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId())),
+                            array("href" => /* $request->getRequestUri() .*/ "#" . $post->uid())
+                        )
+                    )->addClass($isFirst ? "active" : "")
+                );
+                $isFirst = false;
+            }
+            $tocContainer->append($ulCont);
 
             $container->push($grid);
 
