@@ -35,18 +35,13 @@ final class DiscussionEditController extends AbstractForumController
         $payload = new HtmlPayload;
         $payload->setPayloadContents($container);
 
-        $violations = null;
+        $errors = array();
 
         if ($requestMethod == "POST") {
             $label = trim($request->request->get("label"));
             $text = trim($request->request->get("text"));
-            $validatorInput = array(
-                "label" => $label,
-                "text"  => $text,
-            );
-            $violations = $this->validateDiscussion($validatorInput);
 
-            if (!$violations->count()) {
+            if (!$errors) {
                 $app = $this->app();
                 $em = $app->getEntityManager();
 
@@ -73,24 +68,6 @@ final class DiscussionEditController extends AbstractForumController
             }
         }
 
-        if ($violations && $violations->count()) {
-            $panel = new \AnhNhan\ModHub\Views\Panel\Panel;
-            $panel->setColor("info");
-            $panel->setHeader(ModHub\ht("h3", "I'm sorry, but we can't continue until these issues have been resolved!"));
-            $midriff = $panel->midriff();
-            $midriff->push(ModHub\ht("span", "Our subtile watchdog ninjas have detected "));
-            $midriff->push(ModHub\ht("strong", $violations->count() . " issues"));
-
-            $violationContainer = ModHub\ht("ul");
-            foreach ($violations as $violation) {
-                $violationContainer->appendContent(ModHub\ht("li", $violation->getMessage()));
-                $violationContainer->appendContent($violation->getPropertyPath());
-            }
-            $panel->append($violationContainer);
-
-            $container->push($panel);
-        }
-
         $form = new FormView;
         $form
             ->setTitle("New discussion")
@@ -114,26 +91,5 @@ final class DiscussionEditController extends AbstractForumController
         $container->push($form);
 
         return $payload;
-    }
-
-    private function validateDiscussion(array $input)
-    {
-        $validator = Validation::createValidator();
-        return $validator->validateValue($input, $this->getValidatorConstraintsForDiscussion());
-    }
-
-    private function getValidatorConstraintsForDiscussion()
-    {
-        $constraints = new Assert\Collection(array(
-            "label" => array(
-                new Assert\NotEqualTo(array("value" => $this->defaultLabelValue)),
-                new Assert\NotBlank,
-            ),
-            "text" => array(
-                new Assert\NotEqualTo(array("value" => $this->defaultTextValue)),
-                new Assert\NotBlank,
-            ),
-        ));
-        return $constraints;
     }
 }
