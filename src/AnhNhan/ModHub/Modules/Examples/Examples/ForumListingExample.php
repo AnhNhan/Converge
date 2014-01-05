@@ -44,9 +44,20 @@ final class ForumListingExample extends AbstractExample
                 ->addTag(new TagView("caw", "green"))
                 ->addTag(new TagView("sotp", "blue"))
         );
-        $row = ModHub\ht("div")->addClass("row-flex");
-        $row->appendContent($listing->render()->addClass("width12"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width6"))->appendContent($listing->render()->addClass("width12"));
-        $container->push($row);
+
+        $renderedListing = $listing->render();
+
+        $grid = new \AnhNhan\ModHub\Views\Grid\Grid;
+        $row = $grid->row()
+            ->column(12)->push($renderedListing)
+            ->parentRow()->parent()->row()
+                ->column(6)->push($renderedListing)
+                ->parentRow()
+                ->column(6)->push($renderedListing)
+            ->parentRow()->parent()->row()
+            ->column(12)->push($renderedListing)
+        ;
+        $container->push($grid);
 
         return $container;
     }
