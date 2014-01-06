@@ -74,9 +74,12 @@
         }
 
         a {
-            display: inline-block;
+            display: block;
             padding: (@fontBaseLine / 2) 10px;
             margin: 0;
+            &:active, &:focus, &:hover {
+                text-decoration: none !important;
+            }
         }
     }
 }
