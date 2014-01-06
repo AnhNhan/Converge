@@ -51,7 +51,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $discussionPanel->setHeader($headerRiff);
 
             $discussionPanel->append(ModHub\safeHtml(
-                preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($disq->text) . "\n\n")
+                preg_replace("/(.*?)(\r\n|\n){2}/ms", "<p>\$1</p>", htmlspecialchars($disq->text) . "\n\n")
             ));
 
             $midriff = $discussionPanel->midriff();
@@ -79,7 +79,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $postPanel->setMidriffRight($post->modifiedAt->format("D, d M 'y"));
 
                 $postPanel->append(ModHub\safeHtml(
-                    preg_replace("/(.*?)\n\n/ms", "<p>\$1</p>", htmlspecialchars($post->rawText) . "\n\n")
+                    preg_replace("/(.*?)(\r\n|\n){2}/ms", "<p>\$1</p>", htmlspecialchars($post->rawText) . "\n\n")
                 ));
 
                 $disqColumn->push($postPanel);
