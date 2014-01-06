@@ -92,6 +92,7 @@ final class DiscussionEditController extends AbstractForumController
             ->setValue($discussion->label()));
 
         $form->append(id(new TextAreaControl())
+            ->addClass("forum-markup-processing-form")
             ->setLabel("Text")
             ->setName("text")
             ->setValue($discussion->text()));
@@ -101,6 +102,10 @@ final class DiscussionEditController extends AbstractForumController
             ->addSubmitButton("Hasta la vista!"));
 
         $container->push($form);
+        $container->push(ModHub\ht("div", "Foo")->addClass("markup-preview-output"));
+
+        $this->app->getService("resource_manager")
+            ->requireJs("application-forum-markup-preview");
 
         return $payload;
     }
