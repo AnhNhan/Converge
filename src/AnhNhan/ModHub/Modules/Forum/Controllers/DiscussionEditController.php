@@ -24,7 +24,7 @@ final class DiscussionEditController extends AbstractForumController
 {
     public function handle()
     {
-        $request = $this->request();
+        $request = $this->request;
         $requestMethod = $request->getMethod();
 
         $container = new MarkupContainer;
@@ -34,7 +34,7 @@ final class DiscussionEditController extends AbstractForumController
         $errors = array();
 
         if ($disqId = $request->request->get('id')) {
-            $discussion = id(new DiscussionQuery($this->app()))
+            $discussion = id(new DiscussionQuery($this->app))
                 ->retrieveDiscussion("DISQ-" . $disqId)
             ;
 
@@ -50,7 +50,7 @@ final class DiscussionEditController extends AbstractForumController
             $text = trim($request->request->get("text"));
 
             if (!$errors) {
-                $app = $this->app();
+                $app = $this->app;
                 $em = $app->getEntityManager();
 
                 $editor = DiscussionTransactionEditor::create($em)
@@ -75,7 +75,7 @@ final class DiscussionEditController extends AbstractForumController
 
                 $editor->apply();
 
-                $targetURI = "/disq/" . $discussion->cleanId();
+                $targetURI = "/disq/" . $discussion->cleanId;
                 return new RedirectResponse($targetURI);
             }
         }
@@ -86,19 +86,19 @@ final class DiscussionEditController extends AbstractForumController
             ->setAction($request->getPathInfo())
             ->setMethod("POST");
 
-        $form->append(id(new TextControl())
+        $form->append(id(new TextControl)
             ->setLabel("Label")
             ->setName("label")
-            ->setValue($discussion->label()));
+            ->setValue($discussion->label));
 
-        $form->append(id(new TextAreaControl())
+        $form->append(id(new TextAreaControl)
             ->addClass("forum-markup-processing-form")
             ->setLabel("Text")
             ->setName("text")
-            ->setValue($discussion->text()));
+            ->setValue($discussion->text));
 
-        $form->append(id(new SubmitControl())
-            ->addCancelButton("/disq/")
+        $form->append(id(new SubmitControl)
+            ->addCancelButton("/disq/" . ($discussion->cleanId ?: null))
             ->addSubmitButton("Hasta la vista!"));
 
         $container->push($form);
