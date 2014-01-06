@@ -63,7 +63,8 @@
         var offsetTop = (currentScrollPosition / (docHeight)) * ((sidebarHeight + 150) - visibleHeight);
         $sidebarAffix.css("top", ((-offsetTop) + 30) + 'px');
       } else {
-        $('.forum-toc-affix').css('top', 0);
+        $('.forum-toc-affix').css('top', 30);
+        $('.forum-toc-affix.affix-top').css('top', 0);
       }
     };
 
