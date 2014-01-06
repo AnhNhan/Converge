@@ -170,14 +170,4 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     {
         return $this->xacts;
     }
-
-    public function getTransactionClass()
-    {
-        return 'AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransaction';
-    }
-
-    public function getTransactionEntityClass()
-    {
-        return 'AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction';
-    }
 }

@@ -147,14 +147,4 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     {
         return $this->xacts;
     }
-
-    public function getTransactionClass()
-    {
-        return 'AnhNhan\ModHub\Modules\Forum\Transaction\PostTransaction';
-    }
-
-    public function getTransactionEntityClass()
-    {
-        return 'AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction';
-    }
 }

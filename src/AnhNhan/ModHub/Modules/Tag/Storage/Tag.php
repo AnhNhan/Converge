@@ -164,14 +164,4 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
     {
         return $this->xacts;
     }
-
-    public function getTransactionEntityClass()
-    {
-        return 'AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction';
-    }
-
-    public function getTransactionClass()
-    {
-        return 'AnhNhan\ModHub\Modules\Tag\Transaction\TagTransaction';
-    }
 }
