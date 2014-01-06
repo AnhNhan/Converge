@@ -10,6 +10,7 @@ use AnhNhan\ModHub\Web\HttpKernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 Debug::enable();
 
@@ -28,7 +29,10 @@ $container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
 $eventDispatcher = new ContainerAwareEventDispatcher($container);
 $container->set('event_dispatcher', $eventDispatcher);
 
-$kernel = new HttpKernel($eventDispatcher, $router);
+$request_stack = new RequestStack;
+$container->set('request_stack', $request_stack);
+
+$kernel = new HttpKernel($eventDispatcher, $router, $request_stack);
 $kernel->setContainer($container);
 $container->set('http_kernel', $kernel);
 $response = $kernel->handle($request);

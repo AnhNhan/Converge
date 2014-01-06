@@ -24,6 +24,10 @@ services:
   # Generic
   # ----------------------------------------------------------------------------
 
+  request_stack:
+    class: Symfony\Component\HttpFoundation\RequestStack
+    synthetic: true
+
   http_kernel:
     class: AnhNhan\ModHub\Web\HttpKernel
     synthetic: true

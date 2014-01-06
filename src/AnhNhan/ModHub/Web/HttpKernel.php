@@ -6,6 +6,7 @@ use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -47,10 +48,16 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
      */
     private $container;
 
-    public function __construct(EventDispatcherInterface $dispatcher, AppRouting $appRouter)
+    /**
+     * @var RequestStack
+     */
+    private $request_stack;
+
+    public function __construct(EventDispatcherInterface $dispatcher, AppRouting $appRouter, RequestStack $request_stack = null)
     {
         $this->dispatcher = $dispatcher;
         $this->appRouter = $appRouter;
+        $this->request_stack = $request_stack ?: new RequestStack;
     }
 
     public function setContainer(ContainerInterface $container = null)
@@ -78,8 +85,9 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         if ($this->container) {
             $container = $this->container;
         } else {
-            $this->container = $container = Core::loadSfDIContainer();
+            $this->setContainer($container = Core::loadSfDIContainer());
         }
+        $this->request_stack->push($request);
 
         $container->set("request", $request);
 
@@ -160,6 +168,7 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
     private function finishRequest(Request $request, $type)
     {
         $this->dispatcher->dispatch(KernelEvents::FINISH_REQUEST, new FinishRequestEvent($this, $request, $type));
+        $this->request_stack->pop();
     }
 
     private function getCapturedOverflow()
