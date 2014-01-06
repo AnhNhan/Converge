@@ -18,8 +18,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "1d191f7e",
-      "orig" => "f5583cd6",
+      "hash" => "f7b1f42d",
+      "orig" => "110e64d1",
     ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
@@ -155,11 +155,29 @@ return array(
       "hash" => "20f2ff9d",
       "orig" => "1c187c64",
     ),
+    "application-bootstrap" => array(
+      "name" => "application-bootstrap",
+      "path" => "application/bootstrap.js",
+      "hash" => "72d7654e",
+      "orig" => "4fa1518d",
+    ),
+    "application-forum-markup-preview" => array(
+      "name" => "application-forum-markup-preview",
+      "path" => "application/forum/markup-preview.js",
+      "hash" => "ce9f4931",
+      "orig" => "537d98e5",
+    ),
     "application-forum-toc-affix" => array(
       "name" => "application-forum-toc-affix",
       "path" => "application/forum/toc-affix.js",
       "hash" => "ac253542",
       "orig" => "a51406c5",
+    ),
+    "application-markup-markupform" => array(
+      "name" => "application-markup-markupform",
+      "path" => "application/markup/markupform.js",
+      "hash" => "8ce83e8e",
+      "orig" => "78b630d4",
     ),
     "backbone" => array(
       "name" => "backbone",
@@ -476,7 +494,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "hxwxno4c",
+      "hash" => "rurrcvmu",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
@@ -583,7 +601,7 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "de18685e",
+      "hash" => "f3832ef4",
       "contents" => array(
         "external-html5bp-plugin" => "c035fc51",
         "external-modernizr" => "4ad114ad",
@@ -599,6 +617,8 @@ return array(
         "external-bootstrap-popover" => "6aeeafa0",
         "external-underscore" => "f0c3308b",
         "external-backbone" => "fd5d38af",
+        "application-bootstrap" => "72d7654e",
+        "application-markup-markupform" => "8ce83e8e",
       ),
     ),
   ),
