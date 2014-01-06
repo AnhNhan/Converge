@@ -1,0 +1,25 @@
+
+services:
+  session.storage.handler.mongo:
+    class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
+    public: false
+    arguments:
+      - @mongoclient
+      - database: %mongodb.db%
+        collection: %session.mongo.collection%
+
+  session.storage.handler.default:
+    alias: session.storage.handler.mongo
+    public: false
+
+  session.storage.default:
+    class: Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage
+    public: false
+    arguments:
+      - cookie_httponly: true
+      - @session.storage.handler.default
+
+  session.default:
+    class: Symfony\Component\HttpFoundation\Session\Session
+    arguments:
+      - @session.storage.default

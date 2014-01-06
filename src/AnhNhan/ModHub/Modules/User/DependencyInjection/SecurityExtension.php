@@ -22,6 +22,10 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
     {
         $config = array_mergev($config);
         $container->setParameter("security.provider_key", $config["providerKey"]);
+        $container->setParameter("security.http.login.path", $config["security.http.login.path"]);
+        $container->setParameter("security.http.logout.path", $config["security.http.logout.target"]);
+        $container->setParameter("security.http.logout.target", $config["security.http.logout.target"]);
+        $container->setParameter("session.mongo.collection", $config["session.mongo.collection"]);
 
         $loader = new YamlFileLoader(
             $container,
@@ -29,6 +33,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
         );
         $loader->load('security-services.yml');
         $loader->load('csrf-services.yml');
+        $loader->load('session-services.yml');
+        $loader->load('http-security-services.yml');
     }
 
     /* - ( Anti-XML stuff ) - */

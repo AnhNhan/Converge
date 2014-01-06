@@ -1,0 +1,101 @@
+
+services:
+
+  security.http.session.authenticationstrategy:
+    class: Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy
+    public: false
+    arguments:
+      - migrate
+
+  security.http.utils:
+    class: Symfony\Component\Security\Http\HttpUtils
+    public: false
+
+  security.http.logout.handler.session:
+    class: Symfony\Component\Security\Http\Logout\SessionLogoutHandler
+    public: false
+
+  security.http.logout.success.default:
+    class: Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler
+    public: false
+    arguments:
+      - @security.http.utils
+      - %security.http.logout.target%
+
+  security.http.authentication.success.default:
+    class: Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler
+    public: false
+    arguments:
+      - @security.http.utils
+      - { login_path: %security.http.login.path% }
+    calls:
+      - [ setProviderKey, [ %security.provider_key% ] ]
+
+  security.http.authentication.failure.default:
+    class: Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler
+    public: false
+    arguments:
+      - @http_kernel
+      - @security.http.utils
+      - {}
+      - @logger
+
+  security.http.entrypoint.form:
+    class: Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint
+    public: false
+    arguments:
+      - @http_kernel
+      - @security.http.utils
+      - %security.http.login.path%
+
+  # ----------------------------------------------------------------------------
+  # Firewall
+  # ----------------------------------------------------------------------------
+
+  security.http.firewall.listener.logout:
+    class: Symfony\Component\Security\Http\Firewall\LogoutListener
+    arguments:
+      - @security.context.default
+      - @security.http.utils
+      - @security.http.logout.success.default
+      - { logout_path: %security.http.logout.path% }
+      - @csrf.manager
+    calls:
+      - [ addHandler, [ @security.http.logout.handler.session ] ]
+
+  security.http.firewall.listener.context:
+    class: Symfony\Component\Security\Http\Firewall\ContextListener
+    arguments:
+      - @security.context.default
+      -
+        - "@security.authentication.provider.default"
+      - %security.provider_key%
+      - @logger
+      - @event_dispatcher
+
+  security.http.firewall.listener.loginform:
+    class: Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener
+    arguments:
+      - @security.context.default
+      - @security.authentication.manager.default
+      - @security.http.session.authenticationstrategy
+      - @security.http.utils
+      - %security.provider_key%
+      - @security.http.authentication.success.default
+      - @security.http.authentication.failure.default
+      - {}
+      - @logger
+      - @event_dispatcher
+      - @csrf.manager
+
+  security.http.firewall.listener.exception:
+    class: Symfony\Component\Security\Http\Firewall\ExceptionListener
+    arguments:
+      - @security.context.default
+      - @security.authentication.trustresolver.default
+      - @security.http.utils
+      - %security.provider_key%
+      - @security.http.entrypoint.form
+      - null # error page
+      - null # access denied handler
+      - @logger

@@ -17,6 +17,10 @@ parameters:
 
 user-security:
   providerKey: ModHub
+  session.mongo.collection: _session
+  security.http.login.path: /login
+  security.http.logout.path: /login
+  security.http.logout.target: /
 
 services:
 
