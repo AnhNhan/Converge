@@ -28,22 +28,22 @@ final class ForumListingExample extends AbstractExample
         $listing->addObject(
             id(new ForumObject)
                 ->setHeadline('A little story of the future')
-                ->addTag(new TagView("caw", "green"))
-                ->addTag(new TagView("internal"))
+                ->addTag(new TagView("internal", "dark"))
+                ->addTag(new TagView("caw"))
         );
         $listing->addObject(
             id(new ForumObject)
                 ->setHeadline('Why the future is the future')
-                ->addTag(new TagView("caw", "green"))
-                ->addTag(new TagView("sotp", "blue"))
-                ->addTag(new TagView("homefront", "dark"))
+                ->addTag(new TagView("caw"))
+                ->addTag(new TagView("homefront"))
+                ->addTag(new TagView("sotp"))
                 ->addTag(new TagView("discussion"))
         );
         $listing->addObject(
             id(new ForumObject)
                 ->setHeadline('Future, I am your father')
-                ->addTag(new TagView("caw", "green"))
-                ->addTag(new TagView("sotp", "blue"))
+                ->addTag(new TagView("caw"))
+                ->addTag(new TagView("sotp"))
         );
 
         $renderedListing = $listing->render();
