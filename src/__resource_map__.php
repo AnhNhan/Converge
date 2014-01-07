@@ -18,8 +18,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "6829c031",
-      "orig" => "fbb007bc",
+      "hash" => "944a24cf",
+      "orig" => "971b1256",
     ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
