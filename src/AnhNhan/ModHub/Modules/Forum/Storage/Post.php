@@ -6,7 +6,12 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table
+ * @Entity
+ * @Table(indexes={
+ *   @Index(name="creation_order", columns={"createdAt"}),
+ *   @Index(name="author_disq_rel", columns={"disq_id", "author"}),
+ *   @Index(name="deleted_flag", columns={"deleted"})
+ * })
  */
 class Post extends EntityDefinition implements TransactionAwareEntityInterface
 {

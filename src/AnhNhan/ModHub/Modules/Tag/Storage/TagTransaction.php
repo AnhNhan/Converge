@@ -5,7 +5,10 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table
+ * @Entity
+ * @Table(indexes={
+ *   @Index(name="insertion_order", columns={"createdAt"})
+ * })
  */
 class TagTransaction extends TransactionEntity
 {

@@ -6,7 +6,10 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table
+ * @Entity
+ * @Table(indexes={
+ *   @Index(name="username", columns={"username"})
+ * })
  */
 class User extends EntityDefinition implements AdvancedUserInterface
 {
