@@ -18,8 +18,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "f7b1f42d",
-      "orig" => "110e64d1",
+      "hash" => "6829c031",
+      "orig" => "fbb007bc",
     ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
@@ -170,8 +170,8 @@ return array(
     "application-forum-toc-affix" => array(
       "name" => "application-forum-toc-affix",
       "path" => "application/forum/toc-affix.js",
-      "hash" => "ac253542",
-      "orig" => "a51406c5",
+      "hash" => "28787f63",
+      "orig" => "edcfdaef",
     ),
     "application-markup-markupform" => array(
       "name" => "application-markup-markupform",
@@ -494,7 +494,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "rurrcvmu",
+      "hash" => "3cg6z7ut",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
