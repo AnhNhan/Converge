@@ -4,11 +4,12 @@ namespace AnhNhan\ModHub\Web;
 use YamwLibs\Libs\Routing\Router;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Matcher\RequestMatcherInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class AppRouting
+final class AppRouting implements RequestMatcherInterface
 {
     private $appList = array();
     private $appInstanceList = array();
@@ -49,13 +50,18 @@ final class AppRouting
         $this->router = $router;
     }
 
+    public function matchRequest(Request $request)
+    {
+        return $this->router->route($request->getPathInfo());
+    }
+
     public function routeToApplication(Request $request)
     {
         if (!count($this->appRoutes)) {
             throw new \RuntimeException("We have no routes. Check your applications!");
         }
 
-        $routingResult = $this->router->route($request->getPathInfo());
+        $routingResult = $this->matchRequest($request);
         if ($routingResult) {
             $app = $routingResult["target"];
             unset($routingResult["target"]);
