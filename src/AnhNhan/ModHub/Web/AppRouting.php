@@ -5,11 +5,12 @@ use YamwLibs\Libs\Routing\Router;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Matcher\RequestMatcherInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class AppRouting implements RequestMatcherInterface
+final class AppRouting implements RequestMatcherInterface, UrlGeneratorInterface
 {
     private $appList = array();
     private $appInstanceList = array();
@@ -52,7 +53,32 @@ final class AppRouting implements RequestMatcherInterface
 
     public function matchRequest(Request $request)
     {
-        return $this->router->route($request->getPathInfo());
+        $parameters = $this->router->route($request->getPathInfo());
+        // Compat with Symfony conventions
+        $parameters["_route"] = idx($parameters, "route-name");
+        return $parameters;
+    }
+
+    public function generate($name, $parameters = array(), $referenceType = self::ABSOLUTE_PATH)
+    {
+        if ($referenceType === self::ABSOLUTE_URL) {
+            $usesId = false;
+            array_map(function ($entry) use ($usesId) {
+                if (strpos($entry, "id") !== false) {
+                    $usesId = true;
+                }
+            }, $parameters);
+
+            $routes = mgroup($this->appRoutes, "getName");
+            $route  = idx($routes, $name, array());
+            if ($route && count($route) == 1) {
+                return Request::createFromGlobals()->getSchemeAndHttpHost() . $route->getPattern();
+            } else {
+                throw new \Exception("Routes with parameters can't be generated yet!");
+            }
+        } else {
+            throw new \Exception("Reference type not supported.");
+        }
     }
 
     public function routeToApplication(Request $request)
@@ -76,5 +102,13 @@ final class AppRouting implements RequestMatcherInterface
             // TODO: Get default/404 controller
             return null;
         }
+    }
+
+    // Stubs for stupid interfaces
+    public function setContext(\Symfony\Component\Routing\RequestContext $context)
+    {
+    }
+    public function getContext()
+    {
     }
 }
