@@ -9,13 +9,13 @@ define([
     'router-tag-tagrouter',
 ], function($, _, Backbone, FrontPageRoter, ForumRouter, TagRouter) {
     var initialize = function() {
-        // TODO: Write all application routers, and start them here
         FrontPageRoter.initialize();
         ForumRouter.initialize();
         TagRouter.initialize();
 
         // Kicking off routing
         Backbone.history.start({
+            silent: true, // Don't trigger on the initial page
             pushState: true,
             hashChange: false // Continue using URLs for older browsers
         });
