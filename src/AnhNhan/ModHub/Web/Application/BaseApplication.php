@@ -123,6 +123,7 @@ abstract class BaseApplication
         $config->setProxyDir($proxyDir);
         $config->setProxyNamespace('DoctrineProxies');
         $config->setAutoGenerateProxyClasses($isDevMode);
+        $config->setSQLLogger($this->getService('logger.doctrine.sql'));
 
         $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver($paths, true));
 

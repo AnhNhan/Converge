@@ -128,3 +128,7 @@ services:
       - "default"
       - ["@logger_mongohandler"]
       - ["@logger_psrprocessor", "@logger_memoryprocessor", "@logger_introspectionprocessor"]
+
+  # Doctrine Sql Logger
+  logger.doctrine.sql:
+    class: Doctrine\DBAL\Logging\DebugStack
