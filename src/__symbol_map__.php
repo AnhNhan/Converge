@@ -20,6 +20,15 @@ return array(
       "deriv" => "Symfony\Component\Console\Command\Command",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand" => array(
+      "file" => "AnhNhan/ModHub/Modules/Database/Command/AbstractDbCommand.php",
+      "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager" => array(
+      "file" => "AnhNhan/ModHub/Modules/Database/Command/DoctrineManager.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
+    ),
     "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
@@ -63,6 +72,10 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionListingController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/PostEditController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
     ),
     "AnhNhan\ModHub\Modules\Forum\Events\DiscussionTagExternalEntityLoader" => array(
@@ -259,6 +272,12 @@ return array(
         "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
       ),
     ),
+    "AnhNhan\ModHub\Modules\User\Providers\DefaultUserProvider" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Providers/DefaultUserProvider.php",
+      "impls" => array(
+        "Symfony\Component\Security\Core\User\UserProviderInterface",
+      ),
+    ),
     "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Providers/UserAuthenticationProvider.php",
       "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
@@ -268,7 +287,12 @@ return array(
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
       "impls" => array(
         "Symfony\Component\Security\Core\Role\RoleInterface",
+        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
       ),
+    ),
+    "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Storage/RoleTransaction.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
     ),
     "AnhNhan\ModHub\Modules\User\Storage\User" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Storage/User.php",
@@ -276,6 +300,10 @@ return array(
       "impls" => array(
         "Symfony\Component\Security\Core\User\AdvancedUserInterface",
       ),
+    ),
+    "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Transaction/RoleTransactionEditor.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
     ),
     "AnhNhan\ModHub\Modules\User\UserApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/User/UserApplication.php",
@@ -410,6 +438,10 @@ return array(
     ),
     "AnhNhan\ModHub\Web\AppRouting" => array(
       "file" => "AnhNhan/ModHub/Web/AppRouting.php",
+      "impls" => array(
+        "Symfony\Component\Routing\Matcher\RequestMatcherInterface",
+        "Symfony\Component\Routing\Generator\UrlGeneratorInterface",
+      ),
     ),
     "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
       "file" => "AnhNhan/ModHub/Web/Application/AbstractPayload.php",
@@ -467,8 +499,19 @@ return array(
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
       "AnhNhan\ModHub\Console\ConsoleCommand",
+      "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
       "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
       "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+    ),
+    "AnhNhan\ModHub\Console\ConsoleCommand" => array(
+      "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+      "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager",
+      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
+    ),
+    "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand" => array(
+      "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
       "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
@@ -481,6 +524,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
+      "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
@@ -507,6 +551,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
+      "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController",
     ),
     "AnhNhan\ModHub\Storage\Query" => array(
       "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery",
@@ -523,16 +568,19 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction",
     ),
     "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction",
     ),
     "AnhNhan\ModHub\Storage\Transaction\TransactionEditor" => array(
       "AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor",
       "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor",
       "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor",
+      "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
@@ -547,11 +595,6 @@ return array(
     "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
-    ),
-    "AnhNhan\ModHub\Console\ConsoleCommand" => array(
-      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
@@ -629,10 +672,14 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
+      "AnhNhan\ModHub\Modules\User\Storage\Role",
     ),
     "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
       "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension",
       "AnhNhan\ModHub\Modules\User\DependencyInjection\UserExtension",
+    ),
+    "Symfony\Component\Security\Core\User\UserProviderInterface" => array(
+      "AnhNhan\ModHub\Modules\User\Providers\DefaultUserProvider",
     ),
     "Symfony\Component\Security\Core\Role\RoleInterface" => array(
       "AnhNhan\ModHub\Modules\User\Storage\Role",
@@ -648,6 +695,12 @@ return array(
     ),
     "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
       "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "Symfony\Component\Routing\Matcher\RequestMatcherInterface" => array(
+      "AnhNhan\ModHub\Web\AppRouting",
+    ),
+    "Symfony\Component\Routing\Generator\UrlGeneratorInterface" => array(
+      "AnhNhan\ModHub\Web\AppRouting",
     ),
     "Symfony\Component\HttpKernel\HttpKernelInterface" => array(
       "AnhNhan\ModHub\Web\HttpKernel",
