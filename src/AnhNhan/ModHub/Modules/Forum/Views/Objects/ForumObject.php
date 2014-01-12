@@ -13,7 +13,6 @@ class ForumObject extends Object
 {
     private $tags;
     private $postCount;
-    private $tagsAdded = false;
 
     public function __construct()
     {
@@ -36,21 +35,24 @@ class ForumObject extends Object
         }
     }
 
+    private function _parentRender()
+    {
+        return parent::render();
+    }
+
     public function render()
     {
-        if (!$this->tagsAdded) {
-            if (count($this->tags)) {
-                $this->addAttributeAsFirst($this->tags);
-            }
-
-            if ($this->postCount !== null) {
-                $this->addAttributeAsFirst(ModHub\icon_text(ModHub\ht("div", $this->postCount)->addClass("post-count"), "th-list", false));
-            }
-
-            $this->tagsAdded = true;
+        // Hack so we won't add tags multiple times when re-rendering
+        $that = clone $this;
+        if (count($this->tags)) {
+            $that->addAttributeAsFirst($this->tags);
         }
 
-        $object = parent::render();
+        if ($this->postCount !== null) {
+            $that->addAttributeAsFirst(ModHub\icon_text(ModHub\ht("div", $this->postCount)->addClass("post-count"), "th-list", false));
+        }
+
+        $object = $that->_parentRender();
         return $object;
     }
 }
