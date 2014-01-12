@@ -15,6 +15,8 @@ class MarkupEngine
             throw new \Exception("Input $key already exists. Can't add it again!");
         }
 
+        $text = filter_var($text, FILTER_SANITIZE_STRING, !FILTER_FLAG_STRIP_LOW | FILTER_FLAG_NO_ENCODE_QUOTES);
+
         $this->inputTexts[$key] = $text;
         return $this;
     }
