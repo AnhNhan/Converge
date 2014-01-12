@@ -51,7 +51,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $discussionPanel->setHeader($headerRiff);
 
             $discussionPanel->append(ModHub\safeHtml(
-                preg_replace("/(.*?)(\r\n|\n){2}/ms", "<p>\$1</p>", htmlspecialchars($disq->text) . "\n\n")
+                MarkupEngine::fastParse($disq->text)
             ));
 
             $midriff = $discussionPanel->midriff();
@@ -78,8 +78,14 @@ final class DiscussionDisplayController extends AbstractForumController
                 $title->push(ModHub\ht("span", " added a comment"));
                 $postPanel->setMidriffRight($post->modifiedAt->format("D, d M 'y"));
 
+                $postPanel->append(
+                    ModHub\ht("a", ModHub\icon_text("edit post", "edit", false))
+                        ->addClass("btn btn-default btn-small")
+                        ->addClass("pull-right")
+                        ->addOption("href", "disq/{$currentId}/{$post->cleanId}/edit")
+                );
                 $postPanel->append(ModHub\safeHtml(
-                    preg_replace("/(.*?)(\r\n|\n){2}/ms", "<p>\$1</p>", htmlspecialchars($post->rawText) . "\n\n")
+                    MarkupEngine::fastParse($post->rawText)
                 ));
 
                 $disqColumn->push($postPanel);
