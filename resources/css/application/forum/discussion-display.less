@@ -38,9 +38,21 @@
         display: none;
     }
 
+    @media (min-width: @breakPointDesktop) and (max-width: @breakPointBig) {
+        &.affix {
+            min-width: 22.5%;
+        }
+    }
+
+
+    @media (min-width: @breakPointBig) {
+        &.affix {
+            min-width: 17.5%;
+        }
+    }
+
     @media (min-width: @breakPointTablet) {
         &.affix {
-            width: 18.15%; // 25% * 80% - all those margins
             top: 0;
         }
 
