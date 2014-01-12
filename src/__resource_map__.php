@@ -18,8 +18,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "25547415",
-      "orig" => "3a702862",
+      "hash" => "17c9b668",
+      "orig" => "763a0db5",
     ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
@@ -114,8 +114,8 @@ return array(
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
       "path" => "layout/forum/object.less",
-      "hash" => "06e34af4",
-      "orig" => "96b48d07",
+      "hash" => "9d3eb9d0",
+      "orig" => "181e7dd5",
     ),
     "layout-grid" => array(
       "name" => "layout-grid",
@@ -138,8 +138,8 @@ return array(
     "layout-tag-tag" => array(
       "name" => "layout-tag-tag",
       "path" => "layout/tag/tag.less",
-      "hash" => "50572081",
-      "orig" => "abb55ff6",
+      "hash" => "e1e8eab0",
+      "orig" => "a3cc51f0",
     ),
     "layout-user-user-plate" => array(
       "name" => "layout-user-user-plate",
@@ -574,7 +574,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "fa4bb3f7",
+      "hash" => "5a636fe0",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-other" => "19e65a9f",
@@ -592,10 +592,10 @@ return array(
         "layout-grid" => "c1f0ab5f",
         "layout-buttons" => "7b9d013f",
         "layout-objects" => "9aa79efe",
-        "layout-forum-object" => "06e34af4",
+        "layout-forum-object" => "9d3eb9d0",
         "layout-user-user-plate" => "11e046d6",
         "layout-panel-panel" => "1f74f4c7",
-        "layout-tag-tag" => "50572081",
+        "layout-tag-tag" => "e1e8eab0",
       ),
     ),
     "libs-pck" => array(
