@@ -131,6 +131,12 @@ abstract class BaseApplication
     }
 
     /**
+     * For certain internal purposes only. Do not use unless you know what you
+     * are doing.
+     *
+     * Retrieves an external application, which will share the same service
+     * container as this application.
+     *
      * @return BaseApplication The requested application
      *
      * @throws Exception If the app could not be found
