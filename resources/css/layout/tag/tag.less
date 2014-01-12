@@ -9,12 +9,21 @@
     margin-top: 2px;
     margin-left: 2px;
     margin-right: 2px;
-    .no-padding;
+    padding: 0.15em;
     .round-border(5px);
     .tag-color(@coolBlue);
 
+    &:first-child {
+        margin-left: 0;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+
     & > span {
         color: @white;
+        font-weight: bold;
+        line-height: unit(@fontBaseLine / @fontSizeBase, '');
         padding: 0px 5px;
         white-space: nowrap;
     }
