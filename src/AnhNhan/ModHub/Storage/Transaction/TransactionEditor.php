@@ -26,6 +26,12 @@ abstract class TransactionEditor
 
     private $noEffectBehaviour = self::NO_EFFECT_SKIP;
 
+    const FLUSH_DONT_FLUSH = "flush.dontflush";
+    const FLUSH_FLUSH      = "flush.flush";
+    const FLUSH_DEFER      = "flush.defer_flush";
+
+    private $flushBehaviour = self::FLUSH_FLUSH;
+
     final public function __construct($appOrEm)
     {
         if ($appOrEm instanceof BaseApplication) {
@@ -88,6 +94,22 @@ abstract class TransactionEditor
     {
         $this->noEffectBehaviour = $behaviour;
         return $this;
+    }
+
+    final public function behaviourOnNoEffect()
+    {
+        return $this->noEffectBehaviour;
+    }
+
+    final public function setFlushBehaviour($behaviour = self::FLUSH_FLUSH)
+    {
+        $this->flushBehaviour = $behaviour;
+        return $this;
+    }
+
+    final public function flushBehaviour()
+    {
+        return $this->flushBehaviour;
     }
 
     private $transactions = array();
@@ -155,6 +177,7 @@ abstract class TransactionEditor
                 switch ($this->noEffectBehaviour) {
                     case self::NO_EFFECT_SKIP:
                         unset($xactions[$key]);
+                        continue;
                         break;
                     case self::NO_EFFECT_IGNORE:
                         // <no action>
@@ -174,12 +197,13 @@ abstract class TransactionEditor
         }
 
         $this->em()->persist($object);
-        $this->em()->flush();
+        $this->flushBehaviour == self::FLUSH_FLUSH && $this->em()->flush();
 
         foreach ($this->persistLater as $entity) {
             $this->em()->persist($entity);
         }
-        $this->em()->flush();
+
+        $this->flushBehaviour != self::FLUSH_DONT_FLUSH && $this->em()->flush();
 
         $this->postApplyHook($object, $xactions);
 

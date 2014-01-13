@@ -74,6 +74,7 @@ for ($ii = 0; $ii < $num_tags; $ii++) {
     $editor = TagTransactionEditor::create($tagEm)
         ->setEntity($tag)
         ->setActor($randomUser())
+        ->setFlushBehaviour(TagTransactionEditor::FLUSH_DONT_FLUSH)
         ->addTransaction(
             TagTransaction::create(TransactionEntity::TYPE_CREATE)
         )
@@ -85,6 +86,7 @@ for ($ii = 0; $ii < $num_tags; $ii++) {
 
     $tags[] = $tag;
 }
+$tagEm->flush();
 
 $randomTag = function () use ($tags) {
     return $tags[array_rand($tags)];
@@ -97,6 +99,7 @@ for ($ii = 0; $ii < $num_discussions; $ii++) {
     $editor = DiscussionTransactionEditor::create($forumEm)
         ->setActor($randomUser())
         ->setEntity($discussion)
+        ->setFlushBehaviour(DiscussionTransactionEditor::FLUSH_DONT_FLUSH)
         ->addTransaction(
             DiscussionTransaction::create(TransactionEntity::TYPE_CREATE)
         )
@@ -108,6 +111,13 @@ for ($ii = 0; $ii < $num_discussions; $ii++) {
         )
     ;
 
+    $editor->apply();
+
+    $discussions[] = $discussion;
+}
+$forumEm->flush();
+
+foreach ($discussions as $disq) {
     $derp = array();
     for ($jj = 0; $jj < 7; $jj++) {
         // That int is the probability n/10 of skipping
@@ -123,15 +133,18 @@ for ($ii = 0; $ii < $num_discussions; $ii++) {
 
         $derp += array($chosenTag->uid() => true);
 
-        $editor->addTransaction(
-            DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag->uid())
-        );
+        $editor = DiscussionTransactionEditor::create($forumEm)
+            ->setActor($randomUser())
+            ->setEntity($disq)
+            ->setFlushBehaviour(DiscussionTransactionEditor::FLUSH_DONT_FLUSH)
+            ->addTransaction(
+               DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag->uid())
+            )
+            ->apply()
+        ;
     }
-
-    $editor->apply();
-
-    $discussions[] = $discussion;
 }
+$forumEm->flush();
 
 $randomDisq = function () use ($discussions) {
     return $discussions[array_rand($discussions)];
@@ -144,6 +157,7 @@ for ($ii = 0; $ii < $num_posts; $ii++) {
     $editor = PostTransactionEditor::create($forumEm)
         ->setActor($randomUser())
         ->setEntity($post)
+        ->setFlushBehaviour(PostTransactionEditor::FLUSH_DONT_FLUSH)
         ->addTransaction(
             PostTransaction::create(TransactionEntity::TYPE_CREATE, $disq->uid())
         )
@@ -154,6 +168,7 @@ for ($ii = 0; $ii < $num_posts; $ii++) {
     ;
     $posts[] = $post;
 }
+$forumEm->flush();
 
 $randomPost = function () use ($posts) {
     return $posts[array_rand($posts)];

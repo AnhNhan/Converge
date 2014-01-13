@@ -100,9 +100,17 @@ final class PostTransactionEditor extends TransactionEditor
             throw new \Exception("WTF?? Please check your code. Thoroughly.");
         }
 
+        if (!$entity->uid()) {
+            // We apparently didn't flush the new post yet. Flush it so we get
+            // a UID
+            echo "-";
+            $this->em()->flush();
+        }
+
         // Register the post with the discussion
         $editor = DiscussionTransactionEditor::create($this->em())
             ->setActor($this->actor())
+            ->setFlushBehaviour($this->flushBehaviour())
             ->setEntity($disq)
             ->addTransaction(
                 DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_POST, $entity->uid())
