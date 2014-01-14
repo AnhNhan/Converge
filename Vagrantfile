@@ -10,16 +10,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise32"
+  #config.vm.box = "precise32"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   # TODO: Do this another time...
-  #config.vm.box = "ubuntu-precise12042-x64-vbox43"
-  #config.vm.box_url = "http://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box"
+  config.vm.box = "ubuntu-precise12042-x64-vbox43"
+  config.vm.box_url = "http://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
