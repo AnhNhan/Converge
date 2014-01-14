@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-# Superfluous? Will be done by PuPHPet afaik.
+apt-get update
+#apt-get upgrade -y
 
-# apt-get update
+apt-get install puppet-common -y
+
 # apt-get install -y apache2
 # rm -rf /var/www
 # ln -fs /vagrant/webroot /var/www

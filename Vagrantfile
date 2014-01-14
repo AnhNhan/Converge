@@ -10,22 +10,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  #config.vm.box = "precise32"
+  config.vm.box = "precise32"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
-  #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   # TODO: Do this another time...
-  config.vm.box = "ubuntu-precise12042-x64-vbox43"
-  config.vm.box_url = "http://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box"
+  #config.vm.box = "ubuntu-precise12042-x64-vbox43"
+  #config.vm.box_url = "http://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 80, host: 8000
+  config.vm.hostname = "vagrant.precise32.com"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -71,6 +72,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, :path => "_deploy/install.sh"
 
+  config.vm.provision :shell, :path => "_deploy/puphpet/shell/initial-setup.sh"
+  config.vm.provision :shell, :path => "_deploy/puphpet/shell/update-puppet.sh"
+  config.vm.provision :shell, :path => "_deploy/puphpet/shell/librarian-puppet-vagrant.sh"
 
   config.vm.provision :puppet do |puppet|
     puppet.facter = {
@@ -78,12 +82,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     puppet.manifests_path = "_deploy/puphpet/puppet/manifests"
-    puppet.options = ["--verbose", "--hiera_config /vagrant/_deploy/puphpet/puppet/hiera.yaml", "--parser future"]
+    # Does not work with 2.7...
+    ## puppet.options = ["--verbose", "--hiera_config /vagrant/_deploy/puphpet/puppet/hiera.yaml", "--parser future"]
   end
 
-  config.vm.provision :shell, :path => "_deploy/puphpet/shell/initial-setup.sh"
-  config.vm.provision :shell, :path => "_deploy/puphpet/shell/update-puppet.sh"
-  config.vm.provision :shell, :path => "_deploy/puphpet/shell/librarian-puppet-vagrant.sh"
+  config.vm.provision :shell, :path => "_deploy/puphpet/shell/execute-files.sh"
+
+  config.vm.provision :shell, :path => "_deploy/post-install.sh"
 
   config.ssh.username = "vagrant"
 
