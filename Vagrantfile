@@ -87,7 +87,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.username = "vagrant"
 
-  config.ssh.shell = "bash -l"
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
   config.ssh.keep_alive = true
   config.ssh.forward_agent = false
