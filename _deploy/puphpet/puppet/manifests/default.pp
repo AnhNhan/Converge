@@ -211,7 +211,7 @@ define add_dotdeb ($release){
 ## Begin Apache manifest
 
 if $yaml_values == undef {
-  $yaml_values = loadyaml('/vagrant/puphpet/config.yaml')
+  $yaml_values = loadyaml('/vagrant/_deploy/puphpet/config.yaml')
 }
 
 if $apache_values == undef {

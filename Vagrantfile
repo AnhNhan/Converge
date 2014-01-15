@@ -82,8 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     puppet.manifests_path = "_deploy/puphpet/puppet/manifests"
-    # Does not work with 2.7...
-    ## puppet.options = ["--verbose", "--hiera_config /vagrant/_deploy/puphpet/puppet/hiera.yaml", "--parser future"]
+    puppet.options = ["--verbose", "--hiera_config /vagrant/_deploy/puphpet/puppet/hiera.yaml", "--parser future"]
   end
 
   config.vm.provision :shell, :path => "_deploy/puphpet/shell/execute-files.sh"
