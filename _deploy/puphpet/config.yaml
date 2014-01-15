@@ -78,7 +78,8 @@ php:
             - cli
             - intl
             - mcrypt
-            - mbstring
+            # Built into Ubuntu
+            # - mbstring
             - readline
             - xsl
             - cgi
@@ -88,30 +89,25 @@ php:
             - gd
         pear: {  }
         pecl:
-            - pecl_http
             - APC
             - memcached
             - varnish
             - mongo
-            - mysql
             - PDO
             - PDO_MYSQL
             - PDO_PGSQL
             - PDO_SQLITE
             - redis
-            - date_time
-            - mcrypt_filter
-            - archive
-            - Fileinfo
             - zip
             - intl
     ini:
         display_errors: On
         error_reporting: '-1'
         session.save_path: /var/lib/php/session
-    timezone: America/Chicago
+    timezone: UTC
 xdebug:
-    install: '1'
+    #install: '1'
+    install: '0'
     settings:
         xdebug.default_enable: '1'
         xdebug.remote_autostart: '0'

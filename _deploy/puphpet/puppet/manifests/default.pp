@@ -521,7 +521,7 @@ if is_hash($xhprof_values) and $xhprof_values['install'] == 1 {
   if defined(Package[$xhprof_package]) == false {
     package { $xhprof_package:
       ensure  => installed,
-      require => Package['php'],
+      require => [Package['php'], Package["${php_prefix}cli"]],
       notify  => $xhprof_webserver_service,
     }
   }
