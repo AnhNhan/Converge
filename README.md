@@ -20,5 +20,5 @@ $ php codecept.phar run
 $ php codecept.phar run unit_tag
 
 // Run all acceptance tests for tags
-$php codecept.phar run acceptance_tags
+$ php codecept.phar run acceptance_tags
 ```
