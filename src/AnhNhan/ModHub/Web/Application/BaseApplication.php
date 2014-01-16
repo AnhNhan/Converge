@@ -141,7 +141,7 @@ abstract class BaseApplication
      *
      * @throws Exception If the app could not be found
      */
-    protected function getExternalApplication($internalName)
+    final protected function getExternalApplication($internalName)
     {
         // Hm, should we replace this with an app list from the container?
         $classes = SymbolLoader::getInstance()
@@ -164,7 +164,7 @@ abstract class BaseApplication
      */
     private $container;
 
-    public function setContainer(ContainerInterface $container)
+    final public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
         return $this;
@@ -174,7 +174,7 @@ abstract class BaseApplication
      * @return object|null The requested service or null if it does not exist (we
      *                     ignore exceptions)
      */
-    public function getService($service)
+    final public function getService($service)
     {
         if (!$this->container) {
             return null;
@@ -182,7 +182,7 @@ abstract class BaseApplication
         return $this->container->get($service, ContainerInterface::NULL_ON_INVALID_REFERENCE);
     }
 
-    public function getServiceParameter($parameter)
+    final public function getServiceParameter($parameter)
     {
         if (!$this->container) {
             return null;
