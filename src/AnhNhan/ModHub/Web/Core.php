@@ -14,12 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Bootstrap of the application
- *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
 final class Core
 {
+    // Helper method, for internal use only
     public static function prepareResponse(
         Request $request,
         Application\HttpPayload $payload,
@@ -39,6 +38,7 @@ final class Core
         return $response;
     }
 
+    // Helper methods, onlz for internal use
     public static function startOverFlowCapturing()
     {
         ob_start();
@@ -49,6 +49,9 @@ final class Core
         return ob_get_clean();
     }
 
+    /**
+     * @deprecated, though we do not have a replacement yet
+     */
     public static function get404Page($page)
     {
         $payload = new Application\HtmlPayload;
@@ -61,6 +64,10 @@ final class Core
 
     const SERVICE_CONTAINER_NAME = 'AnhNhan\ServiceContainer';
 
+    /**
+     * Loads a Symfony\DependencyInjection container from cache. If it does not exist,
+     * it will be built fresh from the service configuration.
+     */
     public static function loadSfDIContainer(
         $className = null,
         $containerName = "default"
@@ -101,6 +108,20 @@ final class Core
         return $container;
     }
 
+    /**
+     * Dumb building of a Symfony\DependencyInjection container. This method does not
+     * load or cache the container, but re-loads all resources and extensions and processes them.
+     * 
+     * If you want to add an extension, simply extend the `ExtensionInterface` and make sure that
+     * it is registered in the symbol map.
+     * 
+     * @param $confDir string The directory containing the configuration files, including
+     *                        service configuration.
+     *                        This path is relative to the project root.
+     * 
+     * @return ContainerBuilder A ContainerBuilder instance that has undergone compilation (hence
+     *                          not worth the trouble of changing it yourself)
+     */
     public static function buildSfDIContainer($confDir = "conf/")
     {
         $confDir = ModHub\get_root_super() . $confDir;
