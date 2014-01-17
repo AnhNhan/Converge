@@ -54,6 +54,11 @@ final class AppRouting implements RequestMatcherInterface, UrlGeneratorInterface
     public function matchRequest(Request $request)
     {
         $parameters = $this->router->route($request->getPathInfo());
+
+        if (false === $parameters) {
+            throw new \Exception(sprintf("Could not find a route for '%s'", $request->getPathInfo()));
+        }
+
         // Compat with Symfony conventions
         $parameters["_route"] = idx($parameters, "route-name");
         return $parameters;
