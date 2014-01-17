@@ -10,6 +10,9 @@ use AnhNhan\ModHub\Web\Application\HtmlPayload;
 use AnhNhan\ModHub\Web\Application\JsonPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use League\Fractal;
+use AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -88,8 +91,6 @@ final class DiscussionListingController extends AbstractForumController
 
     public function handleJson()
     {
-        $result = array();
-
         $stopWatch = $this->app()->getService("stopwatch");
         $timer = $stopWatch->start("discussion-listing-json");
 
@@ -99,15 +100,16 @@ final class DiscussionListingController extends AbstractForumController
             ->retrieveDiscussions($this->discussionsPerPage, $offset)
         ;
 
-        foreach ($disqs as $disq) {
-            $result[] = $disq->toDictionary();
-        }
+        $fractal = new Fractal\Manager;
+        $resource = new Fractal\Resource\Collection($disqs, new DiscussionTransformer);
+
+        $result = $fractal->createData($resource)->toArray();
 
         $time = $timer->stop()->getDuration();
 
         $payload = new JsonPayload();
         $payload->setPayloadContents(array(
-            "discussions" => $result,
+            "discussions" => $result["data"], // TODO: Remove this once we've refactored payloads
             "time" => $time,
         ));
         return $payload;
