@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Web\Application;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -14,9 +15,9 @@ abstract class BaseApplicationController
     private $app;
 
     /**
-     * @var Request
+     * @var RequestStack
      */
-    private $request;
+    private $requestStack;
 
     final public function __construct(BaseApplication $app)
     {
@@ -40,12 +41,12 @@ abstract class BaseApplicationController
      */
     final public function request()
     {
-        return $this->request;
+        return $this->requestStack->getCurrentRequest();
     }
 
-    final public function setRequest(Request $request)
+    final public function setRequestStack(RequestStack $requestStack)
     {
-        $this->request = $request;
+        $this->requestStack = $requestStack;
         return $this;
     }
 

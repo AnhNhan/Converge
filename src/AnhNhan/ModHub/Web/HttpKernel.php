@@ -123,7 +123,7 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
                     "handle controllers of type '" . get_class($controller) . "'.");
             }
 
-            $payload = $controller->setRequest($request)->process();
+            $payload = $controller->setRequestStack($this->request_stack)->process();
         } else {
             return $this->create404Response($request, $type);
         }
