@@ -143,6 +143,8 @@ final class CompileCommand extends ConsoleCommand
         // First get all interesting resource files
         $rawFiles = FileFunc::recursiveScanForDirectories($dir, $ext);
         $files = FileFunc::sanitizeStringsFromPrefix($rawFiles, $dir);
+        // Exclude test files installed by Bower
+        $files = array_filter($files, function ($f) { return !preg_match('@[/|\\\\]tests[/|\\\\]@i', $f); });
 
         $prependFiles = preg_grep("/^prepend\\//", $files);
         foreach ($prependFiles as $prependFile) {
