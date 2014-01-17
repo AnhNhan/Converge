@@ -467,11 +467,65 @@ return array(
       "hash" => "4ad114ad",
       "orig" => "39022d11",
     ),
-    "external-require" => array(
-      "name" => "external-require",
-      "path" => "external/require.js",
-      "hash" => "ad5ef383",
-      "orig" => "2f8ee5f3",
+    "external-react-JSXTransformer" => array(
+      "name" => "external-react-JSXTransformer",
+      "path" => "external/react/JSXTransformer.js",
+      "hash" => "23bbf227",
+      "orig" => "c331a4eb",
+    ),
+    "external-react-react-with-addons" => array(
+      "name" => "external-react-react-with-addons",
+      "path" => "external/react/react-with-addons.js",
+      "hash" => "f153a2e1",
+      "orig" => "8cefd706",
+    ),
+    "external-react-react-with-addons-min" => array(
+      "name" => "external-react-react-with-addons-min",
+      "path" => "external/react/react-with-addons.min.js",
+      "hash" => "e3c07b79",
+      "orig" => "97aafaef",
+    ),
+    "external-react-react" => array(
+      "name" => "external-react-react",
+      "path" => "external/react/react.js",
+      "hash" => "b8b12ea6",
+      "orig" => "44230aa4",
+    ),
+    "external-react-react-min" => array(
+      "name" => "external-react-react-min",
+      "path" => "external/react/react.min.js",
+      "hash" => "31287efe",
+      "orig" => "fdef77ec",
+    ),
+    "external-requirejs-dist-dist-site" => array(
+      "name" => "external-requirejs-dist-dist-site",
+      "path" => "external/requirejs/dist/dist-site.js",
+      "hash" => "2fffd381",
+      "orig" => "ec5dc893",
+    ),
+    "external-requirejs-dist-file" => array(
+      "name" => "external-requirejs-dist-file",
+      "path" => "external/requirejs/dist/file.js",
+      "hash" => "1c2a41c4",
+      "orig" => "cef954be",
+    ),
+    "external-requirejs-dist-init" => array(
+      "name" => "external-requirejs-dist-init",
+      "path" => "external/requirejs/dist/init.js",
+      "hash" => "1a4875a8",
+      "orig" => "be7ae49e",
+    ),
+    "external-requirejs-require" => array(
+      "name" => "external-requirejs-require",
+      "path" => "external/requirejs/require.js",
+      "hash" => "71447af8",
+      "orig" => "1b521ace",
+    ),
+    "external-requirejs-testBaseUrl" => array(
+      "name" => "external-requirejs-testBaseUrl",
+      "path" => "external/requirejs/testBaseUrl.js",
+      "hash" => "71b87f26",
+      "orig" => "844d9a2f",
     ),
     "external-text" => array(
       "name" => "external-text",
@@ -494,7 +548,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "vwuqjeey",
+      "hash" => "cuy2gljn",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(

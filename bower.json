@@ -1,0 +1,23 @@
+{
+  "name": "AnhNhan/ModHub",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AnhNhan/ModHub",
+  "authors": [
+    "Anh Nhan Nguyen <anhnhan@outlook.com>"
+  ],
+  "description": "Boo yeah!",
+  "main": "webroot/app.php",
+  "license": "Apache v2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.10",
+    "react": "~0.8.0"
+  }
+}

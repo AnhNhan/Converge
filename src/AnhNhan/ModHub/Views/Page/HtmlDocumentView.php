@@ -111,7 +111,7 @@ EOT
     public function renderRequireJs()
     {
         $tag = ModHub\ht("script");
-        $tag->addOption("src", sprintf("/rsrc/js/external-require.%s.js", $this->getResMgr()->getHashForResource("js", "external-require")));
+        $tag->addOption("src", sprintf("/rsrc/js/external-requirejs-require.%s.js", $this->getResMgr()->getHashForResource("js", "external-requirejs-require")));
         $tag->addOption("data-main", sprintf("/rsrc/js/main.%s", $this->getResMgr()->getHashForResource("js", "main")));
         return $tag;
     }

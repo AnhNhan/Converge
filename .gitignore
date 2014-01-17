@@ -10,3 +10,6 @@
 
 /dist
 /log
+
+# Externally installed JS resources
+/resources/javascript/external
