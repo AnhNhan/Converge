@@ -1,0 +1,27 @@
+
+routes:
+
+  - pattern: roles/
+    route-name: role-listing
+
+  - pattern: role/create
+    route-name: role-edit
+  - pattern: role/:id/edit
+    route-name: role-edit
+
+  - pattern: role/:id
+    route-name: role-display
+
+  - pattern: users/
+    route-name: user-listing
+  - pattern: user/:name
+    route-name: user-display
+
+  - pattern: login
+    route-name: login
+
+  - pattern: login_check
+    route-name: login_check
+
+  - pattern: join
+    route-name: join

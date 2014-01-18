@@ -24,13 +24,8 @@ final class RoleTransactionEditor extends TransactionEditor
         TransactionEntity $transaction)
     {
         switch ($transaction->type) {
-            case TransactionEntity::TYPE_CREATE: // Set to name
-                if (!$transaction->newValue) {
-                    throw new \Exception(
-                        "You have to set \$transaction->newValue to the role name!"
-                    );
-                }
-                return $transaction->newValue;
+            case TransactionEntity::TYPE_CREATE:
+                return null;
             case RoleTransaction::TYPE_EDIT_LABEL:
                 return $entity->label;
             case RoleTransaction::TYPE_EDIT_DESC:
@@ -42,11 +37,16 @@ final class RoleTransactionEditor extends TransactionEditor
         TransactionEntity $transaction)
     {
         switch ($transaction->type) {
-            case DiscussionTransaction::TYPE_EDIT_LABEL:
-            case DiscussionTransaction::TYPE_EDIT_TEXT:
+            case RoleTransaction::TYPE_EDIT_LABEL:
+            case RoleTransaction::TYPE_EDIT_DESC:
                 return $transaction->newValue;
-            case TransactionEntity::TYPE_CREATE:
-                return null;
+            case TransactionEntity::TYPE_CREATE: // Set to name
+                if (!$transaction->newValue) {
+                    throw new \Exception(
+                        "You have to set \$transaction->newValue to the role name!"
+                    );
+                }
+                return $transaction->newValue;
         }
     }
 
@@ -56,7 +56,7 @@ final class RoleTransactionEditor extends TransactionEditor
         switch ($transaction->type) {
             case TransactionEntity::TYPE_CREATE:
                 // Set name field by hacking
-                $nameReflProp = $this->em()->getClassMetadata('AnhNhan\ModHub\Modules\Forum\Storage\Discussion')
+                $nameReflProp = $this->em()->getClassMetadata('AnhNhan\ModHub\Modules\User\Storage\Role')
                     ->reflClass->getProperty('name');
                 $nameReflProp->setAccessible(true);
                 $nameReflProp->setValue(

@@ -22,11 +22,18 @@ class UserApplication extends BaseApplication
 
     public function getRoutes()
     {
-        return array();
+        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
     public function routeToController(Request $request)
     {
+        switch ($request->attributes->get("route-name")) {
+            case "role-edit":
+                return new Controllers\RoleEditController($this);
+            case "role-listing":
+                return new Controllers\RoleListingController($this);
+        }
+
         return null;
     }
 

@@ -53,6 +53,12 @@ class Role extends EntityDefinition implements RoleInterface, TransactionAwareEn
      */
     private $xacts = array();
 
+    public function __construct()
+    {
+        $this->createdAt  = new \DateTime;
+        $this->modifiedAt = new \DateTime;
+    }
+
     /**
      * @internal For tests only
      */

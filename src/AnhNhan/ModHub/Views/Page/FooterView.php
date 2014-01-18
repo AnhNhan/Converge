@@ -99,6 +99,20 @@ class FooterView extends AbstractView implements ViewInterface
         );
         $footer->column('Discussions', $column2);
 
+        $column2 = array(
+            array(
+                "label" => "Roles",
+                "href"  => "roles/",
+                //"bckbn" => true,
+            ),
+            array(
+                "label" => "Users",
+                "href"  => "users/",
+                //"bckbn" => true,
+            ),
+        );
+        $footer->column('Users', $column2);
+
         return $footer;
     }
 }
