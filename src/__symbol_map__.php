@@ -123,6 +123,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Transaction/PostTransactionEditor.php",
       "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
     ),
+    "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Transform/DiscussionTransformer.php",
+      "deriv" => "League\Fractal\TransformerAbstract",
+    ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
       "deriv" => "AnhNhan\ModHub\Views\Objects\Listing",
@@ -260,6 +264,14 @@ return array(
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Controllers/RoleEditController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
+    ),
+    "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Controllers/RoleListingController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
+    ),
     "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension" => array(
       "file" => "AnhNhan/ModHub/Modules/User/DependencyInjection/SecurityExtension.php",
       "impls" => array(
@@ -281,6 +293,10 @@ return array(
     "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Providers/UserAuthenticationProvider.php",
       "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
+    ),
+    "AnhNhan\ModHub\Modules\User\Query\RoleQuery" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Query/RoleQuery.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Query",
     ),
     "AnhNhan\ModHub\Modules\User\Storage\Role" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Storage/Role.php",
@@ -531,6 +547,8 @@ return array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
+      "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
+      "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
       "AnhNhan\ModHub\Modules\Examples\Examples\BootstrapExample",
@@ -556,6 +574,7 @@ return array(
     "AnhNhan\ModHub\Storage\Query" => array(
       "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery",
       "AnhNhan\ModHub\Modules\Tag\TagQuery",
+      "AnhNhan\ModHub\Modules\User\Query\RoleQuery",
     ),
     "AnhNhan\ModHub\Storage\EntityDefinition" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
@@ -581,6 +600,9 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor",
       "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor",
       "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor",
+    ),
+    "League\Fractal\TransformerAbstract" => array(
+      "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
@@ -630,6 +652,10 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
       "AnhNhan\ModHub\Views\Page\BarePageView",
+    ),
+    "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController" => array(
+      "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
+      "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
     ),
     "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
       "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider",
