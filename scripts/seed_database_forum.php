@@ -39,6 +39,7 @@ $userApp->setContainer($container);
 $userEm  = $userApp->getEntityManager();
 
 $faker = \Faker\Factory::create();
+$stopwatch = $container->get("stopwatch");
 
 $num_tags = 12;
 $num_discussions = 15;
@@ -58,6 +59,7 @@ function generateContent($faker)
     return implode("\n\n", $paragraphs);
 }
 
+$timer = $stopwatch->start("db-seeding");
 
 $users = array();
 for ($ii = 0; $ii < $num_users; $ii++) {
@@ -174,4 +176,6 @@ $randomPost = function () use ($posts) {
     return $posts[array_rand($posts)];
 };
 
-echo "Done." . PHP_EOL;
+$timer->stop();
+
+echo sprintf("Done. Took me %dms.", $timer->getDuration()) . PHP_EOL;
