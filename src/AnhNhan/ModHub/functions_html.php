@@ -35,16 +35,16 @@ function ht($name, $content = null, array $options = array())
     return new HtmlTag($name, $content, $options);
 }
 
-function icon_text($text, $icon, $isRight = true, $white = false)
+function icon_text($text, $icon, $textIsRight = true, $white = false)
 {
     $white_class = $white ? " icon-white" : null;
     return safeHtml(
         sprintf(
             '%s<i class="icon-%s%s"></i>%s',
-            !$isRight ? $text . " " : "",
+            !$textIsRight ? $text . " " : "",
             $icon,
             $white_class,
-            $isRight ? $text . " " : ""
+            $textIsRight ? " " . $text : ""
         )
     );
 }
