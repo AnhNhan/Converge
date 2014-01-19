@@ -14,13 +14,10 @@ web1:
     - memcached
     - mcrypt
     - intl
-    - filter
-    - fileinfo
     - exif
-    - dom
-    - ctype
     - gettext
     - xsl
+    - zip
   zend_extensions:
     - xdebug
 
@@ -32,6 +29,8 @@ web1:
   php_date_timezone: "UTC"
 
   after_build:
+    - "curl -sS https://getcomposer.org/installer | php"
+    - "php composer.phar install"
     - "modhub rsrc:compile"
 
   apache_access_log: false
