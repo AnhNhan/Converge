@@ -1,0 +1,40 @@
+
+web1:
+  name: web-master
+  document_root: webroot
+  php_version: 5.4.14
+  php_extensions:
+    - mysql
+    - curl
+    - gd
+    - apc
+    - pdo_mysql
+    - mongo
+    - mbstring
+    - memcached
+    - mcrypt
+    - intl
+    - filter
+    - fileinfo
+    - exif
+    - dom
+    - ctype
+    - gettext
+    - xsl
+  zend_extensions:
+    - xdebug
+
+  shared_writable_dirs:
+    - cache
+
+  php_display_errors: "1"
+  php_error_reporting: 32767
+  php_date_timezone: "UTC"
+
+  after_build:
+    - "modhub rsrc:compile"
+
+  apache_access_log: false
+  apache_error_log: true
+  php_error_log: true
+  php_fpm_log: true
