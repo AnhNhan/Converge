@@ -71,7 +71,7 @@ abstract class BaseApplicationController
     public function __get($name)
     {
         if (method_exists($this, $name)) {
-            return $this->$name;
+            return $this->$name();
         }
 
         throw new \RunTimeException(sprintf(
