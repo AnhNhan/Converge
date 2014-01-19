@@ -32,7 +32,7 @@ final class RoleListingController extends AbstractUserController
             "class" => "btn btn-primary pull-right",
         )));
 
-        $container->push(ModHub\ht("h1", "Roles"));
+        $container->push(ModHub\ht("h1", "Roles / Permissions"));
 
         $grid = new Grid;
         $row = $grid->row();
@@ -48,7 +48,7 @@ final class RoleListingController extends AbstractUserController
                 ->parentRow()
                 ->column(2)
                 ->push(
-                    ModHub\ht("a", ModHub\icon_text("edit ", "edit", false))
+                    ModHub\ht("a", ModHub\icon_text("edit", "edit", false))
                         ->addClass("btn btn-default btn-small pull-right")
                         ->addOption("href", "role/{$role->cleanId}/edit")
                 )
@@ -65,7 +65,11 @@ final class RoleListingController extends AbstractUserController
 
         $payload = new HtmlPayload;
         $payload->setTitle("Roles");
-        $payload->setPayloadContents($container);
+        $payload->setPayloadContents(ModHub\ht("div", $container)->addClass("role-listing"));
+
+        $this->app->getService("resource_manager")
+            ->requireCss("application-role-listing")
+        ;
 
         return $payload;
     }

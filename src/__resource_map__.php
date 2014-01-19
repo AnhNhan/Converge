@@ -21,6 +21,12 @@ return array(
       "hash" => "7bfb057b",
       "orig" => "dda19475",
     ),
+    "application-role-listing" => array(
+      "name" => "application-role-listing",
+      "path" => "application/role/listing.less",
+      "hash" => "5b380874",
+      "orig" => "906111bc",
+    ),
     "external-bootstrap-alerts" => array(
       "name" => "external-bootstrap-alerts",
       "path" => "external/bootstrap/alerts.less",
@@ -548,7 +554,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "cuy2gljn",
+      "hash" => "duk4ozmc",
       "orig" => "50747dc3",
     ),
     "model-abstract-entity" => array(
