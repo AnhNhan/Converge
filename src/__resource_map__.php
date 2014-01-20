@@ -96,14 +96,14 @@ return array(
     "external-icomoon-mh" => array(
       "name" => "external-icomoon-mh",
       "path" => "external/icomoon-mh.css",
-      "hash" => "4aadb514",
-      "orig" => "d151c31e",
+      "hash" => "07b76b35",
+      "orig" => "a13f1ae6",
     ),
     "external-ionicons" => array(
       "name" => "external-ionicons",
       "path" => "external/ionicons.css",
-      "hash" => "4c41c191",
-      "orig" => "924cbe81",
+      "hash" => "b691d97e",
+      "orig" => "74036e82",
     ),
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
@@ -646,7 +646,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "b5e412a1",
+      "hash" => "83bdebee",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-other" => "19e65a9f",
@@ -658,8 +658,8 @@ return array(
         "external-bootstrap-tooltip" => "12f7ec88",
         "external-bootstrap-popovers" => "cfdc3f7c",
         "external-html5-boilerplate-main" => "93f2241c",
-        "external-icomoon-mh" => "4aadb514",
-        "external-ionicons" => "4c41c191",
+        "external-icomoon-mh" => "07b76b35",
+        "external-ionicons" => "b691d97e",
         "layout-boilerplate" => "982800be",
         "layout-core" => "16758b02",
         "layout-form" => "bbe851b2",

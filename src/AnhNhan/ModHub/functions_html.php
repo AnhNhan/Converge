@@ -35,6 +35,19 @@ function ht($name, $content = null, array $options = array())
     return new HtmlTag($name, $content, $options);
 }
 
+/**
+ * Renders an icon using Twitter Bootstrap v2 (outdated)
+ *
+ * @param string $text        The text to use
+ * @param string $icon        The name of the icon
+ * @param bool   $textIsRight Whether the text should be on the right side or not.
+ * @param bool   $white       Whether to use black or white icons
+ *
+ * @return SafeTextNode
+ *
+ * @deprecated This is still using sprite sheets, meaning icons are fixed 14px.
+ *             We're in the process of phasing this out in favor of font-based icons
+ */
 function icon_bs2($text, $icon, $textIsRight = true, $white = false)
 {
     $white_class = $white ? " icon-white" : null;
@@ -45,6 +58,51 @@ function icon_bs2($text, $icon, $textIsRight = true, $white = false)
             $icon,
             $white_class,
             $textIsRight ? " " . $text : ""
+        )
+    );
+}
+
+/**
+ * Using `icon_ion` is recommended - we may only selectively load this in future.
+ *
+ * Renders a font-based icon generated using icons generated from http://icomoon.io.
+ * For the configuration, see https://github.com/AnhNhan/icomoon-mh.
+ *
+ * @param string $text
+ * @param string $icon_name
+ * @param bool   $iconIsRight
+ *
+ * @return SafeTextNode
+ */
+function icon_ic($text, $icon_name, $iconIsRight = true)
+{
+    return safeHtml(
+        sprintf(
+            '%s<span class="ic-%s"></i>%s',
+            $iconIsRight ? $text . " " : "",
+            $icon_name,
+            !$iconIsRight ? " " . $text : ""
+        )
+    );
+}
+
+/**
+ * Renders a font-based icon of the ion framework v1.4.1.
+ *
+ * @param string $text
+ * @param string $icon_name
+ * @param bool   $iconIsRight
+ *
+ * @return SafeTextNode
+ */
+function icon_ion($text, $icon_name, $iconIsRight = true)
+{
+    return safeHtml(
+        sprintf(
+            '%s<i class="ion-%s"></i>%s',
+            $iconIsRight ? $text . " " : "",
+            $icon_name,
+            !$iconIsRight ? " " . $text : ""
         )
     );
 }
