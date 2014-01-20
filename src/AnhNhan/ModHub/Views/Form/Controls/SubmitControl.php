@@ -37,7 +37,7 @@ class SubmitControl implements ViewInterface
         if ($this->cancel_uri) {
             $cancelButton = ModHub\ht(
                 'a',
-                ModHub\icon_bs2($this->cancel_label, 'chevron-left')
+                ModHub\icon_ion($this->cancel_label, 'close', false)
             )->addOption('href', $this->cancel_uri)
                 ->addClass('btn btn-default');
         }
@@ -47,7 +47,7 @@ class SubmitControl implements ViewInterface
         if ($this->submit_label) {
             $submitButton = ModHub\ht(
                 'button',
-                ModHub\icon_bs2($this->submit_label, 'check')
+                ModHub\icon_ion($this->submit_label, 'checkmark')
             )->addOption('name', '__submit__')
                 ->addClass('btn btn-primary');
         }

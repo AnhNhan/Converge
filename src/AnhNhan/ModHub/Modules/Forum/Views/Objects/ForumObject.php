@@ -49,7 +49,7 @@ class ForumObject extends Object
         }
 
         if ($this->postCount !== null) {
-            $that->addAttributeAsFirst(ModHub\icon_bs2(ModHub\ht("div", $this->postCount)->addClass("post-count"), "th-list", false));
+            $that->addAttributeAsFirst(ModHub\icon_ic(ModHub\ht("div", $this->postCount)->addClass("post-count"), "comments"));
         }
 
         $object = $that->_parentRender();

@@ -63,7 +63,7 @@ final class DiscussionDisplayController extends AbstractForumController
             } else {
                 $midriff->push(ModHub\ht("small", "No tags for this discussion")->addClass("muted"));
             }
-            $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_bs2("Edit discussion", "edit", false, true))
+            $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
                     ->addClass("btn btn-info")
                     ->addOption("href", "disq/{$currentId}/edit")
             );
@@ -79,7 +79,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $postPanel->setMidriffRight($post->modifiedAt->format("D, d M 'y"));
 
                 $postPanel->append(
-                    ModHub\ht("a", ModHub\icon_bs2("edit post", "edit", false))
+                    ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
                         ->addClass("btn btn-default btn-small")
                         ->addClass("pull-right")
                         ->addOption("href", "disq/{$currentId}/{$post->cleanId}/edit")

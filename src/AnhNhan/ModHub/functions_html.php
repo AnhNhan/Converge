@@ -78,7 +78,7 @@ function icon_ic($text, $icon_name, $iconIsRight = true)
 {
     return safeHtml(
         sprintf(
-            '%s<span class="ic-%s"></i>%s',
+            '%s<i class="ic-%s"></i>%s',
             $iconIsRight ? $text . " " : "",
             $icon_name,
             !$iconIsRight ? " " . $text : ""
