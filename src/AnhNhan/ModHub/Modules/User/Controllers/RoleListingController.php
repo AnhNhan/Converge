@@ -48,7 +48,7 @@ final class RoleListingController extends AbstractUserController
                 ->parentRow()
                 ->column(2)
                 ->push(
-                    ModHub\ht("a", ModHub\icon_text("edit", "edit", false))
+                    ModHub\ht("a", ModHub\icon_bs2("edit", "edit", false))
                         ->addClass("btn btn-default btn-small pull-right")
                         ->addOption("href", "role/{$role->cleanId}/edit")
                 )

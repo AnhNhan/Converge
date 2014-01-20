@@ -35,7 +35,7 @@ function ht($name, $content = null, array $options = array())
     return new HtmlTag($name, $content, $options);
 }
 
-function icon_text($text, $icon, $textIsRight = true, $white = false)
+function icon_bs2($text, $icon, $textIsRight = true, $white = false)
 {
     $white_class = $white ? " icon-white" : null;
     return safeHtml(
