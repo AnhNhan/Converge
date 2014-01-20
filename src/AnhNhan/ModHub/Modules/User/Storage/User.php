@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\User\Storage;
 
 use AnhNhan\ModHub\Storage\EntityDefinition;
+use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  *   @Index(name="username", columns={"username"})
  * })
  */
-class User extends EntityDefinition implements AdvancedUserInterface
+class User extends EntityDefinition implements AdvancedUserInterface, TransactionAwareEntityInterface
 {
     /**
      * @Id
@@ -36,7 +37,7 @@ class User extends EntityDefinition implements AdvancedUserInterface
      */
     private $password;
 
-    const DEFAULT_SALT_LENGTH = 8;
+    const DEFAULT_SALT_LENGTH = 22;
     /**
      * @Column(type="string")
      */
@@ -48,7 +49,19 @@ class User extends EntityDefinition implements AdvancedUserInterface
      *
      * @Column(type="string")
      */
-    private $profileImagePath = self::DEFAULT_PROFILE_IMAGE;
+    private $profileImagePath;
+
+    /**
+     * @Column(type="datetime")
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @Column(type="datetime")
+     * @var \DateTime
+     */
+    private $modifiedAt;
 
     /**
      * @ManyToMany(targetEntity="Role")
@@ -58,17 +71,21 @@ class User extends EntityDefinition implements AdvancedUserInterface
     private $roles = array();
 
     /**
+     * @OneToMany(targetEntity="UserTransaction", mappedBy="object", fetch="LAZY")
+     * @OrderBy({"createdAt"="ASC"})
+     */
+    private $xacts = array();
+
+    /**
      * @OneToMany(targetEntity="OAuthInfo", mappedBy="user")
      * @var \Doctrine\ORM\PersistentCollection
      */
     private $oauthKeys = array();
 
-    public function __construct($username, $dispName, $hashedPw, $salt)
+    public function __construct()
     {
-        $this->username = $username;
-        $this->dispname = $dispName;
-        $this->password = $hashedPw;
-        $this->salt     = $salt;
+        $this->createdAt = new \DateTime;
+        $this->modifiedAt = new \DateTime;
     }
 
     public function uid()
@@ -86,6 +103,12 @@ class User extends EntityDefinition implements AdvancedUserInterface
         return $this->dispname;
     }
 
+    public function setDisplayname($dname)
+    {
+        return $this->dispname = $dname;
+        return $this;
+    }
+
     public function getPassword()
     {
         return $this->password;
@@ -96,6 +119,13 @@ class User extends EntityDefinition implements AdvancedUserInterface
         return $this->salt;
     }
 
+    public function updatePassword($password, $salt)
+    {
+        $this->password = $password;
+        $this->salt = $salt;
+        return $this;
+    }
+
     public static function generateSalt($length = self::DEFAULT_SALT_LENGTH)
     {
         return \Filesystem::readRandomCharacters($length);
@@ -103,17 +133,26 @@ class User extends EntityDefinition implements AdvancedUserInterface
 
     public function eraseCredentials()
     {
-        // TODO: Create pw-reset link
+        // Use this method with care. One wrong move and our user in the db can't log int anymore
+        $this->password = null;
+        $this->salt = null;
+        return $this;
     }
 
     public function profileImageRawPath()
     {
-        return $this->profileImagePath;
+        return $this->profileImagePath ?: self::DEFAULT_PROFILE_IMAGE;
     }
 
     public function profileImage()
     {
         // TODO: Once we have file objects, return them here
+    }
+
+    public function setProfileImageRawPath($path)
+    {
+        $this->profileImagePath = $path;
+        return $this;
     }
 
     public function getRoles()
@@ -131,6 +170,30 @@ class User extends EntityDefinition implements AdvancedUserInterface
     {
         $this->roles->remove($role->uid());
         return $this;
+    }
+
+    public function createdAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function modifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
+    public function updateModifiedAt()
+    {
+        $this->modifiedAt = new \DateTime;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\ORM\PersistentCollection
+     */
+    public function transactions()
+    {
+        return $this->xacts;
     }
 
     public function isAccountNonExpired()
