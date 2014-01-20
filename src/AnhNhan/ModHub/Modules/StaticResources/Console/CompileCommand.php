@@ -183,7 +183,7 @@ final class CompileCommand extends ConsoleCommand
             $resEntry = array(
                 "name" => $resName,
                 "path" => $fileName,
-                "hash" => hash_file("crc32", $resPath),
+                "hash" => hash_file("md5", $resPath),
                 "orig" => $this->calcContentHashes(array_merge($prependPaths, array($resPath))),
             );
 
@@ -262,7 +262,7 @@ final class CompileCommand extends ConsoleCommand
                     "name" => $name,
                     "type" => $type,
                     "hash" => hash_hmac(
-                        "crc32",
+                        "md5",
                         implode("", $contents),
                         "random string"
                     ),
@@ -315,6 +315,6 @@ EOT;
         array_walk($files, function (&$el) {
             $el = file_get_contents($el);
         });
-        return hash_hmac("crc32", implode("-", $files), "random string");
+        return hash_hmac("md5", implode("-", $files), "random string");
     }
 }
