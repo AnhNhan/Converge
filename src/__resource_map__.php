@@ -93,6 +93,18 @@ return array(
       "hash" => "71670d22",
       "orig" => "5a42f407",
     ),
+    "external-icomoon-mh" => array(
+      "name" => "external-icomoon-mh",
+      "path" => "external/icomoon-mh.css",
+      "hash" => "4aadb514",
+      "orig" => "d151c31e",
+    ),
+    "external-ionicons" => array(
+      "name" => "external-ionicons",
+      "path" => "external/ionicons.css",
+      "hash" => "4c41c191",
+      "orig" => "924cbe81",
+    ),
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
@@ -634,7 +646,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "ce11a1f7",
+      "hash" => "b5e412a1",
       "contents" => array(
         "external-bootstrap-responsive-utilities" => "37915821",
         "external-bootstrap-other" => "19e65a9f",
@@ -646,6 +658,8 @@ return array(
         "external-bootstrap-tooltip" => "12f7ec88",
         "external-bootstrap-popovers" => "cfdc3f7c",
         "external-html5-boilerplate-main" => "93f2241c",
+        "external-icomoon-mh" => "4aadb514",
+        "external-ionicons" => "4c41c191",
         "layout-boilerplate" => "982800be",
         "layout-core" => "16758b02",
         "layout-form" => "bbe851b2",
