@@ -42,7 +42,8 @@ button,
 input[type="button"],
 input[type="submit"] {
     .round-border(4px);
-    font-size: @defaultFontSize;
+    font-size: inherit;
+    line-height: inherit;
     font-weight: bold;
     cursor: pointer;
     padding:  0.4em 0.67em;
@@ -52,7 +53,6 @@ input[type="submit"] {
     white-space: nowrap;
     display: inline-block;
     -moz-outline-style: none;
-    line-height: @fontBaseLine;
     border: 1px solid transparent;
     .transition(~"background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease");
     -webkit-user-select: none;
@@ -70,7 +70,7 @@ input[type="submit"] {
 
     &.close {
         float: right;
-        font-size: (@defaultFontSize * 1.25);
+        font-size: 1.25em;
         font-weight: bold;
         line-height: 1;
         margin: 0;
@@ -100,15 +100,15 @@ input[type="submit"] {
 }
 
 .btn-small {
-    font-size: (@defaultFontSize * 0.85) !important;
+    font-size: 0.85em !important;
     padding:  0.2em 0.67em !important;
-    line-height: (@fontBaseLine * 0.85) !important;
+    line-height: unit(@fontBaseLine * 0.85 / @defaultFontSize) !important;
 }
 
 .btn-large {
-    font-size: (@defaultFontSize * 1.25) !important;
+    font-size: 1.25em !important;
     font-weight: normal !important;
-    line-height: (@fontBaseLine * 1.25) !important;
+    line-height: unit(@fontBaseLine * 1.25 / @defaultFontSize) !important;
 }
 
 .btn-primary {
