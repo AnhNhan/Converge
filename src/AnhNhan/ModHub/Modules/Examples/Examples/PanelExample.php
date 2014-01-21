@@ -51,7 +51,7 @@ final class PanelExample extends AbstractExample
         $panel = id(new Panel)
             ->setColor(Panel::COLOR_DARK)
         ;
-        $panel->midriff()->push(ModHub\icon_bs2("Deleted Post", "remove"));
+        $panel->midriff()->push(ModHub\icon_ion("Deleted Post", "close", false));
         $container->push($panel);
 
         $panel = id(new Panel)
