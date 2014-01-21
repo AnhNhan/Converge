@@ -315,7 +315,12 @@ return array(
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
       "impls" => array(
         "Symfony\Component\Security\Core\User\AdvancedUserInterface",
+        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
       ),
+    ),
+    "AnhNhan\ModHub\Modules\User\Storage\UserTransaction" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Storage/UserTransaction.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
     ),
     "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Transaction/RoleTransactionEditor.php",
@@ -510,7 +515,9 @@ return array(
     "AnhNhan\ModHub\pdx" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\safeHtml" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\ht" => "AnhNhan/ModHub/functions_html.php",
-    "AnhNhan\ModHub\icon_text" => "AnhNhan/ModHub/functions_html.php",
+    "AnhNhan\ModHub\icon_bs2" => "AnhNhan/ModHub/functions_html.php",
+    "AnhNhan\ModHub\icon_ic" => "AnhNhan/ModHub/functions_html.php",
+    "AnhNhan\ModHub\icon_ion" => "AnhNhan/ModHub/functions_html.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -588,12 +595,14 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
       "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction",
+      "AnhNhan\ModHub\Modules\User\Storage\UserTransaction",
     ),
     "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
       "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction",
+      "AnhNhan\ModHub\Modules\User\Storage\UserTransaction",
     ),
     "AnhNhan\ModHub\Storage\Transaction\TransactionEditor" => array(
       "AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor",
@@ -699,6 +708,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
       "AnhNhan\ModHub\Modules\User\Storage\Role",
+      "AnhNhan\ModHub\Modules\User\Storage\User",
     ),
     "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
       "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension",
