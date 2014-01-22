@@ -32,7 +32,7 @@ final class MarkupProcessingController extends AbstractMarkupController
 
         $payload = new JsonPayload();
         $payload->setPayloadContents(array(
-            "contents" => $output,
+            "contents" => (string) $output,
             "time"     => $time,
         ));
         return $payload;
