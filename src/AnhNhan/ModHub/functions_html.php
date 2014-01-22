@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub;
 
 use YamwLibs\Libs\Html\Markup\SafeTextNode;
+use YamwLibs\Libs\Html\Markup\TextNode;
 use YamwLibs\Libs\Html\Markup\HtmlTag;
 
 /**
@@ -14,6 +15,21 @@ use YamwLibs\Libs\Html\Markup\HtmlTag;
 function safeHtml($string)
 {
     return new SafeTextNode($string);
+}
+
+/**
+ * Format a HTML code. This function behaves like sprintf(), except that all
+ * the normal conversions (like %s) will be properly escaped.
+ *
+ * Implements libphutil's xprintf()
+ */
+function hsprintf($html/* , ... */) {
+  $args = func_get_args();
+  array_shift($args);
+  foreach ($args as &$arg) {
+    $arg = TextNode::escape($arg);
+  }
+  return new SafeTextNode(vsprintf($html, $args));
 }
 
 /**
