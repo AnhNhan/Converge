@@ -23,7 +23,7 @@ define([
         },
 
         getTagsForDiscussion: function (disq) {
-            var _tags = disq.get('tags');
+            var _tags = disq.get('tagIds');
 
             var result = [];
             _.each(_tags, function (tag) {
