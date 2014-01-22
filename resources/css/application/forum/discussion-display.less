@@ -73,7 +73,8 @@
 
     li {
         list-style: none;
-        margin: 0 -10px;
+        // Look at panel.less for the reference
+        margin: 0 unit(-10px / @fontSizeBase * 1.33 * 0.9, 'em');
         padding: 0;
         background-color: transparent;
         .transition(~"background-color 0.3s ease");

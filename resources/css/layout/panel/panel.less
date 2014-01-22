@@ -1,6 +1,6 @@
 
 @radius: 3px;
-@padding: 10px;
+@padding: unit(10px / @fontSizeBase * 0.9, 'em');
 
 .panel-colorize (@color) {
     border: 3px solid @color;
@@ -56,7 +56,7 @@
 }
 
 .panel-header {
-    padding: (@padding * 1.2) @padding;
+    padding: @padding (@padding * 1.33);
 
     h1, h2, h3, h4, h5, h6 {
         color: @fontColor !important;
@@ -71,7 +71,7 @@
 }
 
 .panel-midriff {
-    padding: @padding;
+    padding: @padding (@padding * 1.33);
 }
 
 .panel-midriff-right {
@@ -79,7 +79,7 @@
 }
 
 .panel-body {
-    padding: @padding;
+    padding: @padding (@padding * 1.33);
 
     p,
     h1,
