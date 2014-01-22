@@ -40,14 +40,22 @@ final class DiscussionDisplayController extends AbstractForumController
             $discussionPanel->setId($disq->uid);
 
             $headerRiff = new MarkupContainer;
-            $headerRiff->push(ModHub\ht("h2", $disq->label));
+            $headerRiff->push(
+                ModHub\ht("img")
+                    ->addOption("src", ModHub\Modules\User\Storage\User::DEFAULT_PROFILE_IMAGE)
+                    ->addClass("user-profile-image")
+            );
+
+            $headerContainer = ModHub\ht("div");
+            $headerContainer->appendContent(ModHub\ht("h2", $disq->label));
 
             $small = ModHub\ht("small");
             $small->appendContent(ModHub\ht("strong", $disq->authorId));
             $small->appendContent(ModHub\ht("span", " created this discussion on "));
             $small->appendContent(ModHub\ht("span", $disq->lastActivity->format("D, d M 'y")));
 
-            $headerRiff->push($small);
+            $headerContainer->appendContent($small);
+            $headerRiff->push($headerContainer);
             $discussionPanel->setHeader($headerRiff);
 
             $discussionPanel->append(ModHub\safeHtml(
@@ -73,10 +81,23 @@ final class DiscussionDisplayController extends AbstractForumController
             foreach ($disq->posts->toArray() as $post) {
                 $postPanel = new Panel;
                 $postPanel->setId($post->uid);
-                $title = $postPanel->midriff();
-                $title->push(ModHub\ht("strong", $post->authorId));
-                $title->push(ModHub\ht("span", " added a comment"));
-                $postPanel->setMidriffRight($post->modifiedAt->format("D, d M 'y"));
+                $title = new MarkupContainer;
+                $title->push(
+                    ModHub\ht("img")
+                        ->addOption("src", ModHub\Modules\User\Storage\User::DEFAULT_PROFILE_IMAGE)
+                        ->addClass("user-profile-image")
+                );
+                $title->push(ModHub\ht("div", $post->modifiedAt->format("D, d M 'y"))->addClass("pull-right"));
+                $titleMain = ModHub\ht("div");
+                $titleMain->appendContent(ModHub\ht("strong", $post->authorId));
+                $titleMain->appendContent(ModHub\ht("span", " added a comment"));
+                $title->push($titleMain);
+                $pxacts = $post->transactions;
+                $initialXActCount = 2;
+                if (count($pxacts) - $initialXActCount) {
+                    $title->push(ModHub\ht("div", ModHub\ht("small", ModHub\hsprintf("This post has received <b>%d</b> modification", count($pxacts) - $initialXActCount))));
+                }
+                $postPanel->setHeader($title);
 
                 $postPanel->append(
                     ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
