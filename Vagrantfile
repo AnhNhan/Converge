@@ -82,7 +82,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     puppet.manifests_path = "_deploy/puphpet/puppet/manifests"
-    puppet.options = ["--verbose", "--hiera_config /vagrant/_deploy/puphpet/puppet/hiera.yaml", "--parser future"]
+    puppet.manifest_file = "default.pp"
+    #puppet.module_path = "_deploy/puphpet/puppet/modules"
+    puppet.hiera_config_path = "_deploy/puphpet/puppet/hiera.yaml"
+    puppet.working_directory = "/tmp/vagrant-puppet"
+    puppet.options = ["--verbose", "--parser future", "--debug"]
   end
 
   config.vm.provision :shell, :path => "_deploy/puphpet/shell/execute-files.sh"

@@ -58,7 +58,7 @@ apache:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
-            docroot: /var/www/webroot
+            docroot: /var/www/awesome
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -116,7 +116,7 @@ xdebug:
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
 xhprof:
-    install: '1'
+    install: '0'
 drush:
     install: 0
     settings:
