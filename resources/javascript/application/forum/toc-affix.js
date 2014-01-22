@@ -1,14 +1,6 @@
 'use strict';
 
 +$(function () {
-    $('#disq-column .panel-body, .forum-toc-affix').flowtype({
-        minimum   : 500,
-        maximum   : 1400,
-        fontRatio : 55,
-        minFont   : 14,
-        maxFont   : 40
-    });
-
     var $window = $(window);
     var $body   = $(document.body);
     var $sideBar = $('.forum-toc-affix');
