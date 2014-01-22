@@ -697,16 +697,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AnhNhan/libphutil.git",
-                "reference": "ebf8f5033450ef8fb2524beca19769640bef817a"
+                "reference": "e21f2bbd2cdcc3df29cc905173e3079629c64314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AnhNhan/libphutil/zipball/ebf8f5033450ef8fb2524beca19769640bef817a",
-                "reference": "ebf8f5033450ef8fb2524beca19769640bef817a",
+                "url": "https://api.github.com/repos/AnhNhan/libphutil/zipball/e21f2bbd2cdcc3df29cc905173e3079629c64314",
+                "reference": "e21f2bbd2cdcc3df29cc905173e3079629c64314",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.17"
+                "php": ">=5.3"
             },
             "suggest": {
                 "ext-mbstring": "Faster and more powerful UTF-8",
@@ -724,8 +724,7 @@
             ],
             "authors": [
                 {
-                    "name": "Evan Priestley",
-                    "email": "evan@epriestley.com"
+                    "name": "Evan Priestley"
                 }
             ],
             "description": "libphutil is a collection of utility classes and functions for PHP.",
@@ -743,7 +742,7 @@
                 "issues": "https://secure.phabricator.com/maniphest/",
                 "source": "https://github.com/AnhNhan/libphutil/tree/master"
             },
-            "time": "2013-05-03 07:45:55"
+            "time": "2014-01-22 14:13:42"
         },
         {
             "name": "guzzle/parser",
