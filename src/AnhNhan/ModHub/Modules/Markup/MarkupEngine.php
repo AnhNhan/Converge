@@ -15,7 +15,11 @@ class MarkupEngine
             throw new \Exception("Input $key already exists. Can't add it again!");
         }
 
-        $text = filter_var($text, FILTER_SANITIZE_STRING, !FILTER_FLAG_STRIP_LOW | FILTER_FLAG_NO_ENCODE_QUOTES);
+        // Replace opening braces
+        $text = str_replace('<', '&lt;', $text);
+
+        // Replace closing braces that are not the first (or repeated) on the line
+        $text = preg_replace('/^([^\s>]+)(>)/', '$1&gt;', $text);
 
         $this->inputTexts[$key] = $text;
         return $this;
@@ -25,7 +29,11 @@ class MarkupEngine
     {
         $parsedown = \Parsedown::instance();
         foreach ($this->inputTexts as $key => $input) {
-            $this->outputText[$key] = $parsedown->parse($input);
+            $text = $parsedown->parse($input);
+            // Decoding double-escapes thanks to above. DANGER: Insecure??
+            // Tests have been done with `&gt; x >`, `>< a>>`, `<i>hi</i>` and `> x >`, they're proof - for now.
+            $text = preg_replace('/&amp;([\w\d]{1,6};)/', '&$1', $text);
+            $this->outputText[$key] = $text;
         }
 
         return $this;
