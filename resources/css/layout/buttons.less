@@ -21,15 +21,12 @@
     &:hover,
     &:focus,
     &:active {
-        text-decoration: none !important;
         background-color: darken(@bgColor, 10%);
     }
 
     &[disabled] {
         @disabledColor: mix(@grey, darken(@bgColor, 10%), 20%);
         background: @disabledColor;
-        cursor: default;
-        color: @veryLightGrey !important;
 
         &:hover {
             background: @disabledColor;
@@ -96,6 +93,18 @@ input[type="submit"] {
             border: 0;
             -webkit-appearance: none;
         }
+    }
+
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none !important;
+    }
+
+    &[disabled] {
+        color: @veryLightGrey !important;
+        cursor: default;
     }
 }
 
