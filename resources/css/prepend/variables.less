@@ -3,18 +3,18 @@
 
 @defaultFontSize: @fontSizeBase;
 
-@fontSizeLarge: ceil(@fontSizeBase * 1.25);
-@fontSizeSmall: ceil(@fontSizeBase * 0.85);
+@fontSizeLarge: 1.25em;
+@fontSizeSmall: 0.85em;
 
 @defaultContentPadding: 20px;
 
 // TODO: Make this relative
-@fontSizeH1: 22px;
-@fontSizeH2: 20px;
-@fontSizeH3: 18px;
-@fontSizeH4: 16px;
-@fontSizeH5: 15px;
-@fontSizeH6: 14px;
+@fontSizeH1: unit(22px / @fontSizeBase, 'em');
+@fontSizeH2: unit(20px / @fontSizeBase, 'em');
+@fontSizeH3: unit(18px / @fontSizeBase, 'em');
+@fontSizeH4: unit(16px / @fontSizeBase, 'em');
+@fontSizeH5: unit(15px / @fontSizeBase, 'em');
+@fontSizeH6: unit(14px / @fontSizeBase, 'em');
 
 @fontFamilyMonospace: Menlo, Monaco, Consolas, monospace;
 @fontFamilyDefault: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
@@ -24,7 +24,7 @@
 @fontNormal: @defaultFontSize @fontFamilyDefault;
 
 @fontColor: #000000;
-@fontBaseLine: 20px;
+@fontBaseLine: 1.42857;
 
 @linkColor: #6A80B2;
 @linkColorActive: #336699;
