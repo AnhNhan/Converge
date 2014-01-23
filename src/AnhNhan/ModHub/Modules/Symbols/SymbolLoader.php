@@ -137,20 +137,12 @@ final class SymbolLoader
 
     public function getClassesThatDeriveFromThisOne($parentClass)
     {
-        if (isset($this->treeDerivs[$parentClass])) {
-            return $this->treeDerivs[$parentClass];
-        } else {
-            return array();
-        }
+        return idx($this->treeDerivs, $parentClass);
     }
 
     public function getClassesThatImplement($parentClass)
     {
-        if (isset($this->treeImpls[$parentClass])) {
-            return $this->treeImpls[$parentClass];
-        } else {
-            return array();
-        }
+        return idx($this->treeImpls, $parentClass);
     }
 
     public function getConcreteClassesThatDeriveFromThisOne($parentClass)
@@ -166,6 +158,14 @@ final class SymbolLoader
 
         return $concreteClasses;
     }
+    
+    public function getObjectsThatDeriveFrom($parentClass)
+    {
+        foreach ($this->getConcreteClassesThatDeriveFromThisOne($parentClass) as $class) {
+            $objects[] = new $class;
+        }
+        return $objects;
+    }
 
     public function getConcreteClassesThatImplement($parentClass)
     {
@@ -179,5 +179,13 @@ final class SymbolLoader
         }
 
         return $concreteClasses;
+    }
+    
+    public function getObjectsThatImplements($parentClass)
+    {
+        foreach ($this->getConcreteClassesThatImplement($parentClass) as $class) {
+            $objects[] = new $class;
+        }
+        return $objects;
     }
 }

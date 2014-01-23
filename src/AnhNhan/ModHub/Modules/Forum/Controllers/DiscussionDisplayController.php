@@ -49,10 +49,11 @@ final class DiscussionDisplayController extends AbstractForumController
             $headerContainer = ModHub\ht("div");
             $headerContainer->appendContent(ModHub\ht("h2", $disq->label));
 
-            $small = ModHub\ht("small");
-            $small->appendContent(ModHub\ht("strong", $disq->authorId));
-            $small->appendContent(ModHub\ht("span", " created this discussion on "));
-            $small->appendContent(ModHub\ht("span", $disq->lastActivity->format("D, d M 'y")));
+            $small = ModHub\ht("small", ModHub\hsprintf(
+                "<strong>%s</strong> created this discussion on %s",
+                $disq->authorId,
+                $disq->lastActivity->format("D, d M 'y")
+            ));
 
             $headerContainer->appendContent($small);
             $headerRiff->push($headerContainer);
@@ -73,7 +74,7 @@ final class DiscussionDisplayController extends AbstractForumController
             }
             $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
                     ->addClass("btn btn-info")
-                    ->addOption("href", "disq/{$currentId}/edit")
+                    ->addOption("href", urisprintf("disq/%p/edit", $currentId))
             );
 
             $disqColumn->push($discussionPanel);
@@ -81,6 +82,7 @@ final class DiscussionDisplayController extends AbstractForumController
             foreach ($disq->posts->toArray() as $post) {
                 $postPanel = new Panel;
                 $postPanel->setId($post->uid);
+
                 $title = new MarkupContainer;
                 $title->push(
                     ModHub\ht("img")
@@ -88,14 +90,11 @@ final class DiscussionDisplayController extends AbstractForumController
                         ->addClass("user-profile-image")
                 );
                 $title->push(ModHub\ht("div", $post->modifiedAt->format("D, d M 'y"))->addClass("pull-right"));
-                $titleMain = ModHub\ht("div");
-                $titleMain->appendContent(ModHub\ht("strong", $post->authorId));
-                $titleMain->appendContent(ModHub\ht("span", " added a comment"));
-                $title->push($titleMain);
+                $title->push(ModHub\hsprintf("<div><strong>%s</strong> added a comment</div>", $post->authorId));
                 $pxacts = $post->transactions;
                 $initialXActCount = 2;
                 if (count($pxacts) - $initialXActCount) {
-                    $title->push(ModHub\ht("div", ModHub\ht("small", ModHub\hsprintf("This post has received <b>%d</b> modification", count($pxacts) - $initialXActCount))));
+                    $title->push(ModHub\ht("div", ModHub\ht("small", ModHub\hsprintf("This post has received <b>%d</b> modification(s)", count($pxacts) - $initialXActCount))));
                 }
                 $postPanel->setHeader($title);
 
@@ -103,7 +102,7 @@ final class DiscussionDisplayController extends AbstractForumController
                     ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
                         ->addClass("btn btn-default btn-small")
                         ->addClass("pull-right")
-                        ->addOption("href", "disq/{$currentId}/{$post->cleanId}/edit")
+                        ->addOption("href", urisprintf("disq/%p/%p/edit", $currentId, $post->cleanId))
                 );
                 $postPanel->append(ModHub\safeHtml(
                     MarkupEngine::fastParse($post->rawText)
@@ -124,7 +123,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $ulCont->appendContent(
                     ModHub\ht("li",
                         ModHub\ht("a",
-                            ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId)),
+                            hsprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId),
                             array("href" => "#" . $post->uid)
                         )
                     )

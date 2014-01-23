@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Storage\Transaction;
 
 use AnhNhan\ModHub\Storage\EntityDefinition;
+use AnhNhan\ModHub\Web\Application\BaseApplication;
 
 use Doctrine\ORM\EntityManager;
 
@@ -36,8 +37,10 @@ abstract class TransactionEditor
     {
         if ($appOrEm instanceof BaseApplication) {
             $this->entityManager = $appOrEm->getEntityManager();
-        } else {
+        } else if ($appOrEm instanceof EntityManager) {
             $this->entityManager = $appOrEm;
+        } else {
+            throw new \InvalidArgumentException*(sprintf("Invalid type: '%s'", get_class($appOrEm)));
         }
     }
 
