@@ -42,10 +42,11 @@ final class DiscussionDisplayController extends AbstractForumController
             $headerRiff = new MarkupContainer;
             $headerRiff->push(ModHub\ht("h2", $disq->label));
 
-            $small = ModHub\ht("small");
-            $small->appendContent(ModHub\ht("strong", $disq->authorId));
-            $small->appendContent(ModHub\ht("span", " created this discussion on "));
-            $small->appendContent(ModHub\ht("span", $disq->lastActivity->format("D, d M 'y")));
+            $small = ModHub\ht("small", ModHub\hsprintf(
+                "<strong>%s</strong> created this discussion on %s",
+                $disq->authorId,
+                $disq->lastActivity->format("D, d M 'y")
+            ));
 
             $headerRiff->push($small);
             $discussionPanel->setHeader($headerRiff);
@@ -65,7 +66,7 @@ final class DiscussionDisplayController extends AbstractForumController
             }
             $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
                     ->addClass("btn btn-info")
-                    ->addOption("href", "disq/{$currentId}/edit")
+                    ->addOption("href", urisprintf("disq/%p/edit", $currentId))
             );
 
             $disqColumn->push($discussionPanel);
@@ -74,15 +75,14 @@ final class DiscussionDisplayController extends AbstractForumController
                 $postPanel = new Panel;
                 $postPanel->setId($post->uid);
                 $title = $postPanel->midriff();
-                $title->push(ModHub\ht("strong", $post->authorId));
-                $title->push(ModHub\ht("span", " added a comment"));
+                $title->push(ModHub\hsprintf("<strong>%s</strong> added a comment", $post->authorId));
                 $postPanel->setMidriffRight($post->modifiedAt->format("D, d M 'y"));
 
                 $postPanel->append(
                     ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
                         ->addClass("btn btn-default btn-small")
                         ->addClass("pull-right")
-                        ->addOption("href", "disq/{$currentId}/{$post->cleanId}/edit")
+                        ->addOption("href", urisprintf("disq/%p/%p/edit", $currentId, $post->cleanId))
                 );
                 $postPanel->append(ModHub\safeHtml(
                     MarkupEngine::fastParse($post->rawText)
@@ -103,7 +103,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $ulCont->appendContent(
                     ModHub\ht("li",
                         ModHub\ht("a",
-                            ModHub\safeHtml(sprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId)),
+                            hsprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId),
                             array("href" => "#" . $post->uid)
                         )
                     )
