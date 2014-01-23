@@ -5,7 +5,7 @@ use YamwLibs\Libs\Assertions\BasicAssertions as BA;
 use YamwLibs\Libs\Assertions\FileAssertions as FA;
 
 /**
- * Manages required resources from resource map
+ * Manages and tracks included static resources from resource map for inclusion in the rendered page.
  *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -67,11 +67,35 @@ class ResMgr
 
     public function fetchIncludedResourcesForType($type)
     {
+        $includedStack = array();
         $resources = array();
+        $theorithicallyIncludedResources = array();
+
+        // Track resources from directly included resources and from pack files
         foreach ($this->resources[$type] as $res => $_) {
-            $resEntry = $this->attemptToReadFromResMap($type, $res);
-            $resName = array($res, $resEntry['hash']);
-            $resources[] = $resName;
+            $entry = $this->attemptToReadFromResMap($type, $res);
+            $includedStack[$res] = $entry;
+            if (isset($entry["contents"])) { // Pack file, track its contents, not the resource itself
+                $theorithicallyIncludedResources = array_merge(
+                    $theorithicallyIncludedResources,
+                    array_keys($entry["contents"])
+                );
+            } else {
+                $theorithicallyIncludedResources[] = $res;
+            }
+        }
+        // Rebuild from $key -> $value to $value -> $key for faster membership testing
+        $theorithicallyIncludedResources = array_combine(
+            array_keys($theorithicallyIncludedResources),
+            array_values($theorithicallyIncludedResources) // Actually any value, just have it the same size
+        );
+
+        foreach ($includedStack as $resName => $resEntry) {
+            if (isset($theorithicallyIncludedResources[$resName])) {
+                continue;
+            }
+            $res = array($resName, $resEntry['hash']);
+            $resources[] = $res;
         }
         return $resources;
     }
