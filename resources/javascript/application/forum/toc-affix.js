@@ -24,8 +24,8 @@
 
     var fooFunc = function (e) {
         var clName = 'post-being-read';
-        $('.panel-midriff').removeClass(clName);
-        $($(this).children(0).attr('href') + ' .panel-midriff').addClass(clName);
+        $('.panel-header').removeClass(clName);
+        $($(this).children(0).attr('href') + ' .panel-header').addClass(clName);
         // Hm, send read-info to server?
     };
     fooFunc.call($('.forum-toc-affix .nav > li.active'), 'e');

@@ -123,7 +123,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $ulCont->appendContent(
                     ModHub\ht("li",
                         ModHub\ht("a",
-                            hsprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId),
+                            ModHub\hsprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId),
                             array("href" => "#" . $post->uid)
                         )
                     )
