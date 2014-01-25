@@ -1,8 +1,4 @@
 
-@colorObjectBackground: @veryLightGrey;
-@colorObjectBorder: @lightGrey;
-@colorAttributes: @darkGrey;
-
 .objects-list-container {
     margin-top: 2em;
 
@@ -20,8 +16,8 @@
     padding: 5px;
     padding-left: 8px;
     border: 0;
-    border-left: @colorObjectBorder 5px solid;
-    background-color: @colorObjectBackground;
+    border-left: @object-border-color 5px solid;
+    background-color: @object-bg-color;
 }
 
 .objects-object-title {
@@ -38,6 +34,6 @@ a.objects-object-title {
 }
 
 .objects-object-attributes {
-    color: @colorAttributes;
+    color: @object-attributes-color;
     font-size: 0.9em;
 }
