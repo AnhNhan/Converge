@@ -167,6 +167,9 @@ return array(
     "AnhNhan\ModHub\Modules\Markup\MarkupEngine" => array(
       "file" => "AnhNhan/ModHub/Modules/Markup/MarkupEngine.php",
     ),
+    "AnhNhan\ModHub\Modules\Markup\TOCExtractor" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/TOCExtractor.php",
+    ),
     "AnhNhan\ModHub\Modules\StaticResources\Builders\JsBuilder" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/JsBuilder.php",
     ),
@@ -449,10 +452,6 @@ return array(
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Views\Page\SidebarView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/SidebarView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-    ),
     "AnhNhan\ModHub\Views\Panel\Panel" => array(
       "file" => "AnhNhan/ModHub/Views/Panel/Panel.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
@@ -514,10 +513,13 @@ return array(
     "AnhNhan\ModHub\sdx" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\pdx" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\safeHtml" => "AnhNhan/ModHub/functions_html.php",
+    "AnhNhan\ModHub\hsprintf" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\ht" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\icon_bs2" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\icon_ic" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\icon_ion" => "AnhNhan/ModHub/functions_html.php",
+    "div" => "AnhNhan/ModHub/functions_html_global.php",
+    "span" => "AnhNhan/ModHub/functions_html_global.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -655,7 +657,6 @@ return array(
       "AnhNhan\ModHub\Views\Page\HeaderView",
       "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
       "AnhNhan\ModHub\Views\Page\PageView",
-      "AnhNhan\ModHub\Views\Page\SidebarView",
       "AnhNhan\ModHub\Views\Panel\Panel",
       "AnhNhan\ModHub\Views\Objects\Object",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
