@@ -9,14 +9,14 @@ body {
     }
 
     @media screen and (min-width: @breakPointDesktop) {
-        margin-top: 64px;
-        margin-left: 90px;
+        margin-top: 50px; // Header height
+        margin-left: 90px; // Sidenav width
     }
 
     @media screen and (min-width: @breakPointBig) {
         width: 75%;
         margin: 10px auto;
-        margin-top: unit(64 + 10, 'px'); // 6em + 10px
+        margin-top: unit(50 + 10, 'px'); // Header height + 10
     }
 
     text-align: left;
@@ -42,6 +42,7 @@ body {
 
 .header-content {
     padding: 0.5em 1em;
+    padding-top: 0.33em;
 
     .reset-margin-top-for-most-children;
 
@@ -51,6 +52,7 @@ body {
         margin-top: 0;
         margin-bottom: 0;
         color: @darkGrey;
+        line-height: 1.1; // Overwrite
 
         a {
             color: @darkGrey;
@@ -71,7 +73,7 @@ body {
     position: fixed;
     height: 100%;
     top: 0;
-    margin-top: 4.5em;
+    margin-top: 50px; // Header height
     width: 5em;
     text-align: center;
     background-color: @veryLightGrey;
@@ -90,7 +92,7 @@ body {
         margin-bottom: 1em;
 
         .mh-side-navbar-icon {
-            font-size: 3.5em;
+            font-size: 3em;
             line-height: 1;
         }
 
