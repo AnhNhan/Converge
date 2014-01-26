@@ -47,7 +47,7 @@ body {
     color: @fontColor;
     font: @fontNormal;
     line-height: @fontBaseLine;
-    background-color: #d8d8d8;
+    background-color: @veryLightGrey;
     direction: ltr;
     unicode-bidi: embed;
     text-align: center;
@@ -206,16 +206,5 @@ h6 {
 }
 
 .grid-system {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    div {
-        &:first-child {
-            margin-top: 0;
-        }
-    }
+    .reset-margin-top-for-most-children;
 }
