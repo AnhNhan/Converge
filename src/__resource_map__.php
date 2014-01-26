@@ -120,8 +120,8 @@ return array(
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "d6d69cf354dc0a223ac265ce942764a9",
-      "orig" => "757ad06b445d27b7f0483e43dbb780f9",
+      "hash" => "0e4b156d44cc5a269df51abc3242b9c9",
+      "orig" => "a2a4a1d363227f111f1c1e2ab815c706",
     ),
     "layout-buttons" => array(
       "name" => "layout-buttons",
@@ -132,8 +132,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "b467da18a626bb0ce0bb2b0c1df59869",
-      "orig" => "80fd22c15ad9a4545164197d29cf6a13",
+      "hash" => "a2f6f4ef88f43ba16fab518cb24287b4",
+      "orig" => "1d8f6bb815834f831243f800ce38848a",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -434,7 +434,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "e7gadyzn",
+      "hash" => "hlz7i6jr",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -514,7 +514,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "dacb3b61f2c483e3dba64d6da786af84",
+      "hash" => "3118e9fbaa31cbdf48240e3580d0f3b1",
       "contents" => array(
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
         "external-bootstrap-responsive-utilities" => "6d8fb590b3ecef69c87777b2c87a4a4e",
@@ -529,8 +529,8 @@ return array(
         "external-fonts" => "2c4c317fd15c7b210b73201b121ea134",
         "external-icomoon-mh" => "2b753431aa219c17349666fd76d9abc2",
         "external-ionicons" => "e4e0ac89cadf22555deeaa1fb7c89b3a",
-        "layout-boilerplate" => "d6d69cf354dc0a223ac265ce942764a9",
-        "layout-core" => "b467da18a626bb0ce0bb2b0c1df59869",
+        "layout-boilerplate" => "0e4b156d44cc5a269df51abc3242b9c9",
+        "layout-core" => "a2f6f4ef88f43ba16fab518cb24287b4",
         "layout-form" => "421b54e614b83eb21cc9ef64430189f2",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-buttons" => "b58ccb6af960272a306925e38572c14b",
