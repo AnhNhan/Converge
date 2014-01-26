@@ -54,19 +54,6 @@ class FooterView extends AbstractView implements ViewInterface
     {
         $footer = new static();
 
-        $column2 = array(
-            array(
-                "label" => "Front page",
-                "href"  => "",
-                "bckbn" => true,
-            ),
-            array(
-                "label" => "Markup Test",
-                "href"  => "markup/test/",
-            ),
-        );
-        $footer->column('All kinds of stuff', $column2);
-
         $column3 = array();
         $classes = SymbolLoader::getInstance()
             ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
@@ -84,20 +71,6 @@ class FooterView extends AbstractView implements ViewInterface
             );
         }
         $footer->column("Examples", $column3);
-
-        $column2 = array(
-            array(
-                "label" => "Disq listing",
-                "href"  => "disq/",
-                "bckbn" => true,
-            ),
-            array(
-                "label" => "Tag listing",
-                "href"  => "tag/",
-                "bckbn" => true,
-            ),
-        );
-        $footer->column('Discussions', $column2);
 
         $column2 = array(
             array(

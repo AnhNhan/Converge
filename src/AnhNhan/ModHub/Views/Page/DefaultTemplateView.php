@@ -24,25 +24,28 @@ final class DefaultTemplateView extends AbstractView
 
     public function getContent()
     {
-        $head_wrapper = HF::divTag()->addClass("header row-flex width12");
-        $head_wrapper->appendContent(id(new HeaderView)->render()->addClass("width12"));
+        $head_wrapper = div("header", new HeaderView, "header");
+        $sideNavBar = new SideNavBar;
 
-        $content = HF::divTag()
-            ->addClass("content width12")
+        $content = div("content width12")
+            ->setId("content")
             ->setContent($this->content);
 
-        $contentContainerContent = ModHub\ht("div")->addClass("row-flex");
+        $contentContainerContent = div("row-flex");
         $contentContainerContent->appendContent($content);
 
-        $container = HF::divTag('', 'layout-container', 'layout-container grid-system');
+        $container = div('layout-container grid-system', null, 'layout-container');
 
-        $container->appendContent($head_wrapper);
         $container->appendContent($contentContainerContent);
         $container->appendContent(FooterView::getDefaultFooter());
 
         $wrapper = HF::divTag($container, 'wrapper', 'wrapper');
 
-        return $wrapper;
+        return id(new MarkupContainer)
+            ->push($head_wrapper)
+            ->push($sideNavBar)
+            ->push($wrapper)
+        ;
     }
 
     public function setHeader($header)

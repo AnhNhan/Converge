@@ -1,20 +1,37 @@
 
+body {
+    background-color: @white;
+}
+
 .wrapper {
     @media screen and (max-width: @breakPointMobile) {
         width: 100%;
     }
 
+    @media screen and (min-width: @breakPointDesktop) {
+        margin-top: 64px;
+        margin-left: 90px;
+    }
+
     @media screen and (min-width: @breakPointBig) {
         width: 75%;
         margin: 10px auto;
+        margin-top: unit(64 + 10, 'px'); // 6em + 10px
     }
 
     text-align: left;
-    background-color: @white;
 }
 
 .header {
-    background: @veryLightGrey;
+    @media screen and (min-width: @breakPointDesktop) {
+        z-index: @zindex-navbar-fixed;
+        background: @veryLightGrey;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    text-align: left; // Reset from body
+    width: 100%;
 
     @media screen and (max-width: @breakPointMobile) {
         width: auto;
@@ -23,11 +40,19 @@
 }
 
 .header-content {
-    padding: 2em !important;
+    padding: 0.5em 1em;
 
-    h1 {
+    .reset-margin-top-for-most-children;
+
+    #gradient > .vertical(@white, @veryLightGrey);
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+        margin-bottom: 0;
+        color: @darkGrey;
+
         a {
-            color: @headerColor;
+            color: @darkGrey;
         }
     }
 
@@ -36,7 +61,41 @@
     }
 }
 
-.sidebar {
+.mh-side-navbar {
+    @media screen and (max-width: @breakPointDesktop) {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    z-index: @zindex-navbar-fixed;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    margin-top: 4.5em;
+    width: 5em;
+    text-align: center;
+    background-color: @veryLightGrey;
+    color: @darkGrey;
+    .pull-left;
+    .clearfix;
+
+    a {
+        color: @darkGrey;
+    }
+
+    .mh-side-navbar-item {
+        list-style: none;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        .mh-side-navbar-icon {
+            font-size: 3.5em;
+            line-height: 1;
+        }
+
+        .mh-side-navbar-text {
+            font-size: 0.85em;
+        }
+    }
 }
 
 .layout-container {
@@ -45,8 +104,6 @@
         margin-right: 0 !important;
 
         & > .content {
-            background-color: #fff;
-
             ul,
             ol {
                 list-style-position: inside;

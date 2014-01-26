@@ -4,14 +4,15 @@
     var $window = $(window);
     var $body   = $(document.body);
     var $sideBar = $('.forum-toc-affix');
+    var $header = $('#header');
 
-    $body.scrollspy({ target: '.forum-toc-affix', offset: 300 })
+    $body.scrollspy({ target: '.forum-toc-affix', offset: 300 + $header.outerHeight() })
 
     $sideBar.affix({
         offset: {
             top: function () {
                 var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10);
-                return (this.top = $sideBar.offset().top - sideBarMargin - 30);
+                return (this.top = $sideBar.offset().top - sideBarMargin - 30 - $header.outerHeight());
             }
         }
     });
@@ -53,6 +54,7 @@
         var $body   = $(document.body);
         var $sideBar = $('.forum-toc-affix');
         var $sidebarAffix = $('.forum-toc-affix.affix');
+        var $header = $('#header');
 
         var visibleHeight = $window.innerHeight();
         var sidebarHeight = $sideBar.outerHeight();
@@ -61,10 +63,10 @@
         var currentScrollPosition = $window.scrollTop();
 
         if (!!(($(document).innerWidth() > 768) && $sidebarAffix.length && (sidebarHeight > visibleHeight))) {
-            var offsetTop = (currentScrollPosition / (docHeight)) * ((sidebarHeight + 150) - visibleHeight);
-            $sidebarAffix.css("top", ((-offsetTop) + 30) + 'px');
+            var offsetTop = (currentScrollPosition / (docHeight)) * ((sidebarHeight + 150) - visibleHeight + $header.outerHeight());
+            $sidebarAffix.css("top", ((-offsetTop) + 30 + $header.outerHeight()) + 'px');
         } else {
-            $('.forum-toc-affix').css('top', 30);
+            $('.forum-toc-affix').css('top', 30 + $header.outerHeight());
             $('.forum-toc-affix.affix-top').css('top', 0);
         }
     };

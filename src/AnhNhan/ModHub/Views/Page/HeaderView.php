@@ -15,8 +15,8 @@ class HeaderView extends AbstractView
     {
         $header_content = ModHub\ht("div")
             ->addClass("header-content")
-            ->appendContent(ModHub\ht("h1", ModHub\ht("a", "hMod Hub", array("href" => "/", "backbone" => true))))
-            ->appendContent(ModHub\ht("h3", "A Great Journey is to be pursued. Greatness Awaits."))
+            ->appendContent(ModHub\ht("h2", ModHub\ht("a", "hMod Hub", array("href" => "/", "backbone" => true))))
+            ->appendContent(ModHub\ht("h4", "A Great Journey is to be pursued. Greatness Awaits."))
         ;
 
         return $header_content;
