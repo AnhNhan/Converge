@@ -118,9 +118,11 @@ final class DiscussionDisplayController extends AbstractForumController
             $tocContainer->setHeader(ModHub\ht("h2", "Table of Contents"));
             $tagColumn->push($tocContainer);
 
+            $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
+
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
             foreach ($disq->posts->toArray() as $post) {
-                $ulCont->appendContent(
+                $entry =
                     ModHub\ht("li",
                         ModHub\ht("a",
                             ModHub\hsprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId),
@@ -129,7 +131,24 @@ final class DiscussionDisplayController extends AbstractForumController
                     )
                     ->addOption("data-toggle", "popover")
                     ->addOption("data-content", phutil_utf8_shorten($post->rawText, 140))
-                );
+                ;
+
+                $subToc = $tocExtractor->parseAndExtract($post->rawText);
+                if ($subToc) {
+                    $subUl = ModHub\ht("ul")->addClass("subtoc");
+                    foreach ($subToc as $tt) {
+                        $subUl->appendContent(ModHub\hsprintf(
+                            "<li class=\"subtoc-%s\" style=\"margin-left: %fem;\"><a href=\"#\">%s</a></li>",
+                            $tt["type"],
+                            $tt["level"],
+                            $tt["text"]
+                        ));
+                    }
+
+                    $entry->appendContent($subUl);
+                }
+
+                $ulCont->appendContent($entry);
             }
             $tocContainer->append($ulCont);
 

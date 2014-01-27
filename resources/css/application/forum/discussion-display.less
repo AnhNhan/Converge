@@ -106,7 +106,7 @@
         background-color: transparent;
         .transition(~"background-color 0.3s ease");
 
-        &.active {
+        &.active > a {
             background-color: lighten(desaturate(@colorInfo, 30%), 20%);
         }
 
@@ -117,6 +117,27 @@
             &:active, &:focus, &:hover {
                 text-decoration: none !important;
                 outline: none;
+            }
+        }
+
+        .subtoc {
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+            .transition(~"opacity 0.5s ease, height 0.5s ease");
+        }
+
+        &.active .subtoc {
+            height: 100%;
+            opacity: 1;
+        }
+
+        &.subtoc-h1, &.subtoc-h2, &.subtoc-h3, &.subtoc-h4, &.subtoc-h5, &.subtoc-h6 {
+            font-size: @fontSizeSmall;
+
+            a {
+                padding: 0.33em 0.66em;
+                line-height: 1.2;
             }
         }
     }
