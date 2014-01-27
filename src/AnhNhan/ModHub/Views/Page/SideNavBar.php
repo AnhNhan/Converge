@@ -35,6 +35,11 @@ final class SideNavBar extends AbstractView
                 'backbone' => true,
             ),
             array(
+                'text' => 'create',
+                'icon' => 'compose',
+                'href' => 'disq/create/',
+            ),
+            array(
                 'text' => 'markup',
                 'icon' => 'printer',
                 'href' => 'markup/test/',

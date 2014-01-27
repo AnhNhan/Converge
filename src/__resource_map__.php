@@ -132,8 +132,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "a2f6f4ef88f43ba16fab518cb24287b4",
-      "orig" => "1d8f6bb815834f831243f800ce38848a",
+      "hash" => "37ed9500355120d4574758be947b6a2f",
+      "orig" => "34ab1a0a3df2c809e7af9a3ddc5c1066",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -514,7 +514,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "3118e9fbaa31cbdf48240e3580d0f3b1",
+      "hash" => "eed7c31e96c048470ac7f20c3105a695",
       "contents" => array(
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
         "external-bootstrap-responsive-utilities" => "6d8fb590b3ecef69c87777b2c87a4a4e",
@@ -530,7 +530,7 @@ return array(
         "external-icomoon-mh" => "2b753431aa219c17349666fd76d9abc2",
         "external-ionicons" => "e4e0ac89cadf22555deeaa1fb7c89b3a",
         "layout-boilerplate" => "0e4b156d44cc5a269df51abc3242b9c9",
-        "layout-core" => "a2f6f4ef88f43ba16fab518cb24287b4",
+        "layout-core" => "37ed9500355120d4574758be947b6a2f",
         "layout-form" => "421b54e614b83eb21cc9ef64430189f2",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-buttons" => "b58ccb6af960272a306925e38572c14b",
