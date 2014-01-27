@@ -29,6 +29,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Database/Command/DoctrineManager.php",
       "deriv" => "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
     ),
+    "AnhNhan\ModHub\Modules\Examples\Controllers\ExampleListing" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/ExampleListing.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    ),
     "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
@@ -452,6 +456,10 @@ return array(
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
       "abstr" => "1",
     ),
+    "AnhNhan\ModHub\Views\Page\SideNavBar" => array(
+      "file" => "AnhNhan/ModHub/Views/Page/SideNavBar.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
     "AnhNhan\ModHub\Views\Panel\Panel" => array(
       "file" => "AnhNhan/ModHub/Views/Panel/Panel.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
@@ -520,6 +528,13 @@ return array(
     "AnhNhan\ModHub\icon_ion" => "AnhNhan/ModHub/functions_html.php",
     "div" => "AnhNhan/ModHub/functions_html_global.php",
     "span" => "AnhNhan/ModHub/functions_html_global.php",
+    "a" => "AnhNhan/ModHub/functions_html_global.php",
+    "h1" => "AnhNhan/ModHub/functions_html_global.php",
+    "h2" => "AnhNhan/ModHub/functions_html_global.php",
+    "h3" => "AnhNhan/ModHub/functions_html_global.php",
+    "h4" => "AnhNhan/ModHub/functions_html_global.php",
+    "h5" => "AnhNhan/ModHub/functions_html_global.php",
+    "h6" => "AnhNhan/ModHub/functions_html_global.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -539,6 +554,7 @@ return array(
       "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
+      "AnhNhan\ModHub\Modules\Examples\Controllers\ExampleListing",
       "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
@@ -657,6 +673,7 @@ return array(
       "AnhNhan\ModHub\Views\Page\HeaderView",
       "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
       "AnhNhan\ModHub\Views\Page\PageView",
+      "AnhNhan\ModHub\Views\Page\SideNavBar",
       "AnhNhan\ModHub\Views\Panel\Panel",
       "AnhNhan\ModHub\Views\Objects\Object",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
