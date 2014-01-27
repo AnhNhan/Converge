@@ -54,37 +54,7 @@ class FooterView extends AbstractView implements ViewInterface
     {
         $footer = new static();
 
-        $column3 = array();
-        $classes = SymbolLoader::getInstance()
-            ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample');
-        $instances = array();
-        foreach ($classes as $class) {
-            $instances[] = new $class;
-        }
-        $examples = mpull($instances, "getName");
-        foreach ($examples as $example) {
-            $title = preg_replace("/[-]/", ' ', $example);
-            $title = ucwords($title);
-            $column3[] = array(
-                "label" => $title,
-                "href"  => "example/$example/"
-            );
-        }
-        $footer->column("Examples", $column3);
-
-        $column2 = array(
-            array(
-                "label" => "Roles",
-                "href"  => "roles/",
-                //"bckbn" => true,
-            ),
-            array(
-                "label" => "Users",
-                "href"  => "users/",
-                //"bckbn" => true,
-            ),
-        );
-        $footer->column('Users', $column2);
+        // Sad, but empty :/
 
         return $footer;
     }

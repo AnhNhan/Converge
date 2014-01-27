@@ -40,9 +40,24 @@ final class SideNavBar extends AbstractView
                 'href' => 'disq/create/',
             ),
             array(
+                'text' => 'users',
+                'icon' => 'person-stalker',
+                'href' => 'users/',
+            ),
+            array(
+                'text' => 'roles',
+                'icon' => 'key',
+                'href' => 'roles/',
+            ),
+            array(
                 'text' => 'markup',
                 'icon' => 'printer',
                 'href' => 'markup/test/',
+            ),
+            array(
+                'text' => 'examples',
+                'icon' => 'ios7-filing',
+                'href' => 'example/',
             ),
         );
         foreach ($items as $item) {

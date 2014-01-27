@@ -27,7 +27,13 @@ final class ExamplesApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        // Doing it lazy ;)
-        return new Controllers\StandardExamplesController($this);
+        $routeName = $request->attributes->get("route-name");
+
+        switch ($routeName) {
+            case "example-display":
+                return new Controllers\StandardExamplesController($this);
+            case "example-listing":
+                return new Controllers\ExampleListing($this);
+        }
     }
 }
