@@ -43,7 +43,7 @@ function hsprintf($html/* , ... */) {
  */
 function ht($name, $content = null, array $options = array())
 {
-    if (isset($options["backbone"]) || isset($options["bckbn"])) {
+    if (idx($options, "backbone") || idx($options, "bckbn")) {
         $options[] = "data-backbone-nav";
         unset($options["backbone"]);
         unset($options["bckbn"]);
