@@ -17,7 +17,7 @@
         }
     });
 
-    $('.forum-toc-affix .nav > li').popover({
+    $('.forum-toc-affix .nav > li[data-toggle="popover"]').popover({
         placement: 'left',
         title: 'Preview',
         trigger: 'hover'
