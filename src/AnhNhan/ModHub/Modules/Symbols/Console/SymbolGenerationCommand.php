@@ -64,12 +64,29 @@ final class SymbolGenerationCommand extends AbstractSymbolsCommand
         $symbolGenerator->onFileTraverse(function ($fileName) use ($output) {
             $output->write(".");
         });
+        $errors = array();
+        $symbolGenerator->onFileTraverseError(function ($fileName, \PHPParser_Error $exc) use ($output, &$errors) {
+            $errors[] = array($fileName, $exc);
+            $output->write("F");
+        });
 
         $symbolGenerator->start();
 
         $symbolTree = $symbolGenerator->getTree();
 
         $output->writeln("");
+
+        if ($errors) {
+            $output->writeln("");
+
+            $output->writeln("Errors:");
+            foreach ($errors as $err) {
+                list($fileName, $exc) = $err;
+                $output->writeln("  - " . str_pad($fileName, 40) . ":\t" . str_replace("\n", "\\n", $exc->getMessage()));
+            }
+
+            $output->writeln("");
+        }
 
         $output->writeln("Writing to disk...");
 

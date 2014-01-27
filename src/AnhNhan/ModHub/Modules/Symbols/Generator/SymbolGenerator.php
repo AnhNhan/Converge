@@ -50,13 +50,17 @@ final class SymbolGenerator
     public function start()
     {
         foreach ($this->files as $fileName) {
-            $contents = file_get_contents($this->basePath . $fileName);
-            $nodes = $this->php_parser->parse($contents);
+            try {
+                $contents = file_get_contents($this->basePath . $fileName);
+                $nodes = $this->php_parser->parse($contents);
 
-            $this->symbol_emitter->setCurrentFile($fileName);
+                $this->symbol_emitter->setCurrentFile($fileName);
 
-            $this->php_parser_traverser->traverse($nodes);
-            $this->onFileTraverseExec($fileName);
+                $this->php_parser_traverser->traverse($nodes);
+                $this->onFileTraverseExec($fileName);
+            } catch (\PHPParser_Error $exc) {
+                $this->onFileTraverseErrorExec($fileName, $exc);
+            }
         }
     }
 
@@ -79,6 +83,22 @@ final class SymbolGenerator
     {
         foreach ($this->onFileTraverseEvents as $callable) {
             $callable($fileName);
+        }
+    }
+
+    private $onFileTraverseErrorEvents = array();
+    public function onFileTraverseError($callable)
+    {
+        if (!is_callable($callable)) {
+            throw new \InvalidArgumentException();
+        }
+
+        $this->onFileTraverseErrorEvents[] = $callable;
+    }
+    private function onFileTraverseErrorExec($fileName, \PHPParser_Error $error)
+    {
+        foreach ($this->onFileTraverseErrorEvents as $callable) {
+            $callable($fileName, $error);
         }
     }
 }
