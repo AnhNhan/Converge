@@ -67,14 +67,12 @@ function ht($name, $content = null, array $options = array())
 function icon_bs2($text, $icon, $textIsRight = true, $white = false)
 {
     $white_class = $white ? " icon-white" : null;
-    return safeHtml(
-        sprintf(
-            '%s<i class="icon-%s%s"></i>%s',
-            !$textIsRight ? $text . " " : "",
-            $icon,
-            $white_class,
-            $textIsRight ? " " . $text : ""
-        )
+    return hsprintf(
+        '%s <i class="icon-%s%s"></i> %s',
+        !$textIsRight ? $text : "",
+        $icon,
+        $white_class,
+        $textIsRight ? $text : ""
     );
 }
 
@@ -92,13 +90,11 @@ function icon_bs2($text, $icon, $textIsRight = true, $white = false)
  */
 function icon_ic($text, $icon_name, $iconIsRight = true)
 {
-    return safeHtml(
-        sprintf(
-            '%s<i class="ic-%s"></i>%s',
-            $iconIsRight ? $text . " " : "",
-            $icon_name,
-            !$iconIsRight ? " " . $text : ""
-        )
+    return hsprintf(
+        '%s <i class="ic-%s"></i> %s',
+        $iconIsRight ? $text : "",
+        $icon_name,
+        !$iconIsRight ? $text : ""
     );
 }
 
@@ -113,12 +109,10 @@ function icon_ic($text, $icon_name, $iconIsRight = true)
  */
 function icon_ion($text, $icon_name, $iconIsRight = true)
 {
-    return safeHtml(
-        sprintf(
-            '%s<i class="ion-%s"></i>%s',
-            $iconIsRight ? $text . " " : "",
-            $icon_name,
-            !$iconIsRight ? " " . $text : ""
-        )
+    return hsprintf(
+        '%s <i class="ion-%s"></i> %s',
+        $iconIsRight ? $text : "",
+        $icon_name,
+        !$iconIsRight ? $text : ""
     );
 }
