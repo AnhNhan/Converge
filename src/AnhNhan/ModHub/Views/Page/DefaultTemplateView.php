@@ -37,7 +37,6 @@ final class DefaultTemplateView extends AbstractView
         $container = div('layout-container grid-system', null, 'layout-container');
 
         $container->appendContent($contentContainerContent);
-        $container->appendContent(FooterView::getDefaultFooter());
 
         $wrapper = HF::divTag($container, 'wrapper', 'wrapper');
 
