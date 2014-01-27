@@ -126,8 +126,8 @@ return array(
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "0e4b156d44cc5a269df51abc3242b9c9",
-      "orig" => "c3b03ee95acadd284759ae8b1a3b4013",
+      "hash" => "6cb7ea6503bf4384573905422f680c2f",
+      "orig" => "34c9dfbf460654f5b25e19eb1fec6cf6",
     ),
     "layout-buttons" => array(
       "name" => "layout-buttons",
@@ -138,8 +138,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "37ed9500355120d4574758be947b6a2f",
-      "orig" => "471090e7ecd8950c076cb349dadf796c",
+      "hash" => "77728e267cf1e9d57e4fda4c6e09e7fd",
+      "orig" => "8bef0c203b614811b97da45ea46328be",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -440,7 +440,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "hlz7i6jr",
+      "hash" => "jiuvqvmk",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -520,7 +520,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "e591026580c20f6587392bfa3bad667e",
+      "hash" => "3b8e8ad0eedbab40b851bc97cc93e9fb",
       "contents" => array(
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
         "external-bootstrap-responsive-utilities" => "6d8fb590b3ecef69c87777b2c87a4a4e",
@@ -536,8 +536,8 @@ return array(
         "external-icomoon-mh" => "2b753431aa219c17349666fd76d9abc2",
         "external-ionicons" => "e4e0ac89cadf22555deeaa1fb7c89b3a",
         "application-colors" => "ec5758fd9ded71f9c561c28bc3d0b13f",
-        "layout-boilerplate" => "0e4b156d44cc5a269df51abc3242b9c9",
-        "layout-core" => "37ed9500355120d4574758be947b6a2f",
+        "layout-boilerplate" => "6cb7ea6503bf4384573905422f680c2f",
+        "layout-core" => "77728e267cf1e9d57e4fda4c6e09e7fd",
         "layout-form" => "421b54e614b83eb21cc9ef64430189f2",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-buttons" => "b58ccb6af960272a306925e38572c14b",
