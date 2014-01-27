@@ -17,12 +17,6 @@ final class SideNavBar extends AbstractView
         $ul = ModHub\ht('ul')->addClass('mh-side-navbar-items');
         $items = array(
             array(
-                'text' => 'home',
-                'icon' => 'home',
-                'href' => '/',
-                'backbone' => true,
-            ),
-            array(
                 'text' => 'dash',
                 'icon' => 'navicon-round',
                 'href' => '/disq/',
