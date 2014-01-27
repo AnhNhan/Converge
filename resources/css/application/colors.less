@@ -1,0 +1,79 @@
+
+.color-mixin (@name: "white", @color: @white, @prefix: "color-", @fg-prefix: "fg-", @bg-prefix: "bg-") {
+    @fg-name: ~".@{prefix}@{fg-prefix}@{name}";
+    @bg-name: ~".@{prefix}@{bg-prefix}@{name}";
+
+    @{fg-name} {
+        color: @color;
+    }
+
+    @{bg-name} {
+        background-color: @color;
+    }
+}
+
+.color-mixin("font", @fontColor);
+
+.color-mixin("link", @linkColor);
+.color-mixin("link-active", @linkColorActive);
+.color-mixin("link-visited", @linkColorVisited);
+
+.color-mixin("header", @headerColor);
+
+.color-mixin("white", @white);
+.color-mixin("black", @black);
+.color-mixin("grey", @grey);
+.color-mixin("light-grey", @lightGrey);
+.color-mixin("very-light-grey", @veryLightGrey);
+.color-mixin("dark-grey", @darkGrey);
+.color-mixin("very-dark-grey", @veryDarkGrey);
+
+.color-mixin("bright-red", @brightRed);
+.color-mixin("dark-blue", @darkBlue);
+.color-mixin("cool-blue", @coolBlue);
+.color-mixin("olive-green", @oliveGreen);
+.color-mixin("bright-olive-green", @brightOliveGreen);
+
+.color-mixin("unsc", @colorUNSC);
+.color-mixin("covenant", @colorCovenant);
+.color-mixin("flood", @colorFlood);
+
+.color-mixin("yellow", @yellow);
+.color-mixin("pink", @pink);
+.color-mixin("tinted-gred", @tintedGrey);
+.color-mixin("bone-meal", @boneMeal);
+.color-mixin("purple", @purple);
+
+.color-mixin("info", @colorInfo);
+.color-mixin("success", @colorSuccess);
+.color-mixin("danger", @colorError);
+.color-mixin("warning", @colorWarning);
+
+.color-mixin("info-real", @color-info-real);
+.color-mixin("success-real", @color-success-real);
+.color-mixin("danger-real", @color-danger-real);
+.color-mixin("warning-real", @color-warning-real);
+
+.color-mixin("turquoise", @color-turquoise);
+.color-mixin("emerland", @color-emerland);
+.color-mixin("peterriver", @color-peterriver);
+.color-mixin("amethyst", @color-amethyst);
+.color-mixin("wet-asphalt", @color-wet-asphalt);
+
+.color-mixin("greensea", @color-greensea);
+.color-mixin("nephritis", @color-nephritis);
+.color-mixin("belize-hole", @color-belize-hole);
+.color-mixin("wisteria", @color-wisteria);
+.color-mixin("midnight-blue", @color-midnight-blue);
+
+.color-mixin("sunflower", @color-sunflower);
+.color-mixin("carrot", @color-carrot);
+.color-mixin("alizarin", @color-alizarin);
+.color-mixin("clouds", @color-clouds);
+.color-mixin("concrete", @color-concrete);
+
+.color-mixin("orange", @color-orange);
+.color-mixin("pumpkin", @color-pumpkin);
+.color-mixin("pomegranate", @color-pomegranate);
+.color-mixin("silver", @color-silver);
+.color-mixin("asbestos", @color-asbestos);
