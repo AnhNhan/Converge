@@ -31,7 +31,7 @@ abstract class TransactionEditor
     const FLUSH_FLUSH      = "flush.flush";
     const FLUSH_DEFER      = "flush.defer_flush";
 
-    private $flushBehaviour = self::FLUSH_FLUSH;
+    private $flushBehaviour = self::FLUSH_DEFER;
 
     final public function __construct($appOrEm)
     {
