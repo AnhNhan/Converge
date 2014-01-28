@@ -2,6 +2,7 @@
     "name": "core-pck",
     "type": "css",
     "contents": [
+        "external-html5-boilerplate-normalize",
         "external-html5-boilerplate-main",
         "external-bootstrap-responsive-utilities",
         "external-bootstrap-other",
