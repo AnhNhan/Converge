@@ -179,7 +179,7 @@ final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
         $overflowContents = null;
         if ($overflow) {
             ob_start();
-            echo "<div style=\"text-align: left; margin: 1em;\">";
+            echo "<div style=\"text-align: left;margin-top: 60px; margin-left: 85px;\">";
             echo "<h3>We had overflow!</h3>";
             echo "<pre>" . (new \YamwLibs\Libs\Html\Markup\TextNode($overflow)) . "</pre>";
             echo "</div>";
