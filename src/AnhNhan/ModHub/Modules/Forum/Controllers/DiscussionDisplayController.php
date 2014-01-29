@@ -42,7 +42,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $headerRiff = new MarkupContainer;
             $headerRiff->push(
                 ModHub\ht("img")
-                    ->addOption("src", ModHub\Modules\User\Storage\User::DEFAULT_PROFILE_IMAGE)
+                    ->addOption("src", ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
                     ->addClass("user-profile-image")
             );
 
@@ -92,7 +92,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $title = new MarkupContainer;
                 $title->push(
                     ModHub\ht("img")
-                        ->addOption("src", ModHub\Modules\User\Storage\User::DEFAULT_PROFILE_IMAGE)
+                        ->addOption("src", ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
                         ->addClass("user-profile-image")
                 );
                 $title->push(ModHub\ht("div", $post->modifiedAt->format("D, d M 'y"))->addClass("pull-right"));
