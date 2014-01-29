@@ -1,5 +1,20 @@
 
 .role-listing {
+    & > .grid-system > .row-flex {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+
+        & > .width4 {
+            display: inline-block;
+            width: 100%;
+            float: none;
+            -webkit-column-break-inside: avoid;
+            -moz-column-break-inside: avoid;
+            column-break-inside: avoid;
+        }
+    }
+
     .panel-container[id^="ROLE-"] {
         .panel-header {
             .grid-system,
