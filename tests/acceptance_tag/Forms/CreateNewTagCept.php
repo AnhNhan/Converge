@@ -4,10 +4,10 @@ $I->wantTo('create a new tag');
 $I->am('some random user (currently anonymous)');
 $I->amGoingTo('use the form to create a new tag');
 
-$label = "Foo";
+$label = "SomeRandomTag";
 
 $I->amOnPage('/tag/');
-$I->see('Tag listing');
+$I->see('Tags');
 $I->dontSee($label);
 
 $I->click('Create new tag!');
