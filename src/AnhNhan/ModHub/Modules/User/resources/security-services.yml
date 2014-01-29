@@ -43,7 +43,7 @@ services:
         - "@security.authentication.provider.default"
       - "%security.erase_credentials%"
     calls:
-      - [ setEventDispatcher, [ event_dispatcher ] ]
+      - [ setEventDispatcher, [ @event_dispatcher ] ]
 
   security.authentication.trustresolver.default:
     class: Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver
