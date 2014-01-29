@@ -3,9 +3,9 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
-use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Grid\Grid;
 use AnhNhan\ModHub\Views\Panel\Panel;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
@@ -37,48 +37,29 @@ final class DiscussionDisplayController extends AbstractForumController
             $disqColumn = $row->column(9);
             $disqColumn->setId("disq-column");
 
-            $discussionPanel = new Panel;
-            $discussionPanel->setId($disq->uid);
+            $discussionView = id(new DiscussionView)
+                ->setId($disq->uid)
+                ->setHeader($disq->label)
+                ->setDate($disq->lastActivity->format("D, d M 'y"))
+                ->setUserDetails($disq->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
+                ->setBodyText(ModHub\safeHtml(
+                    MarkupEngine::fastParse($disq->text)
+                ))
+                ->addButton(
+                    ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
+                        ->addClass("btn btn-info")
+                        ->addOption("href", urisprintf("disq/%p/edit", $currentId))
+                )
+            ;
 
-            $headerRiff = new MarkupContainer;
-            $headerRiff->push(
-                ModHub\ht("img")
-                    ->addOption("src", ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
-                    ->addClass("user-profile-image")
-            );
-
-            $headerContainer = ModHub\ht("div");
-            $headerContainer->appendContent(ModHub\ht("h2", $disq->label));
-
-            $small = ModHub\ht("small", ModHub\hsprintf(
-                "<strong>%s</strong> created this discussion on %s",
-                $disq->authorId,
-                $disq->lastActivity->format("D, d M 'y")
-            ));
-
-            $headerContainer->appendContent($small);
-            $headerRiff->push($headerContainer);
-            $discussionPanel->setHeader($headerRiff);
-
-            $discussionPanel->append(ModHub\safeHtml(
-                MarkupEngine::fastParse($disq->text)
-            ));
-
-            $midriff = $discussionPanel->midriff();
             $tags = mpull($disq->tags->toArray(), "tag");
             if ($tags) {
                 foreach ($tags as $tag) {
-                    $midriff->push(new TagView($tag->label, $tag->color));
+                    $discussionView->addTag($tag->label, $tag->color);
                 }
-            } else {
-                $midriff->push(ModHub\ht("small", "No tags for this discussion")->addClass("muted"));
             }
-            $discussionPanel->setMidriffRight(ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
-                    ->addClass("btn btn-info")
-                    ->addOption("href", urisprintf("disq/%p/edit", $currentId))
-            );
 
-            $disqColumn->push($discussionPanel);
+            $disqColumn->push($discussionView);
 
             $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
             $tocs = array();
