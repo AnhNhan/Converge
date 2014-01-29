@@ -1,0 +1,38 @@
+
+roles:
+
+  ROLE_USER:
+    label: Regular mortal
+    description: Nothing to see here. May create and participate in discussions.
+
+  ROLE_BANNED:
+    label: Banned user
+    description: May not do anything in particular. Assign this role if you want to keep a username warm.
+
+  ROLE_BANNED_SHADOW:
+    label: Inhabitants of sunny shadows
+    description: "May do stuff as regular, though may the sun overshadow his shadowy intents. May post as normal, but his actions are not visible to anybody else under the sun. Use this on idiots."
+
+  ROLE_BANNED_IN_PYONGYANG:
+    label: Banned from /r/pyongyang
+    description: "They dared to upset our supreme leader! No idea what to do with them, current it's just for decoration."
+
+  ROLE_MODERATOR:
+    label: Moderator
+    description: "He may do some stuff like censor posts, but not mess around with stuff (or see meaningful internals)"
+
+  ROLE_ADMIN:
+    label: Administrator
+    description: Unused - for now
+
+  ROLE_LEVEL7:
+    label: Staff member
+    description: "Member of Apex Studios, Local Haole or Brokenline Studios (did I spell that one right?). Welcome to S.H.I.E.L.D., where we are gonna rule the world!"
+
+  ROLE_DEV:
+    label: (Co-)Developer
+    description: "He may accidentally wreck this place. He had a terrible day, so please, bear with him."
+
+  ROLE_OVERLORD:
+    label: Our Godly Overlord
+    description: A lofty tyrant is upon us!
