@@ -3,6 +3,7 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Grid\Grid;
@@ -86,33 +87,21 @@ final class DiscussionDisplayController extends AbstractForumController
                 list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
                 $tocs[$post->uid] = $toc;
 
-                $postPanel = new Panel;
-                $postPanel->setId($post->uid);
+                $postView = new PostView;
+                $postView
+                    ->setId($post->uid)
+                    ->setUserDetails($post->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
+                    ->setDate($post->modifiedAt->format("D, d M 'y"))
+                    ->addButton(
+                        ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
+                            ->addClass("btn btn-default btn-small")
+                            ->addClass("pull-right")
+                            ->addOption("href", urisprintf("disq/%p/%p/edit", $currentId, $post->cleanId))
+                    )
+                    ->setBodyText(ModHub\safeHtml($markup))
+                ;
 
-                $title = new MarkupContainer;
-                $title->push(
-                    ModHub\ht("img")
-                        ->addOption("src", ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
-                        ->addClass("user-profile-image")
-                );
-                $title->push(ModHub\ht("div", $post->modifiedAt->format("D, d M 'y"))->addClass("pull-right"));
-                $title->push(ModHub\hsprintf("<div><strong>%s</strong> added a comment</div>", $post->authorId));
-                $pxacts = $post->transactions;
-                $initialXActCount = 2;
-                if (count($pxacts) - $initialXActCount) {
-                    $title->push(ModHub\ht("div", ModHub\ht("small", ModHub\hsprintf("This post has received <b>%d</b> modification(s)", count($pxacts) - $initialXActCount))));
-                }
-                $postPanel->setHeader($title);
-
-                $postPanel->append(
-                    ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
-                        ->addClass("btn btn-default btn-small")
-                        ->addClass("pull-right")
-                        ->addOption("href", urisprintf("disq/%p/%p/edit", $currentId, $post->cleanId))
-                );
-                $postPanel->append(ModHub\safeHtml($markup));
-
-                $disqColumn->push($postPanel);
+                $disqColumn->push($postView);
             }
 
             $tagColumn = $row->column(3)->addClass("tag-column");
