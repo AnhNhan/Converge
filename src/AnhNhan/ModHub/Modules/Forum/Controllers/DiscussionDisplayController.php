@@ -79,7 +79,13 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $disqColumn->push($discussionPanel);
 
+            $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
+            $tocs = array();
+
             foreach ($disq->posts->toArray() as $post) {
+                list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
+                $tocs[$post->uid] = $toc;
+
                 $postPanel = new Panel;
                 $postPanel->setId($post->uid);
 
@@ -104,9 +110,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         ->addClass("pull-right")
                         ->addOption("href", urisprintf("disq/%p/%p/edit", $currentId, $post->cleanId))
                 );
-                $postPanel->append(ModHub\safeHtml(
-                    MarkupEngine::fastParse($post->rawText)
-                ));
+                $postPanel->append(ModHub\safeHtml($markup));
 
                 $disqColumn->push($postPanel);
             }
@@ -117,8 +121,6 @@ final class DiscussionDisplayController extends AbstractForumController
             $tocContainer->addClass("forum-toc-affix");
             $tocContainer->setHeader(ModHub\ht("h2", "Table of Contents"));
             $tagColumn->push($tocContainer);
-
-            $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
             foreach ($disq->posts->toArray() as $post) {
@@ -133,14 +135,15 @@ final class DiscussionDisplayController extends AbstractForumController
                     ->addOption("data-content", phutil_utf8_shorten($post->rawText, 140))
                 ;
 
-                $subToc = $tocExtractor->parseAndExtract($post->rawText);
+                $subToc = idx($tocs, $post->uid);
                 if ($subToc) {
                     $subUl = ModHub\ht("ul")->addClass("subtoc");
                     foreach ($subToc as $tt) {
                         $subUl->appendContent(ModHub\hsprintf(
-                            "<li class=\"subtoc-%s\" style=\"margin-left: %fem;\"><a href=\"#\">%s</a></li>",
+                            "<li class=\"subtoc-%s\"><a style=\"padding-left: %fem;\" href=\"#%s\">%s</a></li>",
                             $tt["type"],
-                            $tt["level"],
+                            $tt["level"] + 1.5,
+                            $tt["hash"],
                             $tt["text"]
                         ));
                     }
