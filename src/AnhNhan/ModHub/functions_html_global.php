@@ -4,7 +4,7 @@
 
 use AnhNhan\ModHub as mh;
 
-function div($class, $contents = null, $id = null)
+function div($class = "", $contents = null, $id = null)
 {
     return mh\ht('div', $contents)
         ->addClass($class)
