@@ -1,8 +1,6 @@
 <?php
 namespace AnhNhan\ModHub\Modules\Markup;
 
-use Symfony\Component\DomCrawler\Crawler;
-
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -20,18 +18,17 @@ final class TOCExtractor
 
     public function extractFromHtml($html)
     {
-        $crawler = new Crawler($html);
-
         $r = array();
-        $crawler->filter('h1, h2, h3, h4, h5, h6')->each(function (Crawler $node, $i) use (&$r) {
-            foreach ($node as $n) {
-                $entry = array(
-                    "type" => $n->nodeName,
-                    "text" => str_replace("\n", " ", $n->nodeValue),
-                );
-                $r[] = $entry;
-            }
-        });
+        preg_replace_callback('/<(h\\d)>(.*?)<\\/\\1>/s', function ($matches) use (&$r) {
+            $type = $matches[1];
+            $text = $matches[2];
+
+            $entry = array(
+                "type" => $type,
+                "text" => str_replace("\n", " ", $text),
+            );
+            $r[] = $entry;
+        }, $html);
 
         $this->calculateLevels($r);
 
@@ -45,7 +42,7 @@ final class TOCExtractor
         $r = array();
 
         $ii = 0;
-        $processed_html = preg_replace_callback('/<(h\\d)>(.*?)<\\/\\1>/', function ($matches) use (&$ii, &$r, $base_hash) {
+        $processed_html = preg_replace_callback('/<(h\\d)>(.*?)<\\/\\1>/s', function ($matches) use (&$ii, &$r, $base_hash) {
             $type = $matches[1];
             $text = $matches[2];
             $h_hash = hash_hmac("crc32", $base_hash . $ii . $type . $text, "key?"); // Add stuff to make it mostly-unique
