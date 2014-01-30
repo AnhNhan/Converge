@@ -98,7 +98,7 @@ services:
       - { name: cache }
 
   cache.doctrine:
-    alias: cache.mongodb
+    alias: cache.filesystem
     tags:
       - { name: cache }
 
