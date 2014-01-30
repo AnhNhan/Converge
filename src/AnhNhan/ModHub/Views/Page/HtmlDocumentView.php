@@ -53,8 +53,8 @@ class HtmlDocumentView extends AbstractView
 $(function () {
     $('a[data-backbone-nav]').click(function (e) {
         that = $(this);
-        Backbone.history.navigate(that.attr('href'), {trigger: true});
-        e.preventDefault();
+        //Backbone.history.navigate(that.attr('href'), {trigger: true});
+        //e.preventDefault();
     });
 });
 </script>
