@@ -53,6 +53,16 @@ final class SideNavBar extends AbstractView
                 'icon' => 'ios7-filing',
                 'href' => 'example/',
             ),
+            array(
+                'text' => '{{time}}',
+                'icon' => 'ios7-speedometer',
+                'href' => '#',
+            ),
+            array(
+                'text' => ModHub\safeHtml('{{queries}} &times; SQL'),
+                'icon' => 'ios7-pie',
+                'href' => '#',
+            ),
         );
         foreach ($items as $item) {
             $ul->appendContent(
