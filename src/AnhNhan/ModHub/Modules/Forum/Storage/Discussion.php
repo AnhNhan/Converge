@@ -73,7 +73,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     private $posts = array();
 
     /**
-     * @OneToMany(targetEntity="DiscussionTransaction", mappedBy="object", fetch="LAZY")
+     * @OneToMany(targetEntity="DiscussionTransaction", mappedBy="object", fetch="EXTRA_LAZY")
      * @OrderBy({"createdAt"="ASC"})
      */
     private $xacts = array();
