@@ -18,7 +18,8 @@
         "php-loep/monga": "1.0.*",
         "league/fractal": "0.6.*",
         "react/react": "0.3.*",
-        "Respect/Validation": "dev-master"
+        "Respect/Validation": "dev-master",
+        "knplabs/gaufrette": "0.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",

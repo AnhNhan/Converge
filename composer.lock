@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "285958e5e44b07446e043cd4bb13dc63",
+    "hash": "d269e1c86c395f3a6b6cc7fd319015d1",
     "packages": [
         {
             "name": "apexstudios/yamwlib",
@@ -826,6 +826,62 @@
                 "password"
             ],
             "time": "2013-04-30 19:58:08"
+        },
+        {
+            "name": "knplabs/gaufrette",
+            "version": "0.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/Gaufrette.git",
+                "reference": "e8f59e6e8ff9b8df19823f2b6bd74c03f68df726"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/e8f59e6e8ff9b8df19823f2b6bd74c03f68df726",
+                "reference": "e8f59e6e8ff9b8df19823f2b6bd74c03f68df726",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "aws-sdk": ">=1.4.5",
+                "ext-curl": "*",
+                "ext-mbstring": "*",
+                "ext-mongo": "*",
+                "knplabs/knp-gaufrette-bundle": "*",
+                "php-cloudfiles": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gaufrette": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antoine Hérault",
+                    "email": "antoine.herault@gmail.com",
+                    "homepage": "https://github.com/Herzult"
+                },
+                {
+                    "name": "The contributors",
+                    "homepage": "http://github.com/knplabs/Gaufrette/contributors"
+                }
+            ],
+            "description": "PHP5 library that provides a filesystem abstraction layer",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "abstraction",
+                "file",
+                "filesystem",
+                "media"
+            ],
+            "time": "2012-04-15 19:22:50"
         },
         {
             "name": "leafo/lessphp",
