@@ -2,6 +2,7 @@
 namespace AnhNhan\ModHub\Modules\Forum\Query;
 
 use AnhNhan\ModHub\Storage\Query;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -9,7 +10,9 @@ use AnhNhan\ModHub\Storage\Query;
 final class DiscussionQuery extends Query
 {
     const ENTITY_DISCUSSION = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion";
+    const ENTITY_DISCUSSION_XACT = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\DiscussionTransaction";
     const ENTITY_POST = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Post";
+    const ENTITY_POST_XACT = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\PostTransaction";
 
     /**
      * @return \AnhNhan\ModHub\Modules\Forum\Storage\Discussion
@@ -47,6 +50,23 @@ final class DiscussionQuery extends Query
         return $query->getResult();
     }
 
+    public function getPaginatorForDiscussionTransactions($disqId, $limit, $offset)
+    {
+        $queryString = sprintf(
+            "SELECT xact FROM %s xact WHERE xact.object = :disq_id ORDER BY xact.createdAt ASC",
+            self::ENTITY_DISCUSSION_XACT
+        );
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->setParameters(array("disq_id" => $disqId))
+        ;
+
+        $paginator = new Paginator($query, false);
+        return $paginator;
+    }
+
     /**
      * @return \AnhNhan\ModHub\Modules\Forum\Storage\Post
      */
@@ -62,7 +82,7 @@ final class DiscussionQuery extends Query
     {
         return $this
             ->repository(self::ENTITY_POST)
-            ->findBy(array("id" => $ids), array("createdAt" => "DESC"), $limit, $offset)
+            ->findBy(array("id" => $ids), array("createdAt" => "ASC"), $limit, $offset)
         ;
     }
 
@@ -70,7 +90,8 @@ final class DiscussionQuery extends Query
     {
         return $this
             ->repository(self::ENTITY_POST)
-            ->findBy(array(), array("createdAt" => "DESC"), $limit, $offset)
+            ->findBy(array(), array("createdAt" => "ASC"), $limit, $offset)
         ;
     }
+
 }

@@ -2,17 +2,21 @@
 routes:
 
   - route-name: main-listing
-    pattern: /disq
+    pattern: disq/
+  - route-name: main-listing
+    pattern: disq/page/:page-nr
 
   - route-name: disq-creation
-    pattern: /disq/create
+    pattern: disq/create
   - route-name: disq-creation
-    pattern: /disq/:id/edit
+    pattern: disq/:id/edit
 
   - route-name: disq-display
-    pattern: /disq/:id
+    pattern: disq/:id
+  - route-name: disq-display
+    pattern: disq/:id/page/:page-nr
 
   - route-name: disq-posting
-    pattern: /disq/:disq-id/post
+    pattern: disq/:disq-id/post
   - route-name: disq-posting
-    pattern: /disq/:disq-id/:post-id/edit
+    pattern: disq/:disq-id/:post-id/edit

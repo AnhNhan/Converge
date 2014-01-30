@@ -3,6 +3,7 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
+use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
@@ -23,7 +24,8 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $currentId = $request->request->get("id");
 
-        $disq = id(new DiscussionQuery($this->app))
+        $query = new DiscussionQuery($this->app);
+        $disq = $query
             ->retrieveDiscussion("DISQ-" . $currentId)
         ;
 
@@ -64,7 +66,26 @@ final class DiscussionDisplayController extends AbstractForumController
             $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
             $tocs = array();
 
-            foreach ($disq->posts->toArray() as $post) {
+            $page_nr = 1;
+            $page_size = 20;
+
+            if ($request->request->has("page-nr") && ($r_page_nr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_page_nr)) {
+                $page_nr = $r_page_nr;
+            }
+
+            $offset = ($page_nr - 1) * $page_size;
+
+            // $transactions = $query->getPaginatorForDiscussionTransactions($disq->uid, $page_size, $offset)->getIterator()->getArrayCopy();
+            $transactions = $disq->transactions->slice($offset, $page_size);
+            $transactions_grouped = mgroup($transactions, "type");
+            $post_ids = mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, array()), "newValue");
+            $posts = $query->retrievePostsForIDs($post_ids);
+
+            // Manual GC
+            unset($transactions_sorted);
+            unset($post_ids);
+
+            foreach ($posts as $post) {
                 list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
                 $tocs[$post->uid] = $toc;
 
@@ -93,7 +114,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $tagColumn->push($tocContainer);
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
-            foreach ($disq->posts->toArray() as $post) {
+            foreach ($posts as $post) {
                 $entry =
                     ModHub\ht("li",
                         ModHub\ht("a",
