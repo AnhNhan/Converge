@@ -41,7 +41,7 @@ class UserAuthTest extends \Codeception\TestCase\Test
     {
         $this->salt = \Filesystem::readRandomCharacters(22);
 
-        $container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+        $container = \AnhNhan\ModHub\Web\Core::loadBootstrappedSfDIContainer();
         $this->securityContext = $container->get("security.context.default");
         $this->encoderFactory  = $container->get("security.encoder.factory");
         $this->providerKey     = $container->getParameter("security.provider_key");

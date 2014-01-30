@@ -41,17 +41,17 @@ class ModelTest extends \Codeception\TestCase\Test
             ->text("sometext")
         ;
 
-        $discussionReflProp = $entityManager->getClassMetadata('AnhNhan\ModHub\Modules\Forum\Storage\Discussion')
+        $discussionReflProp = $entityManager->getClassMetadata(self::ENTITY_NAME_DISCUSSION)
             ->reflClass->getProperty('author');
         $discussionReflProp->setAccessible(true);
         $discussionReflProp->setValue(
             $discussion, $this->forumGuy->generateAuthorId()
         );
 
-        $entityManager->persist($discussion);
-        $entityManager->flush();
+        $this->forumGuy->persistEntity($discussion);
+        $this->forumGuy->flushToDatabase();
 
-        $this->forumGuy->seeInDatabase("Discussion", array("label" => "foo"));
+        $this->forumGuy->seeInRepository(self::ENTITY_NAME_DISCUSSION, array("label" => "foo"));
         $discussion = $this->forumGuy->getRepository(self::ENTITY_NAME_DISCUSSION)->findOneBy(array("label" => "foo"));
         $this->assertEquals("foo", $discussion->label());
         $this->assertSame(0, $discussion->tags()->count());
@@ -88,16 +88,21 @@ class ModelTest extends \Codeception\TestCase\Test
 
         $disqTag1 = new DiscussionTag($discussion, $tag1);
         $disqTag2 = new DiscussionTag($discussion, $tag2);
-        $entityManager->persist($disqTag1);
-        $entityManager->persist($disqTag2);
-        $entityManager->flush();
+        $this->forumGuy->persistEntity($disqTag1);
+        $this->forumGuy->persistEntity($disqTag2);
+        $this->forumGuy->flushToDatabase();
         $entityManager->clear();
 
-        $this->forumGuy->canSeeInDatabase("DiscussionTag", array("t_id" => $tag1->uid()));
-        $this->forumGuy->canSeeInDatabase("DiscussionTag", array("t_id" => $tag2->uid()));
+        $this->forumGuy->seeInRepository(self::ENTITY_NAME_DISCUSSION_TAG, array("t_id" => $tag1->uid()));
+        $this->forumGuy->seeInRepository(self::ENTITY_NAME_DISCUSSION_TAG, array("t_id" => $tag2->uid()));
 
         $discussion = $repository->findOneBy(array("label" => "foo"));
         $this->assertEquals(2, $discussion->tags()->count());
+
+        // Cleanup
+        $tagEm->remove($tag1);
+        $tagEm->remove($tag2);
+        $tagEm->flush();
     }
 
 }

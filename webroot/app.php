@@ -8,13 +8,12 @@ use AnhNhan\ModHub\Web\AppRouting;
 use AnhNhan\ModHub\Web\HttpKernel;
 
 use Symfony\Component\Debug\Debug;
-use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 Debug::enable();
 
-$container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+$container = \AnhNhan\ModHub\Web\Core::loadBootstrappedSfDIContainer();
 $stopwatch = $container->get('stopwatch');
 $stopwatch->start('page-loadtime');
 
@@ -28,13 +27,12 @@ $classes = SymbolLoader::getInstance()
     ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
 $router = new AppRouting($classes);
 
-$eventDispatcher = new ContainerAwareEventDispatcher($container);
-$container->set('event_dispatcher', $eventDispatcher);
-
 $request_stack = new RequestStack;
 $container->set('request_stack', $request_stack);
 
-$kernel = new HttpKernel($eventDispatcher, $router, $request_stack);
+$event_dispatcher = $container->get('event_dispatcher');
+
+$kernel = new HttpKernel($event_dispatcher, $router, $request_stack);
 $kernel->setContainer($container);
 $container->set('http_kernel', $kernel);
 $response = $kernel->handle($request);

@@ -4,10 +4,12 @@ settings:
 modules:
     enabled:
       - Db
+      - Doctrine2
       - ForumHelper
     config:
         Db:
             dsn: 'mysql:host=127.0.0.1;dbname=modhub_forum'
             user: 'modhub'
             password: ''
-            dump: tests/_data/db_forum.sql
+            cleanup: false
+            populate: false

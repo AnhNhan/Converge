@@ -17,11 +17,7 @@ class ForumHelper extends \Codeception\Module
 
     public function getEntityManager()
     {
-        static $em;
-        if (!$em) {
-            $em = $this->getApplication()->getEntityManager();
-        }
-        return $em;
+        return \Codeception\Module\Doctrine2::$em;
     }
 
     public function getRepository($entity)

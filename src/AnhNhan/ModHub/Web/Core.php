@@ -9,6 +9,7 @@ use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,6 +65,16 @@ final class Core
 
     const SERVICE_CONTAINER_NAME = 'AnhNhan\ServiceContainer';
 
+    public static function loadBootstrappedSfDIContainer($containerName = "default")
+    {
+        $container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+
+        $eventDispatcher = new ContainerAwareEventDispatcher($container);
+        $container->set('event_dispatcher', $eventDispatcher);
+
+        return $container;
+    }
+
     /**
      * Loads a Symfony\DependencyInjection container from cache. If it does not exist,
      * it will be built fresh from the service configuration.
@@ -111,14 +122,14 @@ final class Core
     /**
      * Dumb building of a Symfony\DependencyInjection container. This method does not
      * load or cache the container, but re-loads all resources and extensions and processes them.
-     * 
+     *
      * If you want to add an extension, simply extend the `ExtensionInterface` and make sure that
      * it is registered in the symbol map.
-     * 
+     *
      * @param $confDir string The directory containing the configuration files, including
      *                        service configuration.
      *                        This path is relative to the project root.
-     * 
+     *
      * @return ContainerBuilder A ContainerBuilder instance that has undergone compilation (hence
      *                          not worth the trouble of changing it yourself)
      */

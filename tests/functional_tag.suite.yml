@@ -9,4 +9,5 @@ modules:
             dsn: 'mysql:host=127.0.0.1;dbname=modhub_user'
             user: 'modhub'
             password: ''
-            dump: tests/_data/db_tag.sql
+            cleanup: false
+            populate: false
