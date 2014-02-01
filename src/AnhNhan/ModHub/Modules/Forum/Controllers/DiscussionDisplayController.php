@@ -27,12 +27,13 @@ final class DiscussionDisplayController extends AbstractForumController
         $disq = $query
             ->retrieveDiscussion("DISQ-" . $currentId)
         ;
-        $query->fetchExternalsForDiscussions(array($disq));
 
         $payload = new HtmlPayload;
         $container = new MarkupContainer;
 
         if ($disq) {
+            $query->fetchExternalsForDiscussions(array($disq));
+
             $grid = new Grid;
 
             $row = $grid->row();

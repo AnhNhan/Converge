@@ -22,10 +22,13 @@ final class DiscussionQuery extends Query
      */
     public function retrieveDiscussion($id)
     {
-        return $this
-            ->repository(self::ENTITY_DISCUSSION)
-            ->find($id)
+        $eDisq = self::ENTITY_DISCUSSION;
+        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt WHERE d.id = :disq_id";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setParameters(array("disq_id" => $id))
         ;
+        return idx($query->getResult(), 0);
     }
 
     public function retrieveDiscussionForIDs(array $ids, $limit = null, $offset = null)
@@ -38,10 +41,16 @@ final class DiscussionQuery extends Query
 
     public function retrieveDiscussions($limit = null, $offset = null)
     {
-        return $this
-            ->repository(self::ENTITY_DISCUSSION)
-            ->findBy(array(), array("lastActivity" => "DESC"), $limit, $offset)
+        $eDisq = self::ENTITY_DISCUSSION;
+        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
         ;
+
+        $paginator = new Paginator($query, true);
+        return $paginator->getIterator()->getArrayCopy();
     }
 
     public function retriveDiscussionsForTag(Tag $tag, $limit = null, $offset = null)
