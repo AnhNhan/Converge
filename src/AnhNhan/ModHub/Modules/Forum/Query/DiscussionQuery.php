@@ -45,8 +45,9 @@ final class DiscussionQuery extends Query
     {
         $eDisq = self::ENTITY_DISCUSSION;
         $tagId = $tag->uid();
-        $queryString = "SELECT d FROM {$eDisq} d JOIN d.tags t WHERE t.t_id = '{$tagId}'";
+        $queryString = "SELECT d FROM {$eDisq} d JOIN d.tags t WHERE t.t_id = :tag_id";
         $query = $this->em()->createQuery($queryString);
+        $query->setParameters(array('tag_id' => $tagId));
         return $query->getResult();
     }
 
