@@ -51,7 +51,7 @@ class Role extends EntityDefinition implements RoleInterface, TransactionAwareEn
      * @OneToMany(targetEntity="RoleTransaction", mappedBy="object", fetch="LAZY")
      * @OrderBy({"createdAt"="ASC"})
      */
-    private $xacts = array();
+    private $xacts;
 
     public function __construct()
     {

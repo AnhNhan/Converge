@@ -69,7 +69,7 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
      * @OrderBy({"createdAt"="ASC"})
      * @var \Doctrine\ORM\PersistentCollection
      */
-    private $xacts = array();
+    private $xacts;
 
     public function __construct() {
         $this->createdAt = new \DateTime;

@@ -61,7 +61,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
      *
      * @OneToMany(targetEntity="DiscussionTag", fetch="EAGER", mappedBy="disq")
      */
-    private $tags = array();
+    private $tags;
 
     /**
      * Mapping with posts
@@ -70,13 +70,13 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
      * @OneToMany(targetEntity="Post", fetch="EXTRA_LAZY", mappedBy="disq")
      * @OrderBy({"createdAt"="ASC"})
      */
-    private $posts = array();
+    private $posts;
 
     /**
      * @OneToMany(targetEntity="DiscussionTransaction", mappedBy="object", fetch="EXTRA_LAZY")
      * @OrderBy({"createdAt"="ASC"})
      */
-    private $xacts = array();
+    private $xacts;
 
     public function __construct() {
         $this->createdAt = new \DateTime;

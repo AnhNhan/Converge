@@ -57,7 +57,7 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
      * @OneToMany(targetEntity="TagTransaction", mappedBy="object", fetch="LAZY")
      * @OrderBy({"createdAt"="ASC"})
      */
-    private $xacts = array();
+    private $xacts;
 
     public function __construct() {
         $this->createdAt  = new \DateTime;
