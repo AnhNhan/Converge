@@ -76,8 +76,13 @@ final class DiscussionQuery extends Query
         assert_instances_of($disqs, self::ENTITY_DISCUSSION);
 
         $ePost = self::ENTITY_POST;
-        // TODO: Somehow index this by disq uid - else this is worthless
-        $queryString = "SELECT COUNT(p.id) FROM {$ePost} p WHERE p.disq IN (:disq_ids) AND p.deleted = 0 GROUP BY p.disq";
+        $eDisq = self::ENTITY_DISCUSSION;
+        $queryString = "SELECT d.id, COUNT(p.id) AS postcount
+            FROM {$eDisq} d INDEX BY d.id
+                JOIN d.posts p
+            WHERE d.id IN (:disq_ids)
+                AND p.deleted = 0
+            GROUP BY d.id";
         $query = $this->em()->createQuery($queryString);
         $query->setParameters(array('disq_ids' => mpull($disqs, 'uid')));
         return $query->getResult(DoctrineQuery::HYDRATE_ARRAY);
