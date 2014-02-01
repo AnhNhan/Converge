@@ -12,7 +12,7 @@
         offset: {
             top: function () {
                 var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10);
-                return (this.top = $sideBar.offset().top - sideBarMargin - 30 - $header.outerHeight());
+                return (this.top = $sideBar.offset().top - sideBarMargin - 30 + $header.outerHeight());
             }
         }
     });
