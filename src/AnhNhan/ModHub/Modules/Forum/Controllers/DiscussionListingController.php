@@ -56,9 +56,10 @@ final class DiscussionListingController extends AbstractForumController
 
         $query = $this->buildQuery();
         $disqs = $this->fetchDiscussions($this->discussionsPerPage, $offset, $query);
-        // $postCounts = $query->fetchPostCountsForDiscussions($disqs);
+        // TODO: Have this cached in Discussion
+        $postCounts = $query->fetchPostCountsForDiscussions($disqs);
 
-        $container = new MarkupContainer();
+        $container = new MarkupContainer;
 
         $listing = new ForumListing;
         $listing->setTitle("Forum Listing");
@@ -66,19 +67,19 @@ final class DiscussionListingController extends AbstractForumController
         foreach ($disqs as $discussion) {
             $object = new ForumObject;
             $object
-                ->setHeadline($discussion->label())
-                ->setHeadHref("/disq/" . preg_replace("/^(.*?-)/", "", $discussion->uid()))
-                ->postCount($discussion->posts()->count());
+                ->setHeadline($discussion->label)
+                ->setHeadHref("/disq/" . $discussion->cleanId)
+                ->postCount(idx($postCounts, $discussion->uid)["postcount"]);
 
-            $tags = mpull(mpull($discussion->tags()->toArray(), "tag"), "label");
+            $tags = mpull(mpull($discussion->tags->toArray(), "tag"), "label");
             foreach ($tags as $tagLabel) {
                 if (!empty($tagLabel)) {
                     $object->addTag(new TagView($tagLabel));
                 }
             }
 
-            $object->addAttribute($discussion->authorId());
-            $object->addAttribute($discussion->lastActivity()->format("D, d M 'y"));
+            $object->addAttribute($discussion->authorId);
+            $object->addAttribute($discussion->lastActivity->format("D, d M 'y"));
 
             $listing->addObject($object);
         }
