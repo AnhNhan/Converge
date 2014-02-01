@@ -4,6 +4,7 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost as DeletedPostView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
 use AnhNhan\ModHub\Views\Grid\Grid;
@@ -90,6 +91,15 @@ final class DiscussionDisplayController extends AbstractForumController
                 list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
                 $tocs[$post->uid] = $toc;
 
+                if ($post->deleted) {
+                    $disqColumn->push(id(new DeletedPostView)
+                        ->setId(hash_hmac("sha512", $post->uid, time())) // Fuzzy id
+                        ->addClass("post-deleted")
+                        ->setDate($post->modifiedAt->format("D, d M 'y"))
+                    );
+                    continue;
+                }
+
                 $postView = new PostView;
                 $postView
                     ->setId($post->uid)
@@ -116,6 +126,14 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
             foreach ($posts as $post) {
+                if ($post->deleted) {
+                    $entry = ModHub\ht("li",
+                        a(ModHub\hsprintf("<em>Post</em> deleted"), "#" . hash_hmac("sha512", $post->uid, time()))
+                    );
+                    $ulCont->appendContent($entry);
+                    continue;
+                }
+
                 $entry =
                     ModHub\ht("li",
                         ModHub\ht("a",
