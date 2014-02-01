@@ -1,8 +1,11 @@
 <?php
 namespace AnhNhan\ModHub\Modules\Forum\Query;
 
+use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
 use AnhNhan\ModHub\Storage\Query;
+use Doctrine\ORM\Query as DoctrineQuery;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -66,6 +69,46 @@ final class DiscussionQuery extends Query
 
         $paginator = new Paginator($query, false);
         return $paginator;
+    }
+
+    public function fetchPostCountsForDiscussions(array $disqs)
+    {
+        assert_instances_of($disqs, self::ENTITY_DISCUSSION);
+
+        $ePost = self::ENTITY_POST;
+        // TODO: Somehow index this by disq uid - else this is worthless
+        $queryString = "SELECT COUNT(p.id) FROM {$ePost} p WHERE p.disq IN (:disq_ids) AND p.deleted = 0 GROUP BY p.disq";
+        $query = $this->em()->createQuery($queryString);
+        $query->setParameters(array('disq_ids' => mpull($disqs, 'uid')));
+        return $query->getResult(DoctrineQuery::HYDRATE_ARRAY);
+    }
+
+    public function fetchExternalsForDiscussions(array $disqs)
+    {
+        assert_instances_of($disqs, self::ENTITY_DISCUSSION);
+        $authors = mpull($disqs, 'author');
+        if (count(array_filter($authors)) != count($authors)) { // Can this check be optimized?
+            $this->requireExternalQuery(self::EXT_QUERY_USER);
+            // TODO: Finish this once we really have users
+        }
+
+        $disq_tags = mpull(mpull($disqs, 'tags'), 'toArray');
+        $tags_flat = array_mergev($disq_tags);
+
+        try {
+            // Test if >=1 DiscussionTags don't have a tag set by accessing it
+            mpull($tags_flat, 'tag');
+        } catch (\Exception $e) {
+            // Apparently we have >=1 tags not loaded - batch load them
+            $tag_ids = mpull($tags_flat, 'tagId');
+            $tagQuery = $this->requireExternalQuery(self::EXT_QUERY_TAG);
+            $tag_objs = $tagQuery->retrieveTagsForIDs($tag_ids);
+            $tag_objs = mpull($tag_objs, null, 'uid');
+
+            foreach ($tags_flat as $tag) {
+                $tag->setTag($tag_objs[$tag->tagId]);
+            }
+        }
     }
 
     /**

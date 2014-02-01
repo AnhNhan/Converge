@@ -49,14 +49,6 @@ final class ForumApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        $entityManager = $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
-        $eventManager  = $entityManager->getEventManager();
-
-        $eventManager->addEventListener(
-            array(\Doctrine\ORM\Events::postLoad),
-            new Events\DiscussionTagExternalEntityLoader($this->getExternalApplication("tag"))
-        );
-
-        return $entityManager;
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
     }
 }

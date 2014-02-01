@@ -64,6 +64,15 @@ class DiscussionTag extends EntityDefinition
         return $this->t_obj;
     }
 
+    public function setTag(Tag $tag)
+    {
+        if ($tag->uid !== $this->t_id) {
+            throw new \InvalidArgumentException("UIDs do not match!");
+        }
+        $this->t_obj = $tag;
+        return $this;
+    }
+
     public function tagId()
     {
         return $this->t_id;

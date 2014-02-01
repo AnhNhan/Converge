@@ -2,7 +2,6 @@
 namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
-use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
@@ -24,10 +23,11 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $currentId = $request->request->get("id");
 
-        $query = new DiscussionQuery($this->app);
+        $query = $this->buildQuery();
         $disq = $query
             ->retrieveDiscussion("DISQ-" . $currentId)
         ;
+        $query->fetchExternalsForDiscussions(array($disq));
 
         $payload = new HtmlPayload;
         $container = new MarkupContainer;

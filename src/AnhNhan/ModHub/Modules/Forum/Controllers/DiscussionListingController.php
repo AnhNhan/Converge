@@ -2,7 +2,6 @@
 namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
-use AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing;
 use AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
@@ -40,6 +39,14 @@ final class DiscussionListingController extends AbstractForumController
         return $this->handle();
     }
 
+    private function fetchDiscussions($limit, $offset, $query = null)
+    {
+        $query = $query ?: $this->buildQuery();
+        $disqs = $query->retrieveDiscussions($this->discussionsPerPage, $offset);
+        $query->fetchExternalsForDiscussions($disqs);
+        return $disqs;
+    }
+
     public function handle()
     {
         $request = $this->request();
@@ -47,9 +54,9 @@ final class DiscussionListingController extends AbstractForumController
         $pageNr = 0;
         $offset = $pageNr * $this->discussionsPerPage;
 
-        $disqs = id(new DiscussionQuery($this->app()))
-            ->retrieveDiscussions($this->discussionsPerPage, $offset)
-        ;
+        $query = $this->buildQuery();
+        $disqs = $this->fetchDiscussions($this->discussionsPerPage, $offset, $query);
+        // $postCounts = $query->fetchPostCountsForDiscussions($disqs);
 
         $container = new MarkupContainer();
 
@@ -96,9 +103,7 @@ final class DiscussionListingController extends AbstractForumController
 
         $pageNr = 0;
         $offset = $pageNr * $this->discussionsPerPage;
-        $disqs = id(new DiscussionQuery($this->app()))
-            ->retrieveDiscussions($this->discussionsPerPage, $offset)
-        ;
+        $disqs = $this->fetchDiscussions($this->discussionsPerPage, $offset);
 
         $fractal = new Fractal\Manager;
         $resource = new Fractal\Resource\Collection($disqs, new DiscussionTransformer);
