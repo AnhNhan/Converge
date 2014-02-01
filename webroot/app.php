@@ -23,9 +23,7 @@ if (ModHub\is_cli()) {
     $request->server->set("REQUEST_URI", ModHub\sdx($argv, "/"));
 }
 
-$classes = SymbolLoader::getInstance()
-    ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
-$router = new AppRouting($classes);
+$router = new AppRouting($container->get('app.list'));
 
 $request_stack = new RequestStack;
 $container->set('request_stack', $request_stack);

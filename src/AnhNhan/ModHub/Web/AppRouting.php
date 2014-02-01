@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\ModHub\Web;
 
+use AnhNhan\ModHub\Application\ApplicationList;
 use YamwLibs\Libs\Routing\Router;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -12,19 +13,19 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 final class AppRouting implements RequestMatcherInterface, UrlGeneratorInterface
 {
-    private $appList = array();
+    private $appList;
     private $appInstanceList = array();
     private $appRoutes = array();
     private $router;
 
-    public function __construct(array $appList = array())
+    public function __construct(ApplicationList $appList = null)
     {
         if ($appList) {
             $this->setAppList($appList);
         }
     }
 
-    public function setAppList(array $appList)
+    public function setAppList(ApplicationList $appList)
     {
         $this->appList = $appList;
         $this->generateRouter();
@@ -33,13 +34,7 @@ final class AppRouting implements RequestMatcherInterface, UrlGeneratorInterface
 
     private function generateRouter()
     {
-        foreach ($this->appList as $class_name) {
-            $this->appInstanceList[] = new $class_name;
-        }
-
-        assert_instances_of($this->appInstanceList, 'AnhNhan\ModHub\Web\Application\BaseApplication');
-
-        $this->appRoutes = mpull($this->appInstanceList, "getRoutes");
+        $this->appRoutes = mpull($this->appList->apps(), "getRoutes");
 
         $router = new Router;
         foreach ($this->appRoutes as $routes) {
