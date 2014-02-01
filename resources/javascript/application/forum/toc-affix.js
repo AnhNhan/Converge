@@ -47,7 +47,7 @@
     });
 
     // Debounce + CSS transitions = 4wsum!
-    var someFunc = function (e) {
+    var someFunc = _.debounce(function (e) {
         // Yes, always re-calc these values
         // The user may have resized windows, we may have added items, etc.
         var $window = $(window);
@@ -69,7 +69,7 @@
             $('.forum-toc-affix').css('top', 30 + $header.outerHeight());
             $('.forum-toc-affix.affix-top').css('top', 0);
         }
-    };
+    }, 300);
 
     someFunc();
     $window.scroll(someFunc);

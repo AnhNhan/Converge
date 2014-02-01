@@ -92,7 +92,7 @@
     }
   }
 
-  ScrollSpy.prototype.activate = function (target) {
+  ScrollSpy.prototype.activate = _.debounce(function (target) {
     this.activeTarget = target
 
     $(this.selector)
@@ -114,7 +114,7 @@
     }
 
     active.trigger('activate.bs.scrollspy')
-  }
+  }, 300);
 
 
   // SCROLLSPY PLUGIN DEFINITION
