@@ -11,7 +11,7 @@ services:
     class: Symfony\Component\Security\Http\HttpUtils
     public: false
     arguments:
-      - null
+      - @app_routing
       - @app_routing
 
   security.http.logout.handler.session:
