@@ -24,20 +24,7 @@ abstract class ConsoleCommand extends Command
      */
     final protected function getExternalApplication($internalName)
     {
-        // Hm, should we replace this with an app list from the container?
-        $classes = SymbolLoader::getInstance()
-            ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\ModHub\Web\Application\BaseApplication');
-        $apps = array();
-        foreach ($classes as $class_name) {
-            $apps[] = new $class_name;
-        }
-        $apps = mpull($apps, null, "getInternalName");
-        $app = idx($apps, $internalName);
-        if (!$app) {
-            throw new \Exception("App '{$internalName}' does not exist!");
-        }
-        $app->setContainer($this->container);
-        return $app;
+        return $this->container->get('app.list')->app($name);
     }
 
     /**

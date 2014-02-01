@@ -15,6 +15,9 @@
 
 return array(
   "classes" => array(
+    "AnhNhan\ModHub\Application\ApplicationList" => array(
+      "file" => "AnhNhan/ModHub/Application/ApplicationList.php",
+    ),
     "AnhNhan\ModHub\Console\ConsoleCommand" => array(
       "file" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
       "deriv" => "Symfony\Component\Console\Command\Command",
@@ -86,9 +89,6 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/PostEditController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Events\DiscussionTagExternalEntityLoader" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Events/DiscussionTagExternalEntityLoader.php",
-    ),
     "AnhNhan\ModHub\Modules\Forum\ForumApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/ForumApplication.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
@@ -134,6 +134,14 @@ return array(
     "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Transform/DiscussionTransformer.php",
       "deriv" => "League\Fractal\TransformerAbstract",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Discussion.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\Post" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Post.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
@@ -636,6 +644,28 @@ return array(
     "League\Fractal\TransformerAbstract" => array(
       "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
     ),
+    "AnhNhan\ModHub\Views\AbstractView" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
+      "AnhNhan\ModHub\Modules\Tag\Views\TagView",
+      "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
+      "AnhNhan\ModHub\Views\Form\FormView",
+      "AnhNhan\ModHub\Views\Grid\Column",
+      "AnhNhan\ModHub\Views\Grid\Grid",
+      "AnhNhan\ModHub\Views\Grid\Row",
+      "AnhNhan\ModHub\Views\Objects\AbstractObject",
+      "AnhNhan\ModHub\Views\Objects\Listing",
+      "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
+      "AnhNhan\ModHub\Views\Page\FooterView",
+      "AnhNhan\ModHub\Views\Page\HeaderView",
+      "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
+      "AnhNhan\ModHub\Views\Page\PageView",
+      "AnhNhan\ModHub\Views\Page\SideNavBar",
+      "AnhNhan\ModHub\Views\Panel\Panel",
+      "AnhNhan\ModHub\Views\Objects\Object",
+      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+      "AnhNhan\ModHub\Views\Page\BarePageView",
+    ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
@@ -663,27 +693,6 @@ return array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
-    ),
-    "AnhNhan\ModHub\Views\AbstractView" => array(
-      "AnhNhan\ModHub\Modules\Tag\Views\TagView",
-      "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
-      "AnhNhan\ModHub\Views\Form\FormView",
-      "AnhNhan\ModHub\Views\Grid\Column",
-      "AnhNhan\ModHub\Views\Grid\Grid",
-      "AnhNhan\ModHub\Views\Grid\Row",
-      "AnhNhan\ModHub\Views\Objects\AbstractObject",
-      "AnhNhan\ModHub\Views\Objects\Listing",
-      "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-      "AnhNhan\ModHub\Views\Page\FooterView",
-      "AnhNhan\ModHub\Views\Page\HeaderView",
-      "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
-      "AnhNhan\ModHub\Views\Page\PageView",
-      "AnhNhan\ModHub\Views\Page\SideNavBar",
-      "AnhNhan\ModHub\Views\Panel\Panel",
-      "AnhNhan\ModHub\Views\Objects\Object",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
-      "AnhNhan\ModHub\Views\Page\BarePageView",
     ),
     "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController" => array(
       "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",

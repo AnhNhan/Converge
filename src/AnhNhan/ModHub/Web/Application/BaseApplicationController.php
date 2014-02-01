@@ -29,6 +29,11 @@ abstract class BaseApplicationController
         return $this->app;
     }
 
+    final protected function externalApp($name)
+    {
+        return $this->app->getService('app.list')->app($name);
+    }
+
     protected function getRepository($entityName)
     {
         $app = $this->app();
