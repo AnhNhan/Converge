@@ -27,8 +27,6 @@ class DiscussionTag extends EntityDefinition
     private $t_id;
 
     /**
-     * Will be loaded from Donctrine event subscriber
-     *
      * @var Tag
      */
     private $t_obj;
