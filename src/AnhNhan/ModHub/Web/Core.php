@@ -67,10 +67,13 @@ final class Core
 
     public static function loadBootstrappedSfDIContainer($containerName = "default")
     {
-        $container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+        $container = self::loadSfDIContainer();
 
         $eventDispatcher = new ContainerAwareEventDispatcher($container);
         $container->set('event_dispatcher', $eventDispatcher);
+
+        $appList = new \AnhNhan\ModHub\Application\ApplicationList($container);
+        $container->set('app.list', $appList);
 
         return $container;
     }
