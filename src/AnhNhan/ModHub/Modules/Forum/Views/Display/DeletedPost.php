@@ -22,7 +22,7 @@ class DeletedPost extends AbstractView
     public function render()
     {
         $postPanel = new Panel;
-        $postPanel->setColor(Panel::COLOR_DARK);
+        //$postPanel->setColor(Panel::COLOR_DARK);
 
         $title = new MarkupContainer;
         $title->push(mh\ht('div', $this->date)->addClass('pull-right'));

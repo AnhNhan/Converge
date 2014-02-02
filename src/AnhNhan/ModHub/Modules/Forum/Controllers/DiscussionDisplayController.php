@@ -69,7 +69,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $tocs = array();
 
             $page_nr = 1;
-            $page_size = 20;
+            $page_size = 15;
 
             if ($request->request->has("page-nr") && ($r_page_nr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_page_nr)) {
                 $page_nr = $r_page_nr;
