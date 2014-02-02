@@ -121,17 +121,7 @@ final class SymbolLoader
             if (file_exists($classLocation)) {
                 include_once $classLocation;
                 return true;
-            } else {
-                /*throw new \Exception(
-                    "$fqClassName could not be found at $classLocation! Maybe" .
-                    " __symbol_map__.php is out of date?"
-                );*/
             }
-        } else {
-            /*throw new \Exception(
-                "Symbol $fqClassName does not exist! Did you forget to update" .
-                " the __symbol_map__.php?"
-            );*/
         }
     }
 
@@ -158,7 +148,7 @@ final class SymbolLoader
 
         return $concreteClasses;
     }
-    
+
     public function getObjectsThatDeriveFrom($parentClass)
     {
         foreach ($this->getConcreteClassesThatDeriveFromThisOne($parentClass) as $class) {
@@ -180,7 +170,7 @@ final class SymbolLoader
 
         return $concreteClasses;
     }
-    
+
     public function getObjectsThatImplements($parentClass)
     {
         foreach ($this->getConcreteClassesThatImplement($parentClass) as $class) {
