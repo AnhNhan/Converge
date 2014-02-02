@@ -50,6 +50,7 @@ class ModelTest extends \Codeception\TestCase\Test
 
         $this->forumGuy->persistEntity($discussion);
         $this->forumGuy->flushToDatabase();
+        $entityManager->clear();
 
         $this->forumGuy->seeInRepository(self::ENTITY_NAME_DISCUSSION, array("label" => "foo"));
         $discussion = $this->forumGuy->getRepository(self::ENTITY_NAME_DISCUSSION)->findOneBy(array("label" => "foo"));
