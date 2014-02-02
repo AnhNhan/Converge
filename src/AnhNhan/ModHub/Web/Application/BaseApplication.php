@@ -11,6 +11,9 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+use Filesystem;
+use FilesystemException;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -32,6 +35,39 @@ abstract class BaseApplication
     abstract public function routeToController(Request $request);
 
     protected function generateRoutesFromYaml($file)
+    {
+        $filename_hash = md5($file);
+        $cache_dir = ModHub\get_root_super() . "cache/";
+        $cache_file = $cache_dir . $filename_hash . ".php";
+        $cache_meta = $cache_file . ".meta";
+
+        $generate = function () use ($file, $cache_meta, $cache_file) {
+            $routes = $this->generateRoutesFromYamlReal($file);
+            file_put_contents($cache_file, serialize($routes));
+            file_put_contents($cache_meta, filemtime($file));
+            return $routes;
+        };
+
+        $routes = array();
+
+        if (!file_exists($cache_meta)) {
+            $routes = $generate();
+        }
+
+        if (!$routes && $cache_mtime = (int) @file_get_contents($cache_meta)) {
+            if (filemtime($file) > $cache_mtime) {
+                $routes = $generate();
+            }
+
+            if (!$routes) {
+                $routes = unserialize(Filesystem::readFile($cache_file));
+            }
+        }
+
+        return $routes;
+    }
+
+    private function generateRoutesFromYamlReal($file)
     {
         $yaml = \Symfony\Component\Yaml\Yaml::parse($file);
         $routes = $yaml["routes"];
