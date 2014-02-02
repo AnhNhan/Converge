@@ -24,8 +24,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "eaea56986d9b819d164e42dc57a203d2",
-      "orig" => "c56665953c8e04dd25acbc0ca3488769",
+      "hash" => "db9195baa7fb0fafc18772d55548542e",
+      "orig" => "8421c89710c5aa50951354de8e234de2",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
@@ -206,8 +206,8 @@ return array(
     "application-forum-toc-affix" => array(
       "name" => "application-forum-toc-affix",
       "path" => "application/forum/toc-affix.js",
-      "hash" => "65207575e5624159741676e61b7b18ed",
-      "orig" => "b36054f99c8ffdb22ff53c8a607e4dea",
+      "hash" => "4522236a8da49bd3c349253957668429",
+      "orig" => "51fb669f0a15337e5d37ec32773c0da0",
     ),
     "application-markup-markupform" => array(
       "name" => "application-markup-markupform",
@@ -302,8 +302,8 @@ return array(
     "external-bootstrap-scrollspy" => array(
       "name" => "external-bootstrap-scrollspy",
       "path" => "external/bootstrap/scrollspy.js",
-      "hash" => "1612541b288d47c0de14b58c022fb155",
-      "orig" => "62fe32d34d212b53a9386d4dee71af9e",
+      "hash" => "941c53b4ea2e1018afea81c83b07b715",
+      "orig" => "df19dbe83588ee7de4b46865fc8bcb8f",
     ),
     "external-bootstrap-tooltip" => array(
       "name" => "external-bootstrap-tooltip",
@@ -440,7 +440,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "haf64m2h",
+      "hash" => "ggokyc25",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -551,21 +551,21 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "8ed040a9be31a17b535bfe2e198e73b8",
+      "hash" => "69fde69a4aaa0d1a49cc7080c0352cac",
       "contents" => array(
         "external-html5bp-plugin" => "e2679049e95a7201b815c3cf004aefc4",
         "external-modernizr" => "d9f173b9f963540ca4c1c2ba978bb9cf",
         "external-jquery-1-10-2" => "91515770ce8c55de23b306444d8ea998",
         "external-json2" => "f97cd64fa7f3d3d3728786288fef56c8",
+        "external-underscore" => "0032e6db6c0aa378760cb72f0cbd176e",
         "external-bootstrap-transition" => "5361fc9b7ef050dabb3261c264ff081e",
-        "external-bootstrap-scrollspy" => "1612541b288d47c0de14b58c022fb155",
+        "external-bootstrap-scrollspy" => "941c53b4ea2e1018afea81c83b07b715",
         "external-bootstrap-modal" => "1965ba12e3de9e022600664913c73282",
         "external-bootstrap-affix" => "2ad7444cee9c76aad4129751bc633af4",
         "external-bootstrap-alert" => "fb9263a7336bfef801587d7d802e27fd",
         "external-bootstrap-dropdown" => "73678eb2164c812dae9db8b4434fff7b",
         "external-bootstrap-tooltip" => "4fcfc574018799717046c3efe3d24d36",
         "external-bootstrap-popover" => "c5e89eb7ebd028159e115ec1adbc931a",
-        "external-underscore" => "0032e6db6c0aa378760cb72f0cbd176e",
         "external-backbone" => "a108a3eafa92ebfda671baf0f76562d8",
         "application-bootstrap" => "d3d7e6a39b484f868fdc477c64b33e5c",
         "application-markup-markupform" => "d4e30894c2dc2b4608fdee45e88c76cc",
@@ -588,8 +588,8 @@ return array(
     "tmpl-front-frontpage" => array(
       "name" => "tmpl-front-frontpage",
       "path" => "front/frontpage.html",
-      "hash" => "232f745ceea6942bf5bd503c03b6e8ad",
-      "orig" => "0c046def6369f5f098c7ff1e2bf0fe78",
+      "hash" => "aeae0c84da58cd826940956e161d3d3f",
+      "orig" => "6aa06e2d9dfe560e5232fec2e61ae199",
     ),
     "tmpl-tag-tagview" => array(
       "name" => "tmpl-tag-tagview",
