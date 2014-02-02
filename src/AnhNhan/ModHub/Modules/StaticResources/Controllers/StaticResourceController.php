@@ -41,7 +41,6 @@ final class StaticResourceController extends AbstractStaticResourceController
         }
 
         $resMap = include ModHub\path("__resource_map__.php");
-        var_dump($resMap[$type]);
         if (!$resource = idx($resMap[$type], $name)) {
             // Could be a pack file
             $resource = idx($resMap["pck"], $name);
