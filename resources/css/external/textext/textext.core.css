@@ -1,19 +1,25 @@
 .text-core {
   position: relative;
+
+  &:hover {
+    .text-wrap {
+      textarea, input {
+        background-color: #EEEEEE;
+      }
+    }
+  }
 }
 .text-core .text-wrap {
-  background: #fff;
+  background: @white;
   position: absolute;
 }
 .text-core .text-wrap textarea,
 .text-core .text-wrap input {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  border: 1px solid #9daccc;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  border-radius: 5px !important;
+  border: 1px solid @grey;
   outline: none;
   resize: none;
   position: absolute;
@@ -21,9 +27,16 @@
   background: none;
   overflow: hidden;
   margin: 0;
-  padding: 3px 5px 4px 5px;
+  padding: @form-control-element-padding;
   white-space: nowrap;
-  font: 11px "lucida grande", tahoma, verdana, arial, sans-serif;
-  line-height: 13px;
-  height: auto;
+  height: 2.2857142857142857142857142857143em; /* 32px for 14px font */
+
+  .box-shadow(inset 0 0 5px rgba(0, 0, 0, .075));
+  .transition(~"background-color 0.2s, border-color 0.2s");
+
+  &:focus {
+    border: 1px #6283A7 solid;
+    background-color: lighten(#6283A7, 40%);
+    outline: none; // Deactivate webkit's focus ring around form controls
+  }
 }
