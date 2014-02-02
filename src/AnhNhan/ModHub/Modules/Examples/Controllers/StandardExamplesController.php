@@ -26,6 +26,7 @@ final class StandardExamplesController extends BaseApplicationController
 
         $example = idx($examples, $exampleName);
         if ($example) {
+            $example->setResMgr($this->app->getService("resource_manager"));
             $example = $example->getExample();
         } else {
             $example = ModHub\ht("h1", "Example " . $exampleName . " not found!");

@@ -86,6 +86,7 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
 
     private function process()
     {
+        $this->fetchRequiredResources();
         $tag = $this->render();
         if (!$tag || $tag instanceof TextNode) { // May be empty
             return $tag;
@@ -140,5 +141,49 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
             );
         }
         return $this->resMgr;
+    }
+
+    private function fetchRequiredResources()
+    {
+        $resources = $this->getRequiredResources();
+
+        $assertSame = function ($expected, $actual) {
+            if ($actual !== $expected) {
+                throw new \RunTimeException("Invalid response from 'getRequiredResources'!");
+            }
+        };
+
+        $assertSame(2, count($resources));
+        $assertSame(true, isset($resources["css"]));
+        $assertSame(true, isset($resources["js"]));
+
+        $css = $resources["css"];
+        if ($css) {
+            $resMgr = $this->getResMgr();
+            foreach ($css as $_) {
+                $resMgr->requireCSS($_);
+            }
+        }
+
+        $js = $resources["js"];
+        if ($js) {
+            $resMgr = $this->getResMgr();
+            foreach ($js as $_) {
+                $resMgr->requireCSS($_);
+            }
+        }
+    }
+
+    /**
+     * Returns the static resources required by this view.
+     *
+     * @return array
+     */
+    public function getRequiredResources()
+    {
+        return array(
+            "css" => array(),
+            "js"  => array(),
+        );
     }
 }
