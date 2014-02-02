@@ -3,7 +3,6 @@ namespace AnhNhan\ModHub\Web;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
-use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -12,16 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\FinishRequestEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 
 /**
  * The HttpKernel handles a Request and converts it to a Response
@@ -31,7 +27,7 @@ use Symfony\Component\HttpKernel\Event\PostResponseEvent;
  *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class HttpKernel implements HttpKernelInterface, ContainerAwareInterface
+final class HttpKernel implements HttpKernelInterface
 {
     /**
      * @var AppRouting
