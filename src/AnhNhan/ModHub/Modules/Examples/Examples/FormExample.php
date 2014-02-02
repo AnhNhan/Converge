@@ -28,6 +28,9 @@ final class FormExample extends AbstractExample
         $form2 = $this->getForm2();
         $container->appendContent($form2);
 
+        $form3 = $this->getForm3();
+        $container->appendContent($form3);
+
         return $container;
     }
 
@@ -45,6 +48,26 @@ final class FormExample extends AbstractExample
         $form->setDualColumnMode(false);
         $form->setTitle("Single column");
         $this->buildForm($form);
+        return ModHub\ht("div", $form->render())->addClass("width12");
+    }
+
+    public function getForm3()
+    {
+        // Load example-specific JS
+        $this->getResMgr()->requireJS("application-example-form-tag-selector");
+
+        $form = new FormView;
+        $form->setDualColumnMode(false);
+        $form->setTitle("TagSelector");
+
+        $form->append(id(new \AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector)
+            ->setId("form-tag-selector")
+            ->setLabel("Tag selection"));
+
+        $form->append(id(new SubmitControl)
+            ->addCancelButton('/')
+            ->addSubmitButton('Hasta la vista!'));
+
         return ModHub\ht("div", $form->render())->addClass("width12");
     }
 
