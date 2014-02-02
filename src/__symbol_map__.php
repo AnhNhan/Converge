@@ -135,6 +135,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Transform/DiscussionTransformer.php",
       "deriv" => "League\Fractal\TransformerAbstract",
     ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/DeletedPost.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Discussion.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
@@ -519,7 +523,6 @@ return array(
       "file" => "AnhNhan/ModHub/Web/HttpKernel.php",
       "impls" => array(
         "Symfony\Component\HttpKernel\HttpKernelInterface",
-        "Symfony\Component\DependencyInjection\ContainerAwareInterface",
       ),
     ),
   ),
@@ -645,6 +648,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
@@ -771,9 +775,6 @@ return array(
       "AnhNhan\ModHub\Web\AppRouting",
     ),
     "Symfony\Component\HttpKernel\HttpKernelInterface" => array(
-      "AnhNhan\ModHub\Web\HttpKernel",
-    ),
-    "Symfony\Component\DependencyInjection\ContainerAwareInterface" => array(
       "AnhNhan\ModHub\Web\HttpKernel",
     ),
   ),
