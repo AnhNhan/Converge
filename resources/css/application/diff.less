@@ -5,29 +5,40 @@
     border-spacing: 0;
     empty-cells: show;
 
-    thead th, tbody th, td {
-        padding: 0.2em;
+    th {
+        margin: 0;
+        padding: 0;
     }
 
     thead {
         th {
             text-align: left;
-            background: @veryLightGrey;
-            padding-left: 0.4em;
+            background: @color-diff-table-header;
+            padding: 0.3em;
         }
     }
 
     tbody {
         th {
             text-align: right;
-            background: @veryLightGrey;
-            width: 3em;
+            background: @color-diff-table-header;
+            width: 2.5em;
             padding-right: 0.3em;
         }
     }
 
     td {
         font-family: @fontFamilyMonospace;
+        padding: 0;
+        line-height: 1.6;
+
+        span {
+            padding: 0.2em;
+        }
+
+        & > span {
+            padding-left: 0;
+        }
     }
 
     .ChangeReplace {
@@ -40,33 +51,40 @@
         }
     }
 
-    ins, del {
+    .ins, .del {
         text-decoration: none;
     }
 
     .Skipped {
-        background: #f7f7f7;
+        background: @color-clouds;
+
+        tr {
+            th, td {
+                padding-top: 0.25em;
+                padding-bottom: 0.25em;
+            }
+        }
     }
 }
 
 .DifferencesInline {
     .ChangeReplace, .ChangeDelete {
         .Left {
-            background: #fdd;
+            background: @color-diff-delete-bg;
         }
 
         .Right {
-            background: #dfd;
+            background: @color-diff-insert-bg;
         }
     }
 
     .ChangeReplace {
-        ins {
-            background: #9e9;
+        .ins {
+            background: @color-diff-insert-fg;
         }
 
-        del {
-            background: #e99;
+        .del {
+            background: @color-diff-delete-fg;
         }
     }
 }
@@ -77,29 +95,32 @@
     }
     .ChangeInsert {
         td.Left {
-            background: #dfd;
+            background: @color-diff-insert-bg;
         }
         td.Right {
-            background: #cfc;
+            background: @color-diff-insert-fg;
         }
     }
     .ChangeDelete {
         td.Left {
-            background: #f88;
+            background: @color-diff-delete-fg;
         }
         td.Right {
-            background: #faa;
+            background: @color-diff-delete-bg;
         }
     }
     .ChangeReplace {
         .Left {
-            background: #fe9;
+            background: @color-diff-delete-bg;
         }
         .Right {
-            background: #fd8;
+            background: @color-diff-insert-bg;
         }
-        ins, del {
-            background: #fc0;
+        .ins {
+            background: @color-diff-insert-fg;
+        }
+        .del {
+            background: @color-diff-delete-fg;
         }
     }
 }
