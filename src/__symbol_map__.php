@@ -135,17 +135,31 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Transform/DiscussionTransformer.php",
       "deriv" => "League\Fractal\TransformerAbstract",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/DeletedPost.php",
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/ForumDisplayObject.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Discussion.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\Post" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Post.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagAction.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagAdd.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagRemove.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
@@ -667,10 +681,21 @@ return array(
     "League\Fractal\TransformerAbstract" => array(
       "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
     ),
-    "AnhNhan\ModHub\Views\AbstractView" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\AbstractView" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
+    ),
+    "AnhNhan\ModHub\Views\AbstractView" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
       "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
       "AnhNhan\ModHub\Views\Form\FormView",
@@ -686,9 +711,18 @@ return array(
       "AnhNhan\ModHub\Views\Page\PageView",
       "AnhNhan\ModHub\Views\Page\SideNavBar",
       "AnhNhan\ModHub\Views\Panel\Panel",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
       "AnhNhan\ModHub\Views\Objects\Object",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\ModHub\Views\Page\BarePageView",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
