@@ -42,7 +42,7 @@ final class DiscussionQuery extends Query
     public function retrieveDiscussions($limit = null, $offset = null)
     {
         $eDisq = self::ENTITY_DISCUSSION;
-        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt";
+        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt ORDER BY d.lastActivity DESC";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -57,7 +57,7 @@ final class DiscussionQuery extends Query
     {
         $eDisq = self::ENTITY_DISCUSSION;
         $tagId = $tag->uid();
-        $queryString = "SELECT d FROM {$eDisq} d JOIN d.tags t WHERE t.t_id = :tag_id";
+        $queryString = "SELECT d FROM {$eDisq} d JOIN d.tags t WHERE t.t_id = :tag_id ORDER BY d.lastActivity DESC";
         $query = $this->em()->createQuery($queryString);
         $query->setParameters(array('tag_id' => $tagId));
         return $query->getResult();
