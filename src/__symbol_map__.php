@@ -190,6 +190,19 @@ return array(
     "AnhNhan\ModHub\Modules\Markup\TOCExtractor" => array(
       "file" => "AnhNhan/ModHub/Modules/Markup/TOCExtractor.php",
     ),
+    "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete" => array(
+      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/Autocomplete.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags" => array(
+      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/AutocompleteTags.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
+    ),
+    "AnhNhan\ModHub\Modules\Search\SearchApplication" => array(
+      "file" => "AnhNhan/ModHub/Modules/Search/SearchApplication.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    ),
     "AnhNhan\ModHub\Modules\StaticResources\Builders\JsBuilder" => array(
       "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/JsBuilder.php",
     ),
@@ -277,6 +290,10 @@ return array(
     "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Transaction/TagTransactionEditor.php",
       "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector" => array(
+      "file" => "AnhNhan/ModHub/Modules/Tag/Views/FormControls/TagSelector.php",
+      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
     ),
     "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
       "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
@@ -574,6 +591,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
+      "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
       "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
@@ -583,6 +601,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
+      "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
@@ -602,6 +621,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\ForumApplication",
       "AnhNhan\ModHub\Modules\Front\FrontApplication",
       "AnhNhan\ModHub\Modules\Markup\MarkupApplication",
+      "AnhNhan\ModHub\Modules\Search\SearchApplication",
       "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
       "AnhNhan\ModHub\Modules\Tag\TagApplication",
       "AnhNhan\ModHub\Modules\User\UserApplication",
@@ -684,6 +704,9 @@ return array(
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
     ),
+    "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete" => array(
+      "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
+    ),
     "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
     ),
@@ -698,6 +721,12 @@ return array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
     ),
+    "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
+      "AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector",
+      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
+      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
+      "AnhNhan\ModHub\Views\Form\Controls\TextControl",
+    ),
     "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController" => array(
       "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
       "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
@@ -710,11 +739,7 @@ return array(
     ),
     "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
       "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
-      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
-      "AnhNhan\ModHub\Views\Form\Controls\TextControl",
-    ),
-    "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
+      "AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector",
       "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
       "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
       "AnhNhan\ModHub\Views\Form\Controls\TextControl",
