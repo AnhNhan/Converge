@@ -41,7 +41,13 @@ abstract class TagAction extends ForumDisplayObject
 
     protected function getHeaderText()
     {
-        return mh\hsprintf("<div><strong>%s</strong> %s a tag: %s</div>", $this->username, $this->getVerb(), mh\safeHtml(implode("", $this->tags)));
+        return mh\hsprintf(
+            "<div><strong>%s</strong> %s %s: %s</div>",
+            $this->username,
+            $this->getVerb(),
+            count($this->tags) == 1 ? "a tag" : "tags",
+            mh\safeHtml(implode("", $this->tags))
+        );
     }
 
     abstract protected function getVerb();
