@@ -78,7 +78,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
                 break;
             case DiscussionTransaction::TYPE_REMOVE_TAG:
                 $tag = null;
-                foreach ($entity->tags() as $tt) {
+                foreach ($entity->tags() ?: array() as $tt) {
                     if ($tt->tagId() == $transaction->oldValue()) {
                         $tag = $tt;
                     }
