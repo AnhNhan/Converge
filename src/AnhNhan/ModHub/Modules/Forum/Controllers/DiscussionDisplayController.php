@@ -75,7 +75,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $markups = array();
 
             $page_nr = 1;
-            $page_size = 15;
+            $page_size = 20;
 
             if ($request->request->has("page-nr") && ($r_page_nr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_page_nr)) {
                 $page_nr = $r_page_nr;
@@ -97,8 +97,15 @@ final class DiscussionDisplayController extends AbstractForumController
             $tags = $tagQuery->retrieveTagsForIDs($tag_ids);
             $tags = mpull($tags, null, "uid");
 
+            $create_xact = idx($transactions_grouped, DiscussionTransaction::TYPE_CREATE);
+            $create_date = null;
+            if ($create_xact) {
+                $create_xact = head($create_xact);
+                $create_date = $create_xact->createdAt->getTimestamp();
+            }
+
             // Manual GC
-            unset($transactions_sorted);
+            unset($transactions_grouped);
             unset($post_ids);
             unset($tag_ids);
 
@@ -109,6 +116,10 @@ final class DiscussionDisplayController extends AbstractForumController
             }
 
             foreach ($transactions as $xact) {
+                if ($create_date && $create_date == $xact->createdAt->getTimestamp()) {
+                    continue;
+                }
+
                 $subject_uid = $xact->newValue;
                 $actor = $xact->actorId;
                 switch ($xact->type) {
