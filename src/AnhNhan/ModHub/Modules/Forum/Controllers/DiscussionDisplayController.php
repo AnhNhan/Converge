@@ -46,6 +46,8 @@ final class DiscussionDisplayController extends AbstractForumController
             $disqColumn = $row->column(9);
             $disqColumn->setId("disq-column");
 
+            $payload->setTitle($disq->label);
+
             $discussionView = id(new DiscussionView)
                 ->setId($disq->uid)
                 ->setHeader($disq->label)
