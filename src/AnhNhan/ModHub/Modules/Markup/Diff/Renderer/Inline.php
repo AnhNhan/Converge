@@ -128,8 +128,8 @@ class Inline extends ArrayRenderer
 					foreach($change['changed']['lines'] as $no => $line) {
 						$toLine = $change['changed']['offset'] + $no + 1;
 						$html .= '<tr>';
-						$html .= '<th>'.$toLine.'</th>';
 						$html .= '<th>&nbsp;</th>';
+						$html .= '<th>'.$toLine.'</th>';
 						$html .= '<td class="Right"><span>'.$line.'</span></td>';
 						$html .= '</tr>';
 					}
