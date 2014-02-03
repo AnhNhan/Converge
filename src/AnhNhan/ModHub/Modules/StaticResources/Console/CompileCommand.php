@@ -204,7 +204,7 @@ final class CompileCommand extends ConsoleCommand
                     );
                 } catch (\Exception $e) {
                     $result = "fail";
-                    echo $e->getMessage();
+                    $output->writeln($e->getMessage());
                 }
 
                 if (!$result) {
