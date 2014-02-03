@@ -194,11 +194,13 @@
 	p.isValueAllowed = function(value)
 	{
 		var self        = this,
-			list        = self.opts('filterItems') || self._suggestions || [],
 			itemManager = self.itemManager(),
 			result      = !self.opts(OPT_ENABLED), // if disabled, should just return true
 			i
 			;
+		var list = self.opts('filterItems') || [];
+		var suggests = self._suggestions || [];
+		suggests.forEach(function (tt) { list.push(tt); });
 
 		for(i = 0; i < list.length && !result; i++)
 			if(itemManager.compareItems(value, list[i]))
