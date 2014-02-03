@@ -2,23 +2,14 @@
 namespace AnhNhan\ModHub\Modules\Forum\Views\Display;
 
 use AnhNhan\ModHub as mh;
-use AnhNhan\ModHub\Views\AbstractView;
 use AnhNhan\ModHub\Views\Panel\Panel;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class DeletedPost extends AbstractView
+class ForumDisplayObject extends AbstractView
 {
-    private $date;
-
-    public function setDate($date)
-    {
-        $this->date = $date;
-        return $this;
-    }
-
     public function render()
     {
         $postPanel = new Panel;

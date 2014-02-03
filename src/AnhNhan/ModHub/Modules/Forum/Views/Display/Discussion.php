@@ -3,20 +3,14 @@ namespace AnhNhan\ModHub\Modules\Forum\Views\Display;
 
 use AnhNhan\ModHub as mh;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
-use AnhNhan\ModHub\Views\AbstractView;
 use AnhNhan\ModHub\Views\Panel\Panel;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class Discussion extends AbstractView
+class Discussion extends ForumDisplayObject
 {
-    private $username;
-    private $profile_image_uri;
-
-    private $header;
-    private $date;
     private $bodyText;
 
     private $buttons;
@@ -27,25 +21,6 @@ class Discussion extends AbstractView
         parent::__construct();
         $this->buttons = new MarkupContainer;
         $this->tags    = new MarkupContainer;
-    }
-
-    public function setUserDetails($username, $profileimage)
-    {
-        $this->username = $username;
-        $this->profile_image_uri = $profileimage;
-        return $this;
-    }
-
-    public function setHeader($header)
-    {
-        $this->header = $header;
-        return $this;
-    }
-
-    public function setDate($date)
-    {
-        $this->date = $date;
-        return $this;
     }
 
     public function setBodyText($text)
@@ -77,11 +52,7 @@ class Discussion extends AbstractView
         $discussionPanel = new Panel;
 
         $headerRiff = new MarkupContainer;
-        $headerRiff->push(
-            mh\ht("img")
-                ->addOption("src", $this->profile_image_uri)
-                ->addClass("user-profile-image")
-        );
+        $headerRiff->push($this->buildProfileImage());
 
         $headerContainer = div();
         $headerContainer->appendContent(h2($this->header));
