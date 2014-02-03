@@ -6,7 +6,12 @@ use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost as DeletedPostView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd as TagAddedView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove as TagRemovedView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel as LabelChangeView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText as TextChangeView;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
+use AnhNhan\ModHub\Modules\Tag\TagQuery;
 use AnhNhan\ModHub\Views\Grid\Grid;
 use AnhNhan\ModHub\Views\Panel\Panel;
 use AnhNhan\ModHub\Web\Application\HtmlPayload;
@@ -67,6 +72,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
             $tocs = array();
+            $markups = array();
 
             $page_nr = 1;
             $page_size = 15;
@@ -77,44 +83,80 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $offset = ($page_nr - 1) * $page_size;
 
-            // $transactions = $query->getPaginatorForDiscussionTransactions($disq->uid, $page_size, $offset)->getIterator()->getArrayCopy();
             $transactions = $disq->transactions->slice($offset, $page_size);
             $transactions_grouped = mgroup($transactions, "type");
             $post_ids = mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, array()), "newValue");
-            $posts = $query->retrievePostsForIDs($post_ids);
+            $posts = $query->retrievePostsForIDs($post_ids) ?: array();
+            $posts = mpull($posts, null, "uid");
+
+            $tagQuery = new TagQuery($this->app->getService("app.list")->app("tag")->getEntityManager());
+            $tag_ids = array_unique(array_merge(
+                mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_TAG, array()), "newValue"),
+                mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_REMOVE_TAG, array()), "oldValue")
+            ));
+            $tags = $tagQuery->retrieveTagsForIDs($tag_ids);
+            $tags = mpull($tags, null, "uid");
 
             // Manual GC
             unset($transactions_sorted);
             unset($post_ids);
+            unset($tag_ids);
 
             foreach ($posts as $post) {
                 list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
                 $tocs[$post->uid] = $toc;
+                $markups[$post->uid] = $markup;
+            }
 
-                if ($post->deleted) {
-                    $disqColumn->push(id(new DeletedPostView)
-                        ->setId(hash_hmac("sha512", $post->uid, time())) // Fuzzy id
-                        ->addClass("post-deleted")
-                        ->setDate($post->modifiedAt->format("D, d M 'y"))
-                    );
-                    continue;
+            foreach ($transactions as $xact) {
+                $subject_uid = $xact->newValue;
+                $actor = $xact->actorId;
+                switch ($xact->type) {
+                    case DiscussionTransaction::TYPE_ADD_POST:
+                        $post   = $posts[$subject_uid];
+                        $markup = $markups[$subject_uid];
+                        $disqColumn->push($this->renderPost($post, $markup));
+                        break;
+                    case DiscussionTransaction::TYPE_ADD_TAG:
+                        $disqColumn->push(
+                            id(new TagAddedView)
+                                ->setId($subject_uid)
+                                ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                                ->setDate($xact->createdAt->format("D, d M 'y"))
+                                ->addTag($tags[$subject_uid])
+                        );
+                        break;
+                    case DiscussionTransaction::TYPE_REMOVE_TAG:
+                        $subject_uid = $xact->oldValue;
+                        $disqColumn->push(
+                            id(new TagRemovedView)
+                                ->setId($subject_uid)
+                                ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                                ->setDate($xact->createdAt->format("D, d M 'y"))
+                                ->addTag($tags[$subject_uid])
+                        );
+                        break;
+                    case DiscussionTransaction::TYPE_EDIT_LABEL:
+                    case DiscussionTransaction::TYPE_EDIT_TEXT:
+                        $viewObj = $xact->type == DiscussionTransaction::TYPE_EDIT_LABEL ?
+                            new LabelChangeView :
+                            new TextChangeView;
+                        $disqColumn->push(
+                            $viewObj
+                                ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                                ->setDate($xact->createdAt->format("D, d M 'y"))
+                                ->setPrevText($xact->oldValue)
+                                ->setNextText($xact->newValue)
+                        );
+                        break;
+                    case DiscussionTransaction::TYPE_CREATE:
+                        // <ignore>
+                        break;
+
+                    default:
+                        throw new \Exception("Unknown transaction type: '{$xact->type}'");
+                        break;
                 }
-
-                $postView = new PostView;
-                $postView
-                    ->setId($post->uid)
-                    ->setUserDetails($post->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
-                    ->setDate($post->modifiedAt->format("D, d M 'y"))
-                    ->addButton(
-                        ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
-                            ->addClass("btn btn-default btn-small")
-                            ->addClass("pull-right")
-                            ->addOption("href", urisprintf("disq/%p/%p/edit", $currentId, $post->cleanId))
-                    )
-                    ->setBodyText(ModHub\safeHtml($markup))
-                ;
-
-                $disqColumn->push($postView);
             }
 
             $tagColumn = $row->column(3)->addClass("tag-column");
@@ -177,5 +219,32 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $payload->setPayloadContents($container);
         return $payload;
+    }
+
+    private function renderPost($post, $markup)
+    {
+        if ($post->deleted) {
+            return id(new DeletedPostView)
+                ->setId(hash_hmac("sha512", $post->uid, time())) // Fuzzy id
+                ->addClass("post-deleted")
+                ->setDate($post->createdAt->format("D, d M 'y"))
+            ;
+        }
+
+        $postView = new PostView;
+        $postView
+            ->setId($post->uid)
+            ->setUserDetails($post->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
+            ->setDate($post->createdAt->format("D, d M 'y"))
+            ->addButton(
+                ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
+                    ->addClass("btn btn-default btn-small")
+                    ->addClass("pull-right")
+                    ->addOption("href", urisprintf("disq/%p/%p/edit", $post->parentDisqId, $post->cleanId))
+            )
+            ->setBodyText(ModHub\safeHtml($markup))
+        ;
+
+        return $postView;
     }
 }
