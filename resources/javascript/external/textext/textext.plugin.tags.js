@@ -630,7 +630,7 @@
 			if(self.itemManager().compareItems(item.data(CSS_TAG), tag))
 				return item;
 		}
-		
+
 		return null;
 	};
 
