@@ -77,7 +77,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $markups = array();
 
             $page_nr = 1;
-            $page_size = 20;
+            $page_size = 30;
 
             if ($request->request->has("page-nr") && ($r_page_nr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_page_nr)) {
                 $page_nr = $r_page_nr;
@@ -118,7 +118,7 @@ final class DiscussionDisplayController extends AbstractForumController
             }
 
             foreach ($transactions as $xact) {
-                if ($create_date && $create_date == $xact->createdAt->getTimestamp()) {
+                if ($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId) {
                     continue;
                 }
 
