@@ -40,9 +40,9 @@
  * @link http://github.com/chrisboulton/php-diff
  */
 
-require_once dirname(__FILE__).'/Array.php';
+namespace AnhNhan\ModHub\Modules\Markup\Diff\Renderer;
 
-class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array
+class SideBySide extends ArrayRenderer
 {
 	/**
 	 * Render a and return diff with changes between the two sequences
@@ -83,9 +83,9 @@ class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array
 						$toLine = $change['changed']['offset'] + $no + 1;
 						$html .= '<tr>';
 						$html .= '<th>'.$fromLine.'</th>';
-						$html .= '<td class="Left"><span>'.$line.'</span>&nbsp;</span></td>';
+						$html .= '<td class="Left"><span>'.$line.'</span>&nbsp;</td>';
 						$html .= '<th>'.$toLine.'</th>';
-						$html .= '<td class="Right"><span>'.$line.'</span>&nbsp;</span></td>';
+						$html .= '<td class="Right"><span>'.$line.'</span>&nbsp;</td>';
 						$html .= '</tr>';
 					}
 				}
@@ -97,7 +97,7 @@ class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array
 						$html .= '<th>&nbsp;</th>';
 						$html .= '<td class="Left">&nbsp;</td>';
 						$html .= '<th>'.$toLine.'</th>';
-						$html .= '<td class="Right"><ins>'.$line.'</ins>&nbsp;</td>';
+						$html .= '<td class="Right"><span class="ins">'.$line.'</span>&nbsp;</td>';
 						$html .= '</tr>';
 					}
 				}
@@ -107,7 +107,7 @@ class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array
 						$fromLine = $change['base']['offset'] + $no + 1;
 						$html .= '<tr>';
 						$html .= '<th>'.$fromLine.'</th>';
-						$html .= '<td class="Left"><del>'.$line.'</del>&nbsp;</td>';
+						$html .= '<td class="Left"><span class="del">'.$line.'</span>&nbsp;</td>';
 						$html .= '<th>&nbsp;</th>';
 						$html .= '<td class="Right">&nbsp;</td>';
 						$html .= '</tr>';

@@ -40,9 +40,9 @@
  * @link http://github.com/chrisboulton/php-diff
  */
 
-require_once dirname(__FILE__).'/Array.php';
+namespace AnhNhan\ModHub\Modules\Markup\Diff\Renderer;
 
-class Diff_Renderer_Html_Inline extends Diff_Renderer_Html_Array
+class Inline extends ArrayRenderer
 {
 	/**
 	 * Render a and return diff with changes between the two sequences
@@ -99,7 +99,7 @@ class Diff_Renderer_Html_Inline extends Diff_Renderer_Html_Array
 						$html .= '<tr>';
 						$html .= '<th>&nbsp;</th>';
 						$html .= '<th>'.$toLine.'</th>';
-						$html .= '<td class="Right"><ins>'.$line.'</ins>&nbsp;</td>';
+						$html .= '<td class="Right"><span class="ins">'.$line.'</span>&nbsp;</td>';
 						$html .= '</tr>';
 					}
 				}
@@ -110,7 +110,7 @@ class Diff_Renderer_Html_Inline extends Diff_Renderer_Html_Array
 						$html .= '<tr>';
 						$html .= '<th>'.$fromLine.'</th>';
 						$html .= '<th>&nbsp;</th>';
-						$html .= '<td class="Left"><del>'.$line.'</del>&nbsp;</td>';
+						$html .= '<td class="Left"><span class="del">'.$line.'</span>&nbsp;</td>';
 						$html .= '</tr>';
 					}
 				}

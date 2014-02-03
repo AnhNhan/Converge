@@ -4,7 +4,7 @@ namespace AnhNhan\ModHub\Modules\Forum\Views\Display;
 use AnhNhan\ModHub as mh;
 
 use Diff as DiffEngine;
-use Diff_Renderer_Html_Inline as InlineDiffRenderer;
+use AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline as InlineDiffRenderer;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>

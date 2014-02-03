@@ -40,9 +40,11 @@
  * @link http://github.com/chrisboulton/php-diff
  */
 
-require_once dirname(__FILE__).'/../Abstract.php';
+namespace AnhNhan\ModHub\Modules\Markup\Diff\Renderer;
 
-class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract
+use Diff_Renderer_Abstract;
+
+class ArrayRenderer extends Diff_Renderer_Abstract
 {
 	/**
 	 * @var array Array of the default options that apply to this renderer.
@@ -121,14 +123,14 @@ class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract
 					if($tag == 'replace' || $tag == 'delete') {
 						$lines = array_slice($a, $i1, ($i2 - $i1));
 						$lines = $this->formatLines($lines);
-						$lines = str_replace(array("\0", "\1"), array('<del>', '</del>'), $lines);
+						$lines = str_replace(array("\0", "\1"), array('<span class="del">', '</span>'), $lines);
 						$blocks[$lastBlock]['base']['lines'] += $lines;
 					}
 
 					if($tag == 'replace' || $tag == 'insert') {
 						$lines = array_slice($b, $j1, ($j2 - $j1));
 						$lines =  $this->formatLines($lines);
-						$lines = str_replace(array("\0", "\1"), array('<ins>', '</ins>'), $lines);
+						$lines = str_replace(array("\0", "\1"), array('<span class="ins">', '</span>'), $lines);
 						$blocks[$lastBlock]['changed']['lines'] += $lines;
 					}
 				}
