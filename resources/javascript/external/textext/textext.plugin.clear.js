@@ -22,7 +22,7 @@
 
 	var p = TextExtClear.prototype,
 		/**
-		 * Clear plugin only has one option and that is its HTML template. It could be 
+		 * Clear plugin only has one option and that is its HTML template. It could be
 		 * changed when passed to the `$().textext()` function. For example:
 		 *
 		 *     $('textarea').textext({
@@ -98,7 +98,7 @@
 		// check if the tags plugin is present
 		if(typeof self.core()._plugins.tags != 'undefined')
 		{
-			// it is! remove all tags 
+			// it is! remove all tags
 			var elems = self.core()._plugins.tags.tagElements();
 			for(var i =0; i < elems.length;i++)
 			{
