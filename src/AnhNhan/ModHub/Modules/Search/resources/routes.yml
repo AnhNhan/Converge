@@ -1,0 +1,5 @@
+
+routes:
+
+  - pattern: search/autocomplete/tags
+    route-name: autocomplete-tags

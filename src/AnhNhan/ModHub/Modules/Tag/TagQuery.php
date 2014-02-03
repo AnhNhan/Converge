@@ -44,4 +44,24 @@ final class TagQuery extends Query
         $tags = $tagRepo->findBy(array("label" => $labels), array("displayOrder" => "ASC", "label" => "ASC"), $limit, $offset);
         return $tags;
     }
+
+    public function searchTagLabelsStartingWith($label, $limit = null, $offset = null)
+    {
+        $eTag = self::TAG_ENTITY;
+        $queryString = "SELECT t.label FROM {$eTag} t WHERE t.label LIKE :search_string";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->setParameters(array(
+                "search_string" => $label . "%",
+            ))
+        ;
+
+        $result = $query->getResult();
+        if ($result) {
+            $result = ipull($result, "label");
+        }
+        return $result;
+    }
 }
