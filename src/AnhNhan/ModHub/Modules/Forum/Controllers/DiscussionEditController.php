@@ -33,14 +33,16 @@ final class DiscussionEditController extends AbstractForumController
 
         $errors = array();
 
+        $query = $this->buildQuery();
+
         if ($disqId = $request->request->get('id')) {
-            $discussion = id(new DiscussionQuery($this->app))
-                ->retrieveDiscussion("DISQ-" . $disqId)
-            ;
+            $discussion = $query->retrieveDiscussion("DISQ-" . $disqId);
 
             if (!$discussion) {
                 return $payload->setPayloadContents(ModHub\ht("h1", "Discussion does not exist"));
             }
+
+            $query->fetchExternalsForDiscussions(array($discussion));
         } else {
             $discussion = new Discussion;
         }
