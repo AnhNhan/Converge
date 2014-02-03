@@ -41,6 +41,10 @@ final class ColorExample extends AbstractExample
         "tinted-gred" => true,
         "bone-meal" => true,
         "purple" => true,
+        "diff-insert-bg" => true,
+        "diff-insert-fg" => true,
+        "diff-delete-bg" => true,
+        "diff-delete-fg" => true,
     );
 
     private $specialColors1 = array(

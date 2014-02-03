@@ -121,3 +121,47 @@
 @object-bg-color: @veryLightGrey;
 @object-border-color: @lightGrey;
 @object-attributes-color: @darkGrey;
+
+// ****************************
+// Diff
+// ****************************
+
+@diff-hue-offset: 63;
+@diff-sat-offset: -10%;
+@diff-lig-offset: 20%;
+
+@diff-hue-base: 67;
+@diff-sat-base: 67%;
+@diff-lig-base: 77%;
+
+@diff-hue-color-insert-base: @diff-hue-base;
+@diff-sat-color-insert-base: @diff-sat-base;
+@diff-lig-color-insert-base: @diff-lig-base;
+
+@diff-hue-color-delete-base: @diff-hue-base - @diff-hue-offset;
+@diff-sat-color-delete-base: @diff-sat-base;
+@diff-lig-color-delete-base: @diff-lig-base;
+
+@color-diff-insert-bg: hsl(
+                        @diff-hue-color-insert-base,
+                        @diff-sat-color-insert-base - @diff-sat-offset,
+                        @diff-lig-color-insert-base
+                    );
+@color-diff-insert-fg: hsl(
+                        @diff-hue-color-insert-base,
+                        @diff-sat-color-insert-base,
+                        @diff-lig-color-insert-base - @diff-lig-offset
+                    );
+
+@color-diff-delete-bg: hsl(
+                        @diff-hue-color-delete-base,
+                        @diff-sat-color-delete-base - @diff-sat-offset,
+                        @diff-lig-color-delete-base
+                    );
+@color-diff-delete-fg: hsl(
+                        @diff-hue-color-delete-base,
+                        @diff-sat-color-delete-base,
+                        @diff-lig-color-delete-base - @diff-lig-offset
+                    );
+
+@color-diff-table-header: @color-clouds;
