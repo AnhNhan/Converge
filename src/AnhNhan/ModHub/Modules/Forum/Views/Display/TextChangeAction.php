@@ -8,18 +8,18 @@ use AnhNhan\ModHub as mh;
  */
 abstract class TextChangeAction extends ForumDisplayObject
 {
-    protected $prevText;
-    protected $nextText;
+    protected $prevText = "";
+    protected $nextText = "";
 
     public function setPrevText($text)
     {
-        $this->prevText = $text;
+        $this->prevText = $text ?: "";
         return $this;
     }
 
     public function setNextText($text)
     {
-        $this->nextText = $text;
+        $this->nextText = $text ?: "";
         return $this;
     }
 
@@ -29,6 +29,7 @@ abstract class TextChangeAction extends ForumDisplayObject
         $body = $this->renderBody();
         if ($body) {
             $panel->append($body);
+            $panel->addClass("panel-diff");
         }
         return $panel;
     }

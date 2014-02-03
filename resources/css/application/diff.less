@@ -1,0 +1,110 @@
+
+.Differences {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+
+    thead th, tbody th, td {
+        padding: 0.2em;
+    }
+
+    thead {
+        th {
+            text-align: left;
+            background: @veryLightGrey;
+            padding-left: 0.4em;
+        }
+    }
+
+    tbody {
+        th {
+            text-align: right;
+            background: @veryLightGrey;
+            width: 3em;
+            padding-right: 0.3em;
+        }
+    }
+
+    td {
+        font-family: @fontFamilyMonospace;
+    }
+
+    .ChangeReplace {
+        .Left {
+            background: #fe9;
+        }
+
+        .Right {
+            background: #fd8;
+        }
+    }
+
+    ins, del {
+        text-decoration: none;
+    }
+
+    .Skipped {
+        background: #f7f7f7;
+    }
+}
+
+.DifferencesInline {
+    .ChangeReplace, .ChangeDelete {
+        .Left {
+            background: #fdd;
+        }
+
+        .Right {
+            background: #dfd;
+        }
+    }
+
+    .ChangeReplace {
+        ins {
+            background: #9e9;
+        }
+
+        del {
+            background: #e99;
+        }
+    }
+}
+
+.DifferencesSideBySide {
+    .Left, .Right {
+        width: 45%;
+    }
+    .ChangeInsert {
+        td.Left {
+            background: #dfd;
+        }
+        td.Right {
+            background: #cfc;
+        }
+    }
+    .ChangeDelete {
+        td.Left {
+            background: #f88;
+        }
+        td.Right {
+            background: #faa;
+        }
+    }
+    .ChangeReplace {
+        .Left {
+            background: #fe9;
+        }
+        .Right {
+            background: #fd8;
+        }
+        ins, del {
+            background: #fc0;
+        }
+    }
+}
+
+// Adjustments for Panel
+.panel-diff .panel-body {
+    padding: 0;
+}

@@ -212,6 +212,7 @@ final class DiscussionDisplayController extends AbstractForumController
             $this->app->getService("resource_manager")
                 ->requireJs("application-forum-toc-affix")
                 ->requireCss("application-forum-discussion-display")
+                ->requireCss("application-diff")
             ;
         } else {
             $container->push(ModHub\ht("h1", "Could not find a discussion for '" . $currentId . "'"));
