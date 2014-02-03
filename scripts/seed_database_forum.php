@@ -136,7 +136,7 @@ foreach ($discussions as $disq) {
         $derp += array($chosenTag->uid() => true);
 
         $editor = DiscussionTransactionEditor::create($forumEm)
-            ->setActor($randomUser())
+            ->setActor($disq->authorId)
             ->setEntity($disq)
             ->setFlushBehaviour(DiscussionTransactionEditor::FLUSH_DONT_FLUSH)
             ->addTransaction(
