@@ -10,6 +10,15 @@
 }
 .text-core .text-wrap .text-tags .text-tag {
   float: left;
+  margin-left: 2px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 .text-core .text-wrap .text-tags .text-tag .text-button {
   .round-border(5px);
@@ -20,8 +29,8 @@
   color: @veryLightGrey;
   font-weight: bold;
   padding: 0 1.4em 0 0.4em;
-  margin: 0 2px;
   cursor: pointer;
+  margin-right: 2px;
 }
 .text-core .text-wrap .text-tags .text-tag .text-button a.text-remove {
   position: absolute;
