@@ -23,12 +23,6 @@ final class SideNavBar extends AbstractView
                 'backbone' => true,
             ),
             array(
-                'text' => 'tags',
-                'icon' => 'pricetags',
-                'href' => '/tag/',
-                'backbone' => true,
-            ),
-            array(
                 'text' => 'create',
                 'icon' => 'compose',
                 'href' => 'disq/create/',
