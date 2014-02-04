@@ -119,6 +119,11 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
         }
     }
 
+    public function rawText()
+    {
+        return $this->rawText;
+    }
+
     public function createdAt()
     {
         return $this->createdAt;
