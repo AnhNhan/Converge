@@ -84,6 +84,7 @@ final class PostEditController extends AbstractForumController
         }
 
         $form = id(new FormView)
+            ->setDualColumnMode(false)
             ->setTitle($post->uid ? "Edit post" : sprintf("Post a comment to '%s'", $discussion->label))
             ->setAction($request->getPathInfo())
             ->setMethod("POST")

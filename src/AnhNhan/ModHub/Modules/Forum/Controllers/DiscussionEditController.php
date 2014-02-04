@@ -179,6 +179,7 @@ final class DiscussionEditController extends AbstractForumController
         }
 
         $form = new FormView;
+        $form->setDualColumnMode(false);
         $form
             ->setTitle("New discussion")
             ->setAction($request->getPathInfo())
