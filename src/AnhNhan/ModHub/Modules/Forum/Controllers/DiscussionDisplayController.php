@@ -48,30 +48,6 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $payload->setTitle($disq->label);
 
-            $discussionView = id(new DiscussionView)
-                ->setId($disq->uid)
-                ->setHeader($disq->label)
-                ->setDate($disq->lastActivity->format("D, d M 'y"))
-                ->setUserDetails($disq->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
-                ->setBodyText(ModHub\safeHtml(
-                    MarkupEngine::fastParse($disq->text)
-                ))
-                ->addButton(
-                    ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
-                        ->addClass("btn btn-info")
-                        ->addOption("href", urisprintf("disq/%p/edit", $currentId))
-                )
-            ;
-
-            $tags = mpull($disq->tags->toArray(), "tag");
-            if ($tags) {
-                foreach ($tags as $tag) {
-                    $discussionView->addTag($tag->label, $tag->color);
-                }
-            }
-
-            $disqColumn->push($discussionView);
-
             $tocExtractor = new \AnhNhan\ModHub\Modules\Markup\TOCExtractor;
             $tocs = array();
             $markups = array();
@@ -104,6 +80,14 @@ final class DiscussionDisplayController extends AbstractForumController
             if ($create_xact) {
                 $create_xact = head($create_xact);
                 $create_date = $create_xact->createdAt->getTimestamp();
+
+                // Prepend create-xact to the stack
+                // First remove, then merge with create-xact as first
+                unset($transactions[array_search($create_xact, $transactions)]);
+                $transactions = array_merge(
+                    array($create_xact),
+                    $transactions
+                );
             }
 
             // Manual GC
@@ -111,10 +95,14 @@ final class DiscussionDisplayController extends AbstractForumController
             unset($post_ids);
             unset($tag_ids);
 
-            foreach ($posts as $post) {
+            foreach (array_merge($posts, $create_xact ? array($disq) : array()) as $post) {
                 list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
                 $tocs[$post->uid] = $toc;
                 $markups[$post->uid] = $markup;
+            }
+
+            if ($create_xact) {
+                $disqColumn->push($this->renderDiscussion($disq, $markups[$disq->uid]));
             }
 
             foreach ($transactions as $xact) {
@@ -133,7 +121,7 @@ final class DiscussionDisplayController extends AbstractForumController
                     case DiscussionTransaction::TYPE_ADD_TAG:
                         $disqColumn->push(
                             id(new TagAddedView)
-                                ->setId($subject_uid)
+                                ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
                                 ->setDate($xact->createdAt->format("D, d M 'y"))
                                 ->addTag($tags[$subject_uid])
@@ -143,7 +131,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         $subject_uid = $xact->oldValue;
                         $disqColumn->push(
                             id(new TagRemovedView)
-                                ->setId($subject_uid)
+                                ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
                                 ->setDate($xact->createdAt->format("D, d M 'y"))
                                 ->addTag($tags[$subject_uid])
@@ -156,6 +144,7 @@ final class DiscussionDisplayController extends AbstractForumController
                             new TextChangeView;
                         $disqColumn->push(
                             $viewObj
+                                ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
                                 ->setDate($xact->createdAt->format("D, d M 'y"))
                                 ->setPrevText($xact->oldValue)
@@ -180,7 +169,54 @@ final class DiscussionDisplayController extends AbstractForumController
             $tagColumn->push($tocContainer);
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
-            foreach ($posts as $post) {
+            foreach ($transactions as $xact) {
+                if ($xact->type == DiscussionTransaction::TYPE_ADD_POST) {
+                    $post = $posts[$xact->newValue];
+                    // Fall-through
+                } else if ($xact->type == DiscussionTransaction::TYPE_CREATE) {
+                    // TODO: Sub-ToC
+                    $ulCont->appendContent(
+                        ModHub\ht("li",
+                            a(
+                                ModHub\hsprintf("<em>Discussion</em> by <strong>%s</strong>", $disq->authorId),
+                                "#" . $disq->uid
+                            )
+                        )
+                        ->addOption("data-toggle", "popover")
+                        ->addOption("data-content", phutil_utf8_shorten($disq->rawText, 140))
+                    );
+                    continue;
+                } else {
+                    if ($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId) {
+                        continue;
+                    }
+                    $text = null;
+                    // TODO: Integrate this more into transactions, e.g. $xact->labelNoun
+                    switch ($xact->type) {
+                        case DiscussionTransaction::TYPE_EDIT_LABEL:
+                            $text = "Label-change";
+                            break;
+                        case DiscussionTransaction::TYPE_EDIT_TEXT:
+                            $text = "Text-change";
+                            break;
+                        case DiscussionTransaction::TYPE_ADD_TAG:
+                            $text = "Tag-add";
+                            break;
+                        case DiscussionTransaction::TYPE_REMOVE_TAG:
+                            $text = "Tag-remove";
+                            break;
+                    }
+                    $ulCont->appendContent(
+                        ModHub\ht("li",
+                            a(
+                                ModHub\hsprintf("<em>%s</em> by <strong>%s</strong>", $text, $disq->authorId),
+                                "#" . $xact->uid
+                            )
+                        )
+                    );
+                    continue;
+                }
+
                 if ($post->deleted) {
                     $entry = ModHub\ht("li",
                         a(ModHub\hsprintf("<em>Post</em> deleted"), "#" . hash_hmac("sha512", $post->uid, time()))
@@ -235,6 +271,33 @@ final class DiscussionDisplayController extends AbstractForumController
         return $payload;
     }
 
+    private function renderDiscussion($disq, $markup)
+    {
+        $discussionView = id(new DiscussionView)
+            ->setId($disq->uid)
+            ->setHeader($disq->label)
+            ->setDate($disq->lastActivity->format("D, d M 'y"))
+            ->setUserDetails($disq->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
+            ->setBodyText(ModHub\safeHtml(
+                $markup
+            ))
+            ->addButton(
+                ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
+                    ->addClass("btn btn-info")
+                    ->addOption("href", urisprintf("disq/%p/edit", $disq->cleanId))
+            )
+        ;
+
+        $tags = mpull($disq->tags->toArray(), "tag");
+        if ($tags) {
+            foreach ($tags as $tag) {
+                $discussionView->addTag($tag->label, $tag->color);
+            }
+        }
+
+        return $discussionView;
+    }
+
     private function renderPost($post, $markup)
     {
         if ($post->deleted) {
@@ -254,7 +317,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
                     ->addClass("btn btn-default btn-small")
                     ->addClass("pull-right")
-                    ->addOption("href", urisprintf("disq/%p/%p/edit", $post->parentDisqId, $post->cleanId))
+                    ->addOption("href", urisprintf("disq/%p/%p/edit", str_replace("DISQ-", "", $post->parentDisqId), $post->cleanId))
             )
             ->setBodyText(ModHub\safeHtml($markup))
         ;
