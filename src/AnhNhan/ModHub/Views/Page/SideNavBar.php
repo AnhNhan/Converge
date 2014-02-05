@@ -57,6 +57,11 @@ final class SideNavBar extends AbstractView
                 'icon' => 'ios7-pie',
                 'href' => '#',
             ),
+            array(
+                'text' => '{{memory}}MB',
+                'icon' => 'disc',
+                'href' => '#',
+            ),
         );
         foreach ($items as $item) {
             $ul->appendContent(

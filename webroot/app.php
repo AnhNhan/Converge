@@ -38,6 +38,7 @@ $response = $kernel->handle($request);
 $contents = $response->getContent();
 $contents = str_replace('{{time}}', $container->get('stopwatch')->stop('page-loadtime')->getDuration() . 'ms', $contents);
 $contents = str_replace('{{queries}}', $container->get('logger.doctrine.sql')->currentQuery, $contents);
+$contents = str_replace('{{memory}}', round(memory_get_peak_usage() / 1024 / 1024, 2), $contents);
 $response->setContent($contents);
 
 $response->send();
