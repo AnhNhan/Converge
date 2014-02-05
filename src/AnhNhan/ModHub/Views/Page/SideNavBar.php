@@ -49,7 +49,7 @@ final class SideNavBar extends AbstractView
             ),
             array(
                 'text' => '{{time}}',
-                'icon' => 'ios7-speedometer',
+                'icon' => 'ios7-timer',
                 'href' => '#',
             ),
             array(
