@@ -54,7 +54,7 @@
 
 .forum-toc-affix {
     background-color: @white;
-    min-width: 223px;
+    width: 250px !important;
 
     &.affix-top {
         position: relative;
@@ -65,24 +65,11 @@
         display: none;
     }
 
-    @media (min-width: @breakPointDesktop) and (max-width: @breakPointBig) {
-        &.affix {
-            min-width: 22.5%;
-        }
-    }
-
-
     @media (min-width: @breakPointBig) {
-        &.affix {
-            min-width: 17.5%;
-        }
+        width: 300px !important;
     }
 
-    @media (min-width: @breakPointTablet) {
-        &.affix {
-            top: 0;
-        }
-
+    @media (min-width: @breakPointDesktop) {
         // Debounce + CSS transitions = 4wsum!
         .transition(~"top 0.3s ease");
     }
