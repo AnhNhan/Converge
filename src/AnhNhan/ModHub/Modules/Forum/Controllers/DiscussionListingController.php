@@ -71,10 +71,13 @@ final class DiscussionListingController extends AbstractForumController
                 ->setHeadHref("/disq/" . $discussion->cleanId)
                 ->postCount(idx($postCounts, $discussion->uid)["postcount"]);
 
-            $tags = mpull(mpull($discussion->tags->toArray(), "tag"), "label");
-            foreach ($tags as $tagLabel) {
-                if (!empty($tagLabel)) {
-                    $object->addTag(new TagView($tagLabel));
+            $tags = mpull($discussion->tags->toArray(), "tag");
+            $tags = msort($tags, "label");
+            $tags = array_reverse($tags);
+            $tags = msort($tags, "displayOrder");
+            foreach ($tags as $tag) {
+                if (!empty($tag)) {
+                    $object->addTag(new TagView($tag->label, $tag->color));
                 }
             }
 
