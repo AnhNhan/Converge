@@ -289,6 +289,9 @@ final class DiscussionDisplayController extends AbstractForumController
         ;
 
         $tags = mpull($disq->tags->toArray(), "tag");
+        $tags = msort($tags, "label");
+        $tags = array_reverse($tags);
+        $tags = msort($tags, "displayOrder");
         if ($tags) {
             foreach ($tags as $tag) {
                 $discussionView->addTag($tag->label, $tag->color);
