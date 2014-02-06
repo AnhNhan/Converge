@@ -36,9 +36,8 @@ final class DiscussionEditController extends AbstractForumController
 
         $errors = array();
 
-        $query = $this->buildQuery();
-
         if ($disqId = $request->request->get('id')) {
+            $query = $this->buildQuery();
             $discussion = $query->retrieveDiscussion("DISQ-" . $disqId);
 
             if (!$discussion) {
