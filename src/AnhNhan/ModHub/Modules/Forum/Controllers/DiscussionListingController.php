@@ -51,7 +51,14 @@ final class DiscussionListingController extends AbstractForumController
     {
         $request = $this->request();
 
-        $pageNr = 0;
+        $pageNr = 1;
+
+        if ($request->request->has("page-nr") && ($r_pageNr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_pageNr)) {
+            $pageNr = $r_pageNr;
+        }
+
+        --$pageNr;
+
         $offset = $pageNr * $this->discussionsPerPage;
 
         $query = $this->buildQuery();
