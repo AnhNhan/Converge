@@ -200,7 +200,7 @@ abstract class BaseApplication
     final public function getService($service)
     {
         if (!$this->container) {
-            return null;
+            throw new \Exception("This application has no service container!");
         }
         return $this->container->get($service, ContainerInterface::NULL_ON_INVALID_REFERENCE);
     }
@@ -208,7 +208,7 @@ abstract class BaseApplication
     final public function getServiceParameter($parameter)
     {
         if (!$this->container) {
-            return null;
+            throw new \Exception("This application has no service container!");
         }
         return $this->container->getParameter($parameter);
     }

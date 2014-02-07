@@ -45,7 +45,7 @@ abstract class ConsoleCommand extends Command
     final public function getService($service)
     {
         if (!$this->container) {
-            return null;
+            throw new \Exception("This command has no service container!");
         }
         return $this->container->get($service, ContainerInterface::NULL_ON_INVALID_REFERENCE);
     }
@@ -53,7 +53,7 @@ abstract class ConsoleCommand extends Command
     final public function getServiceParameter($parameter)
     {
         if (!$this->container) {
-            return null;
+            throw new \Exception("This command has no service container!");
         }
         return $this->container->getParameter($parameter);
     }
