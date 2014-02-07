@@ -7,7 +7,9 @@ use AnhNhan\ModHub\Storage\Types\UID;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table
+ * @Entity
+ * @Cache("NONSTRICT_READ_WRITE")
+ * @Table
  */
 class DiscussionTag extends EntityDefinition
 {

@@ -7,6 +7,7 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
+ * @Cache("NONSTRICT_READ_WRITE")
  * @Table(indexes={
  *   @Index(name="label", columns={"label"}),
  *   @Index(name="author_disq_rel", columns={"id", "author"}),
@@ -60,6 +61,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
      * object(s) though to keep track of references
      *
      * @OneToMany(targetEntity="DiscussionTag", fetch="EAGER", mappedBy="disq")
+     * @Cache("NONSTRICT_READ_WRITE")
      */
     private $tags;
 

@@ -6,6 +6,7 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
+ * @Cache
  * @Table(indexes={
  *   @Index(name="insertion_order", columns={"createdAt"})
  * })

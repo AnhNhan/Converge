@@ -7,6 +7,7 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
+ * @Cache("NONSTRICT_READ_WRITE")
  * @Table(indexes={
  *   @Index(name="label_sorting", columns={"label", "displayOrder"})
  * })

@@ -7,9 +7,11 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
+ * @Cache("NONSTRICT_READ_WRITE")
  * @Table(indexes={
  *   @Index(name="creation_order", columns={"createdAt"}),
  *   @Index(name="author_disq_rel", columns={"disq_id", "author"}),
+ *   @Index(name="deleted_disq_rel", columns={"disq_id", "deleted"}),
  *   @Index(name="deleted_flag", columns={"deleted"})
  * })
  */
@@ -27,6 +29,7 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
      * The UID of the discussion this post is contained in
      *
      * @ManyToOne(targetEntity="Discussion", fetch="EAGER", inversedBy="posts")
+     * @Cache("NONSTRICT_READ_WRITE")
      * @var Discussion
      */
     private $disq;
