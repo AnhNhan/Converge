@@ -8,7 +8,7 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class ForumDisplayObject extends AbstractView
+class DeletedPost extends ForumDisplayObject
 {
     public function render()
     {
