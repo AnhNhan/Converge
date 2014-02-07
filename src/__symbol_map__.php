@@ -135,14 +135,18 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Transform/DiscussionTransformer.php",
       "deriv" => "League\Fractal\TransformerAbstract",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/ForumDisplayObject.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
-      "abstr" => "1",
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/DeletedPost.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Discussion.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/ForumDisplayObject.php",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+      "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\Post" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Post.php",
@@ -160,6 +164,19 @@ return array(
     "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagRemove.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeAction.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeLabel.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText" => array(
+      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeText.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
@@ -193,6 +210,18 @@ return array(
     "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController" => array(
       "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/MarkupTestingController.php",
       "deriv" => "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/Diff/Renderer/ArrayRenderer.php",
+      "deriv" => "Diff_Renderer_Abstract",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/Diff/Renderer/Inline.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\SideBySide" => array(
+      "file" => "AnhNhan/ModHub/Modules/Markup/Diff/Renderer/SideBySide.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer",
     ),
     "AnhNhan\ModHub\Modules\Markup\MarkupApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Markup/MarkupApplication.php",
@@ -681,18 +710,16 @@ return array(
     "League\Fractal\TransformerAbstract" => array(
       "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\AbstractView" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
-    ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
@@ -711,11 +738,15 @@ return array(
       "AnhNhan\ModHub\Views\Page\PageView",
       "AnhNhan\ModHub\Views\Page\SideNavBar",
       "AnhNhan\ModHub\Views\Panel\Panel",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText",
       "AnhNhan\ModHub\Views\Objects\Object",
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\ModHub\Views\Page\BarePageView",
@@ -723,6 +754,10 @@ return array(
     "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
+    ),
+    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction" => array(
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText",
     ),
     "AnhNhan\ModHub\Views\Objects\Listing" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
@@ -737,6 +772,15 @@ return array(
     "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
+    ),
+    "Diff_Renderer_Abstract" => array(
+      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer",
+      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline",
+      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\SideBySide",
+    ),
+    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
+      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline",
+      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\SideBySide",
     ),
     "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
