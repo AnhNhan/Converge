@@ -63,23 +63,6 @@ final class DiscussionQuery extends Query
         return $query->getResult();
     }
 
-    public function getPaginatorForDiscussionTransactions($disqId, $limit, $offset)
-    {
-        $queryString = sprintf(
-            "SELECT xact FROM %s xact WHERE xact.object = :disq_id ORDER BY xact.createdAt ASC",
-            self::ENTITY_DISCUSSION_XACT
-        );
-        $query = $this->em()
-            ->createQuery($queryString)
-            ->setFirstResult($offset)
-            ->setMaxResults($limit)
-            ->setParameters(array("disq_id" => $disqId))
-        ;
-
-        $paginator = new Paginator($query, false);
-        return $paginator;
-    }
-
     public function fetchPostCountsForDiscussions(array $disqs)
     {
         assert_instances_of($disqs, self::ENTITY_DISCUSSION);
