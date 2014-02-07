@@ -39,7 +39,7 @@ class Post extends ForumDisplayObject
         $postPanel->append($this->buttons);
         $postPanel->append($this->bodyText);
 
-        return $postPanel->render(); // Rendering so the user can apply classes etc.
+        return $postPanel;
     }
 
     protected function getHeaderText()

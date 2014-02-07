@@ -20,6 +20,6 @@ class DeletedPost extends ForumDisplayObject
         $title->push(div('', h3(mh\icon_ion('Deleted Post', 'close', false))));
         $postPanel->setHeader($title);
 
-        return $postPanel->render(); // Rendering so the user can apply classes etc.
+        return $postPanel;
     }
 }

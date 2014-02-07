@@ -77,6 +77,6 @@ class Discussion extends ForumDisplayObject
         }
         $discussionPanel->setMidriffRight($this->buttons);
 
-        return $discussionPanel->render();
+        return $discussionPanel;
     }
 }
