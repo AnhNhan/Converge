@@ -163,6 +163,10 @@ abstract class BaseApplication
 
         $config->setMetadataDriverImpl($config->newDefaultAnnotationDriver($paths, true));
 
+        /*$config->setSecondLevelCacheEnabled();
+        $config->getSecondLevelCacheConfiguration()
+            ->setCacheFactory($this->getService("doctrine.cache.region.factory"));*/
+
         return EntityManager::create($dbConfig, $config);
     }
 
