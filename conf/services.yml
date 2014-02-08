@@ -14,6 +14,8 @@ parameters:
 
     # Doctrine
     doctrine.proxy.path: null
+    doctrine.cache.region.config.lifetime: 3600
+    doctrine.cache.region.config.lifetime.lock: 5
 
 user-security:
   providerKey: ModHub
@@ -43,6 +45,30 @@ services:
   app_routing:
     class: AnhNhan\ModHub\Web\AppRouting
     synthetic: true
+
+  # ----------------------------------------------------------------------------
+  # Doctrine
+  # ----------------------------------------------------------------------------
+
+  doctrine.cache.region.config.default:
+    class: Doctrine\ORM\Cache\RegionsConfiguration
+    public: false
+    arguments:
+      - %doctrine.cache.region.config.lifetime%
+      - %doctrine.cache.region.config.lifetime.lock%
+
+  doctrine.cache.region.factory.default:
+    class: Doctrine\ORM\Cache\DefaultCacheFactory
+    public: false
+    arguments:
+      - @doctrine.cache.region.config.default
+      - @cache.doctrine.region.default
+
+  doctrine.cache.region.factory:
+    alias: doctrine.cache.region.factory.default
+
+  doctrine.cache.region.logger:
+    class: Doctrine\ORM\Cache\Logging\StatisticsCacheLogger
 
   # ----------------------------------------------------------------------------
   # MongoDB
@@ -81,6 +107,11 @@ services:
     tags:
       - { name: cache }
 
+  cache.apc:
+    class: Doctrine\Common\Cache\ApcCache
+    tags:
+      - { name: cache }
+
   cache.filesystem:
     class: Doctrine\Common\Cache\FilesystemCache
     arguments: ["%project.root%%project.cache%"]
@@ -98,7 +129,17 @@ services:
       - { name: cache }
 
   cache.doctrine:
-    alias: cache.filesystem
+    # Not using alias since we may use cache prefix
+    class: Doctrine\Common\Cache\FilesystemCache
+    arguments: ["%project.root%%project.cache%"]
+    tags:
+      - { name: cache }
+
+  cache.doctrine.region.default:
+    # Not using alias since we may use cache prefix
+    class: Doctrine\Common\Cache\FilesystemCache
+    arguments: ["%project.root%%project.cache%"]
+    public: false
     tags:
       - { name: cache }
 
