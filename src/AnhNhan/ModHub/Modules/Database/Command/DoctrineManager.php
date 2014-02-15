@@ -36,9 +36,16 @@ final class DoctrineManager extends AbstractDbCommand
     {
         $apps = $input->getArgument("applications");
         $action = $input->getArgument("action");
+        $action = strtolower(trim($action));
 
-        // Currently we only support "rebuild"
-        $action = "rebuild";
+        $allowed_actions = [
+            "rebuild" => true,
+            "create"  => true,
+        ];
+
+        if (!isset($allowed_actions[$action])) {
+            throw new \InvalidArgumentException("Not supported action: $action");
+        }
 
         foreach (explode(",", $apps) as $app) {
             $app = trim($app);
@@ -51,7 +58,8 @@ final class DoctrineManager extends AbstractDbCommand
                 case "rebuild":
                     $output->writeln("Dropping old tables.");
                     $this->dropTables($app, $output);
-
+                    // Fallthrough
+                case "create":
                     $output->writeln("Creating tables.");
                     $this->createTables($app, $output);
 
