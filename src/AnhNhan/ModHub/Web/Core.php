@@ -9,7 +9,6 @@ use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,9 +67,6 @@ final class Core
     public static function loadBootstrappedSfDIContainer($containerName = "default")
     {
         $container = self::loadSfDIContainer();
-
-        $eventDispatcher = new ContainerAwareEventDispatcher($container);
-        $container->set('event_dispatcher', $eventDispatcher);
 
         $appList = new \AnhNhan\ModHub\Application\ApplicationList($container);
         $container->set('app.list', $appList);

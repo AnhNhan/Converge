@@ -40,7 +40,6 @@ services:
 
   event_dispatcher:
     class: Symfony\Component\EventDispatcher\EventDispatcher
-    synthetic: true
 
   app_routing:
     class: AnhNhan\ModHub\Web\AppRouting
