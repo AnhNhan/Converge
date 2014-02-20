@@ -1,14 +1,14 @@
 
 .tag-color (@color) {
-    // border: @color 1px solid;
+    border: lighten(@color, 2.5%) unit(1px / @fontSizeBase, 'em') solid;
     background-color: lighten(@color, 10%);
 }
 
 .tag-object {
     display: inline-block;
     margin: 2px;
-    padding: 0.15em;
-    .round-border(5px);
+    padding: 0.05em;
+    .round-border(@border-radius-medium);
     .tag-color(@coolBlue);
 
     &:first-child {
