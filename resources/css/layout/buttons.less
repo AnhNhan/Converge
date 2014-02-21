@@ -9,10 +9,6 @@
     color: @veryDarkGrey !important;
 
     .btn-mixin-common(@bgColor);
-
-    &[disabled] {
-        text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-    }
 }
 
 .btn-mixin-common(@bgColor) {
@@ -25,7 +21,7 @@
     }
 
     &[disabled] {
-        @disabledColor: mix(@grey, darken(@bgColor, 10%), 20%);
+        @disabledColor: mix(@grey, darken(@bgColor, 10%), 60%);
         background: @disabledColor;
 
         &:hover {
@@ -104,7 +100,8 @@ input[type="submit"] {
     }
 
     &[disabled] {
-        color: @veryLightGrey !important;
+        color: mix(@veryLightGrey, @lightGrey) !important;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
         cursor: default;
     }
 }
