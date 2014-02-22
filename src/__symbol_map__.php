@@ -60,6 +60,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
     ),
+    "AnhNhan\ModHub\Modules\Examples\Examples\GenericStyles" => array(
+      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/GenericStyles.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    ),
     "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample" => array(
       "file" => "AnhNhan/ModHub/Modules/Examples/Examples/PanelExample.php",
       "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
@@ -598,7 +602,6 @@ return array(
     "AnhNhan\ModHub\safeHtml" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\hsprintf" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\ht" => "AnhNhan/ModHub/functions_html.php",
-    "AnhNhan\ModHub\icon_bs2" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\icon_ic" => "AnhNhan/ModHub/functions_html.php",
     "AnhNhan\ModHub\icon_ion" => "AnhNhan/ModHub/functions_html.php",
     "div" => "AnhNhan/ModHub/functions_html_global.php",
@@ -657,6 +660,7 @@ return array(
       "AnhNhan\ModHub\Modules\Examples\Examples\ColorExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
       "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
+      "AnhNhan\ModHub\Modules\Examples\Examples\GenericStyles",
       "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample",
     ),
     "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
