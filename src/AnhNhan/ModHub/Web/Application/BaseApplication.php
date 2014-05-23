@@ -32,7 +32,21 @@ abstract class BaseApplication
 
     abstract public function getRoutes();
 
-    abstract public function routeToController(Request $request);
+    /**
+     * Routes an incoming request to a controller of this application.
+     *
+     * @param  Request $request A Request object.
+     *
+     * @return BaseApplicationConstroller|null
+     *             Either an instance of BaseApplicationController, then take that
+     *             as a controller.
+     *             Can also be null, in that case we'll try to resolve the controller
+     *             from other sources, in the worst case we'll throw back the 404 controller.
+     */
+    public function routeToController(Request $request)
+    {
+        return null;
+    }
 
     protected function generateRoutesFromYaml($file)
     {
