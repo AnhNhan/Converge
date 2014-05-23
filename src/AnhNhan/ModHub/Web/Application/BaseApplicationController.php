@@ -86,4 +86,18 @@ abstract class BaseApplicationController
             $name
         ));
     }
+
+    // |-----------------------------------------------------------------------|
+    // |----  Various stuff, service location etc.  ---------------------------|
+    // |-----------------------------------------------------------------------|
+
+    protected function resMgr()
+    {
+        return $this->app->getService("resource_manager");
+    }
+
+    protected function stopwatch()
+    {
+        return $this->app->getService("stopwatch");
+    }
 }
