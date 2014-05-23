@@ -359,6 +359,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/User/Controllers/RoleListingController.php",
       "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
     ),
+    "AnhNhan\ModHub\Modules\User\Controllers\UserRegisterController" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Controllers/UserRegisterController.php",
+      "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
+    ),
     "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension" => array(
       "file" => "AnhNhan/ModHub/Modules/User/DependencyInjection/SecurityExtension.php",
       "impls" => array(
@@ -654,6 +658,7 @@ return array(
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
       "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
       "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
+      "AnhNhan\ModHub\Modules\User\Controllers\UserRegisterController",
     ),
     "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
       "AnhNhan\ModHub\Modules\Examples\Examples\BootstrapExample",
@@ -812,6 +817,7 @@ return array(
     "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController" => array(
       "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
       "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
+      "AnhNhan\ModHub\Modules\User\Controllers\UserRegisterController",
     ),
     "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
       "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider",

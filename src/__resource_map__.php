@@ -554,7 +554,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "qjugtcmj",
+      "hash" => "y2m7apyo",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -718,8 +718,8 @@ return array(
     "tmpl-front-frontpage" => array(
       "name" => "tmpl-front-frontpage",
       "path" => "front/frontpage.html",
-      "hash" => "c387d1bad7d0fadf3efe34c225f34192",
-      "orig" => "e4d5d26a5e9984c20386ceef6ccb0982",
+      "hash" => "67a47f117c2d7499f79ab11f94af056c",
+      "orig" => "e76997d5167f1884665f00aa1efc0227",
     ),
     "tmpl-tag-tagview" => array(
       "name" => "tmpl-tag-tagview",

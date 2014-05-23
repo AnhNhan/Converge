@@ -21,7 +21,8 @@
         "Respect/Validation": "dev-master",
         "knplabs/gaufrette": "0.1.*",
         "phpspec/php-diff": "1.0.2",
-        "redeyeventures/geopattern": "1.0.*"
+        "redeyeventures/geopattern": "1.0.*",
+        "behat/behat": "3.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
