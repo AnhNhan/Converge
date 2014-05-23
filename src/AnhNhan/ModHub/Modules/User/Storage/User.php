@@ -23,14 +23,16 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
     private $id;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", unique=true)
      */
-    private $username;
+    private $uid;
+
+    const USER_UID_NONE = "USER-XXXX-xxxxxxxxxxxxxx";
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", unique=true)
      */
-    private $dispname;
+    private $username;
 
     /**
      * @Column(type="string")
@@ -64,23 +66,30 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
     private $modifiedAt;
 
     /**
-     * @ManyToMany(targetEntity="Role")
+     * @ManyToMany(targetEntity="Role", indexBy="name")
      * @OrderBy({"name"="ASC"})
      * @var \Doctrine\ORM\PersistentCollection
      */
-    private $roles = array();
+    private $roles;
+
+    /**
+     * @ManyToMany(targetEntity="Email")
+     * @OrderBy({"email"="ASC"})
+     * @var \Doctrine\ORM\PersistentCollection
+     */
+    private $emails;
 
     /**
      * @OneToMany(targetEntity="UserTransaction", mappedBy="object", fetch="LAZY")
      * @OrderBy({"createdAt"="ASC"})
      */
-    private $xacts = array();
+    private $xacts;
 
     /**
      * @OneToMany(targetEntity="OAuthInfo", mappedBy="user")
      * @var \Doctrine\ORM\PersistentCollection
      */
-    private $oauthKeys = array();
+    private $oauthKeys;
 
     public function __construct()
     {
@@ -133,7 +142,7 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public function eraseCredentials()
     {
-        // Use this method with care. One wrong move and our user in the db can't log int anymore
+        // Use this method with care. One wrong move and our user in the db can't log in anymore
         $this->password = null;
         $this->salt = null;
         return $this;
@@ -181,6 +190,23 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
     public function removeRole(Role $role)
     {
         $this->roles->remove($role->uid());
+        return $this;
+    }
+
+    public function emails()
+    {
+        return $this->emails;
+    }
+
+    public function addEmail(Email $email)
+    {
+        $this->emails->add($email);
+        return $this;
+    }
+
+    public function removeEmail(Email $email)
+    {
+        $this->roles->remove($email->uid());
         return $this;
     }
 
