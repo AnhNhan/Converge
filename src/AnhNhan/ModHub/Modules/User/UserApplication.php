@@ -32,6 +32,8 @@ class UserApplication extends BaseApplication
                 return new Controllers\RoleEditController($this);
             case "role-listing":
                 return new Controllers\RoleListingController($this);
+            case "join":
+                return new Controllers\UserRegisterController($this);
         }
 
         return null;
