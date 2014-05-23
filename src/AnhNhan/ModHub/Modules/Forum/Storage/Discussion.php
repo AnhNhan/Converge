@@ -18,11 +18,15 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
 {
     /**
      * @Id
-     * @Column(type="string")
-     * @GeneratedValue(strategy="CUSTOM")
-     * @CustomIdGenerator(class="AnhNhan\ModHub\Storage\Doctrine\UIDGenerator")
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @Column(type="string", unique=true)
+     */
+    private $uid;
 
     /**
      * @Column(type="string")
@@ -87,7 +91,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
 
     public function uid()
     {
-        return $this->id;
+        return $this->uid;
     }
 
     public function label()

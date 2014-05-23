@@ -25,7 +25,7 @@ final class TagQuery extends Query
     {
         $tagRepo = $this->repository(self::TAG_ENTITY);
 
-        $tags = $tagRepo->findBy(array("id" => $ids), array("displayOrder" => "ASC", "label" => "ASC"), $limit, $offset);
+        $tags = $tagRepo->findBy(array("uid" => $ids), array("displayOrder" => "ASC", "label" => "ASC"), $limit, $offset);
         return $tags;
     }
 

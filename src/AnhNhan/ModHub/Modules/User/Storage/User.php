@@ -16,9 +16,8 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 {
     /**
      * @Id
-     * @Column(type="string")
-     * @GeneratedValue(strategy="CUSTOM")
-     * @CustomIdGenerator(class="AnhNhan\ModHub\Storage\Doctrine\UIDGenerator")
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -99,7 +98,7 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public function uid()
     {
-        return $this->id;
+        return $this->uid;
     }
 
     public function getUsername()

@@ -23,7 +23,7 @@ final class DiscussionQuery extends Query
     public function retrieveDiscussion($id)
     {
         $eDisq = self::ENTITY_DISCUSSION;
-        $queryString = "SELECT d, dt FROM {$eDisq} d LEFT JOIN d.tags dt WHERE d.id = :disq_id";
+        $queryString = "SELECT d, dt FROM {$eDisq} d LEFT JOIN d.tags dt WHERE d.uid = :disq_id";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("disq_id" => $id))
@@ -35,7 +35,7 @@ final class DiscussionQuery extends Query
     {
         return $this
             ->repository(self::ENTITY_DISCUSSION)
-            ->findBy(array("id" => $ids), array("lastActivity" => "DESC"), $limit, $offset)
+            ->findBy(array("uid" => $ids), array("lastActivity" => "DESC"), $limit, $offset)
         ;
     }
 
@@ -113,17 +113,17 @@ final class DiscussionQuery extends Query
      */
     public function retrievePost($id)
     {
-        return $this
+        return idx($this
             ->repository(self::ENTITY_POST)
-            ->find($id)
-        ;
+            ->findBy(array("uid" => $ids), array(), 1)
+        , 0);
     }
 
     public function retrievePostsForIDs(array $ids, $limit = null, $offset = null)
     {
         return $this
             ->repository(self::ENTITY_POST)
-            ->findBy(array("id" => $ids), array("createdAt" => "ASC"), $limit, $offset)
+            ->findBy(array("uid" => $ids), array("createdAt" => "ASC"), $limit, $offset)
         ;
     }
 

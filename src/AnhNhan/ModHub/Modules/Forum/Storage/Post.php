@@ -19,11 +19,15 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
 {
     /**
      * @Id
-     * @Column(type="string")
-     * @GeneratedValue(strategy="CUSTOM")
-     * @CustomIdGenerator(class="AnhNhan\ModHub\Storage\Doctrine\UIDGenerator")
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @Column(type="string", unique=true)
+     */
+    private $uid;
 
     /**
      * The UID of the discussion this post is contained in
@@ -88,7 +92,7 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
 
     public function uid()
     {
-        return $this->id;
+        return $this->uid;
     }
 
     public function parentDisq()

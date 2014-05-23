@@ -13,11 +13,15 @@ abstract class TransactionEntity extends EntityDefinition
 
     /**
      * @Id
-     * @Column(type="string")
-     * @GeneratedValue(strategy="CUSTOM")
-     * @CustomIdGenerator(class="AnhNhan\ModHub\Storage\Doctrine\UIDGenerator")
+     * @Column(type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @Column(type="string", unique=true)
+     */
+    protected $uid;
 
     /**
      * @Column(type="string")
@@ -81,7 +85,7 @@ abstract class TransactionEntity extends EntityDefinition
 
     public function uid()
     {
-        return $this->id;
+        return $this->uid;
     }
 
     public function actorId()

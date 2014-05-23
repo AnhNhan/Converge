@@ -181,7 +181,10 @@ abstract class BaseApplication
         $config->getSecondLevelCacheConfiguration()
             ->setCacheFactory($this->getService("doctrine.cache.region.factory"));*/
 
-        return EntityManager::create($dbConfig, $config);
+        $eventManager = new \Doctrine\Common\EventManager;
+        $eventManager->addEventSubscriber(new \AnhNhan\ModHub\Storage\Doctrine\LifeCycleUIDGenerator);
+
+        return EntityManager::create($dbConfig, $config, $eventManager);
     }
 
     /**
