@@ -4,7 +4,6 @@ namespace AnhNhan\ModHub\Modules\Forum\Views\Objects;
 use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use AnhNhan\ModHub\Views\Panel\Panel;
-use YamwLibs\Libs\Assertions\BasicAssertions as BA;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
