@@ -206,11 +206,16 @@ abstract class TransactionEditor
             $this->em()->persist($entity);
         }
 
-        $this->flushBehaviour != self::FLUSH_DONT_FLUSH && $this->em()->flush();
+        $this->finalFlush();
 
         $this->postApplyHook($object, $xactions);
 
         return $xactions;
+    }
+
+    protected function finalFlush()
+    {
+        $this->flushBehaviour != self::FLUSH_DONT_FLUSH && $this->em()->flush();
     }
 
     protected function postApplyHook($entity, array $xactions)
