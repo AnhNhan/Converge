@@ -73,8 +73,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
                 $entity->text($transaction->newValue());
                 break;
             case DiscussionTransaction::TYPE_ADD_TAG:
-                $dTag = new DiscussionTag($entity, $transaction->newValue());
-                $this->persistLater($dTag);
+                // See post-apply hook
                 break;
             case DiscussionTransaction::TYPE_REMOVE_TAG:
                 $tag = null;
@@ -98,5 +97,23 @@ final class DiscussionTransactionEditor extends TransactionEditor
         }
 
         $entity->updateLastActivity();
+    }
+
+    public function postApplyHook($entity, array $transactions)
+    {
+        $grpd_xacts = mgroup($transactions, "type");
+        $dtag_add_xacts = idx($grpd_xacts, DiscussionTransaction::TYPE_ADD_TAG, []);
+
+        foreach ($dtag_add_xacts as $xact)
+        {
+            $dTag = new DiscussionTag($entity, $xact->newValue());
+            $this->em()->persist($dTag);
+            if ($tags = $entity->tags()) {
+                $tags->add($dTag);
+            }
+        }
+
+        $this->em()->persist($entity);
+        $this->finalFlush();
     }
 }
