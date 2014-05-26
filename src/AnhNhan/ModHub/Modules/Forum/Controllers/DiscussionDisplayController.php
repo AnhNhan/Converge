@@ -90,6 +90,8 @@ final class DiscussionDisplayController extends AbstractForumController
                 );
             }
 
+            $post_xacts = idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, []);
+
             // Manual GC
             unset($transactions_grouped);
             unset($post_ids);
@@ -101,11 +103,28 @@ final class DiscussionDisplayController extends AbstractForumController
                 $markups[$post->uid] = $markup;
             }
 
+            $disqPanel = null;
             if ($create_xact) {
-                $disqColumn->push($this->renderDiscussion($disq, $markups[$disq->uid]));
+                $disqPanel = $this->renderDiscussion($disq, $markups[$disq->uid])->render();
+                $disqColumn->push($disqPanel);
+            }
+
+            foreach ($post_xacts as $post_xact) {
+                $subject_uid = $post_xact->newValue;
+                $post   = $posts[$subject_uid];
+                $markup = $markups[$subject_uid];
+                $disqColumn->push($this->renderPost($post, $markup));
+            }
+
+            if (!$disqPanel) {
+                goto post_old_xact_loop;
             }
 
             foreach ($transactions as $xact) {
+                $ss = [DiscussionTransaction::TYPE_CREATE => true, DiscussionTransaction::TYPE_ADD_POST => true];
+                if (isset($ss[$xact->type])) {
+                    continue;
+                }
                 if ($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId) {
                     continue;
                 }
@@ -113,13 +132,8 @@ final class DiscussionDisplayController extends AbstractForumController
                 $subject_uid = $xact->newValue;
                 $actor = $xact->actorId;
                 switch ($xact->type) {
-                    case DiscussionTransaction::TYPE_ADD_POST:
-                        $post   = $posts[$subject_uid];
-                        $markup = $markups[$subject_uid];
-                        $disqColumn->push($this->renderPost($post, $markup));
-                        break;
                     case DiscussionTransaction::TYPE_ADD_TAG:
-                        $disqColumn->push(
+                        $disqPanel->append(
                             id(new TagAddedView)
                                 ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
@@ -129,7 +143,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         break;
                     case DiscussionTransaction::TYPE_REMOVE_TAG:
                         $subject_uid = $xact->oldValue;
-                        $disqColumn->push(
+                        $disqPanel->append(
                             id(new TagRemovedView)
                                 ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
@@ -142,7 +156,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         $viewObj = $xact->type == DiscussionTransaction::TYPE_EDIT_LABEL ?
                             new LabelChangeView :
                             new TextChangeView;
-                        $disqColumn->push(
+                        $disqPanel->append(
                             $viewObj
                                 ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
@@ -151,15 +165,14 @@ final class DiscussionDisplayController extends AbstractForumController
                                 ->setNextText($xact->newValue)
                         );
                         break;
-                    case DiscussionTransaction::TYPE_CREATE:
-                        // <ignore>
-                        break;
 
                     default:
                         throw new \Exception("Unknown transaction type: '{$xact->type}'");
                         break;
                 }
             }
+
+            post_old_xact_loop:
 
             $tagColumn = $row->column(3)->addClass("tag-column");
 
@@ -170,10 +183,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $ulCont = ModHub\ht("ul")->addClass("nav forum-toc-nav");
             foreach ($transactions as $xact) {
-                if ($xact->type == DiscussionTransaction::TYPE_ADD_POST) {
-                    $post = $posts[$xact->newValue];
-                    // Fall-through
-                } else if ($xact->type == DiscussionTransaction::TYPE_CREATE) {
+                if ($xact->type == DiscussionTransaction::TYPE_CREATE) {
                     // TODO: Sub-ToC
                     $ulCont->appendContent(
                         ModHub\ht("li",
@@ -206,16 +216,20 @@ final class DiscussionDisplayController extends AbstractForumController
                             $text = "Tag-remove";
                             break;
                     }
-                    $ulCont->appendContent(
+                    // For now commented out - we'll add it to the discussion's ToC entry
+                    /*$ulCont->appendContent(
                         ModHub\ht("li",
                             a(
                                 ModHub\hsprintf("<em>%s</em> by <strong>%s</strong>", $text, $disq->authorId),
                                 "#" . $xact->uid
                             )
                         )
-                    );
+                    );*/
                     continue;
                 }
+
+                // Only post-type left
+                $post = $posts[$xact->newValue];
 
                 if ($post->deleted) {
                     $entry = ModHub\ht("li",
