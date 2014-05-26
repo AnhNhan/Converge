@@ -1,21 +1,21 @@
 
 parameters:
-    # Paths
-    # project.root: /path/to/project/
-    project.cache: cache/
-    project.src:   src/
+  # Paths
+  # project.root: /path/to/project/
+  project.cache: cache/
+  project.src:   src/
 
-    # MongoDB
-    mongodb.host: localhost
-    mongodb.db:   modhub
-    mongodb.port: 27017
-    mongodb.collection.logger: monolog
-    mongodb.collection.cache: cache
+  # MongoDB
+  mongodb.host: localhost
+  mongodb.db:   modhub
+  mongodb.port: 27017
+  mongodb.collection.logger: monolog
+  mongodb.collection.cache: cache
 
-    # Doctrine
-    doctrine.proxy.path: null
-    doctrine.cache.region.config.lifetime: 3600
-    doctrine.cache.region.config.lifetime.lock: 5
+  # Doctrine
+  doctrine.proxy.path: null
+  doctrine.cache.region.config.lifetime: 3600
+  doctrine.cache.region.config.lifetime.lock: 5
 
 user-security:
   providerKey: ModHub
