@@ -69,10 +69,10 @@ final class DiscussionQuery extends Query
 
         $ePost = self::ENTITY_POST;
         $eDisq = self::ENTITY_DISCUSSION;
-        $queryString = "SELECT d.id, COUNT(p.id) AS postcount
-            FROM {$eDisq} d INDEX BY d.id
+        $queryString = "SELECT d.uid, COUNT(p.id) AS postcount
+            FROM {$eDisq} d INDEX BY d.uid
                 JOIN d.posts p
-            WHERE d.id IN (:disq_ids)
+            WHERE d.uid IN (:disq_ids)
                 AND p.deleted = 0
             GROUP BY d.id";
         $query = $this->em()->createQuery($queryString);
