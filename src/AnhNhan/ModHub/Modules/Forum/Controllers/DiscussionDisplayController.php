@@ -196,7 +196,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         ->addOption("data-content", phutil_utf8_shorten($disq->rawText, 140))
                     );
                     continue;
-                } else {
+                } else if ($xact->type != DiscussionTransaction::TYPE_ADD_POST) {
                     if ($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId) {
                         continue;
                     }
