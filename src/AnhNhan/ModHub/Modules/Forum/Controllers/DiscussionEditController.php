@@ -140,15 +140,15 @@ final class DiscussionEditController extends AbstractForumController
                     )
                 ;
 
-                foreach ($newTagIds as $_) {
+                foreach ($newTagIds as $tag_id) {
                     $editor->addTransaction(
-                        DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $_)
+                        DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $tag_id)
                     );
                 }
 
-                foreach ($delTagIds as $_) {
+                foreach ($delTagIds as $tag_id) {
                     $editor->addTransaction(
-                        DiscussionTransaction::create(DiscussionTransaction::TYPE_REMOVE_TAG, $_)
+                        DiscussionTransaction::create(DiscussionTransaction::TYPE_REMOVE_TAG, $tag_id)
                     );
                 }
 
