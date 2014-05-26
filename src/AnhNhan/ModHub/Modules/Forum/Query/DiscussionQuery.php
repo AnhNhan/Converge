@@ -115,7 +115,7 @@ final class DiscussionQuery extends Query
     {
         return idx($this
             ->repository(self::ENTITY_POST)
-            ->findBy(array("uid" => $ids), array(), 1)
+            ->findBy(array("uid" => $id), array(), 1)
         , 0);
     }
 
