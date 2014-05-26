@@ -178,4 +178,5 @@ $randomPost = function () use ($posts) {
 
 $timer->stop();
 
+echo str_repeat(PHP_EOL, 2);
 echo sprintf("Done. Took me %dms.", $timer->getDuration()) . PHP_EOL;
