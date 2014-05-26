@@ -140,7 +140,7 @@ foreach ($discussions as $disq) {
             ->setEntity($disq)
             ->setFlushBehaviour(DiscussionTransactionEditor::FLUSH_DONT_FLUSH)
             ->addTransaction(
-               DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag->uid())
+                DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag->uid())
             )
             ->apply()
         ;
