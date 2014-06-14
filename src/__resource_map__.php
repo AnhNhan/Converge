@@ -30,8 +30,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "1e52dd5a73d5a67c8670c51a1743ad31",
-      "orig" => "cc468c4484e0a5f9c5a2609eb3510fa5",
+      "hash" => "16c50119797f13f7454fd6bbfb398e42",
+      "orig" => "5e7b8ee8b3b63cb4d31851f41a512e62",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",

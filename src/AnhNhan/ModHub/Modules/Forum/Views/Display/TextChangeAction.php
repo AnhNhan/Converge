@@ -2,12 +2,15 @@
 namespace AnhNhan\ModHub\Modules\Forum\Views\Display;
 
 use AnhNhan\ModHub as mh;
+use AnhNhan\ModHub\Views\AbstractView;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-abstract class TextChangeAction extends ForumDisplayObject
+abstract class TextChangeAction extends AbstractView
 {
+    use TChangeObject;
+
     protected $prevText = "";
     protected $nextText = "";
 
@@ -28,7 +31,7 @@ abstract class TextChangeAction extends ForumDisplayObject
         $panel = $this->buildBasicPanel();
         $body = $this->renderBody();
         if ($body) {
-            $panel->append($body);
+            $panel->appendContent($body);
             $panel->addClass("panel-diff");
         }
         return $panel;

@@ -2,14 +2,17 @@
 namespace AnhNhan\ModHub\Modules\Forum\Views\Display;
 
 use AnhNhan\ModHub as mh;
+use AnhNhan\ModHub\Views\AbstractView;
 use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-abstract class TagAction extends ForumDisplayObject
+abstract class TagAction extends AbstractView
 {
+    use TChangeObject;
+
     /**
      * @var TagView[]
      */
