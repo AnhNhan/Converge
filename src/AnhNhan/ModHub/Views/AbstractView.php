@@ -103,6 +103,14 @@ abstract class AbstractView implements ViewInterface, YamwMarkupInterface
     }
 
     /**
+     * Public interface for $this->process().
+     */
+    public function getProcessed()
+    {
+        return $this->process();
+    }
+
+    /**
      * Returns the string representation of this view
      *
      * @return string

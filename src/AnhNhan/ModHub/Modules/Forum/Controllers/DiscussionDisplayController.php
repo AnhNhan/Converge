@@ -105,7 +105,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $disqPanel = null;
             if ($create_xact) {
-                $disqPanel = $this->renderDiscussion($disq, $markups[$disq->uid])->render();
+                $disqPanel = $this->renderDiscussion($disq, $markups[$disq->uid])->getProcessed();
                 $disqColumn->push($disqPanel);
             }
 
