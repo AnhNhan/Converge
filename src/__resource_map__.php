@@ -30,8 +30,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "16c50119797f13f7454fd6bbfb398e42",
-      "orig" => "5e7b8ee8b3b63cb4d31851f41a512e62",
+      "hash" => "f0cd734c33f6659ae18ebdb79089fdcd",
+      "orig" => "90a45252fb254875ed01698118a949db",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
@@ -250,6 +250,12 @@ return array(
       "path" => "application/forum/markup-preview.js",
       "hash" => "6eb5b2e253e4f97a0b026dcdd5ef231c",
       "orig" => "2260cc71a1e80bdab05774427fcdf886",
+    ),
+    "application-forum-show-changes" => array(
+      "name" => "application-forum-show-changes",
+      "path" => "application/forum/show-changes.js",
+      "hash" => "5bd3b9b2707d9408236be8af7225321d",
+      "orig" => "4e6daf94f6f8902067bf069a0e264c86",
     ),
     "application-forum-tag-selector" => array(
       "name" => "application-forum-tag-selector",

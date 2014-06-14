@@ -120,6 +120,8 @@ final class DiscussionDisplayController extends AbstractForumController
                 goto post_old_xact_loop;
             }
 
+            $disqXactContainer = div("xact-container");
+
             foreach ($transactions as $xact) {
                 $ss = [DiscussionTransaction::TYPE_CREATE => true, DiscussionTransaction::TYPE_ADD_POST => true];
                 if (isset($ss[$xact->type])) {
@@ -133,7 +135,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $actor = $xact->actorId;
                 switch ($xact->type) {
                     case DiscussionTransaction::TYPE_ADD_TAG:
-                        $disqPanel->append(
+                        $disqXactContainer->appendContent(
                             id(new TagAddedView)
                                 ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
@@ -143,7 +145,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         break;
                     case DiscussionTransaction::TYPE_REMOVE_TAG:
                         $subject_uid = $xact->oldValue;
-                        $disqPanel->append(
+                        $disqXactContainer->appendContent(
                             id(new TagRemovedView)
                                 ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
@@ -156,7 +158,7 @@ final class DiscussionDisplayController extends AbstractForumController
                         $viewObj = $xact->type == DiscussionTransaction::TYPE_EDIT_LABEL ?
                             new LabelChangeView :
                             new TextChangeView;
-                        $disqPanel->append(
+                        $disqXactContainer->appendContent(
                             $viewObj
                                 ->setId($xact->uid)
                                 ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
@@ -170,6 +172,24 @@ final class DiscussionDisplayController extends AbstractForumController
                         throw new \Exception("Unknown transaction type: '{$xact->type}'");
                         break;
                 }
+            }
+
+            if (!$disqXactContainer->isSelfClosing())
+            {
+                $disqXactListing = div("xact-listing");
+                $disqXactListing->appendContent(h2("Changes", "xact-listing-header"));
+                $disqXactListing->appendContent(
+                    a("show changes")
+                        ->addClass("btn btn-default")
+                        ->addClass("show-changes-btn")
+                );
+                $disqXactListing->appendContent(
+                    a("hide changes")
+                        ->addClass("btn btn-default")
+                        ->addClass("hide-changes-btn")
+                );
+                $disqXactListing->appendContent($disqXactContainer);
+                $disqPanel->append($disqXactListing);
             }
 
             post_old_xact_loop:
@@ -274,6 +294,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $this->app->getService("resource_manager")
                 ->requireJs("application-forum-toc-affix")
+                ->requireJs("application-forum-show-changes")
                 ->requireCss("application-forum-discussion-display")
                 ->requireCss("application-diff")
             ;
