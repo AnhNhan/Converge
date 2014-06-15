@@ -92,6 +92,9 @@ final class DiscussionEditController extends AbstractForumController
                 array_walk($tags, function ($string) { return trim($string); });
             }
 
+            // People might add existing tags - just ignore such changes, they add unnecessary noise to error messages
+            $tags = array_unique($tags);
+
             // Tags empty?
             if (!$tags) {
                 $errors[] = "We can't create an discussion without any tags";
