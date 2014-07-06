@@ -3,9 +3,6 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost as DeletedPostView;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd as TagAddedView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove as TagRemovedView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel as LabelChangeView;
@@ -105,7 +102,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
             $disqPanel = null;
             if ($create_xact) {
-                $disqPanel = $this->renderDiscussion($disq, $markups[$disq->uid])->getProcessed();
+                $disqPanel = renderDiscussion($disq, $markups[$disq->uid])->getProcessed();
                 $disqColumn->push($disqPanel);
             }
 
@@ -113,7 +110,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $subject_uid = $post_xact->newValue;
                 $post   = $posts[$subject_uid];
                 $markup = $markups[$subject_uid];
-                $disqColumn->push($this->renderPost($post, $markup));
+                $disqColumn->push(renderPost($post, $markup));
             }
 
             if (!$disqPanel) {
@@ -304,62 +301,5 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $payload->setPayloadContents($container);
         return $payload;
-    }
-
-    private function renderDiscussion($disq, $markup)
-    {
-        $discussionView = id(new DiscussionView)
-            ->setId($disq->uid)
-            ->setHeader($disq->label)
-            ->setDate($disq->lastActivity->format("D, d M 'y"))
-            ->setUserDetails($disq->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
-            ->setBodyText(ModHub\safeHtml(
-                $markup
-            ))
-            ->addButton(
-                ModHub\ht("a", ModHub\icon_ion("Edit discussion", "edit"))
-                    ->addClass("btn btn-info")
-                    ->addOption("href", urisprintf("disq/%p/edit", $disq->cleanId))
-            )
-        ;
-
-        $tags = mpull($disq->tags->toArray(), "tag");
-        $tags = msort($tags, "label");
-        $tags = array_reverse($tags);
-        $tags = msort($tags, "displayOrder");
-        if ($tags) {
-            foreach ($tags as $tag) {
-                $discussionView->addTag($tag->label, $tag->color);
-            }
-        }
-
-        return $discussionView;
-    }
-
-    private function renderPost($post, $markup)
-    {
-        if ($post->deleted) {
-            return id(new DeletedPostView)
-                ->setId(hash_hmac("sha512", $post->uid, time())) // Fuzzy id
-                ->addClass("post-deleted")
-                ->setDate($post->createdAt->format("D, d M 'y"))
-            ;
-        }
-
-        $postView = new PostView;
-        $postView
-            ->setId($post->uid)
-            ->setUserDetails($post->authorId, ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
-            ->setDate($post->createdAt->format("D, d M 'y"))
-            ->addButton(
-                ModHub\ht("a", ModHub\icon_ion("edit post", "edit"))
-                    ->addClass("btn btn-default btn-small")
-                    ->addClass("pull-right")
-                    ->addOption("href", urisprintf("disq/%p/%p/edit", str_replace("DISQ-", "", $post->parentDisqId), $post->cleanId))
-            )
-            ->setBodyText(ModHub\safeHtml($markup))
-        ;
-
-        return $postView;
     }
 }

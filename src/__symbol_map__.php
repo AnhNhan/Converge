@@ -595,6 +595,8 @@ return array(
     ),
   ),
   "functions" => array(
+    "renderDiscussion" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
+    "renderPost" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
     "AnhNhan\ModHub\get_root" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\get_root_super" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\path" => "AnhNhan/ModHub/functions.php",
