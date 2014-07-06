@@ -1,8 +1,13 @@
 <?php
 
+use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion as DiscussionView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost as DeletedPostView;
 use AnhNhan\ModHub\Modules\Forum\Views\Display\Post as PostView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd as TagAddedView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove as TagRemovedView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel as LabelChangeView;
+use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText as TextChangeView;
 
 function renderDiscussion($disq, $markup)
 {
@@ -59,4 +64,76 @@ function renderPost($post, $markup)
     ;
 
     return $postView;
+}
+
+function attach_xacts($post_container, array $transactions, array $tags)
+{
+    $xactContainer = div("xact-container");
+
+    foreach ($transactions as $xact) {
+        $ss = [DiscussionTransaction::TYPE_CREATE => true, DiscussionTransaction::TYPE_ADD_POST => true];
+        if (isset($ss[$xact->type])) {
+            continue;
+        }
+
+        $subject_uid = $xact->newValue;
+        $actor = $xact->actorId;
+        switch ($xact->type) {
+            case DiscussionTransaction::TYPE_ADD_TAG:
+                $xactContainer->appendContent(
+                    id(new TagAddedView)
+                        ->setId($xact->uid)
+                        ->setUserDetails($actor, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                        ->setDate($xact->createdAt->format("D, d M 'y"))
+                        ->addTag($tags[$subject_uid])
+                );
+                break;
+            case DiscussionTransaction::TYPE_REMOVE_TAG:
+                $subject_uid = $xact->oldValue;
+                $xactContainer->appendContent(
+                    id(new TagRemovedView)
+                        ->setId($xact->uid)
+                        ->setUserDetails($actor, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                        ->setDate($xact->createdAt->format("D, d M 'y"))
+                        ->addTag($tags[$subject_uid])
+                );
+                break;
+            case DiscussionTransaction::TYPE_EDIT_LABEL:
+            case DiscussionTransaction::TYPE_EDIT_TEXT:
+                $viewObj = $xact->type == DiscussionTransaction::TYPE_EDIT_LABEL ?
+                    new LabelChangeView :
+                    new TextChangeView;
+                $xactContainer->appendContent(
+                    $viewObj
+                        ->setId($xact->uid)
+                        ->setUserDetails($actor, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                        ->setDate($xact->createdAt->format("D, d M 'y"))
+                        ->setPrevText($xact->oldValue)
+                        ->setNextText($xact->newValue)
+                );
+                break;
+
+            default:
+                throw new \Exception("Unknown transaction type: '{$xact->type}'");
+                break;
+        }
+    }
+
+    if (!$xactContainer->isSelfClosing())
+    {
+        $disqXactListing = div("xact-listing");
+        $disqXactListing->appendContent(h2("Changes", "xact-listing-header"));
+        $disqXactListing->appendContent(
+            a("show changes")
+                ->addClass("btn btn-default")
+                ->addClass("show-changes-btn")
+        );
+        $disqXactListing->appendContent(
+            a("hide changes")
+                ->addClass("btn btn-default")
+                ->addClass("hide-changes-btn")
+        );
+        $disqXactListing->appendContent($xactContainer);
+        $post_container->append($disqXactListing);
+    }
 }

@@ -3,10 +3,6 @@ namespace AnhNhan\ModHub\Modules\Forum\Controllers;
 
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd as TagAddedView;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove as TagRemovedView;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel as LabelChangeView;
-use AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText as TextChangeView;
 use AnhNhan\ModHub\Modules\Markup\MarkupEngine;
 use AnhNhan\ModHub\Modules\Tag\TagQuery;
 use AnhNhan\ModHub\Views\Grid\Grid;
@@ -113,83 +109,14 @@ final class DiscussionDisplayController extends AbstractForumController
                 $disqColumn->push(renderPost($post, $markup));
             }
 
-            if (!$disqPanel) {
-                goto post_old_xact_loop;
-            }
-
-            $disqXactContainer = div("xact-container");
-
-            foreach ($transactions as $xact) {
-                $ss = [DiscussionTransaction::TYPE_CREATE => true, DiscussionTransaction::TYPE_ADD_POST => true];
-                if (isset($ss[$xact->type])) {
-                    continue;
-                }
-                if ($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId) {
-                    continue;
-                }
-
-                $subject_uid = $xact->newValue;
-                $actor = $xact->actorId;
-                switch ($xact->type) {
-                    case DiscussionTransaction::TYPE_ADD_TAG:
-                        $disqXactContainer->appendContent(
-                            id(new TagAddedView)
-                                ->setId($xact->uid)
-                                ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
-                                ->setDate($xact->createdAt->format("D, d M 'y"))
-                                ->addTag($tags[$subject_uid])
-                        );
-                        break;
-                    case DiscussionTransaction::TYPE_REMOVE_TAG:
-                        $subject_uid = $xact->oldValue;
-                        $disqXactContainer->appendContent(
-                            id(new TagRemovedView)
-                                ->setId($xact->uid)
-                                ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
-                                ->setDate($xact->createdAt->format("D, d M 'y"))
-                                ->addTag($tags[$subject_uid])
-                        );
-                        break;
-                    case DiscussionTransaction::TYPE_EDIT_LABEL:
-                    case DiscussionTransaction::TYPE_EDIT_TEXT:
-                        $viewObj = $xact->type == DiscussionTransaction::TYPE_EDIT_LABEL ?
-                            new LabelChangeView :
-                            new TextChangeView;
-                        $disqXactContainer->appendContent(
-                            $viewObj
-                                ->setId($xact->uid)
-                                ->setUserDetails($actor, ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
-                                ->setDate($xact->createdAt->format("D, d M 'y"))
-                                ->setPrevText($xact->oldValue)
-                                ->setNextText($xact->newValue)
-                        );
-                        break;
-
-                    default:
-                        throw new \Exception("Unknown transaction type: '{$xact->type}'");
-                        break;
-                }
-            }
-
-            if (!$disqXactContainer->isSelfClosing())
+            if ($disqPanel)
             {
-                $disqXactListing = div("xact-listing");
-                $disqXactListing->appendContent(h2("Changes", "xact-listing-header"));
-                $disqXactListing->appendContent(
-                    a("show changes")
-                        ->addClass("btn btn-default")
-                        ->addClass("show-changes-btn")
-                );
-                $disqXactListing->appendContent(
-                    a("hide changes")
-                        ->addClass("btn btn-default")
-                        ->addClass("hide-changes-btn")
-                );
-                $disqXactListing->appendContent($disqXactContainer);
-                $disqPanel->append($disqXactListing);
+                $xacts = array_filter($transactions, function ($xact) use ($create_date, $create_xact)
+                {
+                    return !($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId);
+                });
+                attach_xacts($disqPanel, $xacts, $tags);
             }
-
-            post_old_xact_loop:
 
             $tagColumn = $row->column(3)->addClass("tag-column");
 
