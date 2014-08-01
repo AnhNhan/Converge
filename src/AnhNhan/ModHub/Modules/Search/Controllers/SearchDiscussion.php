@@ -10,8 +10,6 @@ use AnhNhan\ModHub\Web\Application\JsonPayload;
  */
 final class SearchDiscussion extends Search
 {
-    const SearchType_All = "all";
-    const SearchType_Any = "any";
 
     public function process()
     {
@@ -43,7 +41,7 @@ final class SearchDiscussion extends Search
         $data = $this->retrieveData();
         $payload = new JsonPayload;
         $payload->setPayloadContents($data);
-        $payload->setHttpHeader("Content-Type", "application/json");
+        $payload->setHttpHeader('Content-Type', 'application/json');
         return $payload;
     }
 
@@ -52,15 +50,13 @@ final class SearchDiscussion extends Search
         $request = $this->request;
         $requestMethod = $request->getMethod();
 
-        // Initializing to empty id so our queries work if you don't pass in
-        // something
-        $tagIdInc = $request->query->get("tid_inc", ['']);
-        $tagIdExc = $request->query->get("tid_exc", ['']);
+        $tagIdInc = $request->query->get('tid_inc', []);
+        $tagIdExc = $request->query->get('tid_exc', []);
 
         assert(is_array($tagIdInc));
         assert(is_array($tagIdExc));
 
-        $forumApp = $this->app->getService("app.list")->app("forum");
+        $forumApp = $this->app->getService('app.list')->app('forum');
         $query  = new DiscussionQuery($forumApp->getEntityManager());
 
         $disqs = $query->retriveDiscussionsSearchTags($tagIdInc, $tagIdExc);
