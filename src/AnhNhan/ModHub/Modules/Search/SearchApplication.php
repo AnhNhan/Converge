@@ -31,6 +31,9 @@ final class SearchApplication extends BaseApplication
             case "autocomplete-tags":
                 return new Controllers\AutocompleteTags($this);
                 break;
+            case "search-disq":
+                return new Controllers\SearchDiscussion($this);
+                break;
         }
 
         return null;

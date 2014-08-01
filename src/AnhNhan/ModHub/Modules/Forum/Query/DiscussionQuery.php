@@ -63,6 +63,18 @@ final class DiscussionQuery extends Query
         return $query->getResult();
     }
 
+    public function retriveDiscussionsSearchTags(array $tags_inc, array $tags_exc, $limit = null, $offset = null)
+    {
+        $eDisq = self::ENTITY_DISCUSSION;
+        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt WHERE (dt.t_id IN (:tag_inc_ids)) AND (dt.t_id NOT IN (:tag_exc_ids)) ORDER BY d.lastActivity DESC";
+        $query = $this->em()->createQuery($queryString);
+        $query->setParameters(array(
+            'tag_inc_ids' => $tags_inc
+          , 'tag_exc_ids' => $tags_exc
+        ));
+        return $query->getResult();
+    }
+
     public function fetchPostCountsForDiscussions(array $disqs)
     {
         assert_instances_of($disqs, self::ENTITY_DISCUSSION);

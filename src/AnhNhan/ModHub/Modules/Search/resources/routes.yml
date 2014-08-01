@@ -1,5 +1,8 @@
 
 routes:
 
-  - pattern: search/autocomplete/tags
+  - pattern: search/tag/autocomplete
     route-name: autocomplete-tags
+
+  - pattern: search/disq
+    route-name: search-disq

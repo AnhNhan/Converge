@@ -18,7 +18,7 @@ $(function () {
             tagsItems: tags,
             filterItems: tags,
             ajax : {
-                url : 'search/autocomplete/tags',
+                url : 'search/tag/autocomplete',
                 dataType : 'json',
                 cacheResults : false
             },
