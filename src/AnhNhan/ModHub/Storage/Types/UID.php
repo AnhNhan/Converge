@@ -8,7 +8,7 @@ namespace AnhNhan\ModHub\Storage\Types;
  */
 class UID
 {
-    const UID_LENGTH = 14;
+    const UID_LENGTH = 16;
     const UID_LENGTH_EXTENDED = 22;
 
     const TYPE_DEFAULT = "UIDX";
