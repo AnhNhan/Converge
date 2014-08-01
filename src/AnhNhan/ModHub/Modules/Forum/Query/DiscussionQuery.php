@@ -65,13 +65,14 @@ final class DiscussionQuery extends Query
 
     public function retriveDiscussionsSearchTags(array $tags_inc, array $tags_exc, $limit = null, $offset = null)
     {
+        $sqlChunk = generate_search_prep_stmt_part(array_mergev(array_mergev([
+            array_map(function ($x) { return [$x => SearchPrepStmt_Include]; }, $tags_inc),
+            array_map(function ($x) { return [$x => SearchPrepStmt_Exclude]; }, $tags_exc),
+        ])), "dt.t_id");
         $eDisq = self::ENTITY_DISCUSSION;
-        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt WHERE (dt.t_id IN (:tag_inc_ids)) AND (dt.t_id NOT IN (:tag_exc_ids)) ORDER BY d.lastActivity DESC";
+        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt WHERE " . $sqlChunk . " ORDER BY d.lastActivity DESC";
         $query = $this->em()->createQuery($queryString);
-        $query->setParameters(array(
-            'tag_inc_ids' => $tags_inc
-          , 'tag_exc_ids' => $tags_exc
-        ));
+        $query->setParameters(array_merge($tags_inc, $tags_exc));
         return $query->getResult();
     }
 
