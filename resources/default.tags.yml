@@ -4,83 +4,138 @@ tags:
   - name: bug
     color: warning
     displayOrder: -110
+    description: "Smash 'em!"
+
+  - name: very-dev-only
+    color: dark
+    displayOrder: -100
+    description: Such dev. Very amaze. Much awesome. So wow.
 
   - name: dev-only
     color: dark
     displayOrder: -100
+    description: Excludes moderators etc..
 
   - name: staff-only
     color: dark
     displayOrder: -100
+    description: Only Staff can post in here. It's craaazy!
 
   - name: rookie-area
     color: dark
     displayOrder: -90
+    description: A place where you can master the skills of awesome until you are deemed good enough.
 
   - name: caw
     color: blue
     displayOrder: -50
+    description: Covenant at War.
 
   - name: sotp
     color: blue
     displayOrder: -50
+    description: Sins of the Prophets.
 
   - name: homefront
     color: blue
     displayOrder: -50
+    description: Homefront.
 
   - name: draft
     color: green
     displayOrder: -30
+    description: Very well unfinished.
+
+  - name: application-review
+    color: info
+    displayOrder: -10
+    description: Deal? Or no Deal?
 
   - name: announcement
-    displayOrder: -5
+    color: info
+    displayOrder: -7
+    description: Only announcements, please.
 
   - name: news
-    displayOrder: -5
+    color: info
+    displayOrder: -7
+    description: Old things new.
 
   - name: discussion
     displayOrder: -5
+    description: Communication skills are important, so please train them.
 
   - name: help
     displayOrder: -5
+    description: Heeeealp!
 
   - name: knowledge-base
     displayOrder: -5
+    description: What you need to know.
 
   - name: unsc
     displayOrder: -2
+    description: 6 feet and counting.
   - name: covenant
     displayOrder: -2
+    description: Very close to the Journey.
   - name: flood
     displayOrder: -2
+    description: Not eating braaaaiiiiins.
 
-  - name: application-review
+  - name: audio
+    description: Building the spirit of the mod through its sound.
+
+  - name: visual
+    description: An artist is not paid for his labor but for his vision.
+
+  - name: code
+    description: Feel like you are at home in Silicon Valley.
 
   - name: gameplay
+    description: Gameplay-related discussions.
 
   - name: playtesting
+    description: Test the game 500 times until the end of the week, or you are fired.
 
   - name: event
+    description: Event, you are fired!
 
   - name: community
+    description: Together, we are strong.
 
   - name: promotional
+    description: Together, we make the world a better place.
 
   - name: idea
+    description: The more thinkiful may win.
 
   - name: blog
+    description: Blogs, interviews and other exlusives just for you!
 
   - name: general
+    description: There is much talk. And I have listened. Through rock and metal and time. Now I shall talk, and you shall listen.
 
   - name: modding
+    description: You also mod games?
 
   - name: art
+    description: Anything that looks like Arts is here!
 
   - name: halo
+    description: The Great Journey awaits us.
+
+  - name: off-topic
+    description: Nothing that should fit into anything...
 
   - name: asset
     displayOrder: 30
+    description: My precioussss.
 
   - name: legacy
     displayOrder: 30
+    description: Too old to remember.
+
+  - name: spam
+    displayOrder: 30
+    description: To be spammed...
