@@ -71,22 +71,28 @@ final class DiscussionQuery extends Query
             throw new \Exception("Tag exclusions are not supported yet.");
         }
 
+        // Using two separate queries because Doctrine would not allow us to
+        // select the disq_id field for subquery result.
         $eDisq = self::ENTITY_DISCUSSION;
         $eDisqTag = self::ENTITY_DISCUSSION_TAG;
-        $queryString = "SELECT d, dt
+        $queryString = "
+            SELECT d, dt
             FROM {$eDisq} d
                 JOIN d.tags dt
-            WHERE d.id IN (
-                SELECT _dt.disq
-                FROM {$eDisqTag} _dt
-                WHERE _dt.t_id IN (:disq_inc_ids)
-                GROUP BY _dt.disq
-                HAVING COUNT(_dt.t_id) >= :disq_inc_count
-            )
+            WHERE d.id IN (:disq_ids)
             ORDER BY d.lastActivity DESC
         ";
+        $subQueryString = "
+            SELECT dt
+            FROM {$eDisqTag} dt
+            WHERE dt.t_id IN (:disq_inc_ids)
+            GROUP BY dt.disq
+            HAVING COUNT(dt.t_id) >= :disq_inc_count
+        ";
+        $subQuery = $this->em()->createQuery($subQueryString);
+        $subQuery->setParameters(['disq_inc_ids' => $tags_inc, 'disq_inc_count' => count($tags_inc)]);
         $query = $this->em()->createQuery($queryString);
-        $query->setParameters(['disq_inc_ids' => $tags_inc, 'disq_inc_count' => count($tags_inc)]);
+        $query->setParameters(['disq_ids' => ipull($subQuery->getResult(DoctrineQuery::HYDRATE_ARRAY), 'disq_id')]);
         return $query->getResult();
     }
 
