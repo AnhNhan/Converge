@@ -21,6 +21,8 @@ use AnhNhan\ModHub\Modules\User\Storage\User;
 use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 use AnhNhan\ModHub\Storage\Types\UID;
 
+use Doctrine\ORM\Query as DoctrineQuery;
+
 // De-register libphutil autoloader, can't be used with Faker
 spl_autoload_unregister('__phutil_autoload');
 
@@ -70,6 +72,7 @@ $randomUser = function () use ($users) {
     return $users[array_rand($users)];
 };
 
+/*
 $tags = array();
 for ($ii = 0; $ii < $num_tags; $ii++) {
     $tag = new Tag;
@@ -89,6 +92,9 @@ for ($ii = 0; $ii < $num_tags; $ii++) {
     $tags[] = $tag;
 }
 $tagEm->flush();
+*/
+
+$tags = ipull($tagEm->createQuery("SELECT t.uid FROM AnhNhan\ModHub\Modules\Tag\Storage\Tag t")->getResult(DoctrineQuery::HYDRATE_ARRAY), 'uid');
 
 $randomTag = function () use ($tags) {
     return $tags[array_rand($tags)];
@@ -129,18 +135,18 @@ foreach ($discussions as $disq) {
 
         $chosenTag = $randomTag();
 
-        if (isset($derp[$chosenTag->uid()])) {
+        if (isset($derp[$chosenTag])) {
             continue;
         }
 
-        $derp += array($chosenTag->uid() => true);
+        $derp += array($chosenTag => true);
 
         $editor = DiscussionTransactionEditor::create($forumEm)
             ->setActor($disq->authorId)
             ->setEntity($disq)
             ->setFlushBehaviour(DiscussionTransactionEditor::FLUSH_DONT_FLUSH)
             ->addTransaction(
-                DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag->uid())
+                DiscussionTransaction::create(DiscussionTransaction::TYPE_ADD_TAG, $chosenTag)
             )
             ->apply()
         ;

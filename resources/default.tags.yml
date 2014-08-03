@@ -1,0 +1,86 @@
+
+tags:
+
+  - name: bug
+    color: warning
+    displayOrder: -110
+
+  - name: dev-only
+    color: dark
+    displayOrder: -100
+
+  - name: staff-only
+    color: dark
+    displayOrder: -100
+
+  - name: rookie-area
+    color: dark
+    displayOrder: -90
+
+  - name: caw
+    color: blue
+    displayOrder: -50
+
+  - name: sotp
+    color: blue
+    displayOrder: -50
+
+  - name: homefront
+    color: blue
+    displayOrder: -50
+
+  - name: draft
+    color: green
+    displayOrder: -30
+
+  - name: announcement
+    displayOrder: -5
+
+  - name: news
+    displayOrder: -5
+
+  - name: discussion
+    displayOrder: -5
+
+  - name: help
+    displayOrder: -5
+
+  - name: knowledge-base
+    displayOrder: -5
+
+  - name: unsc
+    displayOrder: -2
+  - name: covenant
+    displayOrder: -2
+  - name: flood
+    displayOrder: -2
+
+  - name: application-review
+
+  - name: gameplay
+
+  - name: playtesting
+
+  - name: event
+
+  - name: community
+
+  - name: promotional
+
+  - name: idea
+
+  - name: blog
+
+  - name: general
+
+  - name: modding
+
+  - name: art
+
+  - name: halo
+
+  - name: asset
+    displayOrder: 30
+
+  - name: legacy
+    displayOrder: 30
