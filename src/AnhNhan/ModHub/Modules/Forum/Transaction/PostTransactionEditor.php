@@ -103,7 +103,6 @@ final class PostTransactionEditor extends TransactionEditor
         if (!$entity->uid()) {
             // We apparently didn't flush the new post yet. Flush it so we get
             // a UID
-            echo "-";
             $this->em()->flush();
         }
 
