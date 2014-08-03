@@ -158,7 +158,7 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagAction.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd" => array(
@@ -171,7 +171,7 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction" => array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeAction.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
       "abstr" => "1",
     ),
     "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel" => array(
@@ -245,6 +245,15 @@ return array(
     "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags" => array(
       "file" => "AnhNhan/ModHub/Modules/Search/Controllers/AutocompleteTags.php",
       "deriv" => "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
+    ),
+    "AnhNhan\ModHub\Modules\Search\Controllers\Search" => array(
+      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/Search.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\ModHub\Modules\Search\Controllers\SearchDiscussion" => array(
+      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/SearchDiscussion.php",
+      "deriv" => "AnhNhan\ModHub\Modules\Search\Controllers\Search",
     ),
     "AnhNhan\ModHub\Modules\Search\SearchApplication" => array(
       "file" => "AnhNhan/ModHub/Modules/Search/SearchApplication.php",
@@ -385,9 +394,28 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/User/Providers/UserAuthenticationProvider.php",
       "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
     ),
+    "AnhNhan\ModHub\Modules\User\Query\EmailQuery" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Query/EmailQuery.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    ),
     "AnhNhan\ModHub\Modules\User\Query\RoleQuery" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Query/RoleQuery.php",
       "deriv" => "AnhNhan\ModHub\Storage\Query",
+    ),
+    "AnhNhan\ModHub\Modules\User\Query\UserQuery" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Query/UserQuery.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    ),
+    "AnhNhan\ModHub\Modules\User\Storage\Email" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Storage/Email.php",
+      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\ModHub\Modules\User\Storage\OAuthInfo" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Storage/OAuthInfo.php",
+      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
     ),
     "AnhNhan\ModHub\Modules\User\Storage\Role" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Storage/Role.php",
@@ -424,6 +452,12 @@ return array(
     "AnhNhan\ModHub\Modules\User\Views\UserPlateView" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Views/UserPlateView.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    ),
+    "AnhNhan\ModHub\Storage\Doctrine\LifeCycleUIDGenerator" => array(
+      "file" => "AnhNhan/ModHub/Storage/Doctrine/LifeCycleUIDGenerator.php",
+      "impls" => array(
+        "Doctrine\Common\EventSubscriber",
+      ),
     ),
     "AnhNhan\ModHub\Storage\Doctrine\UIDGenerator" => array(
       "file" => "AnhNhan/ModHub/Storage/Doctrine/UIDGenerator.php",
@@ -597,6 +631,7 @@ return array(
   "functions" => array(
     "renderDiscussion" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
     "renderPost" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
+    "attach_xacts" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
     "AnhNhan\ModHub\get_root" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\get_root_super" => "AnhNhan/ModHub/functions.php",
     "AnhNhan\ModHub\path" => "AnhNhan/ModHub/functions.php",
@@ -619,6 +654,7 @@ return array(
     "h4" => "AnhNhan/ModHub/functions_html_global.php",
     "h5" => "AnhNhan/ModHub/functions_html_global.php",
     "h6" => "AnhNhan/ModHub/functions_html_global.php",
+    "generate_search_prep_stmt_part" => "AnhNhan/ModHub/functions_sql.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -644,6 +680,7 @@ return array(
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
       "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
+      "AnhNhan\ModHub\Modules\Search\Controllers\Search",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
       "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
@@ -654,6 +691,7 @@ return array(
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
       "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
+      "AnhNhan\ModHub\Modules\Search\Controllers\SearchDiscussion",
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
@@ -689,13 +727,17 @@ return array(
     "AnhNhan\ModHub\Storage\Query" => array(
       "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery",
       "AnhNhan\ModHub\Modules\Tag\TagQuery",
+      "AnhNhan\ModHub\Modules\User\Query\EmailQuery",
       "AnhNhan\ModHub\Modules\User\Query\RoleQuery",
+      "AnhNhan\ModHub\Modules\User\Query\UserQuery",
     ),
     "AnhNhan\ModHub\Storage\EntityDefinition" => array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
+      "AnhNhan\ModHub\Modules\User\Storage\Email",
+      "AnhNhan\ModHub\Modules\User\Storage\OAuthInfo",
       "AnhNhan\ModHub\Modules\User\Storage\Role",
       "AnhNhan\ModHub\Modules\User\Storage\User",
       "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
@@ -725,15 +767,11 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText",
     ),
     "AnhNhan\ModHub\Views\AbstractView" => array(
       "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
       "AnhNhan\ModHub\Modules\Tag\Views\TagView",
       "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
       "AnhNhan\ModHub\Views\Form\FormView",
@@ -752,8 +790,6 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
       "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
@@ -795,6 +831,9 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
+    ),
+    "AnhNhan\ModHub\Modules\Search\Controllers\Search" => array(
+      "AnhNhan\ModHub\Modules\Search\Controllers\SearchDiscussion",
     ),
     "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
       "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
@@ -858,6 +897,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
+      "AnhNhan\ModHub\Modules\User\Storage\Email",
       "AnhNhan\ModHub\Modules\User\Storage\Role",
       "AnhNhan\ModHub\Modules\User\Storage\User",
     ),
@@ -873,6 +913,9 @@ return array(
     ),
     "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
       "AnhNhan\ModHub\Modules\User\Storage\User",
+    ),
+    "Doctrine\Common\EventSubscriber" => array(
+      "AnhNhan\ModHub\Storage\Doctrine\LifeCycleUIDGenerator",
     ),
     "YamwLibs\Libs\View\ViewInterface" => array(
       "AnhNhan\ModHub\Views\AbstractView",

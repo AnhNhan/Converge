@@ -30,8 +30,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "f0cd734c33f6659ae18ebdb79089fdcd",
-      "orig" => "90a45252fb254875ed01698118a949db",
+      "hash" => "7e785a2fb03a9e67ab4b1d552bcc9b52",
+      "orig" => "b4c6cf472f374aa4ff6e06466482e376",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
@@ -260,8 +260,8 @@ return array(
     "application-forum-tag-selector" => array(
       "name" => "application-forum-tag-selector",
       "path" => "application/forum/tag-selector.js",
-      "hash" => "0690dac07a0b3061c22d2119e36b4412",
-      "orig" => "37e470b9ecf7caa16b1b56008c21a0d4",
+      "hash" => "a6c9befc22ee82dc740f54d6ad2e941d",
+      "orig" => "9701eb85e9cbceb6af5431cbfcbe9b85",
     ),
     "application-forum-toc-affix" => array(
       "name" => "application-forum-toc-affix",
@@ -560,7 +560,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "y2m7apyo",
+      "hash" => "7focrrgm",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(

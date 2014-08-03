@@ -42,3 +42,4 @@ $contents = str_replace('{{memory}}', round(memory_get_peak_usage() / 1024 / 102
 $response->setContent($contents);
 
 $response->send();
+//print_r($container->get('logger.doctrine.sql')->queries);
