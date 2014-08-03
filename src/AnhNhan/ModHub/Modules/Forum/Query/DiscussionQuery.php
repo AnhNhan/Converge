@@ -59,7 +59,11 @@ final class DiscussionQuery extends Query
         $eDisq = self::ENTITY_DISCUSSION;
         $tagId = $tag->uid();
         $queryString = "SELECT d FROM {$eDisq} d JOIN d.tags t WHERE t.t_id = :tag_id ORDER BY d.lastActivity DESC";
-        $query = $this->em()->createQuery($queryString);
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
         $query->setParameters(array('tag_id' => $tagId));
         return $query->getResult();
     }
@@ -81,7 +85,11 @@ final class DiscussionQuery extends Query
             WHERE d.id IN (:disq_inc_ids)
             ORDER BY d.lastActivity DESC
         ";
-        $query = $this->em()->createQuery($queryString);
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
         $query->setParameters([
             'disq_inc_ids' => ipull($this->aoefs_subQuery($tags_inc), 'disq_id'),
             //'disq_exc_ids' => ipull($this->aoefs_subQuery($tags_exc), 'disq_id'),
@@ -99,7 +107,9 @@ final class DiscussionQuery extends Query
             GROUP BY dt.disq
             HAVING COUNT(dt.t_id) >= :disq_inc_count
         ";
-        $subQuery = $this->em()->createQuery($subQueryString);
+        $subQuery = $this->em()
+            ->createQuery($subQueryString)
+        ;
         $subQuery->setParameters(['disq_inc_ids' => $ids, 'disq_inc_count' => count($ids)]);
         return $subQuery->getResult(DoctrineQuery::HYDRATE_ARRAY);
     }
@@ -116,7 +126,9 @@ final class DiscussionQuery extends Query
             WHERE d.uid IN (:disq_ids)
                 AND p.deleted = 0
             GROUP BY d.id";
-        $query = $this->em()->createQuery($queryString);
+        $query = $this->em()
+            ->createQuery($queryString)
+        ;
         $query->setParameters(array('disq_ids' => mpull($disqs, 'uid')));
         return $query->getResult(DoctrineQuery::HYDRATE_ARRAY);
     }
