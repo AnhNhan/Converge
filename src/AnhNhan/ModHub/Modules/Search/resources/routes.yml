@@ -4,5 +4,5 @@ routes:
   - pattern: search/tag/autocomplete
     route-name: autocomplete-tags
 
-  - pattern: search/disq
+  - pattern: search/disq/by-tag
     route-name: search-disq
