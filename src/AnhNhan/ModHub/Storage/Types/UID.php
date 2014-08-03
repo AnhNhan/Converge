@@ -21,12 +21,12 @@ class UID
     public function __construct($uid)
     {
         if (!static::checkValidity($uid)) {
-            throw new \InvalidArgumentException("No valid UID given!");
+            throw new \InvalidArgumentException("No valid UID given! Got '$uid'.");
         }
         $this->uid = $uid;
 
         $matches = array();
-        preg_match("/^(?P<type>[A-Z]{4})(-(?P<subtype>[A-Z]{4}))?-(?P<random>((.*){14}|(.*){22}))$/", $uid, $matches);
+        preg_match("/^(?P<type>[A-Z]{4})(-(?P<subtype>[A-Z]{4}))?-(?P<random>((.*){16}|(.*){22}))$/", $uid, $matches);
 
         $this->type    = $matches["type"];
         $this->subtype = $matches["subtype"];
@@ -88,6 +88,6 @@ class UID
 
     public static function checkValidity($uid)
     {
-        return preg_match("/^[A-Z]{4}(-[A-Z]{4})?-([a-z0-9]{14}|[a-z0-9]{22})$/", $uid) === 1;
+        return preg_match("/^[A-Z]{4}(-[A-Z]{4})?-([a-z0-9]{16}|[a-z0-9]{22})$/", $uid) === 1;
     }
 }
