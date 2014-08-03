@@ -19,11 +19,11 @@ roles:
 
   ROLE_MODERATOR:
     label: Moderator
-    description: "He may do some stuff like censor posts, but not mess around with stuff (or see meaningful internals)"
+    description: "He may do some stuff like censor posts, but not mess around with stuff (or see meaningful internals)".
 
   ROLE_ADMIN:
     label: Administrator
-    description: Unused - for now
+    description: Unused - for now.
 
   ROLE_LEVEL7:
     label: Staff member
