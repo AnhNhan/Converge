@@ -74,14 +74,24 @@ final class DiscussionQuery extends Query
         // Using two separate queries because Doctrine would not allow us to
         // select the disq_id field for subquery result.
         $eDisq = self::ENTITY_DISCUSSION;
-        $eDisqTag = self::ENTITY_DISCUSSION_TAG;
         $queryString = "
             SELECT d, dt
             FROM {$eDisq} d
                 JOIN d.tags dt
-            WHERE d.id IN (:disq_ids)
+            WHERE d.id IN (:disq_inc_ids)
             ORDER BY d.lastActivity DESC
         ";
+        $query = $this->em()->createQuery($queryString);
+        $query->setParameters([
+            'disq_inc_ids' => ipull($this->aoefs_subQuery($tags_inc), 'disq_id'),
+            //'disq_exc_ids' => ipull($this->aoefs_subQuery($tags_exc), 'disq_id'),
+        ]);
+        return $query->getResult();
+    }
+
+    private function aoefs_subQuery(array $ids)
+    {
+        $eDisqTag = self::ENTITY_DISCUSSION_TAG;
         $subQueryString = "
             SELECT dt
             FROM {$eDisqTag} dt
@@ -90,10 +100,8 @@ final class DiscussionQuery extends Query
             HAVING COUNT(dt.t_id) >= :disq_inc_count
         ";
         $subQuery = $this->em()->createQuery($subQueryString);
-        $subQuery->setParameters(['disq_inc_ids' => $tags_inc, 'disq_inc_count' => count($tags_inc)]);
-        $query = $this->em()->createQuery($queryString);
-        $query->setParameters(['disq_ids' => ipull($subQuery->getResult(DoctrineQuery::HYDRATE_ARRAY), 'disq_id')]);
-        return $query->getResult();
+        $subQuery->setParameters(['disq_inc_ids' => $ids, 'disq_inc_count' => count($ids)]);
+        return $subQuery->getResult(DoctrineQuery::HYDRATE_ARRAY);
     }
 
     public function fetchPostCountsForDiscussions(array $disqs)
