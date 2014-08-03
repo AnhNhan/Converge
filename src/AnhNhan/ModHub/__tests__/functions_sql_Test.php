@@ -15,7 +15,7 @@ class functions_sql_Test extends PHPUnit_Framework_TestCase
 
         $exp = '(t = ?0 OR t = ?1) AND NOT (t = ?2)';
 
-        self::assertEquals($exp, generate_search_prep_stmt_part($data, 't'));
+        self::assertEquals($exp, generate_search_prep_stmt_part($data, 't', SearchType_Any));
     }
 
     public function testBasic2()
@@ -27,6 +27,6 @@ class functions_sql_Test extends PHPUnit_Framework_TestCase
 
         $exp = '(t = ?0 OR t = ?1)';
 
-        self::assertEquals($exp, generate_search_prep_stmt_part($data, 't'));
+        self::assertEquals($exp, generate_search_prep_stmt_part($data, 't', SearchType_Any));
     }
 }

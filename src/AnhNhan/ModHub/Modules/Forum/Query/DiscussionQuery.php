@@ -65,6 +65,7 @@ final class DiscussionQuery extends Query
 
     public function retriveDiscussionsSearchTags(array $tags_inc, array $tags_exc, $limit = null, $offset = null)
     {
+        // TODO: This is wrong. I don't care.
         $sqlChunk = generate_search_prep_stmt_part(array_mergev(array_mergev([
             array_map(function ($x) { return [$x => SearchPrepStmt_Include]; }, $tags_inc),
             array_map(function ($x) { return [$x => SearchPrepStmt_Exclude]; }, $tags_exc),

@@ -46,7 +46,7 @@ function generate_search_prep_stmt_part(array $set, $name, $search_type = Search
 
     if ($incs)
     {
-        $query = '(' . implode(' OR ', $incs) . ')';
+        $query = '(' . implode($joiner_pred, $incs) . ')';
     }
     if ($excs)
     {
@@ -54,7 +54,7 @@ function generate_search_prep_stmt_part(array $set, $name, $search_type = Search
         {
             $query .= ' AND NOT ';
         }
-        $query .= '(' . implode(' OR ', $excs) . ')';
+        $query .= '(' . implode($joiner_pred, $excs) . ')';
     }
 
     return $query;
