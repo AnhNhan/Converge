@@ -1,5 +1,5 @@
 <?php
-namespace Storage\Types;
+namespace AnhNhan\ModHub\Storage\Types;
 
 use AnhNhan\ModHub\Storage\Types\UID;
 use AnhNhan\ModHub\Test\TestCase;
@@ -41,8 +41,8 @@ class UIDTest extends \PHPUnit_Framework_TestCase
     public function provideValidUIDs()
     {
         return array(
-            array("DERP-sdif36ze9v7bg8", "DERP", "sdif36ze9v7bg8"),
-            array("XXXX-sp3nhgdr2mdolk", "XXXX", "sp3nhgdr2mdolk"),
+            array("DERP-sdif36zeer9v7bg8", "DERP", "sdif36zeer9v7bg8"),
+            array("XXXX-sp3nhgdr2mdseolk", "XXXX", "sp3nhgdr2mdseolk"),
         );
     }
 
@@ -68,8 +68,8 @@ class UIDTest extends \PHPUnit_Framework_TestCase
     public function provideInvalidUIDs()
     {
         return array(
-            array("DERPX-sdif36ze9v7bg8", "DERPX", "sdif36ze9v7bg8", "Type should only be 4 characters"),
-            array("XXXX-sp3nhgdr2mdolk2", "XXXX", "sp3nhgdr2mdolk2", "Random id part should only be 14 characters"),
+            array("DERPX-sdif36zeer9v7bg8", "DERPX", "sdif36zeer9v7bg8", "Type should only be 4 characters"),
+            array("XXXX-sp3nhgdrdr2mdolk2", "XXXX", "sp3nhgdrdr2mdolk2", "Random id part should only be 14 characters"),
         );
     }
 
