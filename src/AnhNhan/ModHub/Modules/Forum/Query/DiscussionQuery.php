@@ -14,6 +14,7 @@ final class DiscussionQuery extends Query
 {
     const ENTITY_DISCUSSION = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Discussion";
     const ENTITY_DISCUSSION_XACT = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\DiscussionTransaction";
+    const ENTITY_DISCUSSION_TAG = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\DiscussionTag";
     const ENTITY_POST = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\Post";
     const ENTITY_POST_XACT = "AnhNhan\\ModHub\\Modules\\Forum\\Storage\\PostTransaction";
 
@@ -63,17 +64,29 @@ final class DiscussionQuery extends Query
         return $query->getResult();
     }
 
-    public function retriveDiscussionsSearchTags(array $tags_inc, array $tags_exc, $limit = null, $offset = null)
+    public function retrieveDiscussionsSearchTags(array $tags_inc, array $tags_exc, $limit = null, $offset = null)
     {
-        // TODO: This is wrong. I don't care.
-        $sqlChunk = generate_search_prep_stmt_part(array_mergev(array_mergev([
-            array_map(function ($x) { return [$x => SearchPrepStmt_Include]; }, $tags_inc),
-            array_map(function ($x) { return [$x => SearchPrepStmt_Exclude]; }, $tags_exc),
-        ])), "dt.t_id");
+        if ($tags_exc)
+        {
+            throw new \Exception("Tag exclusions are not supported yet.");
+        }
+
         $eDisq = self::ENTITY_DISCUSSION;
-        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt WHERE " . $sqlChunk . " ORDER BY d.lastActivity DESC";
+        $eDisqTag = self::ENTITY_DISCUSSION_TAG;
+        $queryString = "SELECT d, dt
+            FROM {$eDisq} d
+                JOIN d.tags dt
+            WHERE d.id IN (
+                SELECT _dt.disq
+                FROM {$eDisqTag} _dt
+                WHERE _dt.t_id IN (:disq_inc_ids)
+                GROUP BY _dt.disq
+                HAVING COUNT(_dt.t_id) >= :disq_inc_count
+            )
+            ORDER BY d.lastActivity DESC
+        ";
         $query = $this->em()->createQuery($queryString);
-        $query->setParameters(array_merge($tags_inc, $tags_exc));
+        $query->setParameters(['disq_inc_ids' => $tags_inc, 'disq_inc_count' => count($tags_inc)]);
         return $query->getResult();
     }
 

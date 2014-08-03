@@ -59,7 +59,7 @@ final class SearchDiscussion extends Search
         $forumApp = $this->app->getService('app.list')->app('forum');
         $query  = new DiscussionQuery($forumApp->getEntityManager());
 
-        $disqs = $query->retriveDiscussionsSearchTags($tagIdInc, $tagIdExc);
+        $disqs = $query->retrieveDiscussionsSearchTags($tagIdInc, $tagIdExc);
         $result_set = mpull($disqs, 'uid');
         return $result_set;
     }
