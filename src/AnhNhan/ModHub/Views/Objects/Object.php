@@ -10,7 +10,9 @@ class Object extends AbstractObject
 {
     private $headline;
     private $headHref;
+    private $byline;
     private $attributes = array();
+    private $details = array();
     private $body;
 
     public function setHeadline($headline)
@@ -22,6 +24,12 @@ class Object extends AbstractObject
     public function setHeadHref($href)
     {
         $this->headHref = $href;
+        return $this;
+    }
+
+    public function setByLine($byline)
+    {
+        $this->byline = $byline;
         return $this;
     }
 
@@ -37,6 +45,12 @@ class Object extends AbstractObject
         return $this;
     }
 
+    public function addDetail($detail)
+    {
+        $this->details[] = $detail;
+        return $this;
+    }
+
     public function setBody($body)
     {
         $this->body = $body;
@@ -47,6 +61,18 @@ class Object extends AbstractObject
     {
         $container = ModHub\ht('div')->addClass('objects-object-container');
 
+        if ($this->details)
+        {
+            $detailContainer = div('objects-object-details');
+            foreach ($this->details as $detail)
+            {
+                $detailContainer->appendContent(
+                    div('objects-object-detail', $detail)
+                );
+            }
+            $container->appendContent($detailContainer);
+        }
+
         $headline = ModHub\ht('div')->addClass('objects-object-title');
         $headlineClass = 'objects-object-title';
         if ($this->headHref) {
@@ -56,6 +82,13 @@ class Object extends AbstractObject
             $headline = ModHub\ht('div', $this->headline)->addClass($headlineClass);
         }
         $container->appendContent($headline);
+
+        if ($this->byline)
+        {
+            $container->appendContent(
+                div('objects-object-byline', $this->byline)
+            );
+        }
 
         if ($this->attributes) {
             $attributes = array_interleave(

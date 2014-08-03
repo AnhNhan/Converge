@@ -5,6 +5,8 @@ use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\Tag\Views\TagView;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use AnhNhan\ModHub\Views\Objects;
+
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
@@ -52,7 +54,38 @@ final class GenericStyles extends AbstractExample
         $this->buildButtons($buttons, $this->button_sizes, $this->button_colors);
         $this->buildButtons($buttons, ['disabled'], $this->button_colors, true);
 
+        $container->push($listing = div()->appendContent(h2('Object Listing')));
+        $this->buildObjectListing($listing);
+
         return $container;
+    }
+
+    private function buildObjectListing($container)
+    {
+        $container->appendContent($listing1 = new Objects\Listing);
+        $listing1
+            ->setTitle('Title here.')
+            ->addObject(id(new Objects\Object)
+                ->setHeadline('Big news')
+                ->addAttribute('some attribute')
+                ->addAttribute('other things')
+            )
+            ->addObject(id(new Objects\Object)
+                ->setHeadline('Big news')
+                ->addAttribute('some attribute')
+                ->addAttribute('other things')
+                ->addDetail('1st April 2015')
+                ->addDetail('by Nyan Cat')
+            )
+            ->addObject(id(new Objects\Object)
+                ->setHeadline('Important news')
+                ->setByLine('very important subtitle')
+                ->addAttribute('foo')
+                ->addAttribute('bar')
+                ->addDetail('1st April 2015')
+                ->addDetail('by Nyan Cat')
+            )
+        ;
     }
 
     private function buildTags($container, array $tag_colors)
