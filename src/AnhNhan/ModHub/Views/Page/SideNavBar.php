@@ -18,6 +18,11 @@ final class SideNavBar extends AbstractView
         $items = array(
             array(
                 'text' => 'dash',
+                'icon' => 'android-storage',
+                'href' => '/dash/',
+            ),
+            array(
+                'text' => 'listing',
                 'icon' => 'navicon-round',
                 'href' => '/disq/',
                 'backbone' => true,
