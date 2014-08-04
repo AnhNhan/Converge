@@ -26,6 +26,18 @@ class ForumObject extends Object
         return $this;
     }
 
+    public function addTagObject(Tag $tag)
+    {
+        $this->addTagLabel($tag->label, $tag->color);
+        return $this;
+    }
+
+    public function addTagLabel($label, $color)
+    {
+        $this->addTag(new TagView($label, $color));
+        return $this;
+    }
+
     public function postCount($postCount = null) {
         if ($postCount === null) {
             return $this->postCount;

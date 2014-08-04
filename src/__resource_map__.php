@@ -33,6 +33,12 @@ return array(
       "hash" => "7e785a2fb03a9e67ab4b1d552bcc9b52",
       "orig" => "b4c6cf472f374aa4ff6e06466482e376",
     ),
+    "application-front-dashboard" => array(
+      "name" => "application-front-dashboard",
+      "path" => "application/front/dashboard.less",
+      "hash" => "ba588b84eaba95cb205cacd0ef9a4bf9",
+      "orig" => "efc761e28888684b67e32b71173b2adc",
+    ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
       "path" => "application/role/listing.less",
@@ -180,8 +186,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "77728e267cf1e9d57e4fda4c6e09e7fd",
-      "orig" => "525645861735c33f558a40716e396153",
+      "hash" => "d74e4c141bf7239f5aeb926f7b42c3d8",
+      "orig" => "f2dd0228981832671d7a4840f9af8c7b",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -210,8 +216,8 @@ return array(
     "layout-objects" => array(
       "name" => "layout-objects",
       "path" => "layout/objects.less",
-      "hash" => "fd432affb5909c771ba3947d5d5829c7",
-      "orig" => "c729bc7518565c3503ebe63241414906",
+      "hash" => "86ecc9cf3de159d3c5b9e6cd43d8dae8",
+      "orig" => "2b4be7febaeab2ac71c91f35312dfbd1",
     ),
     "layout-panel-panel" => array(
       "name" => "layout-panel-panel",
@@ -560,7 +566,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "itpz7qwp",
+      "hash" => "wrpb6nsq",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -640,7 +646,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "c781b30326c98bc8a441bee552317e16",
+      "hash" => "71334e12a4685d1aacd44eb8a2870244",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -663,12 +669,13 @@ return array(
         "external-textext-textext-plugin-prompt" => "0867b1ef4abb81620ff028104d0c26fe",
         "external-textext-textext-plugin-tags" => "ea7bc4001940997eaee5e66b4d4bfa95",
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
+        "application-front-dashboard" => "ba588b84eaba95cb205cacd0ef9a4bf9",
         "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
-        "layout-core" => "77728e267cf1e9d57e4fda4c6e09e7fd",
+        "layout-core" => "d74e4c141bf7239f5aeb926f7b42c3d8",
         "layout-form" => "fb4b1181a447284f7a5012ef9a6d27ca",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-buttons" => "5ee856a9de716b19ebf40b5ee8daf105",
-        "layout-objects" => "fd432affb5909c771ba3947d5d5829c7",
+        "layout-objects" => "86ecc9cf3de159d3c5b9e6cd43d8dae8",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",
         "layout-panel-panel" => "fb0fbbcf4841f5b76d5cf19aa756926a",
         "layout-tag-tag" => "dbe1d18e5b233f8b3ec81c1859291ad1",

@@ -24,13 +24,22 @@ final class FrontApplication extends BaseApplication
     public function getRoutes()
     {
         return array(
-            new Route("Std-route", "/", $this),
+            new Route("std-route", "/", $this),
+            new Route("dash-route", "/dash", $this),
         );
     }
 
     public function routeToController(Request $request)
     {
-        // Doing it lazy ;)
-        return new Controllers\StandardFrontController($this);
+        switch ($request->attributes->get("route-name")) {
+            case "std-route":
+                return new Controllers\StandardFrontController($this);
+                break;
+            case "dash-route":
+                return new Controllers\Dashboard($this);
+                break;
+        }
+
+        return null;
     }
 }
