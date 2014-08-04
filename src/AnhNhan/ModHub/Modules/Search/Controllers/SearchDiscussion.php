@@ -52,6 +52,7 @@ final class SearchDiscussion extends Search
 
         $tagIdInc = $request->query->get('tid_inc', []);
         $tagIdExc = $request->query->get('tid_exc', []);
+        $limit = $request->query->get('limit', 20);
 
         assert(is_array($tagIdInc));
         assert(is_array($tagIdExc));
@@ -59,7 +60,7 @@ final class SearchDiscussion extends Search
         $forumApp = $this->app->getService('app.list')->app('forum');
         $query  = new DiscussionQuery($forumApp->getEntityManager());
 
-        $disqs = $query->retrieveDiscussionsSearchTags($tagIdInc, $tagIdExc);
+        $disqs = $query->retrieveDiscussionsSearchTags($tagIdInc, $tagIdExc, $limit);
         $result_set = mpull($disqs, 'uid');
         return $result_set;
     }
