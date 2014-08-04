@@ -29,9 +29,13 @@ final class Dashboard extends BaseApplicationController
             ['caw', 'sotp'],
             ['staff-only', 'sotp'],
             ['staff-only', 'caw'],
-            ['bug'],
-            ['application-review'],
+            ['bug', 'caw'],
+            ['bug', 'sotp'],
+            ['homefront', 'playtesting'],
+            ['caw', 'unsc'],
             ['news', 'caw'],
+            ['news', 'sotp'],
+            ['news', 'homefront'],
         ];
 
         $grid = new Grid;
@@ -39,11 +43,26 @@ final class Dashboard extends BaseApplicationController
         $row = $grid->row();
         $container->push($grid);
 
+        $big_tags = mpull($this->lookup_ids_for_tag_names(array_mergev($dash_panel_tags)), null, 'label');
+        $big_disqs = [];
+
+        $dash_panel_tags2 = [];
         foreach ($dash_panel_tags as $tag_set)
         {
-            $tags = $this->lookup_ids_for_tag_names($tag_set);
+            $tags = array_values(array_select_keys($big_tags, $tag_set));
             $disq_ids = $this->get_disq_ids_for_tags(mpull($tags, 'uid'));
-            $result = $this->fetchDiscussions($disq_ids);
+            $dash_panel_disqs[] = $disq_ids;
+        }
+
+        $forum_query = $this->buildForumQuery();
+        $big_disqs = mpull($this->fetchDiscussions(array_mergev($dash_panel_disqs), null, null, $forum_query), null, 'uid');
+        $forum_query->fetchExternalsForDiscussions($big_disqs);
+        $post_counts = $forum_query->fetchPostCountsForDiscussions(array_values($big_disqs));
+
+        foreach ($dash_panel_tags as $index => $tag_set)
+        {
+            $tags = array_values(array_select_keys($big_tags, $tag_set));
+            $result = array_select_keys($big_disqs, $dash_panel_disqs[$index]);
             $panelForumListing = id(new PaneledForumListing)
                 ->setTitle(ModHub\ht('h3', 'Forum Listing'))
             ;
@@ -52,12 +71,12 @@ final class Dashboard extends BaseApplicationController
                 $panelForumListing->addTag($t);
             }
 
-            foreach ($result['disqs'] as $discussion) {
+            foreach ($result as $discussion) {
                 $object = new ForumObject;
                 $object
                     ->setHeadline($discussion->label)
                     ->setHeadHref("/disq/" . $discussion->cleanId)
-                    ->postCount(idx($result['post_counts'], $discussion->uid)["postcount"]);
+                    ->postCount(idx($post_counts, $discussion->uid)["postcount"]);
 
                 $tags = mpull($discussion->tags->toArray(), "tag");
                 $tags = msort($tags, "label");
@@ -93,11 +112,12 @@ final class Dashboard extends BaseApplicationController
         ;
     }
 
-    private function get_disq_ids_for_tags(array $tids)
+    private function get_disq_ids_for_tags(array $tids, $limit = null)
     {
         $request = new Request;
         $request->server->set('REQUEST_URI', 'search/disq/by-tag');
         $request->query->set('tid_inc', $tids);
+        $request->query->set('limit', $limit);
 
         $kernel = $this->app->getService('http_kernel');
         $response = $kernel->handle($request);
@@ -114,12 +134,10 @@ final class Dashboard extends BaseApplicationController
         return $query;
     }
 
-    private function fetchDiscussions(array $disq_ids, $limit = 10, $offset = null, $query = null)
+    private function fetchDiscussions(array $disq_ids, $limit = 10, $offset = null, DiscussionQuery $query = null)
     {
         $query = $query ?: $this->buildForumQuery();
         $disqs = $query->retrieveDiscussionForIDs($disq_ids, $limit, $offset);
-        $query->fetchExternalsForDiscussions($disqs);
-        $post_counts = $query->fetchPostCountsForDiscussions($disqs);
-        return ['disqs' => $disqs, 'post_counts' => $post_counts];
+        return $disqs;
     }
 }
