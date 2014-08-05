@@ -100,4 +100,14 @@ abstract class BaseApplicationController
     {
         return $this->app->getService("stopwatch");
     }
+
+    protected function internalSubRequest($uri, array $params = [])
+    {
+        $request = new Request;
+        $request->server->set('REQUEST_URI', $uri);
+        $request->query->replace($params);
+
+        $kernel = $this->app->getService('http_kernel');
+        return $kernel->handle($request);
+    }
 }

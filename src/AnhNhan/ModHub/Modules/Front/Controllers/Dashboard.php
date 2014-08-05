@@ -114,13 +114,10 @@ final class Dashboard extends BaseApplicationController
 
     private function get_disq_ids_for_tags(array $tids, $limit = null)
     {
-        $request = new Request;
-        $request->server->set('REQUEST_URI', 'search/disq/by-tag');
-        $request->query->set('tid_inc', $tids);
-        $request->query->set('limit', $limit);
-
-        $kernel = $this->app->getService('http_kernel');
-        $response = $kernel->handle($request);
+        $response = $this->internalSubRequest('search/disq/by-tag', [
+            'tid_inc' => $tids,
+            'limit'   => $limit,
+        ]);
         $contents = (array) json_decode($response->getContent());
         assert($contents['status'] == 'ok');
         return $contents['payloads'];
