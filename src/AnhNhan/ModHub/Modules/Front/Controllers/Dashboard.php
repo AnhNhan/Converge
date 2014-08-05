@@ -52,6 +52,7 @@ final class Dashboard extends BaseApplicationController
             $tags = array_values(array_select_keys($big_tags, $tag_set));
             $disq_ids = $this->get_disq_ids_for_tags(mpull($tags, 'uid'));
             $dash_panel_disqs[] = $disq_ids;
+            $dash_panel_tags2[] = $tags;
         }
 
         $forum_query = $this->buildForumQuery();
@@ -59,9 +60,8 @@ final class Dashboard extends BaseApplicationController
         $forum_query->fetchExternalsForDiscussions($big_disqs);
         $post_counts = $forum_query->fetchPostCountsForDiscussions(array_values($big_disqs));
 
-        foreach ($dash_panel_tags as $index => $tag_set)
+        foreach ($dash_panel_tags2 as $index => $tags)
         {
-            $tags = array_values(array_select_keys($big_tags, $tag_set));
             $result = array_select_keys($big_disqs, $dash_panel_disqs[$index]);
             $panelForumListing = id(new PaneledForumListing)
                 ->setTitle(ModHub\ht('h3', 'Forum Listing'))
