@@ -13,8 +13,6 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 class UserTransaction extends TransactionEntity
 {
     const TYPE_EDIT_PASSWORD = "user.edit.password";
-    const TYPE_EDIT_DISPNAME = "user.edit.dispname";
-    const TYPE_EDIT_IMAGE    = "user.edit.image";
     const TYPE_ADD_ROLE      = "user.add.role";
     const TYPE_REMOVE_ROLE   = "user.remove.role";
     const TYPE_ADD_EMAIL      = "user.add.email";
@@ -26,7 +24,7 @@ class UserTransaction extends TransactionEntity
     protected $object;
 
     /**
-     * @return Role
+     * @return User
      */
     public function user()
     {

@@ -17,67 +17,56 @@ use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
  * }
  * }
  */
-class Email extends EntityDefinition implements TransactionAwareEntityInterface
+class Email extends EntityDefinition
 {
     /**
      * @Id
      * @Column(type="integer")
      * @GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @Column(type="string", unique=true)
      */
-    private $uid;
-
-    /**
-     * @Column(type="string", unique=true)
-     */
-    private $email;
+    public $email;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="emails")
      */
-    private $user;
+    public $user;
 
     /**
      * @Column(type="boolean")
      */
-    private $verified = false;
+    public $is_verified = false;
 
     /**
      * @Column(type="boolean")
      */
-    private $primary = false;
+    public $is_primary = false;
 
     /**
      * @Column(type="boolean")
      */
-    private $deleted = false;
+    public $is_deleted = false;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      */
-    private $verificationCode;
+    public $verificationCode;
 
     /**
      * @Column(type="datetime")
      * @var \DateTime
      */
-    private $createdAt;
+    public $createdAt;
 
     /**
      * @Column(type="datetime")
      * @var \DateTime
      */
-    private $modifiedAt;
-
-    /**
-     * @OneToMany(targetEntity="UserTransaction", mappedBy="object", fetch="LAZY")
-     * @OrderBy({"createdAt"="ASC"})
-     */
-    private $xacts;
+    public $modifiedAt;
 
     public function __construct()
     {
@@ -85,37 +74,8 @@ class Email extends EntityDefinition implements TransactionAwareEntityInterface
         $this->modifiedAt = new \DateTime;
     }
 
-    public function uid()
-    {
-        return $this->uid;
-    }
-
-    public function createdAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function modifiedAt()
-    {
-        return $this->modifiedAt;
-    }
-
-    public function updateModifiedAt()
-    {
-        $this->modifiedAt = new \DateTime;
-        return $this;
-    }
-
     public function getUIDType()
     {
-        return "MAIL";
-    }
-
-    /**
-     * @return \Doctrine\ORM\PersistentCollection
-     */
-    public function transactions()
-    {
-        return $this->xacts;
+        return "EADR";
     }
 }

@@ -18,7 +18,7 @@ class HeaderView extends AbstractView
         $header_content
             ->appendContent(
                 div("nav-user")
-                    ->appendContent(div("nav-user-img", mh\ht("img")->addOption("src", User::DEFAULT_PROFILE_IMAGE)))
+                    ->appendContent(div("nav-user-img", mh\ht("img")->addOption("src", "/images/profile/default.png")))
                     ->appendContent(
                         div("nav-user-box")
                             ->appendContent(div("nav-user-box-name", "@FooBar"))

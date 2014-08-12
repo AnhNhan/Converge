@@ -9,6 +9,7 @@ use AnhNhan\ModHub\Storage\Query;
 final class UserQuery extends Query
 {
     const ENTITY_USER = 'AnhNhan\ModHub\Modules\User\Storage\User';
+    const ENTITY_EMAIL = 'AnhNhan\ModHub\Modules\User\Storage\Email';
 
     /**
      * @return \AnhNhan\ModHub\Modules\User\Storage\User
@@ -43,5 +44,29 @@ final class UserQuery extends Query
 
         $users = $userRepo->findBy(array("username" => $names), array(), $limit, $offset);
         return $users;
+    }
+
+    public function retrieveUsersForCanonicalNames(array $names, $limit = null, $offset = null)
+    {
+        $userRepo = $this->repository(self::ENTITY_USER);
+
+        $users = $userRepo->findBy(array("name_canon" => $names), array(), $limit, $offset);
+        return $users;
+    }
+
+    // *************************************************************************
+    //                                EMAIL
+    // *************************************************************************
+
+    public function retrieveEmailsForUIDs(array $ids, $limit = null, $offset = null)
+    {
+        return $this->repository(self::ENTITY_EMAIL)
+            ->findBy(array("uid" => $ids), array("email" => "ASC"), $limit, $offset);
+    }
+
+    public function retrieveEmailsForNames(array $names, $limit = null, $offset = null)
+    {
+        return $this->repository(self::ENTITY_EMAIL)
+            ->findBy(array("email" => $names), array("email" => "ASC"), $limit, $offset);
     }
 }

@@ -29,9 +29,14 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
     const USER_UID_NONE = "USER-XXXX-xxxxxxxxxxxxxx";
 
     /**
-     * @Column(type="string", unique=true)
+     * @Column(type="string")
      */
     private $username;
+
+    /**
+     * @Column(type="string", unique=true)
+     */
+    private $name_canon;
 
     /**
      * @Column(type="string")
@@ -40,17 +45,14 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     const DEFAULT_SALT_LENGTH = 22;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      */
     private $salt;
 
-    const DEFAULT_PROFILE_IMAGE = "/images/profile/default.png";
     /**
-     * TODO: Have this point to a file object
-     *
-     * @Column(type="string")
+     * @Column(type="string", unique=true)
      */
-    private $profileImagePath;
+    private $primary_email;
 
     /**
      * @Column(type="datetime")
@@ -106,6 +108,16 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
         return $this->username;
     }
 
+    public function getCanonicalName()
+    {
+        return $this->name_canon;
+    }
+
+    public static function to_canonical($name)
+    {
+        return strtolower(preg_replace('/\\W/', '', $name));
+    }
+
     public function name()
     {
         return $this->dispname;
@@ -147,16 +159,6 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
         return $this;
     }
 
-    public function profileImageRawPath()
-    {
-        return $this->profileImagePath ?: self::DEFAULT_PROFILE_IMAGE;
-    }
-
-    public function profileImage()
-    {
-        // TODO: Once we have file objects, return them here
-    }
-
     public function getGravatarImagePath($size = null)
     {
         return static::generateGravatarImagePath($this->uid, $size); // Uid is tmp until we have emails going
@@ -167,12 +169,6 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
         $hash = md5(strtolower(trim($email)));
         $url = urisprintf("//www.gravatar.com/avatar/%p?d=retro&s=%d", $hash, $size ? $size : "");
         return $url;
-    }
-
-    public function setProfileImageRawPath($path)
-    {
-        $this->profileImagePath = $path;
-        return $this;
     }
 
     public function getRoles()
