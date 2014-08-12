@@ -3,6 +3,7 @@ namespace AnhNhan\ModHub\Web\Application;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
@@ -108,6 +109,6 @@ abstract class BaseApplicationController
         $request->query->replace($params);
 
         $kernel = $this->app->getService('http_kernel');
-        return $kernel->handle($request);
+        return $kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
     }
 }
