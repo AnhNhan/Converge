@@ -72,28 +72,6 @@ $randomUser = function () use ($users) {
     return $users[array_rand($users)];
 };
 
-/*
-$tags = array();
-for ($ii = 0; $ii < $num_tags; $ii++) {
-    $tag = new Tag;
-    $editor = TagTransactionEditor::create($tagEm)
-        ->setEntity($tag)
-        ->setActor($randomUser())
-        ->setFlushBehaviour(TagTransactionEditor::FLUSH_DONT_FLUSH)
-        ->addTransaction(
-            TagTransaction::create(TransactionEntity::TYPE_CREATE)
-        )
-        ->addTransaction(
-            TagTransaction::create(TagTransaction::TYPE_EDIT_LABEL, $faker->unique()->city)
-        )
-    ;
-    $editor->apply();
-
-    $tags[] = $tag;
-}
-$tagEm->flush();
-*/
-
 $tags = ipull($tagEm->createQuery("SELECT t.uid FROM AnhNhan\ModHub\Modules\Tag\Storage\Tag t")->getResult(DoctrineQuery::HYDRATE_ARRAY), 'uid');
 
 $randomTag = function () use ($tags) {
