@@ -81,11 +81,27 @@ final class UserRegisterController extends AbstractUserController
         $payload->setPayloadContents($container);
         $payload->setTitle("Join us!");
 
+        $panel = null;
+        if ($errors) {
+            $panel = new Panel;
+            $panel->setHeader(h2("Oops, something looks wrong"));
+            $panel->append(mh\ht("p", "We can't continue until these issue(s) have been resolved:"));
+
+            $list = mh\ht("ul");
+            foreach ($errors as $e) {
+                $list->appendContent(mh\ht("li", $e));
+            }
+            $panel->append($list);
+
+            //$container->push($panel);
+        }
+
         // TODO: Convert this into actual code
         $form = mh\hsprintf(<<<EOT
 <div class="width6" style="margin-left: 25%%;">
 <h1>Heysa!</h1>
 <h2>We've been waiting for you! <small>Let's get started.</small></h2>
+{$panel}
 <form class="form form-dual-column user-join-form" action="/join" method="POST">
     <div class="form-control-container">
         <div class="form-control-label">Email</div>
