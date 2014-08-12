@@ -39,6 +39,14 @@ class HeaderView extends AbstractView
             )
         ;
 
+        $header_content
+            ->appendContent(
+                div("nav-join")
+                    ->appendContent(a("Join Us!", "join")->addClass("btn btn-info"))
+                    ->appendContent(a("Login", "login")->addClass("btn btn-primary"))
+            )
+        ;
+
         $header_link = a(null, "/", true)
             ->appendContent(h2("hMod Hub"))
             ->appendContent(h4("A Great Journey is to be pursued. Greatness Awaits."))
