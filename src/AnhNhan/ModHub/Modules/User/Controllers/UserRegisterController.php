@@ -59,10 +59,9 @@ final class UserRegisterController extends AbstractUserController
             {
                 $errors[] = "Your username is too long. Max 60 letters, please.";
             }
-            // Simple pw constraint - don't make it too elaborate
-            if (strlen($password) < 6)
+            if (stripos($username, 'bot') !== false)
             {
-                $errors[] = "Trust us, you want to set a longer password.";
+                $errors[] = "You ain't a bot. Please choose a different name.";
             }
 
             $em = $this->app->getEntityManager();
@@ -82,6 +81,12 @@ final class UserRegisterController extends AbstractUserController
                     $errors[] = "Another user already has this email occupied.";
                 }
             //}
+
+            // Simple pw constraint - don't make it too elaborate
+            if (strlen($password) < 6)
+            {
+                $errors[] = "Trust us, you want to set a longer password.";
+            }
 
             if (!$errors)
             {
@@ -189,15 +194,15 @@ final class UserRegisterController extends AbstractUserController
 <form class="form form-dual-column user-join-form" action="/join" method="POST">
     <div class="form-control-container">
         <div class="form-control-label">Email</div>
-        <div class="form-control-element form-control-grouped"><span class="form-control-extra">@</span><input class="form-control form-control-text" name="email" value="{$email}" type="text" placeholder="someone@example.com"></div>
+        <div class="form-control-element form-control-grouped"><span class="form-control-extra"><i style="font-size: 1.2em;" class="ion-at"></i></span><input class="form-control form-control-text" name="email" value="{$email}" type="text" placeholder="someone@example.com"></div>
     </div>
     <div class="form-control-container">
         <div class="form-control-label">Username</div>
-        <div class="form-control-element form-control-grouped"><input class="form-control form-control-text" name="username" value="{$username}" type="text" placeholder="SomeName"></div>
+        <div class="form-control-element form-control-grouped"><span class="form-control-extra"><i style="font-size: 1.2em;" class="ion-person"></i></span><input class="form-control form-control-text" name="username" value="{$username}" type="text" placeholder="SomeName"></div>
     </div>
     <div class="form-control-container">
         <div class="form-control-label">Password</div>
-        <div class="form-control-element form-control-grouped"><input class="form-control form-control-text" name="password" value="{$password}" type="password"></div>
+        <div class="form-control-element form-control-grouped"><span class="form-control-extra">&nbsp;<i style="font-size: 1.em;" class="ion-key"></i>&nbsp;</span><input class="form-control form-control-text" name="password" value="{$password}" type="password"></div>
     </div>
     <div class="form-control-container form-control-submit">
         <a href="/" class="btn btn-default"><i class="ion-close"></i> Cancel</a>
