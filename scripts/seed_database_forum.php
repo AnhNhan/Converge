@@ -16,7 +16,11 @@ use AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction;
 use AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor;
 
 use AnhNhan\ModHub\Modules\User\UserApplication;
+use AnhNhan\ModHub\Modules\User\Query\RoleQuery;
+use AnhNhan\ModHub\Modules\User\Storage\Email;
 use AnhNhan\ModHub\Modules\User\Storage\User;
+use AnhNhan\ModHub\Modules\User\Storage\UserTransaction;
+use AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor;
 
 use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
 use AnhNhan\ModHub\Storage\Types\UID;
@@ -44,8 +48,8 @@ $faker = \Faker\Factory::create();
 $stopwatch = $container->get("stopwatch");
 
 $num_tags = 12;
-$num_discussions = 15;
-$num_posts = 200;
+$num_discussions = 50;
+$num_posts = 800;
 $num_users = 40;
 
 function generateContent($faker)
@@ -63,9 +67,74 @@ function generateContent($faker)
 
 $timer = $stopwatch->start("db-seeding");
 
+$roleQuery = new RoleQuery($userEm);
+$role      = idx($roleQuery->retrieveRolesForNames(['ROLE_USER'], 1), 0);
+if (!$role)
+{
+    throw new \LogicException('Something\'s terribly wrong here. Seeded default roles?');
+}
+
 $users = array();
 for ($ii = 0; $ii < $num_users; $ii++) {
-    $users[] = UID::generate("USER");
+    try {
+        $obj_user = new User;
+        $obj_email = new Email;
+
+        $username = $faker->unique->userName;
+        $password = 'dummypw';
+        $email    = $faker->unique->email;
+
+        // Just saving us some elaborated code
+        // TODO: Do this properly
+        $obj_email->email = $email;
+        $obj_email->user  = $obj_user;
+        $obj_email->is_verified = true;
+        $obj_email->is_primary  = true;
+
+        // Set primary email of user object
+        $userReflProp = $userEm->getClassMetadata(get_class($obj_user))
+            ->reflClass->getProperty('primary_email');
+        $userReflProp->setAccessible(true);
+        $userReflProp->setValue(
+            $obj_user, $email
+        );
+
+        $salt = User::generateSalt();
+        $pwEncoderFactory = $userApp->getService('security.encoder.factory');
+        $pwEncoder        = $pwEncoderFactory->getEncoder($obj_user);
+        $pw               = $pwEncoder->encodePassword($password, $salt);
+        $xact_pw          = $salt . UserTransactionEditor::SALT_PW_SEPARATOR . $pw;
+
+        $editor = UserTransactionEditor::create($userEm)
+            ->setActor(User::USER_UID_NONE)
+            ->setEntity($obj_user)
+        ;
+
+        $editor
+            ->addTransaction(
+                UserTransaction::create(TransactionEntity::TYPE_CREATE, $username)
+            )
+            ->addTransaction(
+                UserTransaction::create(UserTransaction::TYPE_EDIT_PASSWORD, $xact_pw)
+            )
+            ->addTransaction(
+                UserTransaction::create(UserTransaction::TYPE_ADD_EMAIL, $email)
+            )
+            ->addTransaction(
+                UserTransaction::create(UserTransaction::TYPE_ADD_ROLE, $role->uid)
+            )
+        ;
+
+        $editor->apply();
+        $userEm->flush();
+        $userEm->persist($obj_email);
+        $userEm->flush();
+        $users[] = $obj_user->uid;
+    } catch (Exception $e) {
+        echo "F";
+        //throw $e;
+        // <ignore>
+    }
 }
 
 $randomUser = function () use ($users) {
