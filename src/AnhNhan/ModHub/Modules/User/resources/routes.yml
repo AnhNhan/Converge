@@ -25,3 +25,6 @@ routes:
 
   - pattern: join
     route-name: join
+
+  - pattern: logout
+    route-name: logout

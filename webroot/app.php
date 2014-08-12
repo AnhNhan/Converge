@@ -17,7 +17,20 @@ $container = \AnhNhan\ModHub\Web\Core::loadBootstrappedSfDIContainer();
 $stopwatch = $container->get('stopwatch');
 $stopwatch->start('page-loadtime');
 
+$session = $container->get('session');
+$session->start();
+
+if ($session->has('_security_token'))
+{
+    $token = $session->get('_security_token');
+    //$userEm = $container->get('application.user.entitymanager');
+    //$token->setUser($userEm->merge($token->getUser()));
+    $security_context = $container->get('security.context');
+    $security_context->setToken($token);
+}
+
 $request = Request::createFromGlobals();
+$request->setSession($session);
 if (ModHub\is_cli()) {
     ModHub\sdx($argv);
     $request->server->set("REQUEST_URI", ModHub\sdx($argv, "/"));

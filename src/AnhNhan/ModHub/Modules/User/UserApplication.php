@@ -34,6 +34,12 @@ class UserApplication extends BaseApplication
                 return new Controllers\RoleListingController($this);
             case "join":
                 return new Controllers\UserRegisterController($this);
+            case "login":
+                return new Controllers\UserLoginForm($this);
+            case "login_check":
+                return new Controllers\UserLoginCheck($this);
+            case "logout":
+                return new Controllers\UserLogout($this);
         }
 
         return null;
