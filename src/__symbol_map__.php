@@ -194,6 +194,10 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/PaneledForumListing.php",
       "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
     ),
+    "AnhNhan\ModHub\Modules\Front\Controllers\Dashboard" => array(
+      "file" => "AnhNhan/ModHub/Modules/Front/Controllers/Dashboard.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    ),
     "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => array(
       "file" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
       "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
@@ -394,10 +398,6 @@ return array(
       "file" => "AnhNhan/ModHub/Modules/User/Providers/UserAuthenticationProvider.php",
       "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
     ),
-    "AnhNhan\ModHub\Modules\User\Query\EmailQuery" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Query/EmailQuery.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Query",
-    ),
     "AnhNhan\ModHub\Modules\User\Query\RoleQuery" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Query/RoleQuery.php",
       "deriv" => "AnhNhan\ModHub\Storage\Query",
@@ -409,9 +409,6 @@ return array(
     "AnhNhan\ModHub\Modules\User\Storage\Email" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Storage/Email.php",
       "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
-      "impls" => array(
-        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
-      ),
     ),
     "AnhNhan\ModHub\Modules\User\Storage\OAuthInfo" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Storage/OAuthInfo.php",
@@ -443,6 +440,10 @@ return array(
     ),
     "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor" => array(
       "file" => "AnhNhan/ModHub/Modules/User/Transaction/RoleTransactionEditor.php",
+      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor" => array(
+      "file" => "AnhNhan/ModHub/Modules/User/Transaction/UserTransactionEditor.php",
       "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
     ),
     "AnhNhan\ModHub\Modules\User\UserApplication" => array(
@@ -582,6 +583,10 @@ return array(
       "file" => "AnhNhan/ModHub/Views/Panel/Panel.php",
       "deriv" => "AnhNhan\ModHub\Views\AbstractView",
     ),
+    "AnhNhan\ModHub\Views\Web\Response\ResponseHtml404" => array(
+      "file" => "AnhNhan/ModHub/Views/Web/Response/ResponseHtml404.php",
+      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+    ),
     "AnhNhan\ModHub\Web\AppRouting" => array(
       "file" => "AnhNhan/ModHub/Web/AppRouting.php",
       "impls" => array(
@@ -677,6 +682,7 @@ return array(
       "AnhNhan\ModHub\Modules\Examples\Controllers\ExampleListing",
       "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
       "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+      "AnhNhan\ModHub\Modules\Front\Controllers\Dashboard",
       "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
       "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
       "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
@@ -727,7 +733,6 @@ return array(
     "AnhNhan\ModHub\Storage\Query" => array(
       "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery",
       "AnhNhan\ModHub\Modules\Tag\TagQuery",
-      "AnhNhan\ModHub\Modules\User\Query\EmailQuery",
       "AnhNhan\ModHub\Modules\User\Query\RoleQuery",
       "AnhNhan\ModHub\Modules\User\Query\UserQuery",
     ),
@@ -759,6 +764,7 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor",
       "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor",
       "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor",
+      "AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor",
     ),
     "League\Fractal\TransformerAbstract" => array(
       "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
@@ -881,12 +887,14 @@ return array(
       "AnhNhan\ModHub\Views\Page\BarePageView",
     ),
     "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
+      "AnhNhan\ModHub\Views\Web\Response\ResponseHtml404",
       "AnhNhan\ModHub\Web\Application\HtmlPayload",
       "AnhNhan\ModHub\Web\Application\JsonPayload",
       "AnhNhan\ModHub\Web\Application\RawHttpPayload",
     ),
     "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
       "AnhNhan\ModHub\Web\Application\HttpPayload",
+      "AnhNhan\ModHub\Views\Web\Response\ResponseHtml404",
       "AnhNhan\ModHub\Web\Application\HtmlPayload",
       "AnhNhan\ModHub\Web\Application\JsonPayload",
       "AnhNhan\ModHub\Web\Application\RawHttpPayload",
@@ -897,7 +905,6 @@ return array(
       "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
       "AnhNhan\ModHub\Modules\Forum\Storage\Post",
       "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
-      "AnhNhan\ModHub\Modules\User\Storage\Email",
       "AnhNhan\ModHub\Modules\User\Storage\Role",
       "AnhNhan\ModHub\Modules\User\Storage\User",
     ),
