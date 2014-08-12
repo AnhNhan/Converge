@@ -173,7 +173,7 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public function getRoles()
     {
-        return $this->roles->toArray();
+        return array_keys($this->roles->toArray());
     }
 
     public function addRole(Role $role)

@@ -1,10 +1,11 @@
 <?php
 namespace AnhNhan\ModHub\Modules\User\Providers;
 
+use AnhNhan\ModHub\Modules\User\Query\UserQuery;
+use AnhNhan\ModHub\Modules\User\Storage\User;
 use AnhNhan\ModHub\Modules\User\UserApplication;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
 
 use Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider as BaseUserAuthenticationProvider;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -21,9 +22,9 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 {
     /**
-     * @var \Doctrine\ORM\EntityRepository
+     * @var UserQuery
      */
-    private $userRepository;
+    private $query;
 
     /**
      * @var \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface
@@ -40,13 +41,12 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 
     public function setEntityManager(EntityManager $em)
     {
-        $this->userRepository = $em->getRepository(self::USER_ENTITY_TYPE_NAME);
-        return $this;
+        return $this->setQuery(new UserQuery($em));
     }
 
-    public function setUserRepository(EntityRepository $repo)
+    public function setQuery(UserQuery $query)
     {
-        $this->userRepository = $repo;
+        $this->query = $query;
         return $this;
     }
 
@@ -58,11 +58,13 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 
     protected function retrieveUser($username, UsernamePasswordToken $token)
     {
-        if (!$this->userRepository) {
-            $this->setUserApplication(new UserApplication);
+        if (!$this->query) {
+            new \LogicException("Can't continue without an query object.");
         }
 
-        $user = $this->userRepository->findOneBy(array("username" => $username));
+        $canon_name = User::to_canonical($username);
+        $_user  = $this->query->retrieveUsersForCanonicalNames([$canon_name], 1);
+        $user = idx($_user, 0);
 
         if ($user === null) {
             throw new UsernameNotFoundException("A user with the name '{$username}' could not be found!");

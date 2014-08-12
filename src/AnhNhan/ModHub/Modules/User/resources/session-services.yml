@@ -17,9 +17,12 @@ services:
     public: false
     arguments:
       - cookie_httponly: true
-      - @session.storage.handler.default
+      #- @session.storage.handler.default
 
   session.default:
     class: Symfony\Component\HttpFoundation\Session\Session
     arguments:
       - @session.storage.default
+
+  session:
+    alias: session.default

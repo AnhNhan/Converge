@@ -1,7 +1,7 @@
 
 parameters:
   security.hide_user_not_found_exception: false
-  security.erase_credentials: false
+  security.erase_credentials: true
   security.always_authenticate: false
   security.class.anonymous: stdClass
   security.class.rememberme: stdClass
@@ -33,7 +33,7 @@ services:
       - "%security.hide_user_not_found_exception%"
     calls:
       - [ setPasswordEncoderFactory, ["@security.encoder.factory"] ]
-      - [ setUserRepository, ["@application.user.repository.user"] ]
+      - [ setEntityManager, ["@application.user.entitymanager"] ]
 
   security.authentication.manager.default:
     class: Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager
@@ -79,3 +79,6 @@ services:
       - "@security.authentication.manager.default"
       - "@security.accessdecision.manager.default"
       - "%security.always_authenticate%"
+
+  security.context:
+    alias: security.context.default
