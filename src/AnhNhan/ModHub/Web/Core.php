@@ -4,6 +4,7 @@ namespace AnhNhan\ModHub\Web;
 use AnhNhan\ModHub;
 use AnhNhan\ModHub\Modules\StaticResources\ResMgr;
 use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
+use AnhNhan\ModHub\Views\Web\Response\ResponseHtml404;
 
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\FileLocator;
@@ -54,11 +55,8 @@ final class Core
      */
     public static function get404Page($page)
     {
-        $payload = new Application\HtmlPayload;
-        $container = new \YamwLibs\Libs\Html\Markup\MarkupContainer;
-        $container->push(ModHub\ht("h1", "Failed to find a controller for '$page'"));
-        $payload->setPayloadContents($container);
-        $payload->setTitle("Page not found");
+        $payload = new ResponseHtml404;
+        $payload->setText("Failed to find a controller for '$page'");
         return $payload;
     }
 

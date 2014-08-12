@@ -128,7 +128,7 @@ final class HttpKernel implements HttpKernelInterface
             throw new \RunTimeException(sprintf("Controller '%s' must return a HTTP payload or response!", get_class($controller)));
         }
 
-        if ($payload instanceof Application\HtmlPayload) {
+        if ($payload instanceof Application\HtmlPayload || method_exists($payload, 'setResMgr')) {
             $payload->setResMgr($resMgr);
         }
 
