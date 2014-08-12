@@ -72,7 +72,7 @@ final class UserTransactionEditor extends TransactionEditor
         // TODO: Put this in some pre-apply validation hook - we're probably terminating a little bit too late here
         if (in_array($transaction->type, array(UserTransaction::TYPE_ADD_ROLE, UserTransaction::TYPE_REMOVE_ROLE))) {
             $roleId = $transaction->type == UserTransaction::TYPE_ADD_ROLE ? $transaction->newValue : $transaction->oldValue;
-            $role = $this->em()->find($entityRole, $roleId);
+            $role = id(new \AnhNhan\ModHub\Modules\User\Query\RoleQuery($this->em()))->retrieveRole($roleId);
             if (!$role) {
                 throw new \Exception("Role {$roleId} does not exist!");
             }

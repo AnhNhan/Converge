@@ -6,6 +6,7 @@ use AnhNhan\ModHub\Modules\User\Storage\User;
 use AnhNhan\ModHub\Modules\User\Storage\UserTransaction;
 use AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor;
 use AnhNhan\ModHub\Modules\User\Storage\Email;
+use AnhNhan\ModHub\Modules\User\Query\RoleQuery;
 use AnhNhan\ModHub\Modules\User\Query\UserQuery;
 use AnhNhan\ModHub\Storage\Transaction\TransactionEditor;
 use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
@@ -108,6 +109,13 @@ final class UserRegisterController extends AbstractUserController
                 $pw               = $pwEncoder->encodePassword($password, $salt);
                 $xact_pw          = $salt . UserTransactionEditor::SALT_PW_SEPARATOR . $pw;
 
+                $roleQuery = new RoleQuery($em);
+                $role      = idx($roleQuery->retrieveRolesForNames(['ROLE_USER'], 1), 0);
+                if (!$role)
+                {
+                    throw new \LogicException('Something\'s terribly wrong here. Seeded default roles?');
+                }
+
                 $editor = UserTransactionEditor::create($em)
                     ->setActor(User::USER_UID_NONE)
                     ->setEntity($obj_user)
@@ -123,6 +131,9 @@ final class UserRegisterController extends AbstractUserController
                     )
                     ->addTransaction(
                         UserTransaction::create(UserTransaction::TYPE_ADD_EMAIL, $email)
+                    )
+                    ->addTransaction(
+                        UserTransaction::create(UserTransaction::TYPE_ADD_ROLE, $role->uid)
                     )
                 ;
 
