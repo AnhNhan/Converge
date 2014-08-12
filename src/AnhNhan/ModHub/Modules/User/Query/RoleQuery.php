@@ -15,9 +15,9 @@ final class RoleQuery extends Query
      */
     public function retrieveRole($id)
     {
-        return $this
+        return idx($this
             ->repository(self::ENTITY_ROLE)
-            ->find($id)
+            ->findBy(array("uid" => $id), array("name" => "ASC"), 1), 0)
         ;
     }
 
