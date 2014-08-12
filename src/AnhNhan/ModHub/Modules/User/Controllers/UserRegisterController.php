@@ -103,7 +103,7 @@ final class UserRegisterController extends AbstractUserController
                     $obj_user, $email
                 );
 
-                $salt = \Filesystem::readRandomCharacters(30);
+                $salt = User::generateSalt();
                 $pwEncoderFactory = $this->app->getService('security.encoder.factory');
                 $pwEncoder        = $pwEncoderFactory->getEncoder($obj_user);
                 $pw               = $pwEncoder->encodePassword($password, $salt);

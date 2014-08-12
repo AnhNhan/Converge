@@ -161,13 +161,13 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public function getGravatarImagePath($size = null)
     {
-        return static::generateGravatarImagePath($this->uid, $size); // Uid is tmp until we have emails going
+        return static::generateGravatarImagePath($this->primary_email, $size);
     }
 
     public static function generateGravatarImagePath($email, $size = null)
     {
         $hash = md5(strtolower(trim($email)));
-        $url = urisprintf("//www.gravatar.com/avatar/%p?d=retro&s=%d", $hash, $size ? $size : "");
+        $url = urisprintf("//www.gravatar.com/avatar/%p?d=retro&s=%d", $hash, $size ? : "");
         return $url;
     }
 

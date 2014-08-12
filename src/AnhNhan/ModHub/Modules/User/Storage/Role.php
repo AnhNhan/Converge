@@ -4,13 +4,11 @@ namespace AnhNhan\ModHub\Modules\User\Storage;
 use AnhNhan\ModHub\Storage\EntityDefinition;
 use AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface;
 
-use Symfony\Component\Security\Core\Role\RoleInterface;
-
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity @Table
  */
-class Role extends EntityDefinition implements RoleInterface, TransactionAwareEntityInterface
+class Role extends EntityDefinition implements TransactionAwareEntityInterface
 {
     /**
      * @Id
@@ -127,11 +125,6 @@ class Role extends EntityDefinition implements RoleInterface, TransactionAwareEn
     public function transactions()
     {
         return $this->xacts;
-    }
-
-    public function getRole()
-    {
-        return $this->name();
     }
 
     public function getUIDType()
