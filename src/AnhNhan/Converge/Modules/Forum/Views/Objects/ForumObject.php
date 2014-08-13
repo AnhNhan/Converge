@@ -60,9 +60,7 @@ class ForumObject extends Object
             $that->addAttributeAsFirst($this->tags);
         }
 
-        if ($this->postCount !== null) {
-            $that->addAttributeAsFirst(Converge\icon_ic(Converge\ht("div", $this->postCount)->addClass("post-count"), "comments"));
-        }
+        $that->addAttributeAsFirst(Converge\icon_ic(Converge\ht("div", $this->postCount ?: 0)->addClass("post-count"), "comments"));
 
         $object = $that->_parentRender();
         return $object;
