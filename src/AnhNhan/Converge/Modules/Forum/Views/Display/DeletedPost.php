@@ -12,14 +12,9 @@ class DeletedPost extends ForumDisplayObject
 {
     public function render()
     {
-        $postPanel = new Panel;
-        //$postPanel->setColor(Panel::COLOR_DARK);
-
-        $title = new MarkupContainer;
-        $title->push(cv\ht('div', $this->date)->addClass('pull-right'));
-        $title->push(div('', h3(cv\icon_ion('Deleted Post', 'close', false))));
-        $postPanel->setHeader($title);
-
+        $postPanel = panel()
+            ->setHeader(div('', h3(cv\icon_ion('Deleted Post', 'close', false))->append(' ')->append(cv\ht('small', $this->date))))
+        ;
         return $postPanel;
     }
 }

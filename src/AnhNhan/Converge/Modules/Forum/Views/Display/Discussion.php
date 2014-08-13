@@ -57,11 +57,11 @@ class Discussion extends ForumDisplayObject
         $headerContainer = div();
         $headerContainer->append(h2($this->header));
 
-        $small = cv\ht("small", cv\hsprintf(
-            "<strong>%s</strong> created this discussion on %s",
+        $small = cv\hsprintf(
+            '<div><h3>%s <span class="minor-stuff">created this discussion on %s</span></h3></div>',
             $this->username,
             $this->date
-        ));
+        );
 
         $headerContainer->append($small);
         $headerRiff->push($headerContainer);

@@ -19,11 +19,19 @@ abstract class ForumDisplayObject extends AbstractView
 
         $title = new MarkupContainer;
         $title->push($this->buildProfileImage());
-        $title->push(cv\ht("div", $this->date)->addClass("pull-right"));
+        if ($this->getDetail())
+        {
+            $title->push(cv\ht("div", $this->getDetail())->addClass("pull-right"));
+        }
         $title->push($this->getHeaderText());
         $panel->setHeader($title);
 
         return $panel;
+    }
+
+    protected function getDetail()
+    {
+        return null;
     }
 
     protected function buildProfileImage()

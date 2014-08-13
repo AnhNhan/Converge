@@ -32,11 +32,15 @@ class Post extends ForumDisplayObject
         return $this;
     }
 
+    public function getDetail()
+    {
+        return $this->buttons;
+    }
+
     public function render()
     {
         $postPanel = $this->buildBasicPanel();
 
-        $postPanel->append($this->buttons);
         $postPanel->append($this->bodyText);
 
         return $postPanel;
@@ -44,6 +48,6 @@ class Post extends ForumDisplayObject
 
     protected function getHeaderText()
     {
-        return cv\hsprintf("<div><strong>%s</strong> added a comment</div>", $this->username);
+        return cv\hsprintf('<div><h3>%s <span class="minor-stuff">%s</span></h3></div>', $this->username, $this->date);
     }
 }
