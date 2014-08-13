@@ -657,6 +657,7 @@ return array(
     "renderPost" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
     "attach_xacts" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
     "render_disq_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
+    "render_disq_paneled_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
     "AnhNhan\Converge\get_root" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\get_root_super" => "AnhNhan/Converge/functions.php",

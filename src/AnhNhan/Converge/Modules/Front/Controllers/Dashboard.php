@@ -63,36 +63,7 @@ final class Dashboard extends BaseApplicationController
         foreach ($dash_panel_tags2 as $index => $tags)
         {
             $result = array_select_keys($big_disqs, $dash_panel_disqs[$index]);
-            $panelForumListing = id(new PaneledForumListing)
-                ->setTitle(Converge\ht('h3', 'Forum Listing'))
-            ;
-            foreach ($tags as $t)
-            {
-                $panelForumListing->addTag($t);
-            }
-
-            foreach ($result as $discussion) {
-                $object = new ForumObject;
-                $object
-                    ->setHeadline($discussion->label)
-                    ->setHeadHref("/disq/" . $discussion->cleanId)
-                    ->postCount(idx($post_counts, $discussion->uid)["postcount"]);
-
-                $tags = mpull($discussion->tags->toArray(), "tag");
-                $tags = msort($tags, "label");
-                $tags = array_reverse($tags);
-                $tags = msort($tags, "displayOrder");
-                foreach ($tags as $tag) {
-                    if (!empty($tag)) {
-                        $object->addTag(new TagView($tag->label, $tag->color));
-                    }
-                }
-
-                $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
-                $object->addDetail(Converge\ht('strong', link_user($discussion->author)));
-
-                $panelForumListing->addObject($object);
-            }
+            $panelForumListing = render_disq_paneled_listing($result, $post_counts, $tags, 'Forum Listing');
 
             $row->column(6)->push($panelForumListing);
         }
