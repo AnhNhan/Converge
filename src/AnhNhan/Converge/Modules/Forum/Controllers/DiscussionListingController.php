@@ -89,7 +89,7 @@ final class DiscussionListingController extends AbstractForumController
             }
 
             $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
-            $object->addDetail($discussion->author->name);
+            $object->addDetail(Converge\ht('strong', link_user($discussion->author)));
 
             $listing->addObject($object);
         }

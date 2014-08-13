@@ -89,7 +89,7 @@ final class Dashboard extends BaseApplicationController
                 }
 
                 $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
-                $object->addDetail($discussion->author->name);
+                $object->addDetail(Converge\ht('strong', link_user($discussion->author)));
 
                 $panelForumListing->addObject($object);
             }
