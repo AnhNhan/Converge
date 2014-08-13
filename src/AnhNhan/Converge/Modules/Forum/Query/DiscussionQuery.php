@@ -63,7 +63,9 @@ final class DiscussionQuery extends Query
             ->setFirstResult($offset)
             ->setMaxResults($limit)
         ;
-        return $query->getResult();
+
+        $paginator = new Paginator($query, true);
+        return $paginator->getIterator()->getArrayCopy();
     }
 
     public function retriveDiscussionsForTag(Tag $tag, $limit = null, $offset = null)
