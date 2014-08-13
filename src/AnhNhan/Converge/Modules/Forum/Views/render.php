@@ -1,5 +1,6 @@
 <?php
 
+use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\Converge\Modules\Forum\Views\Display\Discussion as DiscussionView;
 use AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost as DeletedPostView;
@@ -16,11 +17,11 @@ function renderDiscussion($disq, $markup)
         ->setHeader($disq->label)
         ->setDate($disq->lastActivity->format("D, d M 'y"))
         ->setUserDetails(link_user($disq->author), $disq->author->getGravatarImagePath(63))
-        ->setBodyText(AnhNhan\Converge\safeHtml(
+        ->setBodyText(cv\safeHtml(
             $markup
         ))
         ->addButton(
-            AnhNhan\Converge\ht("a", AnhNhan\Converge\icon_ion("Edit discussion", "edit"))
+            cv\ht("a", cv\icon_ion("Edit discussion", "edit"))
                 ->addClass("btn btn-info")
                 ->addOption("href", urisprintf("disq/%p/edit", $disq->cleanId))
         )
@@ -55,12 +56,11 @@ function renderPost($post, $markup)
         ->setUserDetails(link_user($post->author), $post->author->getGravatarImagePath(42))
         ->setDate($post->createdAt->format("D, d M 'y"))
         ->addButton(
-            AnhNhan\Converge\ht("a", AnhNhan\Converge\icon_ion("edit post", "edit"))
+            cv\ht("a", cv\icon_ion("edit post", "edit"))
                 ->addClass("btn btn-default btn-small")
-                ->addClass("pull-right")
                 ->addOption("href", urisprintf("disq/%p/%p/edit", str_replace("DISQ-", "", $post->parentDisqId), $post->cleanId))
         )
-        ->setBodyText(AnhNhan\Converge\safeHtml($markup))
+        ->setBodyText(cv\safeHtml($markup))
     ;
 
     return $postView;

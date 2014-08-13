@@ -57,9 +57,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $transactions = $disq->transactions->slice($offset, $page_size);
         $transactions_grouped = mgroup($transactions, 'type');
-        $post_ids = mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, []), 'newValue');
-        $posts = $query->retrievePostsForIDs($post_ids) ?: [];
-        $posts = mpull($posts, null, 'uid');
+        $posts = mpull($query->retrivePostsForDiscussion($disq), null, 'uid');
         $query->fetchExternalUsers(array_merge($transactions, $posts, [$disq]));
         $query->fetchExternalsForDiscussions([$disq]);
 
@@ -90,7 +88,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
         // Manual GC
         unset($transactions_grouped);
-        unset($post_ids);
+        //unset($post_ids);
         unset($tag_ids);
 
         foreach (array_merge($posts, $create_xact ? [$disq] : []) as $post) {
