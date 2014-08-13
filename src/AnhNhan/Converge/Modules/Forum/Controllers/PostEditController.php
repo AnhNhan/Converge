@@ -49,6 +49,7 @@ final class PostEditController extends AbstractForumController
 
         if ($requestMethod == "POST") {
             $text = trim($request->request->get("text"));
+            $text = Converge\normalize_newlines($text);
 
             if (empty($text)) {
                 $errors[] = "Text is empty!";

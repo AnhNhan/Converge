@@ -58,6 +58,7 @@ final class DiscussionEditController extends AbstractForumController
             $label = trim($request->request->get("label"));
             $text = trim($request->request->get("text"));
             $_tags = $request->request->get("tags");
+            $text = Converge\normalize_newlines($text);
 
             if (empty($label)) {
                 $errors[] = "We need a label for the discussion";

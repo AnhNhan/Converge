@@ -121,3 +121,7 @@ function pdx(array &$array, $default = null)
     return $return ?: $default;
 }
 
+function normalize_newlines($text)
+{
+    return preg_replace("/(\\r\\n|\\r)/s", "\n", $text);
+}

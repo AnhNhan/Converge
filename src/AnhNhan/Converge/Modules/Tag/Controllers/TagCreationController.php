@@ -38,6 +38,7 @@ final class TagCreationController extends AbstractTagController
             $color = trim($request->request->get("color"));
             $order = trim($request->request->get("disporder"));
             $descr = trim($request->request->get("description"));
+            $descr = Converge\normalize_newlines($descr);
 
             if (!$color) {
                 // Just to be sure :)

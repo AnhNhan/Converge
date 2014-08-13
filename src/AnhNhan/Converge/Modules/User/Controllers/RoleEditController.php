@@ -59,6 +59,7 @@ final class RoleEditController extends AbstractUserController
             $role_name        = trim($request->request->get("name"));
             $role_label       = trim($request->request->get("label"));
             $role_description = trim($request->request->get("description"));
+            $role_description = Converge\normalize_newlines($role_description);
 
             if (empty($role_name) || empty($role_label)) {
                 $errors[] = "Text is empty!";
