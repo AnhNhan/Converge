@@ -143,13 +143,13 @@ final class DiscussionDisplayController extends AbstractForumController
 
             if (!$is_disq && $obj->deleted) {
                 $toc_entry = Converge\ht('li',
-                    a(Converge\hsprintf('<em>Post</em> deleted'), '#' . hash_hmac('sha512', $post->uid, time()))
+                    a(Converge\hsprintf('<em>Post</em> deleted'), '#' . hash_hmac('sha512', $obj->uid, time()))
                 );
                 $ulCont->append($toc_entry);
                 continue;
             }
 
-            $subToc = idx($tocs, $post->uid);
+            $subToc = idx($tocs, $obj->uid);
             if ($subToc) {
                 $subUl = Converge\ht('ul')->addClass('subtoc');
                 foreach ($subToc as $tt) {
