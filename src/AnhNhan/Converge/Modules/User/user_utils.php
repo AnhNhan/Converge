@@ -16,6 +16,7 @@ function link_user(User $user, $full_name = true, $extra = UserLinkExtra_Tooltip
     $display_name =  $full_name ? $user->name : $user->handle;
     $tooltip_name = !$full_name ? $user->name : $user->handle;
     $link = a($display_name, urisprintf('u/%s', $user->canonical_name));
+    $link->addClass('user-link');
     if ($extra == UserLinkExtra_Tooltip)
     {
         $link
