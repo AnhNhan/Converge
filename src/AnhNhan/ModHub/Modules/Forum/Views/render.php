@@ -15,7 +15,7 @@ function renderDiscussion($disq, $markup)
         ->setId($disq->uid)
         ->setHeader($disq->label)
         ->setDate($disq->lastActivity->format("D, d M 'y"))
-        ->setUserDetails($disq->authorId, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($disq->authorId, 63))
+        ->setUserDetails($disq->author->name, $disq->author->getGravatarImagePath(63))
         ->setBodyText(AnhNhan\ModHub\safeHtml(
             $markup
         ))
@@ -52,7 +52,7 @@ function renderPost($post, $markup)
     $postView = new PostView;
     $postView
         ->setId($post->uid)
-        ->setUserDetails($post->authorId, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($post->authorId, 42))
+        ->setUserDetails($post->author->name, $post->author->getGravatarImagePath(42))
         ->setDate($post->createdAt->format("D, d M 'y"))
         ->addButton(
             AnhNhan\ModHub\ht("a", AnhNhan\ModHub\icon_ion("edit post", "edit"))
@@ -83,7 +83,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 $xactContainer->appendContent(
                     id(new TagAddedView)
                         ->setId($xact->uid)
-                        ->setUserDetails($actor, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                        ->setUserDetails($actor, $xact->actor->getGravatarImagePath(42))
                         ->setDate($xact->createdAt->format("D, d M 'y"))
                         ->addTag($tags[$subject_uid])
                 );
@@ -93,7 +93,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 $xactContainer->appendContent(
                     id(new TagRemovedView)
                         ->setId($xact->uid)
-                        ->setUserDetails($actor, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                        ->setUserDetails($actor, $xact->actor->getGravatarImagePath(42))
                         ->setDate($xact->createdAt->format("D, d M 'y"))
                         ->addTag($tags[$subject_uid])
                 );
@@ -106,7 +106,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 $xactContainer->appendContent(
                     $viewObj
                         ->setId($xact->uid)
-                        ->setUserDetails($actor, AnhNhan\ModHub\Modules\User\Storage\User::generateGravatarImagePath($actor, 42))
+                        ->setUserDetails($actor, $xact->actor->getGravatarImagePath(42))
                         ->setDate($xact->createdAt->format("D, d M 'y"))
                         ->setPrevText($xact->oldValue)
                         ->setNextText($xact->newValue)

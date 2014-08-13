@@ -31,7 +31,6 @@ final class DiscussionDisplayController extends AbstractForumController
         $container = new MarkupContainer;
 
         if ($disq) {
-            $query->fetchExternalsForDiscussions(array($disq));
 
             $grid = new Grid;
 
@@ -59,6 +58,8 @@ final class DiscussionDisplayController extends AbstractForumController
             $post_ids = mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, array()), "newValue");
             $posts = $query->retrievePostsForIDs($post_ids) ?: array();
             $posts = mpull($posts, null, "uid");
+            $query->fetchExternalUsers(array_merge($transactions, $posts, [$disq]));
+            $query->fetchExternalsForDiscussions(array($disq));
 
             $tagQuery = new TagQuery($this->app->getService("app.list")->app("tag")->getEntityManager());
             $tag_ids = array_unique(array_merge(
@@ -132,7 +133,7 @@ final class DiscussionDisplayController extends AbstractForumController
                     $ulCont->appendContent(
                         ModHub\ht("li",
                             a(
-                                ModHub\hsprintf("<em>Discussion</em> by <strong>%s</strong>", $disq->authorId),
+                                ModHub\hsprintf("<em>Discussion</em> by <strong>%s</strong>", $disq->author->name),
                                 "#" . $disq->uid
                             )
                         )
@@ -164,7 +165,7 @@ final class DiscussionDisplayController extends AbstractForumController
                     /*$ulCont->appendContent(
                         ModHub\ht("li",
                             a(
-                                ModHub\hsprintf("<em>%s</em> by <strong>%s</strong>", $text, $disq->authorId),
+                                ModHub\hsprintf("<em>%s</em> by <strong>%s</strong>", $text, $disq->author->name),
                                 "#" . $xact->uid
                             )
                         )
@@ -186,7 +187,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $entry =
                     ModHub\ht("li",
                         ModHub\ht("a",
-                            ModHub\hsprintf("<em>Post</em> by <strong>%s</strong>", $post->authorId),
+                            ModHub\hsprintf("<em>Post</em> by <strong>%s</strong>", $post->author->name),
                             array("href" => "#" . $post->uid)
                         )
                     )

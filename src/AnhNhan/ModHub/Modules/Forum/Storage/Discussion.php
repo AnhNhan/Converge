@@ -115,6 +115,12 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
         return $this->author_object;
     }
 
+    public function setAuthor(\AnhNhan\ModHub\Modules\User\Storage\User $author_object)
+    {
+        $this->author_object = $author_object;
+        return $this;
+    }
+
     public function text($text = null)
     {
         if ($text === null) {

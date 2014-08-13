@@ -28,6 +28,8 @@ abstract class TransactionEntity extends EntityDefinition
      */
     protected $actor;
 
+    private $actorObject;
+
     /**
      * NOTE: May be overridden by subclasses
      *
@@ -96,6 +98,24 @@ abstract class TransactionEntity extends EntityDefinition
     public function setActorId($id)
     {
         $this->actor = $id;
+        return $this;
+    }
+
+    /// Compat with DiscussionQuery
+
+    public function authorId()
+    {
+        return $this->actor;
+    }
+
+    public function actor()
+    {
+        return $this->actorObject;
+    }
+
+    public function setAuthor($user)
+    {
+        $this->actorObject = $user;
         return $this;
     }
 

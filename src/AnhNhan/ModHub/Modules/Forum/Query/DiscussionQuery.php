@@ -136,10 +136,10 @@ final class DiscussionQuery extends Query
     public function fetchExternalsForDiscussions(array $disqs)
     {
         assert_instances_of($disqs, self::ENTITY_DISCUSSION);
-        $authors = mpull($disqs, 'author');
-        if (count(array_filter($authors)) != count($authors)) { // Can this check be optimized?
-            $this->requireExternalQuery(self::EXT_QUERY_USER);
-            // TODO: Finish this once we really have users
+
+        if (count(array_filter(mpull($disqs, 'author'))) != count($disqs))
+        {
+            $this->fetchExternalUsers($disqs);
         }
 
         $disq_tags = mpull(mpull($disqs, 'tags'), 'toArray');
@@ -158,6 +158,17 @@ final class DiscussionQuery extends Query
             foreach ($tags_flat as $tag) {
                 $tag->setTag($tag_objs[$tag->tagId]);
             }
+        }
+    }
+
+    public function fetchExternalUsers(array $stuff)
+    {
+        $userQuery = $this->requireExternalQuery(self::EXT_QUERY_USER);
+        $user_ids = mpull($stuff, 'authorId');
+        $users = mpull($userQuery->retrieveUsersForUIDs($user_ids), null, 'uid');
+        foreach ($stuff as $thing)
+        {
+            $thing->setAuthor(idx($users, $thing->authorId));
         }
     }
 

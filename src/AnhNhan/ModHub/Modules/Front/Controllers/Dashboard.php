@@ -89,7 +89,7 @@ final class Dashboard extends BaseApplicationController
                 }
 
                 $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
-                $object->addDetail($discussion->authorId);
+                $object->addDetail($discussion->author->name);
 
                 $panelForumListing->addObject($object);
             }
