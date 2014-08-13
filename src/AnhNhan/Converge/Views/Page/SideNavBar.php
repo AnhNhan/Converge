@@ -17,25 +17,9 @@ final class SideNavBar extends AbstractView
         $ul = Converge\ht('ul')->addClass('cv-side-navbar-items');
         $items = array(
             array(
-                'text' => 'dash',
-                'icon' => 'android-storage',
-                'href' => '/dash/',
-            ),
-            array(
-                'text' => 'listing',
-                'icon' => 'navicon-round',
-                'href' => '/disq/',
-                'backbone' => true,
-            ),
-            array(
-                'text' => 'create',
-                'icon' => 'compose',
-                'href' => 'disq/create/',
-            ),
-            array(
-                'text' => 'users',
-                'icon' => 'person-stalker',
-                'href' => 'users/',
+                'text' => 'tags',
+                'icon' => 'pricetags',
+                'href' => 'tag/',
             ),
             array(
                 'text' => 'roles',
