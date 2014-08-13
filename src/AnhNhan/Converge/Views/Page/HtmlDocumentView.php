@@ -58,6 +58,7 @@ $(function () {
     });
 
     $('[data-toggle=tooltip]').tooltip();
+    $('[data-toggle=tooltip-bottom]').tooltip({placement: 'bottom'});
 });
 </script>
 </head>

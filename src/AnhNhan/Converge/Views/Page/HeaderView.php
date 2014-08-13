@@ -38,23 +38,48 @@ class HeaderView extends AbstractView
             )
         ;
 
-        $header_content
-            ->append(
-                div('nav-action')
-                    ->append(a(cv\icon_ion('', 'search'), 'disq/search')->addClass('btn btn-default'))
-                    ->append(a(cv\icon_ion('', 'ios7-chatboxes-outline'), 'disq/create')->addClass('btn btn-default'))
-                    ->append(a(cv\icon_ion('', 'ios7-gear'), 'o/settings')->addClass('btn btn-default'))
-            )
-        ;
+        if ($this->user_details)
+        {
+            $header_content
+                ->append(
+                    $nav_action = div('nav-action')
+                        ->append(a(cv\icon_ion('', 'search'), 'disq/search')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'search')
+                        )
+                        ->append(a(cv\icon_ion('', 'compose'), 'disq/create')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'create discussion')
+                        )
+                        ->append(a(cv\icon_ion('', 'ios7-gear'), 'o/settings')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'user settings')
+                        )
+                )
+            ;
+        }
 
-        $header_content
-            ->append(
-                div('nav-join')
-                    ->append(a('Logout', 'logout')->addClass('btn btn-default'))
-                    ->append(a('Join Us!', 'join')->addClass('btn btn-info'))
-                    ->append(a('Login', 'login')->addClass('btn btn-primary'))
-            )
-        ;
+        if ($this->user_details)
+        {
+            $nav_action->getContent()->unshift(a(cv\icon_ion('', 'flash-off'), 'logout')
+                ->addClass('btn btn-default')
+                ->addOption('data-toggle', 'tooltip-bottom')
+                ->addOption('title', 'log out')
+            );
+        }
+        else
+        {
+            $header_content
+                ->append(
+                    div('nav-join')
+                        ->append(a('Join Us!', 'join')->addClass('btn btn-info'))
+                        ->append(a('Login', 'login')->addClass('btn btn-primary'))
+                )
+            ;
+        }
 
         $header_link = a(null, '/', true)
             ->append(h2('Converge'))
