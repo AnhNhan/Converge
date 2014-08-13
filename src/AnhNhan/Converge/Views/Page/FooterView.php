@@ -26,7 +26,7 @@ class FooterView extends AbstractView implements ViewInterface
 
         foreach ($this->columns as $name => $list) {
             $ul = Converge\ht('ul')->addClass('footer-section');
-            $ul->appendContent(Converge\ht('h3', $name));
+            $ul->append(Converge\ht('h3', $name));
 
             foreach ($list as $entry) {
                 $li = Converge\ht('li')->addClass('footer-section-entry');
@@ -41,10 +41,10 @@ class FooterView extends AbstractView implements ViewInterface
                     )
                 );
 
-                $ul->appendContent($li);
+                $ul->append($li);
             }
 
-            $container->appendContent($ul);
+            $container->append($ul);
         }
 
         return $container;

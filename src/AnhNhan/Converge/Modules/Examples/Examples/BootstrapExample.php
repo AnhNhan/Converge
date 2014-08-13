@@ -17,7 +17,7 @@ final class BootstrapExample extends AbstractExample
     public function getExample()
     {
         $container = Converge\ht("div");
-        $container->appendContent(Converge\safeHtml(<<<EOT
+        $container->append(Converge\safeHtml(<<<EOT
 <div class="bs-docs-container">
 
 <div class="progress">

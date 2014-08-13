@@ -114,7 +114,7 @@ final class RoleEditController extends AbstractUserController
             ;
             $list = Converge\ht("ul");
             foreach ($errors as $e) {
-                $list->appendContent(Converge\ht("li", $e));
+                $list->append(Converge\ht("li", $e));
             }
             $panel->append($list);
             $container->push($panel);

@@ -43,7 +43,7 @@ final class RoleListingController extends AbstractUserController
             $headerRow
                 ->column(10)
                 ->push(Converge\ht("h3", $role->label)
-                    ->appendContent(Converge\ht("small", " " . $role->name))
+                    ->append(Converge\ht("small", " " . $role->name))
                 )
                 ->parentRow()
                 ->column(2)

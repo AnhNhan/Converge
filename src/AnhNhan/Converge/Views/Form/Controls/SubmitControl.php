@@ -41,7 +41,7 @@ class SubmitControl implements ViewInterface
             )->addOption('href', $this->cancel_uri)
                 ->addClass('btn btn-default');
         }
-        $container->appendContent($cancelButton);
+        $container->append($cancelButton);
 
         $submitButton = null;
         if ($this->submit_label) {
@@ -51,7 +51,7 @@ class SubmitControl implements ViewInterface
             )->addOption('name', '__submit__')
                 ->addClass('btn btn-primary');
         }
-        $container->appendContent($submitButton);
+        $container->append($submitButton);
 
         return $container;
     }

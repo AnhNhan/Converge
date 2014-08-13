@@ -180,7 +180,7 @@ final class UserRegisterController extends AbstractUserController
 
             $list = cv\ht("ul");
             foreach ($errors as $e) {
-                $list->appendContent(cv\ht("li", $e));
+                $list->append(cv\ht("li", $e));
             }
             $panel->append($list);
         }

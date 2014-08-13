@@ -49,11 +49,11 @@ class UserPlateView extends AbstractView
         $profileImageContainer = Converge\ht("div",
             Converge\ht("img", null, array("src" => $profileImagePath))
         )->addClass("user-plate-image-container");
-        $container->appendContent($profileImageContainer);
+        $container->append($profileImageContainer);
 
         $textContainer = Converge\ht("div")->addClass("user-plate-detail-container");
-        $textContainer->appendContent(Converge\ht("div", $user->name())->addClass("user-plate-username"));
-        $container->appendContent($textContainer);
+        $textContainer->append(Converge\ht("div", $user->name())->addClass("user-plate-username"));
+        $container->append($textContainer);
 
         return $container;
     }

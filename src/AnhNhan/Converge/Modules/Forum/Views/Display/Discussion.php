@@ -55,7 +55,7 @@ class Discussion extends ForumDisplayObject
         $headerRiff->push($this->buildProfileImage());
 
         $headerContainer = div();
-        $headerContainer->appendContent(h2($this->header));
+        $headerContainer->append(h2($this->header));
 
         $small = cv\ht("small", cv\hsprintf(
             "<strong>%s</strong> created this discussion on %s",
@@ -63,7 +63,7 @@ class Discussion extends ForumDisplayObject
             $this->date
         ));
 
-        $headerContainer->appendContent($small);
+        $headerContainer->append($small);
         $headerRiff->push($headerContainer);
         $discussionPanel->setHeader($headerRiff);
 

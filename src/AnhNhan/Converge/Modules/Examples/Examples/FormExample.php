@@ -23,13 +23,13 @@ final class FormExample extends AbstractExample
         $container = Converge\ht("div")->addClass("row-flex");
 
         $form1 = $this->getForm1();
-        $container->appendContent($form1);
+        $container->append($form1);
 
         $form2 = $this->getForm2();
-        $container->appendContent($form2);
+        $container->append($form2);
 
         $form3 = $this->getForm3();
-        $container->appendContent($form3);
+        $container->append($form3);
 
         return $container;
     }

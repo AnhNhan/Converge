@@ -40,7 +40,7 @@ final class PanelExample extends AbstractExample
 
         $list = Converge\ht("ul");
         for ($ii = 0; $ii < 5; $ii++) {
-            $list->appendContent(Converge\ht("li", Converge\ht("span", $faker->text(20))));
+            $list->append(Converge\ht("li", Converge\ht("span", $faker->text(20))));
         }
         $panel->append($list);
 

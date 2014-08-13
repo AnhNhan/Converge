@@ -115,15 +115,15 @@ class FormView extends AbstractView
         $formTag->addOption('method', $method);
 
         if ($this->title) {
-            $formTag->appendContent(Converge\ht("h2", $this->title));
+            $formTag->append(Converge\ht("h2", $this->title));
         }
 
         foreach ($this->retrieveChilds()->getMarkupData() as $child) {
-            $formTag->appendContent($child);
+            $formTag->append($child);
         }
 
         // TODO: Add CSRF protection
-        $formTag->appendContent(id(new Controls\HiddenControl())
+        $formTag->append(id(new Controls\HiddenControl())
             ->setName('__form__')
             ->setValue(1));
 

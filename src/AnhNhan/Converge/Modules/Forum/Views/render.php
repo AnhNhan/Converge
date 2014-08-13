@@ -79,7 +79,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
         $subject_uid = $xact->newValue;
         switch ($xact->type) {
             case DiscussionTransaction::TYPE_ADD_TAG:
-                $xactContainer->appendContent(
+                $xactContainer->append(
                     id(new TagAddedView)
                         ->setId($xact->uid)
                         ->setUserDetails(link_user($xact->actor), $xact->actor->getGravatarImagePath(42))
@@ -89,7 +89,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 break;
             case DiscussionTransaction::TYPE_REMOVE_TAG:
                 $subject_uid = $xact->oldValue;
-                $xactContainer->appendContent(
+                $xactContainer->append(
                     id(new TagRemovedView)
                         ->setId($xact->uid)
                         ->setUserDetails(link_user($xact->actor), $xact->actor->getGravatarImagePath(42))
@@ -102,7 +102,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 $viewObj = $xact->type == DiscussionTransaction::TYPE_EDIT_LABEL ?
                     new LabelChangeView :
                     new TextChangeView;
-                $xactContainer->appendContent(
+                $xactContainer->append(
                     $viewObj
                         ->setId($xact->uid)
                         ->setUserDetails(link_user($xact->actor), $xact->actor->getGravatarImagePath(42))
@@ -121,18 +121,18 @@ function attach_xacts($post_container, array $transactions, array $tags)
     if (!$xactContainer->isSelfClosing())
     {
         $disqXactListing = div("xact-listing");
-        $disqXactListing->appendContent(h2("Changes", "xact-listing-header"));
-        $disqXactListing->appendContent(
+        $disqXactListing->append(h2("Changes", "xact-listing-header"));
+        $disqXactListing->append(
             a("show changes")
                 ->addClass("btn btn-default")
                 ->addClass("show-changes-btn")
         );
-        $disqXactListing->appendContent(
+        $disqXactListing->append(
             a("hide changes")
                 ->addClass("btn btn-default")
                 ->addClass("hide-changes-btn")
         );
-        $disqXactListing->appendContent($xactContainer);
+        $disqXactListing->append($xactContainer);
         $post_container->append($disqXactListing);
     }
 }

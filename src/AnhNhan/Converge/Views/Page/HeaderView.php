@@ -24,43 +24,43 @@ class HeaderView extends AbstractView
         $header_content = div('header-content');
 
         $header_content
-            ->appendContent(
+            ->append(
                 div('nav-user')
-                    ->appendContent(div('nav-user-img', cv\ht('img')->addOption('src', idx($this->user_details, 'image_path', '/images/profile/default.png'))))
-                    ->appendContent(
+                    ->append(div('nav-user-img', cv\ht('img')->addOption('src', idx($this->user_details, 'image_path', '/images/profile/default.png'))))
+                    ->append(
                         div('nav-user-box')
-                            ->appendContent(div('nav-user-box-name', h3(idx($this->user_details, 'username', 'Not logged in'))))
-                            ->appendContent(
+                            ->append(div('nav-user-box-name', h3(idx($this->user_details, 'username', 'Not logged in'))))
+                            ->append(
                                 div('nav-user-box-detail')
-                                    ->appendContent(cv\icon_ion('0', 'android-mail'))
+                                    ->append(cv\icon_ion('0', 'android-mail'))
                             )
                     )
             )
         ;
 
         $header_content
-            ->appendContent(
+            ->append(
                 div('nav-action')
-                    ->appendContent(a(cv\icon_ion('', 'search'), 'disq/search')->addClass('btn btn-default'))
-                    ->appendContent(a(cv\icon_ion('', 'ios7-chatboxes-outline'), 'disq/create')->addClass('btn btn-default'))
-                    ->appendContent(a(cv\icon_ion('', 'ios7-gear'), 'o/settings')->addClass('btn btn-default'))
+                    ->append(a(cv\icon_ion('', 'search'), 'disq/search')->addClass('btn btn-default'))
+                    ->append(a(cv\icon_ion('', 'ios7-chatboxes-outline'), 'disq/create')->addClass('btn btn-default'))
+                    ->append(a(cv\icon_ion('', 'ios7-gear'), 'o/settings')->addClass('btn btn-default'))
             )
         ;
 
         $header_content
-            ->appendContent(
+            ->append(
                 div('nav-join')
-                    ->appendContent(a('Logout', 'logout')->addClass('btn btn-default'))
-                    ->appendContent(a('Join Us!', 'join')->addClass('btn btn-info'))
-                    ->appendContent(a('Login', 'login')->addClass('btn btn-primary'))
+                    ->append(a('Logout', 'logout')->addClass('btn btn-default'))
+                    ->append(a('Join Us!', 'join')->addClass('btn btn-info'))
+                    ->append(a('Login', 'login')->addClass('btn btn-primary'))
             )
         ;
 
         $header_link = a(null, '/', true)
-            ->appendContent(h2('Converge'))
-            ->appendContent(h4('Make me one with everything.'))
+            ->append(h2('Converge'))
+            ->append(h4('Make me one with everything.'))
         ;
-        $header_content->appendContent($header_link);
+        $header_content->append($header_link);
 
         return $header_content;
     }

@@ -69,19 +69,19 @@ final class SideNavBar extends AbstractView
             ),
         );
         foreach ($items as $item) {
-            $ul->appendContent(
+            $ul->append(
                 Converge\ht('li')
                     ->addClass('cv-side-navbar-item')
-                    ->appendContent(
+                    ->append(
                         Converge\ht('a')
                             ->addOption('href', $item['href'])
                             ->addOption('data-backbone-nav', idx($item, 'backbone') ? '' : null)
-                            ->appendContent(div('cv-side-navbar-icon', Converge\icon_ion('', $item['icon'])))
-                            ->appendContent(div('cv-side-navbar-text', $item['text']))
+                            ->append(div('cv-side-navbar-icon', Converge\icon_ion('', $item['icon'])))
+                            ->append(div('cv-side-navbar-text', $item['text']))
                     )
             );
         }
-        $container->appendContent($ul);
+        $container->append($ul);
 
         return $container;
     }

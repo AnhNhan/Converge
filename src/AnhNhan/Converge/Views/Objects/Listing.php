@@ -30,7 +30,7 @@ class Listing extends AbstractView
             ->addClass('objects-list-container');
 
         if ($this->title) {
-            $container->appendContent(
+            $container->append(
                 Converge\ht('h2', $this->title)
                     ->addClass('objects-list-title')
             );
@@ -38,9 +38,9 @@ class Listing extends AbstractView
 
         $objects = Converge\ht('div')->addClass('objects-list-objects');
         foreach ($this->objects as $object) {
-            $objects->appendContent($object);
+            $objects->append($object);
         }
-        $container->appendContent($objects);
+        $container->append($objects);
 
         return $container;
     }

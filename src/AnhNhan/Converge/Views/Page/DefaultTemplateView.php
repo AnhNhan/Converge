@@ -40,11 +40,11 @@ final class DefaultTemplateView extends AbstractView
             ->setContent($this->content);
 
         $contentContainerContent = div("row-flex");
-        $contentContainerContent->appendContent($content);
+        $contentContainerContent->append($content);
 
         $container = div('layout-container grid-system', null, 'layout-container');
 
-        $container->appendContent($contentContainerContent);
+        $container->append($contentContainerContent);
 
         $wrapper = HF::divTag($container, 'wrapper', 'wrapper');
 

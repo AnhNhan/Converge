@@ -20,7 +20,7 @@ trait TChangeObject
         $title->push($this->buildProfileImage());
         $title->push(cv\ht("div", $this->date)->addClass("pull-right"));
         $title->push($this->getHeaderText());
-        $panel->appendContent($title);
+        $panel->append($title);
 
         return $panel;
     }

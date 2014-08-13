@@ -134,7 +134,7 @@ final class DiscussionDisplayController extends AbstractForumController
         foreach ($transactions as $xact) {
             if ($xact->type == DiscussionTransaction::TYPE_CREATE) {
                 // TODO: Sub-ToC
-                $ulCont->appendContent(
+                $ulCont->append(
                     popover("li",
                         a(
                             Converge\hsprintf("<em>Discussion</em> by <strong>%s</strong>", $disq->author->name),
@@ -157,7 +157,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $entry = Converge\ht("li",
                     a(Converge\hsprintf("<em>Post</em> deleted"), "#" . hash_hmac("sha512", $post->uid, time()))
                 );
-                $ulCont->appendContent($entry);
+                $ulCont->append($entry);
                 continue;
             }
 
@@ -175,7 +175,7 @@ final class DiscussionDisplayController extends AbstractForumController
             if ($subToc) {
                 $subUl = Converge\ht("ul")->addClass("subtoc");
                 foreach ($subToc as $tt) {
-                    $subUl->appendContent(Converge\hsprintf(
+                    $subUl->append(Converge\hsprintf(
                         "<li class=\"subtoc-%s\"><a style=\"padding-left: %fem;\" href=\"#%s\">%s</a></li>",
                         $tt["type"],
                         $tt["level"] + 1.5,
@@ -184,10 +184,10 @@ final class DiscussionDisplayController extends AbstractForumController
                     ));
                 }
 
-                $entry->appendContent($subUl);
+                $entry->append($subUl);
             }
 
-            $ulCont->appendContent($entry);
+            $ulCont->append($entry);
         }
         $tocContainer->append($ulCont);
 

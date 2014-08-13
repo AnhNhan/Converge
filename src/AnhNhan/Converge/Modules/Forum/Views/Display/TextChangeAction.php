@@ -31,7 +31,7 @@ abstract class TextChangeAction extends AbstractView
         $panel = $this->buildBasicPanel();
         $body = $this->renderBody();
         if ($body) {
-            $panel->appendContent($body);
+            $panel->append($body);
             $panel->addClass("panel-diff");
         }
         return $panel;

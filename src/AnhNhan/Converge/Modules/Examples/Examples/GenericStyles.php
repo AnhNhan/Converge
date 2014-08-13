@@ -47,14 +47,14 @@ final class GenericStyles extends AbstractExample
     {
         $container = new MarkupContainer;
 
-        $container->push($tags = div()->appendContent(h2('Tags')));
+        $container->push($tags = div()->append(h2('Tags')));
         $this->buildTags($tags, $this->tag_colors);
 
-        $container->push($buttons = div()->appendContent(h2('Buttons')));
+        $container->push($buttons = div()->append(h2('Buttons')));
         $this->buildButtons($buttons, $this->button_sizes, $this->button_colors);
         $this->buildButtons($buttons, ['disabled'], $this->button_colors, true);
 
-        $container->push($listing = div()->appendContent(h2('Object Listing')));
+        $container->push($listing = div()->append(h2('Object Listing')));
         $this->buildObjectListing($listing);
 
         return $container;
@@ -62,7 +62,7 @@ final class GenericStyles extends AbstractExample
 
     private function buildObjectListing($container)
     {
-        $container->appendContent($listing1 = new Objects\Listing);
+        $container->append($listing1 = new Objects\Listing);
         $listing1
             ->setTitle('Title here.')
             ->addObject(id(new Objects\Object)
@@ -91,14 +91,14 @@ final class GenericStyles extends AbstractExample
     private function buildTags($container, array $tag_colors)
     {
         array_walk($tag_colors, function ($c) use ($container) {
-            $container->appendContent(new TagView($c, $c));
+            $container->append(new TagView($c, $c));
         });
     }
 
     private function buildButtons($container, array $button_sizes, array $button_colors, $disabled = null)
     {
         array_walk($button_sizes, function ($s) use ($container, $button_colors, $disabled) {
-            $container->appendContent($buttons = div()->appendContent(h3(ucwords($s))));
+            $container->append($buttons = div()->append(h3(ucwords($s))));
             $this->buildButtonsForSize($buttons, $s, $button_colors, $disabled);
         });
     }
@@ -115,7 +115,7 @@ final class GenericStyles extends AbstractExample
             if (!isset($disableClassExtensions[$size])) {
                 $class .= ' btn-' . $size;
             }
-            $container->appendContent(
+            $container->append(
                 a(ucwords("$size $c"), 'example/generic-styles/#')
                     ->addClass($class)
                     ->addOption('disabled', $disabled)

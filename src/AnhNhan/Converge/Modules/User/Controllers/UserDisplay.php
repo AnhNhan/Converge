@@ -39,7 +39,7 @@ final class UserDisplay extends AbstractUserController
         $container = new MarkupContainer;
         $payload->setPayloadContents($container);
 
-        $container->push(h1($user->name)->appendContent(' ')->appendContent(cv\ht('small', '@' . $user->canonical_name)));
+        $container->push(h1($user->name)->append(' ')->append(cv\ht('small', '@' . $user->canonical_name)));
         $container->push(cv\ht('img')->addOption('src', $user->getGravatarImagePath(50))->addOption('style', 'width: 50px; height: 50px;'));
 
         $disqQuery = $this->buildForumQuery();

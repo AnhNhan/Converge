@@ -66,11 +66,11 @@ class Object extends AbstractObject
             $detailContainer = div('objects-object-details');
             foreach ($this->details as $detail)
             {
-                $detailContainer->appendContent(
+                $detailContainer->append(
                     div('objects-object-detail', $detail)
                 );
             }
-            $container->appendContent($detailContainer);
+            $container->append($detailContainer);
         }
 
         $headline = Converge\ht('div')->addClass('objects-object-title');
@@ -81,11 +81,11 @@ class Object extends AbstractObject
         } else {
             $headline = Converge\ht('div', $this->headline)->addClass($headlineClass);
         }
-        $container->appendContent($headline);
+        $container->append($headline);
 
         if ($this->byline)
         {
-            $container->appendContent(
+            $container->append(
                 div('objects-object-byline', $this->byline)
             );
         }
@@ -100,13 +100,13 @@ class Object extends AbstractObject
                     ->addClass('objects-object-attributes');
 
             foreach ($attributes as $attribute) {
-                $attributesContainer->appendContent($attribute);
+                $attributesContainer->append($attribute);
             }
-            $container->appendContent($attributesContainer);
+            $container->append($attributesContainer);
         }
 
         if ($this->body) {
-            $container->appendContent(Converge\ht('div', $this->body))
+            $container->append(Converge\ht('div', $this->body))
                 ->addClass('objects-object-body');
         }
 

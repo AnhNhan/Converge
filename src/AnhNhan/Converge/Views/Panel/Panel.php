@@ -77,7 +77,7 @@ class Panel extends AbstractView
         }
 
         if ($this->header) {
-            $panelTag->appendContent(
+            $panelTag->append(
                 Converge\ht("div", $this->header)
                     ->addClass("panel-header")
             );
@@ -90,9 +90,9 @@ class Panel extends AbstractView
                     ->addClass("panel-midriff-right")
                 ;
             }
-            $panelTag->appendContent(
+            $panelTag->append(
                 Converge\ht("div", $midriffRight)
-                    ->appendContent($this->midriff)
+                    ->append($this->midriff)
                     ->addClass("panel-midriff")
             );
         }
@@ -101,9 +101,9 @@ class Panel extends AbstractView
         if ($children->count()) {
             $body = Converge\ht("div")->addClass("panel-body");
             foreach ($children->getMarkupData() as $child) {
-                $body->appendContent($child);
+                $body->append($child);
             }
-            $panelTag->appendContent($body);
+            $panelTag->append($body);
         }
 
         return $container;

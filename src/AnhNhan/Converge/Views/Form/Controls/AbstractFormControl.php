@@ -44,7 +44,7 @@ abstract class AbstractFormControl extends HtmlTag implements ViewInterface
         if ($this->label) {
             $labelDiv->setContent($this->label);
         }
-        $container->appendContent($labelDiv);
+        $container->append($labelDiv);
 
         $thisTag = new HtmlTag(
             $this->getTagName(),
@@ -61,7 +61,7 @@ abstract class AbstractFormControl extends HtmlTag implements ViewInterface
         }
         $formControlDiv = HF::divTag($thisTag)
             ->addClass('form-control-element');
-        $container->appendContent($formControlDiv);
+        $container->append($formControlDiv);
 
         return $container;
     }
