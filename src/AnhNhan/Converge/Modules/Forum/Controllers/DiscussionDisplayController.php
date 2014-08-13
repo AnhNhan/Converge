@@ -3,7 +3,6 @@ namespace AnhNhan\Converge\Modules\Forum\Controllers;
 
 use AnhNhan\Converge;
 use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\Converge\Modules\Markup\MarkupEngine;
 use AnhNhan\Converge\Modules\Tag\TagQuery;
 use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
@@ -21,11 +20,11 @@ final class DiscussionDisplayController extends AbstractForumController
         $request = $this->request;
         $app = $this->app;
 
-        $currentId = $request->request->get("id");
+        $currentId = $request->request->get('id');
 
         $query = $this->buildQuery();
         $disq = $query
-            ->retrieveDiscussion("DISQ-" . $currentId)
+            ->retrieveDiscussion('DISQ-' . $currentId)
         ;
 
         if (!$disq)
@@ -40,8 +39,8 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $grid = grid();
         $row  = $grid->row();
-        $disqColumn = $row->column(9)->setId("disq-column");
-        $tagColumn  = $row->column(3)->addClass("tag-column");
+        $disqColumn = $row->column(9)->setId('disq-column');
+        $tagColumn  = $row->column(3)->addClass('tag-column');
 
         $tocExtractor = new \AnhNhan\Converge\Modules\Markup\TOCExtractor;
         $tocs = [];
@@ -50,27 +49,27 @@ final class DiscussionDisplayController extends AbstractForumController
         $page_nr = 1;
         $page_size = 30;
 
-        if ($request->request->has("page-nr") && ($r_page_nr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_page_nr)) {
+        if ($request->request->has('page-nr') && ($r_page_nr = $request->request->get('page-nr')) && preg_match('/^\\d+$/', $r_page_nr)) {
             $page_nr = $r_page_nr;
         }
 
         $offset = ($page_nr - 1) * $page_size;
 
         $transactions = $disq->transactions->slice($offset, $page_size);
-        $transactions_grouped = mgroup($transactions, "type");
-        $post_ids = mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, []), "newValue");
+        $transactions_grouped = mgroup($transactions, 'type');
+        $post_ids = mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, []), 'newValue');
         $posts = $query->retrievePostsForIDs($post_ids) ?: [];
-        $posts = mpull($posts, null, "uid");
+        $posts = mpull($posts, null, 'uid');
         $query->fetchExternalUsers(array_merge($transactions, $posts, [$disq]));
         $query->fetchExternalsForDiscussions([$disq]);
 
         $tagQuery = new TagQuery($this->externalApp('tag'));
         $tag_ids = array_unique(array_merge(
-            mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_TAG, []), "newValue"),
-            mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_REMOVE_TAG, []), "oldValue")
+            mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_TAG, []), 'newValue'),
+            mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_REMOVE_TAG, []), 'oldValue')
         ));
         $tags = $tagQuery->retrieveTagsForIDs($tag_ids);
-        $tags = mpull($tags, null, "uid");
+        $tags = mpull($tags, null, 'uid');
 
         $create_xact = idx($transactions_grouped, DiscussionTransaction::TYPE_CREATE);
         $create_date = null;
@@ -127,79 +126,78 @@ final class DiscussionDisplayController extends AbstractForumController
         }
 
         $tocContainer = panel(h2('Table of Contents'), 'forum-toc-affix');
-        $tocContainer->addClass("forum-toc-affix");
+        $tocContainer->addClass('forum-toc-affix');
         $tagColumn->push($tocContainer);
 
-        $ulCont = Converge\ht("ul")->addClass("nav forum-toc-nav");
+        $ulCont = Converge\ht('ul')->addClass('nav forum-toc-nav');
         foreach ($transactions as $xact) {
-            if ($xact->type == DiscussionTransaction::TYPE_CREATE) {
-                // TODO: Sub-ToC
-                $ulCont->append(
-                    popover("li",
-                        a(
-                            Converge\hsprintf("<em>Discussion</em> by <strong>%s</strong>", $disq->author->name),
-                            "#" . $disq->uid
-                        ),
-                        phutil_utf8_shorten($disq->rawText, 140)
-                    )
+            if (
+                $xact->type != DiscussionTransaction::TYPE_CREATE
+                && $xact->type != DiscussionTransaction::TYPE_ADD_POST
+            ) {
+                continue;
+            }
+
+            $is_disq = $xact->type == DiscussionTransaction::TYPE_CREATE;
+            $obj = $is_disq ? $disq : $posts[$xact->newValue];
+            $type = $is_disq ? 'Discussion' : 'Post';
+            $toc_entry = self::toc_entry($type, $obj->author->name, $obj->uid, $obj->rawText);
+
+            if (!$is_disq && $obj->deleted) {
+                $toc_entry = Converge\ht('li',
+                    a(Converge\hsprintf('<em>Post</em> deleted'), '#' . hash_hmac('sha512', $post->uid, time()))
                 );
+                $ulCont->append($toc_entry);
                 continue;
             }
-
-            if ($xact->type != DiscussionTransaction::TYPE_ADD_POST) {
-                continue;
-            }
-
-            // Only post-type left
-            $post = $posts[$xact->newValue];
-
-            if ($post->deleted) {
-                $entry = Converge\ht("li",
-                    a(Converge\hsprintf("<em>Post</em> deleted"), "#" . hash_hmac("sha512", $post->uid, time()))
-                );
-                $ulCont->append($entry);
-                continue;
-            }
-
-            $entry =
-                popover("li",
-                    a(
-                        Converge\hsprintf("<em>Post</em> by <strong>%s</strong>", $post->author->name),
-                        "#" . $post->uid
-                    ),
-                    phutil_utf8_shorten($post->rawText, 140)
-                )
-            ;
 
             $subToc = idx($tocs, $post->uid);
             if ($subToc) {
-                $subUl = Converge\ht("ul")->addClass("subtoc");
+                $subUl = Converge\ht('ul')->addClass('subtoc');
                 foreach ($subToc as $tt) {
                     $subUl->append(Converge\hsprintf(
-                        "<li class=\"subtoc-%s\"><a style=\"padding-left: %fem;\" href=\"#%s\">%s</a></li>",
-                        $tt["type"],
-                        $tt["level"] + 1.5,
-                        $tt["hash"],
-                        $tt["text"]
+                        '<li class=\"subtoc-%s\"><a style=\"padding-left: %fem;\" href=\"#%s\">%s</a></li>',
+                        $tt['type'],
+                        $tt['level'] + 1.5,
+                        $tt['hash'],
+                        $tt['text']
                     ));
                 }
 
-                $entry->append($subUl);
+                $toc_entry->append($subUl);
             }
 
-            $ulCont->append($entry);
+            $ulCont->append($toc_entry);
         }
         $tocContainer->append($ulCont);
 
         $container->push($grid);
 
-        $this->app->getService("resource_manager")
-            ->requireJs("application-forum-toc-affix")
-            ->requireJs("application-forum-show-changes")
-            ->requireCss("application-forum-discussion-display")
-            ->requireCss("application-diff")
+        $this->resMgr
+            ->requireJs('application-forum-toc-affix')
+            ->requireJs('application-forum-show-changes')
+            ->requireCss('application-forum-discussion-display')
+            ->requireCss('application-diff')
         ;
 
         return $payload;
+    }
+
+    private static function shorten_po($text)
+    {
+        return phutil_utf8_shorten($text, 140);
+    }
+
+    private static function toc_link($type, $name, $id)
+    {
+        return a(
+            Converge\hsprintf('<em>%s</em> by <strong>%s</strong>', $type, $name),
+            '#' . $id
+        );
+    }
+
+    private static function toc_entry($type, $name, $id, $text)
+    {
+        return popover('li', self::toc_link($type, $name, $id), self::shorten_po($text));
     }
 }
