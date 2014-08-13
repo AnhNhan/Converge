@@ -120,13 +120,12 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public function name()
     {
-        return $this->dispname;
+        return $this->username;
     }
 
-    public function setDisplayname($dname)
+    public function canonical_name()
     {
-        return $this->dispname = $dname;
-        return $this;
+        return $this->getCanonicalName();
     }
 
     public function getPassword()
