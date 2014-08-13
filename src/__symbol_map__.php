@@ -15,932 +15,952 @@
 
 return array(
   "classes" => array(
-    "AnhNhan\ModHub\Application\ApplicationList" => array(
-      "file" => "AnhNhan/ModHub/Application/ApplicationList.php",
+    "AnhNhan\Converge\Application\ApplicationList" => array(
+      "file" => "AnhNhan/Converge/Application/ApplicationList.php",
     ),
-    "AnhNhan\ModHub\Console\ConsoleCommand" => array(
-      "file" => "AnhNhan/ModHub/Console/ConsoleCommand.php",
+    "AnhNhan\Converge\Console\ConsoleCommand" => array(
+      "file" => "AnhNhan/Converge/Console/ConsoleCommand.php",
       "deriv" => "Symfony\Component\Console\Command\Command",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand" => array(
-      "file" => "AnhNhan/ModHub/Modules/Database/Command/AbstractDbCommand.php",
-      "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
+    "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand" => array(
+      "file" => "AnhNhan/Converge/Modules/Database/Command/AbstractDbCommand.php",
+      "deriv" => "AnhNhan\Converge\Console\ConsoleCommand",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager" => array(
-      "file" => "AnhNhan/ModHub/Modules/Database/Command/DoctrineManager.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
+    "AnhNhan\Converge\Modules\Database\Command\DoctrineManager" => array(
+      "file" => "AnhNhan/Converge/Modules/Database/Command/DoctrineManager.php",
+      "deriv" => "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Controllers\ExampleListing" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/ExampleListing.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Examples\Controllers\ExampleListing" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Controllers/ExampleListing.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Controllers/StandardExamplesController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Examples\Controllers\StandardExamplesController" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Controllers/StandardExamplesController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/AbstractExample.php",
+    "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/AbstractExample.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\BootstrapExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/BootstrapExample.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\BootstrapExample" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/BootstrapExample.php",
+      "deriv" => "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\ColorExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ColorExample.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\ColorExample" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/ColorExample.php",
+      "deriv" => "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\FormExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/FormExample.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\FormExample" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/FormExample.php",
+      "deriv" => "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/ForumListingExample.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\ForumListingExample" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/ForumListingExample.php",
+      "deriv" => "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\GenericStyles" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/GenericStyles.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\GenericStyles" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/GenericStyles.php",
+      "deriv" => "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/Examples/PanelExample.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\PanelExample" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/Examples/PanelExample.php",
+      "deriv" => "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample",
     ),
-    "AnhNhan\ModHub\Modules\Examples\ExamplesApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/Examples/ExamplesApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\Examples\ExamplesApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Examples/ExamplesApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/AbstractForumController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Controllers/AbstractForumController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionDisplayController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Controllers/DiscussionDisplayController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionEditController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Controllers/DiscussionEditController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/DiscussionListingController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionListingController" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Controllers/DiscussionListingController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Controllers/PostEditController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
+    "AnhNhan\Converge\Modules\Forum\Controllers\PostEditController" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Controllers/PostEditController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
     ),
-    "AnhNhan\ModHub\Modules\Forum\ForumApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/ForumApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\Forum\ForumApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/ForumApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Query/DiscussionQuery.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    "AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Query/DiscussionQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Storage\Discussion" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/Discussion.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\Forum\Storage\Discussion" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/Discussion.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
       "impls" => array(
-        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/DiscussionTag.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/DiscussionTag.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/DiscussionTransaction.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+    "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/DiscussionTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Storage\Post" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/Post.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\Forum\Storage\Post" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/Post.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
       "impls" => array(
-        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Storage/PostTransaction.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+    "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/PostTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Transaction/DiscussionTransactionEditor.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    "AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Transaction/DiscussionTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Transaction/PostTransactionEditor.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Transaction/PostTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Transform/DiscussionTransformer.php",
+    "AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Transform/DiscussionTransformer.php",
       "deriv" => "League\Fractal\TransformerAbstract",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/DeletedPost.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/DeletedPost.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Discussion.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/Discussion.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/ForumDisplayObject.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/ForumDisplayObject.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\Post" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/Post.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\Post" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/Post.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagAction.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TagAction.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagAdd.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TagAdd" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TagAdd.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TagRemove.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TagRemove" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TagRemove.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeAction.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TextChangeAction.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeLabel.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeLabel" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TextChangeLabel.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Display/TextChangeText.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeText" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TextChangeText.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumListing.php",
-      "deriv" => "AnhNhan\ModHub\Views\Objects\Listing",
+    "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Objects/ForumListing.php",
+      "deriv" => "AnhNhan\Converge\Views\Objects\Listing",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/ForumObject.php",
-      "deriv" => "AnhNhan\ModHub\Views\Objects\Object",
+    "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Objects/ForumObject.php",
+      "deriv" => "AnhNhan\Converge\Views\Objects\Object",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing" => array(
-      "file" => "AnhNhan/ModHub/Modules/Forum/Views/Objects/PaneledForumListing.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
+    "AnhNhan\Converge\Modules\Forum\Views\Objects\PaneledForumListing" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/Objects/PaneledForumListing.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing",
     ),
-    "AnhNhan\ModHub\Modules\Front\Controllers\Dashboard" => array(
-      "file" => "AnhNhan/ModHub/Modules/Front/Controllers/Dashboard.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Front\Controllers\Dashboard" => array(
+      "file" => "AnhNhan/Converge/Modules/Front/Controllers/Dashboard.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
     ),
-    "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Front/Controllers/StandardFrontController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Front\Controllers\StandardFrontController" => array(
+      "file" => "AnhNhan/Converge/Modules/Front/Controllers/StandardFrontController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
     ),
-    "AnhNhan\ModHub\Modules\Front\FrontApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/Front/FrontApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\Front\FrontApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Front/FrontApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/AbstractMarkupController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Controllers/AbstractMarkupController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/MarkupProcessingController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
+    "AnhNhan\Converge\Modules\Markup\Controllers\MarkupProcessingController" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Controllers/MarkupProcessingController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/Controllers/MarkupTestingController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
+    "AnhNhan\Converge\Modules\Markup\Controllers\MarkupTestingController" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Controllers/MarkupTestingController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/Diff/Renderer/ArrayRenderer.php",
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/ArrayRenderer.php",
       "deriv" => "Diff_Renderer_Abstract",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/Diff/Renderer/Inline.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer",
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/Inline.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\SideBySide" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/Diff/Renderer/SideBySide.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer",
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/SideBySide.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
     ),
-    "AnhNhan\ModHub\Modules\Markup\MarkupApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/MarkupApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\Markup\MarkupApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/MarkupApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\Markup\MarkupEngine" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/MarkupEngine.php",
+    "AnhNhan\Converge\Modules\Markup\MarkupEngine" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/MarkupEngine.php",
     ),
-    "AnhNhan\ModHub\Modules\Markup\TOCExtractor" => array(
-      "file" => "AnhNhan/ModHub/Modules/Markup/TOCExtractor.php",
+    "AnhNhan\Converge\Modules\Markup\TOCExtractor" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/TOCExtractor.php",
     ),
-    "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete" => array(
-      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/Autocomplete.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
+      "file" => "AnhNhan/Converge/Modules/Search/Controllers/Autocomplete.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags" => array(
-      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/AutocompleteTags.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
+    "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags" => array(
+      "file" => "AnhNhan/Converge/Modules/Search/Controllers/AutocompleteTags.php",
+      "deriv" => "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete",
     ),
-    "AnhNhan\ModHub\Modules\Search\Controllers\Search" => array(
-      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/Search.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Search\Controllers\Search" => array(
+      "file" => "AnhNhan/Converge/Modules/Search/Controllers/Search.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Search\Controllers\SearchDiscussion" => array(
-      "file" => "AnhNhan/ModHub/Modules/Search/Controllers/SearchDiscussion.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Search\Controllers\Search",
+    "AnhNhan\Converge\Modules\Search\Controllers\SearchDiscussion" => array(
+      "file" => "AnhNhan/Converge/Modules/Search/Controllers/SearchDiscussion.php",
+      "deriv" => "AnhNhan\Converge\Modules\Search\Controllers\Search",
     ),
-    "AnhNhan\ModHub\Modules\Search\SearchApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/Search/SearchApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\Search\SearchApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Search/SearchApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Builders\JsBuilder" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/JsBuilder.php",
+    "AnhNhan\Converge\Modules\StaticResources\Builders\JsBuilder" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/Builders/JsBuilder.php",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Builders\TemplateBuilder" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/Builders/TemplateBuilder.php",
+    "AnhNhan\Converge\Modules\StaticResources\Builders\TemplateBuilder" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/Builders/TemplateBuilder.php",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/Console/CompileCommand.php",
-      "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
+    "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/Console/CompileCommand.php",
+      "deriv" => "AnhNhan\Converge\Console\ConsoleCommand",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/Controllers/AbstractStaticResourceController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/Controllers/StaticResourceController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+    "AnhNhan\Converge\Modules\StaticResources\Controllers\StaticResourceController" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/Controllers/StaticResourceController.php",
+      "deriv" => "AnhNhan\Converge\Modules\StaticResources\Controllers\AbstractStaticResourceController",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\ResMgr" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/ResMgr.php",
+    "AnhNhan\Converge\Modules\StaticResources\ResMgr" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/ResMgr.php",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/StaticResources/StaticResourcesApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/StaticResources/StaticResourcesApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
-      "file" => "AnhNhan/ModHub/Modules/Symbols/Console/AbstractSymbolsCommand.php",
-      "deriv" => "AnhNhan\ModHub\Console\ConsoleCommand",
+    "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
+      "file" => "AnhNhan/Converge/Modules/Symbols/Console/AbstractSymbolsCommand.php",
+      "deriv" => "AnhNhan\Converge\Console\ConsoleCommand",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand" => array(
-      "file" => "AnhNhan/ModHub/Modules/Symbols/Console/SymbolGenerationCommand.php",
-      "deriv" => "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+    "AnhNhan\Converge\Modules\StaticResources\Console\SymbolGenerationCommand" => array(
+      "file" => "AnhNhan/Converge/Modules/Symbols/Console/SymbolGenerationCommand.php",
+      "deriv" => "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand",
     ),
-    "AnhNhan\ModHub\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter" => array(
-      "file" => "AnhNhan/ModHub/Modules/Symbols/Generator/NodeVisitor/SymbolEmitter.php",
+    "AnhNhan\Converge\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter" => array(
+      "file" => "AnhNhan/Converge/Modules/Symbols/Generator/NodeVisitor/SymbolEmitter.php",
       "deriv" => "PHPParser_NodeVisitorAbstract",
     ),
-    "AnhNhan\ModHub\Modules\Symbols\Generator\SymbolGenerator" => array(
-      "file" => "AnhNhan/ModHub/Modules/Symbols/Generator/SymbolGenerator.php",
+    "AnhNhan\Converge\Modules\Symbols\Generator\SymbolGenerator" => array(
+      "file" => "AnhNhan/Converge/Modules/Symbols/Generator/SymbolGenerator.php",
     ),
-    "AnhNhan\ModHub\Modules\Symbols\Generator\SymbolTree" => array(
-      "file" => "AnhNhan/ModHub/Modules/Symbols/Generator/SymbolTree.php",
+    "AnhNhan\Converge\Modules\Symbols\Generator\SymbolTree" => array(
+      "file" => "AnhNhan/Converge/Modules/Symbols/Generator/SymbolTree.php",
     ),
-    "AnhNhan\ModHub\Modules\Symbols\SymbolLoader" => array(
-      "file" => "AnhNhan/ModHub/Modules/Symbols/SymbolLoader.php",
+    "AnhNhan\Converge\Modules\Symbols\SymbolLoader" => array(
+      "file" => "AnhNhan/Converge/Modules/Symbols/SymbolLoader.php",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/AbstractTagController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Controllers/AbstractTagController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagCreationController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
+    "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Controllers/TagCreationController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagDisplayController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
+    "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Controllers/TagDisplayController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Controllers/TagListingController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
+    "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Controllers/TagListingController.php",
+      "deriv" => "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Storage\Tag" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Storage/Tag.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\Tag\Storage\Tag" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Storage/Tag.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
       "impls" => array(
-        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Storage/TagTransaction.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+    "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Storage/TagTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
-    "AnhNhan\ModHub\Modules\Tag\TagApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/TagApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\Tag\TagApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/TagApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\Tag\TagQuery" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/TagQuery.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    "AnhNhan\Converge\Modules\Tag\TagQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/TagQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Transaction/TagTransactionEditor.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    "AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Transaction/TagTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Views/FormControls/TagSelector.php",
-      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+    "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Views/FormControls/TagSelector.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Views\TagView" => array(
-      "file" => "AnhNhan/ModHub/Modules/Tag/Views/TagView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Modules\Tag\Views\TagView" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Views/TagView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Controllers/AbstractUserController.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplicationController",
+    "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/AbstractUserController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Controllers/RoleEditController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
+    "AnhNhan\Converge\Modules\User\Controllers\RoleEditController" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/RoleEditController.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
     ),
-    "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Controllers/RoleListingController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
+    "AnhNhan\Converge\Modules\User\Controllers\RoleListingController" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/RoleListingController.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
     ),
-    "AnhNhan\ModHub\Modules\User\Controllers\UserRegisterController" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Controllers/UserRegisterController.php",
-      "deriv" => "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
+    "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLoginCheck.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
     ),
-    "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/DependencyInjection/SecurityExtension.php",
+    "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLoginForm.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
+    ),
+    "AnhNhan\Converge\Modules\User\Controllers\UserLogout" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLogout.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
+    ),
+    "AnhNhan\Converge\Modules\User\Controllers\UserRegisterController" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserRegisterController.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
+    ),
+    "AnhNhan\Converge\Modules\User\DependencyInjection\SecurityExtension" => array(
+      "file" => "AnhNhan/Converge/Modules/User/DependencyInjection/SecurityExtension.php",
       "impls" => array(
         "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\User\DependencyInjection\UserExtension" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/DependencyInjection/UserExtension.php",
+    "AnhNhan\Converge\Modules\User\DependencyInjection\UserExtension" => array(
+      "file" => "AnhNhan/Converge/Modules/User/DependencyInjection/UserExtension.php",
       "impls" => array(
         "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\User\Providers\DefaultUserProvider" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Providers/DefaultUserProvider.php",
+    "AnhNhan\Converge\Modules\User\Providers\DefaultUserProvider" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Providers/DefaultUserProvider.php",
       "impls" => array(
         "Symfony\Component\Security\Core\User\UserProviderInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Providers/UserAuthenticationProvider.php",
+    "AnhNhan\Converge\Modules\User\Providers\UserAuthenticationProvider" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Providers/UserAuthenticationProvider.php",
       "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
     ),
-    "AnhNhan\ModHub\Modules\User\Query\RoleQuery" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Query/RoleQuery.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    "AnhNhan\Converge\Modules\User\Query\RoleQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Query/RoleQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
     ),
-    "AnhNhan\ModHub\Modules\User\Query\UserQuery" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Query/UserQuery.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Query",
+    "AnhNhan\Converge\Modules\User\Query\UserQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Query/UserQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
     ),
-    "AnhNhan\ModHub\Modules\User\Storage\Email" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/Email.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\User\Storage\Email" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Storage/Email.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
-    "AnhNhan\ModHub\Modules\User\Storage\OAuthInfo" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/OAuthInfo.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\User\Storage\OAuthInfo" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Storage/OAuthInfo.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
-    "AnhNhan\ModHub\Modules\User\Storage\Role" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/Role.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\User\Storage\Role" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Storage/Role.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
       "impls" => array(
-        "Symfony\Component\Security\Core\Role\RoleInterface",
-        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/RoleTransaction.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+    "AnhNhan\Converge\Modules\User\Storage\RoleTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Storage/RoleTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
-    "AnhNhan\ModHub\Modules\User\Storage\User" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/User.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Modules\User\Storage\User" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Storage/User.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
       "impls" => array(
         "Symfony\Component\Security\Core\User\AdvancedUserInterface",
-        "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface",
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
       ),
     ),
-    "AnhNhan\ModHub\Modules\User\Storage\UserTransaction" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Storage/UserTransaction.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
+    "AnhNhan\Converge\Modules\User\Storage\UserTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Storage/UserTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
-    "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Transaction/RoleTransactionEditor.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    "AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Transaction/RoleTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
     ),
-    "AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Transaction/UserTransactionEditor.php",
-      "deriv" => "AnhNhan\ModHub\Storage\Transaction\TransactionEditor",
+    "AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Transaction/UserTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
     ),
-    "AnhNhan\ModHub\Modules\User\UserApplication" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/UserApplication.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\BaseApplication",
+    "AnhNhan\Converge\Modules\User\UserApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/User/UserApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\ModHub\Modules\User\Views\UserPlateView" => array(
-      "file" => "AnhNhan/ModHub/Modules/User/Views/UserPlateView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Modules\User\Views\UserPlateView" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Views/UserPlateView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Storage\Doctrine\LifeCycleUIDGenerator" => array(
-      "file" => "AnhNhan/ModHub/Storage/Doctrine/LifeCycleUIDGenerator.php",
+    "AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator" => array(
+      "file" => "AnhNhan/Converge/Storage/Doctrine/LifeCycleUIDGenerator.php",
       "impls" => array(
         "Doctrine\Common\EventSubscriber",
       ),
     ),
-    "AnhNhan\ModHub\Storage\Doctrine\UIDGenerator" => array(
-      "file" => "AnhNhan/ModHub/Storage/Doctrine/UIDGenerator.php",
+    "AnhNhan\Converge\Storage\Doctrine\UIDGenerator" => array(
+      "file" => "AnhNhan/Converge/Storage/Doctrine/UIDGenerator.php",
       "deriv" => "Doctrine\ORM\Id\AbstractIdGenerator",
     ),
-    "AnhNhan\ModHub\Storage\EntityDefinition" => array(
-      "file" => "AnhNhan/ModHub/Storage/EntityDefinition.php",
+    "AnhNhan\Converge\Storage\EntityDefinition" => array(
+      "file" => "AnhNhan/Converge/Storage/EntityDefinition.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Storage\Query" => array(
-      "file" => "AnhNhan/ModHub/Storage/Query.php",
+    "AnhNhan\Converge\Storage\Query" => array(
+      "file" => "AnhNhan/Converge/Storage/Query.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Storage\Transaction\TransactionEditor" => array(
-      "file" => "AnhNhan/ModHub/Storage/Transaction/TransactionEditor.php",
+    "AnhNhan\Converge\Storage\Transaction\TransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Storage/Transaction/TransactionEditor.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
-      "file" => "AnhNhan/ModHub/Storage/Transaction/TransactionEntity.php",
-      "deriv" => "AnhNhan\ModHub\Storage\EntityDefinition",
+    "AnhNhan\Converge\Storage\Transaction\TransactionEntity" => array(
+      "file" => "AnhNhan/Converge/Storage/Transaction/TransactionEntity.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Storage\Types\UID" => array(
-      "file" => "AnhNhan/ModHub/Storage/Types/UID.php",
+    "AnhNhan\Converge\Storage\Types\UID" => array(
+      "file" => "AnhNhan/Converge/Storage/Types/UID.php",
     ),
-    "AnhNhan\ModHub\Views\AbstractView" => array(
-      "file" => "AnhNhan/ModHub/Views/AbstractView.php",
+    "AnhNhan\Converge\Views\AbstractView" => array(
+      "file" => "AnhNhan/Converge/Views/AbstractView.php",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
         "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface",
       ),
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
-      "file" => "AnhNhan/ModHub/Views/Form/Controls/AbstractFormControl.php",
+    "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/AbstractFormControl.php",
       "deriv" => "YamwLibs\Libs\Html\Markup\HtmlTag",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Views\Form\Controls\HiddenControl" => array(
-      "file" => "AnhNhan/ModHub/Views/Form/Controls/HiddenControl.php",
-      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+    "AnhNhan\Converge\Views\Form\Controls\HiddenControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/HiddenControl.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
     ),
-    "AnhNhan\ModHub\Views\Form\Controls\SubmitControl" => array(
-      "file" => "AnhNhan/ModHub/Views/Form/Controls/SubmitControl.php",
+    "AnhNhan\Converge\Views\Form\Controls\PasswordControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/PasswordControl.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
+    ),
+    "AnhNhan\Converge\Views\Form\Controls\SubmitControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/SubmitControl.php",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
     ),
-    "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl" => array(
-      "file" => "AnhNhan/ModHub/Views/Form/Controls/TextAreaControl.php",
-      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+    "AnhNhan\Converge\Views\Form\Controls\TextAreaControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/TextAreaControl.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
     ),
-    "AnhNhan\ModHub\Views\Form\Controls\TextControl" => array(
-      "file" => "AnhNhan/ModHub/Views/Form/Controls/TextControl.php",
-      "deriv" => "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
+    "AnhNhan\Converge\Views\Form\Controls\TextControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/TextControl.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
     ),
-    "AnhNhan\ModHub\Views\Form\FormView" => array(
-      "file" => "AnhNhan/ModHub/Views/Form/FormView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Form\FormView" => array(
+      "file" => "AnhNhan/Converge/Views/Form/FormView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Grid\Column" => array(
-      "file" => "AnhNhan/ModHub/Views/Grid/Column.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Grid\Column" => array(
+      "file" => "AnhNhan/Converge/Views/Grid/Column.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Grid\Grid" => array(
-      "file" => "AnhNhan/ModHub/Views/Grid/Grid.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Grid\Grid" => array(
+      "file" => "AnhNhan/Converge/Views/Grid/Grid.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Grid\Row" => array(
-      "file" => "AnhNhan/ModHub/Views/Grid/Row.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Grid\Row" => array(
+      "file" => "AnhNhan/Converge/Views/Grid/Row.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
-      "file" => "AnhNhan/ModHub/Views/Objects/AbstractObject.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Objects\AbstractObject" => array(
+      "file" => "AnhNhan/Converge/Views/Objects/AbstractObject.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Views\Objects\Listing" => array(
-      "file" => "AnhNhan/ModHub/Views/Objects/Listing.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Objects\Listing" => array(
+      "file" => "AnhNhan/Converge/Views/Objects/Listing.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Objects\Object" => array(
-      "file" => "AnhNhan/ModHub/Views/Objects/Object.php",
-      "deriv" => "AnhNhan\ModHub\Views\Objects\AbstractObject",
+    "AnhNhan\Converge\Views\Objects\Object" => array(
+      "file" => "AnhNhan/Converge/Views/Objects/Object.php",
+      "deriv" => "AnhNhan\Converge\Views\Objects\AbstractObject",
     ),
-    "AnhNhan\ModHub\Views\Page\BarePageView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/BarePageView.php",
-      "deriv" => "AnhNhan\ModHub\Views\Page\PageView",
+    "AnhNhan\Converge\Views\Page\BarePageView" => array(
+      "file" => "AnhNhan/Converge/Views/Page/BarePageView.php",
+      "deriv" => "AnhNhan\Converge\Views\Page\PageView",
     ),
-    "AnhNhan\ModHub\Views\Page\DefaultTemplateView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/DefaultTemplateView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Page\DefaultTemplateView" => array(
+      "file" => "AnhNhan/Converge/Views/Page/DefaultTemplateView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Page\FooterView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/FooterView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Page\FooterView" => array(
+      "file" => "AnhNhan/Converge/Views/Page/FooterView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
       ),
     ),
-    "AnhNhan\ModHub\Views\Page\HeaderView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/HeaderView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Page\HeaderView" => array(
+      "file" => "AnhNhan/Converge/Views/Page/HeaderView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Page\HtmlDocumentView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/HtmlDocumentView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Page\HtmlDocumentView" => array(
+      "file" => "AnhNhan/Converge/Views/Page/HtmlDocumentView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Page\PageView" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/PageView.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Page\PageView" => array(
+      "file" => "AnhNhan/Converge/Views/Page/PageView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Views\Page\SideNavBar" => array(
-      "file" => "AnhNhan/ModHub/Views/Page/SideNavBar.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Page\SideNavBar" => array(
+      "file" => "AnhNhan/Converge/Views/Page/SideNavBar.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Panel\Panel" => array(
-      "file" => "AnhNhan/ModHub/Views/Panel/Panel.php",
-      "deriv" => "AnhNhan\ModHub\Views\AbstractView",
+    "AnhNhan\Converge\Views\Panel\Panel" => array(
+      "file" => "AnhNhan/Converge/Views/Panel/Panel.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
-    "AnhNhan\ModHub\Views\Web\Response\ResponseHtml404" => array(
-      "file" => "AnhNhan/ModHub/Views/Web/Response/ResponseHtml404.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+    "AnhNhan\Converge\Views\Web\Response\ResponseHtml404" => array(
+      "file" => "AnhNhan/Converge/Views/Web/Response/ResponseHtml404.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\HttpPayload",
     ),
-    "AnhNhan\ModHub\Web\AppRouting" => array(
-      "file" => "AnhNhan/ModHub/Web/AppRouting.php",
+    "AnhNhan\Converge\Web\AppRouting" => array(
+      "file" => "AnhNhan/Converge/Web/AppRouting.php",
       "impls" => array(
         "Symfony\Component\Routing\Matcher\RequestMatcherInterface",
         "Symfony\Component\Routing\Generator\UrlGeneratorInterface",
       ),
     ),
-    "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/AbstractPayload.php",
+    "AnhNhan\Converge\Web\Application\AbstractPayload" => array(
+      "file" => "AnhNhan/Converge/Web/Application/AbstractPayload.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/BaseApplication.php",
+    "AnhNhan\Converge\Web\Application\BaseApplication" => array(
+      "file" => "AnhNhan/Converge/Web/Application/BaseApplication.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/BaseApplicationController.php",
+    "AnhNhan\Converge\Web\Application\BaseApplicationController" => array(
+      "file" => "AnhNhan/Converge/Web/Application/BaseApplicationController.php",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Web\Application\HtmlPayload" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/HtmlPayload.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+    "AnhNhan\Converge\Web\Application\HtmlPayload" => array(
+      "file" => "AnhNhan/Converge/Web/Application/HtmlPayload.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\HttpPayload",
     ),
-    "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/HttpPayload.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\AbstractPayload",
+    "AnhNhan\Converge\Web\Application\HttpPayload" => array(
+      "file" => "AnhNhan/Converge/Web/Application/HttpPayload.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\AbstractPayload",
       "abstr" => "1",
     ),
-    "AnhNhan\ModHub\Web\Application\JsonPayload" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/JsonPayload.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+    "AnhNhan\Converge\Web\Application\JsonPayload" => array(
+      "file" => "AnhNhan/Converge/Web/Application/JsonPayload.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\HttpPayload",
     ),
-    "AnhNhan\ModHub\Web\Application\RawHttpPayload" => array(
-      "file" => "AnhNhan/ModHub/Web/Application/RawHttpPayload.php",
-      "deriv" => "AnhNhan\ModHub\Web\Application\HttpPayload",
+    "AnhNhan\Converge\Web\Application\RawHttpPayload" => array(
+      "file" => "AnhNhan/Converge/Web/Application/RawHttpPayload.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\HttpPayload",
     ),
-    "AnhNhan\ModHub\Web\Core" => array(
-      "file" => "AnhNhan/ModHub/Web/Core.php",
+    "AnhNhan\Converge\Web\Core" => array(
+      "file" => "AnhNhan/Converge/Web/Core.php",
     ),
-    "AnhNhan\ModHub\Web\HttpKernel" => array(
-      "file" => "AnhNhan/ModHub/Web/HttpKernel.php",
+    "AnhNhan\Converge\Web\HttpKernel" => array(
+      "file" => "AnhNhan/Converge/Web/HttpKernel.php",
       "impls" => array(
         "Symfony\Component\HttpKernel\HttpKernelInterface",
       ),
     ),
   ),
   "functions" => array(
-    "renderDiscussion" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
-    "renderPost" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
-    "attach_xacts" => "AnhNhan/ModHub/Modules/Forum/Views/render.php",
-    "AnhNhan\ModHub\get_root" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\get_root_super" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\path" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\is_cli" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\is_windows" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\println" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\sdx" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\pdx" => "AnhNhan/ModHub/functions.php",
-    "AnhNhan\ModHub\safeHtml" => "AnhNhan/ModHub/functions_html.php",
-    "AnhNhan\ModHub\hsprintf" => "AnhNhan/ModHub/functions_html.php",
-    "AnhNhan\ModHub\ht" => "AnhNhan/ModHub/functions_html.php",
-    "AnhNhan\ModHub\icon_ic" => "AnhNhan/ModHub/functions_html.php",
-    "AnhNhan\ModHub\icon_ion" => "AnhNhan/ModHub/functions_html.php",
-    "div" => "AnhNhan/ModHub/functions_html_global.php",
-    "span" => "AnhNhan/ModHub/functions_html_global.php",
-    "a" => "AnhNhan/ModHub/functions_html_global.php",
-    "h1" => "AnhNhan/ModHub/functions_html_global.php",
-    "h2" => "AnhNhan/ModHub/functions_html_global.php",
-    "h3" => "AnhNhan/ModHub/functions_html_global.php",
-    "h4" => "AnhNhan/ModHub/functions_html_global.php",
-    "h5" => "AnhNhan/ModHub/functions_html_global.php",
-    "h6" => "AnhNhan/ModHub/functions_html_global.php",
-    "generate_search_prep_stmt_part" => "AnhNhan/ModHub/functions_sql.php",
+    "renderDiscussion" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
+    "renderPost" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
+    "attach_xacts" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
+    "AnhNhan\Converge\get_root" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\get_root_super" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\path" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\is_cli" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\is_windows" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\println" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\sdx" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\pdx" => "AnhNhan/Converge/functions.php",
+    "AnhNhan\Converge\safeHtml" => "AnhNhan/Converge/functions_html.php",
+    "AnhNhan\Converge\hsprintf" => "AnhNhan/Converge/functions_html.php",
+    "AnhNhan\Converge\ht" => "AnhNhan/Converge/functions_html.php",
+    "AnhNhan\Converge\icon_ic" => "AnhNhan/Converge/functions_html.php",
+    "AnhNhan\Converge\icon_ion" => "AnhNhan/Converge/functions_html.php",
+    "div" => "AnhNhan/Converge/functions_html_global.php",
+    "span" => "AnhNhan/Converge/functions_html_global.php",
+    "a" => "AnhNhan/Converge/functions_html_global.php",
+    "h1" => "AnhNhan/Converge/functions_html_global.php",
+    "h2" => "AnhNhan/Converge/functions_html_global.php",
+    "h3" => "AnhNhan/Converge/functions_html_global.php",
+    "h4" => "AnhNhan/Converge/functions_html_global.php",
+    "h5" => "AnhNhan/Converge/functions_html_global.php",
+    "h6" => "AnhNhan/Converge/functions_html_global.php",
+    "generate_search_prep_stmt_part" => "AnhNhan/Converge/functions_sql.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
-      "AnhNhan\ModHub\Console\ConsoleCommand",
-      "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
+      "AnhNhan\Converge\Console\ConsoleCommand",
+      "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
+      "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand",
+      "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand",
     ),
-    "AnhNhan\ModHub\Console\ConsoleCommand" => array(
-      "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\CompileCommand",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand",
-      "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager",
-      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
+    "AnhNhan\Converge\Console\ConsoleCommand" => array(
+      "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
+      "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand",
+      "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand",
+      "AnhNhan\Converge\Modules\Database\Command\DoctrineManager",
+      "AnhNhan\Converge\Modules\StaticResources\Console\SymbolGenerationCommand",
     ),
-    "AnhNhan\ModHub\Modules\Database\Command\AbstractDbCommand" => array(
-      "AnhNhan\ModHub\Modules\Database\Command\DoctrineManager",
+    "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand" => array(
+      "AnhNhan\Converge\Modules\Database\Command\DoctrineManager",
     ),
-    "AnhNhan\ModHub\Web\Application\BaseApplicationController" => array(
-      "AnhNhan\ModHub\Modules\Examples\Controllers\ExampleListing",
-      "AnhNhan\ModHub\Modules\Examples\Controllers\StandardExamplesController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController",
-      "AnhNhan\ModHub\Modules\Front\Controllers\Dashboard",
-      "AnhNhan\ModHub\Modules\Front\Controllers\StandardFrontController",
-      "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController",
-      "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete",
-      "AnhNhan\ModHub\Modules\Search\Controllers\Search",
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController",
-      "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController",
-      "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController",
-      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
-      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
-      "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
-      "AnhNhan\ModHub\Modules\Search\Controllers\SearchDiscussion",
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
-      "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
-      "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
-      "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
-      "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
-      "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
-      "AnhNhan\ModHub\Modules\User\Controllers\UserRegisterController",
+    "AnhNhan\Converge\Web\Application\BaseApplicationController" => array(
+      "AnhNhan\Converge\Modules\Examples\Controllers\ExampleListing",
+      "AnhNhan\Converge\Modules\Examples\Controllers\StandardExamplesController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
+      "AnhNhan\Converge\Modules\Front\Controllers\Dashboard",
+      "AnhNhan\Converge\Modules\Front\Controllers\StandardFrontController",
+      "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController",
+      "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete",
+      "AnhNhan\Converge\Modules\Search\Controllers\Search",
+      "AnhNhan\Converge\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
+      "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionListingController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\PostEditController",
+      "AnhNhan\Converge\Modules\Markup\Controllers\MarkupProcessingController",
+      "AnhNhan\Converge\Modules\Markup\Controllers\MarkupTestingController",
+      "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
+      "AnhNhan\Converge\Modules\Search\Controllers\SearchDiscussion",
+      "AnhNhan\Converge\Modules\StaticResources\Controllers\StaticResourceController",
+      "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController",
+      "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
+      "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
+      "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
+      "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
+      "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck",
+      "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm",
+      "AnhNhan\Converge\Modules\User\Controllers\UserLogout",
+      "AnhNhan\Converge\Modules\User\Controllers\UserRegisterController",
     ),
-    "AnhNhan\ModHub\Modules\Examples\Examples\AbstractExample" => array(
-      "AnhNhan\ModHub\Modules\Examples\Examples\BootstrapExample",
-      "AnhNhan\ModHub\Modules\Examples\Examples\ColorExample",
-      "AnhNhan\ModHub\Modules\Examples\Examples\FormExample",
-      "AnhNhan\ModHub\Modules\Examples\Examples\ForumListingExample",
-      "AnhNhan\ModHub\Modules\Examples\Examples\GenericStyles",
-      "AnhNhan\ModHub\Modules\Examples\Examples\PanelExample",
+    "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample" => array(
+      "AnhNhan\Converge\Modules\Examples\Examples\BootstrapExample",
+      "AnhNhan\Converge\Modules\Examples\Examples\ColorExample",
+      "AnhNhan\Converge\Modules\Examples\Examples\FormExample",
+      "AnhNhan\Converge\Modules\Examples\Examples\ForumListingExample",
+      "AnhNhan\Converge\Modules\Examples\Examples\GenericStyles",
+      "AnhNhan\Converge\Modules\Examples\Examples\PanelExample",
     ),
-    "AnhNhan\ModHub\Web\Application\BaseApplication" => array(
-      "AnhNhan\ModHub\Modules\Examples\ExamplesApplication",
-      "AnhNhan\ModHub\Modules\Forum\ForumApplication",
-      "AnhNhan\ModHub\Modules\Front\FrontApplication",
-      "AnhNhan\ModHub\Modules\Markup\MarkupApplication",
-      "AnhNhan\ModHub\Modules\Search\SearchApplication",
-      "AnhNhan\ModHub\Modules\StaticResources\StaticResourcesApplication",
-      "AnhNhan\ModHub\Modules\Tag\TagApplication",
-      "AnhNhan\ModHub\Modules\User\UserApplication",
+    "AnhNhan\Converge\Web\Application\BaseApplication" => array(
+      "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
+      "AnhNhan\Converge\Modules\Forum\ForumApplication",
+      "AnhNhan\Converge\Modules\Front\FrontApplication",
+      "AnhNhan\Converge\Modules\Markup\MarkupApplication",
+      "AnhNhan\Converge\Modules\Search\SearchApplication",
+      "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication",
+      "AnhNhan\Converge\Modules\Tag\TagApplication",
+      "AnhNhan\Converge\Modules\User\UserApplication",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Controllers\AbstractForumController" => array(
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionDisplayController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionEditController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\DiscussionListingController",
-      "AnhNhan\ModHub\Modules\Forum\Controllers\PostEditController",
+    "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
+      "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionListingController",
+      "AnhNhan\Converge\Modules\Forum\Controllers\PostEditController",
     ),
-    "AnhNhan\ModHub\Storage\Query" => array(
-      "AnhNhan\ModHub\Modules\Forum\Query\DiscussionQuery",
-      "AnhNhan\ModHub\Modules\Tag\TagQuery",
-      "AnhNhan\ModHub\Modules\User\Query\RoleQuery",
-      "AnhNhan\ModHub\Modules\User\Query\UserQuery",
+    "AnhNhan\Converge\Storage\Query" => array(
+      "AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery",
+      "AnhNhan\Converge\Modules\Tag\TagQuery",
+      "AnhNhan\Converge\Modules\User\Query\RoleQuery",
+      "AnhNhan\Converge\Modules\User\Query\UserQuery",
     ),
-    "AnhNhan\ModHub\Storage\EntityDefinition" => array(
-      "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
-      "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag",
-      "AnhNhan\ModHub\Modules\Forum\Storage\Post",
-      "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
-      "AnhNhan\ModHub\Modules\User\Storage\Email",
-      "AnhNhan\ModHub\Modules\User\Storage\OAuthInfo",
-      "AnhNhan\ModHub\Modules\User\Storage\Role",
-      "AnhNhan\ModHub\Modules\User\Storage\User",
-      "AnhNhan\ModHub\Storage\Transaction\TransactionEntity",
-      "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
-      "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
-      "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
-      "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction",
-      "AnhNhan\ModHub\Modules\User\Storage\UserTransaction",
+    "AnhNhan\Converge\Storage\EntityDefinition" => array(
+      "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
+      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
+      "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Tag\Storage\Tag",
+      "AnhNhan\Converge\Modules\User\Storage\Email",
+      "AnhNhan\Converge\Modules\User\Storage\OAuthInfo",
+      "AnhNhan\Converge\Modules\User\Storage\Role",
+      "AnhNhan\Converge\Modules\User\Storage\User",
+      "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
+      "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
+      "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
-    "AnhNhan\ModHub\Storage\Transaction\TransactionEntity" => array(
-      "AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction",
-      "AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction",
-      "AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction",
-      "AnhNhan\ModHub\Modules\User\Storage\RoleTransaction",
-      "AnhNhan\ModHub\Modules\User\Storage\UserTransaction",
+    "AnhNhan\Converge\Storage\Transaction\TransactionEntity" => array(
+      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
+      "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
+      "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
-    "AnhNhan\ModHub\Storage\Transaction\TransactionEditor" => array(
-      "AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor",
-      "AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor",
-      "AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor",
-      "AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor",
-      "AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor",
+    "AnhNhan\Converge\Storage\Transaction\TransactionEditor" => array(
+      "AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor",
+      "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor",
+      "AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor",
+      "AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor",
+      "AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor",
     ),
     "League\Fractal\TransformerAbstract" => array(
-      "AnhNhan\ModHub\Modules\Forum\Transform\DiscussionTransformer",
+      "AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\Post",
     ),
-    "AnhNhan\ModHub\Views\AbstractView" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\ForumDisplayObject",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction",
-      "AnhNhan\ModHub\Modules\Tag\Views\TagView",
-      "AnhNhan\ModHub\Modules\User\Views\UserPlateView",
-      "AnhNhan\ModHub\Views\Form\FormView",
-      "AnhNhan\ModHub\Views\Grid\Column",
-      "AnhNhan\ModHub\Views\Grid\Grid",
-      "AnhNhan\ModHub\Views\Grid\Row",
-      "AnhNhan\ModHub\Views\Objects\AbstractObject",
-      "AnhNhan\ModHub\Views\Objects\Listing",
-      "AnhNhan\ModHub\Views\Page\DefaultTemplateView",
-      "AnhNhan\ModHub\Views\Page\FooterView",
-      "AnhNhan\ModHub\Views\Page\HeaderView",
-      "AnhNhan\ModHub\Views\Page\HtmlDocumentView",
-      "AnhNhan\ModHub\Views\Page\PageView",
-      "AnhNhan\ModHub\Views\Page\SideNavBar",
-      "AnhNhan\ModHub\Views\Panel\Panel",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\DeletedPost",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\Discussion",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\Post",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText",
-      "AnhNhan\ModHub\Views\Objects\Object",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-      "AnhNhan\ModHub\Views\Page\BarePageView",
+    "AnhNhan\Converge\Views\AbstractView" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction",
+      "AnhNhan\Converge\Modules\Tag\Views\TagView",
+      "AnhNhan\Converge\Modules\User\Views\UserPlateView",
+      "AnhNhan\Converge\Views\Form\FormView",
+      "AnhNhan\Converge\Views\Grid\Column",
+      "AnhNhan\Converge\Views\Grid\Grid",
+      "AnhNhan\Converge\Views\Grid\Row",
+      "AnhNhan\Converge\Views\Objects\AbstractObject",
+      "AnhNhan\Converge\Views\Objects\Listing",
+      "AnhNhan\Converge\Views\Page\DefaultTemplateView",
+      "AnhNhan\Converge\Views\Page\FooterView",
+      "AnhNhan\Converge\Views\Page\HeaderView",
+      "AnhNhan\Converge\Views\Page\HtmlDocumentView",
+      "AnhNhan\Converge\Views\Page\PageView",
+      "AnhNhan\Converge\Views\Page\SideNavBar",
+      "AnhNhan\Converge\Views\Panel\Panel",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\Post",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TagAdd",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TagRemove",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeLabel",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeText",
+      "AnhNhan\Converge\Views\Objects\Object",
+      "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing",
+      "AnhNhan\Converge\Views\Page\BarePageView",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAction" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagAdd",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TagRemove",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TagAdd",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TagRemove",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeAction" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeLabel",
-      "AnhNhan\ModHub\Modules\Forum\Views\Display\TextChangeText",
+    "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeLabel",
+      "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeText",
     ),
-    "AnhNhan\ModHub\Views\Objects\Listing" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
+    "AnhNhan\Converge\Views\Objects\Listing" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing",
+      "AnhNhan\Converge\Modules\Forum\Views\Objects\PaneledForumListing",
     ),
-    "AnhNhan\ModHub\Views\Objects\Object" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+    "AnhNhan\Converge\Views\Objects\Object" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject",
     ),
-    "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumListing" => array(
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\PaneledForumListing",
+    "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\Objects\PaneledForumListing",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Controllers\AbstractMarkupController" => array(
-      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupProcessingController",
-      "AnhNhan\ModHub\Modules\Markup\Controllers\MarkupTestingController",
+    "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController" => array(
+      "AnhNhan\Converge\Modules\Markup\Controllers\MarkupProcessingController",
+      "AnhNhan\Converge\Modules\Markup\Controllers\MarkupTestingController",
     ),
     "Diff_Renderer_Abstract" => array(
-      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer",
-      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline",
-      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\SideBySide",
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline",
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide",
     ),
-    "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
-      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\Inline",
-      "AnhNhan\ModHub\Modules\Markup\Diff\Renderer\SideBySide",
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline",
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide",
     ),
-    "AnhNhan\ModHub\Modules\Search\Controllers\Autocomplete" => array(
-      "AnhNhan\ModHub\Modules\Search\Controllers\AutocompleteTags",
+    "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
+      "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
     ),
-    "AnhNhan\ModHub\Modules\Search\Controllers\Search" => array(
-      "AnhNhan\ModHub\Modules\Search\Controllers\SearchDiscussion",
+    "AnhNhan\Converge\Modules\Search\Controllers\Search" => array(
+      "AnhNhan\Converge\Modules\Search\Controllers\SearchDiscussion",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
-      "AnhNhan\ModHub\Modules\StaticResources\Controllers\StaticResourceController",
+    "AnhNhan\Converge\Modules\StaticResources\Controllers\AbstractStaticResourceController" => array(
+      "AnhNhan\Converge\Modules\StaticResources\Controllers\StaticResourceController",
     ),
-    "AnhNhan\ModHub\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
-      "AnhNhan\ModHub\Modules\StaticResources\Console\SymbolGenerationCommand",
+    "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
+      "AnhNhan\Converge\Modules\StaticResources\Console\SymbolGenerationCommand",
     ),
     "PHPParser_NodeVisitorAbstract" => array(
-      "AnhNhan\ModHub\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter",
+      "AnhNhan\Converge\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter",
     ),
-    "AnhNhan\ModHub\Modules\Tag\Controllers\AbstractTagController" => array(
-      "AnhNhan\ModHub\Modules\Tag\Controllers\TagCreationController",
-      "AnhNhan\ModHub\Modules\Tag\Controllers\TagDisplayController",
-      "AnhNhan\ModHub\Modules\Tag\Controllers\TagListingController",
+    "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController" => array(
+      "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController",
+      "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
+      "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
     ),
-    "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl" => array(
-      "AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector",
-      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
-      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
-      "AnhNhan\ModHub\Views\Form\Controls\TextControl",
+    "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl" => array(
+      "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
+      "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
+      "AnhNhan\Converge\Views\Form\Controls\PasswordControl",
+      "AnhNhan\Converge\Views\Form\Controls\TextAreaControl",
+      "AnhNhan\Converge\Views\Form\Controls\TextControl",
     ),
-    "AnhNhan\ModHub\Modules\User\Controllers\AbstractUserController" => array(
-      "AnhNhan\ModHub\Modules\User\Controllers\RoleEditController",
-      "AnhNhan\ModHub\Modules\User\Controllers\RoleListingController",
-      "AnhNhan\ModHub\Modules\User\Controllers\UserRegisterController",
+    "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
+      "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
+      "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
+      "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck",
+      "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm",
+      "AnhNhan\Converge\Modules\User\Controllers\UserLogout",
+      "AnhNhan\Converge\Modules\User\Controllers\UserRegisterController",
     ),
     "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
-      "AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider",
+      "AnhNhan\Converge\Modules\User\Providers\UserAuthenticationProvider",
     ),
     "Doctrine\ORM\Id\AbstractIdGenerator" => array(
-      "AnhNhan\ModHub\Storage\Doctrine\UIDGenerator",
+      "AnhNhan\Converge\Storage\Doctrine\UIDGenerator",
     ),
     "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
-      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      "AnhNhan\ModHub\Modules\Tag\Views\FormControls\TagSelector",
-      "AnhNhan\ModHub\Views\Form\Controls\HiddenControl",
-      "AnhNhan\ModHub\Views\Form\Controls\TextAreaControl",
-      "AnhNhan\ModHub\Views\Form\Controls\TextControl",
+      "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
+      "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
+      "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
+      "AnhNhan\Converge\Views\Form\Controls\PasswordControl",
+      "AnhNhan\Converge\Views\Form\Controls\TextAreaControl",
+      "AnhNhan\Converge\Views\Form\Controls\TextControl",
     ),
-    "AnhNhan\ModHub\Views\Objects\AbstractObject" => array(
-      "AnhNhan\ModHub\Views\Objects\Object",
-      "AnhNhan\ModHub\Modules\Forum\Views\Objects\ForumObject",
+    "AnhNhan\Converge\Views\Objects\AbstractObject" => array(
+      "AnhNhan\Converge\Views\Objects\Object",
+      "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject",
     ),
-    "AnhNhan\ModHub\Views\Page\PageView" => array(
-      "AnhNhan\ModHub\Views\Page\BarePageView",
+    "AnhNhan\Converge\Views\Page\PageView" => array(
+      "AnhNhan\Converge\Views\Page\BarePageView",
     ),
-    "AnhNhan\ModHub\Web\Application\HttpPayload" => array(
-      "AnhNhan\ModHub\Views\Web\Response\ResponseHtml404",
-      "AnhNhan\ModHub\Web\Application\HtmlPayload",
-      "AnhNhan\ModHub\Web\Application\JsonPayload",
-      "AnhNhan\ModHub\Web\Application\RawHttpPayload",
+    "AnhNhan\Converge\Web\Application\HttpPayload" => array(
+      "AnhNhan\Converge\Views\Web\Response\ResponseHtml404",
+      "AnhNhan\Converge\Web\Application\HtmlPayload",
+      "AnhNhan\Converge\Web\Application\JsonPayload",
+      "AnhNhan\Converge\Web\Application\RawHttpPayload",
     ),
-    "AnhNhan\ModHub\Web\Application\AbstractPayload" => array(
-      "AnhNhan\ModHub\Web\Application\HttpPayload",
-      "AnhNhan\ModHub\Views\Web\Response\ResponseHtml404",
-      "AnhNhan\ModHub\Web\Application\HtmlPayload",
-      "AnhNhan\ModHub\Web\Application\JsonPayload",
-      "AnhNhan\ModHub\Web\Application\RawHttpPayload",
+    "AnhNhan\Converge\Web\Application\AbstractPayload" => array(
+      "AnhNhan\Converge\Web\Application\HttpPayload",
+      "AnhNhan\Converge\Views\Web\Response\ResponseHtml404",
+      "AnhNhan\Converge\Web\Application\HtmlPayload",
+      "AnhNhan\Converge\Web\Application\JsonPayload",
+      "AnhNhan\Converge\Web\Application\RawHttpPayload",
     ),
   ),
   "implementations" => array(
-    "AnhNhan\ModHub\Storage\Transaction\TransactionAwareEntityInterface" => array(
-      "AnhNhan\ModHub\Modules\Forum\Storage\Discussion",
-      "AnhNhan\ModHub\Modules\Forum\Storage\Post",
-      "AnhNhan\ModHub\Modules\Tag\Storage\Tag",
-      "AnhNhan\ModHub\Modules\User\Storage\Role",
-      "AnhNhan\ModHub\Modules\User\Storage\User",
+    "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface" => array(
+      "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
+      "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Tag\Storage\Tag",
+      "AnhNhan\Converge\Modules\User\Storage\Role",
+      "AnhNhan\Converge\Modules\User\Storage\User",
     ),
     "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
-      "AnhNhan\ModHub\Modules\User\DependencyInjection\SecurityExtension",
-      "AnhNhan\ModHub\Modules\User\DependencyInjection\UserExtension",
+      "AnhNhan\Converge\Modules\User\DependencyInjection\SecurityExtension",
+      "AnhNhan\Converge\Modules\User\DependencyInjection\UserExtension",
     ),
     "Symfony\Component\Security\Core\User\UserProviderInterface" => array(
-      "AnhNhan\ModHub\Modules\User\Providers\DefaultUserProvider",
-    ),
-    "Symfony\Component\Security\Core\Role\RoleInterface" => array(
-      "AnhNhan\ModHub\Modules\User\Storage\Role",
+      "AnhNhan\Converge\Modules\User\Providers\DefaultUserProvider",
     ),
     "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
-      "AnhNhan\ModHub\Modules\User\Storage\User",
+      "AnhNhan\Converge\Modules\User\Storage\User",
     ),
     "Doctrine\Common\EventSubscriber" => array(
-      "AnhNhan\ModHub\Storage\Doctrine\LifeCycleUIDGenerator",
+      "AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator",
     ),
     "YamwLibs\Libs\View\ViewInterface" => array(
-      "AnhNhan\ModHub\Views\AbstractView",
-      "AnhNhan\ModHub\Views\Form\Controls\AbstractFormControl",
-      "AnhNhan\ModHub\Views\Form\Controls\SubmitControl",
-      "AnhNhan\ModHub\Views\Page\FooterView",
+      "AnhNhan\Converge\Views\AbstractView",
+      "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
+      "AnhNhan\Converge\Views\Form\Controls\SubmitControl",
+      "AnhNhan\Converge\Views\Page\FooterView",
     ),
     "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
-      "AnhNhan\ModHub\Views\AbstractView",
+      "AnhNhan\Converge\Views\AbstractView",
     ),
     "Symfony\Component\Routing\Matcher\RequestMatcherInterface" => array(
-      "AnhNhan\ModHub\Web\AppRouting",
+      "AnhNhan\Converge\Web\AppRouting",
     ),
     "Symfony\Component\Routing\Generator\UrlGeneratorInterface" => array(
-      "AnhNhan\ModHub\Web\AppRouting",
+      "AnhNhan\Converge\Web\AppRouting",
     ),
     "Symfony\Component\HttpKernel\HttpKernelInterface" => array(
-      "AnhNhan\ModHub\Web\HttpKernel",
+      "AnhNhan\Converge\Web\HttpKernel",
     ),
   ),
 );

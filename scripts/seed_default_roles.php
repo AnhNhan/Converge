@@ -2,29 +2,29 @@
 
 require_once __DIR__ . '/../src/__init__.php';
 
-use AnhNhan\ModHub as mh;
+use AnhNhan\Converge as cv;
 
-use AnhNhan\ModHub\Modules\User\UserApplication;
-use AnhNhan\ModHub\Modules\User\Storage\Role;
-use AnhNhan\ModHub\Modules\User\Storage\RoleTransaction;
-use AnhNhan\ModHub\Modules\User\Transaction\RoleTransactionEditor;
-use AnhNhan\ModHub\Modules\User\Storage\User;
+use AnhNhan\Converge\Modules\User\UserApplication;
+use AnhNhan\Converge\Modules\User\Storage\Role;
+use AnhNhan\Converge\Modules\User\Storage\RoleTransaction;
+use AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor;
+use AnhNhan\Converge\Modules\User\Storage\User;
 
-use AnhNhan\ModHub\Modules\User\Query\RoleQuery;
+use AnhNhan\Converge\Modules\User\Query\RoleQuery;
 
-use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Storage\Types\UID;
 
 use Symfony\Component\Yaml\Yaml;
 
-$container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+$container = \AnhNhan\Converge\Web\Core::loadSfDIContainer();
 
 $userApp = new UserApplication;
 $userApp->setContainer($container);
 $userEm  = $userApp->getEntityManager();
-$roleRepo = $userEm->getRepository('AnhNhan\ModHub\Modules\User\Storage\Role');
+$roleRepo = $userEm->getRepository('AnhNhan\Converge\Modules\User\Storage\Role');
 
-$defaultRolesConfigPath = mh\get_root_super() . 'resources/default.roles.yml';
+$defaultRolesConfigPath = cv\get_root_super() . 'resources/default.roles.yml';
 $parsed = Yaml::parse($defaultRolesConfigPath);
 $defaultRoles = $parsed['roles'];
 

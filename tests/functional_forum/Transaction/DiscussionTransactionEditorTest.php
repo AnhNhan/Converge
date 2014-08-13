@@ -2,11 +2,11 @@
 namespace Transaction;
 use Codeception\Util\Stub;
 
-use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
-use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor;
-use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
+use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
+use AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Storage\Types\UID;
 
 class DiscussionTransactionEditorTest extends \Codeception\TestCase\Test
 {
@@ -18,7 +18,7 @@ class DiscussionTransactionEditorTest extends \Codeception\TestCase\Test
     const LABEL = "Discussion label";
     const TEXT  = "Discussion text";
 
-    const ENTITY_DISCUSSION = 'AnhNhan\ModHub\Modules\Forum\Storage\Discussion';
+    const ENTITY_DISCUSSION = 'AnhNhan\Converge\Modules\Forum\Storage\Discussion';
 
     protected function _before()
     {

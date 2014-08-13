@@ -1,7 +1,7 @@
 <?php
 namespace Codeception\Module;
 
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Storage\Types\UID;
 
 class ForumHelper extends \Codeception\Module
 {
@@ -9,8 +9,8 @@ class ForumHelper extends \Codeception\Module
     {
         static $app;
         if (!$app) {
-            $app = new \AnhNhan\ModHub\Modules\Forum\ForumApplication;
-            $app->setContainer(\AnhNhan\ModHub\Web\Core::loadSfDIContainer());
+            $app = new \AnhNhan\Converge\Modules\Forum\ForumApplication;
+            $app->setContainer(\AnhNhan\Converge\Web\Core::loadSfDIContainer());
         }
         return $app;
     }

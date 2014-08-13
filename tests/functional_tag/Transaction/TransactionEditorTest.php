@@ -2,11 +2,11 @@
 namespace Transaction;
 use Codeception\Util\Stub;
 
-use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
-use AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction;
-use AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor;
-use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Modules\Tag\Storage\Tag;
+use AnhNhan\Converge\Modules\Tag\Storage\TagTransaction;
+use AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Storage\Types\UID;
 
 class TransactionEditorTest extends \Codeception\TestCase\Test
 {
@@ -21,7 +21,7 @@ class TransactionEditorTest extends \Codeception\TestCase\Test
 
     private $em;
 
-    const ENTITY_TAG = 'AnhNhan\ModHub\Modules\Tag\Storage\Tag';
+    const ENTITY_TAG = 'AnhNhan\Converge\Modules\Tag\Storage\Tag';
 
     const LABEL  = 'foo label text';
     const LABEL2 = 'blurb label text';

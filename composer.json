@@ -1,5 +1,5 @@
 {
-    "name": "anhnhan/modhub",
+    "name": "anhnhan/converge",
     "require": {
         "php": ">=5.3.7",
         "apexstudios/yamwlib": "dev-master",
@@ -40,7 +40,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "AnhNhan\\ModHub":	"src/"
+            "AnhNhan\\Converge":	"src/"
         }
     },
     "minimum-stability": "dev",

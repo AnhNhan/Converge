@@ -2,8 +2,8 @@
 namespace Providers;
 
 use Codeception\Util\Stub;
-use AnhNhan\ModHub\Modules\User\Providers\UserAuthenticationProvider;
-use AnhNhan\ModHub\Modules\User\Storage\User;
+use AnhNhan\Converge\Modules\User\Providers\UserAuthenticationProvider;
+use AnhNhan\Converge\Modules\User\Storage\User;
 
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -68,7 +68,7 @@ class UserAuthenticationProviderTest extends \Codeception\TestCase\Test
 
     public function testASuccessfulLoginAttempt()
     {
-        $user = $this->getMock('AnhNhan\ModHub\Modules\User\Storage\User', array(), array(), '', false);
+        $user = $this->getMock('AnhNhan\Converge\Modules\User\Storage\User', array(), array(), '', false);
         // Assuming plain text password
         $user->expects($this->once())->method("getPassword")->will($this->returnValue("bar"));
         $user->expects($this->once())->method("getRoles")->will($this->returnValue(array("ROLE_USER")));
@@ -103,7 +103,7 @@ class UserAuthenticationProviderTest extends \Codeception\TestCase\Test
      */
     public function testLoginFailsWithWrongPassword()
     {
-        $user = $this->getMock('AnhNhan\ModHub\Modules\User\Storage\User', array(), array(), '', false);
+        $user = $this->getMock('AnhNhan\Converge\Modules\User\Storage\User', array(), array(), '', false);
         // Assuming plain text password
         $user->expects($this->once())->method("getPassword")->will($this->returnValue("blurp"));
 

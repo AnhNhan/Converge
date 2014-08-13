@@ -1,18 +1,18 @@
 <?php
 namespace Web\Application;
 
-use AnhNhan\ModHub;
-use AnhNhan\ModHub\Web\Application\JsonPayload;
-use AnhNhan\ModHub\Test\TestCase;
+use AnhNhan\Converge;
+use AnhNhan\Converge\Web\Application\JsonPayload;
+use AnhNhan\Converge\Test\TestCase;
 
 /**
  * This test also functions as a test for HttpPayload
  *
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  *
- * @covers AnhNhan\ModHub\Web\Application\JsonPayload
- * @covers AnhNhan\ModHub\Web\Application\HttpPayload
- * @covers AnhNhan\ModHub\Web\Application\AbstractPayload
+ * @covers AnhNhan\Converge\Web\Application\JsonPayload
+ * @covers AnhNhan\Converge\Web\Application\HttpPayload
+ * @covers AnhNhan\Converge\Web\Application\AbstractPayload
  */
 class JsonPayloadTest extends \PHPUnit_Framework_TestCase
 {

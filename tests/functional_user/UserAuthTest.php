@@ -1,15 +1,15 @@
 <?php
 use Codeception\Util\Stub;
 
-use AnhNhan\ModHub\Modules\User\Storage\Role;
-use AnhNhan\ModHub\Modules\User\Storage\User;
+use AnhNhan\Converge\Modules\User\Storage\Role;
+use AnhNhan\Converge\Modules\User\Storage\User;
 
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserAuthTest extends \Codeception\TestCase\Test
 {
-    const ENTITY_ROLE = 'AnhNhan\ModHub\Modules\User\Storage\Role';
-    const ENTITY_USER = 'AnhNhan\ModHub\Modules\User\Storage\User';
+    const ENTITY_ROLE = 'AnhNhan\Converge\Modules\User\Storage\Role';
+    const ENTITY_USER = 'AnhNhan\Converge\Modules\User\Storage\User';
 
    /**
     * @var \UserTestGuy
@@ -41,7 +41,7 @@ class UserAuthTest extends \Codeception\TestCase\Test
     {
         $this->salt = \Filesystem::readRandomCharacters(22);
 
-        $container = \AnhNhan\ModHub\Web\Core::loadBootstrappedSfDIContainer();
+        $container = \AnhNhan\Converge\Web\Core::loadBootstrappedSfDIContainer();
         $this->securityContext = $container->get("security.context.default");
         $this->encoderFactory  = $container->get("security.encoder.factory");
         $this->providerKey     = $container->getParameter("security.provider_key");

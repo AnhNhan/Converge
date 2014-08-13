@@ -2,14 +2,14 @@
 namespace Transaction;
 use Codeception\Util\Stub;
 
-use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
-use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\ModHub\Modules\Forum\Storage\Post;
-use AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction;
-use AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor;
-use AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor;
-use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
+use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
+use AnhNhan\Converge\Modules\Forum\Storage\Post;
+use AnhNhan\Converge\Modules\Forum\Storage\PostTransaction;
+use AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor;
+use AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Storage\Types\UID;
 
 class PostTransactionEditorTest extends \Codeception\TestCase\Test
 {
@@ -23,8 +23,8 @@ class PostTransactionEditorTest extends \Codeception\TestCase\Test
 
     const DISQ_LABEL = "some foo label";
 
-    const ENTITY_DISCUSSION = 'AnhNhan\ModHub\Modules\Forum\Storage\Discussion';
-    const ENTITY_POST = 'AnhNhan\ModHub\Modules\Forum\Storage\Post';
+    const ENTITY_DISCUSSION = 'AnhNhan\Converge\Modules\Forum\Storage\Discussion';
+    const ENTITY_POST = 'AnhNhan\Converge\Modules\Forum\Storage\Post';
 
     protected function _before()
     {
@@ -102,7 +102,7 @@ class PostTransactionEditorTest extends \Codeception\TestCase\Test
         $discussion = new Discussion();
 
         $editor = DiscussionTransactionEditor::create($this->em)
-            ->setActor(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"))
+            ->setActor(\AnhNhan\Converge\Storage\Types\UID::generate("USER"))
             ->setEntity($discussion)
             ->addTransaction(
                 DiscussionTransaction::create(TransactionEntity::TYPE_CREATE)

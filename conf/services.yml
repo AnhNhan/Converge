@@ -18,7 +18,7 @@ parameters:
   doctrine.cache.region.config.lifetime.lock: 5
 
 user-security:
-  providerKey: ModHub
+  providerKey: Converge
   session.mongo.collection: _session
   security.http.login.path: /login
   security.http.logout.path: /login
@@ -35,14 +35,14 @@ services:
     synthetic: true
 
   http_kernel:
-    class: AnhNhan\ModHub\Web\HttpKernel
+    class: AnhNhan\Converge\Web\HttpKernel
     synthetic: true
 
   event_dispatcher:
     class: Symfony\Component\EventDispatcher\EventDispatcher
 
   app_routing:
-    class: AnhNhan\ModHub\Web\AppRouting
+    class: AnhNhan\Converge\Web\AppRouting
     synthetic: true
 
   # ----------------------------------------------------------------------------
@@ -87,7 +87,7 @@ services:
   # ----------------------------------------------------------------------------
 
   resource_manager:
-    class: AnhNhan\ModHub\Modules\StaticResources\ResMgr
+    class: AnhNhan\Converge\Modules\StaticResources\ResMgr
     synthetic: true
 
   # ----------------------------------------------------------------------------

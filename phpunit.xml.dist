@@ -7,7 +7,7 @@
          verbose="true">
 
   <testsuites>
-    <testsuite name="ModHub Tests">
+    <testsuite name="Converge Tests">
       <directory suffix="Test.php">src/</directory>
     </testsuite>
   </testsuites>

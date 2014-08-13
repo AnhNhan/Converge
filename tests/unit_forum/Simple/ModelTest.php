@@ -1,21 +1,21 @@
 <?php
 namespace Simple;
 use Codeception\Util\Stub;
-use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
-use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag;
+use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
+use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag;
 
-use AnhNhan\ModHub\Modules\Tag\TagApplication;
-use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
+use AnhNhan\Converge\Modules\Tag\TagApplication;
+use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 
 class ModelTest extends \Codeception\TestCase\Test
 {
-    const ENTITY_NAME_DISCUSSION = 'AnhNhan\ModHub\Modules\Forum\Storage\Discussion';
-    const ENTITY_NAME_DISCUSSION_TAG = 'AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTag';
-    const ENTITY_NAME_DISCUSSION_TRANSACTION = 'AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction';
+    const ENTITY_NAME_DISCUSSION = 'AnhNhan\Converge\Modules\Forum\Storage\Discussion';
+    const ENTITY_NAME_DISCUSSION_TAG = 'AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag';
+    const ENTITY_NAME_DISCUSSION_TRANSACTION = 'AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction';
 
-    const ENTITY_NAME_POST = 'AnhNhan\ModHub\Modules\Forum\Storage\Post';
-    const ENTITY_NAME_POST_DRAFT = 'AnhNhan\ModHub\Modules\Forum\Storage\PostDraft';
-    const ENTITY_NAME_POST_TRANSACTION = 'AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction';
+    const ENTITY_NAME_POST = 'AnhNhan\Converge\Modules\Forum\Storage\Post';
+    const ENTITY_NAME_POST_DRAFT = 'AnhNhan\Converge\Modules\Forum\Storage\PostDraft';
+    const ENTITY_NAME_POST_TRANSACTION = 'AnhNhan\Converge\Modules\Forum\Storage\PostTransaction';
 
    /**
     * @var \ForumGuy
@@ -70,7 +70,7 @@ class ModelTest extends \Codeception\TestCase\Test
         $discussion = $repository->findOneBy(array("label" => "foo"));
 
         $tagApp = new TagApplication;
-        $tagApp->setContainer(\AnhNhan\ModHub\Web\Core::loadSfDIContainer());
+        $tagApp->setContainer(\AnhNhan\Converge\Web\Core::loadSfDIContainer());
         $tagEm  = $tagApp->getEntityManager();
 
         $tag1 = id(new Tag())

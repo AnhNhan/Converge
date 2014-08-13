@@ -2,28 +2,28 @@
 
 require_once __DIR__ . '/../src/__init__.php';
 
-use AnhNhan\ModHub as mh;
+use AnhNhan\Converge as cv;
 
-use AnhNhan\ModHub\Modules\Tag\TagApplication;
-use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
-use AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction;
-use AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor;
+use AnhNhan\Converge\Modules\Tag\TagApplication;
+use AnhNhan\Converge\Modules\Tag\Storage\Tag;
+use AnhNhan\Converge\Modules\Tag\Storage\TagTransaction;
+use AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor;
 
-use AnhNhan\ModHub\Modules\Tag\TagQuery;
+use AnhNhan\Converge\Modules\Tag\TagQuery;
 
-use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Storage\Types\UID;
 
 use Symfony\Component\Yaml\Yaml;
 
-$container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+$container = \AnhNhan\Converge\Web\Core::loadSfDIContainer();
 
 $tagApp = new TagApplication;
 $tagApp->setContainer($container);
 $tagEm  = $tagApp->getEntityManager();
-$tagRepo = $tagEm->getRepository('AnhNhan\ModHub\Modules\Tag\Storage\Tag');
+$tagRepo = $tagEm->getRepository('AnhNhan\Converge\Modules\Tag\Storage\Tag');
 
-$defaultTagsConfigPath = mh\get_root_super() . 'resources/default.tags.yml';
+$defaultTagsConfigPath = cv\get_root_super() . 'resources/default.tags.yml';
 $parsed = Yaml::parse($defaultTagsConfigPath);
 $defaultTags = $parsed['tags'];
 

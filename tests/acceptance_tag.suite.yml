@@ -6,9 +6,9 @@ modules:
         - PhpBrowser
     config:
         Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=modhub_tag'
-            user: 'modhub'
+            dsn: 'mysql:host=127.0.0.1;dbname=converge_tag'
+            user: 'converge'
             password: ''
             dump: tests/_data/db_tag.sql
         PhpBrowser:
-            url: 'http://modhub.dev/'
+            url: 'http://converge.dev/'

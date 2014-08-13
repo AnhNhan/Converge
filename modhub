@@ -1,2 +1,0 @@
-#!/bin/sh
-php src/AnhNhan/ModHub/cli.php $@

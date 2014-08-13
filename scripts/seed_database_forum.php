@@ -2,35 +2,35 @@
 
 require_once __DIR__ . '/../src/__init__.php';
 
-use AnhNhan\ModHub\Modules\Forum\ForumApplication;
-use AnhNhan\ModHub\Modules\Forum\Storage\Discussion;
-use AnhNhan\ModHub\Modules\Forum\Storage\Post;
-use AnhNhan\ModHub\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\ModHub\Modules\Forum\Storage\PostTransaction;
-use AnhNhan\ModHub\Modules\Forum\Transaction\DiscussionTransactionEditor;
-use AnhNhan\ModHub\Modules\Forum\Transaction\PostTransactionEditor;
+use AnhNhan\Converge\Modules\Forum\ForumApplication;
+use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
+use AnhNhan\Converge\Modules\Forum\Storage\Post;
+use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
+use AnhNhan\Converge\Modules\Forum\Storage\PostTransaction;
+use AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor;
+use AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor;
 
-use AnhNhan\ModHub\Modules\Tag\TagApplication;
-use AnhNhan\ModHub\Modules\Tag\Storage\Tag;
-use AnhNhan\ModHub\Modules\Tag\Storage\TagTransaction;
-use AnhNhan\ModHub\Modules\Tag\Transaction\TagTransactionEditor;
+use AnhNhan\Converge\Modules\Tag\TagApplication;
+use AnhNhan\Converge\Modules\Tag\Storage\Tag;
+use AnhNhan\Converge\Modules\Tag\Storage\TagTransaction;
+use AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor;
 
-use AnhNhan\ModHub\Modules\User\UserApplication;
-use AnhNhan\ModHub\Modules\User\Query\RoleQuery;
-use AnhNhan\ModHub\Modules\User\Storage\Email;
-use AnhNhan\ModHub\Modules\User\Storage\User;
-use AnhNhan\ModHub\Modules\User\Storage\UserTransaction;
-use AnhNhan\ModHub\Modules\User\Transaction\UserTransactionEditor;
+use AnhNhan\Converge\Modules\User\UserApplication;
+use AnhNhan\Converge\Modules\User\Query\RoleQuery;
+use AnhNhan\Converge\Modules\User\Storage\Email;
+use AnhNhan\Converge\Modules\User\Storage\User;
+use AnhNhan\Converge\Modules\User\Storage\UserTransaction;
+use AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor;
 
-use AnhNhan\ModHub\Storage\Transaction\TransactionEntity;
-use AnhNhan\ModHub\Storage\Types\UID;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Storage\Types\UID;
 
 use Doctrine\ORM\Query as DoctrineQuery;
 
 // De-register libphutil autoloader, can't be used with Faker
 spl_autoload_unregister('__phutil_autoload');
 
-$container = \AnhNhan\ModHub\Web\Core::loadSfDIContainer();
+$container = \AnhNhan\Converge\Web\Core::loadSfDIContainer();
 
 $forumApp = new ForumApplication();
 $forumApp->setContainer($container);
@@ -148,7 +148,7 @@ $randomUser = function () use ($users) {
     return $users[array_rand($users)]->uid;
 };
 
-$tags = ipull($tagEm->createQuery("SELECT t.uid FROM AnhNhan\ModHub\Modules\Tag\Storage\Tag t")->getResult(DoctrineQuery::HYDRATE_ARRAY), 'uid');
+$tags = ipull($tagEm->createQuery("SELECT t.uid FROM AnhNhan\Converge\Modules\Tag\Storage\Tag t")->getResult(DoctrineQuery::HYDRATE_ARRAY), 'uid');
 
 $randomTag = function () use ($tags) {
     return $tags[array_rand($tags)];

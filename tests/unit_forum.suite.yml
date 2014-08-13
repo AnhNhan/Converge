@@ -8,8 +8,8 @@ modules:
       - ForumHelper
     config:
         Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=modhub_forum'
-            user: 'modhub'
+            dsn: 'mysql:host=127.0.0.1;dbname=converge_forum'
+            user: 'converge'
             password: ''
             cleanup: false
             populate: false

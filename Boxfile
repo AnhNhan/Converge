@@ -31,7 +31,7 @@ web1:
   after_build:
     - "curl -sS https://getcomposer.org/installer | php"
     - "php composer.phar install"
-    - "modhub rsrc:compile"
+    - "converge rsrc:compile"
 
   apache_access_log: false
   apache_error_log: true

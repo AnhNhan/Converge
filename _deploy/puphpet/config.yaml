@@ -129,26 +129,26 @@ mysql:
         QzoljHnxhSaP:
             grant:
                 - ALL
-            name: modhub_forum
+            name: converge_forum
             host: localhost
-            user: modhub
-            password: modhub
+            user: converge
+            password: converge
             sql_file: ''
         r198Vb5WTrAN:
             grant:
                 - ALL
-            name: modhub_tag
+            name: converge_tag
             host: localhost
-            user: modhub
-            password: modhub
+            user: converge
+            password: converge
             sql_file: ''
         qCrRwGO6n1vR:
             grant:
                 - ALL
-            name: modhub_user
+            name: converge_user
             host: localhost
-            user: modhub
-            password: modhub
+            user: converge
+            password: converge
             sql_file: ''
 beanstalkd:
     install: '1'

@@ -13,8 +13,8 @@
         var refreshFunc = _.debounce($.proxy(this.process, this), options.bounce_delay)
 
         this.$element
-            .on('change.mh.markupform', refreshFunc)
-            .on('keyup.mh.markupform', refreshFunc)
+            .on('change.cv.markupform', refreshFunc)
+            .on('keyup.cv.markupform', refreshFunc)
         this.process()
     }
 

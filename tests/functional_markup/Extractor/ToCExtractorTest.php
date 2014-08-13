@@ -2,7 +2,7 @@
 namespace Extractor;
 use Codeception\Util\Stub;
 
-use AnhNhan\ModHub\Modules\Markup\TOCExtractor;
+use AnhNhan\Converge\Modules\Markup\TOCExtractor;
 
 class ToCExtractorTest extends \Codeception\TestCase\Test
 {

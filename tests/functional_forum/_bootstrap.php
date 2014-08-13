@@ -1,5 +1,5 @@
 <?php
 
-$forumApp = new \AnhNhan\ModHub\Modules\Forum\ForumApplication;
-$forumApp->setContainer(\AnhNhan\ModHub\Web\Core::loadBootstrappedSfDIContainer());
+$forumApp = new \AnhNhan\Converge\Modules\Forum\ForumApplication;
+$forumApp->setContainer(\AnhNhan\Converge\Web\Core::loadBootstrappedSfDIContainer());
 \Codeception\Module\Doctrine2::$em = $forumApp->getEntityManager();

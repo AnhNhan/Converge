@@ -1,0 +1,2 @@
+#!/bin/sh
+php src/AnhNhan/Converge/cli.php $@

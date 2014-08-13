@@ -6,8 +6,8 @@ modules:
       - UserTestHelper
     config:
         Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=modhub_user'
-            user: 'modhub'
+            dsn: 'mysql:host=127.0.0.1;dbname=converge_user'
+            user: 'converge'
             password: ''
             cleanup: false
             populate: false

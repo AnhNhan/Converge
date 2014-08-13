@@ -2,10 +2,10 @@
 
 require_once __DIR__ . "/../src/__init__.php";
 
-use AnhNhan\ModHub;
-use AnhNhan\ModHub\Modules\Symbols\SymbolLoader;
-use AnhNhan\ModHub\Web\AppRouting;
-use AnhNhan\ModHub\Web\HttpKernel;
+use AnhNhan\Converge;
+use AnhNhan\Converge\Modules\Symbols\SymbolLoader;
+use AnhNhan\Converge\Web\AppRouting;
+use AnhNhan\Converge\Web\HttpKernel;
 
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 Debug::enable();
 
-$container = \AnhNhan\ModHub\Web\Core::loadBootstrappedSfDIContainer();
+$container = \AnhNhan\Converge\Web\Core::loadBootstrappedSfDIContainer();
 $stopwatch = $container->get('stopwatch');
 $stopwatch->start('page-loadtime');
 
@@ -31,9 +31,9 @@ if ($session->has('_security_token'))
 
 $request = Request::createFromGlobals();
 $request->setSession($session);
-if (ModHub\is_cli()) {
-    ModHub\sdx($argv);
-    $request->server->set("REQUEST_URI", ModHub\sdx($argv, "/"));
+if (Converge\is_cli()) {
+    Converge\sdx($argv);
+    $request->server->set("REQUEST_URI", Converge\sdx($argv, "/"));
 }
 
 $router = new AppRouting($container->get('app.list'));

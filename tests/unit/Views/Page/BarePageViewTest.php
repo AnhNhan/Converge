@@ -1,8 +1,8 @@
 <?php
 namespace Views\Page;
 
-use AnhNhan\ModHub\Views\Page\BarePageView;
-use AnhNhan\ModHub\Test\TestCase;
+use AnhNhan\Converge\Views\Page\BarePageView;
+use AnhNhan\Converge\Test\TestCase;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>

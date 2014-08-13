@@ -186,8 +186,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "36db59ca6477e541cef28be2a5e7ec00",
-      "orig" => "400f7cce8711d37c0fad49c5c5a63bf3",
+      "hash" => "cf57528f51dabaf73846fe61dab47a8f",
+      "orig" => "74d32f8ecd049afc431e72b47df00f3b",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -278,8 +278,8 @@ return array(
     "application-markup-markupform" => array(
       "name" => "application-markup-markupform",
       "path" => "application/markup/markupform.js",
-      "hash" => "d4e30894c2dc2b4608fdee45e88c76cc",
-      "orig" => "e90b3196d7068bb914dee511a9733408",
+      "hash" => "ec8ec174b02c863d8b43b79cae43f3ea",
+      "orig" => "9c1478790366f517efe9362a85a402cc",
     ),
     "backbone" => array(
       "name" => "backbone",
@@ -560,7 +560,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "b4uqti4v",
+      "hash" => "4ccxayfr",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -640,7 +640,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "d6f400368adc9460ca691017b4113261",
+      "hash" => "a7f8f98e3ce1417d0d28e413aa63bbbb",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -665,7 +665,7 @@ return array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "ba588b84eaba95cb205cacd0ef9a4bf9",
         "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
-        "layout-core" => "36db59ca6477e541cef28be2a5e7ec00",
+        "layout-core" => "cf57528f51dabaf73846fe61dab47a8f",
         "layout-form" => "fb4b1181a447284f7a5012ef9a6d27ca",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-buttons" => "5ee856a9de716b19ebf40b5ee8daf105",
@@ -678,7 +678,7 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "afbcf7798ab9cb8faba21e6f3c70ce89",
+      "hash" => "4ffc7ba4f8a458dfec5b58f2232e2a59",
       "contents" => array(
         "external-html5bp-plugin" => "e2679049e95a7201b815c3cf004aefc4",
         "external-modernizr" => "d9f173b9f963540ca4c1c2ba978bb9cf",
@@ -705,7 +705,7 @@ return array(
         "external-textext-textext-plugin-tags" => "3adc628d2d382d0f8f6e514b6968c26f",
         "external-backbone" => "a108a3eafa92ebfda671baf0f76562d8",
         "application-bootstrap" => "d3d7e6a39b484f868fdc477c64b33e5c",
-        "application-markup-markupform" => "d4e30894c2dc2b4608fdee45e88c76cc",
+        "application-markup-markupform" => "ec8ec174b02c863d8b43b79cae43f3ea",
       ),
     ),
   ),
@@ -725,8 +725,8 @@ return array(
     "tmpl-front-frontpage" => array(
       "name" => "tmpl-front-frontpage",
       "path" => "front/frontpage.html",
-      "hash" => "67a47f117c2d7499f79ab11f94af056c",
-      "orig" => "e76997d5167f1884665f00aa1efc0227",
+      "hash" => "2358e19c4b392ff8d585a868edc0a3fa",
+      "orig" => "139518c012ee2217a98a07a589bf1037",
     ),
     "tmpl-tag-tagview" => array(
       "name" => "tmpl-tag-tagview",
