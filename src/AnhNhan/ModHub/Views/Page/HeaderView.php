@@ -29,7 +29,7 @@ class HeaderView extends AbstractView
                     ->appendContent(div('nav-user-img', mh\ht('img')->addOption('src', idx($this->user_details, 'image_path', '/images/profile/default.png'))))
                     ->appendContent(
                         div('nav-user-box')
-                            ->appendContent(div('nav-user-box-name', idx($this->user_details, 'username', 'Not logged in')))
+                            ->appendContent(div('nav-user-box-name', h3(idx($this->user_details, 'username', 'Not logged in'))))
                             ->appendContent(
                                 div('nav-user-box-detail')
                                     ->appendContent(mh\icon_ion('0', 'android-mail'))

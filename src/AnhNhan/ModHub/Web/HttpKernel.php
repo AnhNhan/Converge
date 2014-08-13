@@ -141,7 +141,8 @@ final class HttpKernel implements HttpKernelInterface
                 if ($user && is_object($user))
                 {
                     $payload->setUserDetails([
-                        'username' => $user->name,
+                        'uid'        => $user->uid,
+                        'username'   => $user->name,
                         'canon_name' => $user->canonical_name,
                         'image_path' => $user->getGravatarImagePath(40),
                     ]);

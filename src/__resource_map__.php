@@ -186,8 +186,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "03cb5bfbeb33602382604fa9616626db",
-      "orig" => "1fc11eb5cb620c52bdbd8e3a6ad28dbf",
+      "hash" => "36db59ca6477e541cef28be2a5e7ec00",
+      "orig" => "400f7cce8711d37c0fad49c5c5a63bf3",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -292,12 +292,6 @@ return array(
       "path" => "collection/forum/discussions.js",
       "hash" => "305ac546a64f04c24bcf42abe03361ac",
       "orig" => "4aad9743beb77d5388bec7d6aa6f03f6",
-    ),
-    "collection-forum-posts" => array(
-      "name" => "collection-forum-posts",
-      "path" => "collection/forum/posts.js",
-      "hash" => "351d935345bfa71ccdbaec4f969d60d7",
-      "orig" => "859cd0b0ff5fe1f72d90802c4d28d6d5",
     ),
     "collection-tag-tagcollection" => array(
       "name" => "collection-tag-tagcollection",
@@ -566,7 +560,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "rs6oshid",
+      "hash" => "b4uqti4v",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -646,7 +640,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "c95278fd7793b7ad7b41a693ea32c039",
+      "hash" => "d6f400368adc9460ca691017b4113261",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -671,7 +665,7 @@ return array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "ba588b84eaba95cb205cacd0ef9a4bf9",
         "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
-        "layout-core" => "03cb5bfbeb33602382604fa9616626db",
+        "layout-core" => "36db59ca6477e541cef28be2a5e7ec00",
         "layout-form" => "fb4b1181a447284f7a5012ef9a6d27ca",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-buttons" => "5ee856a9de716b19ebf40b5ee8daf105",
