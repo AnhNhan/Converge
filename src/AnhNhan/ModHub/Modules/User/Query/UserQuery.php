@@ -16,25 +16,21 @@ final class UserQuery extends Query
      */
     public function retrieveUser($id)
     {
-        return $this
-            ->repository(self::ENTITY_USER)
-            ->find($id)
-        ;
+        return idx($this->repository(self::ENTITY_USER)
+            ->findBy(array("uid" => $id), array(), 1), 0);
     }
 
-    public function retrieveUsersForIDs(array $ids, $limit = null, $offset = null)
+    public function retrieveUsersForUIDs(array $ids, $limit = null, $offset = null)
     {
-        $userRepo = $this->repository(self::ENTITY_USER);
-
-        $users = $userRepo->findBy(array("id" => $ids), array(), $limit, $offset);
-        return $users;
+        return $this->repository(self::ENTITY_USER)
+            ->findBy(array("uid" => $ids), array(), $limit, $offset);
     }
 
     public function retrieveUsers($limit = null, $offset = null)
     {
         $userRepo = $this->repository(self::ENTITY_USER);
 
-        $users = $userRepo->findBy(array(), array(), $limit = null, $offset = null);
+        $users = $userRepo->findBy(array(), array(), $limit, $offset);
         return $users;
     }
 
