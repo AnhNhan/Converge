@@ -165,6 +165,7 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public function getGravatarImagePath($size = null)
     {
+        return '/images/profile/default.png';
         return static::generateGravatarImagePath($this->primary_email, $size);
     }
 
