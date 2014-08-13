@@ -77,13 +77,12 @@ function attach_xacts($post_container, array $transactions, array $tags)
         }
 
         $subject_uid = $xact->newValue;
-        $actor = $xact->actorId;
         switch ($xact->type) {
             case DiscussionTransaction::TYPE_ADD_TAG:
                 $xactContainer->appendContent(
                     id(new TagAddedView)
                         ->setId($xact->uid)
-                        ->setUserDetails($actor, $xact->actor->getGravatarImagePath(42))
+                        ->setUserDetails($xact->actor->name, $xact->actor->getGravatarImagePath(42))
                         ->setDate($xact->createdAt->format("D, d M 'y"))
                         ->addTag($tags[$subject_uid])
                 );
@@ -93,7 +92,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 $xactContainer->appendContent(
                     id(new TagRemovedView)
                         ->setId($xact->uid)
-                        ->setUserDetails($actor, $xact->actor->getGravatarImagePath(42))
+                        ->setUserDetails($xact->actor->name, $xact->actor->getGravatarImagePath(42))
                         ->setDate($xact->createdAt->format("D, d M 'y"))
                         ->addTag($tags[$subject_uid])
                 );
@@ -106,7 +105,7 @@ function attach_xacts($post_container, array $transactions, array $tags)
                 $xactContainer->appendContent(
                     $viewObj
                         ->setId($xact->uid)
-                        ->setUserDetails($actor, $xact->actor->getGravatarImagePath(42))
+                        ->setUserDetails($xact->actor->name, $xact->actor->getGravatarImagePath(42))
                         ->setDate($xact->createdAt->format("D, d M 'y"))
                         ->setPrevText($xact->oldValue)
                         ->setNextText($xact->newValue)
