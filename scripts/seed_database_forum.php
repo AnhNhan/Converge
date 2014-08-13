@@ -75,6 +75,7 @@ if (!$role)
 }
 
 $users = array();
+$emails = array();
 for ($ii = 0; $ii < $num_users; $ii++) {
     try {
         $obj_user = new User;
@@ -107,6 +108,7 @@ for ($ii = 0; $ii < $num_users; $ii++) {
 
         $editor = UserTransactionEditor::create($userEm)
             ->setActor(User::USER_UID_NONE)
+            ->setFlushBehaviour(DiscussionTransactionEditor::FLUSH_DONT_FLUSH)
             ->setEntity($obj_user)
         ;
 
@@ -126,19 +128,24 @@ for ($ii = 0; $ii < $num_users; $ii++) {
         ;
 
         $editor->apply();
-        $userEm->flush();
-        $userEm->persist($obj_email);
-        $userEm->flush();
-        $users[] = $obj_user->uid;
+
+        $users[] = $obj_user;
+        $emails[] = $obj_email;
     } catch (Exception $e) {
         echo "F";
         //throw $e;
         // <ignore>
     }
 }
+$userEm->flush();
+foreach ($emails as $email)
+{
+    $userEm->persist($email);
+}
+$userEm->flush();
 
 $randomUser = function () use ($users) {
-    return $users[array_rand($users)];
+    return $users[array_rand($users)]->uid;
 };
 
 $tags = ipull($tagEm->createQuery("SELECT t.uid FROM AnhNhan\ModHub\Modules\Tag\Storage\Tag t")->getResult(DoctrineQuery::HYDRATE_ARRAY), 'uid');
