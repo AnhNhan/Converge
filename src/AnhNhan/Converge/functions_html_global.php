@@ -3,6 +3,29 @@
 // No namespace for global functions
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Views\Grid\Grid;
+use AnhNhan\Converge\Views\Panel\Panel;
+
+function grid()
+{
+    return new Grid;
+}
+
+function panel($header = null, $class = '')
+{
+    return id(new Panel)
+        ->addClass($class)
+        ->setHeader($header)
+    ;
+}
+
+function popover($tag_name, $tag_contents, $popover_contents)
+{
+    return cv\ht($tag_name, $tag_contents)
+        ->addOption("data-toggle", "popover")
+        ->addOption("data-content", $popover_contents)
+    ;
+}
 
 function div($class = "", $contents = null, $id = null)
 {
