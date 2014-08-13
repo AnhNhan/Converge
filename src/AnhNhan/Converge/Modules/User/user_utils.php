@@ -13,8 +13,8 @@ const UserLinkExtra_Hovercard = 'user.extra.hovercard';
  */
 function link_user(User $user, $full_name = true, $extra = UserLinkExtra_Tooltip)
 {
-    $display_name =  $full_name ? $user->name : '@' . $user->canonical_name;
-    $tooltip_name = !$full_name ? $user->name : '@' . $user->canonical_name;
+    $display_name =  $full_name ? $user->name : $user->handle;
+    $tooltip_name = !$full_name ? $user->name : $user->handle;
     $link = a($display_name, urisprintf('u/%s', $user->canonical_name));
     if ($extra == UserLinkExtra_Tooltip)
     {

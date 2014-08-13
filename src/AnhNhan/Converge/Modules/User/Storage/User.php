@@ -128,6 +128,11 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
         return $this->getCanonicalName();
     }
 
+    public function handle()
+    {
+        return '@' . $this->canonical_name;
+    }
+
     public function getPassword()
     {
         return $this->password;
