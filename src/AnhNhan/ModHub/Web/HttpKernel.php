@@ -132,6 +132,23 @@ final class HttpKernel implements HttpKernelInterface
             $payload->setResMgr($resMgr);
         }
 
+        if ($payload instanceof Application\HtmlPayload) {
+            $session = $container->get('session');
+            if ($session && $session->has('_security_token'))
+            {
+                $token = $session->get('_security_token');
+                $user = $token->getUser();
+                if ($user && is_object($user))
+                {
+                    $payload->setUserDetails([
+                        'username' => $user->name,
+                        'canon_name' => $user->canonical_name,
+                        'image_path' => $user->getGravatarImagePath(40),
+                    ]);
+                }
+            }
+        }
+
         if ($payload instanceof Application\HttpPayload) {
             $response = Core::prepareResponse($request, $payload, $this->getCapturedOverflow());
         } else {

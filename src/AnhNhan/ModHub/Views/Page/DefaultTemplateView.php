@@ -16,15 +16,23 @@ final class DefaultTemplateView extends AbstractView
     private $content;
     private $header;
 
+    private $user_details;
+
     public function __construct($title, $content)
     {
         $this->title = $title;
         $this->content = $content;
     }
 
+    public function setUserDetails($user_details)
+    {
+        $this->user_details = $user_details;
+        return $this;
+    }
+
     public function getContent()
     {
-        $head_wrapper = div("header", new HeaderView, "header");
+        $head_wrapper = div("header", id(new HeaderView)->setUserDetails($this->user_details), "header");
         $sideNavBar = new SideNavBar;
 
         $content = div("content width12")

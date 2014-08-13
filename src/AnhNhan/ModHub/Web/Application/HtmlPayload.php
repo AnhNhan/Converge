@@ -18,6 +18,14 @@ final class HtmlPayload extends HttpPayload
      */
     private $resMgr;
 
+    private $user_details;
+
+    public function setUserDetails($user_details)
+    {
+        $this->user_details = $user_details;
+        return $this;
+    }
+
     public function setTitle($title)
     {
         $this->title = $title;
@@ -28,6 +36,7 @@ final class HtmlPayload extends HttpPayload
     {
         $defaultTemplate = new DefaultTemplateView($this->title, $this->getPayloadContents());
         $defaultTemplate->setResMgr($this->getResMgr());
+        $defaultTemplate->setUserDetails($this->user_details);
         return $defaultTemplate;
     }
 
