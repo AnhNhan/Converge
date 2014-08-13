@@ -68,15 +68,10 @@ final class DiscussionListingController extends AbstractForumController
 
         $container = new MarkupContainer;
 
-        $listing = render_disq_listing($disqs, $postCounts, 'Forum Listing');
+        $container->push(h1('Forum Listing'));
+        $listing = render_disq_listing($disqs, $postCounts);
         $container->push($listing);
-
-        // Add link to create new discussion
-        $container->unshift(Converge\ht("a", "Create new discussion!", array(
-            "href"  => "/disq/create",
-            "class" => "btn btn-primary",
-            "style" => "float: right;",
-        )));
+        $container->push(Converge\safeHtml('<style>.objects-list-container.forum-list-container{margin-top: 0;}</style>'));
 
         $payload = new HtmlPayload($container);
         return $payload;
