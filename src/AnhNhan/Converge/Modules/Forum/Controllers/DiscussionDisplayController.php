@@ -141,35 +141,9 @@ final class DiscussionDisplayController extends AbstractForumController
                         ->addOption("data-content", phutil_utf8_shorten($disq->rawText, 140))
                     );
                     continue;
-                } else if ($xact->type != DiscussionTransaction::TYPE_ADD_POST) {
-                    if ($create_date && $create_date == $xact->createdAt->getTimestamp() && $xact->actorId == $create_xact->actorId) {
-                        continue;
-                    }
-                    $text = null;
-                    // TODO: Integrate this more into transactions, e.g. $xact->labelNoun
-                    switch ($xact->type) {
-                        case DiscussionTransaction::TYPE_EDIT_LABEL:
-                            $text = "Label-change";
-                            break;
-                        case DiscussionTransaction::TYPE_EDIT_TEXT:
-                            $text = "Text-change";
-                            break;
-                        case DiscussionTransaction::TYPE_ADD_TAG:
-                            $text = "Tag-add";
-                            break;
-                        case DiscussionTransaction::TYPE_REMOVE_TAG:
-                            $text = "Tag-remove";
-                            break;
-                    }
-                    // For now commented out - we'll add it to the discussion's ToC entry
-                    /*$ulCont->appendContent(
-                        Converge\ht("li",
-                            a(
-                                Converge\hsprintf("<em>%s</em> by <strong>%s</strong>", $text, $disq->author->name),
-                                "#" . $xact->uid
-                            )
-                        )
-                    );*/
+                }
+
+                if ($xact->type != DiscussionTransaction::TYPE_ADD_POST) {
                     continue;
                 }
 
