@@ -56,6 +56,8 @@ $(function () {
         //Backbone.history.navigate(that.attr('href'), {trigger: true});
         //e.preventDefault();
     });
+
+    $('[data-toggle=tooltip]').tooltip();
 });
 </script>
 </head>
