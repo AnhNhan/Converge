@@ -372,6 +372,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/User/Controllers/RoleListingController.php",
       "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
     ),
+    "AnhNhan\Converge\Modules\User\Controllers\UserDisplay" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserDisplay.php",
+      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
+    ),
     "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck" => array(
       "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLoginCheck.php",
       "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
@@ -652,6 +656,7 @@ return array(
     "renderDiscussion" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
     "renderPost" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
     "attach_xacts" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
+    "render_disq_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
     "AnhNhan\Converge\get_root" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\get_root_super" => "AnhNhan/Converge/functions.php",
@@ -720,6 +725,7 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
       "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
       "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
+      "AnhNhan\Converge\Modules\User\Controllers\UserDisplay",
       "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck",
       "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm",
       "AnhNhan\Converge\Modules\User\Controllers\UserLogout",
@@ -884,6 +890,7 @@ return array(
     "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
       "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
       "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
+      "AnhNhan\Converge\Modules\User\Controllers\UserDisplay",
       "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck",
       "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm",
       "AnhNhan\Converge\Modules\User\Controllers\UserLogout",

@@ -47,31 +47,7 @@ final class UserDisplay extends AbstractUserController
         $disqQuery->fetchExternalsForDiscussions($disqs);
         $postCounts = $disqQuery->fetchPostCountsForDiscussions($disqs);
 
-        $listing = new ForumListing;
-        $listing->setTitle(cv\hsprintf('Discussions started by <em>%s</em>', $user->name));
-        foreach ($disqs as $discussion) {
-            $object = new ForumObject;
-            $object
-                ->setHeadline($discussion->label)
-                ->setHeadHref("/disq/" . $discussion->cleanId)
-                ->postCount(idx($postCounts, $discussion->uid)["postcount"]);
-
-            $tags = mpull($discussion->tags->toArray(), "tag");
-            $tags = msort($tags, "label");
-            $tags = array_reverse($tags);
-            $tags = msort($tags, "displayOrder");
-            foreach ($tags as $tag) {
-                if (!empty($tag)) {
-                    $object->addTag(new TagView($tag->label, $tag->color));
-                }
-            }
-
-            $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
-            $object->addDetail(cv\ht('strong', link_user($discussion->author)));
-
-            $listing->addObject($object);
-        }
-
+        $listing = render_disq_listing($disqs, $postCounts, cv\hsprintf('Discussions started by <em>%s</em>', $user->name));
         $container->push($listing);
 
         return $payload;
