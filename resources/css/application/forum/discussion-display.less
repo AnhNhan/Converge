@@ -12,7 +12,7 @@
     .panel-container[id^="DISQ-"] {
         .panel-header {
             .user-profile-image {
-                height: 60px;
+                height: 75px;
             }
         }
     }
@@ -35,10 +35,12 @@
 
     .panel-header {
         .user-profile-image {
-            height: 45px;
+            height: 47px;
             width: auto;
             margin-right: 0.67em;
-            margin-left: -0.167em;
+            margin-left: -(@panel-padding * 1.33);
+            margin-top: -@panel-padding;
+            margin-bottom: -@panel-padding;
             .pull-left;
         }
         .clearfix;
@@ -146,16 +148,18 @@
 
 .post-change-object
 {
+    @post-change-object-padding: 5px;
     clear: both;
     margin: 8px 0;
-    padding: 5px;
+    padding: @post-change-object-padding;
     border: 1px solid #f0f0f0;
 
     .user-profile-image
     {
-        width: 20px;
-        height: 20px;
-        margin: 2px 8px 2px 2px;
+        width: 37px;
+        height: 37px;
+        margin: -@post-change-object-padding;
+        margin-right: (2 * @post-change-object-padding);
     }
 
     .Differences th
