@@ -40,6 +40,8 @@ class UserApplication extends BaseApplication
                 return new Controllers\UserLoginCheck($this);
             case "logout":
                 return new Controllers\UserLogout($this);
+            case "user-display":
+                return new Controllers\UserDisplay($this);
         }
 
         return null;

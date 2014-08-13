@@ -1,0 +1,94 @@
+<?php
+namespace AnhNhan\Converge\Modules\User\Controllers;
+
+use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery;
+use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing;
+use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject;
+use AnhNhan\Converge\Modules\Tag\Views\TagView;
+use AnhNhan\Converge\Modules\User\Query\UserQuery;
+use AnhNhan\Converge\Modules\User\Storage\User;
+use AnhNhan\Converge\Views\Grid\Grid;
+use AnhNhan\Converge\Views\Panel\Panel;
+use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
+use AnhNhan\Converge\Web\Application\HtmlPayload;
+use YamwLibs\Libs\Html\Markup\MarkupContainer;
+
+/**
+ * @author Anh Nhan Nguyen <anhnhan@outlook.com>
+ */
+final class UserDisplay extends AbstractUserController
+{
+    public function handle()
+    {
+        $request = $this->request;
+
+        $req_canon_name = $request->get('name');
+
+        $query = new UserQuery($this->app);
+        $user  = idx($query->retrieveUsersForCanonicalNames([$req_canon_name], 1), 0);
+
+        if (!$user)
+        {
+            // Q: Put suggestions here?
+            return id(new ResponseHtml404)->setText('Could not find a user with the name \'' . $req_canon_name . '\'.');
+        }
+
+        $payload = new HtmlPayload;
+        $payload->setTitle(sprintf('User \'%s\'', $user->name));
+        $container = new MarkupContainer;
+        $payload->setPayloadContents($container);
+
+        $container->push(h1($user->name)->appendContent(' ')->appendContent(cv\ht('small', '@' . $user->canonical_name)));
+        $container->push(cv\ht('img')->addOption('src', $user->getGravatarImagePath(50))->addOption('style', 'width: 50px; height: 50px;'));
+
+        $disqQuery = $this->buildForumQuery();
+        $disqs = $this->fetchDiscussions([$user->uid]);
+        $disqQuery->fetchExternalsForDiscussions($disqs);
+        $postCounts = $disqQuery->fetchPostCountsForDiscussions($disqs);
+
+        $listing = new ForumListing;
+        $listing->setTitle(cv\hsprintf('Discussions started by <em>%s</em>', $user->name));
+        foreach ($disqs as $discussion) {
+            $object = new ForumObject;
+            $object
+                ->setHeadline($discussion->label)
+                ->setHeadHref("/disq/" . $discussion->cleanId)
+                ->postCount(idx($postCounts, $discussion->uid)["postcount"]);
+
+            $tags = mpull($discussion->tags->toArray(), "tag");
+            $tags = msort($tags, "label");
+            $tags = array_reverse($tags);
+            $tags = msort($tags, "displayOrder");
+            foreach ($tags as $tag) {
+                if (!empty($tag)) {
+                    $object->addTag(new TagView($tag->label, $tag->color));
+                }
+            }
+
+            $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
+            $object->addDetail(cv\ht('strong', link_user($discussion->author)));
+
+            $listing->addObject($object);
+        }
+
+        $container->push($listing);
+
+        return $payload;
+    }
+
+    private function buildForumQuery()
+    {
+        $query = new DiscussionQuery($this->externalApp('forum'));
+        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_TAG, $this->externalApp('tag'));
+        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('user'));
+        return $query;
+    }
+
+    private function fetchDiscussions(array $author_ids, $limit = 10, $offset = null, DiscussionQuery $query = null)
+    {
+        $query = $query ?: $this->buildForumQuery();
+        $disqs = $query->retrieveDiscussionForAuthorUIDs($author_ids, $limit, $offset);
+        return $disqs;
+    }
+}

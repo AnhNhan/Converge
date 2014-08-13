@@ -16,6 +16,8 @@ routes:
     route-name: user-listing
   - pattern: user/:name
     route-name: user-display
+  - pattern: u/:name
+    route-name: user-display
 
   - pattern: login
     route-name: login

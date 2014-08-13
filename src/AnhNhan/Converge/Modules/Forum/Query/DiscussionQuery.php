@@ -40,6 +40,20 @@ final class DiscussionQuery extends Query
         ;
     }
 
+    public function retrieveDiscussionForAuthorUIDs(array $author_ids, $limit = null, $offset = null)
+    {
+        $eDisq = self::ENTITY_DISCUSSION;
+        $queryString = "SELECT d, dt FROM {$eDisq} d JOIN d.tags dt WHERE d.author IN (:author_ids) ORDER BY d.lastActivity DESC";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->setParameters(["author_ids" => $author_ids])
+        ;
+
+        return $query->getResult();
+    }
+
     public function retrieveDiscussions($limit = null, $offset = null)
     {
         $eDisq = self::ENTITY_DISCUSSION;
