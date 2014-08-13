@@ -124,7 +124,7 @@ final class DiscussionEditController extends AbstractForumController
                 $delTagIds = array_diff($origTagIds, $currTagIds);
 
                 $editor = DiscussionTransactionEditor::create($em)
-                    ->setActor(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"))
+                    ->setActor($this->user->uid)
                     ->setEntity($discussion)
                 ;
 

@@ -59,7 +59,7 @@ final class PostEditController extends AbstractForumController
                 $em = $app->getEntityManager();
 
                 $editor = PostTransactionEditor::create($em)
-                    ->setActor(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"))
+                    ->setActor($this->user->uid)
                     ->setEntity($post)
                     ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
                 ;

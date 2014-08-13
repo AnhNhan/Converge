@@ -52,7 +52,8 @@ final class TagCreationController extends AbstractTagController
 
                 $editor = TagTransactionEditor::create($em)
                     ->setEntity($tag)
-                    ->setActor("USER-1234567890abcd")
+                    ->setActor($this->user->uid)
+                    ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_SKIP)
                     ->addTransaction(
                         TagTransaction::create(TransactionEntity::TYPE_CREATE)
                     )

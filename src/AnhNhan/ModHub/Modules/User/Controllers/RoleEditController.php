@@ -69,7 +69,7 @@ final class RoleEditController extends AbstractUserController
                 $em = $app->getEntityManager();
 
                 $editor = RoleTransactionEditor::create($em)
-                    ->setActor(\AnhNhan\ModHub\Storage\Types\UID::generate("USER"))
+                    ->setActor($this->user->uid)
                     ->setEntity($role)
                     ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_SKIP)
                 ;

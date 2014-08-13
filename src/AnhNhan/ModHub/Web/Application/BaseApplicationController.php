@@ -92,6 +92,27 @@ abstract class BaseApplicationController
     // |----  Various stuff, service location etc.  ---------------------------|
     // |-----------------------------------------------------------------------|
 
+    private static $_user;
+
+    protected function user()
+    {
+        if (self::$_user)
+        {
+            return self::$_user;
+        }
+        $session = $this->app->getService('session');
+        if ($session && $session->has('_security_token'))
+        {
+            $token = $session->get('_security_token');
+            $user = $token->getUser();
+            if ($user && is_object($user))
+            {
+                self::$_user = $user;
+                return self::$_user;
+            }
+        }
+    }
+
     protected function resMgr()
     {
         return $this->app->getService("resource_manager");
