@@ -156,7 +156,7 @@ final class DiscussionDisplayController extends AbstractForumController
                 $subUl = Converge\ht('ul')->addClass('subtoc');
                 foreach ($subToc as $tt) {
                     $subUl->append(Converge\hsprintf(
-                        '<li class=\"subtoc-%s\"><a style=\"padding-left: %fem;\" href=\"#%s\">%s</a></li>',
+                        '<li class="subtoc-%s"><a style="padding-left: %fem;" href="#%s">%s</a></li>',
                         $tt['type'],
                         $tt['level'] + 1.5,
                         $tt['hash'],
