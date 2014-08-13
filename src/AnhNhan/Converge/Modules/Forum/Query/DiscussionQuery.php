@@ -51,7 +51,8 @@ final class DiscussionQuery extends Query
             ->setParameters(["author_ids" => $author_ids])
         ;
 
-        return $query->getResult();
+        $paginator = new Paginator($query, true);
+        return $paginator->getIterator()->getArrayCopy();
     }
 
     public function retrieveDiscussions($limit = null, $offset = null)
@@ -108,7 +109,9 @@ final class DiscussionQuery extends Query
             'disq_inc_ids' => ipull($this->aoefs_subQuery($tags_inc), 'disq_id'),
             //'disq_exc_ids' => ipull($this->aoefs_subQuery($tags_exc), 'disq_id'),
         ]);
-        return $query->getResult();
+
+        $paginator = new Paginator($query, true);
+        return $paginator->getIterator()->getArrayCopy();
     }
 
     private function aoefs_subQuery(array $ids)
