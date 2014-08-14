@@ -1,4 +1,6 @@
 
+@post-panel-padding: (@panel-padding / 2);
+
 #disq-column {
     @media (max-width: @breakPointDesktop) {
         width: 100%;
@@ -13,6 +15,9 @@
         .panel-header {
             .user-profile-image {
                 height: 75px;
+                margin-left: -(@panel-padding * 1.33);
+                margin-top: -@panel-padding;
+                margin-bottom: -@panel-padding;
             }
         }
     }
@@ -21,7 +26,6 @@
         &[id^="DISQ-"], &[id^="POST-"] {
             .panel-header {
                 .minor-stuff {
-                    font-size: 0.85em;
                     color: #888888;
                     font-weight: normal;
                     line-height: 1;
@@ -31,16 +35,25 @@
                 font-size: 1.1428571428571428571428571428571em; // 16px with 14px base size
             }
         }
+
+        &[id^="POST-"] {
+            .panel-header {
+                padding: @post-panel-padding (@post-panel-padding * 1.33);
+
+                .user-profile-image {
+                    margin-left: -(@post-panel-padding * 1.33);
+                    margin-top: -@post-panel-padding;
+                    margin-bottom: -@post-panel-padding;
+                }
+            }
+        }
     }
 
     .panel-header {
         .user-profile-image {
-            height: 47px;
+            height: 52px;
             width: auto;
             margin-right: 0.67em;
-            margin-left: -(@panel-padding * 1.33);
-            margin-top: -@panel-padding;
-            margin-bottom: -@panel-padding;
             .pull-left;
         }
         .clearfix;

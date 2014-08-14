@@ -53,7 +53,7 @@ function renderPost($post, $markup)
     $postView = new PostView;
     $postView
         ->setId($post->uid)
-        ->setUserDetails(link_user($post->author), $post->author->getGravatarImagePath(47))
+        ->setUserDetails(link_user($post->author), $post->author->getGravatarImagePath(52))
         ->setDate($post->createdAt->format("D, d M 'y"))
         ->addButton(
             cv\ht("a", cv\icon_ion("edit post", "edit"))

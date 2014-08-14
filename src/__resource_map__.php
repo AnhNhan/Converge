@@ -30,8 +30,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "3bb03b7b1ce2db9bf51affe52f28a9ef",
-      "orig" => "a20a5f40d1fd5acb3a8d0d5644c8a5fc",
+      "hash" => "a467ed14c22d2e05ec8973ddd3896c7d",
+      "orig" => "185ea6cb94d107c8423bae135ae35050",
     ),
     "application-front-dashboard" => array(
       "name" => "application-front-dashboard",
@@ -572,7 +572,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "le4ifuqw",
+      "hash" => "jqhnp3np",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(

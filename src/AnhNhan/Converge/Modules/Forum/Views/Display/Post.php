@@ -48,6 +48,6 @@ class Post extends ForumDisplayObject
 
     protected function getHeaderText()
     {
-        return cv\hsprintf('<div><h3>%s <span class="minor-stuff">%s</span></h3></div>', $this->username, $this->date);
+        return cv\hsprintf('<div><h3>%s</h3><div class="minor-stuff">%s</div></div>', $this->username, $this->date);
     }
 }
