@@ -49,7 +49,7 @@ function disq_listing_add_object(ForumListing $listing, Discussion $discussion, 
     $tags = msort($tags, "displayOrder");
     foreach ($tags as $tag) {
         if (!empty($tag)) {
-            $object->addTag(new TagView($tag->label, $tag->color));
+            $object->addTagObject($tag);
         }
     }
 

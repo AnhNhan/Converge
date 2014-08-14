@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Forum\Views\Objects;
 
 use AnhNhan\Converge;
+use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
 use AnhNhan\Converge\Views\Objects\Object;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -20,15 +21,15 @@ class ForumObject extends Object
         $this->tags = new MarkupContainer;
     }
 
-    public function addTag(TagView $tag)
+    public function addTag($tag)
     {
-        $this->tags->push($tag->render());
+        $this->tags->push($tag);
         return $this;
     }
 
     public function addTagObject(Tag $tag)
     {
-        $this->addTagLabel($tag->label, $tag->color);
+        $this->addTag(link_tag($tag));
         return $this;
     }
 
