@@ -9,6 +9,8 @@ class MarkupEngine
     private $inputTexts = array();
     private $outputText = array();
 
+    private $custom_rules = [];
+
     public function addInputText($text, $key = "default")
     {
         if (isset($this->inputTexts[$key])) {
@@ -25,6 +27,13 @@ class MarkupEngine
         return $this;
     }
 
+    public function setCustomRules(array $custom_rules)
+    {
+        assert_instances_of($custom_rules, 'PhutilRemarkupRule');
+        $this->custom_rules = msort($custom_rules, 'getPriority');
+        return $this;
+    }
+
     public function process()
     {
         $parsedown = \Parsedown::instance();
@@ -33,6 +42,10 @@ class MarkupEngine
             // Decoding double-escapes thanks to above. DANGER: Insecure??
             // Tests have been done with `&gt; x >`, `>< a>>`, `<i>hi</i>` and `> x >`, they're proof - for now.
             $text = preg_replace('/&amp;([\w\d]{1,6};)/', '&$1', $text);
+            foreach ($this->custom_rules as $rule)
+            {
+                $text = $rule->apply($text);
+            }
             $this->outputText[$key] = $text;
         }
 
@@ -49,9 +62,10 @@ class MarkupEngine
         return $this->outputText();
     }
 
-    public static function fastParse($text)
+    public static function fastParse($text, array $custom_rules = [])
     {
         $engine = new static;
+        $engine->setCustomRules($custom_rules);
         return $engine->addInputText($text)->process()->getOutputText();
     }
 }

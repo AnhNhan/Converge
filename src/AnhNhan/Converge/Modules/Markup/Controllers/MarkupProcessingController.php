@@ -14,7 +14,7 @@ final class MarkupProcessingController extends AbstractMarkupController
     {
         $request = $this->request();
         $requestMethod = $request->getMethod();
-        $inputText = $request->request->get("text");
+        $inputText = $request->get("text");
 
         if (!$inputText) {
             throw new \Exception("Input 'text' can't be empty!");
@@ -23,7 +23,9 @@ final class MarkupProcessingController extends AbstractMarkupController
         $stopWatch = $this->app()->getService("stopwatch");
         $timer = $stopWatch->start("markup-processing");
 
+        $rules = get_custom_markup_rules($this->app->getService('app.list'));
         $engine = new MarkupEngine();
+        $engine->setCustomRules($rules);
         $engine->addInputText($inputText);
         $engine->process();
         $output = $engine->getOutputText();

@@ -42,7 +42,8 @@ final class DiscussionDisplayController extends AbstractForumController
         $disqColumn = $row->column(9)->setId('disq-column');
         $tagColumn  = $row->column(3)->addClass('tag-column');
 
-        $tocExtractor = new \AnhNhan\Converge\Modules\Markup\TOCExtractor;
+        $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
+        $tocExtractor = new \AnhNhan\Converge\Modules\Markup\TOCExtractor($custom_rules);
         $tocs = [];
         $markups = [];
 

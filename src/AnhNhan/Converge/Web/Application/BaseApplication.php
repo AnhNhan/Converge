@@ -108,6 +108,11 @@ abstract class BaseApplication
         return $routeObjects;
     }
 
+    public function getCustomMarkupRules()
+    {
+        return [];
+    }
+
     /**
      * Dummy until we get containers going
      *

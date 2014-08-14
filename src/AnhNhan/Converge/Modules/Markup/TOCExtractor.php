@@ -6,14 +6,21 @@ namespace AnhNhan\Converge\Modules\Markup;
  */
 final class TOCExtractor
 {
+    private $custom_rules = [];
+
+    public function __construct(array $custom_rules = [])
+    {
+        $this->custom_rules = $custom_rules;
+    }
+
     public function parseAndExtract($text)
     {
-        return $this->extractFromHtml(MarkupEngine::fastParse($text));
+        return $this->extractFromHtml(MarkupEngine::fastParse($text, $this->custom_rules));
     }
 
     public function parseExtractAndProcess($text)
     {
-        return $this->extractAndProcessFromHtml(MarkupEngine::fastParse($text));
+        return $this->extractAndProcessFromHtml(MarkupEngine::fastParse($text, $this->custom_rules));
     }
 
     public function extractFromHtml($html)
