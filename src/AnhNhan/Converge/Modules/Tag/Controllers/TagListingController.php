@@ -44,7 +44,7 @@ final class TagListingController extends AbstractTagController
         $container->push(Converge\ht("h1", "Tags"));
 
         foreach ($tags as $tag) {
-            $container->push(new TagView($tag->label(), $tag->color()));
+            $container->push(link_tag($tag, TagLinkExtra_None));
         }
 
         // Add link to create new tag
