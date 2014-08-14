@@ -43,7 +43,7 @@ final class Dashboard extends BaseApplicationController
         $row = $grid->row();
         $container->push($grid);
 
-        $big_tags = mpull($this->lookup_ids_for_tag_names(array_mergev($dash_panel_tags)), null, 'label');
+        $big_tags = mkey($this->lookup_ids_for_tag_names(array_mergev($dash_panel_tags)), 'label');
         $big_disqs = [];
 
         $dash_panel_tags2 = [];
@@ -56,7 +56,7 @@ final class Dashboard extends BaseApplicationController
         }
 
         $forum_query = $this->buildForumQuery();
-        $big_disqs = mpull($this->fetchDiscussions(array_mergev($dash_panel_disqs), null, null, $forum_query), null, 'uid');
+        $big_disqs = mkey($this->fetchDiscussions(array_mergev($dash_panel_disqs), null, null, $forum_query), 'uid');
         $forum_query->fetchExternalsForDiscussions($big_disqs);
         $post_counts = $forum_query->fetchPostCountsForDiscussions(array_values($big_disqs));
 

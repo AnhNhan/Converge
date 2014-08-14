@@ -167,7 +167,7 @@ final class DiscussionQuery extends Query
             $tag_ids = mpull($tags_flat, 'tagId');
             $tagQuery = $this->requireExternalQuery(self::EXT_QUERY_TAG);
             $tag_objs = $tagQuery->retrieveTagsForIDs($tag_ids);
-            $tag_objs = mpull($tag_objs, null, 'uid');
+            $tag_objs = mkey($tag_objs, 'uid');
 
             foreach ($tags_flat as $tag) {
                 $tag->setTag($tag_objs[$tag->tagId]);
@@ -179,7 +179,7 @@ final class DiscussionQuery extends Query
     {
         $userQuery = $this->requireExternalQuery(self::EXT_QUERY_USER);
         $user_ids = mpull($stuff, 'authorId');
-        $users = mpull($userQuery->retrieveUsersForUIDs($user_ids), null, 'uid');
+        $users = mkey($userQuery->retrieveUsersForUIDs($user_ids), 'uid');
         foreach ($stuff as $thing)
         {
             $thing->setAuthor(idx($users, $thing->authorId));

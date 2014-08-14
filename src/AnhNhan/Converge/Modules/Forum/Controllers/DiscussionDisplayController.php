@@ -58,7 +58,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $transactions = $disq->transactions->slice($offset, $page_size);
         $transactions_grouped = mgroup($transactions, 'type');
-        $posts = mpull($query->retrivePostsForDiscussion($disq), null, 'uid');
+        $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
         $query->fetchExternalUsers(array_merge($transactions, $posts, [$disq]));
         $query->fetchExternalsForDiscussions([$disq]);
 
@@ -68,7 +68,7 @@ final class DiscussionDisplayController extends AbstractForumController
             mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_REMOVE_TAG, []), 'oldValue')
         ));
         $tags = $tagQuery->retrieveTagsForIDs($tag_ids);
-        $tags = mpull($tags, null, 'uid');
+        $tags = mkey($tags, 'uid');
 
         $create_xact = idx($transactions_grouped, DiscussionTransaction::TYPE_CREATE);
         $create_date = null;
