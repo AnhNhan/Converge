@@ -113,13 +113,6 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
         return $this->name_canon;
     }
 
-    public static function to_canonical($name)
-    {
-        // Also replace underscores explicitly, they usually are considered
-        // towards the alphanumerical characters.
-        return strtolower(preg_replace('/[\\W_]/', '', $name));
-    }
-
     public function name()
     {
         return $this->username;

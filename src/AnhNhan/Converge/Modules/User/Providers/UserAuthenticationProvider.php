@@ -62,7 +62,7 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
             new \LogicException("Can't continue without an query object.");
         }
 
-        $canon_name = User::to_canonical($username);
+        $canon_name = to_canonical($username);
         $_user  = $this->query->retrieveUsersForCanonicalNames([$canon_name], 1);
         $user = idx($_user, 0);
 

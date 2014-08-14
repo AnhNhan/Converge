@@ -707,6 +707,7 @@ return array(
     "h5" => "AnhNhan/Converge/functions_html_global.php",
     "h6" => "AnhNhan/Converge/functions_html_global.php",
     "generate_search_prep_stmt_part" => "AnhNhan/Converge/functions_sql.php",
+    "to_canonical" => "AnhNhan/Converge/functions_very_global.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(

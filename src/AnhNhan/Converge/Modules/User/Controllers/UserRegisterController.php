@@ -39,7 +39,7 @@ final class UserRegisterController extends AbstractUserController
         $password  = trim($request->request->get("password"));
 
         $email = strtolower($email);
-        $canon_name = User::to_canonical($username);
+        $canon_name = to_canonical($username);
 
         if ($requestMethod == "POST")
         {

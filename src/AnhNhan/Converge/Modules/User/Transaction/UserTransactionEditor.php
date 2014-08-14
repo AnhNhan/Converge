@@ -80,7 +80,7 @@ final class UserTransactionEditor extends TransactionEditor
         switch ($transaction->type) {
             case TransactionEntity::TYPE_CREATE:
                 $this->setPropertyPerReflection($entity, 'username', $transaction->newValue);
-                $this->setPropertyPerReflection($entity, 'name_canon', User::to_canonical($transaction->newValue));
+                $this->setPropertyPerReflection($entity, 'name_canon', to_canonical($transaction->newValue));
                 break;
             case UserTransaction::TYPE_EDIT_PASSWORD:
                 list($salt, $password) = explode(self::SALT_PW_SEPARATOR, $transaction->newValue);
