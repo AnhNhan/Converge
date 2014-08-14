@@ -30,8 +30,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "4bf81f7a545154e490d34e630a1a5c94",
-      "orig" => "16108ba9a94879e78a0b6fdc46b34c49",
+      "hash" => "3bb03b7b1ce2db9bf51affe52f28a9ef",
+      "orig" => "a20a5f40d1fd5acb3a8d0d5644c8a5fc",
     ),
     "application-front-dashboard" => array(
       "name" => "application-front-dashboard",
@@ -44,6 +44,12 @@ return array(
       "path" => "application/role/listing.less",
       "hash" => "bc850b5b970b9ec4ccc55696078db3ab",
       "orig" => "33ae85e581c860ce3b83198db6b2c2ce",
+    ),
+    "application-tag-core" => array(
+      "name" => "application-tag-core",
+      "path" => "application/tag/core.less",
+      "hash" => "b06b5583a66213d58ebb3553dbe8d7cd",
+      "orig" => "ba710e491c2585605be219eddf3ceb9d",
     ),
     "application-user-core" => array(
       "name" => "application-user-core",
@@ -234,8 +240,8 @@ return array(
     "layout-tag-tag" => array(
       "name" => "layout-tag-tag",
       "path" => "layout/tag/tag.less",
-      "hash" => "dbe1d18e5b233f8b3ec81c1859291ad1",
-      "orig" => "216de0b1f89dfcf62d6918027a345acd",
+      "hash" => "e34c58bbfaf2011bb626150564833373",
+      "orig" => "17d46989c5c38866b7393a0d1d2b4970",
     ),
   ),
   "js" => array(
@@ -566,7 +572,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "7i2bpgl5",
+      "hash" => "w4m7wwss",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -646,7 +652,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "2f26b251cfd1f68ba39e4fbd47129578",
+      "hash" => "930d1a3d99935c81c948e72e49d91d0b",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -670,6 +676,7 @@ return array(
         "external-textext-textext-plugin-tags" => "ea7bc4001940997eaee5e66b4d4bfa95",
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
+        "application-tag-core" => "b06b5583a66213d58ebb3553dbe8d7cd",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
         "layout-core" => "cf57528f51dabaf73846fe61dab47a8f",
@@ -679,7 +686,7 @@ return array(
         "layout-objects" => "cb75ed2bea146205c22c8705512c45f1",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",
         "layout-panel-panel" => "fb0fbbcf4841f5b76d5cf19aa756926a",
-        "layout-tag-tag" => "dbe1d18e5b233f8b3ec81c1859291ad1",
+        "layout-tag-tag" => "e34c58bbfaf2011bb626150564833373",
       ),
     ),
     "libs-pck" => array(

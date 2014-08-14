@@ -25,6 +25,13 @@ final class TagApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
+    public function getCustomMarkupRules()
+    {
+        return [
+            new Markup\Hashtag($this),
+        ];
+    }
+
     public function routeToController(Request $request)
     {
         $routeName = $request->attributes->get("route-name");
