@@ -24,7 +24,7 @@ class PaneledForumListing extends ForumListing
     public function addTag($tag)
     {
         if ($tag instanceof Tag) {
-            $tag = link_tag($tag);
+            $tag = link_tag($tag, TagLinkExtra_None);
         } else if (!($tag instanceof TagView)) {
             throw new \InvalidArgumentException;
         }

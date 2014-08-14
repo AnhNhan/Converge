@@ -29,7 +29,7 @@ class ForumObject extends Object
 
     public function addTagObject(Tag $tag)
     {
-        $this->addTag(link_tag($tag));
+        $this->addTag(link_tag($tag, TagLinkExtra_None));
         return $this;
     }
 
