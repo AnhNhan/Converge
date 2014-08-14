@@ -115,7 +115,9 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     public static function to_canonical($name)
     {
-        return strtolower(preg_replace('/\\W/', '', $name));
+        // Also replace underscores explicitly, they usually are considered
+        // towards the alphanumerical characters.
+        return strtolower(preg_replace('/[\\W_]/', '', $name));
     }
 
     public function name()
