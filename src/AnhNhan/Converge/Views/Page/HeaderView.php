@@ -74,11 +74,6 @@ class HeaderView extends AbstractView
                 ->addOption('data-toggle', 'tooltip-bottom')
                 ->addOption('title', 'discussion listing')
             );
-            $nav_action->getContent()->unshift(a(cv\icon_ion('', 'android-storage'), 'dash')
-                ->addClass('btn btn-default')
-                ->addOption('data-toggle', 'tooltip-bottom')
-                ->addOption('title', 'dashboard')
-            );
         }
         else
         {
