@@ -74,6 +74,9 @@ if (!$role)
     throw new \LogicException('Something\'s terribly wrong here. Seeded default roles?');
 }
 
+$pwEncoderFactory = $userApp->getService('security.encoder.factory');
+$pwEncoder        = $pwEncoderFactory->getEncoder($obj_user);
+
 $users = array();
 $emails = array();
 for ($ii = 0; $ii < $num_users; $ii++) {
@@ -101,10 +104,8 @@ for ($ii = 0; $ii < $num_users; $ii++) {
         );
 
         $salt = User::generateSalt();
-        $pwEncoderFactory = $userApp->getService('security.encoder.factory');
-        $pwEncoder        = $pwEncoderFactory->getEncoder($obj_user);
-        $pw               = $pwEncoder->encodePassword($password, $salt);
-        $xact_pw          = $salt . UserTransactionEditor::SALT_PW_SEPARATOR . $pw;
+        $pw      = $pwEncoder->encodePassword($password, $salt);
+        $xact_pw = $salt . UserTransactionEditor::SALT_PW_SEPARATOR . $pw;
 
         $editor = UserTransactionEditor::create($userEm)
             ->setActor(User::USER_UID_NONE)
