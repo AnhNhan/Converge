@@ -50,7 +50,7 @@ class Discussion extends ForumDisplayObject
 
     public function addTagObject(Tag $tag)
     {
-        $this->tags->push(link_tag($tag));
+        $this->tags->push(link_tag($tag, TagLinkExtra_None));
         return $this;
     }
 
