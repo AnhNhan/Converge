@@ -6,8 +6,11 @@
 
 .tag-object {
     display: inline-block;
-    margin: 2px;
-    padding: 0.05em;
+    margin: 0 2px;
+    padding: 0.05em 6px;
+    color: @white;
+    font-weight: bold;
+    white-space: nowrap;
     .round-border(@border-radius-medium);
     .tag-color(@coolBlue);
 
@@ -16,13 +19,6 @@
     }
     &:last-child {
         margin-right: 0;
-    }
-
-    & > span {
-        color: @white;
-        font-weight: bold;
-        padding: 0px 5px;
-        white-space: nowrap;
     }
 }
 

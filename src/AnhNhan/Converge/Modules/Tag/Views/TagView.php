@@ -20,13 +20,13 @@ class TagView extends AbstractView
 
     public function render()
     {
-        $tag = Converge\ht("div")
+        $tag = Converge\ht("span")
             ->addClass("tag-object");
         if ($this->color) {
             $tag->addClass("tag-color-" . $this->color);
         }
         if ($this->text) {
-            $tag->setContent(Converge\ht("span", $this->text));
+            $tag->setContent($this->text);
         }
         return $tag;
     }
