@@ -31,7 +31,7 @@ function tooltip($tag_name, $tag_contents, $tooltip)
 {
     return cv\ht($tag_name, $tag_contents)
         ->addOption("data-toggle", "tooltip")
-        ->addOption("title", $popover_contents)
+        ->addOption("title", $tooltip)
     ;
 }
 
