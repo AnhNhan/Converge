@@ -238,6 +238,11 @@ return array(
     "AnhNhan\Converge\Modules\Markup\MarkupEngine" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/MarkupEngine.php",
     ),
+    "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/MarkupRule.php",
+      "deriv" => "PhutilRemarkupRule",
+      "abstr" => "1",
+    ),
     "AnhNhan\Converge\Modules\Markup\TOCExtractor" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/TOCExtractor.php",
     ),
@@ -328,6 +333,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Tag/Controllers/TagListingController.php",
       "deriv" => "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
     ),
+    "AnhNhan\Converge\Modules\Tag\Markup\Hashtag" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Markup/Hashtag.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
+    ),
     "AnhNhan\Converge\Modules\Tag\Storage\Tag" => array(
       "file" => "AnhNhan/Converge/Modules/Tag/Storage/Tag.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
@@ -403,6 +412,10 @@ return array(
       "impls" => array(
         "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
       ),
+    ),
+    "AnhNhan\Converge\Modules\User\Markup\UserMention" => array(
+      "file" => "AnhNhan/Converge/Modules/User/Markup/UserMention.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
     ),
     "AnhNhan\Converge\Modules\User\Providers\DefaultUserProvider" => array(
       "file" => "AnhNhan/Converge/Modules/User/Providers/DefaultUserProvider.php",
@@ -659,6 +672,9 @@ return array(
     "render_disq_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "render_disq_paneled_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "disq_listing_add_object" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
+    "get_custom_markup_rules" => "AnhNhan/Converge/Modules/Markup/markup_utils.php",
+    "link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
     "AnhNhan\Converge\get_root" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\get_root_super" => "AnhNhan/Converge/functions.php",
@@ -677,6 +693,7 @@ return array(
     "grid" => "AnhNhan/Converge/functions_html_global.php",
     "panel" => "AnhNhan/Converge/functions_html_global.php",
     "popover" => "AnhNhan/Converge/functions_html_global.php",
+    "tooltip" => "AnhNhan/Converge/functions_html_global.php",
     "div" => "AnhNhan/Converge/functions_html_global.php",
     "span" => "AnhNhan/Converge/functions_html_global.php",
     "a" => "AnhNhan/Converge/functions_html_global.php",
@@ -866,6 +883,11 @@ return array(
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline",
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide",
     ),
+    "PhutilRemarkupRule" => array(
+      "AnhNhan\Converge\Modules\Markup\MarkupRule",
+      "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
+      "AnhNhan\Converge\Modules\User\Markup\UserMention",
+    ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
     ),
@@ -885,6 +907,10 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
+    ),
+    "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
+      "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
+      "AnhNhan\Converge\Modules\User\Markup\UserMention",
     ),
     "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl" => array(
       "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
