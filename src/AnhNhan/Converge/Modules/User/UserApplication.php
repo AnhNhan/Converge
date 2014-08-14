@@ -25,6 +25,13 @@ class UserApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
+    public function getCustomMarkupRules()
+    {
+        return [
+            new Markup\UserMention($this),
+        ];
+    }
+
     public function routeToController(Request $request)
     {
         switch ($request->attributes->get("route-name")) {
