@@ -24,8 +24,8 @@ return array(
     "application-diff" => array(
       "name" => "application-diff",
       "path" => "application/diff.less",
-      "hash" => "81e195dcdd38f751d53dc6f6755ef556",
-      "orig" => "8aae0f901570820d8aa061d13149a784",
+      "hash" => "4d8cee131876de4615cc103e54578917",
+      "orig" => "c2acf8183f9943deb850d85abf163af7",
     ),
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
@@ -572,7 +572,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "5kjfnlra",
+      "hash" => "le4ifuqw",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
