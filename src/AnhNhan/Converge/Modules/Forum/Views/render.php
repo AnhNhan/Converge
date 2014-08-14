@@ -33,7 +33,7 @@ function renderDiscussion($disq, $markup)
     $tags = msort($tags, "displayOrder");
     if ($tags) {
         foreach ($tags as $tag) {
-            $discussionView->addTag($tag->label, $tag->color);
+            $discussionView->addTagObject($tag);
         }
     }
 

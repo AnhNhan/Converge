@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Forum\Views\Display;
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
 use AnhNhan\Converge\Views\Panel\Panel;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -44,6 +45,12 @@ class Discussion extends ForumDisplayObject
     public function addTag($text, $color = null)
     {
         $this->tags->push(new TagView($text, $color));
+        return $this;
+    }
+
+    public function addTagObject(Tag $tag)
+    {
+        $this->tags->push(link_tag($tag));
         return $this;
     }
 
