@@ -58,13 +58,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
     {
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
-                // Set author field by hacking
-                $discussionReflProp = $this->em()->getClassMetadata('AnhNhan\Converge\Modules\Forum\Storage\Discussion')
-                    ->reflClass->getProperty('author');
-                $discussionReflProp->setAccessible(true);
-                $discussionReflProp->setValue(
-                    $entity, $this->actor()
-                );
+                $this->setPropertyPerReflection($entity, 'author', $this->actor());
                 break;
             case DiscussionTransaction::TYPE_EDIT_LABEL:
                 $entity->setLabel($transaction->newValue());

@@ -55,13 +55,7 @@ final class RoleTransactionEditor extends TransactionEditor
     {
         switch ($transaction->type) {
             case TransactionEntity::TYPE_CREATE:
-                // Set name field by hacking
-                $nameReflProp = $this->em()->getClassMetadata('AnhNhan\Converge\Modules\User\Storage\Role')
-                    ->reflClass->getProperty('name');
-                $nameReflProp->setAccessible(true);
-                $nameReflProp->setValue(
-                    $entity, $transaction->newValue
-                );
+                $this->setPropertyPerReflection($entity, 'name', $transaction->newValue);
                 break;
             case RoleTransaction::TYPE_EDIT_LABEL:
                 $entity->setLabel($transaction->newValue);

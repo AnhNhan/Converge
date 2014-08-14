@@ -101,14 +101,4 @@ final class UserTransactionEditor extends TransactionEditor
 
         $entity->updateModifiedAt();
     }
-
-    private function setPropertyPerReflection($object, $name, $value)
-    {
-        $userReflProp = $this->em()->getClassMetadata('AnhNhan\Converge\Modules\User\Storage\User')
-            ->reflClass->getProperty($name);
-        $userReflProp->setAccessible(true);
-        $userReflProp->setValue(
-            $object, $value
-        );
-    }
 }

@@ -275,4 +275,14 @@ abstract class TransactionEditor
                 break;
         }
     }
+
+    final protected function setPropertyPerReflection($object, $name, $value)
+    {
+        $userReflProp = $this->em()->getClassMetadata(get_class($object))
+            ->reflClass->getProperty($name);
+        $userReflProp->setAccessible(true);
+        $userReflProp->setValue(
+            $object, $value
+        );
+    }
 }

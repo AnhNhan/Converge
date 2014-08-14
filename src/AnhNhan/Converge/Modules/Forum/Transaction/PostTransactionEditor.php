@@ -52,24 +52,10 @@ final class PostTransactionEditor extends TransactionEditor
     {
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
-                // Set author field by hacking
-                $reflClass = $this->em()->getClassMetadata('AnhNhan\Converge\Modules\Forum\Storage\Post')
-                    ->reflClass;
-                $authorReflProp = $reflClass->getProperty('author');
-                $authorReflProp->setAccessible(true);
-                $authorReflProp->setValue(
-                    $entity, $this->actor()
-                );
+                $this->setPropertyPerReflection($entity, 'author', $this->actor());
                 break;
             case PostTransaction::TYPE_EDIT_DELETED:
-                // Set deleted field by hacking
-                $reflClass = $this->em()->getClassMetadata('AnhNhan\Converge\Modules\Forum\Storage\Post')
-                    ->reflClass;
-                $authorReflProp = $reflClass->getProperty('deleted');
-                $authorReflProp->setAccessible(true);
-                $authorReflProp->setValue(
-                    $entity, (Boolean) $transaction->newValue()
-                );
+                $this->setPropertyPerReflection($entity, 'deleted', (Boolean) $transaction->newValue());
                 break;
             case PostTransaction::TYPE_EDIT_POST:
                 $entity->setRawText($transaction->newValue());
