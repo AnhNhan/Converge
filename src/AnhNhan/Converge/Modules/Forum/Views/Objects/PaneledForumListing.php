@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\Forum\Views\Objects;
 
+use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
 use AnhNhan\Converge\Views\Panel\Panel;
@@ -23,7 +24,7 @@ class PaneledForumListing extends ForumListing
     public function addTag($tag)
     {
         if ($tag instanceof Tag) {
-            $tag = new TagView($tag->label(), $tag->color());
+            $tag = link_tag($tag);
         } else if (!($tag instanceof TagView)) {
             throw new \InvalidArgumentException;
         }
