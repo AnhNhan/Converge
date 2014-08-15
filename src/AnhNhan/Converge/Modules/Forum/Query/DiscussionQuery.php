@@ -151,10 +151,7 @@ final class DiscussionQuery extends Query
     {
         assert_instances_of($disqs, self::ENTITY_DISCUSSION);
 
-        if (count(array_filter(mpull($disqs, 'author'))) != count($disqs))
-        {
-            $this->fetchExternalUsers($disqs);
-        }
+        fetch_external_authors($disqs, $this->requireExternalQuery(self::EXT_QUERY_USER));
 
         $disq_tags = mpull(mpull($disqs, 'tags'), 'toArray');
         $tags_flat = array_mergev($disq_tags);
@@ -172,17 +169,6 @@ final class DiscussionQuery extends Query
             foreach ($tags_flat as $tag) {
                 $tag->setTag($tag_objs[$tag->tagId]);
             }
-        }
-    }
-
-    public function fetchExternalUsers(array $stuff)
-    {
-        $userQuery = $this->requireExternalQuery(self::EXT_QUERY_USER);
-        $user_ids = mpull($stuff, 'authorId');
-        $users = mkey($userQuery->retrieveUsersForUIDs($user_ids), 'uid');
-        foreach ($stuff as $thing)
-        {
-            $thing->setAuthor(idx($users, $thing->authorId));
         }
     }
 

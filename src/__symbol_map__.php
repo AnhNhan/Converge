@@ -728,6 +728,8 @@ return array(
     "get_custom_markup_rules" => "AnhNhan/Converge/Modules/Markup/markup_utils.php",
     "link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
+    "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
     "mkey" => "AnhNhan/Converge/cv_utils.php",
     "pkey" => "AnhNhan/Converge/cv_utils.php",

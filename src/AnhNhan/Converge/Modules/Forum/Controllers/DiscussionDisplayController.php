@@ -53,7 +53,7 @@ final class DiscussionDisplayController extends AbstractForumController
         $offset = ($page_nr - 1) * $page_size;
 
         $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
-        $query->fetchExternalUsers(array_merge($posts, [$disq]));
+        fetch_external_authors(array_merge($posts, [$disq]), create_user_query($this->externalApp('user')));
         $query->fetchExternalsForDiscussions([$disq]);
 
 
