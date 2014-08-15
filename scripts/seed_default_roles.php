@@ -11,6 +11,7 @@ use AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor;
 use AnhNhan\Converge\Modules\User\Storage\User;
 
 use AnhNhan\Converge\Modules\User\Query\RoleQuery;
+use AnhNhan\Converge\Modules\User\Query\UserQuery;
 
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Types\UID;
@@ -28,6 +29,14 @@ $defaultRolesConfigPath = cv\get_root_super() . 'resources/default.roles.yml';
 $parsed = Yaml::parse($defaultRolesConfigPath);
 $defaultRoles = $parsed['roles'];
 
+$userQuery = new UserQuery($userApp);
+$anh_nhan  = $userQuery->retrieveUsersForCanonicalNames(['anhnhan']);
+$anh_nhan  = idx($anh_nhan, 0);
+if (!$anh_nhan)
+{
+    throw new Exception('User Anh Nhan does not exist.');
+}
+
 echo "Using: {$defaultRolesConfigPath}\n\n";
 
 foreach ($defaultRoles as $roleName => $roleValues) {
@@ -36,7 +45,7 @@ foreach ($defaultRoles as $roleName => $roleValues) {
         $role = new Role;
 
         $editor = RoleTransactionEditor::create($userEm)
-            ->setActor(User::USER_UID_NONE)
+            ->setActor($anh_nhan->uid)
             ->setEntity($role)
             ->setBehaviourOnNoEffect(RoleTransactionEditor::NO_EFFECT_SKIP)
             ->addTransaction(

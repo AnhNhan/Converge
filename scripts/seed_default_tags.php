@@ -9,7 +9,10 @@ use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Storage\TagTransaction;
 use AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor;
 
+use AnhNhan\Converge\Modules\User\UserApplication;
+
 use AnhNhan\Converge\Modules\Tag\TagQuery;
+use AnhNhan\Converge\Modules\User\Query\UserQuery;
 
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Types\UID;
@@ -27,6 +30,14 @@ $defaultTagsConfigPath = cv\get_root_super() . 'resources/default.tags.yml';
 $parsed = Yaml::parse($defaultTagsConfigPath);
 $defaultTags = $parsed['tags'];
 
+$userQuery = new UserQuery(id(new UserApplication)->setContainer($container));
+$anh_nhan  = $userQuery->retrieveUsersForCanonicalNames(['anhnhan']);
+$anh_nhan  = idx($anh_nhan, 0);
+if (!$anh_nhan)
+{
+    throw new Exception('User Anh Nhan does not exist.');
+}
+
 echo "Using: {$defaultTagsConfigPath}\n\n";
 
 foreach ($defaultTags as $tagValues) {
@@ -36,7 +47,7 @@ foreach ($defaultTags as $tagValues) {
         $tag = new Tag;
 
         $editor = TagTransactionEditor::create($tagEm)
-            ->setActor(UID::generate())
+            ->setActor($anh_nhan->uid)
             ->setEntity($tag)
             ->setBehaviourOnNoEffect(TagTransactionEditor::NO_EFFECT_SKIP)
             ->addTransaction(
