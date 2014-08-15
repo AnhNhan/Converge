@@ -12,6 +12,18 @@ final class TaskQuery extends Query
     const TASK_STATUS_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskStatus';
     const TASK_PRIORITY_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskPriority';
 
+    public function retrieveTasks($limit = null, $offset = null)
+    {
+        $eTask = self::TASK_ENTITY;
+        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
+        return $query->getResult();
+    }
+
     public function retrieveTasksForUids(array $ids)
     {
         $eTask = self::TASK_ENTITY;
@@ -34,6 +46,18 @@ final class TaskQuery extends Query
         return $query->getResult();
     }
 
+    public function retrieveTaskStatus($limit = null, $offset = null)
+    {
+        $eTask = self::TASK_STATUS_ENTITY;
+        $queryString = "SELECT ts FROM {$eTask} ts";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
+        return $query->getResult();
+    }
+
     public function retrieveTaskStatusForUids(array $ids)
     {
         $eTask = self::TASK_STATUS_ENTITY;
@@ -52,6 +76,18 @@ final class TaskQuery extends Query
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
+        ;
+        return $query->getResult();
+    }
+
+    public function retrieveTaskPriorities($limit = null, $offset = null)
+    {
+        $eTask = self::TASK_PRIORITY_ENTITY;
+        $queryString = "SELECT tp FROM {$eTask} tp";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
         ;
         return $query->getResult();
     }
