@@ -12,6 +12,8 @@ class Listing extends AbstractView
     private $title;
     private $objects = array();
 
+    private $empty_text;
+
     public function setTitle($title)
     {
         $this->title = $title;
@@ -21,6 +23,12 @@ class Listing extends AbstractView
     public function addObject(AbstractObject $object)
     {
         $this->objects[] = $object;
+        return $this;
+    }
+
+    public function setEmptyMessage($empty_text)
+    {
+        $this->empty_text = $empty_text;
         return $this;
     }
 
@@ -36,11 +44,20 @@ class Listing extends AbstractView
             );
         }
 
-        $objects = Converge\ht('div')->addClass('objects-list-objects');
-        foreach ($this->objects as $object) {
-            $objects->append($object);
+        if ($this->objects)
+        {
+            $objects = Converge\ht('div')->addClass('objects-list-objects');
+            foreach ($this->objects as $object) {
+                $objects->append($object);
+            }
+            $container->append($objects);
         }
-        $container->append($objects);
+        else
+        {
+            $empty_box = Converge\ht('div')->addClass('objects-list-empty-message');
+            $empty_box->append($this->empty_text ?: 'No objects in this listing');
+            $container->append($empty_box);
+        }
 
         return $container;
     }
