@@ -1,0 +1,43 @@
+
+tasks:
+
+  status:
+    - label: Inactive
+    - label: In Talk
+    - label: Hanging Around
+
+    - label: Ready
+
+    - label: Assigned
+    - label: Broken Tire
+
+    - label: Terminated
+      color: dark
+    - label: Expired
+      color: dark
+    - label: Finished
+      color: success
+    - label: Failed
+      color: dark
+
+    - label: Post-Action Report
+      color: info
+  # Completed is tracked separately in Task entity
+  # - label: Completed
+
+  priority:
+    - label: Far Future
+      order: 50
+
+    - label: Soon
+      order: 45
+
+    - label: Backlog
+      order: 40
+
+    - label: In Work
+      order: 30
+
+    - label: Urgent
+      color: warning
+      order: 10
