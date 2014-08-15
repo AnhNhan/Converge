@@ -2,8 +2,6 @@
 namespace AnhNhan\Converge\Modules\Forum\Controllers;
 
 use AnhNhan\Converge;
-use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\Converge\Modules\Tag\TagQuery;
 use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -13,8 +11,6 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
  */
 final class DiscussionDisplayController extends AbstractForumController
 {
-    const CreateXactHide_GraceTime = 120;
-
     public function handle()
     {
         $request = $this->request;
@@ -56,72 +52,26 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $offset = ($page_nr - 1) * $page_size;
 
-        $transactions = $disq->transactions->slice($offset, $page_size);
-        $transactions_grouped = mgroup($transactions, 'type');
         $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
-        $query->fetchExternalUsers(array_merge($transactions, $posts, [$disq]));
+        $query->fetchExternalUsers(array_merge($posts, [$disq]));
         $query->fetchExternalsForDiscussions([$disq]);
 
-        $tagQuery = new TagQuery($this->externalApp('tag'));
-        $tag_ids = array_unique(array_merge(
-            mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_TAG, []), 'newValue'),
-            mpull(idx($transactions_grouped, DiscussionTransaction::TYPE_REMOVE_TAG, []), 'oldValue')
-        ));
-        $tags = $tagQuery->retrieveTagsForIDs($tag_ids);
-        $tags = mkey($tags, 'uid');
 
-        $create_xact = idx($transactions_grouped, DiscussionTransaction::TYPE_CREATE);
-        $create_date = null;
-        if ($create_xact) {
-            $create_xact = head($create_xact);
-            $create_date = $create_xact->createdAt->getTimestamp();
-
-            // Prepend create-xact to the stack
-            // First remove, then merge with create-xact as first
-            unset($transactions[array_search($create_xact, $transactions)]);
-            $transactions = array_merge(
-                [$create_xact],
-                $transactions
-            );
-        }
-
-        $post_xacts = idx($transactions_grouped, DiscussionTransaction::TYPE_ADD_POST, []);
-
-        // Manual GC
-        unset($transactions_grouped);
-        //unset($post_ids);
-        unset($tag_ids);
-
-        foreach (array_merge($posts, $create_xact ? [$disq] : []) as $post) {
+        foreach (array_merge($posts, $disq ? [$disq] : []) as $post) {
             list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
             $tocs[$post->uid] = $toc;
             $markups[$post->uid] = $markup;
         }
 
         $disqPanel = null;
-        if ($create_xact) {
+        if ($disq) {
             $disqPanel = renderDiscussion($disq, $markups[$disq->uid])->getProcessed();
             $disqColumn->push($disqPanel);
         }
 
-        foreach ($post_xacts as $post_xact) {
-            $subject_uid = $post_xact->newValue;
-            $post   = $posts[$subject_uid];
-            $markup = $markups[$subject_uid];
+        foreach ($posts as $post) {
+            $markup = $markups[$post->uid];
             $disqColumn->push(renderPost($post, $markup));
-        }
-
-        if ($disqPanel)
-        {
-            $xacts = array_filter($transactions, function ($xact) use ($create_date, $create_xact)
-            {
-                return !(
-                    $create_date
-                    && $create_date + self::CreateXactHide_GraceTime > $xact->createdAt->getTimestamp()
-                    && $xact->actorId == $create_xact->actorId
-                );
-            });
-            attach_xacts($disqPanel, $xacts, $tags);
         }
 
         $tocContainer = panel(h2('Table of Contents'), 'forum-toc-affix');
@@ -129,16 +79,10 @@ final class DiscussionDisplayController extends AbstractForumController
         $tagColumn->push($tocContainer);
 
         $ulCont = Converge\ht('ul')->addClass('nav forum-toc-nav');
-        foreach ($transactions as $xact) {
-            if (
-                $xact->type != DiscussionTransaction::TYPE_CREATE
-                && $xact->type != DiscussionTransaction::TYPE_ADD_POST
-            ) {
-                continue;
-            }
+        foreach (array_merge($disq ? [$disq] : [], $posts) as $obj) {
+            // Crude, but works
+            $is_disq = !method_exists($obj, 'parentDisq');
 
-            $is_disq = $xact->type == DiscussionTransaction::TYPE_CREATE;
-            $obj = $is_disq ? $disq : $posts[$xact->newValue];
             $type = $is_disq ? 'Discussion' : 'Post';
             $toc_entry = self::toc_entry($type, $obj->author->name, $obj->uid, $obj->rawText);
 
