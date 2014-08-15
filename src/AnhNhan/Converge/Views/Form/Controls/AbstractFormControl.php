@@ -88,24 +88,24 @@ abstract class AbstractFormControl extends HtmlTag implements ViewInterface
         );
 
         if (!$match) {
-            throw new RZWebStackException('Bad Getter/Setter call');
+            throw new \Exception('Bad Getter/Setter call');
         }
 
         $type = strtolower($matches['type']);
         $name = strtolower($matches['name']);
         if ($type == 'g') {
             if (!isset($this->$name)) {
-                throw new RZWebStackException("Bad getter call: {$name}");
+                throw new \Exception("Bad getter call: {$name}");
             }
             return $this->$name;
         } elseif ($type == 's') {
             if (!isset($this->$name)) {
-                throw new RZWebStackException("Bad setter call: {$name}");
+                throw new \Exception("Bad setter call: {$name}");
             }
             $this->$name = array_shift($arguments);
             return $this;
         } else {
-            throw new RZWebStackException('Method does not exist!');
+            throw new \Exception('Method does not exist!');
         }
     }
 }
