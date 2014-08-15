@@ -42,38 +42,34 @@ class HeaderView extends AbstractView
         {
             $header_content
                 ->append(
-                    $nav_action = div('nav-action')
-                        ->append(a(cv\icon_ion('', 'search'), 'disq/search')
+                    div('nav-action')
+                        ->append(a(cv\icon_ion('', 'navicon-round'), 'disq/')
                             ->addClass('btn btn-default')
                             ->addOption('data-toggle', 'tooltip-bottom')
-                            ->addOption('title', 'search')
+                            ->addOption('title', 'discussion listing')
                         )
                         ->append(a(cv\icon_ion('', 'compose'), 'disq/create')
                             ->addClass('btn btn-default')
                             ->addOption('data-toggle', 'tooltip-bottom')
                             ->addOption('title', 'create discussion')
                         )
+                        ->append(a(cv\icon_ion('', 'search'), 'disq/search')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'search')
+                        )
                         ->append(a(cv\icon_ion('', 'ios7-gear'), 'o/settings')
                             ->addClass('btn btn-default')
                             ->addOption('data-toggle', 'tooltip-bottom')
                             ->addOption('title', 'user settings')
                         )
+                        ->append(a(cv\icon_ion('', 'log-out'), 'logout')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'log out')
+                        )
                 )
             ;
-        }
-
-        if ($this->user_details)
-        {
-            $nav_action->append(a(cv\icon_ion('', 'log-out'), 'logout')
-                ->addClass('btn btn-default')
-                ->addOption('data-toggle', 'tooltip-bottom')
-                ->addOption('title', 'log out')
-            );
-            $nav_action->getContent()->unshift(a(cv\icon_ion('', 'navicon-round'), 'disq/')
-                ->addClass('btn btn-default')
-                ->addOption('data-toggle', 'tooltip-bottom')
-                ->addOption('title', 'discussion listing')
-            );
         }
         else
         {
@@ -88,7 +84,7 @@ class HeaderView extends AbstractView
 
         $header_link = a(null, '/', true)
             ->append(h2('Converge'))
-            ->append(h4('Make me one with everything.'))
+            ->append(h4('Make me one with everything'))
         ;
         $header_content->append($header_link);
 
