@@ -30,17 +30,15 @@ final class TaskApplication extends BaseApplication
         $routeName = $request->attributes->get("route-name");
 
         switch ($routeName) {
-            case "main-listing":
-                return new Controllers\DiscussionListingController($this);
+            case "task-listing":
+                return new Controllers\TaskListing($this);
                 break;
-            case "disq-creation":
-                return new Controllers\DiscussionEditController($this);
+            case "task-create":
+            case "task-edit":
+                return new Controllers\TaskEdit($this);
                 break;
-            case "disq-display":
-                return new Controllers\DiscussionDisplayController($this);
-                break;
-            case "disq-posting":
-                return new Controllers\PostEditController($this);
+            case "task-display":
+                return new Controllers\TaskDisplay($this);
                 break;
         }
 

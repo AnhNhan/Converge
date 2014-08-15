@@ -1,2 +1,14 @@
 
-routes: []
+routes:
+
+  - pattern: task/
+    name: task-listing
+
+  - pattern: task/create
+    name: task-create
+
+  - pattern: task/edit/:id
+    name: task-edit
+
+  - pattern: task/:id
+    name: task-display
