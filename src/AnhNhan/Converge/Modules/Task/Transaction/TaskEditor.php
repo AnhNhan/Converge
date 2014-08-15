@@ -29,7 +29,7 @@ final class TaskEditor extends TransactionEditor
             case TransactionEntity::TYPE_CREATE:
                 return null;
             case TaskTransaction::TYPE_EDIT_DESC:
-                return $entity->desc();
+                return $entity->description();
             case TaskTransaction::TYPE_EDIT_LABEL:
                 return $entity->label();
             case TaskTransaction::TYPE_EDIT_STATUS:
@@ -58,6 +58,7 @@ final class TaskEditor extends TransactionEditor
     {
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
+                $this->setPropertyPerReflection($entity, 'author', $transaction->actorId);
                 $this->setPropertyPerReflection($entity, 'label', $transaction->newValue);
                 $this->setPropertyPerReflection($entity, 'label_canonical', to_canonical($transaction->newValue));
                 break;
@@ -65,13 +66,15 @@ final class TaskEditor extends TransactionEditor
                 $this->setPropertyPerReflection($entity, 'label', $transaction->newValue);
                 break;
             case TaskTransaction::TYPE_EDIT_DESC:
-                $this->setPropertyPerReflection($entity, 'desc', $transaction->newValue);
+                $this->setPropertyPerReflection($entity, 'description', $transaction->newValue);
                 break;
             case TaskTransaction::TYPE_EDIT_STATUS:
                 $this->setPropertyPerReflection($entity, 'status', $transaction->newValue);
+                $this->setPropertyPerReflection($transaction, 'newValue', $transaction->newValue->uid);
                 break;
             case TaskTransaction::TYPE_EDIT_PRIORITY:
                 $this->setPropertyPerReflection($entity, 'priority', $transaction->newValue);
+                $this->setPropertyPerReflection($transaction, 'newValue', $transaction->newValue->uid);
                 break;
             case TaskTransaction::TYPE_EDIT_COMPLETED:
                 $this->setPropertyPerReflection($entity, 'completed', $transaction->newValue);

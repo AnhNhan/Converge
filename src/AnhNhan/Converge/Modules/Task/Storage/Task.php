@@ -66,7 +66,7 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     /**
      * @Column(type="text", nullable=true)
      */
-    private $mainDescription;
+    private $description;
 
     /**
      * @Column(type="boolean")
@@ -128,9 +128,9 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
         return $this;
     }
 
-    public function mainDescription()
+    public function description()
     {
-        return $this->mainDescription;
+        return $this->description;
     }
 
     /**
