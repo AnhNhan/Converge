@@ -42,6 +42,16 @@ final class UserDisplay extends AbstractUserController
         $container->push(h1($user->name)->append(' ')->append(cv\ht('small', $user->handle)));
         $container->push(cv\ht('img')->addOption('src', $user->getGravatarImagePath(50))->addOption('style', 'width: 50px; height: 50px;'));
 
+        $roles_container = div();
+        $roles_container->append(h2('Roles inhabited'));
+        $ul = cv\ht('ul');
+        foreach ($user->roles as $role)
+        {
+            $ul->append(cv\ht('li', $role->label . ' ')->append(cv\ht('span', $role->name)->addClass('muted')));
+        }
+        $roles_container->append($ul);
+        $container->push($roles_container);
+
         $disqQuery = $this->buildForumQuery();
         $disqs = $this->fetchDiscussions([$user->uid]);
         $disqQuery->fetchExternalsForDiscussions($disqs);

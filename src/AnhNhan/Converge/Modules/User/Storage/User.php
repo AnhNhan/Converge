@@ -188,6 +188,11 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
         return $this;
     }
 
+    public function roles()
+    {
+        return $this->roles->toArray();
+    }
+
     public function emails()
     {
         return $this->emails;
