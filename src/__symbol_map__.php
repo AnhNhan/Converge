@@ -368,6 +368,59 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Tag/Views/TagView.php",
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
+    "AnhNhan\Converge\Modules\Task\Query\TaskQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Query/TaskQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\Task" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/Task.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskPriority" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskPriority.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskPriorityTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskStatus" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskStatus.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskStatusTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
+    "AnhNhan\Converge\Modules\Task\TaskApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/TaskApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Task\Transaction\TaskEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Transaction/TaskEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\Converge\Modules\Task\Transaction\TaskPriorityEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Transaction/TaskPriorityEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\Converge\Modules\Task\Transaction\TaskStatusEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Transaction/TaskStatusEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
     "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
       "file" => "AnhNhan/Converge/Modules/User/Controllers/AbstractUserController.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -774,6 +827,7 @@ return array(
       "AnhNhan\Converge\Modules\Search\SearchApplication",
       "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication",
       "AnhNhan\Converge\Modules\Tag\TagApplication",
+      "AnhNhan\Converge\Modules\Task\TaskApplication",
       "AnhNhan\Converge\Modules\User\UserApplication",
     ),
     "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
@@ -785,6 +839,7 @@ return array(
     "AnhNhan\Converge\Storage\Query" => array(
       "AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery",
       "AnhNhan\Converge\Modules\Tag\TagQuery",
+      "AnhNhan\Converge\Modules\Task\Query\TaskQuery",
       "AnhNhan\Converge\Modules\User\Query\RoleQuery",
       "AnhNhan\Converge\Modules\User\Query\UserQuery",
     ),
@@ -793,6 +848,9 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
+      "AnhNhan\Converge\Modules\Task\Storage\Task",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
       "AnhNhan\Converge\Modules\User\Storage\Email",
       "AnhNhan\Converge\Modules\User\Storage\OAuthInfo",
       "AnhNhan\Converge\Modules\User\Storage\Role",
@@ -801,6 +859,9 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
       "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
       "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
@@ -808,6 +869,9 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
       "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
       "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
@@ -815,6 +879,9 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor",
       "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor",
       "AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor",
+      "AnhNhan\Converge\Modules\Task\Transaction\TaskEditor",
+      "AnhNhan\Converge\Modules\Task\Transaction\TaskPriorityEditor",
+      "AnhNhan\Converge\Modules\Task\Transaction\TaskStatusEditor",
       "AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor",
       "AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor",
     ),
@@ -972,6 +1039,9 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
+      "AnhNhan\Converge\Modules\Task\Storage\Task",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
       "AnhNhan\Converge\Modules\User\Storage\Role",
       "AnhNhan\Converge\Modules\User\Storage\User",
     ),
