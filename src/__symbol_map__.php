@@ -368,6 +368,19 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Tag/Views/TagView.php",
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
+    "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/AbstractTaskController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskEdit.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
+    ),
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskListing" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskListing.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
+    ),
     "AnhNhan\Converge\Modules\Task\Query\TaskQuery" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Query/TaskQuery.php",
       "deriv" => "AnhNhan\Converge\Storage\Query",
@@ -589,6 +602,10 @@ return array(
       "file" => "AnhNhan/Converge/Views/Form/Controls/PasswordControl.php",
       "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
     ),
+    "AnhNhan\Converge\Views\Form\Controls\SelectControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/SelectControl.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
+    ),
     "AnhNhan\Converge\Views\Form\Controls\SubmitControl" => array(
       "file" => "AnhNhan/Converge/Views/Form/Controls/SubmitControl.php",
       "impls" => array(
@@ -728,6 +745,8 @@ return array(
     "get_custom_markup_rules" => "AnhNhan/Converge/Modules/Markup/markup_utils.php",
     "link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "render_task_listing" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_listing_add_object" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
@@ -792,6 +811,7 @@ return array(
       "AnhNhan\Converge\Modules\Search\Controllers\Search",
       "AnhNhan\Converge\Modules\StaticResources\Controllers\AbstractStaticResourceController",
       "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
+      "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
       "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
@@ -805,6 +825,8 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
       "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
       "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
       "AnhNhan\Converge\Modules\User\Controllers\UserDisplay",
@@ -989,8 +1011,13 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
       "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
       "AnhNhan\Converge\Views\Form\Controls\PasswordControl",
+      "AnhNhan\Converge\Views\Form\Controls\SelectControl",
       "AnhNhan\Converge\Views\Form\Controls\TextAreaControl",
       "AnhNhan\Converge\Views\Form\Controls\TextControl",
+    ),
+    "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
     ),
     "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
       "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
@@ -1012,6 +1039,7 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
       "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
       "AnhNhan\Converge\Views\Form\Controls\PasswordControl",
+      "AnhNhan\Converge\Views\Form\Controls\SelectControl",
       "AnhNhan\Converge\Views\Form\Controls\TextAreaControl",
       "AnhNhan\Converge\Views\Form\Controls\TextControl",
     ),
