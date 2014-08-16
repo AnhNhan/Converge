@@ -12,6 +12,7 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 class TaskTransaction extends TransactionEntity
 {
     const TYPE_EDIT_LABEL     = "task.edit.label";
+    const TYPE_EDIT_ASSIGN    = "task.edit.assigned";
     const TYPE_EDIT_DESC      = "task.edit.description";
     const TYPE_EDIT_STATUS    = "task.edit.status";
     const TYPE_EDIT_PRIORITY  = "task.edit.priority";

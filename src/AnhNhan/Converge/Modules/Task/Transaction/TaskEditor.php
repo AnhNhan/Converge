@@ -15,6 +15,7 @@ final class TaskEditor extends TransactionEditor
         $types = parent::getTransactionTypes();
 
         $types[] = TaskTransaction::TYPE_EDIT_LABEL;
+        $types[] = TaskTransaction::TYPE_EDIT_ASSIGN;
         $types[] = TaskTransaction::TYPE_EDIT_DESC;
         $types[] = TaskTransaction::TYPE_EDIT_STATUS;
         $types[] = TaskTransaction::TYPE_EDIT_PRIORITY;
@@ -30,6 +31,8 @@ final class TaskEditor extends TransactionEditor
                 return null;
             case TaskTransaction::TYPE_EDIT_DESC:
                 return $entity->description();
+            case TaskTransaction::TYPE_EDIT_ASSIGN:
+                return $entity->assignedId();
             case TaskTransaction::TYPE_EDIT_LABEL:
                 return $entity->label();
             case TaskTransaction::TYPE_EDIT_STATUS:
@@ -50,6 +53,7 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_EDIT_STATUS:
             case TaskTransaction::TYPE_EDIT_PRIORITY:
             case TaskTransaction::TYPE_EDIT_COMPLETED:
+            case TaskTransaction::TYPE_EDIT_ASSIGN:
                 return $transaction->newValue();
         }
     }
@@ -67,6 +71,9 @@ final class TaskEditor extends TransactionEditor
                 break;
             case TaskTransaction::TYPE_EDIT_DESC:
                 $this->setPropertyPerReflection($entity, 'description', $transaction->newValue);
+                break;
+            case TaskTransaction::TYPE_EDIT_ASSIGN:
+                $this->setPropertyPerReflection($entity, 'assigned', $transaction->newValue);
                 break;
             case TaskTransaction::TYPE_EDIT_STATUS:
                 $this->setPropertyPerReflection($entity, 'status', $transaction->newValue);

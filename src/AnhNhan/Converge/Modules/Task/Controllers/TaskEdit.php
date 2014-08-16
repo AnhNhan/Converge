@@ -38,6 +38,8 @@ final class TaskEdit extends AbstractTaskController
         {
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
+        $user_query = create_user_query($this->externalApp('user'));
+        fetch_external_authors([$task], $user_query, 'assignedId', 'setAssigned', 'assigned');
 
         $priorities = mkey($query->retrieveTaskPriorities(), 'label_canonical');
         $statuses   = mkey($query->retrieveTaskStatus(), 'label_canonical');
@@ -48,6 +50,7 @@ final class TaskEdit extends AbstractTaskController
 
         $task_uid = $task->uid;
         $task_label = $task->label;
+        $task_assigned = $task->assignedId ? $task->assigned->canonical_name : null;
         $task_status = $task->status ? $task->status->label_canonical : null;
         $task_priority = $task->priority ? $task->priority->label_canonical : null;
         $task_description = $task->description;
@@ -57,6 +60,9 @@ final class TaskEdit extends AbstractTaskController
             $task_label = trim($request->request->get('label'));
             $task_description = trim($request->request->get('description'));
 
+            $task_assigned = trim($request->request->get('assigned'));
+            $task_assigned = to_canonical($task_assigned);
+
             $task_priority = trim($request->request->get('priority'));
             $task_priority = to_canonical($task_priority);
 
@@ -65,7 +71,11 @@ final class TaskEdit extends AbstractTaskController
 
             $task_label_canonical = to_canonical($task_label);
 
-            if (strlen($task_label_canonical) < 3)
+            if (!strlen($task_label))
+            {
+                $errors[] = 'We require a descriptive label';
+            }
+            else if (strlen($task_label_canonical) < 3)
             {
                 $errors[] = 'Label is too short to be of any significance.';
             }
@@ -78,6 +88,15 @@ final class TaskEdit extends AbstractTaskController
             if (!isset($statuses[$task_status]))
             {
                 $errors[] = 'Invalid task status';
+            }
+
+            $task_assigned_object = idx($user_query->retrieveUsersForCanonicalNames([$task_assigned]), 0);
+            if ($task_assigned && !$task_assigned_object)
+            {
+                $errors[] = cv\hsprintf(
+                    'Could not find the user %s',
+                    tooltip('span', '@' . $task_assigned, 'user not found')->addClass('bad-username')
+                );
             }
 
             if (!$errors)
@@ -105,6 +124,9 @@ final class TaskEdit extends AbstractTaskController
                     )
                     ->addTransaction(
                         TaskTransaction::create(TaskTransaction::TYPE_EDIT_DESC, $task_description)
+                    )
+                    ->addTransaction(
+                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_ASSIGN, $task_assigned_object->uid)
                     )
                     ->addTransaction(
                         TaskTransaction::create(TaskTransaction::TYPE_EDIT_STATUS, $task_status_object)
@@ -180,6 +202,10 @@ final class TaskEdit extends AbstractTaskController
                 ->setLabel('Label')
                 ->setName('label')
                 ->setValue($task_label))
+            ->append(id(new TextControl)
+                ->setLabel('Assigned to')
+                ->setName('assigned')
+                ->setValue($task_assigned))
             ->append($priority_control)
             ->append($status_control)
             ->append(id(new TextAreaControl)

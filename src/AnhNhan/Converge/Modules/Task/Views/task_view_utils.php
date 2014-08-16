@@ -29,9 +29,13 @@ function task_listing_add_object(Listing $listing, Task $task)
 
     $object->addAttribute($task->priority->label);
     $object->addAttribute($task->status->label);
+    $object->addAttribute(cv\hsprintf('created by <strong>%s</strong>', link_user($task->author)));
 
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
-    $object->addDetail(cv\ht('strong', link_user($task->author)));
+    if ($task->assigned)
+    {
+        $object->addDetail(cv\ht('strong', link_user($task->assigned)));
+    }
 
     $listing->addObject($object);
 }

@@ -40,6 +40,19 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     private $author_object;
 
     /**
+     * Current assigned user, may be nobody.
+     *
+     * @Column(type="string", nullable=true)
+     * @var string
+     */
+    private $assigned;
+
+    /**
+     * @var \AnhNhan\Converge\Modules\User\Storage\User
+     */
+    private $assigned_object;
+
+    /**
      * @Column(type="string")
      */
     private $label;
@@ -125,6 +138,22 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     public function setAuthor(\AnhNhan\Converge\Modules\User\Storage\User $author_object)
     {
         $this->author_object = $author_object;
+        return $this;
+    }
+
+    public function assignedId()
+    {
+        return $this->assigned;
+    }
+
+    public function assigned()
+    {
+        return $this->assigned_object;
+    }
+
+    public function setAssigned(\AnhNhan\Converge\Modules\User\Storage\User $assigned_object = null)
+    {
+        $this->assigned_object = $assigned_object;
         return $this;
     }
 
