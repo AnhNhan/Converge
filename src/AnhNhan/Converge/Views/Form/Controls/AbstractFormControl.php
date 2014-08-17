@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Views\Form\Controls;
 
+use AnhNhan\Converge as cv;
 use YamwLibs\Libs\Html\HtmlFactory as HF;
 use YamwLibs\Libs\Html\Markup\HtmlTag;
 use YamwLibs\Libs\Html\Markup\SafeTextNode;
@@ -15,6 +16,9 @@ use YamwLibs\Libs\View\ViewInterface;
 abstract class AbstractFormControl extends HtmlTag implements ViewInterface
 {
     private $label = '';
+
+    private $text_error = '';
+    private $text_help  = '';
 
     public function __construct()
     {
@@ -33,18 +37,46 @@ abstract class AbstractFormControl extends HtmlTag implements ViewInterface
         return $this->addOption('value', $value);
     }
 
+    public function setHelp($text_help)
+    {
+        $this->text_help = $text_help;
+        return $this;
+    }
+
+    /// Will cancel out help text if exists
+    public function setError($text_error)
+    {
+        $this->text_error = $text_error;
+        return $this;
+    }
+
     public function render()
     {
         $this->willRender();
         $container = HF::divTag()
             ->addClass('form-control-container');
+        if ($this->text_error)
+        {
+            $container->addClass('form-control-error');
+        }
 
-        $labelDiv = HF::divTag(new SafeTextNode('&nbsp;'))
-            ->addClass('form-control-label');
+        $labelDiv = div('form-control-label');
         if ($this->label) {
             $labelDiv->setContent($this->label);
         }
+        else
+        {
+            $labelDiv->setContent(cv\safeHtml('&nbsp;'));
+        }
         $container->append($labelDiv);
+        if ($this->text_error)
+        {
+            $labelDiv->append(div('form-control-label-error', $this->text_error));
+        }
+        else if ($this->text_help)
+        {
+            $labelDiv->append(div('form-control-label-help', $this->text_help));
+        }
 
         $thisTag = new HtmlTag(
             $this->getTagName(),

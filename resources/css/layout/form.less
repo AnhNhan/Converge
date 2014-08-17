@@ -30,10 +30,30 @@
 
 .form-control-container {
     margin: 10px 0;
+    clear: both;
+}
+
+.form-control-error {
+    .form-control {
+        .box-shadow(0 0 5px @form-control-error-color);
+    }
+
+    .form-control-label-error {
+        color: @form-control-error-color;
+    }
 }
 
 .form-control-label {
     font-weight: bold;
+
+    .form-control-label-help {
+        color: @form-control-help-color;
+    }
+
+    .form-control-label-help, .form-control-label-error {
+        font-weight: normal;
+        font-size: 0.85em;
+    }
 }
 
 .form-control-element {

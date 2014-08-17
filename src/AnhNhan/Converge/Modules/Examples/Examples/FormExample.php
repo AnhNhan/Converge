@@ -81,11 +81,13 @@ final class FormExample extends AbstractExample
 
         $textControl = new TextControl();
         $textControl->setName('username')
+            ->setHelp('Put your name here')
             ->setValue('Your name')
             ->setLabel('This is the label for your name');
         $form->append($textControl);
 
         $form->append(id(new TextControl())
+            ->setError('That ain\' your mother!')
             ->setLabel('Name of your mom')
             ->setValue('Dorothy'));
         $form->append(id(new TextAreaControl())
