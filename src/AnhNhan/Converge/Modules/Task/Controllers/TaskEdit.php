@@ -127,13 +127,21 @@ final class TaskEdit extends AbstractTaskController
                     ->addTransaction(
                         TaskTransaction::create(TaskTransaction::TYPE_EDIT_ASSIGN, $task_assigned_object->uid)
                     )
-                    ->addTransaction(
-                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_STATUS, $task_status_object)
-                    )
-                    ->addTransaction(
-                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_PRIORITY, $task_priority_object)
-                    )
                 ;
+
+                // Sadly equality is done by identity, not by contents :/
+                if ($task_status != $task->status->label_canonical)
+                {
+                    $editor->addTransaction(
+                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_STATUS, $task_status_object)
+                    );
+                }
+                if ($task_priority != $task->priority->label_canonical)
+                {
+                    $editor->addTransaction(
+                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_PRIORITY, $task_priority_object)
+                    );
+                }
 
                 try
                 {
