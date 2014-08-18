@@ -18,10 +18,17 @@ abstract class AbstractTaskController extends BaseApplicationController
 
     protected function retrieveTaskObject($request, $query)
     {
-        if ($roleId = $request->request->get('id')) {
+        if ($roleId = $request->request->get('id'))
+        {
             $role = $query->retrieveTasksForUids(["TASK-" . $roleId]);
+            if (!$role)
+            {
+                $role = $query->retrieveTasksForCanonicalLabels([$roleId]);
+            }
+
             $role = idx($role, 0);
-        } else {
+        } else
+        {
             $role = new Task;
         }
 

@@ -24,7 +24,7 @@ function task_listing_add_object(Listing $listing, Task $task)
     $object = new Object;
     $object
         ->setHeadline($task->label)
-        ->setHeadHref("/task/" . $task->cleanId)
+        ->setHeadHref("/task/" . $task->label_canonical)
     ;
 
     $object->addAttribute($task->priority->label);

@@ -145,7 +145,7 @@ final class TaskEdit extends AbstractTaskController
                     goto form_rendering;
                 }
 
-                $targetURI = "/task/" . $task->cleanId;
+                $targetURI = "/task/" . $task->label_canonical;
                 return new RedirectResponse($targetURI);
             }
         }
