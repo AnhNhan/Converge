@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Task\Controllers;
 
 use AnhNhan\Converge\Modules\Task\Query\TaskQuery;
+use AnhNhan\Converge\Modules\Task\Storage\Task;
 use AnhNhan\Converge\Web\Application\BaseApplicationController;
 
 /**
@@ -13,5 +14,17 @@ abstract class AbstractTaskController extends BaseApplicationController
     {
         $query = new TaskQuery($this->app);
         return $query;
+    }
+
+    protected function retrieveTaskObject($request, $query)
+    {
+        if ($roleId = $request->request->get('id')) {
+            $role = $query->retrieveTasksForUids(["TASK-" . $roleId]);
+            $role = idx($role, 0);
+        } else {
+            $role = new Task;
+        }
+
+        return $role;
     }
 }

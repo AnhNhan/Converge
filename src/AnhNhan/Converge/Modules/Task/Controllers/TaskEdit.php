@@ -6,7 +6,6 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
-use AnhNhan\Converge\Modules\Task\Storage\Task;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
@@ -205,12 +204,14 @@ final class TaskEdit extends AbstractTaskController
             ->append(id(new TextControl)
                 ->setLabel('Assigned to')
                 ->setName('assigned')
+                ->setHelp('leave empty if unassigned')
                 ->setValue($task_assigned))
             ->append($priority_control)
             ->append($status_control)
             ->append(id(new TextAreaControl)
                 ->setLabel('Description')
                 ->setName('description')
+                ->setHelp('optional')
                 ->setValue($task_description)
                 ->addClass('forum-markup-processing-form')
             )
@@ -229,17 +230,5 @@ final class TaskEdit extends AbstractTaskController
         $payload->setTitle($page_title);
         $payload->setPayloadContents($container);
         return $payload;
-    }
-
-    private function retrieveTaskObject($request, $query)
-    {
-        if ($roleId = $request->request->get('id')) {
-            $role = $query->retrieveTasksForUids(["TASK-" . $roleId]);
-            $role = idx($role, 0);
-        } else {
-            $role = new Task;
-        }
-
-        return $role;
     }
 }
