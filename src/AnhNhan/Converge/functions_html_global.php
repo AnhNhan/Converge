@@ -50,6 +50,11 @@ function span($class, $contents)
     ;
 }
 
+function strong($contents)
+{
+    return cv\ht('strong', $contents);
+}
+
 function a($contents = null, $href = null, $backbone = false)
 {
     return cv\ht('a', $contents, array("backbone" => $backbone, "href" => $href));
