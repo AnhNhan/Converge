@@ -89,7 +89,7 @@ final class TaskEdit extends AbstractTaskController
                 $errors[] = 'Invalid task status';
             }
 
-            $task_assigned_object = idx($user_query->retrieveUsersForCanonicalNames([$task_assigned]), 0);
+            $task_assigned_object = head($user_query->retrieveUsersForCanonicalNames([$task_assigned]));
             if ($task_assigned && !$task_assigned_object)
             {
                 $errors[] = cv\hsprintf(
