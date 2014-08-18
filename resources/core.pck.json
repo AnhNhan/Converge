@@ -30,6 +30,7 @@
         "layout-core",
         "layout-form",
         "layout-grid",
+        "layout-property-list",
         "layout-buttons",
         "layout-objects",
         "layout-forum-object",
