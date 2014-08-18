@@ -74,6 +74,10 @@ class ResMgr
         // Track resources from directly included resources and from pack files
         foreach ($this->resources[$type] as $res => $_) {
             $entry = $this->attemptToReadFromResMap($type, $res);
+            if (!$entry)
+            {
+                throw new \Exception("Resource '$res' of type '$type' does not exist!");
+            }
             $includedStack[$res] = $entry;
             if (isset($entry["contents"])) { // Pack file, track its contents, not the resource itself
                 $theorithicallyIncludedResources = array_merge(
