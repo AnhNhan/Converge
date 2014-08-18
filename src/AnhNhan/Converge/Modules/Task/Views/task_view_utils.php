@@ -6,6 +6,7 @@ use AnhNhan\Converge\Modules\Task\Storage\TaskStatus;
 use AnhNhan\Converge\Modules\Task\Storage\TaskPriority;
 use AnhNhan\Converge\Views\Objects\Listing;
 use AnhNhan\Converge\Views\Objects\Object;
+use AnhNhan\Converge\Views\Property\PropertyList;
 
 function render_task_listing(array $tasks, $title = null, $empty_message = 'No tasks available')
 {
@@ -40,3 +41,21 @@ function task_listing_add_object(Listing $listing, Task $task)
     $listing->addObject($object);
 }
 
+function render_task(Task $task)
+{
+    $panel = panel(h2($task->label), 'task-panel');
+
+    $midriff = $panel->midriff();
+    $mid_container = new PropertyList;
+    $midriff->push($mid_container);
+
+    $mid_container
+        ->addEntry('Original author', strong(link_user($task->author)))
+        ->addEntry('Completed', $task->completed ? 'yes' : 'no')
+        ->addEntry('Priority', $task->priority->label)
+        ->addEntry('Status', $task->status->label)
+        ->addEntry('Assigned to', $task->assigned ? strong(link_user($task->assigned)) : null)
+    ;
+
+    return $panel;
+}
