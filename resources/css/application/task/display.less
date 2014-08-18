@@ -1,0 +1,59 @@
+
+.task-panel
+{}
+
+.task-panel-xact
+{
+    border: none;
+    margin: 0.5em 0;
+
+    .panel-header
+    {
+        border-bottom: none;
+
+        .user-profile-image
+        {
+            height: 38px;
+            width: auto;
+            .pull-left;
+            margin-right: 0.67em;
+            margin-left: -(@panel-padding * 1.33);
+            margin-top: -@panel-padding;
+            margin-bottom: -@panel-padding;
+        }
+
+        .minor-stuff
+        {
+            color: @darkGrey;
+        }
+    }
+
+    &.task-panel-xact-diff
+    {
+        .panel-body
+        {
+            padding: 0;
+
+            .Differences
+            {
+                th
+                {
+                    background: transparent;
+                }
+
+                thead
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    & + &
+    {
+        .panel-container-inner
+        {
+            //border-top: none;
+        }
+    }
+}
