@@ -15,7 +15,7 @@ function fetch_external_authors(array $stuff, UserQuery $query, $id_field = 'aut
     }
 
     $user_ids = mpull($stuff, $id_field);
-    $users = mkey($query->retrieveUsersForUIDs($user_ids), 'uid');
+    $users = $query->retrieveUsersForUIDs($user_ids);
     foreach ($stuff as $thing)
     {
         $thing->$set_method(idx($users, $thing->$id_field));

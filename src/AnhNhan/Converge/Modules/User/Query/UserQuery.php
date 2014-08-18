@@ -22,15 +22,15 @@ final class UserQuery extends Query
 
     public function retrieveUsersForUIDs(array $ids, $limit = null, $offset = null)
     {
-        return $this->repository(self::ENTITY_USER)
-            ->findBy(array("uid" => $ids), array(), $limit, $offset);
+        return mkey($this->repository(self::ENTITY_USER)
+            ->findBy(array("uid" => $ids), array(), $limit, $offset), 'uid');
     }
 
     public function retrieveUsers($limit = null, $offset = null)
     {
         $userRepo = $this->repository(self::ENTITY_USER);
 
-        $users = $userRepo->findBy(array(), array(), $limit, $offset);
+        $users = mkey($userRepo->findBy(array(), array(), $limit, $offset), 'uid');
         return $users;
     }
 
@@ -38,7 +38,7 @@ final class UserQuery extends Query
     {
         $userRepo = $this->repository(self::ENTITY_USER);
 
-        $users = $userRepo->findBy(array("username" => $names), array(), $limit, $offset);
+        $users = mkey($userRepo->findBy(array("username" => $names), array(), $limit, $offset), 'uid');
         return $users;
     }
 
@@ -46,7 +46,7 @@ final class UserQuery extends Query
     {
         $userRepo = $this->repository(self::ENTITY_USER);
 
-        $users = $userRepo->findBy(array("name_canon" => $names), array(), $limit, $offset);
+        $users = mkey($userRepo->findBy(array("name_canon" => $names), array(), $limit, $offset), 'uid');
         return $users;
     }
 
@@ -56,13 +56,13 @@ final class UserQuery extends Query
 
     public function retrieveEmailsForUIDs(array $ids, $limit = null, $offset = null)
     {
-        return $this->repository(self::ENTITY_EMAIL)
-            ->findBy(array("uid" => $ids), array("email" => "ASC"), $limit, $offset);
+        return mkey($this->repository(self::ENTITY_EMAIL)
+            ->findBy(array("uid" => $ids), array("email" => "ASC"), $limit, $offset), 'uid');
     }
 
     public function retrieveEmailsForNames(array $names, $limit = null, $offset = null)
     {
-        return $this->repository(self::ENTITY_EMAIL)
-            ->findBy(array("email" => $names), array("email" => "ASC"), $limit, $offset);
+        return mkey($this->repository(self::ENTITY_EMAIL)
+            ->findBy(array("email" => $names), array("email" => "ASC"), $limit, $offset), 'uid');
     }
 }
