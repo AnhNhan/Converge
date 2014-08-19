@@ -127,10 +127,10 @@ final class TaskEdit extends AbstractTaskController
                     )
                 ;
 
-                if ($task_assigned)
+                if ($task_assigned || ($task->assignedId && !$task_assigned))
                 {
                     $editor->addTransaction(
-                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_ASSIGN, $task_assigned_object->uid)
+                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_ASSIGN, $task_assigned ? $task_assigned_object->uid : null)
                     );
                 }
 

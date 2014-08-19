@@ -6,6 +6,7 @@ use AnhNhan\Converge\Modules\Task\Storage\Task;
 use AnhNhan\Converge\Modules\Task\Storage\TaskStatus;
 use AnhNhan\Converge\Modules\Task\Storage\TaskPriority;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Views\Objects\Listing;
 use AnhNhan\Converge\Views\Objects\Object;
 use AnhNhan\Converge\Views\Property\PropertyList;
@@ -38,13 +39,19 @@ function task_listing_add_object(Listing $listing, Task $task)
         $object->addAttribute(cv\icon_ion('completed', 'checkmark', false));
         $object->addClass('task-object-completed');
     }
-
-    $object->addAttribute($task->status->label);
+    else
+    {
+        $object->addAttribute($task->status->label);
+    }
 
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
     if ($task->assigned)
     {
         $object->addDetail(cv\ht('strong', link_user($task->assigned)));
+    }
+    else
+    {
+        $object->addDetail(span('muted', 'not assigned'));
     }
 
     $listing->addObject($object);
@@ -52,8 +59,11 @@ function task_listing_add_object(Listing $listing, Task $task)
 
 function render_task(Task $task)
 {
-    $completed_msg = $task->completed ? cv\ht('small', cv\icon_ion('completed', 'checkmark', false)) : '';
-    $header_text = cv\hsprintf('<h2>%s%s</h2>', $task->label, $completed_msg);
+    $completed_msg = $task->completed
+        ? cv\icon_ion('completed', 'checkmark', false)
+        : $task->status->label
+    ;
+    $header_text = cv\hsprintf('<h2>%s <small>%s</small></h2>', $task->label, $completed_msg);
     $panel = panel($header_text, 'task-panel');
 
     $edit_button = cv\ht('a', cv\icon_ion('edit task', 'edit'))
@@ -77,11 +87,9 @@ function render_task(Task $task)
     $midriff->push($mid_container);
 
     $mid_container
-        ->addEntry('Original author', strong(link_user($task->author)))
-        ->addEntry('Completed', $task->completed ? 'yes' : 'no')
         ->addEntry('Priority', $task->priority->label)
-        ->addEntry('Status', $task->status->label)
-        ->addEntry('Assigned to', $task->assigned ? strong(link_user($task->assigned)) : null)
+        ->addEntry('Assigned to', $task->assigned ? strong(link_user($task->assigned)) : span('muted', 'up for grabs'))
+        ->addEntry('Last activity', $task->modifiedAt->format("D, d M 'y"))
     ;
 
     return $panel;
@@ -118,6 +126,8 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
 {
     switch ($xact->type)
     {
+        case TransactionEntity::TYPE_CREATE:
+            return 'created this task';
         case TaskTransaction::TYPE_EDIT_LABEL:
             return 'changed the label';
         case TaskTransaction::TYPE_EDIT_DESC:
@@ -138,7 +148,10 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
         case TaskTransaction::TYPE_EDIT_PRIORITY:
             return cv\hsprintf('changed the priority from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
         case TaskTransaction::TYPE_EDIT_ASSIGN:
-            return cv\hsprintf('reassigned the task to <em>%s</em>', $xact->newValue);
+            return $xact->newValue
+                ? cv\hsprintf('reassigned the task to <em>%s</em>', $xact->newValue)
+                : 'put the task up for grabs'
+            ;
         default:
             return 'did something';
     }
@@ -165,6 +178,8 @@ function task_xact_type_class(Task $task, TaskTransaction $xact, $other = null)
 {
     switch ($xact->type)
     {
+        case TransactionEntity::TYPE_CREATE:
+            return 'task-panel-xact-create';
         case TaskTransaction::TYPE_EDIT_LABEL:
         case TaskTransaction::TYPE_EDIT_DESC:
             return 'task-panel-xact-diff';

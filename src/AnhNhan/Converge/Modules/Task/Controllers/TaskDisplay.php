@@ -56,30 +56,22 @@ final class TaskDisplay extends AbstractTaskController
             'markup_rules' => $custom_rules,
         ];
 
-        $added_xact_count = 0;
         foreach ($task->transactions as $xact)
         {
-            if ($xact->type == TransactionEntity::TYPE_CREATE)
+            $non_skippable_types = [
+                TransactionEntity::TYPE_CREATE    => true,
+                TaskTransaction::TYPE_ADD_COMMENT => true,
+            ];
+
+            if (!isset($non_skippable_types[$xact->type]) && $xact->createdAt->getTimestamp() < $task->createdAt->getTimestamp() + self::CreatePeriodGraceTime)
             {
                 continue;
             }
-
-            if ($xact->type != TaskTransaction::TYPE_ADD_COMMENT && $xact->createdAt->getTimestamp() < $task->createdAt->getTimestamp() + self::CreatePeriodGraceTime)
-            {
-                continue;
-            }
-
-            ++$added_xact_count;
 
             $xact_author = idx($user_objects, $xact->actorId);
             $xact->setAuthor($xact_author);
             $rendered_xact = render_task_transaction($task, $xact, $other);
             $container->push($rendered_xact);
-        }
-
-        if (!$added_xact_count)
-        {
-            $container->push(div('objects-list-empty-message', 'Nobody did anything yet'));
         }
 
         $comment_grid = grid();
