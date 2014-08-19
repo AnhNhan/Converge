@@ -30,14 +30,11 @@ final class TaskDisplay extends AbstractTaskController
         $user_query = create_user_query($this->externalApp('user'));
         $user_uids = mpull($task->transactions->toArray(), 'actorId');
         $user_uids[] = $task->authorId;
-        if ($task->assignedId)
-        {
-            $user_uids[] = $task->assignedId;
-        }
+        pull($task->assigned, function ($assigned) use (&$user_uids) { $user_uids[] = $assigned->userId; });
         $user_objects = $user_query->retrieveUsersForUIDs($user_uids);
 
         $task->setAuthor(idx($user_objects, $task->authorId));
-        $task->setAssigned(idx($user_objects, $task->assignedId));
+        pull($task->assigned, function ($assigned) use ($user_objects) { $assigned->setUser(idx($user_objects, $assigned->userId)); });
 
         $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
 

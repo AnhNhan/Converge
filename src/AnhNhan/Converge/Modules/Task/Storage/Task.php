@@ -40,17 +40,12 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     private $author_object;
 
     /**
-     * Current assigned user, may be nobody.
+     * Current assigned user(s), may be nobody.
      *
-     * @Column(type="string", nullable=true)
-     * @var string
+     * @OneToMany(targetEntity="TaskAssigned", fetch="EAGER", mappedBy="task")
+     * @var \Doctrine\ORM\PersistentCollection
      */
     private $assigned;
-
-    /**
-     * @var \AnhNhan\Converge\Modules\User\Storage\User
-     */
-    private $assigned_object;
 
     /**
      * @Column(type="string")
@@ -141,20 +136,14 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
         return $this;
     }
 
-    public function assignedId()
+    public function assignedIds()
     {
-        return $this->assigned;
+        return mpull($this->assigned->toArray(), 'userId');
     }
 
     public function assigned()
     {
-        return $this->assigned_object;
-    }
-
-    public function setAssigned(\AnhNhan\Converge\Modules\User\Storage\User $assigned_object = null)
-    {
-        $this->assigned_object = $assigned_object;
-        return $this;
+        return $this->assigned ? $this->assigned->toArray() : [];
     }
 
     public function description()

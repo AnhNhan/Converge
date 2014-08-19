@@ -38,7 +38,7 @@ final class TaskEdit extends AbstractTaskController
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
         $user_query = create_user_query($this->externalApp('user'));
-        fetch_external_authors([$task], $user_query, 'assignedId', 'setAssigned', 'assigned');
+        fetch_external_authors($task->assigned, $user_query, 'userId', 'setUser', 'user');
 
         $priorities = mkey($query->retrieveTaskPriorities(), 'label_canonical');
         $statuses   = mkey($query->retrieveTaskStatus(), 'label_canonical');
@@ -47,12 +47,16 @@ final class TaskEdit extends AbstractTaskController
 
         $errors = [];
 
+        $assigned = mpull($task->assigned, 'user');
+
         $task_uid = $task->uid;
         $task_label = $task->label;
-        $task_assigned = $task->assignedId ? $task->assigned->canonical_name : null;
+        $task_assigned = mpull($assigned, 'canonical_name');
         $task_status = $task->status ? $task->status->label_canonical : null;
         $task_priority = $task->priority ? $task->priority->label_canonical : null;
         $task_description = $task->description;
+
+        $task_assigned_orig = mpull($assigned, null, 'canonical_name');
 
         if ($requestMethod == 'POST')
         {
@@ -61,7 +65,8 @@ final class TaskEdit extends AbstractTaskController
             $task_description = cv\normalize_newlines($task_description);
 
             $task_assigned = trim($request->request->get('assigned'));
-            $task_assigned = to_canonical($task_assigned);
+            $task_assigned = array_map('to_canonical', explode(',', $task_assigned));
+            $task_assigned = array_unique($task_assigned);
 
             $task_priority = trim($request->request->get('priority'));
             $task_priority = to_canonical($task_priority);
@@ -90,12 +95,16 @@ final class TaskEdit extends AbstractTaskController
                 $errors[] = 'Invalid task status';
             }
 
-            $task_assigned_object = head($user_query->retrieveUsersForCanonicalNames([$task_assigned]));
-            if ($task_assigned && !$task_assigned_object)
+            $task_assigned_objects = $user_query->retrieveUsersForCanonicalNames($task_assigned);
+            $task_assigned_objects = mkey($task_assigned_objects, 'canonical_name');
+            if ($task_assigned && count($task_assigned_objects) < count($task_assigned))
             {
                 $errors[] = cv\hsprintf(
-                    'Could not find the user %s',
-                    tooltip('span', '@' . $task_assigned, 'user not found')->addClass('bad-username')
+                    'Could not find user(s): %s',
+                    phutil_implode_html(', ', array_map(
+                        function ($x) { return phutil_safe_html(tooltip('span', '@' . $x, 'user not found')->addClass('bad-username')); },
+                        array_diff($task_assigned, mpull($task_assigned_objects, 'canonical_name'))
+                    ))
                 );
             }
 
@@ -127,11 +136,23 @@ final class TaskEdit extends AbstractTaskController
                     )
                 ;
 
-                if ($task_assigned || ($task->assignedId && !$task_assigned))
+                $assigned_add = array_diff(array_keys($task_assigned_objects), array_keys($task_assigned_orig));
+                $assigned_del = array_diff(array_keys($task_assigned_orig), array_keys($task_assigned_objects));
+
+                if ($assigned_add || $assigned_del)
                 {
-                    $editor->addTransaction(
-                        TaskTransaction::create(TaskTransaction::TYPE_EDIT_ASSIGN, $task_assigned ? $task_assigned_object->uid : null)
-                    );
+                    foreach (['add' => $assigned_add, 'del' => $assigned_del] as $type => $usernames)
+                    {
+                        $is_add = $type == 'add';
+                        $xact_type = $is_add ? TaskTransaction::TYPE_ADD_ASSIGN : TaskTransaction::TYPE_DEL_ASSIGN;
+                        $user_source = $is_add ? $task_assigned_objects : $task_assigned_orig;
+                        foreach (array_select_keys($user_source, $usernames) as $assigned_user)
+                        {
+                            $editor->addTransaction(
+                                TaskTransaction::create($xact_type, $assigned_user->uid)
+                            );
+                        }
+                    }
                 }
 
                 // Sadly equality is done by identity, not by contents :/
@@ -217,8 +238,8 @@ final class TaskEdit extends AbstractTaskController
             ->append(id(new TextControl)
                 ->setLabel('Assigned to')
                 ->setName('assigned')
-                ->setHelp('leave empty if unassigned')
-                ->setValue($task_assigned))
+                ->setHelp('comma separated list')
+                ->setValue(implode(', ', $task_assigned)))
             ->append($priority_control)
             ->append($status_control)
             ->append(id(new TextAreaControl)

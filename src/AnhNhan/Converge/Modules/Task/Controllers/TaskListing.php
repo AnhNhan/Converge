@@ -24,7 +24,9 @@ final class TaskListing extends AbstractTaskController
             $tasks = $query->retrieveIncompleteTasks(null);
         }
         $user_query = create_user_query($this->externalApp('user'));
-        fetch_external_authors($tasks, $user_query, 'assignedId', 'setAssigned', 'assigned');
+        $assigned_objs = mpull($tasks, 'assigned');
+        $assigned_objs = array_mergev($assigned_objs);
+        fetch_external_authors($assigned_objs, $user_query, 'userId', 'setUser', 'user');
 
         $container = new MarkupContainer;
 

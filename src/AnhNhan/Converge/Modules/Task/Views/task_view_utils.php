@@ -47,7 +47,11 @@ function task_listing_add_object(Listing $listing, Task $task)
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
     if ($task->assigned)
     {
-        $object->addDetail(cv\ht('strong', link_user($task->assigned)));
+        $assigned_linked = array_map('phutil_safe_html', (array_map('link_user', mpull($task->assigned, 'user'))));
+        if ($assigned_linked)
+        {
+            $object->addDetail(cv\ht('strong', cv\safeHtml(phutil_implode_html(', ', $assigned_linked))));
+        }
     }
     else
     {
@@ -86,9 +90,11 @@ function render_task(Task $task)
     $midriff->push($button_container);
     $midriff->push($mid_container);
 
+    $assigned_linked = array_map('phutil_safe_html', array_map('strong', array_map('link_user', mpull($task->assigned, 'user'))));
+
     $mid_container
         ->addEntry('Priority', $task->priority->label)
-        ->addEntry('Assigned to', $task->assigned ? strong(link_user($task->assigned)) : span('muted', 'up for grabs'))
+        ->addEntry('Assigned to', $assigned_linked ? cv\safeHtml(phutil_implode_html(', ', $assigned_linked)) : span('muted', 'up for grabs'))
         ->addEntry('Last activity', $task->modifiedAt->format("D, d M 'y"))
     ;
 
@@ -147,11 +153,10 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
             return cv\hsprintf('changed the status from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
         case TaskTransaction::TYPE_EDIT_PRIORITY:
             return cv\hsprintf('changed the priority from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
-        case TaskTransaction::TYPE_EDIT_ASSIGN:
-            return $xact->newValue
-                ? cv\hsprintf('reassigned the task to <em>%s</em>', $xact->newValue)
-                : 'put the task up for grabs'
-            ;
+        case TaskTransaction::TYPE_ADD_ASSIGN:
+            return cv\hsprintf('assigned the task to <em>%s</em>', $xact->newValue);
+        case TaskTransaction::TYPE_DEL_ASSIGN:
+            return cv\hsprintf('removed <em>%s</em> from this task\'s assignees', $xact->oldValue);
         default:
             return 'did something';
     }
