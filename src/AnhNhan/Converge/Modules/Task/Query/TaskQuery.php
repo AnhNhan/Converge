@@ -78,7 +78,7 @@ final class TaskQuery extends Query
             ->setFirstResult($offset)
             ->setMaxResults($limit)
         ;
-        return $query->getResult();
+        return mkey($query->getResult(), 'uid');
     }
 
     public function retrieveTaskStatusForUids(array $ids)
@@ -89,7 +89,7 @@ final class TaskQuery extends Query
             ->createQuery($queryString)
             ->setParameters(array("task_ids" => $ids))
         ;
-        return $query->getResult();
+        return mkey($query->getResult(), 'uid');
     }
 
     public function retrieveTaskStatusForLabels(array $labels)
@@ -100,7 +100,7 @@ final class TaskQuery extends Query
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
         ;
-        return $query->getResult();
+        return mkey($query->getResult(), 'uid');
     }
 
     public function retrieveTaskPriorities($limit = null, $offset = null)
@@ -112,28 +112,28 @@ final class TaskQuery extends Query
             ->setFirstResult($offset)
             ->setMaxResults($limit)
         ;
-        return $query->getResult();
+        return mkey($query->getResult(), 'uid');
     }
 
     public function retrieveTaskPriorityForUids(array $ids)
     {
-        $eTask = self::TASK_ENTITY;
+        $eTask = self::TASK_PRIORITY_ENTITY;
         $queryString = "SELECT tp FROM {$eTask} tp WHERE tp.uid IN (:task_ids)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_ids" => $ids))
         ;
-        return $query->getResult();
+        return mkey($query->getResult(), 'uid');
     }
 
     public function retrieveTaskPriorityForLabels(array $labels)
     {
-        $eTask = self::TASK_ENTITY;
+        $eTask = self::TASK_PRIORITY_ENTITY;
         $queryString = "SELECT tp FROM {$eTask} tp WHERE tp.label IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
         ;
-        return $query->getResult();
+        return mkey($query->getResult(), 'uid');
     }
 }

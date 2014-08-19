@@ -101,7 +101,7 @@ function render_task(Task $task)
     return $panel;
 }
 
-function render_task_transaction(Task $task, TaskTransaction $xact, $other = null)
+function render_task_transaction(Task $task, TaskTransaction $xact, array $other = [])
 {
     $type_label = task_xact_type_label($task, $xact, $other);
     $header = cv\hsprintf(
@@ -128,8 +128,12 @@ function render_task_transaction(Task $task, TaskTransaction $xact, $other = nul
     return $panel;
 }
 
-function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
+function task_xact_type_label(Task $task, TaskTransaction $xact, array $other = [])
 {
+    $users = idx($other, 'users', []);
+    $statuses = idx($other, 'status', []);
+    $priorities = idx($other, 'priorities', []);
+
     switch ($xact->type)
     {
         case TransactionEntity::TYPE_CREATE:
@@ -150,13 +154,13 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
                 return 'revived this task';
             }
         case TaskTransaction::TYPE_EDIT_STATUS:
-            return cv\hsprintf('changed the status from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
+            return cv\hsprintf('changed the status from <em>%s</em> to <em>%s</em>', $statuses[$xact->oldValue]->label, $statuses[$xact->newValue]->label);
         case TaskTransaction::TYPE_EDIT_PRIORITY:
-            return cv\hsprintf('changed the priority from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
+            return cv\hsprintf('changed the priority from <em>%s</em> to <em>%s</em>', $priorities[$xact->oldValue]->label, $priorities[$xact->newValue]->label);
         case TaskTransaction::TYPE_ADD_ASSIGN:
-            return cv\hsprintf('assigned the task to <em>%s</em>', $xact->newValue);
+            return cv\hsprintf('added <strong>%s</strong> to the task\'s assignees', link_user(idx($users, $xact->newValue)));
         case TaskTransaction::TYPE_DEL_ASSIGN:
-            return cv\hsprintf('removed <em>%s</em> from this task\'s assignees', $xact->oldValue);
+            return cv\hsprintf('removed <strong>%s</strong> from this task\'s assignees', link_user(idx($users, $xact->oldValue)));
         default:
             return 'did something';
     }
@@ -192,5 +196,19 @@ function task_xact_type_class(Task $task, TaskTransaction $xact, $other = null)
             return 'task-panel-xact-comment';
         default:
             return null;
+    }
+}
+
+function task_xact_type_fetch_external_uids(TaskTransaction $xact)
+{
+    switch ($xact->type)
+    {
+        case TaskTransaction::TYPE_ADD_ASSIGN:
+            return [$xact->newValue];
+        case TaskTransaction::TYPE_DEL_ASSIGN:
+            return [$xact->oldValue];
+        case TaskTransaction::TYPE_EDIT_STATUS:
+        case TaskTransaction::TYPE_EDIT_PRIORITY:
+            return [$xact->oldValue, $xact->newValue];
     }
 }

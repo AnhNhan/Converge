@@ -27,8 +27,20 @@ final class TaskDisplay extends AbstractTaskController
         {
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
+        $transactions = $task->transactions->toArray();
+        $external_uids = array_filter(array_mergev(array_filter(array_map('task_xact_type_fetch_external_uids', $transactions))));
+        $grouped_external_uids = group($external_uids, 'uid_get_type');
+
+        $external_user_uids = idx($grouped_external_uids, 'USER');
+        $external_status_uids = idx($grouped_external_uids, 'TASK-STAT');
+        $external_priority_uids = idx($grouped_external_uids, 'TASK-PRIO');
+
+        $external_status = $query->retrieveTaskStatusForUids($external_status_uids);
+        $external_priorities = $query->retrieveTaskPriorityForUids($external_priority_uids);
+
         $user_query = create_user_query($this->externalApp('user'));
-        $user_uids = mpull($task->transactions->toArray(), 'actorId');
+        $user_uids = mpull($transactions, 'actorId');
+        $user_uids = array_merge($user_uids, $external_user_uids);
         $user_uids[] = $task->authorId;
         pull($task->assigned, function ($assigned) use (&$user_uids) { $user_uids[] = $assigned->userId; });
         $user_objects = $user_query->retrieveUsersForUIDs($user_uids);
@@ -51,9 +63,12 @@ final class TaskDisplay extends AbstractTaskController
 
         $other = [
             'markup_rules' => $custom_rules,
+            'priorities'   => $external_priorities,
+            'status'       => $external_status,
+            'users'        => $user_objects,
         ];
 
-        foreach ($task->transactions as $xact)
+        foreach ($transactions as $xact)
         {
             $non_skippable_types = [
                 TransactionEntity::TYPE_CREATE    => true,
