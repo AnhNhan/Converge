@@ -1,6 +1,7 @@
 <?php
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Markup\MarkupEngine;
 use AnhNhan\Converge\Modules\Task\Storage\Task;
 use AnhNhan\Converge\Modules\Task\Storage\TaskStatus;
 use AnhNhan\Converge\Modules\Task\Storage\TaskPriority;
@@ -99,6 +100,8 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
             return 'changed the label';
         case TaskTransaction::TYPE_EDIT_DESC:
             return 'changed the description';
+        case TaskTransaction::TYPE_ADD_COMMENT:
+            return 'added a comment';
         case TaskTransaction::TYPE_EDIT_STATUS:
             return cv\hsprintf('changed the status from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
         case TaskTransaction::TYPE_EDIT_PRIORITY:
@@ -120,6 +123,8 @@ function task_xact_type_body(Task $task, TaskTransaction $xact, $other = null)
         case TaskTransaction::TYPE_EDIT_DESC:
             $diff = new DiffEngine(explode("\n", $xact->oldValue), explode("\n", $xact->newValue), []);
             return cv\safeHtml($diff->render(new InlineDiffRenderer));
+        case TaskTransaction::TYPE_ADD_COMMENT:
+            return cv\safeHtml(MarkupEngine::fastParse($xact->newValue, idx($other, 'markup_rules', [])));
         default:
             return null;
     }
@@ -132,6 +137,8 @@ function task_xact_type_class(Task $task, TaskTransaction $xact, $other = null)
         case TaskTransaction::TYPE_EDIT_LABEL:
         case TaskTransaction::TYPE_EDIT_DESC:
             return 'task-panel-xact-diff';
+        case TaskTransaction::TYPE_ADD_COMMENT:
+            return 'task-panel-xact-comment';
         default:
             return null;
     }

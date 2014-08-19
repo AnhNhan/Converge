@@ -20,6 +20,7 @@ final class TaskEditor extends TransactionEditor
         $types[] = TaskTransaction::TYPE_EDIT_STATUS;
         $types[] = TaskTransaction::TYPE_EDIT_PRIORITY;
         $types[] = TaskTransaction::TYPE_EDIT_COMPLETED;
+        $types[] = TaskTransaction::TYPE_ADD_COMMENT;
 
         return $types;
     }
@@ -28,6 +29,7 @@ final class TaskEditor extends TransactionEditor
     {
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
+            case TaskTransaction::TYPE_ADD_COMMENT:
                 return null;
             case TaskTransaction::TYPE_EDIT_DESC:
                 return $entity->description();
@@ -48,6 +50,7 @@ final class TaskEditor extends TransactionEditor
     {
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
+            case TaskTransaction::TYPE_ADD_COMMENT:
             case TaskTransaction::TYPE_EDIT_DESC:
             case TaskTransaction::TYPE_EDIT_LABEL:
             case TaskTransaction::TYPE_EDIT_STATUS:
@@ -85,6 +88,9 @@ final class TaskEditor extends TransactionEditor
                 break;
             case TaskTransaction::TYPE_EDIT_COMPLETED:
                 $this->setPropertyPerReflection($entity, 'completed', $transaction->newValue);
+                break;
+            case TaskTransaction::TYPE_ADD_COMMENT:
+                // Do nothing
                 break;
         }
 

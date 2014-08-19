@@ -17,6 +17,7 @@ class TaskTransaction extends TransactionEntity
     const TYPE_EDIT_STATUS    = "task.edit.status";
     const TYPE_EDIT_PRIORITY  = "task.edit.priority";
     const TYPE_EDIT_COMPLETED = "task.edit.completed";
+    const TYPE_ADD_COMMENT    = "task.add.comment";
 
     /**
      * @ManyToOne(targetEntity="Task", inversedBy="xacts", fetch="EAGER")

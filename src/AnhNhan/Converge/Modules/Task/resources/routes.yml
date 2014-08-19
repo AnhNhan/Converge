@@ -10,5 +10,8 @@ routes:
   - pattern: task/edit/:id
     route-name: task-edit
 
+  - pattern: task/comment/:id
+    route-name: task-comment
+
   - pattern: task/:id
     route-name: task-display

@@ -54,6 +54,10 @@ final class TaskDisplay extends AbstractTaskController
             $container->push(h2('Timeline'));
         }
 
+        $other = [
+            'markup_rules' => $custom_rules,
+        ];
+
         foreach ($task->transactions as $xact)
         {
             if ($xact->type == TransactionEntity::TYPE_CREATE)
@@ -68,13 +72,35 @@ final class TaskDisplay extends AbstractTaskController
 
             $xact_author = idx($user_objects, $xact->actorId);
             $xact->setAuthor($xact_author);
-            $rendered_xact = render_task_transaction($task, $xact);
+            $rendered_xact = render_task_transaction($task, $xact, $other);
             $container->push($rendered_xact);
         }
+
+        $comment_grid = grid();
+        $comment_row  = $comment_grid->row();
+        $comment_form = form('', urisprintf('task/comment/%s', $task->label_canonical), 'POST')
+            ->setDualColumnMode(false)
+            ->append($comment_grid)
+        ;
+        $container->push($comment_form);
+        $comment_row->column(6)
+            ->push(
+                form_textareacontrol(h2('Comment'), 'comment')
+                    ->addClass('forum-markup-processing-form')
+            )
+            ->push(
+                form_submitcontrol(null)
+            )
+        ;
+        $comment_row->column(6)
+            ->push(h2('Preview'))
+            ->push(cv\ht('div', 'Foo')->addClass('markup-preview-output'))
+        ;
 
         $this->app->getService('resource_manager')
             ->requireCss('application-diff')
             ->requireCss('application-task-display')
+            ->requireJs('application-forum-markup-preview')
         ;
 
         $payload = new HtmlPayload;
