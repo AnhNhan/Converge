@@ -29,7 +29,6 @@ final class TaskComment extends AbstractTaskController
         {
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
-        $user_query = create_user_query($this->externalApp('user'));
 
         $inputText = $request->get('comment');
 
