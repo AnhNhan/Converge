@@ -52,11 +52,11 @@ function render_task(Task $task)
 
     $edit_button = cv\ht('a', cv\icon_ion('edit task', 'edit'))
         ->addClass('btn btn-primary btn-small')
-        ->addOption('href', urisprintf('task/%p/edit', $task->label_canonical))
+        ->addOption('href', urisprintf('task/edit/%p', $task->label_canonical))
     ;
     $complete_button = cv\ht('a', cv\icon_ion('complete', 'checkmark'))
         ->addClass('btn btn-default btn-small')
-        ->addOption('href', urisprintf('task/%p/complete', $task->label_canonical))
+        ->addOption('href', urisprintf('task/complete/%p', $task->label_canonical))
     ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)
