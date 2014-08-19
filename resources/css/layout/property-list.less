@@ -1,25 +1,37 @@
 
-.property-list
+@media screen and (min-width: @breakPointTablet)
 {
-    display: table;
+    .property-list
+    {
+        display: table;
+    }
+
+    .property-list-entry
+    {
+        display: table-row;
+        width: 100%;
+    }
+
+    .property-list-entry-name, .property-list-entry-detail
+    {
+        display: table-cell;
+    }
+
+    .property-list-entry-name
+    {
+        text-align: right;
+        padding: 0 1.5em;
+    }
 }
 
 .property-list-entry
 {
-    display: table-row;
-    width: 100%;
-}
-
-.property-list-entry-name, .property-list-entry-detail
-{
-    display: table-cell;
+    padding: 0.2em 0;
 }
 
 .property-list-entry-name
 {
-    text-align: right;
     font-weight: bold;
-    padding: 0.1em 1.5em;
 }
 
 .property-list-entry-detail
