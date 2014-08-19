@@ -35,7 +35,7 @@ final class UserMention extends MarkupRule
     public function applyMention($matches)
     {
         $username = to_canonical($matches[0]);
-        $user     = idx($this->query->retrieveUsersForCanonicalNames([$username], 1), 0);
+        $user     = head($this->query->retrieveUsersForCanonicalNames([$username]));
         if (!$user)
         {
             return tooltip('span', $matches[0], 'user not found')->addClass('bad-username');
