@@ -13,8 +13,16 @@ final class TaskListing extends AbstractTaskController
 {
     public function handle()
     {
+        $all_tasks_flag = (boolean) $this->request->get('all_tasks');
         $query = $this->buildQuery();
-        $tasks = $query->retrieveTasks(null);
+        if ($all_tasks_flag)
+        {
+            $tasks = $query->retrieveTasks(null);
+        }
+        else
+        {
+            $tasks = $query->retrieveIncompleteTasks(null);
+        }
         $user_query = create_user_query($this->externalApp('user'));
         fetch_external_authors($tasks, $user_query, 'assignedId', 'setAssigned', 'assigned');
 
@@ -37,12 +45,21 @@ final class TaskListing extends AbstractTaskController
 
         $container->push(cv\safeHtml('<style>.objects-list-container{margin-top: 0;}</style>'));
 
+        $container->unshift(cv\ht("a", $all_tasks_flag ? 'show incomplete only' : 'show all tasks', array(
+            "href"  => "/task/?all_tasks=" . ($all_tasks_flag ? '0' : '1'),
+            "class" => "btn btn-default",
+            "style" => "float: right;",
+        )));
         // Add link to create new task
         $container->unshift(cv\ht("a", "create new task", array(
             "href"  => "/task/create",
             "class" => "btn btn-primary",
             "style" => "float: right;",
         )));
+
+        $this->resMgr
+            ->requireCss('application-task-listing')
+        ;
 
         $payload = new HtmlPayload;
         $payload->setTitle('Task Listing');

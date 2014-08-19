@@ -33,6 +33,12 @@ function task_listing_add_object(Listing $listing, Task $task)
         ->setHeadHref("/task/" . $task->label_canonical)
     ;
 
+    if ($task->completed)
+    {
+        $object->addAttribute(cv\icon_ion('completed', 'checkmark', false));
+        $object->addClass('task-object-completed');
+    }
+
     $object->addAttribute($task->status->label);
 
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
@@ -46,15 +52,19 @@ function task_listing_add_object(Listing $listing, Task $task)
 
 function render_task(Task $task)
 {
-    $panel = panel(h2($task->label), 'task-panel');
+    $completed_msg = $task->completed ? cv\ht('small', cv\icon_ion('completed', 'checkmark', false)) : '';
+    $header_text = cv\hsprintf('<h2>%s%s</h2>', $task->label, $completed_msg);
+    $panel = panel($header_text, 'task-panel');
 
     $edit_button = cv\ht('a', cv\icon_ion('edit task', 'edit'))
         ->addClass('btn btn-primary btn-small')
         ->addOption('href', urisprintf('task/edit/%p', $task->label_canonical))
     ;
-    $complete_button = cv\ht('a', cv\icon_ion('complete', 'checkmark'))
+    $complete_button_label = $task->completed ? 'mark as incomplete' : 'mark as complete';
+    $complete_button_icon  = $task->completed ? 'archive' : 'checkmark';
+    $complete_button = cv\ht('a', cv\icon_ion($complete_button_label, $complete_button_icon))
         ->addClass('btn btn-default btn-small')
-        ->addOption('href', urisprintf('task/complete/%p', $task->label_canonical))
+        ->addOption('href', urisprintf('task/complete/%p?completed=%b', $task->label_canonical, !$task->completed))
     ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)
@@ -114,6 +124,15 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, $other = null)
             return 'changed the description';
         case TaskTransaction::TYPE_ADD_COMMENT:
             return 'added a comment';
+        case TaskTransaction::TYPE_EDIT_COMPLETED:
+            if ($xact->newValue)
+            {
+                return 'completed this task';
+            }
+            else
+            {
+                return 'revived this task';
+            }
         case TaskTransaction::TYPE_EDIT_STATUS:
             return cv\hsprintf('changed the status from <em>%s</em> to <em>%s</em>', $xact->oldValue, $xact->newValue);
         case TaskTransaction::TYPE_EDIT_PRIORITY:

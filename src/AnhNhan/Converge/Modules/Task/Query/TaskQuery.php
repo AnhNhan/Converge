@@ -24,6 +24,18 @@ final class TaskQuery extends Query
         return $query->getResult();
     }
 
+    public function retrieveIncompleteTasks($limit = null, $offset = null)
+    {
+        $eTask = self::TASK_ENTITY;
+        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp WHERE t.completed = 0";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
+        return $query->getResult();
+    }
+
     public function retrieveTasksForUids(array $ids)
     {
         $eTask = self::TASK_ENTITY;

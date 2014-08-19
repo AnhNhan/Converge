@@ -40,6 +40,9 @@ final class TaskApplication extends BaseApplication
             case "task-comment":
                 return new Controllers\TaskComment($this);
                 break;
+            case "task-complete":
+                return new Controllers\TaskComplete($this);
+                break;
             case "task-display":
                 return new Controllers\TaskDisplay($this);
                 break;
