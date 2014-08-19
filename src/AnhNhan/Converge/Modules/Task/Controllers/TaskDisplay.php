@@ -39,25 +39,24 @@ final class TaskDisplay extends AbstractTaskController
         $task->setAuthor(idx($user_objects, $task->authorId));
         $task->setAssigned(idx($user_objects, $task->assignedId));
 
+        $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
+
         $container = new MarkupContainer;
         $task_panel = render_task($task);
         if ($task->description)
         {
-            $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
             $desc = MarkupEngine::fastParse($task->description, $custom_rules);
             $task_panel->append(cv\safeHtml($desc));
         }
         $container->push($task_panel);
 
-        if ($task->transactions->count())
-        {
-            $container->push(h2('Timeline'));
-        }
+        $container->push(h2('Timeline'));
 
         $other = [
             'markup_rules' => $custom_rules,
         ];
 
+        $added_xact_count = 0;
         foreach ($task->transactions as $xact)
         {
             if ($xact->type == TransactionEntity::TYPE_CREATE)
@@ -70,10 +69,17 @@ final class TaskDisplay extends AbstractTaskController
                 continue;
             }
 
+            ++$added_xact_count;
+
             $xact_author = idx($user_objects, $xact->actorId);
             $xact->setAuthor($xact_author);
             $rendered_xact = render_task_transaction($task, $xact, $other);
             $container->push($rendered_xact);
+        }
+
+        if (!$added_xact_count)
+        {
+            $container->push(div('objects-list-empty-message', 'Nobody did anything yet'));
         }
 
         $comment_grid = grid();
