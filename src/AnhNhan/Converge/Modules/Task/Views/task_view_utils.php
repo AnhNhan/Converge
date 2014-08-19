@@ -115,8 +115,10 @@ function task_xact_type_body(Task $task, TaskTransaction $xact, $other = null)
     switch ($xact->type)
     {
         case TaskTransaction::TYPE_EDIT_LABEL:
-        case TaskTransaction::TYPE_EDIT_DESC:
             $diff = new DiffEngine([$xact->oldValue], [$xact->newValue], []);
+            return cv\safeHtml($diff->render(new InlineDiffRenderer));
+        case TaskTransaction::TYPE_EDIT_DESC:
+            $diff = new DiffEngine(explode("\n", $xact->oldValue), explode("\n", $xact->newValue), []);
             return cv\safeHtml($diff->render(new InlineDiffRenderer));
         default:
             return null;
