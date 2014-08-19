@@ -36,6 +36,7 @@ final class TaskComment extends AbstractTaskController
         if (!$inputText) {
             throw new \Exception("Input 'comment' can't be empty!");
         }
+        $inputText = cv\normalize_newlines($inputText);
 
         $em = $this->app->getEntityManager();
 
