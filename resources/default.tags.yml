@@ -92,6 +92,30 @@ tags:
   - name: code
     description: Feel like you are at home in Silicon Valley
 
+  - name: space
+    description: Nobody can hear you scream
+
+  - name: ground
+    description: Into the mud
+
+  - name: skirmish
+    description: Into the foray
+
+  - name: campaign
+    description: The mantle is ours for the taking
+
+  - name: galactic-conquest
+    description: The dream of every overlord
+
+  - name: official
+    description: An edition by the creators of Halo - usually 343i
+
+  - name: halo-game
+    description: About the official Halo games
+
+  - name: expanded-universe
+    description: Hope Disney doesn't buy Halo
+
   - name: gameplay
     description: Gameplay-related discussions
 
