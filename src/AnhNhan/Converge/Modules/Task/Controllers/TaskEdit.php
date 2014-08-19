@@ -229,7 +229,7 @@ final class TaskEdit extends AbstractTaskController
                 ->addClass('forum-markup-processing-form')
             )
             ->append(id(new SubmitControl)
-                ->addCancelButton('/task/')
+                ->addCancelButton($task_uid ? 'task/' . $task->label_canonical : '/task/')
                 ->addSubmitButton('Hasta la vista!')
             )
             ->append(cv\ht('div', 'Foo')->addClass('markup-preview-output'))
