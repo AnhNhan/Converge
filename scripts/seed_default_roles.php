@@ -31,7 +31,7 @@ $defaultRoles = $parsed['roles'];
 
 $userQuery = new UserQuery($userApp);
 $anh_nhan  = $userQuery->retrieveUsersForCanonicalNames(['anhnhan']);
-$anh_nhan  = idx($anh_nhan, 0);
+$anh_nhan  = head($anh_nhan);
 if (!$anh_nhan)
 {
     throw new Exception('User Anh Nhan does not exist.');
