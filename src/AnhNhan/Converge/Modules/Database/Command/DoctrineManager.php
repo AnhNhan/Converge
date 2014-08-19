@@ -40,6 +40,7 @@ final class DoctrineManager extends AbstractDbCommand
 
         $allowed_actions = [
             "rebuild" => true,
+            "update"  => true,
             "create"  => true,
         ];
 
@@ -65,6 +66,10 @@ final class DoctrineManager extends AbstractDbCommand
 
                     $output->writeln("Done.");
                     break;
+                case "update":
+                    $output->writeln("Updating tables.");
+                    $this->updateTables($app, $output);
+                    $output->writeln("Done.");
             }
         }
     }

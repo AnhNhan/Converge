@@ -156,4 +156,26 @@ abstract class AbstractDbCommand extends ConsoleCommand
             $output->writeln("");
         }
     }
+
+    protected function updateTables($app, $output)
+    {
+        $command = "orm:schema-tool:update";
+        $cmdOutput = new BufferedOutput;
+        list($sql) = $this->runDoctrineConsole($app, $command . " --dump-sql", $cmdOutput);
+        $sql = $sql->fetch();
+        if (trim($sql)) {
+            $logpath = $this->logSql($sql, "update");
+            $output->writeln("Logging Sql: $logpath");
+            $output->writeln("Really updating tables.");
+            $output->writeln("");
+
+            // Force the drop
+            list($cmdOutput) = $this->runDoctrineConsole($app, $command . " --force", $cmdOutput);
+            $output->writeln($cmdOutput->fetch());
+            $output->writeln("Updated.");
+        } else {
+            $output->writeln("Nothing to update. Skipping.");
+            $output->writeln("");
+        }
+    }
 }
