@@ -33,9 +33,7 @@ function task_listing_add_object(Listing $listing, Task $task)
         ->setHeadHref("/task/" . $task->label_canonical)
     ;
 
-    $object->addAttribute($task->priority->label);
     $object->addAttribute($task->status->label);
-    $object->addAttribute(cv\hsprintf('created by <strong>%s</strong>', link_user($task->author)));
 
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
     if ($task->assigned)
