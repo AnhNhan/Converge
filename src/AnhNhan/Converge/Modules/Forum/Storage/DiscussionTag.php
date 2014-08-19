@@ -34,10 +34,10 @@ class DiscussionTag extends EntityDefinition
     private $t_obj;
 
     /**
-     * @C//olumn(type="float")
+     * @Column(type="float")
      * @var float
      */
-    //public $strength = 1.0;
+    public $strength = 1.0;
 
     public function __construct(Discussion $disq, $tag)
     {
