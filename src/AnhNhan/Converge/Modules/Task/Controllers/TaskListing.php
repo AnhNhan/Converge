@@ -14,7 +14,7 @@ final class TaskListing extends AbstractTaskController
     public function handle()
     {
         $query = $this->buildQuery();
-        $tasks = $query->retrieveTasks(20);
+        $tasks = $query->retrieveTasks(null);
         $user_query = create_user_query($this->externalApp('user'));
         fetch_external_authors($tasks, $user_query);
         fetch_external_authors($tasks, $user_query, 'assignedId', 'setAssigned', 'assigned');
@@ -22,8 +22,19 @@ final class TaskListing extends AbstractTaskController
         $container = new MarkupContainer;
 
         $container->push(h1('Task Listing'));
-        $listing = render_task_listing($tasks);
-        $container->push($listing);
+
+        $priorities = mpull($tasks, 'priority');
+        $priorities = mkey($priorities, 'label');
+        $priorities = msort($priorities, 'displayOrder');
+
+        $task_groups = group($tasks, function ($task) { return $task->priority->label; });
+        $sorted_task_groups = array_select_keys($task_groups, array_keys($priorities));
+
+        foreach ($sorted_task_groups as $priority_label => $task_group)
+        {
+            $listing = render_task_listing($task_group, $priority_label);
+            $container->push($listing);
+        }
 
         $container->push(cv\safeHtml('<style>.objects-list-container{margin-top: 0;}</style>'));
 
