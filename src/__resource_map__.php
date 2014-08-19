@@ -51,6 +51,12 @@ return array(
       "hash" => "54cbe9cd887e86f2d66878b5ed1c50fc",
       "orig" => "efb7b85bffa7e92be5b039b3583f2201",
     ),
+    "application-task-display" => array(
+      "name" => "application-task-display",
+      "path" => "application/task/display.less",
+      "hash" => "5efd6ae2590e77a2a33c73255aec0ae7",
+      "orig" => "bb8fbe33061270a63f8b0389d1133c9b",
+    ),
     "application-user-core" => array(
       "name" => "application-user-core",
       "path" => "application/user/core.less",
@@ -198,8 +204,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "cf57528f51dabaf73846fe61dab47a8f",
-      "orig" => "c2a1b4f25d3cc4f24ad7383c2dd1f1c9",
+      "hash" => "2dda9a7d41030c307aed0789dbaea76f",
+      "orig" => "47f296a790d10d63e61b647ff073a7aa",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -236,6 +242,12 @@ return array(
       "path" => "layout/panel/panel.less",
       "hash" => "fb0fbbcf4841f5b76d5cf19aa756926a",
       "orig" => "ccdfe854d5c3a0344d7bcc1057720c76",
+    ),
+    "layout-property-list" => array(
+      "name" => "layout-property-list",
+      "path" => "layout/property-list.less",
+      "hash" => "ed5a73cfab3042839085e0209128b34b",
+      "orig" => "a6ffbdaabeb9ace017cb5be6c3b702cd",
     ),
     "layout-tag-tag" => array(
       "name" => "layout-tag-tag",
@@ -572,7 +584,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "ytsmkme7",
+      "hash" => "tallzpln",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -652,7 +664,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "0c88c83aa5228c878da8106d34c36cdf",
+      "hash" => "05a18d31abbf01c037eb3aa74ffa2b94",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -679,9 +691,10 @@ return array(
         "application-tag-core" => "54cbe9cd887e86f2d66878b5ed1c50fc",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
-        "layout-core" => "cf57528f51dabaf73846fe61dab47a8f",
+        "layout-core" => "2dda9a7d41030c307aed0789dbaea76f",
         "layout-form" => "1fde5c613bfcd6a10236eaf4c1468c0e",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
+        "layout-property-list" => "ed5a73cfab3042839085e0209128b34b",
         "layout-buttons" => "5ee856a9de716b19ebf40b5ee8daf105",
         "layout-objects" => "a60a7516bf372e07b2165037fa98efdc",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",

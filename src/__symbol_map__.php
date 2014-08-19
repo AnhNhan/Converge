@@ -373,6 +373,14 @@ return array(
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskComment" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComment.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
+    ),
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskDisplay.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
+    ),
     "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskEdit.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
@@ -610,6 +618,7 @@ return array(
       "file" => "AnhNhan/Converge/Views/Form/Controls/SubmitControl.php",
       "impls" => array(
         "YamwLibs\Libs\View\ViewInterface",
+        "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface",
       ),
     ),
     "AnhNhan\Converge\Views\Form\Controls\TextAreaControl" => array(
@@ -685,6 +694,14 @@ return array(
       "file" => "AnhNhan/Converge/Views/Panel/Panel.php",
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
+    "AnhNhan\Converge\Views\Property\Entry" => array(
+      "file" => "AnhNhan/Converge/Views/Property/Entry.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
+    ),
+    "AnhNhan\Converge\Views\Property\PropertyList" => array(
+      "file" => "AnhNhan/Converge/Views/Property/PropertyList.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
+    ),
     "AnhNhan\Converge\Views\Web\Response\ResponseHtml404" => array(
       "file" => "AnhNhan/Converge/Views/Web/Response/ResponseHtml404.php",
       "deriv" => "AnhNhan\Converge\Web\Application\HttpPayload",
@@ -747,9 +764,18 @@ return array(
     "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "render_task_listing" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_listing_add_object" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "render_task" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "render_task_transaction" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_xact_type_label" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_xact_type_body" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_xact_type_class" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
+    "form" => "AnhNhan/Converge/Views/Form/form_rendering.php",
+    "form_textcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
+    "form_textareacontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
+    "form_submitcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "mkey" => "AnhNhan/Converge/cv_utils.php",
     "pkey" => "AnhNhan/Converge/cv_utils.php",
     "ikey" => "AnhNhan/Converge/cv_utils.php",
@@ -773,6 +799,7 @@ return array(
     "tooltip" => "AnhNhan/Converge/functions_html_global.php",
     "div" => "AnhNhan/Converge/functions_html_global.php",
     "span" => "AnhNhan/Converge/functions_html_global.php",
+    "strong" => "AnhNhan/Converge/functions_html_global.php",
     "a" => "AnhNhan/Converge/functions_html_global.php",
     "h1" => "AnhNhan/Converge/functions_html_global.php",
     "h2" => "AnhNhan/Converge/functions_html_global.php",
@@ -825,6 +852,8 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
       "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
@@ -936,6 +965,8 @@ return array(
       "AnhNhan\Converge\Views\Page\PageView",
       "AnhNhan\Converge\Views\Page\SideNavBar",
       "AnhNhan\Converge\Views\Panel\Panel",
+      "AnhNhan\Converge\Views\Property\Entry",
+      "AnhNhan\Converge\Views\Property\PropertyList",
       "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\Converge\Modules\Forum\Views\Display\Post",
@@ -1016,6 +1047,8 @@ return array(
       "AnhNhan\Converge\Views\Form\Controls\TextControl",
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
     ),
@@ -1096,6 +1129,7 @@ return array(
     ),
     "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
       "AnhNhan\Converge\Views\AbstractView",
+      "AnhNhan\Converge\Views\Form\Controls\SubmitControl",
     ),
     "Symfony\Component\Routing\Matcher\RequestMatcherInterface" => array(
       "AnhNhan\Converge\Web\AppRouting",
