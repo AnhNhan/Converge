@@ -2,13 +2,14 @@
 namespace AnhNhan\Converge\Views\Form\Controls;
 
 use AnhNhan\Converge;
+use YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface;
 use YamwLibs\Libs\View\ViewInterface;
 use YamwLibs\Libs\Html\HtmlFactory as HF;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class SubmitControl implements ViewInterface
+class SubmitControl implements ViewInterface, YamwMarkupInterface
 {
     private $submit_label;
     private $cancel_label;
@@ -33,25 +34,24 @@ class SubmitControl implements ViewInterface
             ->addClass('form-control-container')
             ->addClass('form-control-submit');
 
-        $cancelButton = null;
         if ($this->cancel_uri) {
             $cancelButton = Converge\ht(
                 'a',
                 Converge\icon_ion($this->cancel_label, 'close', false)
             )->addOption('href', $this->cancel_uri)
                 ->addClass('btn btn-default');
+            $container->append($cancelButton);
         }
-        $container->append($cancelButton);
 
-        $submitButton = null;
         if ($this->submit_label) {
             $submitButton = Converge\ht(
                 'button',
                 Converge\icon_ion($this->submit_label, 'checkmark')
             )->addOption('name', '__submit__')
                 ->addClass('btn btn-primary');
+            $container->append($submitButton);
         }
-        $container->append($submitButton);
+
 
         return $container;
     }
