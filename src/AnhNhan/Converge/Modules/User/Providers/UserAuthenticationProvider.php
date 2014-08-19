@@ -64,9 +64,9 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 
         $canon_name = to_canonical($username);
         $_user  = $this->query->retrieveUsersForCanonicalNames([$canon_name], 1);
-        $user = idx($_user, 0);
+        $user = head($_user);
 
-        if ($user === null) {
+        if (!$user) {
             throw new UsernameNotFoundException("A user with the name '{$username}' could not be found!");
         }
 
