@@ -38,9 +38,9 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_EDIT_LABEL:
                 return $entity->label();
             case TaskTransaction::TYPE_EDIT_STATUS:
-                return $entity->status()->uid;
+                return $entity->status() ? $entity->status()->uid : null;
             case TaskTransaction::TYPE_EDIT_PRIORITY:
-                return $entity->priority()->uid;
+                return $entity->priority() ? $entity->priority()->uid : null;
             case TaskTransaction::TYPE_EDIT_COMPLETED:
                 return $entity->completed();
         }
