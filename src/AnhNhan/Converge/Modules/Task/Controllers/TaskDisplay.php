@@ -65,7 +65,7 @@ final class TaskDisplay extends AbstractTaskController
                 continue;
             }
 
-            if ($xact->createdAt->getTimestamp() < $task->createdAt->getTimestamp() + self::CreatePeriodGraceTime)
+            if ($xact->type != TaskTransaction::TYPE_ADD_COMMENT && $xact->createdAt->getTimestamp() < $task->createdAt->getTimestamp() + self::CreatePeriodGraceTime)
             {
                 continue;
             }
