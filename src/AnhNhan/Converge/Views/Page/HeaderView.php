@@ -43,6 +43,11 @@ class HeaderView extends AbstractView
             $header_content
                 ->append(
                     div('nav-action')
+                        ->append(a(cv\icon_ion('', 'clipboard'), 'task/')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'task listing')
+                        )
                         ->append(a(cv\icon_ion('', 'navicon-round'), 'disq/')
                             ->addClass('btn btn-default')
                             ->addOption('data-toggle', 'tooltip-bottom')
