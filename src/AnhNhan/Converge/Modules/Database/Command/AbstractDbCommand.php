@@ -109,7 +109,7 @@ abstract class AbstractDbCommand extends ConsoleCommand
             mkdir($superpath . "log/sql");
         }
 
-        $filename = sprintf("%slog/sql/%s-%s.sql", $superpath, date("d-M-Y_H-i-s", time()), $intent);
+        $filename = sprintf("%slog/sql/%s-%s.sql", $superpath, date("Y-m-d_H-i-s", time()), $intent);
         return \Filesystem::writeUniqueFile($filename, $sql);
     }
 
