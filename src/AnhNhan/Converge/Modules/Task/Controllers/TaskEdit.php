@@ -58,6 +58,7 @@ final class TaskEdit extends AbstractTaskController
         {
             $task_label = trim($request->request->get('label'));
             $task_description = trim($request->request->get('description'));
+            $task_description = cv\normalize_newlines($task_description);
 
             $task_assigned = trim($request->request->get('assigned'));
             $task_assigned = to_canonical($task_assigned);
