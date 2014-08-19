@@ -15,7 +15,7 @@ final class TaskQuery extends Query
     public function retrieveTasks($limit = null, $offset = null)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp";
+        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -27,7 +27,7 @@ final class TaskQuery extends Query
     public function retrieveIncompleteTasks($limit = null, $offset = null)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp WHERE t.completed = 0";
+        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.completed = 0";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -39,7 +39,7 @@ final class TaskQuery extends Query
     public function retrieveTasksForUids(array $ids)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp WHERE t.uid IN (:task_ids)";
+        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.uid IN (:task_ids)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_ids" => $ids))
@@ -50,7 +50,7 @@ final class TaskQuery extends Query
     public function retrieveTasksForLabels(array $labels)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp WHERE t.label IN (:task_labels)";
+        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.label IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
@@ -61,7 +61,7 @@ final class TaskQuery extends Query
     public function retrieveTasksForCanonicalLabels(array $labels)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp FROM {$eTask} t JOIN t.status ts JOIN t.priority tp WHERE t.label_canonical IN (:task_labels)";
+        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.label_canonical IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
