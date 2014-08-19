@@ -377,6 +377,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComment.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
     ),
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComplete.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
+    ),
     "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskDisplay.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
@@ -399,6 +403,10 @@ return array(
       "impls" => array(
         "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
       ),
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskAssigned.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
     "AnhNhan\Converge\Modules\Task\Storage\TaskPriority" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskPriority.php",
@@ -769,9 +777,11 @@ return array(
     "task_xact_type_label" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_body" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_class" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_xact_type_fetch_external_uids" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
+    "uid_get_type" => "AnhNhan/Converge/Storage/Types/uid_utils.php",
     "form" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_textcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_textareacontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
@@ -809,6 +819,8 @@ return array(
     "h6" => "AnhNhan/Converge/functions_html_global.php",
     "generate_search_prep_stmt_part" => "AnhNhan/Converge/functions_sql.php",
     "to_canonical" => "AnhNhan/Converge/functions_very_global.php",
+    "group" => "AnhNhan/Converge/functions_very_global.php",
+    "pull" => "AnhNhan/Converge/functions_very_global.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -853,6 +865,7 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
@@ -902,6 +915,7 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
       "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
       "AnhNhan\Converge\Modules\User\Storage\Email",
@@ -1048,6 +1062,7 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
