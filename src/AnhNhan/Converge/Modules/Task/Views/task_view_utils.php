@@ -50,8 +50,22 @@ function render_task(Task $task)
 {
     $panel = panel(h2($task->label), 'task-panel');
 
+    $edit_button = cv\ht('a', cv\icon_ion('edit task', 'edit'))
+        ->addClass('btn btn-primary btn-small')
+        ->addOption('href', urisprintf('task/%p/edit', $task->label_canonical))
+    ;
+    $complete_button = cv\ht('a', cv\icon_ion('complete', 'checkmark'))
+        ->addClass('btn btn-default btn-small')
+        ->addOption('href', urisprintf('task/%p/complete', $task->label_canonical))
+    ;
+    $button_container = div('task-panel-buttons pull-right')
+        ->append($edit_button)
+        ->append($complete_button)
+    ;
+
     $midriff = $panel->midriff();
     $mid_container = new PropertyList;
+    $midriff->push($button_container);
     $midriff->push($mid_container);
 
     $mid_container

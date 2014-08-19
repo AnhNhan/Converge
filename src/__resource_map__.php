@@ -54,8 +54,8 @@ return array(
     "application-task-display" => array(
       "name" => "application-task-display",
       "path" => "application/task/display.less",
-      "hash" => "5efd6ae2590e77a2a33c73255aec0ae7",
-      "orig" => "bb8fbe33061270a63f8b0389d1133c9b",
+      "hash" => "451580bd77b99f4ca47f4d858374b0fe",
+      "orig" => "9d17f8ebe1b42cd241b6a51bc445bdce",
     ),
     "application-user-core" => array(
       "name" => "application-user-core",
@@ -584,7 +584,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "tallzpln",
+      "hash" => "xj3pnuwx",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
