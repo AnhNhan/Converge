@@ -20,6 +20,7 @@ final class ArticleApplication extends BaseApplication
         return "article";
     }
 
+    // TODO: Only include them during article rendering - they can be annoying
     public function getCustomMarkupRules()
     {
         return [

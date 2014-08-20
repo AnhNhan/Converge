@@ -11,12 +11,13 @@ final class AsianText extends TemplateMarkupRule
 {
     public function get_key()
     {
-        return 'asian';
+        return 'asian(|-block)';
     }
 
     public function apply_occurence($matches)
     {
-        return span('asian-text', trim($matches[1]))
+        $fun = $matches[1] == '-block' ? 'div' : 'span';
+        return $fun('asian-text', cv\safeHtml(trim($matches[2])))
             ->addOption('style', 'font-size: 24px;')
         ;
     }
