@@ -22,6 +22,6 @@ final class FancyHeader extends TemplateMarkupRule
 
     public function apply_occurence($matches)
     {
-        return $matches[2]($matches[3], trim($matches[1]));
+        return $matches[2](cv\safeHtml($matches[3]), trim($matches[1]));
     }
 }
