@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\Converge\Modules\Article\Markup;
+namespace AnhNhan\Converge\Modules\Articles\Markup;
 
 use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Modules\Markup\TemplateMarkupRule;

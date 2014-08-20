@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\Converge\Modules\Article;
+namespace AnhNhan\Converge\Modules\Articles;
 
 use AnhNhan\Converge\Web\Application\BaseApplication;
 
@@ -23,6 +23,7 @@ final class ArticleApplication extends BaseApplication
     public function getCustomMarkupRules()
     {
         return [
+            new Markup\CenterText,
             new Markup\FancyHeader,
         ];
     }
