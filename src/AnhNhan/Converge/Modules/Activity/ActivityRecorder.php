@@ -39,7 +39,7 @@ abstract class ActivityRecorder
         $activities = [];
         foreach ($xacts as $xact)
         {
-            if (!isset($acceptable_types[$xact->type]))
+            if (!isset($acceptable_types[$xact->type]) || $this->dont_record_xact($xact))
             {
                 continue;
             }
@@ -95,5 +95,10 @@ abstract class ActivityRecorder
     protected function get_xact_contents(TransactionEntity $xact)
     {
         return $xact->newValue;
+    }
+
+    protected function dont_record_xact(TransactionEntity $xact)
+    {
+        return false;
     }
 }

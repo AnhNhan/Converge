@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Forum\Controllers;
 
 use AnhNhan\Converge;
+use AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder;
 use AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
 use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
@@ -156,7 +157,8 @@ final class DiscussionEditController extends AbstractForumController
                     );
                 }
 
-                $editor->apply();
+                $activityRecorder = new DiscussionRecorder($this->externalApp('activity'));
+                $activityRecorder->record($editor->apply());
 
                 $targetURI = "/disq/" . $discussion->cleanId;
                 return new RedirectResponse($targetURI);
