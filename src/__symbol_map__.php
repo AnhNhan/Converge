@@ -23,6 +23,34 @@ return array(
       "deriv" => "Symfony\Component\Console\Command\Command",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Modules\Activity\ActivityApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Activity/ActivityApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Activity\ActivityRecorder" => array(
+      "file" => "AnhNhan/Converge/Modules/Activity/ActivityRecorder.php",
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity" => array(
+      "file" => "AnhNhan/Converge/Modules/Activity/Storage/RecordedActivity.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Articles\ArticleApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Articles/ArticleApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Articles\Markup\CenterText" => array(
+      "file" => "AnhNhan/Converge/Modules/Articles/Markup/CenterText.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Articles\Markup\FancyHeader" => array(
+      "file" => "AnhNhan/Converge/Modules/Articles/Markup/FancyHeader.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Articles\Markup\FontSize" => array(
+      "file" => "AnhNhan/Converge/Modules/Articles/Markup/FontSize.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
     "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand" => array(
       "file" => "AnhNhan/Converge/Modules/Database/Command/AbstractDbCommand.php",
       "deriv" => "AnhNhan\Converge\Console\ConsoleCommand",
@@ -231,6 +259,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/SideBySide.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
     ),
+    "AnhNhan\Converge\Modules\Markup\Markup\AsianText" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Markup/AsianText.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
     "AnhNhan\Converge\Modules\Markup\MarkupApplication" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/MarkupApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
@@ -245,6 +277,11 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Markup\TOCExtractor" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/TOCExtractor.php",
+    ),
+    "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/TemplateMarkupRule.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
+      "abstr" => "1",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "file" => "AnhNhan/Converge/Modules/Search/Controllers/Autocomplete.php",
@@ -367,6 +404,10 @@ return array(
     "AnhNhan\Converge\Modules\Tag\Views\TagView" => array(
       "file" => "AnhNhan/Converge/Modules/Tag/Views/TagView.php",
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
+    ),
+    "AnhNhan\Converge\Modules\Task\Activity\TaskRecorder" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Activity/TaskRecorder.php",
+      "deriv" => "AnhNhan\Converge\Modules\Activity\ActivityRecorder",
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/AbstractTaskController.php",
@@ -829,6 +870,49 @@ return array(
       "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand",
       "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand",
     ),
+    "AnhNhan\Converge\Web\Application\BaseApplication" => array(
+      "AnhNhan\Converge\Modules\Activity\ActivityApplication",
+      "AnhNhan\Converge\Modules\Articles\ArticleApplication",
+      "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
+      "AnhNhan\Converge\Modules\Forum\ForumApplication",
+      "AnhNhan\Converge\Modules\Front\FrontApplication",
+      "AnhNhan\Converge\Modules\Markup\MarkupApplication",
+      "AnhNhan\Converge\Modules\Search\SearchApplication",
+      "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication",
+      "AnhNhan\Converge\Modules\Tag\TagApplication",
+      "AnhNhan\Converge\Modules\Task\TaskApplication",
+      "AnhNhan\Converge\Modules\User\UserApplication",
+    ),
+    "AnhNhan\Converge\Storage\EntityDefinition" => array(
+      "AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity",
+      "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
+      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
+      "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Tag\Storage\Tag",
+      "AnhNhan\Converge\Modules\Task\Storage\Task",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
+      "AnhNhan\Converge\Modules\User\Storage\Email",
+      "AnhNhan\Converge\Modules\User\Storage\OAuthInfo",
+      "AnhNhan\Converge\Modules\User\Storage\Role",
+      "AnhNhan\Converge\Modules\User\Storage\User",
+      "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
+      "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
+      "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
+      "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
+    ),
+    "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule" => array(
+      "AnhNhan\Converge\Modules\Articles\Markup\CenterText",
+      "AnhNhan\Converge\Modules\Articles\Markup\FancyHeader",
+      "AnhNhan\Converge\Modules\Articles\Markup\FontSize",
+      "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
+    ),
     "AnhNhan\Converge\Console\ConsoleCommand" => array(
       "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
       "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand",
@@ -885,17 +969,6 @@ return array(
       "AnhNhan\Converge\Modules\Examples\Examples\GenericStyles",
       "AnhNhan\Converge\Modules\Examples\Examples\PanelExample",
     ),
-    "AnhNhan\Converge\Web\Application\BaseApplication" => array(
-      "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
-      "AnhNhan\Converge\Modules\Forum\ForumApplication",
-      "AnhNhan\Converge\Modules\Front\FrontApplication",
-      "AnhNhan\Converge\Modules\Markup\MarkupApplication",
-      "AnhNhan\Converge\Modules\Search\SearchApplication",
-      "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication",
-      "AnhNhan\Converge\Modules\Tag\TagApplication",
-      "AnhNhan\Converge\Modules\Task\TaskApplication",
-      "AnhNhan\Converge\Modules\User\UserApplication",
-    ),
     "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
@@ -908,29 +981,6 @@ return array(
       "AnhNhan\Converge\Modules\Task\Query\TaskQuery",
       "AnhNhan\Converge\Modules\User\Query\RoleQuery",
       "AnhNhan\Converge\Modules\User\Query\UserQuery",
-    ),
-    "AnhNhan\Converge\Storage\EntityDefinition" => array(
-      "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
-      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
-      "AnhNhan\Converge\Modules\Forum\Storage\Post",
-      "AnhNhan\Converge\Modules\Tag\Storage\Tag",
-      "AnhNhan\Converge\Modules\Task\Storage\Task",
-      "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
-      "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
-      "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
-      "AnhNhan\Converge\Modules\User\Storage\Email",
-      "AnhNhan\Converge\Modules\User\Storage\OAuthInfo",
-      "AnhNhan\Converge\Modules\User\Storage\Role",
-      "AnhNhan\Converge\Modules\User\Storage\User",
-      "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
-      "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
-      "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
-      "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
-      "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
-      "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction",
-      "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
-      "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
-      "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
     "AnhNhan\Converge\Storage\Transaction\TransactionEntity" => array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
@@ -1025,8 +1075,18 @@ return array(
     ),
     "PhutilRemarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
+      "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
       "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
+    ),
+    "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
+      "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+      "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
+      "AnhNhan\Converge\Modules\User\Markup\UserMention",
+      "AnhNhan\Converge\Modules\Articles\Markup\CenterText",
+      "AnhNhan\Converge\Modules\Articles\Markup\FancyHeader",
+      "AnhNhan\Converge\Modules\Articles\Markup\FontSize",
+      "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
@@ -1048,10 +1108,6 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
     ),
-    "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
-      "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
-      "AnhNhan\Converge\Modules\User\Markup\UserMention",
-    ),
     "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl" => array(
       "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
       "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
@@ -1059,6 +1115,9 @@ return array(
       "AnhNhan\Converge\Views\Form\Controls\SelectControl",
       "AnhNhan\Converge\Views\Form\Controls\TextAreaControl",
       "AnhNhan\Converge\Views\Form\Controls\TextControl",
+    ),
+    "AnhNhan\Converge\Modules\Activity\ActivityRecorder" => array(
+      "AnhNhan\Converge\Modules\Task\Activity\TaskRecorder",
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
