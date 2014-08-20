@@ -8,4 +8,4 @@ use AnhNhan\Converge\Modules\Symbols\SymbolLoader;
 SymbolLoader::setStaticRootDir(__DIR__);
 $symbolLoader = SymbolLoader::getInstance();
 $symbolLoader->register();
-$symbolLoader->loadAllFunctions();
+$symbolLoader->loadAllSymbols();
