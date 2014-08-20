@@ -9,6 +9,7 @@ use AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface;
  *
  * @Entity
  * @Table(indexes={
+ *   @Index(name="idx_completed", columns={"id", "completed"}),
  *   @Index(name="completed_flag", columns={"completed"})
  * })
  */

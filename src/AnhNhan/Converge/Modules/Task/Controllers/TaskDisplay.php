@@ -22,7 +22,7 @@ final class TaskDisplay extends AbstractTaskController
         $request = $this->request;
         $query = $this->buildQuery();
 
-        $task = $this->retrieveTaskObject($request, $query);
+        $task = head($query->retrieveTasksForCanonicalLabelsWithXacts([$request->get('id')]));
         if (!$task)
         {
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
@@ -31,9 +31,9 @@ final class TaskDisplay extends AbstractTaskController
         $external_uids = array_filter(array_mergev(array_filter(array_map('task_xact_type_fetch_external_uids', $transactions))));
         $grouped_external_uids = group($external_uids, 'uid_get_type');
 
-        $external_user_uids = idx($grouped_external_uids, 'USER');
-        $external_status_uids = idx($grouped_external_uids, 'TASK-STAT');
-        $external_priority_uids = idx($grouped_external_uids, 'TASK-PRIO');
+        $external_user_uids = idx($grouped_external_uids, 'USER', []);
+        $external_status_uids = idx($grouped_external_uids, 'TASK-STAT', []);
+        $external_priority_uids = idx($grouped_external_uids, 'TASK-PRIO', []);
 
         $external_status = $query->retrieveTaskStatusForUids($external_status_uids);
         $external_priorities = $query->retrieveTaskPriorityForUids($external_priority_uids);

@@ -45,6 +45,11 @@ final class TaskListing extends AbstractTaskController
             $container->push($listing);
         }
 
+        if (!$sorted_task_groups)
+        {
+            $container->push(div('objects-list-empty-message', 'No tasks available'));
+        }
+
         $container->push(cv\safeHtml('<style>.objects-list-container{margin-top: 0;}</style>'));
 
         $container->unshift(cv\ht("a", $all_tasks_flag ? 'show incomplete only' : 'show all tasks', array(

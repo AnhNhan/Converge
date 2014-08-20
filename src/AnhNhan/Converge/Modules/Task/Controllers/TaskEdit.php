@@ -66,7 +66,7 @@ final class TaskEdit extends AbstractTaskController
 
             $task_assigned = trim($request->request->get('assigned'));
             $task_assigned = array_map('to_canonical', explode(',', $task_assigned));
-            $task_assigned = array_unique($task_assigned);
+            $task_assigned = array_unique(array_filter($task_assigned));
 
             $task_priority = trim($request->request->get('priority'));
             $task_priority = to_canonical($task_priority);
