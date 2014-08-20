@@ -40,7 +40,7 @@ abstract class TransactionEditor
         } else if ($appOrEm instanceof EntityManager) {
             $this->entityManager = $appOrEm;
         } else {
-            throw new \InvalidArgumentException*(sprintf("Invalid type: '%s'", get_class($appOrEm)));
+            throw new \InvalidArgumentException(sprintf("Invalid type: '%s'", get_class($appOrEm)));
         }
     }
 
