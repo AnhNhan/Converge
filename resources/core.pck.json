@@ -28,6 +28,7 @@
         "application-user-core",
         "layout-boilerplate",
         "layout-core",
+        "layout-fancy-text-shadows",
         "layout-form",
         "layout-grid",
         "layout-property-list",

@@ -61,6 +61,9 @@ body {
     }
 
     .nav-user {
+        @media screen and (max-width: @breakPointTablet) {
+            display: none;
+        }
         .pull-right;
         height: 100%;
 
@@ -98,6 +101,9 @@ body {
     }
 
     .nav-action {
+        @media screen and (max-width: @breakPointMobile) {
+            display: none;
+        }
         .pull-right;
         margin-left: 0.33em;
 
