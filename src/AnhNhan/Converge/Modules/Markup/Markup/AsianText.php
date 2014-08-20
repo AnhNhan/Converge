@@ -2,27 +2,19 @@
 namespace AnhNhan\Converge\Modules\Markup\Markup;
 
 use AnhNhan\Converge as cv;
-use AnhNhan\Converge\Modules\Markup\MarkupRule;
+use AnhNhan\Converge\Modules\Markup\TemplateMarkupRule;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class AsianText extends MarkupRule
+final class AsianText extends TemplateMarkupRule
 {
-    // Users may use dashes, underscores and periods regardless what we tell
-    // them, so match them anyway.
-    const Regex = '/[{]{2}\s*asian\s*=\s*(.*?)\s*[}]{2}/is';
-
-    public function apply($text)
+    public function get_key()
     {
-        return preg_replace_callback(
-            self::Regex,
-            [$this, 'applyAsian'],
-            $text
-        );
+        return 'asian';
     }
 
-    public function applyAsian($matches)
+    public function apply_occurence($matches)
     {
         return span('asian-text', trim($matches[1]))
             ->addOption('style', 'font-size: 24px;')
