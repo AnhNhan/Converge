@@ -100,6 +100,14 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Examples/ExamplesApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
+    "AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Activity/DiscussionRecorder.php",
+      "deriv" => "AnhNhan\Converge\Modules\Activity\ActivityRecorder",
+    ),
+    "AnhNhan\Converge\Modules\Forum\Activity\PostRecorder" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Activity/PostRecorder.php",
+      "deriv" => "AnhNhan\Converge\Modules\Activity\ActivityRecorder",
+    ),
     "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Controllers/AbstractForumController.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -969,6 +977,11 @@ return array(
       "AnhNhan\Converge\Modules\Examples\Examples\GenericStyles",
       "AnhNhan\Converge\Modules\Examples\Examples\PanelExample",
     ),
+    "AnhNhan\Converge\Modules\Activity\ActivityRecorder" => array(
+      "AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder",
+      "AnhNhan\Converge\Modules\Forum\Activity\PostRecorder",
+      "AnhNhan\Converge\Modules\Task\Activity\TaskRecorder",
+    ),
     "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
@@ -1115,9 +1128,6 @@ return array(
       "AnhNhan\Converge\Views\Form\Controls\SelectControl",
       "AnhNhan\Converge\Views\Form\Controls\TextAreaControl",
       "AnhNhan\Converge\Views\Form\Controls\TextControl",
-    ),
-    "AnhNhan\Converge\Modules\Activity\ActivityRecorder" => array(
-      "AnhNhan\Converge\Modules\Task\Activity\TaskRecorder",
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
