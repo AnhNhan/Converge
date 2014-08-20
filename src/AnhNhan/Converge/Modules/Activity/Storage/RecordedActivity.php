@@ -7,7 +7,12 @@ use AnhNhan\Converge\Storage\EntityDefinition;
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  *
  * @Entity
- * @Table
+ * @Table(indexes={
+ *   @Index(name="actor_uid", columns={"actor_uid"}),
+ *   @Index(name="object_uid", columns={"object_uid"}),
+ *   @Index(name="author_xact_type", columns={"actor_uid", "xact_type"}),
+ *   @Index(name="xact_type", columns={"xact_type"})
+ * })
  * @Cache
  */
 class RecordedActivity extends EntityDefinition
