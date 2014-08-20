@@ -6,6 +6,7 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
@@ -169,12 +170,16 @@ final class TaskEdit extends AbstractTaskController
                     );
                 }
 
+                $em->beginTransaction();
                 try
                 {
-                    $editor->apply();
+                    $activityRecorder = new TaskRecorder($this->externalApp('activity'));
+                    $activityRecorder->record($editor->apply());
+                    $em->commit();
                 }
                 catch (\Doctrine\DBAL\Exception\DuplicateKeyException $e)
                 {
+                    $em->rollback();
                     $errors[] = cv\safeHtml("A task with the label <em>'{$task_label}'</em> (or similar) already exists.");
                     goto form_rendering;
                 }

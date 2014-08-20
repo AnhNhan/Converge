@@ -6,6 +6,7 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
@@ -44,8 +45,10 @@ final class TaskComment extends AbstractTaskController
             ->setEntity($task)
             ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
             ->addTransaction(TaskTransaction::create(TaskTransaction::TYPE_ADD_COMMENT, $inputText))
-            ->apply()
         ;
+
+        $activityRecorder = new TaskRecorder($this->externalApp('activity'));
+        $activityRecorder->record($editor->apply());
 
         $targetURI = "/task/" . $task->label_canonical;
         return new RedirectResponse($targetURI);
