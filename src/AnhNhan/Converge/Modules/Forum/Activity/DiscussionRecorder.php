@@ -42,7 +42,7 @@ final class DiscussionRecorder extends ActivityRecorder
     {
         if ($xact->type == DiscussionTransaction::TYPE_EDIT_TEXT)
         {
-            return $xact->object->createdAt->getTimestamp() == $xact->object->modifiedAt->getTimestamp();
+            return $xact->object->createdAt->getTimestamp() == $xact->object->lastActivity->getTimestamp();
         }
 
         return parent::dont_record_xact($xact);
