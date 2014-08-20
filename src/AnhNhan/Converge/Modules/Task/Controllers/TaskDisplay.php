@@ -27,7 +27,16 @@ final class TaskDisplay extends AbstractTaskController
         {
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
+        $non_skippable_types = [
+            TransactionEntity::TYPE_CREATE       => true,
+            TaskTransaction::TYPE_ADD_COMMENT    => true,
+            TaskTransaction::TYPE_EDIT_COMPLETED => true,
+        ];
         $transactions = $task->transactions->toArray();
+        $transactions = array_filter($transactions, function ($xact) use ($task, $non_skippable_types) {
+            return isset($non_skippable_types[$xact->type])
+                    || $xact->createdAt->getTimestamp() > $task->createdAt->getTimestamp() + self::CreatePeriodGraceTime;
+        });
         $external_uids = array_filter(array_mergev(array_filter(array_map('task_xact_type_fetch_external_uids', $transactions))));
         $grouped_external_uids = group($external_uids, 'uid_get_type');
 
@@ -35,8 +44,8 @@ final class TaskDisplay extends AbstractTaskController
         $external_status_uids = idx($grouped_external_uids, 'TASK-STAT', []);
         $external_priority_uids = idx($grouped_external_uids, 'TASK-PRIO', []);
 
-        $external_status = $query->retrieveTaskStatusForUids($external_status_uids);
-        $external_priorities = $query->retrieveTaskPriorityForUids($external_priority_uids);
+        $external_status = $external_status_uids ? $query->retrieveTaskStatusForUids($external_status_uids) : [];
+        $external_priorities = $external_priority_uids ? $query->retrieveTaskPriorityForUids($external_priority_uids) : [];
 
         $user_query = create_user_query($this->externalApp('user'));
         $user_uids = mpull($transactions, 'actorId');
@@ -70,16 +79,6 @@ final class TaskDisplay extends AbstractTaskController
 
         foreach ($transactions as $xact)
         {
-            $non_skippable_types = [
-                TransactionEntity::TYPE_CREATE    => true,
-                TaskTransaction::TYPE_ADD_COMMENT => true,
-            ];
-
-            if (!isset($non_skippable_types[$xact->type]) && $xact->createdAt->getTimestamp() < $task->createdAt->getTimestamp() + self::CreatePeriodGraceTime)
-            {
-                continue;
-            }
-
             $xact_author = idx($user_objects, $xact->actorId);
             $xact->setAuthor($xact_author);
             $rendered_xact = render_task_transaction($task, $xact, $other);
