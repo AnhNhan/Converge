@@ -51,7 +51,7 @@ class RecordedActivity extends EntityDefinition
      */
     public $xact_type;
     /**
-     * @Column(type="string", nullable=true)
+     * @Column(type="text")
      */
     public $xact_contents;
 
