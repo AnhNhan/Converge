@@ -46,10 +46,19 @@ class MarkupEngine
             {
                 $text = $rule->apply($text);
             }
-            $this->outputText[$key] = $text;
+            $this->outputText[$key] = static::fixupText($text);
         }
 
         return $this;
+    }
+
+    public static function fixupText($text)
+    {
+        $replace_map = [
+            '<p><div' => '<div',
+            '</div></p>' => '</div>',
+        ];
+        return str_replace(array_keys($replace_map), array_values($replace_map), $text);
     }
 
     public function getOutputText($key = "default")
