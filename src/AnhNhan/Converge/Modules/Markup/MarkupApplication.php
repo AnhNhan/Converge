@@ -20,6 +20,13 @@ final class MarkupApplication extends BaseApplication
         return "markup";
     }
 
+    public function getCustomMarkupRules()
+    {
+        return [
+            new Markup\AsianText,
+        ];
+    }
+
     public function getRoutes()
     {
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
