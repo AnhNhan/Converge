@@ -25,6 +25,7 @@ final class ArticleApplication extends BaseApplication
         return [
             new Markup\CenterText,
             new Markup\FancyHeader,
+            new Markup\FontSize,
         ];
     }
 
