@@ -17,6 +17,7 @@ services:
     public: false
     arguments:
       - cookie_httponly: true
+        cookie_lifetime: 15552000 # 180 days
       #- @session.storage.handler.default
 
   session.default:
