@@ -3,7 +3,7 @@
 use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Application\ApplicationList;
 
-function render_activity_listing(array $activities, array $renderers, $title = null, $empty_message = 'No activities')
+function render_activity_listing(array $activities, array $renderers, $other = [], $title = null, $empty_message = 'No activities')
 {
     $container = div('activity-listing');
     if ($title)
@@ -17,15 +17,15 @@ function render_activity_listing(array $activities, array $renderers, $title = n
     }
     else
     {
-        $big_div = div('columned-activity-listing');
+        $big_div = div('activity-container');
         $container->append($big_div);
         foreach ($activities as $activity)
         {
             $object_type = uid_get_type($activity->object_uid);
             $xact_type   = $activity->xact_type;
-            $renderer = idx($renderers, $object_type);
-            $header_text =  $renderer ? 'header' : sprintf('Unknown activity: %s -> %s', $object_type, $xact_type);
-            if ($activity->object_link)
+            $renderer = get_renderer($renderers, $activity);
+            $header_text =  $renderer ? $renderer['label']($activity, $other) : sprintf('Unknown activity: %s -> %s', $object_type, $xact_type);
+            if (!$renderer && $activity->object_link)
             {
                 $header_text = a($header_text, $activity->object_link);
             }
@@ -37,6 +37,13 @@ function render_activity_listing(array $activities, array $renderers, $title = n
                 $header_text
             );
             $panel = panel($header, 'activity-panel');
+
+            $panel_body = $renderer && isset($renderer['body']) ? $renderer['body']($activity, $other) : null;
+            if ($panel_body)
+            {
+                $panel->append($panel_body);
+            }
+
             $big_div->append($panel);
         }
     }
@@ -62,4 +69,11 @@ function get_activity_renderers($app_list = null)
     $rules = mpull($apps, 'getActivityRenderers');
     $rules = array_mergev($rules);
     return $rules;
+}
+
+function get_renderer(array $renderers, $activity)
+{
+    $object_type = uid_get_type($activity->object_uid);
+    $renderer = idx($renderers, $object_type);
+    return $renderer;
 }

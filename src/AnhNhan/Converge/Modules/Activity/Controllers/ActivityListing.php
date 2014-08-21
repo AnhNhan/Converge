@@ -25,11 +25,17 @@ final class ActivityListing extends ActivityController
         $user_query = create_user_query($this->externalApp('user'));
         $external_user_objects = $user_query->retrieveUsersForUIDs($external_users);
         pull($activities, function ($activity) use ($external_user_objects) { $activity->actor_object = idx($external_user_objects, $activity->actor_uid); });
+        $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
+
+        $other = [
+            'markup_rules' => $custom_rules,
+            'users'        => $external_user_objects,
+        ];
 
         $container = new MarkupContainer;
         $container->push(h1('Activity Listing'));
 
-        $listing = render_activity_listing($activities, $activity_renderers);
+        $listing = render_activity_listing($activities, $activity_renderers, $other)->addClass('feed-activity-listing');
         $container->push($listing);
 
         $this->resMgr
