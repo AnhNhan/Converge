@@ -20,7 +20,7 @@ final class PostRecorder extends ActivityRecorder
 
     protected function get_object_label(TransactionEntity $xact)
     {
-        return sprintf('Post in %s', $xact->object->parentDisq->label);
+        return $xact->object->parentDisq->label;
     }
 
     protected function get_object_link(TransactionEntity $xact)
