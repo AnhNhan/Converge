@@ -259,3 +259,15 @@ function task_activity_body(RecordedActivity $activity, $other)
             return null;
     }
 }
+
+function task_activity_external_uids(RecordedActivity $activity)
+{
+    switch ($activity->xact_type)
+    {
+        case TaskTransaction::TYPE_ADD_ASSIGN:
+        case TaskTransaction::TYPE_DEL_ASSIGN:
+            return $activity->xact_contents;
+        default:
+            return null;
+    }
+}

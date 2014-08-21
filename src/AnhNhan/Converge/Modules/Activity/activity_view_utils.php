@@ -23,7 +23,7 @@ function render_activity_listing(array $activities, array $renderers, $other = [
         {
             $object_type = uid_get_type($activity->object_uid);
             $xact_type   = $activity->xact_type;
-            $renderer = get_renderer($renderers, $activity);
+            $renderer = get_activity_renderer($renderers, $activity);
             $header_text =  $renderer ? $renderer['label']($activity, $other) : sprintf('Unknown activity: %s -> %s', $object_type, $xact_type);
             if (!$renderer && $activity->object_link)
             {
@@ -71,9 +71,23 @@ function get_activity_renderers($app_list = null)
     return $rules;
 }
 
-function get_renderer(array $renderers, $activity)
+function get_activity_renderer(array $renderers, $activity)
 {
     $object_type = uid_get_type($activity->object_uid);
     $renderer = idx($renderers, $object_type);
     return $renderer;
+}
+
+function activity_get_external_uids(array $activities, array $renderers)
+{
+    $uids = [];
+
+    foreach ($activities as $activity)
+    {
+        $renderer = get_activity_renderer($renderers, $activity);
+        $uid = $renderer && $renderer['external_uids'] ? $renderer['external_uids']($activity) : null;
+        $uid and $uids[] = $uid;
+    }
+
+    return $uids;
 }

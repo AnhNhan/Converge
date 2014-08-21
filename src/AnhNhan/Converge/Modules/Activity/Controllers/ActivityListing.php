@@ -20,10 +20,14 @@ final class ActivityListing extends ActivityController
 
         $activity_renderers = get_activity_renderers($this->app->getService('app.list'));
 
-        $external_uids = [];
-        $external_users = ppull($activities, 'actor_uid');
+        $external_uids = activity_get_external_uids($activities, $activity_renderers);
+        $external_uids = array_merge($external_uids, ppull($activities, 'actor_uid'));
+        $grouped_external_uids = group($external_uids, 'uid_get_type');
+
+        $external_user_uids = idx($grouped_external_uids, 'USER', []);
+
         $user_query = create_user_query($this->externalApp('user'));
-        $external_user_objects = $user_query->retrieveUsersForUIDs($external_users);
+        $external_user_objects = $user_query->retrieveUsersForUIDs($external_user_uids);
         pull($activities, function ($activity) use ($external_user_objects) { $activity->actor_object = idx($external_user_objects, $activity->actor_uid); });
         $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
 
