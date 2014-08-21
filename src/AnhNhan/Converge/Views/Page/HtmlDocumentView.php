@@ -57,8 +57,8 @@ $(function () {
         //e.preventDefault();
     });
 
-    $('[data-toggle=tooltip]').tooltip();
-    $('[data-toggle=tooltip-bottom]').tooltip({placement: 'bottom'});
+    $('[data-toggle=tooltip]').tooltip({container: 'body'});
+    $('[data-toggle=tooltip-bottom]').tooltip({placement: 'bottom', container: 'body'});
 });
 </script>
 </head>
