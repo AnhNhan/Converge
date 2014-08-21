@@ -43,7 +43,7 @@ function div($class = "", $contents = null, $id = null)
     ;
 }
 
-function span($class, $contents)
+function span($class, $contents = '')
 {
     return cv\ht('span', $contents)
         ->addClass($class)
