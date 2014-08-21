@@ -114,6 +114,28 @@ abstract class BaseApplication
     }
 
     /**
+     * Return something like
+     * [
+     *     'UIDX-TYPE' => $this->createActivityRenderer(...),
+     *     ...
+     * ]
+     */
+    public function getActivityRenderers()
+    {
+        return [];
+    }
+
+    protected static function createActivityRenderer(callable $label_fun, callable $body_fun = null, callable $class_fun = null, callable $external_uids_fun = null)
+    {
+        return [
+            'label' => $label_fun,
+            'body' => $body_fun,
+            'class' => $class_fun,
+            'external_uids' => $external_uids_fun,
+        ];
+    }
+
+    /**
      * Dummy until we get containers going
      *
      * @return array

@@ -1,0 +1,44 @@
+<?php
+namespace AnhNhan\Converge\Modules\Activity\Controllers;
+
+use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
+use AnhNhan\Converge\Web\Application\HtmlPayload;
+use YamwLibs\Libs\Html\Markup\MarkupContainer;
+
+/**
+ * @author Anh Nhan Nguyen <anhnhan@outlook.com>
+ */
+final class ActivityListing extends ActivityController
+{
+    public function handle()
+    {
+        $request = $this->request;
+        $query = $this->buildQuery();
+
+        $activities = $query->retrieveActivities(200);
+
+        $activity_renderers = get_activity_renderers($this->app->getService('app.list'));
+
+        $external_uids = [];
+        $external_users = ppull($activities, 'actor_uid');
+        $user_query = create_user_query($this->externalApp('user'));
+        $external_user_objects = $user_query->retrieveUsersForUIDs($external_users);
+        pull($activities, function ($activity) use ($external_user_objects) { $activity->actor_object = idx($external_user_objects, $activity->actor_uid); });
+
+        $container = new MarkupContainer;
+        $container->push(h1('Activity Listing'));
+
+        $listing = render_activity_listing($activities, $activity_renderers);
+        $container->push($listing);
+
+        $this->resMgr
+            ->requireCss('application-activity-listing')
+        ;
+
+        $payload = new HtmlPayload;
+        $payload->setTitle('Activity Listing');
+        $payload->setPayloadContents($container);
+        return $payload;
+    }
+}

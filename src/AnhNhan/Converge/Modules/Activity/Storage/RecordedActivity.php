@@ -47,6 +47,8 @@ class RecordedActivity extends EntityDefinition
      */
     public $actor_uid;
 
+    public $actor_object;
+
     /**
      * @Column(type="string")
      */

@@ -33,10 +33,12 @@ final class ActivityApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $url = trim($request->getPathInfo(), "/ ");
-        switch ($url) {
+        $routeName = $request->attributes->get("route-name");
+        switch ($routeName) {
+            case "activity-main":
+                return new Controllers\ActivityListing($this);
+                break;
         }
-        return $controller;
     }
 
     protected function buildEntityManager($dbConfig)

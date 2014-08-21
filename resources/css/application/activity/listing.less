@@ -1,0 +1,59 @@
+
+.activity-listing
+{}
+
+.columned-activity-listing
+{
+    @media screen and (min-width: @breakPointTablet)
+    {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+
+        .activity-panel
+        {
+            display: inline-block;
+            width: 100%;
+            -webkit-column-break-inside: avoid;
+            -moz-column-break-inside: avoid;
+            column-break-inside: avoid;
+        }
+    }
+}
+
+.activity-panel
+{
+    border: none;
+    margin: 0;
+    margin-bottom: 1em;
+
+    .panel-header
+    {
+        border-bottom: none;
+
+        .activity-date
+        {
+            display: none;
+            @media screen and (min-width: @breakPointDesktop)
+            {
+                display: block;
+            }
+        }
+
+        .user-profile-image
+        {
+            height: 38px;
+            width: auto;
+            .pull-left;
+            margin-right: 0.67em;
+            margin-left: -(@panel-padding * 1.33);
+            margin-top: -@panel-padding;
+            margin-bottom: -@panel-padding;
+        }
+
+        .minor-stuff
+        {
+            color: @darkGrey;
+        }
+    }
+}

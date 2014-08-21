@@ -15,6 +15,12 @@
 
 return array(
   "css" => array(
+    "application-activity-listing" => array(
+      "name" => "application-activity-listing",
+      "path" => "application/activity/listing.less",
+      "hash" => "da9f5fd9ec45733c3ea83eb8cd65aeb3",
+      "orig" => "c0507cfbcf4c7bb6196a7ed44aa65c32",
+    ),
     "application-colors" => array(
       "name" => "application-colors",
       "path" => "application/colors.less",
@@ -590,7 +596,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "2slqmbpy",
+      "hash" => "vkyxb4wf",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
