@@ -212,3 +212,50 @@ function task_xact_type_fetch_external_uids(TaskTransaction $xact)
             return [$xact->oldValue, $xact->newValue];
     }
 }
+
+// Activity
+
+use AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity;
+
+function task_activity_label(RecordedActivity $activity, $other)
+{
+    $object_label_link = cv\ht('em', a(phutil_utf8_shorten($activity->object_label, 40), $activity->object_link));
+    $user_link = function () use ($activity, $other)
+    {
+        $user = idx(idx($other, 'users', []), $activity->xact_contents);
+        return $user ? link_user($user) : $activity->xact_contents;
+    };
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+            return cv\hsprintf('created task %s', $object_label_link);
+        case TaskTransaction::TYPE_ADD_COMMENT:
+            return cv\hsprintf('commented on task %s', $object_label_link);
+        case TaskTransaction::TYPE_EDIT_COMPLETED:
+            if ($activity->xact_contents)
+            {
+                return cv\hsprintf('completed task %s', $object_label_link);
+            }
+            else
+            {
+                return cv\hsprintf('revived task %s', $object_label_link);
+            }
+        case TaskTransaction::TYPE_ADD_ASSIGN:
+            return cv\hsprintf('assigned <strong>%s</strong> to task %s', $user_link(), $object_label_link);
+        case TaskTransaction::TYPE_DEL_ASSIGN:
+            return cv\hsprintf('removed <strong>%s</strong> from task %s\'s assignees', $user_link(), $object_label_link);
+        default:
+            return 'did something';
+    }
+}
+
+function task_activity_body(RecordedActivity $activity, $other)
+{
+    switch ($activity->xact_type)
+    {
+        case TaskTransaction::TYPE_ADD_COMMENT:
+            return cv\safeHtml(MarkupEngine::fastParse(phutil_utf8_shorten($activity->xact_contents, 160), idx($other, 'markup_rules', [])));
+        default:
+            return null;
+    }
+}

@@ -25,6 +25,14 @@ final class ForumApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
+    public function getActivityRenderers()
+    {
+        return [
+            'DISQ' => $this->createActivityRenderer('disq_activity_label', 'disq_activity_body'),
+            'POST' => $this->createActivityRenderer('post_activity_label', 'post_activity_body'),
+        ];
+    }
+
     public function routeToController(Request $request)
     {
         $routeName = $request->attributes->get("route-name");

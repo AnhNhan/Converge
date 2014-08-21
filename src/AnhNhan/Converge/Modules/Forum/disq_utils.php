@@ -1,11 +1,15 @@
 <?php
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Markup\MarkupEngine;
 use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
+use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
+use AnhNhan\Converge\Modules\Forum\Storage\PostTransaction;
 use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing;
 use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject;
 use AnhNhan\Converge\Modules\Forum\Views\Objects\PaneledForumListing;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
+use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 
 function render_disq_listing(array $disqs, array $postCounts, $title = null)
 {
@@ -57,4 +61,68 @@ function disq_listing_add_object(ForumListing $listing, Discussion $discussion, 
     $object->addDetail(cv\ht('strong', link_user($discussion->author)));
 
     $listing->addObject($object);
+}
+
+// Activity
+
+use AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity;
+
+function disq_activity_label(RecordedActivity $activity, $other)
+{
+    $object_label_link = cv\ht('em', a(phutil_utf8_shorten($activity->object_label, 40), $activity->object_link));
+    $user_link = function () use ($activity, $other)
+    {
+        $user = idx(idx($other, 'users', []), $activity->xact_contents);
+        return $user ? link_user($user) : $activity->xact_contents;
+    };
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+            return cv\hsprintf('created discussion %s', $object_label_link);
+        case DiscussionTransaction::TYPE_EDIT_TEXT:
+            return cv\hsprintf('edited discussion text of %s', $object_label_link);
+        default:
+            return 'did something';
+    }
+}
+
+function disq_activity_body(RecordedActivity $activity, $other)
+{
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+            return cv\safeHtml(MarkupEngine::fastParse(phutil_utf8_shorten($activity->xact_contents, 160), idx($other, 'markup_rules', [])));
+        default:
+            return null;
+    }
+}
+
+function post_activity_label(RecordedActivity $activity, $other)
+{
+    $object_label_link = cv\ht('em', a(phutil_utf8_shorten($activity->object_label, 40), $activity->object_link));
+    $user_link = function () use ($activity, $other)
+    {
+        $user = idx(idx($other, 'users', []), $activity->xact_contents);
+        return $user ? link_user($user) : $activity->xact_contents;
+    };
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+            return cv\hsprintf('posted in %s', $object_label_link);
+        case PostTransaction::TYPE_EDIT_POST:
+            return cv\hsprintf('edited a post in %s', $object_label_link);
+        default:
+            return 'did something';
+    }
+}
+
+function post_activity_body(RecordedActivity $activity, $other)
+{
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+            return cv\safeHtml(MarkupEngine::fastParse(phutil_utf8_shorten($activity->xact_contents, 160), idx($other, 'markup_rules', [])));
+        default:
+            return null;
+    }
 }

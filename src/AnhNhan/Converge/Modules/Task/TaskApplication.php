@@ -25,6 +25,13 @@ final class TaskApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
+    public function getActivityRenderers()
+    {
+        return [
+            'TASK' => $this->createActivityRenderer('task_activity_label', 'task_activity_body'),
+        ];
+    }
+
     public function routeToController(Request $request)
     {
         $routeName = $request->attributes->get("route-name");
