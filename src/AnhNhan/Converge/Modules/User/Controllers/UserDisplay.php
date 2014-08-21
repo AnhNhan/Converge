@@ -26,7 +26,7 @@ final class UserDisplay extends AbstractUserController
         $req_canon_name = $request->get('name');
 
         $query = new UserQuery($this->app);
-        $user  = idx($query->retrieveUsersForCanonicalNames([$req_canon_name], 1), 0);
+        $user  = head($query->retrieveUsersForCanonicalNames([$req_canon_name], 1));
 
         if (!$user)
         {
