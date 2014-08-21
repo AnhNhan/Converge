@@ -219,7 +219,7 @@ use AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity;
 
 function task_activity_label(RecordedActivity $activity, $other)
 {
-    $object_label_link = cv\ht('em', a(phutil_utf8_shorten($activity->object_label, 40), $activity->object_link));
+    $object_label_link = strong(a(phutil_utf8_shorten($activity->object_label, 40), $activity->object_link));
     $user_link = function () use ($activity, $other)
     {
         $user = idx(idx($other, 'users', []), $activity->xact_contents);
