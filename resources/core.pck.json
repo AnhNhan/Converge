@@ -33,6 +33,7 @@
         "layout-grid",
         "layout-property-list",
         "layout-buttons",
+        "layout-bs-button-groups",
         "layout-objects",
         "layout-forum-object",
         "layout-panel-panel",
