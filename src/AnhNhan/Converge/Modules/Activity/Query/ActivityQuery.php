@@ -14,20 +14,20 @@ final class ActivityQuery extends Query
     {
         return mkey($this
             ->repository(self::ENTITY_ACTIVITY)
-            ->findBy([], [], $limit, $offset), 'uid');
+            ->findBy([], ['id' => 'DESC'], $limit, $offset), 'uid');
     }
 
     public function retrieveActivitiesByUsers(array $user_uids, $limit = null, $offset = null)
     {
         return mkey($this
             ->repository(self::ENTITY_ACTIVITY)
-            ->findBy(['actor_uid' => $user_uids], [], $limit, $offset), 'uid');
+            ->findBy(['actor_uid' => $user_uids], ['id' => 'DESC'], $limit, $offset), 'uid');
     }
 
     public function retrieveActivitiesByObjects(array $object_uids, $limit = null, $offset = null)
     {
         return mkey($this
             ->repository(self::ENTITY_ACTIVITY)
-            ->findBy(['object_uid' => $object_uids], [], $limit, $offset), 'uid');
+            ->findBy(['object_uid' => $object_uids], ['id' => 'DESC'], $limit, $offset), 'uid');
     }
 }
