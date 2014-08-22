@@ -229,6 +229,8 @@ function task_activity_label(RecordedActivity $activity, $other)
     {
         case TransactionEntity::TYPE_CREATE:
             return cv\hsprintf('created task %s', $object_label_link);
+        case TaskTransaction::TYPE_EDIT_DESC:
+            return cv\hsprintf('clarified the description of task %s', $object_label_link);
         case TaskTransaction::TYPE_ADD_COMMENT:
             return cv\hsprintf('commented on task %s', $object_label_link);
         case TaskTransaction::TYPE_EDIT_COMPLETED:
