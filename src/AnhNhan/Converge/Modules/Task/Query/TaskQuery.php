@@ -36,6 +36,20 @@ final class TaskQuery extends Query
         return $query->getResult();
     }
 
+    public function retrieveTasksForAssigned(array $assigned_ids, $completed = null, $limit = null, $offset = null)
+    {
+        $completed_sql = $completed === null ? '' : ' AND t.completed = ' . ($completed ? '1' : '0');
+        $eTask = self::TASK_ENTITY;
+        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE ta.user IN (:assigned_ids){$completed_sql}";
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->setParameters(['assigned_ids' => $assigned_ids])
+        ;
+        return $query->getResult();
+    }
+
     public function retrieveTasksForUids(array $ids)
     {
         $eTask = self::TASK_ENTITY;
