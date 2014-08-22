@@ -13,7 +13,7 @@ function render_activity_listing(array $activities, array $renderers, $other = [
 
     if (!$activities)
     {
-        $container->append(div('objects-list-empty-message', 'No tasks available'));
+        $container->append(div('objects-list-empty-message', $empty_message));
     }
     else
     {
