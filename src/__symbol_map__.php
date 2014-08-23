@@ -48,20 +48,20 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Activity/Storage/RecordedActivity.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
-    "AnhNhan\Converge\Modules\Articles\ArticleApplication" => array(
-      "file" => "AnhNhan/Converge/Modules/Articles/ArticleApplication.php",
+    "AnhNhan\Converge\Modules\Newsroom\ArticleApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/ArticleApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
-    "AnhNhan\Converge\Modules\Articles\Markup\CenterText" => array(
-      "file" => "AnhNhan/Converge/Modules/Articles/Markup/CenterText.php",
+    "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/CenterText.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
     ),
-    "AnhNhan\Converge\Modules\Articles\Markup\FancyHeader" => array(
-      "file" => "AnhNhan/Converge/Modules/Articles/Markup/FancyHeader.php",
+    "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FancyHeader.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
     ),
-    "AnhNhan\Converge\Modules\Articles\Markup\FontSize" => array(
-      "file" => "AnhNhan/Converge/Modules/Articles/Markup/FontSize.php",
+    "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FontSize.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
     ),
     "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand" => array(
@@ -903,7 +903,7 @@ return array(
     ),
     "AnhNhan\Converge\Web\Application\BaseApplication" => array(
       "AnhNhan\Converge\Modules\Activity\ActivityApplication",
-      "AnhNhan\Converge\Modules\Articles\ArticleApplication",
+      "AnhNhan\Converge\Modules\Newsroom\ArticleApplication",
       "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
       "AnhNhan\Converge\Modules\Forum\ForumApplication",
       "AnhNhan\Converge\Modules\Front\FrontApplication",
@@ -990,9 +990,9 @@ return array(
       "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
     "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule" => array(
-      "AnhNhan\Converge\Modules\Articles\Markup\CenterText",
-      "AnhNhan\Converge\Modules\Articles\Markup\FancyHeader",
-      "AnhNhan\Converge\Modules\Articles\Markup\FontSize",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
     ),
     "AnhNhan\Converge\Console\ConsoleCommand" => array(
@@ -1125,9 +1125,9 @@ return array(
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
       "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
-      "AnhNhan\Converge\Modules\Articles\Markup\CenterText",
-      "AnhNhan\Converge\Modules\Articles\Markup\FancyHeader",
-      "AnhNhan\Converge\Modules\Articles\Markup\FontSize",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(

@@ -1,5 +1,5 @@
 <?php
-namespace AnhNhan\Converge\Modules\Articles;
+namespace AnhNhan\Converge\Modules\Newsroom;
 
 use AnhNhan\Converge\Web\Application\BaseApplication;
 

@@ -4,5 +4,5 @@ routes:
   - pattern: a/:id
     route-name: article-display
 
-  - pattern: articles/
+  - pattern: newsroom/
     route-name: article-listing
