@@ -23,21 +23,6 @@ class HeaderView extends AbstractView
     {
         $header_content = div('header-content');
 
-        $header_content
-            ->append(
-                div('nav-user')
-                    ->append(div('nav-user-img', cv\ht('img')->addOption('src', idx($this->user_details, 'image_path', '/images/profile/default.png'))))
-                    ->append(
-                        div('nav-user-box')
-                            ->append(div('nav-user-box-name', h3(idx($this->user_details, 'username', 'Not logged in'))))
-                            ->append(
-                                div('nav-user-box-detail')
-                                    ->append(cv\icon_ion('0', 'android-mail'))
-                            )
-                    )
-            )
-        ;
-
         if ($this->user_details)
         {
             $header_content
