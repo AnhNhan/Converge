@@ -8,16 +8,16 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class ArticleApplication extends BaseApplication
+final class NewsroomApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Article";
+        return "Newsroom";
     }
 
     public function getInternalName()
     {
-        return "article";
+        return "newsroom";
     }
 
     // TODO: Only include them during article rendering - they can be annoying

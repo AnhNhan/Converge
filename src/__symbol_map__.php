@@ -48,22 +48,6 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Activity/Storage/RecordedActivity.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
-    "AnhNhan\Converge\Modules\Newsroom\ArticleApplication" => array(
-      "file" => "AnhNhan/Converge/Modules/Newsroom/ArticleApplication.php",
-      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
-    ),
-    "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText" => array(
-      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/CenterText.php",
-      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
-    ),
-    "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader" => array(
-      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FancyHeader.php",
-      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
-    ),
-    "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize" => array(
-      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FontSize.php",
-      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
-    ),
     "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand" => array(
       "file" => "AnhNhan/Converge/Modules/Database/Command/AbstractDbCommand.php",
       "deriv" => "AnhNhan\Converge\Console\ConsoleCommand",
@@ -255,6 +239,18 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Front/FrontApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
+    "AnhNhan\Converge\Modules\Log\LogApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Log/LogApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Log\Storage\Request" => array(
+      "file" => "AnhNhan/Converge/Modules/Log/Storage/Request.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Log\Storage\Discussion" => array(
+      "file" => "AnhNhan/Converge/Modules/Log/Storage/RequestPerformance.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
     "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/Controllers/AbstractMarkupController.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -303,6 +299,22 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Markup/TemplateMarkupRule.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/CenterText.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FancyHeader.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FontSize.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\NewsroomApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/NewsroomApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "file" => "AnhNhan/Converge/Modules/Search/Controllers/Autocomplete.php",
@@ -850,6 +862,7 @@ return array(
     "task_xact_type_fetch_external_uids" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_activity_label" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_activity_body" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_activity_external_uids" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
@@ -903,11 +916,12 @@ return array(
     ),
     "AnhNhan\Converge\Web\Application\BaseApplication" => array(
       "AnhNhan\Converge\Modules\Activity\ActivityApplication",
-      "AnhNhan\Converge\Modules\Newsroom\ArticleApplication",
       "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
       "AnhNhan\Converge\Modules\Forum\ForumApplication",
       "AnhNhan\Converge\Modules\Front\FrontApplication",
+      "AnhNhan\Converge\Modules\Log\LogApplication",
       "AnhNhan\Converge\Modules\Markup\MarkupApplication",
+      "AnhNhan\Converge\Modules\Newsroom\NewsroomApplication",
       "AnhNhan\Converge\Modules\Search\SearchApplication",
       "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication",
       "AnhNhan\Converge\Modules\Tag\TagApplication",
@@ -970,6 +984,8 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Log\Storage\Request",
+      "AnhNhan\Converge\Modules\Log\Storage\Discussion",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
       "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
@@ -988,12 +1004,6 @@ return array(
       "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
       "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
       "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
-    ),
-    "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule" => array(
-      "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
-      "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
-      "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
-      "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
     ),
     "AnhNhan\Converge\Console\ConsoleCommand" => array(
       "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
@@ -1115,6 +1125,12 @@ return array(
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline",
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide",
     ),
+    "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule" => array(
+      "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
+    ),
     "PhutilRemarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
@@ -1125,10 +1141,10 @@ return array(
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
       "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
+      "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
       "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
       "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
       "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
-      "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
