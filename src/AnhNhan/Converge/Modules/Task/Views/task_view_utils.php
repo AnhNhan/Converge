@@ -30,6 +30,7 @@ function task_listing_add_object(Listing $listing, Task $task)
 {
     $object = new Object;
     $object
+        ->setId($task->uid)
         ->setHeadline($task->label)
         ->setHeadHref("/task/" . $task->label_canonical)
     ;
@@ -69,6 +70,7 @@ function render_task(Task $task)
     ;
     $header_text = cv\hsprintf('<h2>%s <small>%s</small></h2>', $task->label, $completed_msg);
     $panel = panel($header_text, 'task-panel');
+    $panel->setId($task->uid);
 
     $edit_button = cv\ht('a', cv\icon_ion('edit task', 'edit'))
         ->addClass('btn btn-primary btn-small')
@@ -112,6 +114,7 @@ function render_task_transaction(Task $task, TaskTransaction $xact, array $other
         $type_label
     );
     $panel = panel($header, 'task-panel-xact');
+    $panel->setId($xact->uid);
 
     $panel_body = task_xact_type_body($task, $xact, $other);
     if ($panel_body)
