@@ -62,9 +62,11 @@ function ht($name, $content = null, array $options = array())
  * @param bool   $iconIsRight
  *
  * @return SafeTextNode
+ * @deprecated
  */
 function icon_ic($text, $icon_name, $iconIsRight = true)
 {
+    throw new \Exception('Deprecated. As in, already not available anymore.');
     return hsprintf(
         '%s <i class="ic-%s"></i> %s',
         $iconIsRight ? $text : "",

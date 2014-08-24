@@ -3,9 +3,7 @@
     "type": "js",
     "contents": [
         "external-html5bp-plugin",
-        "external-modernizr",
         "external-jquery-1-10-2",
-        "external-json2",
         "external-underscore",
         "external-bootstrap-transition",
         "external-bootstrap-scrollspy",
@@ -25,8 +23,6 @@
         "external-textext-textext-plugin-prompt",
         "external-textext-textext-plugin-suggestions",
         "external-textext-textext-plugin-tags",
-        "external-backbone",
-        "application-bootstrap",
         "application-markup-markupform"
     ]
 }

@@ -61,7 +61,7 @@ class ForumObject extends Object
             $that->addAttributeAsFirst($this->tags);
         }
 
-        $that->addAttributeAsFirst(Converge\icon_ic(Converge\ht("div", $this->postCount ?: 0)->addClass("post-count"), "comments"));
+        $that->addAttributeAsFirst(Converge\icon_ion(Converge\ht("div", $this->postCount ?: 0)->addClass("post-count"), "chatbubbles"));
 
         $object = $that->_parentRender();
         return $object;

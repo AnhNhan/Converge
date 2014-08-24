@@ -71,6 +71,7 @@ final class DefaultTemplateView extends AbstractView
         );
         $resMgr = $this->getResMgr()
             ->prependCSS("core-pck")
+            ->prependCSS("external-fonts")
             ->prependJS("libs-pck");
         $htmlDocument->setResMgr($resMgr);
         return $htmlDocument;

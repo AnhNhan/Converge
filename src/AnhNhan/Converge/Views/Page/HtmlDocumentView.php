@@ -47,16 +47,9 @@ class HtmlDocumentView extends AbstractView
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
-<!--%s-->
 
 <script>
 $(function () {
-    $('a[data-backbone-nav]').click(function (e) {
-        that = $(this);
-        //Backbone.history.navigate(that.attr('href'), {trigger: true});
-        //e.preventDefault();
-    });
-
     $('[data-toggle=tooltip]').tooltip({container: 'body'});
     $('[data-toggle=tooltip-bottom]').tooltip({placement: 'bottom', container: 'body'});
 });
@@ -71,7 +64,6 @@ EOT
             $this->title,
             $baseUrl,
             $this->renderHead(),
-            $this->renderRequireJs(),
             $this->content
         ));
         } catch(\Exception $e) {
@@ -114,8 +106,6 @@ EOT
     public function renderRequireJs()
     {
         $tag = Converge\ht("script");
-        $tag->addOption("src", sprintf("/rsrc/js/external-requirejs-require.%s.js", $this->getResMgr()->getHashForResource("js", "external-requirejs-require")));
-        $tag->addOption("data-main", sprintf("/rsrc/js/main.%s", $this->getResMgr()->getHashForResource("js", "main")));
         return $tag;
     }
 }

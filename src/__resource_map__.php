@@ -126,8 +126,8 @@ return array(
     "external-fonts" => array(
       "name" => "external-fonts",
       "path" => "external/fonts.less",
-      "hash" => "2c4c317fd15c7b210b73201b121ea134",
-      "orig" => "ff297cce9c1dc30646c0eac3974b1fed",
+      "hash" => "dae2398faffbc89fc5a09f712eb405e4",
+      "orig" => "2d95fe601830364b45f35c22fa975b71",
     ),
     "external-html5-boilerplate-main" => array(
       "name" => "external-html5-boilerplate-main",
@@ -140,12 +140,6 @@ return array(
       "path" => "external/html5-boilerplate/normalize.css",
       "hash" => "92a16e5d6e997865028d291d0ab1aba8",
       "orig" => "44424e15c3d234a02418d4c16ba5ce0d",
-    ),
-    "external-icomoon-mh" => array(
-      "name" => "external-icomoon-mh",
-      "path" => "external/icomoon-mh.css",
-      "hash" => "2b753431aa219c17349666fd76d9abc2",
-      "orig" => "2834d5c79dfcc2668229eae2524f09fc",
     ),
     "external-ionicons" => array(
       "name" => "external-ionicons",
@@ -280,12 +274,6 @@ return array(
       "path" => "app.js",
       "hash" => "bb5022dfaaeb1692d018eff1127269cf",
       "orig" => "802108c3e25486b6c0867aedb9b8bee8",
-    ),
-    "application-bootstrap" => array(
-      "name" => "application-bootstrap",
-      "path" => "application/bootstrap.js",
-      "hash" => "d3d7e6a39b484f868fdc477c64b33e5c",
-      "orig" => "5f5f9c700b08c78237565cc23c18fdd9",
     ),
     "application-example-form-tag-selector" => array(
       "name" => "application-example-form-tag-selector",
@@ -602,7 +590,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "pnpv5ebk",
+      "hash" => "56jju3p2",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -682,7 +670,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "b41a920549630606299f055d805f8816",
+      "hash" => "8c7b222b9db87f11b406d272a9c095de",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -694,8 +682,6 @@ return array(
         "external-bootstrap-dropdowns" => "f331ce41897730e4faa31d69a25b8210",
         "external-bootstrap-tooltip" => "74a29b13b1617dff541e47b816472828",
         "external-bootstrap-popovers" => "87a30697bc501909748ef654d61bb8e1",
-        "external-fonts" => "2c4c317fd15c7b210b73201b121ea134",
-        "external-icomoon-mh" => "2b753431aa219c17349666fd76d9abc2",
         "external-ionicons" => "e4e0ac89cadf22555deeaa1fb7c89b3a",
         "external-textext-textext-core" => "eef792e67b6bc2fae79e92028731bf71",
         "external-textext-textext-plugin-arrow" => "fb557b38ed4fb8a23e073aa2a8e39c4b",
@@ -725,12 +711,10 @@ return array(
     "libs-pck" => array(
       "name" => "libs-pck",
       "type" => "js",
-      "hash" => "4ffc7ba4f8a458dfec5b58f2232e2a59",
+      "hash" => "77a0f707919d3cc70ff8007b96fb8cae",
       "contents" => array(
         "external-html5bp-plugin" => "e2679049e95a7201b815c3cf004aefc4",
-        "external-modernizr" => "d9f173b9f963540ca4c1c2ba978bb9cf",
         "external-jquery-1-10-2" => "91515770ce8c55de23b306444d8ea998",
-        "external-json2" => "f97cd64fa7f3d3d3728786288fef56c8",
         "external-underscore" => "0032e6db6c0aa378760cb72f0cbd176e",
         "external-bootstrap-transition" => "5361fc9b7ef050dabb3261c264ff081e",
         "external-bootstrap-scrollspy" => "941c53b4ea2e1018afea81c83b07b715",
@@ -750,8 +734,6 @@ return array(
         "external-textext-textext-plugin-prompt" => "8b2100383a1ca4201b877f5116e39d49",
         "external-textext-textext-plugin-suggestions" => "86c133c07ad9c32c6389542e1687caad",
         "external-textext-textext-plugin-tags" => "3adc628d2d382d0f8f6e514b6968c26f",
-        "external-backbone" => "a108a3eafa92ebfda671baf0f76562d8",
-        "application-bootstrap" => "d3d7e6a39b484f868fdc477c64b33e5c",
         "application-markup-markupform" => "ec8ec174b02c863d8b43b79cae43f3ea",
       ),
     ),

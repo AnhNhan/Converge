@@ -28,7 +28,7 @@ class HeaderView extends AbstractView
             $header_content
                 ->append(
                     div('nav-action')
-                        ->append(a(cv\icon_ic('', 'podcast'), 'activity/')
+                        ->append(a(cv\icon_ion('', 'ios7-partlysunny'), 'activity/')
                             ->addClass('btn btn-default')
                             ->addOption('data-toggle', 'tooltip-bottom')
                             ->addOption('title', 'activity stream')
