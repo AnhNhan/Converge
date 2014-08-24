@@ -14,6 +14,7 @@ final class TaskRecorder extends ActivityRecorder
     {
         return [
             TransactionEntity::TYPE_CREATE => true,
+            TaskTransaction::TYPE_EDIT_LABEL => true,
             TaskTransaction::TYPE_EDIT_DESC => true,
             TaskTransaction::TYPE_EDIT_COMPLETED => true,
             TaskTransaction::TYPE_ADD_COMMENT => true,
@@ -24,6 +25,11 @@ final class TaskRecorder extends ActivityRecorder
 
     protected function get_object_label(TransactionEntity $xact)
     {
+        if ($xact->type == TaskTransaction::TYPE_EDIT_LABEL)
+        {
+            return $xact->oldValue;
+        }
+
         return $xact->object->label;
     }
 
@@ -34,11 +40,26 @@ final class TaskRecorder extends ActivityRecorder
 
     protected function get_xact_contents(TransactionEntity $xact)
     {
+        if ($xact->type == TransactionEntity::TYPE_CREATE)
+        {
+            return $xact->object->description;
+        }
+
         if ($xact->type == TaskTransaction::TYPE_DEL_ASSIGN)
         {
             return $xact->oldValue;
         }
 
         return $xact->newValue;
+    }
+
+    protected function dont_record_xact(TransactionEntity $xact)
+    {
+        if ($xact->type == TaskTransaction::TYPE_EDIT_LABEL || $xact->type == TaskTransaction::TYPE_EDIT_DESC)
+        {
+            return $xact->object->createdAt->getTimestamp() == $xact->object->modifiedAt->getTimestamp();
+        }
+
+        return parent::dont_record_xact($xact);
     }
 }

@@ -234,6 +234,9 @@ function task_activity_label(RecordedActivity $activity, $other)
             return cv\hsprintf('created task %s', $object_label_link);
         case TaskTransaction::TYPE_EDIT_DESC:
             return cv\hsprintf('clarified the description of task %s', $object_label_link);
+        case TaskTransaction::TYPE_EDIT_LABEL:
+            $new_label_link = strong(a(phutil_utf8_shorten($activity->xact_contents, 40), $activity->object_link));
+            return cv\hsprintf('renamed task %s to %s', $object_label_link, $new_label_link);
         case TaskTransaction::TYPE_ADD_COMMENT:
             return cv\hsprintf('commented on task %s', $object_label_link);
         case TaskTransaction::TYPE_EDIT_COMPLETED:
