@@ -1,0 +1,25 @@
+{
+    "name": "static-styles-pck",
+    "type": "css",
+    "contents": [
+        "external-html5-boilerplate-normalize",
+        "external-html5-boilerplate-main",
+        "external-bootstrap-responsive-utilities",
+        "external-bootstrap-other",
+        "external-bootstrap-alerts",
+        "external-bootstrap-progress-bars",
+        "external-bootstrap-modals",
+        "external-bootstrap-dropdowns",
+        "external-bootstrap-tooltip",
+        "external-bootstrap-popovers",
+        "external-fonts",
+        "external-ionicons",
+        "external-textext-textext-core",
+        "external-textext-textext-plugin-arrow",
+        "external-textext-textext-plugin-autocomplete",
+        "external-textext-textext-plugin-clear",
+        "external-textext-textext-plugin-focus",
+        "external-textext-textext-plugin-prompt",
+        "external-textext-textext-plugin-tags"
+    ]
+}
