@@ -28,8 +28,8 @@ final class ForumApplication extends BaseApplication
     public function getActivityRenderers()
     {
         return [
-            'DISQ' => $this->createActivityRenderer('disq_activity_label', 'disq_activity_body'),
-            'POST' => $this->createActivityRenderer('post_activity_label', 'post_activity_body'),
+            'DISQ' => $this->createActivityRenderer('disq_activity_label', 'disq_activity_body', 'forum_activity_class'),
+            'POST' => $this->createActivityRenderer('post_activity_label', 'post_activity_body', 'forum_activity_class'),
         ];
     }
 

@@ -37,6 +37,11 @@ function render_activity_listing(array $activities, array $renderers, $other = [
                 $header_text
             );
             $panel = panel($header, 'activity-panel');
+            $class = $renderer && isset($renderer['class']) ? $renderer['class']($activity, $other) : null;
+            if ($class)
+            {
+                $panel->addClass($class);
+            }
 
             $panel_body = $renderer && isset($renderer['body']) ? $renderer['body']($activity, $other) : null;
             if ($panel_body)

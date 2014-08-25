@@ -220,7 +220,7 @@ function task_xact_type_fetch_external_uids(TaskTransaction $xact)
 
 use AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity;
 
-function task_activity_label(RecordedActivity $activity, $other)
+function task_activity_label(RecordedActivity $activity, array $other = [])
 {
     $object_label_link = strong(a(phutil_utf8_shorten($activity->object_label, 40), $activity->object_link));
     $user_link = function () use ($activity, $other)
@@ -257,12 +257,25 @@ function task_activity_label(RecordedActivity $activity, $other)
     }
 }
 
-function task_activity_body(RecordedActivity $activity, $other)
+function task_activity_body(RecordedActivity $activity, array $other = [])
 {
     switch ($activity->xact_type)
     {
         case TaskTransaction::TYPE_ADD_COMMENT:
             return cv\safeHtml(MarkupEngine::fastParse(phutil_utf8_shorten($activity->xact_contents, 160), idx($other, 'markup_rules', [])));
+        default:
+            return null;
+    }
+}
+
+function task_activity_class(RecordedActivity $activity, array $other = [])
+{
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+        case TaskTransaction::TYPE_EDIT_DESC:
+        case TaskTransaction::TYPE_ADD_COMMENT:
+            return 'activity-content';
         default:
             return null;
     }

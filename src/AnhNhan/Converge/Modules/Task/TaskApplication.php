@@ -28,7 +28,7 @@ final class TaskApplication extends BaseApplication
     public function getActivityRenderers()
     {
         return [
-            'TASK' => $this->createActivityRenderer('task_activity_label', 'task_activity_body', null, 'task_activity_external_uids'),
+            'TASK' => $this->createActivityRenderer('task_activity_label', 'task_activity_body', 'task_activity_class', 'task_activity_external_uids'),
         ];
     }
 

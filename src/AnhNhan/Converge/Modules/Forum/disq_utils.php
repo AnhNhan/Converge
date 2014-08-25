@@ -126,3 +126,16 @@ function post_activity_body(RecordedActivity $activity, $other)
             return null;
     }
 }
+
+function forum_activity_class(RecordedActivity $activity, array $other = [])
+{
+    switch ($activity->xact_type)
+    {
+        case TransactionEntity::TYPE_CREATE:
+        case PostTransaction::TYPE_EDIT_POST:
+        case DiscussionTransaction::TYPE_EDIT_TEXT:
+            return 'activity-content';
+        default:
+            return null;
+    }
+}

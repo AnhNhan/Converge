@@ -1,6 +1,11 @@
 
 .task-panel
-{}
+{
+    .panel-body
+    {
+        font-size: @font-size-content;
+    }
+}
 
 .task-panel-buttons
 {
@@ -56,6 +61,14 @@
                     display: none;
                 }
             }
+        }
+    }
+
+    &.task-panel-xact-comment
+    {
+        .panel-body
+        {
+            font-size: @font-size-content;
         }
     }
 
