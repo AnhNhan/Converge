@@ -1,6 +1,9 @@
 
 routes:
 
+  - pattern: a/test
+    route-name: article-display-test
+
   - pattern: a/:id
     route-name: article-display
 

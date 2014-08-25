@@ -45,6 +45,18 @@ return array(
       "hash" => "075a7e6efa77ffa40099877dcccfaf3a",
       "orig" => "1457518efc566bdb7df4c843c78302c1",
     ),
+    "application-newsroom-color" => array(
+      "name" => "application-newsroom-color",
+      "path" => "application/newsroom/color.less",
+      "hash" => "991008c3167ba4ade0bc366cc9a199ba",
+      "orig" => "e3e2b0a376e3da5c3bb87011a9463c8e",
+    ),
+    "application-newsroom-core" => array(
+      "name" => "application-newsroom-core",
+      "path" => "application/newsroom/core.less",
+      "hash" => "7666c1cccff4c5fb030afcf49895c948",
+      "orig" => "18718bef6418f860e352fe5417817c1c",
+    ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
       "path" => "application/role/listing.less",
@@ -222,8 +234,8 @@ return array(
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
       "path" => "layout/fancy/text-shadows.less",
-      "hash" => "e9c854ac27098a5bb190d2e2df05366c",
-      "orig" => "3988b87399a652c315805eaf40ef2d32",
+      "hash" => "721b79af3e950d44e42a462c588e232d",
+      "orig" => "4750bfbe61e864b8094d7667559c946e",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -590,7 +602,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "zkanpiqs",
+      "hash" => "zlhcr6di",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -670,7 +682,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "604e98b4b9b0f5ced9e5342f4e9d5647",
+      "hash" => "e542fd67f3245a22fab250e20f6d0f41",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
@@ -678,7 +690,7 @@ return array(
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
         "layout-core" => "0a783c343a70f5e879e0c9f54832f68e",
-        "layout-fancy-text-shadows" => "e9c854ac27098a5bb190d2e2df05366c",
+        "layout-fancy-text-shadows" => "721b79af3e950d44e42a462c588e232d",
         "layout-form" => "1fde5c613bfcd6a10236eaf4c1468c0e",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
@@ -688,6 +700,15 @@ return array(
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",
         "layout-panel-panel" => "fb0fbbcf4841f5b76d5cf19aa756926a",
         "layout-tag-tag" => "e34c58bbfaf2011bb626150564833373",
+      ),
+    ),
+    "newsroom-pck" => array(
+      "name" => "newsroom-pck",
+      "type" => "css",
+      "hash" => "6bc0277f215bf502b3cc226f7c05908c",
+      "contents" => array(
+        "application-newsroom-core" => "7666c1cccff4c5fb030afcf49895c948",
+        "application-newsroom-color" => "991008c3167ba4ade0bc366cc9a199ba",
       ),
     ),
     "libs-pck" => array(

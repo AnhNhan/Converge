@@ -1,0 +1,117 @@
+
+.article
+{
+    &.article-color-default,
+    &.article-color-midnight-blue
+    {
+        .article-colorized (@color-midnight-blue)
+    }
+
+    &.article-color-nephritis
+    {
+        .article-colorized (@color-nephritis)
+    }
+
+    &.article-color-pumpkin
+    {
+        .article-colorized (@color-pumpkin)
+    }
+
+    &.article-color-amethyst
+    {
+        .article-colorized (@color-amethyst)
+    }
+
+    &.article-color-wisteria
+    {
+        .article-colorized (@color-wisteria)
+    }
+
+    &.article-color-greensea
+    {
+        .article-colorized (@color-greensea)
+    }
+
+    &.article-color-belize-hole
+    {
+        .article-colorized (@color-belize-hole)
+    }
+
+    &.article-color-sunflower
+    {
+        .article-colorized (@color-sunflower)
+    }
+
+    &.article-color-orange
+    {
+        .article-colorized (@color-orange)
+    }
+
+    &.article-color-pomegranate
+    {
+        .article-colorized (@color-pomegranate)
+    }
+
+    &.article-color-alizarin
+    {
+        .article-colorized (@color-alizarin)
+    }
+
+    &.article-color-asbestos
+    {
+        .article-colorized (@color-asbestos)
+    }
+}
+
+.article-colorized (@color, @header-color: @color, @headline-color: @header-color)
+{
+    .article-header
+    {
+        h1, h2, h3, h4, h5, h6
+        {
+            color: @headline-color;
+        }
+    }
+
+    .article-detail
+    {
+        .article-author-name
+        {
+            a {
+                color: @color !important;
+
+                &:hover, &:focus {
+                    color: darken(@color, 10%) !important;
+                }
+                &:visited {
+                    color: darken(@color, 5%) !important;
+                }
+            }
+        }
+
+        .article-channel-name
+        {
+            color: @color !important;
+        }
+    }
+
+    .article-detail,
+    .article-body
+    {
+        h1, h2, h3, h4, h5, h6
+        {
+            color: @header-color;
+        }
+
+        a {
+            color: @color;
+
+            &:hover, &:focus {
+                color: darken(@color, 10%);
+            }
+            &:visited {
+                color: darken(@color, 5%);
+            }
+        }
+    }
+}

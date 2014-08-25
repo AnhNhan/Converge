@@ -1,0 +1,8 @@
+{
+    "name": "newsroom-pck",
+    "type": "css",
+    "contents": [
+        "application-newsroom-core",
+        "application-newsroom-color"
+    ]
+}

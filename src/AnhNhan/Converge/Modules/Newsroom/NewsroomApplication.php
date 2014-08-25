@@ -37,10 +37,10 @@ final class NewsroomApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $url = trim($request->getPathInfo(), "/ ");
-        switch ($url) {
-            case "markup/test":
-                $controller = new Controllers\MarkupTestingController($this);
+        $routeName = $request->attributes->get("route-name");
+        switch ($routeName) {
+            case "article-display-test":
+                $controller = new Controllers\DisplayTest($this);
                 break;
         }
         return $controller;
