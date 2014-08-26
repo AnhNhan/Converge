@@ -4,6 +4,9 @@
 
 .form.form-dual-column {
     .form-control-label {
+        // Font size (1em) * Font Height (1.42) * (2 * Padding (5 / 14) * Font Size (14)) = 30px
+        height: (unit(@fontBaseLine, 'em') + 2 * @form-control-element-padding);
+
         @media screen and (max-width: @breakPointTablet) {
 
         }
