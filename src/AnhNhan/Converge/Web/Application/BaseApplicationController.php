@@ -1,6 +1,8 @@
 <?php
 namespace AnhNhan\Converge\Web\Application;
 
+use AnhNhan\Converge\Web\Application\HtmlPayload;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -70,6 +72,25 @@ abstract class BaseApplicationController
      * @return AnhNhan\Converge\Web\HttpPayload|Symfony\Component\HttpFoundation\Response
      */
     abstract public function handle();
+
+    final protected function payload_html()
+    {
+        $payload = new HtmlPayload;
+        $payload->setResMgr($this->resMgr);
+
+        $user = $this->user;
+        if ($user && is_object($user))
+        {
+            $payload->setUserDetails([
+                'uid'        => $user->uid,
+                'username'   => $user->name,
+                'canon_name' => $user->canonical_name,
+                'image_path' => $user->getGravatarImagePath(40),
+            ]);
+        }
+
+        return $payload;
+    }
 
 
     // Magic properties :)
