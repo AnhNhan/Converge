@@ -2,9 +2,19 @@
 
 function to_canonical($name)
 {
+    return phutil_utf8_strtolower(canonical_replace($name));
+}
+
+/// UTF-8 aware transformation into canonical strings
+function canonical_replace($str)
+{
     // Also replace underscores explicitly, they usually are considered
     // towards the alphanumerical characters.
-    return strtolower(preg_replace('/[\\W_]/', '', $name));
+    // We disallow any multibyte characters - we may exempt certain character
+    // ranges like CJK and arabian characters later on by white-listing them.
+    $_str = phutil_utf8v($str);
+    $callback = function ($x) { return strlen($x) == 1 && !preg_match('/[\\W_]/', $x); };
+    return implode('', array_filter($_str, $callback));
 }
 
 function group($list, callable $predicate)

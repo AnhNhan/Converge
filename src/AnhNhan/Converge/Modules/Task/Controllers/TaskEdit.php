@@ -83,7 +83,7 @@ final class TaskEdit extends AbstractTaskController
             }
             else if (strlen($task_label_canonical) < 3)
             {
-                $errors[] = 'Label is too short to be of any significance.';
+                $errors[] = cv\hsprintf('Label is too short to be of any significance (we only understand it as \'<em>%s</em>\').', $task_label_canonical);
             }
 
             if (!isset($priorities[$task_priority]))
