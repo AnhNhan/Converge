@@ -45,4 +45,9 @@ final class NewsroomApplication extends BaseApplication
         }
         return $controller;
     }
+
+    protected function buildEntityManager($dbConfig)
+    {
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+    }
 }
