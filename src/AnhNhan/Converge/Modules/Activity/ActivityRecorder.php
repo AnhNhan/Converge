@@ -58,6 +58,7 @@ abstract class ActivityRecorder
 
         array_map([$this->entity_manager, 'persist'], $activities);
         $flush and $this->entity_manager->flush();
+        return $activities;
     }
 
     final public function flush()
