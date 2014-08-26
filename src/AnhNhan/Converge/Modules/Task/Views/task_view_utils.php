@@ -91,13 +91,13 @@ function render_task(Task $task)
     $mid_container = new PropertyList;
     $midriff->push($button_container);
     $midriff->push($mid_container);
+    $midriff->push(cv\ht('span')->addClass('clearfix'));
 
     $assigned_linked = array_map('phutil_safe_html', array_map('strong', array_map('link_user', mpull($task->assigned, 'user'))));
 
     $mid_container
         ->addEntry('Priority', $task->priority->label)
         ->addEntry('Assigned to', $assigned_linked ? cv\safeHtml(phutil_implode_html(', ', $assigned_linked)) : span('muted', 'up for grabs'))
-        ->addEntry('Last activity', $task->modifiedAt->format("D, d M 'y"))
     ;
 
     return $panel;
