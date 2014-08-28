@@ -27,6 +27,13 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
  */
 final class RoleEditController extends AbstractUserController
 {
+    public function requiredUserRoles($request)
+    {
+        return [
+            'ROLE_USER',
+        ];
+    }
+
     public function handle()
     {
         $request = $this->request;

@@ -23,6 +23,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 final class PostEditController extends AbstractForumController
 {
+    public function requiredUserRoles($request)
+    {
+        return [
+            'ROLE_USER',
+        ];
+    }
+
     public function handle()
     {
         $request = $this->request;

@@ -19,6 +19,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 final class TaskComment extends AbstractTaskController
 {
+    public function requiredUserRoles($request)
+    {
+        return [
+            'ROLE_USER',
+        ];
+    }
+
     public function handle()
     {
         $request = $this->request();

@@ -8,6 +8,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 final class UserLogout extends AbstractUserController
 {
+    public function requiredUserRoles($request)
+    {
+        return [
+            'ROLE_USER',
+        ];
+    }
+
     public function handle()
     {
         $this->app->getService('session')->invalidate();
