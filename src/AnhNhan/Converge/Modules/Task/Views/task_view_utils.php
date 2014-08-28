@@ -62,7 +62,7 @@ function task_listing_add_object(Listing $listing, Task $task)
     $listing->addObject($object);
 }
 
-function render_task(Task $task)
+function render_task(Task $task, $authenticated)
 {
     $completed_msg = $task->completed
         ? cv\icon_ion('completed', 'checkmark', false)
@@ -89,7 +89,7 @@ function render_task(Task $task)
 
     $midriff = $panel->midriff();
     $mid_container = new PropertyList;
-    $midriff->push($button_container);
+    $authenticated and $midriff->push($button_container);
     $midriff->push($mid_container);
     $midriff->push(cv\ht('span')->addClass('clearfix'));
 

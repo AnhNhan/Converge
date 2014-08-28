@@ -20,6 +20,7 @@ final class TaskDisplay extends AbstractTaskController
     public function handle()
     {
         $request = $this->request;
+        $user_authenticated = $this->isGranted('ROLE_USER');
         $query = $this->buildQuery();
 
         $task = head($query->retrieveTasksForCanonicalLabelsWithXacts([$request->get('id')]));
@@ -60,7 +61,7 @@ final class TaskDisplay extends AbstractTaskController
         $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
 
         $container = new MarkupContainer;
-        $task_panel = render_task($task);
+        $task_panel = render_task($task, $user_authenticated);
         if ($task->description)
         {
             $desc = MarkupEngine::fastParse($task->description, $custom_rules);
@@ -91,7 +92,6 @@ final class TaskDisplay extends AbstractTaskController
             ->setDualColumnMode(false)
             ->append($comment_grid)
         ;
-        $container->push($comment_form);
         $comment_row->column(6)
             ->push(
                 form_textareacontrol(h2('Comment'), 'comment')
@@ -105,6 +105,15 @@ final class TaskDisplay extends AbstractTaskController
             ->push(h2('Preview'))
             ->push(cv\ht('div', 'Foo')->addClass('markup-preview-output'))
         ;
+        if ($user_authenticated)
+        {
+            $container->push($comment_form);
+        }
+        else
+        {
+            $container->push(h2('Comment'));
+            $container->push(div('objects-list-empty-message', 'You have to be logged in to comment.'));
+        }
 
         $this->app->getService('resource_manager')
             ->requireCss('application-diff')

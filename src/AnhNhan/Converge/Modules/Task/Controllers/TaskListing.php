@@ -58,7 +58,7 @@ final class TaskListing extends AbstractTaskController
             "style" => "float: right;",
         )));
         // Add link to create new task
-        $container->unshift(cv\ht("a", "create new task", array(
+        $this->isGranted('ROLE_USER') and $container->unshift(cv\ht("a", "create new task", array(
             "href"  => "/task/create",
             "class" => "btn btn-primary",
             "style" => "float: right;",

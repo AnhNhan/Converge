@@ -89,6 +89,16 @@ abstract class BaseApplicationController
         return true;
     }
 
+    final protected function isGranted($attributes, $object = null)
+    {
+        $security_context = $this->app->getService('security.context');
+        if (!$security_context->getToken())
+        {
+            return false;
+        }
+        return $security_context->isGranted($attributes, $object);
+    }
+
     final public function doProcessing()
     {
         $request = $this->request;
