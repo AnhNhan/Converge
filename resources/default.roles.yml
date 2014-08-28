@@ -11,15 +11,15 @@ roles:
 
   ROLE_BANNED_SHADOW:
     label: Inhabitants of sunny shadows
-    description: "May do stuff as regular, though may the sun overshadow his shadowy intents. May post as normal, but his actions are not visible to anybody else under the sun. Use this on idiots."
+    description: "May do things like nothing happened, though may the sun overshadow his shadowy intents. May post as normal, but his actions are not visible to anybody else under the sun. Use this on idiots."
 
   ROLE_BANNED_IN_PYONGYANG:
     label: Banned from /r/pyongyang
-    description: "They dared to upset our supreme leader! No idea what to do with them, current it's just for decoration."
+    description: "They dared to upset our supreme leader! No idea what to do with them, currently it's just for decoration."
 
   ROLE_MODERATOR:
     label: Moderator
-    description: "He may do some stuff like censor posts, but not mess around with stuff (or see meaningful internals)."
+    description: "Upkeeper of peace. He may do certain things like censor posts, but not mess around with things (or see meaningful internals)."
 
   ROLE_ADMIN:
     label: Administrator
@@ -27,7 +27,7 @@ roles:
 
   ROLE_LEVEL7:
     label: Staff member
-    description: "Member of Apex Studios, Local Haole or Brokenline Studios (did I spell that one right?). Welcome to S.H.I.E.L.D., where we are gonna rule the world!"
+    description: "Member of Apex Studios, Local Haole or Brokenline Studios. Welcome to S.H.I.E.L.D., where we are gonna rule the world!"
 
   ROLE_DEV:
     label: (Co-)Developer
