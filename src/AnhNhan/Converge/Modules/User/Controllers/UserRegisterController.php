@@ -65,22 +65,19 @@ final class UserRegisterController extends AbstractUserController
             }
 
             $em = $this->app->getEntityManager();
-            //if (!$errors)
-            //{
-                $query = new UserQuery($em);
+            $query = new UserQuery($em);
 
-                $_user  = $query->retrieveUsersForCanonicalNames([$canon_name], 1);
-                $_email = $query->retrieveEmailsForNames([$email], 1);
+            $_user  = $query->retrieveUsersForCanonicalNames([$canon_name], 1);
+            $_email = $query->retrieveEmailsForNames([$email], 1);
 
-                if ($_user)
-                {
-                    $errors[] = "A user with a similar name already exists.";
-                }
-                if ($_email)
-                {
-                    $errors[] = "Another user already has this email occupied.";
-                }
-            //}
+            if ($_user)
+            {
+                $errors[] = "A user with a similar name already exists.";
+            }
+            if ($_email)
+            {
+                $errors[] = "Another user already has this email occupied.";
+            }
 
             // Simple pw constraint - don't make it too elaborate
             if (strlen($password) < 6)
