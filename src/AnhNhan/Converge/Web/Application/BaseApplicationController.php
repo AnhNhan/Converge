@@ -58,6 +58,46 @@ abstract class BaseApplicationController
         return $this;
     }
 
+    public function requiredUserRoles($request)
+    {
+        return [];
+    }
+
+    private function checkUserRoles($user = null, array $required_roles)
+    {
+        if (!$user)
+        {
+            throw new \Exception('You need to be logged in to view this page!');
+        }
+
+        $roles = $user->roles;
+        $not_included = [];
+        // Using pull here and all later, so we can construct error messages
+        $result = pull($required_roles, function ($role) use ($roles, &$not_included) {
+            $result = isset($roles[$role]);
+            if (!$result)
+            {
+                $not_included[] = $role;
+            }
+            return $result;
+        });
+        if (!all($result))
+        {
+            throw new \Exception('You require the following roles: ' . implode(', ', $not_included));
+        }
+
+        return true;
+    }
+
+    final public function doProcessing()
+    {
+        $request = $this->request;
+        $required_roles = $this->requiredUserRoles($request);
+        $required_roles and $this->checkUserRoles($this->user, $required_roles);
+
+        return $this->process();
+    }
+
     /**
      * Override this method if you want to handle multiple types of data
      *

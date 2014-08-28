@@ -105,11 +105,11 @@ final class HttpKernel implements HttpKernelInterface
         $controller = $app->routeToController($request);
 
         if ($controller) {
-            $event = new FilterControllerEvent($this, array($controller, 'process'), $request, $type);
+            $event = new FilterControllerEvent($this, array($controller, 'doProcessing'), $request, $type);
             $this->dispatcher->dispatch(KernelEvents::CONTROLLER, $event);
             $controller = $event->getController();
 
-            if (!is_object($controller) && is_callable($controller) && is_array($controller) && is_object(idx($controller, 0)) && idx($controller, 1) == 'process') {
+            if (!is_object($controller) && is_callable($controller) && is_array($controller) && is_object(idx($controller, 0)) && idx($controller, 1) == 'doProcessing') {
                 // It's our lovely controllers!
                 $controller = $controller[0];
             }
@@ -119,7 +119,7 @@ final class HttpKernel implements HttpKernelInterface
                     "handle controllers of type '" . get_class($controller) . "'.");
             }
 
-            $payload = $controller->setRequestStack($this->request_stack)->process();
+            $payload = $controller->setRequestStack($this->request_stack)->doProcessing();
         } else {
             return $this->create404Response($request, $type);
         }

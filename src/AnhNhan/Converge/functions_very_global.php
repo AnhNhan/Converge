@@ -44,3 +44,39 @@ function pull($list, callable $value_predicate)
     }
     return $result;
 }
+
+function all($list, callable $bool_predicate = null)
+{
+    if (!$bool_predicate)
+    {
+        $bool_predicate = 'id';
+    }
+
+    foreach ($list as $key => $value)
+    {
+        if (!$bool_predicate($value, $key))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function any($list, callable $bool_predicate = null)
+{
+    if (!$bool_predicate)
+    {
+        $bool_predicate = 'id';
+    }
+
+    foreach ($list as $key => $value)
+    {
+        if ($bool_predicate($value, $key))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
