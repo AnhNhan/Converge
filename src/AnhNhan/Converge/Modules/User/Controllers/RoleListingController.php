@@ -19,6 +19,7 @@ final class RoleListingController extends AbstractUserController
     public function handle()
     {
         $request = $this->request;
+        $user_authenticated = $this->isGranted('ROLE_USER');
 
         $container = new MarkupContainer;
 
@@ -27,7 +28,7 @@ final class RoleListingController extends AbstractUserController
             ->retrieveRoles()
         ;
 
-        $container->push(Converge\ht("a", "Create new role", array(
+        $user_authenticated and $container->push(Converge\ht("a", "Create new role", array(
             "href"  => "/role/create",
             "class" => "btn btn-primary pull-right",
         )));
@@ -45,14 +46,12 @@ final class RoleListingController extends AbstractUserController
                 ->push(Converge\ht("h3", $role->label)
                     ->append(Converge\ht("small", " " . $role->name))
                 )
-                ->parentRow()
-                ->column(2)
-                ->push(
-                    Converge\ht("a", Converge\icon_ion("edit", "edit"))
-                        ->addClass("btn btn-default btn-small pull-right")
-                        ->addOption("href", "role/{$role->cleanId}/edit")
-                )
             ;
+            $user_authenticated and $headerRow->column(2)->push(
+                Converge\ht("a", Converge\icon_ion("edit", "edit"))
+                    ->addClass("btn btn-default btn-small pull-right")
+                    ->addOption("href", "role/{$role->cleanId}/edit")
+            );
 
             $row->column(4)->push(
                 id(new Panel)
