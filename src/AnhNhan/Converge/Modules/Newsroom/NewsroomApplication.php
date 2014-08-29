@@ -42,6 +42,9 @@ final class NewsroomApplication extends BaseApplication
             case "article-display-test":
                 $controller = new Controllers\DisplayTest($this);
                 break;
+            case "channel-edit":
+                $controller = new Controllers\ChannelEdit($this);
+                break;
         }
         return $controller;
     }

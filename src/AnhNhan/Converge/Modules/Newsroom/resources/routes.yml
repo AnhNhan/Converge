@@ -4,8 +4,13 @@ routes:
   - pattern: a/test
     route-name: article-display-test
 
-  - pattern: a/:id
+  - pattern: a/:channel/:id
     route-name: article-display
 
   - pattern: newsroom/
     route-name: article-listing
+
+  - pattern: channel/create
+    route-name: channel-edit
+  - pattern: channel/:channel/edit
+    route-name: channel-edit
