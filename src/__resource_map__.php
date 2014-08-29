@@ -48,8 +48,8 @@ return array(
     "application-newsroom-color" => array(
       "name" => "application-newsroom-color",
       "path" => "application/newsroom/color.less",
-      "hash" => "4dc6f4ad9d7ff312dfd9786c7aa917ea",
-      "orig" => "25690896c32c37801c0bfa8d8acebafd",
+      "hash" => "92fe0a6dc76b094959f39284afe7dea5",
+      "orig" => "f13908458b6043d64f077bfea61c63c2",
     ),
     "application-newsroom-core" => array(
       "name" => "application-newsroom-core",
@@ -210,8 +210,8 @@ return array(
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "3c1d8411cebfe0837be2f34917faed84",
-      "orig" => "d68f67b7f25ca7e87818737ff4da059b",
+      "hash" => "7a109918b6e3d249c52c766ce2e55a6b",
+      "orig" => "6d231a7ef0e42bd5f7e9208cb586fb34",
     ),
     "layout-bs-button-groups" => array(
       "name" => "layout-bs-button-groups",
@@ -602,7 +602,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "7p566wow",
+      "hash" => "ufuiiiui",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -682,13 +682,13 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "d3feec0695a06bb48d7912940461504a",
+      "hash" => "4ee2e31b932e52fc19916b6e3c00f197",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
         "application-tag-core" => "54cbe9cd887e86f2d66878b5ed1c50fc",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
-        "layout-boilerplate" => "3c1d8411cebfe0837be2f34917faed84",
+        "layout-boilerplate" => "7a109918b6e3d249c52c766ce2e55a6b",
         "layout-core" => "0a783c343a70f5e879e0c9f54832f68e",
         "layout-fancy-text-shadows" => "721b79af3e950d44e42a462c588e232d",
         "layout-form" => "a828edca63442ace40c892a42cc4bf63",
@@ -705,10 +705,10 @@ return array(
     "newsroom-pck" => array(
       "name" => "newsroom-pck",
       "type" => "css",
-      "hash" => "6b532cf3123e5a71b10fa1846aed6a52",
+      "hash" => "c8493cc4cc83cb65391f3f5924e667e1",
       "contents" => array(
         "application-newsroom-core" => "b661dac3432f067f46c287066c00cc12",
-        "application-newsroom-color" => "4dc6f4ad9d7ff312dfd9786c7aa917ea",
+        "application-newsroom-color" => "92fe0a6dc76b094959f39284afe7dea5",
       ),
     ),
     "libs-pck" => array(
