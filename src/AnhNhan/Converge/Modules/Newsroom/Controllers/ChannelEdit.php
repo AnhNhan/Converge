@@ -74,7 +74,7 @@ final class ChannelEdit extends ChannelController
                 $e_slug = 'Should not be empty';
             }
 
-            $exist_object = head($query->searchChannels([$e_slug]));
+            $exist_object = head($query->searchChannels([$channel_slug]));
             if ($exist_object)
             {
                 $errors[] = 'Channel with slug already exists';
