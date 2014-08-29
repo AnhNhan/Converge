@@ -19,9 +19,7 @@ abstract class ChannelController extends NewsroomController
     {
         if ($channel_id = $request->request->get('channel'))
         {
-            $channel = $query->searchChannels([$channel_id]);
-
-            $channel = idx($channel, 0);
+            $channel = head($query->searchChannels([$channel_id]));
         } else
         {
             $channel = new Channel;
