@@ -3,7 +3,6 @@ namespace AnhNhan\Converge\Modules\Task\Controllers;
 
 use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
@@ -12,13 +11,7 @@ use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 
-use AnhNhan\Converge\Views\Form\FormView;
 use AnhNhan\Converge\Views\Form\Controls\SelectControl;
-use AnhNhan\Converge\Views\Form\Controls\SubmitControl;
-use AnhNhan\Converge\Views\Form\Controls\TextAreaControl;
-use AnhNhan\Converge\Views\Form\Controls\TextControl;
-use AnhNhan\Converge\Views\Grid\Grid;
-use AnhNhan\Converge\Views\Panel\Panel;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -55,6 +48,11 @@ final class TaskEdit extends AbstractTaskController
 
         $errors = [];
 
+        $e_label = null;
+        $e_assigned = null;
+        $e_status = null;
+        $e_priority = null;
+
         $assigned = mpull($task->assigned, 'user');
 
         $task_uid = $task->uid;
@@ -87,20 +85,24 @@ final class TaskEdit extends AbstractTaskController
             if (!strlen($task_label))
             {
                 $errors[] = 'We require a descriptive label';
+                $e_label = 'we really need this';
             }
             else if (strlen($task_label_canonical) < 3)
             {
                 $errors[] = cv\hsprintf('Label is too short to be of any significance (we only understand it as \'<em>%s</em>\').', $task_label_canonical);
+                $e_label = 'yeah, if you\'d add a little bit more content, that would be great';
             }
 
             if (!isset($priorities[$task_priority]))
             {
-                $errors[] = 'Invalid task priority';
+                $e_priority = 'invalid task priority';
+                $errors[] = cv\hsprintf('The given priority \'<em>%s</em>\' is invalid', $task_priority);
             }
 
             if (!isset($statuses[$task_status]))
             {
-                $errors[] = 'Invalid task status';
+                $e_status = 'invalid task status';
+                $errors[] = cv\hsprintf('The given status \'<em>%s</em>\' is invalid', $task_status);
             }
 
             $task_assigned_objects = $user_query->retrieveUsersForCanonicalNames($task_assigned);
@@ -114,6 +116,7 @@ final class TaskEdit extends AbstractTaskController
                         array_diff($task_assigned, mpull($task_assigned_objects, 'canonical_name'))
                     ))
                 );
+                $e_assigned = 'contains imaginary users';
             }
 
             if (!$errors)
@@ -199,8 +202,7 @@ final class TaskEdit extends AbstractTaskController
         form_rendering:
 
         if ($errors) {
-            $panel = id(new Panel)
-                ->setHeader(cv\ht('h2', 'Sorry, there had been an error'))
+            $panel = panel(h2('Sorry, there had been an error'))
                 ->append(cv\ht('p', 'We can\'t continue until these issue(s) have been resolved:'))
             ;
             $list = cv\ht('ul');
@@ -215,6 +217,7 @@ final class TaskEdit extends AbstractTaskController
             ->setLabel('Priority')
             ->setName('priority')
             ->setSelected($task_priority)
+            ->setError($e_priority)
         ;
         foreach ($priorities as $priority)
         {
@@ -228,6 +231,7 @@ final class TaskEdit extends AbstractTaskController
             ->setLabel('Status')
             ->setName('status')
             ->setSelected($task_status)
+            ->setError($e_status)
         ;
         foreach ($statuses as $status)
         {
@@ -239,40 +243,25 @@ final class TaskEdit extends AbstractTaskController
 
         $page_title = $task_uid ? "Edit task '{$task_label}'" : 'Create a new task';
 
-        $form = id(new FormView)
-            ->setTitle($page_title)
-            ->setAction($request->getPathInfo())
-            ->setMethod('POST')
-            ->append(id(new TextControl)
-                ->setLabel('Label')
-                ->setName('label')
-                ->setValue($task_label))
-            ->append(id(new TextControl)
-                ->setLabel('Assigned to')
-                ->setName('assigned')
-                ->setHelp('comma separated list')
-                ->setValue(implode(', ', $task_assigned)))
+        $form = form($page_title, $request->getPathInfo(), 'POST')
+            ->append(form_textcontrol('Label', 'label', $task_label)->setError($e_label))
+            ->append(form_textcontrol('Assigned to', 'assigned', implode(', ', $task_assigned))
+                ->setHelp('comma separated list; optional')
+                ->setError($e_assigned))
             ->append($priority_control)
             ->append($status_control)
-            ->append(id(new TextAreaControl)
-                ->setLabel('Description')
-                ->setName('description')
+            ->append(form_textareacontrol('Description', 'description', $task_description)
                 ->setHelp('optional')
-                ->setValue($task_description)
-                ->addClass('forum-markup-processing-form')
-            )
-            ->append(id(new SubmitControl)
-                ->addCancelButton($task_uid ? 'task/' . $task->label_canonical : '/task/')
-                ->addSubmitButton('Hasta la vista!')
-            )
-            ->append(cv\ht('div', 'Foo')->addClass('markup-preview-output'))
+                ->addClass('forum-markup-processing-form'))
+            ->append(form_submitcontrol($task_uid ? 'task/' . $task->label_canonical : '/task/', 'Hasta la vista!'))
+            ->append(div('markup-preview-output', 'Foo'))
         ;
         $container->push($form);
 
         $this->app->getService('resource_manager')
             ->requireJs('application-forum-markup-preview');
 
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html;
         $payload->setTitle($page_title);
         $payload->setPayloadContents($container);
         return $payload;
