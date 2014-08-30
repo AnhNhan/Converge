@@ -61,16 +61,25 @@ EOT
         ));
 
         $container->push(cv\safeHtml('<style>
-.cv-side-navbar
+@media screen and (min-width: 1000px)
 {
-    display: none;
+    .wrapper
+    {
+        width: 65%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
-
-.wrapper
+@media screen and (min-width: 800px)
 {
-    margin-left: auto;
-    width: 65%;
-    max-width: 1200px;
+    .wrapper
+    {
+        width: 85%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 </style>'));
 
