@@ -303,6 +303,14 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/ChannelEdit.php",
       "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController",
     ),
+    "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/DMADisplay.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/DMAEdit.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
+    ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/NewsroomController.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -328,6 +336,23 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Query/ArticleQuery.php",
       "deriv" => "AnhNhan\Converge\Storage\Query",
     ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\Article" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/Article.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleAuthor" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/ArticleAuthor.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/ArticleTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+      "abstr" => "1",
+    ),
     "AnhNhan\Converge\Modules\Newsroom\Storage\Channel" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/Channel.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
@@ -339,9 +364,26 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/ChannelTransaction.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/DMArticleTransaction.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/DumbMarkdownArticle.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Transaction/ArticleEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+      "abstr" => "1",
+    ),
     "AnhNhan\Converge\Modules\Newsroom\Transaction\ChannelEditor" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Transaction/ChannelEditor.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Transaction/DMAEditor.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "file" => "AnhNhan/Converge/Modules/Search/Controllers/Autocomplete.php",
@@ -664,6 +706,10 @@ return array(
     "AnhNhan\Converge\Modules\User\Views\UserPlateView" => array(
       "file" => "AnhNhan/Converge/Modules/User/Views/UserPlateView.php",
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
+    ),
+    "AnhNhan\Converge\Storage\Doctrine\JSONSerializedType" => array(
+      "file" => "AnhNhan/Converge/Storage/Doctrine/JSONSerializedType.php",
+      "deriv" => "Doctrine\DBAL\Types\Type",
     ),
     "AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator" => array(
       "file" => "AnhNhan/Converge/Storage/Doctrine/LifeCycleUIDGenerator.php",
@@ -1016,6 +1062,8 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleAuthor",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Channel",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
@@ -1027,8 +1075,10 @@ return array(
       "AnhNhan\Converge\Modules\User\Storage\Role",
       "AnhNhan\Converge\Modules\User\Storage\User",
       "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction",
       "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
@@ -1069,6 +1119,7 @@ return array(
     "AnhNhan\Converge\Storage\Transaction\TransactionEntity" => array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction",
       "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
@@ -1076,10 +1127,12 @@ return array(
       "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
       "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
       "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction",
     ),
     "AnhNhan\Converge\Storage\Transaction\TransactionEditor" => array(
       "AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor",
       "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor",
+      "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor",
       "AnhNhan\Converge\Modules\Newsroom\Transaction\ChannelEditor",
       "AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor",
       "AnhNhan\Converge\Modules\Task\Transaction\TaskEditor",
@@ -1087,6 +1140,7 @@ return array(
       "AnhNhan\Converge\Modules\Task\Transaction\TaskStatusEditor",
       "AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor",
       "AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor",
+      "AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor",
     ),
     "League\Fractal\TransformerAbstract" => array(
       "AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer",
@@ -1182,10 +1236,25 @@ return array(
     "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController",
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay",
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController" => array(
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay",
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction" => array(
+      "AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\Article" => array(
+      "AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor" => array(
+      "AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
@@ -1234,6 +1303,9 @@ return array(
     "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
       "AnhNhan\Converge\Modules\User\Providers\UserAuthenticationProvider",
     ),
+    "Doctrine\DBAL\Types\Type" => array(
+      "AnhNhan\Converge\Storage\Doctrine\JSONSerializedType",
+    ),
     "Doctrine\ORM\Id\AbstractIdGenerator" => array(
       "AnhNhan\Converge\Storage\Doctrine\UIDGenerator",
     ),
@@ -1271,6 +1343,7 @@ return array(
     "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface" => array(
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Channel",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
