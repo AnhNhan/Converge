@@ -60,31 +60,9 @@ final class DisplayTest extends ArticleController
 EOT
         ));
 
-        $container->push(cv\safeHtml('<style>
-@media screen and (min-width: 1000px)
-{
-    .wrapper
-    {
-        width: 65%;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-@media screen and (min-width: 800px)
-{
-    .wrapper
-    {
-        width: 85%;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-</style>'));
-
         $this->resMgr
             ->requireCss('newsroom-pck')
+            ->requireCss('application-newsroom-article-page')
         ;
 
         return $payload;

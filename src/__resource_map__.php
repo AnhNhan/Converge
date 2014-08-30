@@ -45,6 +45,12 @@ return array(
       "hash" => "075a7e6efa77ffa40099877dcccfaf3a",
       "orig" => "a183408fb0ea9e5ff1fa81209aaf15b1",
     ),
+    "application-newsroom-article-page" => array(
+      "name" => "application-newsroom-article-page",
+      "path" => "application/newsroom/article-page.less",
+      "hash" => "720e01ee5ea99310d1ae4474167d541a",
+      "orig" => "56c145f94954e3a5fad9e04fb55d7d47",
+    ),
     "application-newsroom-color" => array(
       "name" => "application-newsroom-color",
       "path" => "application/newsroom/color.less",
@@ -602,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "7rimp6tx",
+      "hash" => "pzu72iee",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
