@@ -795,10 +795,6 @@ return array(
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
       "abstr" => "1",
     ),
-    "AnhNhan\Converge\Views\Page\SideNavBar" => array(
-      "file" => "AnhNhan/Converge/Views/Page/SideNavBar.php",
-      "deriv" => "AnhNhan\Converge\Views\AbstractView",
-    ),
     "AnhNhan\Converge\Views\Panel\Panel" => array(
       "file" => "AnhNhan/Converge/Views/Panel/Panel.php",
       "deriv" => "AnhNhan\Converge\Views\AbstractView",
@@ -1117,7 +1113,6 @@ return array(
       "AnhNhan\Converge\Views\Page\HeaderView",
       "AnhNhan\Converge\Views\Page\HtmlDocumentView",
       "AnhNhan\Converge\Views\Page\PageView",
-      "AnhNhan\Converge\Views\Page\SideNavBar",
       "AnhNhan\Converge\Views\Panel\Panel",
       "AnhNhan\Converge\Views\Property\Entry",
       "AnhNhan\Converge\Views\Property\PropertyList",
