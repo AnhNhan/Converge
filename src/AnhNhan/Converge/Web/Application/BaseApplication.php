@@ -5,6 +5,7 @@ use AnhNhan\Converge;
 use AnhNhan\Converge\Modules\Symbols\SymbolLoader;
 use YamwLibs\Libs\Routing\Route;
 
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 
@@ -211,7 +212,22 @@ abstract class BaseApplication
         $eventManager = new \Doctrine\Common\EventManager;
         $eventManager->addEventSubscriber(new \AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator);
 
-        return EntityManager::create($dbConfig, $config, $eventManager);
+        self::initialize_doctrine_types();
+        $entityManager = EntityManager::create($dbConfig, $config, $eventManager);
+        $entityManager->getConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('json_object_array', 'json_object_array');
+        return $entityManager;
+    }
+
+    private static $initialized_doctrine_types = false;
+
+    private static function initialize_doctrine_types()
+    {
+        if (!self::$initialized_doctrine_types)
+        {
+            Type::addType('json_object_array', 'AnhNhan\Converge\Storage\Doctrine\JSONSerializedType');
+
+            self::$initialized_doctrine_types = true;
+        }
     }
 
     /**
