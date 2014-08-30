@@ -25,7 +25,7 @@ final class UserLoginForm extends AbstractUserController
         $payload->setPayloadContents($container);
         $request = $this->request;
 
-        $referer = preg_replace('@http[s]?://.*?/@i', '', idx($_SERVER, 'HTTP_REFERER', '/'));
+        $referer = preg_replace('@http[s]?://.*?/@i', '', idx($_SERVER, 'HTTP_REFERER', '/')) ?: '/';
         $return_url = $request->get('return_to', $referer);
 
         $username = '';
