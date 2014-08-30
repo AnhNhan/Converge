@@ -44,6 +44,10 @@ class SelectControl extends AbstractFormControl
             {
                 $option->addOption('value', $value);
             }
+            if ($class = idx($entry, 'class'))
+            {
+                $option->addClass($class);
+            }
             if ($this->selected)
             {
                 if ($value == $this->selected)
