@@ -38,9 +38,18 @@ final class NewsroomApplication extends BaseApplication
     public function routeToController(Request $request)
     {
         $routeName = $request->attributes->get("route-name");
+        $controller = null;
         switch ($routeName) {
             case "article-display-test":
                 $controller = new Controllers\DisplayTest($this);
+                break;
+            case "article-edit":
+                // TODO: Dispatch by article type
+                $controller = new Controllers\DMAEdit($this);
+                break;
+            case "article-display":
+                // TODO: Dispatch by article type
+                $controller = new Controllers\DMADisplay($this);
                 break;
             case "channel-edit":
                 $controller = new Controllers\ChannelEdit($this);
