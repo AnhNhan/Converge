@@ -8,4 +8,9 @@ use AnhNhan\Converge\Web\Application\BaseApplicationController;
  */
 abstract class NewsroomController extends BaseApplicationController
 {
+    final protected function buildArticleQuery()
+    {
+        $query = new ArticleQuery($this->app);
+        return $query;
+    }
 }

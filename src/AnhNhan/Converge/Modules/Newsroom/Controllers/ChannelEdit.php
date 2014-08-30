@@ -27,7 +27,7 @@ final class ChannelEdit extends ChannelController
     {
         $request = $this->request;
         $requestMethod = $request->getMethod();
-        $query = $this->buildQuery();
+        $query = $this->buildArticleQuery();
 
         $channel = $this->retrieveChannelObject($request, $query);
         if (!$channel)
