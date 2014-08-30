@@ -6,6 +6,11 @@ use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Views\Grid\Grid;
 use AnhNhan\Converge\Views\Panel\Panel;
 
+function nbsp()
+{
+    return cv\safeHtml('&nbsp;');
+}
+
 function grid()
 {
     return new Grid;
