@@ -28,6 +28,11 @@ class HeaderView extends AbstractView
             $header_content
                 ->append(
                     div('nav-action')
+                        ->append(a(cv\icon_ion('', 'paper-airplane'), 'newsroom/')
+                            ->addClass('btn btn-default')
+                            ->addOption('data-toggle', 'tooltip-bottom')
+                            ->addOption('title', 'newsroom')
+                        )
                         ->append(a(cv\icon_ion('', 'ios7-partlysunny'), 'activity/')
                             ->addClass('btn btn-default')
                             ->addOption('data-toggle', 'tooltip-bottom')
@@ -66,7 +71,7 @@ class HeaderView extends AbstractView
                         )
                 )
                 ->append(
-                    div('nav-stats dev-only')
+                    div('nav-stats dev-only hidden-phone')
                         ->append(
                             span('stat-entry', cv\icon_ion('{{time}}', 'ios7-timer-outline'))
                         )
