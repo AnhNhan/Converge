@@ -17,6 +17,7 @@ abstract class ArticleEditor extends TransactionEditor
 
         $types[] = ArticleTransaction::TYPE_EDIT_TITLE;
         $types[] = ArticleTransaction::TYPE_EDIT_CHANNEL;
+        $types[] = ArticleTransaction::TYPE_EDIT_BYLINE;
         $types[] = ArticleTransaction::TYPE_ADD_AUTHOR;
         $types[] = ArticleTransaction::TYPE_DEL_AUTHOR;
 
@@ -30,6 +31,8 @@ abstract class ArticleEditor extends TransactionEditor
                 return null;
             case ArticleTransaction::TYPE_EDIT_TITLE:
                 return $entity->title();
+            case ArticleTransaction::TYPE_EDIT_BYLINE:
+                return $entity->byline();
             case ArticleTransaction::TYPE_EDIT_CHANNEL:
                 return $entity->channel() ? $entity->channel()->uid : null;
             case ArticleTransaction::TYPE_ADD_AUTHOR:
@@ -44,6 +47,7 @@ abstract class ArticleEditor extends TransactionEditor
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
             case ArticleTransaction::TYPE_EDIT_TITLE:
+            case ArticleTransaction::TYPE_EDIT_BYLINE:
             case ArticleTransaction::TYPE_EDIT_CHANNEL:
             case ArticleTransaction::TYPE_ADD_AUTHOR:
                 return $transaction->newValue;
@@ -60,6 +64,9 @@ abstract class ArticleEditor extends TransactionEditor
                 break;
             case ArticleTransaction::TYPE_EDIT_TITLE:
                 $this->setPropertyPerReflection($entity, 'title', $transaction->newValue);
+                break;
+            case ArticleTransaction::TYPE_EDIT_BYLINE:
+                $this->setPropertyPerReflection($entity, 'byline', $transaction->newValue);
                 break;
             case ArticleTransaction::TYPE_EDIT_CHANNEL:
                 $this->setPropertyPerReflection($entity, 'channel', $transaction->newValue);

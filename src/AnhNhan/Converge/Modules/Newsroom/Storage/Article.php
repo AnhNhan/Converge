@@ -36,6 +36,11 @@ abstract class Article extends EntityDefinition implements TransactionAwareEntit
     protected $slug;
 
     /**
+     * @Column(type="string")
+     */
+    protected $byline;
+
+    /**
      * @ManyToOne(targetEntity="Channel", fetch="EAGER")
      *
      * @var Channel
@@ -85,6 +90,11 @@ abstract class Article extends EntityDefinition implements TransactionAwareEntit
     public function slug()
     {
         return $this->slug;
+    }
+
+    public function byline()
+    {
+        return $this->byline;
     }
 
     public function channel()

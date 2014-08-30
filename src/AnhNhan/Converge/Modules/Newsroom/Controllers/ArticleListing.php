@@ -66,13 +66,14 @@ final class ArticleListing extends ArticleController
                     ->setId($article->uid)
                     ->setHeadline($article->title)
                     ->setHeadHref($article_uri)
-                    ->addDetail($article->modifiedAt->format("D, d M 'y"))
-                    ->addDetail($article->authors->count()
+                    ->setByLine($article->byline ?: nbsp())
+                    ->addDetail(cv\icon_ion($article->authors->count()
                         ? cv\safeHtml(implode(', ', array_map('strong', array_map('link_user', mpull($article->authors->toArray(), 'user')))))
                         : span('muted', 'nobody')
+                        , 'person-stalker')
                     )
-                    ->addAttribute(
-                        a(cv\icon_ion('edit', 'edit'), $article_uri . '/edit')
+                    ->addDetail(
+                        a(cv\icon_ion('edit article', 'edit'), $article_uri . '/edit')
                     )
                 );
             }

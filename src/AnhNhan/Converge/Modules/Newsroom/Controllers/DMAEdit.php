@@ -45,6 +45,7 @@ final class DMAEdit extends ArticleController
 
         $e_title = null;
         $e_slug = null;
+        $e_byline = null;
         $e_authors = null;
         $e_color = null;
         $e_font = null;
@@ -63,6 +64,7 @@ final class DMAEdit extends ArticleController
         $art_uid = $article->uid;
         $art_title = $article->title;
         $art_slug = $article->slug;
+        $art_byline = $article->byline;
         $art_authors = $orig_authors ? mpull(mpull($orig_authors, 'user'), 'name') : [];
         $art_settings = $article->settings;
         $art_text = $article->rawText;
@@ -98,6 +100,7 @@ final class DMAEdit extends ArticleController
         {
             $art_title = trim($request->request->get('title'));
             $art_slug = trim($request->request->get('slug'));
+            $art_byline = trim($request->request->get('byline'));
 
             $art_authors = trim($request->request->get('authors'));
             $art_authors = array_map('to_canonical', explode(',', $art_authors));
@@ -181,6 +184,9 @@ final class DMAEdit extends ArticleController
                 $editor
                     ->addTransaction(
                         DMArticleTransaction::create(DMArticleTransaction::TYPE_EDIT_TITLE, $art_title)
+                    )
+                    ->addTransaction(
+                        DMArticleTransaction::create(DMArticleTransaction::TYPE_EDIT_BYLINE, $art_byline)
                     )
                     ->addTransaction(
                         DMArticleTransaction::create(DMArticleTransaction::TYPE_EDIT_TEXT, $art_text)
@@ -285,6 +291,10 @@ final class DMAEdit extends ArticleController
                 ->setHelp(cv\safeHtml('can\'t be changed once created; optional'))
                 ->setError($e_slug)
                 ->addOption('disabled', $art_uid ? 'disabled' : null)
+            )
+            ->append(form_textcontrol('Byline', 'byline', $art_byline)
+                ->setHelp('short one-liner to describe the article')
+                ->setError($e_byline)
             )
             ->append(form_textcontrol('Authors', 'authors', implode(', ', $art_authors))
                 ->setHelp('comma separated list; optional')
