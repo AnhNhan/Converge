@@ -65,7 +65,7 @@ final class ChannelEdit extends ChannelController
             if (!strlen($channel_label))
             {
                 $errors[] = 'We require a descriptive label';
-                $e_label = 'Better no leave this empty';
+                $e_label = 'Better don\'t leave this empty';
             }
 
             if (!strlen($channel_slug))
