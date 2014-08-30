@@ -75,6 +75,18 @@ class HeaderView extends AbstractView
                             ->addOption('title', 'log out')
                         )
                 )
+                ->append(
+                    div('nav-stats dev-only')
+                        ->append(
+                            span('stat-entry', cv\icon_ion('{{time}}', 'ios7-timer-outline'))
+                        )
+                        ->append(
+                            span('stat-entry', cv\icon_ion('{{queries}} queries', 'ios7-cloud-outline'))
+                        )
+                        ->append(
+                            span('stat-entry', cv\icon_ion('{{memory}}MB', 'ios7-pie-outline'))
+                        )
+                )
             ;
         }
         else
