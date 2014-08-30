@@ -26,7 +26,7 @@ final class ArticleListing extends ArticleController
 
         $container
             ->append(
-                a(cv\icon_ion('create channel', 'compose'), 'channel/create')
+                a('create channel', 'channel/create')
                     ->addClass('btn btn-primary pull-right')
             )
             ->append(h1('Newsroom'))
