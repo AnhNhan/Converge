@@ -26,7 +26,6 @@ final class ArticleQuery extends Query
 
     public function searchArticlesInChannel($channel_id, array $ids, $limit = null, $offset = null)
     {
-        $eChannel = self::ENTITY_CHANNEL;
         $eArticle = self::ENTITY_ARTICLE;
         $queryString = "SELECT art, ch, art_author
             FROM {$eArticle} art
@@ -54,6 +53,23 @@ final class ArticleQuery extends Query
                 'channel_id' => $channel_id,
                 'ids' => array_mergev(array_map($art_id_fun, $ids)),
             ])
+        ;
+        return $query->getResult();
+    }
+
+    public function retrieveArticles($limit = null, $offset = null)
+    {
+        $eArticle = self::ENTITY_ARTICLE;
+        $queryString = "SELECT art, ch, art_author
+            FROM {$eArticle} art
+                JOIN art.channel ch
+                JOIN art.authors art_author
+        ";
+
+        $query = $this->em()
+            ->createQuery($queryString)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
         ;
         return $query->getResult();
     }

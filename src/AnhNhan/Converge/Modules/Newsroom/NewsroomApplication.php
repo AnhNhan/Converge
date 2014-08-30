@@ -51,6 +51,9 @@ final class NewsroomApplication extends BaseApplication
                 // TODO: Dispatch by article type
                 $controller = new Controllers\DMADisplay($this);
                 break;
+            case "article-listing":
+                $controller = new Controllers\ArticleListing($this);
+                break;
             case "channel-edit":
                 $controller = new Controllers\ChannelEdit($this);
                 break;
