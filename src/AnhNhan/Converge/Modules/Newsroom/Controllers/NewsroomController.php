@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\Newsroom\Controllers;
 
+use AnhNhan\Converge\Modules\Newsroom\Query\ArticleQuery;
 use AnhNhan\Converge\Web\Application\BaseApplicationController;
 
 /**
