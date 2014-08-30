@@ -10,14 +10,12 @@ body {
 
     @media screen and (min-width: @breakPointDesktop) {
         margin-top: 50px; // Header height
-        margin-left: 90px; // Sidenav width
     }
 
     @media screen and (min-width: @breakPointBig) {
         width: 92%;
         margin: 10px auto;
         margin-top: unit(50 + 10, 'px'); // Header height + 10
-        margin-left: 80px;
     }
 
     text-align: left;
@@ -97,43 +95,6 @@ body {
                 background-color: @color-1;
                 #gradient > .vertical(lighten(@color-1, 5%), lighten(@color-2, 5%));
             }
-        }
-    }
-}
-
-.cv-side-navbar {
-    @media screen and (max-width: @breakPointDesktop) {
-        display: none !important;
-        visibility: hidden !important;
-    }
-    z-index: @zindex-navbar-fixed;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    margin-top: 50px; // Header height
-    width: 5em;
-    text-align: center;
-    background-color: @veryLightGrey;
-    color: @darkGrey;
-    .pull-left;
-    .box-shadow(0 6px 5px rgba(0, 0, 0, 0.5));
-
-    a {
-        color: @darkGrey;
-    }
-
-    .cv-side-navbar-item {
-        list-style: none;
-        margin-top: 1em;
-        margin-bottom: 1em;
-
-        .cv-side-navbar-icon {
-            font-size: 3em;
-            line-height: 1;
-        }
-
-        .cv-side-navbar-text {
-            font-size: 0.85em;
         }
     }
 }

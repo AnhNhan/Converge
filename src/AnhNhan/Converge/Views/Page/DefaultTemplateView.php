@@ -33,7 +33,6 @@ final class DefaultTemplateView extends AbstractView
     public function getContent()
     {
         $head_wrapper = div("header", id(new HeaderView)->setUserDetails($this->user_details), "header");
-        $sideNavBar = new SideNavBar;
 
         $content = div("content width12")
             ->setId("content")
@@ -50,7 +49,6 @@ final class DefaultTemplateView extends AbstractView
 
         return id(new MarkupContainer)
             ->push($head_wrapper)
-            ->push($sideNavBar)
             ->push($wrapper)
         ;
     }
