@@ -1,18 +1,21 @@
 
 .tag-color (@color) {
-    border: lighten(@color, 2.5%) unit(1px / @fontSizeBase, 'em') solid;
-    background-color: lighten(@color, 10%);
+    background-color: @color;
 }
 
 .tag-object {
     display: inline-block;
     margin: 0 2px;
-    padding: 0.05em 6px;
+    padding: 1px 4px;
     color: @white;
     font-weight: bold;
     white-space: nowrap;
     .round-border(@border-radius-medium);
-    .tag-color(@coolBlue);
+    .tag-color(mix(@colorInfo, @grey));
+
+    &:before {
+        content: "#";
+    }
 
     &:first-child {
         margin-left: 0;
@@ -22,24 +25,21 @@
     }
 }
 
-.tag-color-green {
-    .tag-color(@colorUNSC);
-}
-.tag-color-blue {
+.tag-color-project {
     .tag-color(@colorInfo);
 }
-.tag-color-dark {
-    .tag-color(@tintedGrey);
+.tag-color-restricted {
+    .tag-color(@color-lavender);
 }
 .tag-color-success {
-    .tag-color(darken(@color-success-real, 10%));
+    .tag-color(@color-success-real);
 }
 .tag-color-info {
-    .tag-color(darken(@color-info-real, 10%));
+    .tag-color(@color-info-real);
 }
 .tag-color-warning {
-    .tag-color(darken(@color-warning-real, 10%));
+    .tag-color(@color-warning-real);
 }
 .tag-color-danger {
-    .tag-color(darken(@color-danger-real, 10%));
+    .tag-color(@color-danger-real);
 }
