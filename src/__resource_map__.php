@@ -264,8 +264,8 @@ return array(
     "layout-objects" => array(
       "name" => "layout-objects",
       "path" => "layout/objects.less",
-      "hash" => "13d54c36ad657f91bd8b69d9992c43bb",
-      "orig" => "9ba986383462a2b32b4da4e7a92b9eb8",
+      "hash" => "d2e549cf8587bde66cfe74856e196420",
+      "orig" => "2b5a3553b668bc0de6c3968a199bece3",
     ),
     "layout-panel-panel" => array(
       "name" => "layout-panel-panel",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "a4x2gbpr",
+      "hash" => "3zv6e3qy",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,7 +688,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "f88ffe665112046e1866dd606245787f",
+      "hash" => "4b8d2f02e98e8d7b6b539d2aecf4e168",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
@@ -702,7 +702,7 @@ return array(
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
         "layout-buttons" => "6ff6f0b28db9422fffaf850de6050bfa",
         "layout-bs-button-groups" => "fe9cc878366368b488f5268507ad7e53",
-        "layout-objects" => "13d54c36ad657f91bd8b69d9992c43bb",
+        "layout-objects" => "d2e549cf8587bde66cfe74856e196420",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",
         "layout-panel-panel" => "fb0fbbcf4841f5b76d5cf19aa756926a",
         "layout-tag-tag" => "e34c58bbfaf2011bb626150564833373",

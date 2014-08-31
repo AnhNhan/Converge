@@ -32,6 +32,13 @@
     border: 0;
     border-left: @object-border-color 5px solid;
     background-color: @object-bg-color;
+
+    &:first-child {
+        margin-top: 0;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .objects-object-title {
