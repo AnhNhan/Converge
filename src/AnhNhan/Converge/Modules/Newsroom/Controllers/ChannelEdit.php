@@ -75,7 +75,7 @@ final class ChannelEdit extends ChannelController
             }
 
             $exist_object = head($query->searchChannels([$channel_slug]));
-            if ($exist_object)
+            if (!$channel_uid && $exist_object)
             {
                 $errors[] = 'Channel with slug already exists';
                 $e_slug = 'Already in use';
