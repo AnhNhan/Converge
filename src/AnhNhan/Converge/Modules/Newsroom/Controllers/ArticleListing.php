@@ -33,13 +33,6 @@ final class ArticleListing extends ArticleController
             ->append(h1('Newsroom'))
         ;
 
-        $empty_channels = array_filter(
-            $channels,
-            function ($channel) use ($article_channels) {
-                return !count(idx($article_channels, $channel->label, []));
-            }
-        );
-
         foreach ($channels as $channel)
         {
             $_articles = idx($article_channels, $channel->label, []);
