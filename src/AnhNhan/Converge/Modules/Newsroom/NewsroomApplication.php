@@ -56,6 +56,9 @@ final class NewsroomApplication extends BaseApplication
             case "article-display-test":
                 $controller = new Controllers\DisplayTest($this);
                 break;
+            case "markup-help":
+                $controller = new Controllers\MarkupHelp($this);
+                break;
             case "article-edit":
                 // TODO: Dispatch by article type
                 $controller = new Controllers\DMAEdit($this);

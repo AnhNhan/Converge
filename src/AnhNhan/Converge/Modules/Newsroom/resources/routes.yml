@@ -15,6 +15,9 @@ routes:
   - pattern: newsroom/
     route-name: article-listing
 
+  - pattern: newsroom/markup/help
+    route-name: markup-help
+
   - pattern: channel/create
     route-name: channel-edit
   - pattern: channel/:channel/edit
