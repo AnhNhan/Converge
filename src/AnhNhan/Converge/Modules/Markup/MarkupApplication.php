@@ -24,6 +24,7 @@ final class MarkupApplication extends BaseApplication
     {
         return [
             new Markup\AsianText,
+            new Markup\SoundCloudEmbedTrack,
         ];
     }
 
