@@ -21,6 +21,7 @@ final class ArticleListing extends ArticleController
         fetch_external_authors(array_mergev(pull($articles, function ($article) { return $article->authors->toArray(); })), create_user_query($this->externalApp('user')), 'userId', 'setUser', 'user');
 
         $article_channels = group($articles, function ($article) { return $article->channel->label; });
+        $channels = $query->retrieveChannels();
 
         $container = div('article-listing-container');
 
@@ -32,22 +33,31 @@ final class ArticleListing extends ArticleController
             ->append(h1('Newsroom'))
         ;
 
-        foreach ($article_channels as $channel => $_articles)
+        $empty_channels = array_filter(
+            $channels,
+            function ($channel) use ($article_channels) {
+                return !count(idx($article_channels, $channel->label, []));
+            }
+        );
+
+        foreach ($channels as $channel)
         {
-            $channel_obj = head($_articles)->channel;
-            $panel = panel($header = new MarkupContainer, 'article-listing-channel');
+            $_articles = idx($article_channels, $channel->label, []);
+            $panel = panel($header = new MarkupContainer, 'article-listing-channel')
+                ->setId($channel->uid)
+            ;
 
             $header_buttons = div('pull-right btn-group article-listing-channel-midriff-buttons')
                 ->append(
-                    a(cv\icon_ion('edit channel', 'edit'), urisprintf('channel/%p/edit', $channel_obj->slug))
+                    a(cv\icon_ion('edit channel', 'edit'), urisprintf('channel/%p/edit', $channel->slug))
                         ->addClass('btn btn-default ')
                 )
                 ->append(
-                    a(cv\icon_ion('add article', 'plus'), urisprintf('a/%p/create', $channel_obj->slug))
+                    a(cv\icon_ion('add article', 'plus'), urisprintf('a/%p/create', $channel->slug))
                         ->addClass('btn btn-primary ')
                 )
             ;
-            $header->push(h2($channel, 'pull-left'));
+            $header->push(h2($channel->label, 'pull-left'));
             $header->push($header_buttons);
             $header->push(cv\ht('div')->addClass('clearfix'));
 

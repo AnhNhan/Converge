@@ -24,6 +24,14 @@ final class ArticleQuery extends Query
         return $query->getResult();
     }
 
+    public function retrieveChannels($limit = null, $offset = null)
+    {
+        return $this
+            ->repository(self::ENTITY_CHANNEL)
+            ->findBy([], [], $limit, $offset)
+        ;
+    }
+
     public function searchArticlesInChannel($channel_id, array $ids, $limit = null, $offset = null)
     {
         $eArticle = self::ENTITY_ARTICLE;
