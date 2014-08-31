@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Newsroom\Controllers;
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Newsroom\Activity\ChannelRecorder;
 use AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction;
 use AnhNhan\Converge\Modules\Newsroom\Transaction\ChannelEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
@@ -104,7 +105,8 @@ final class ChannelEdit extends ChannelController
                     )
                 ;
 
-                $editor->apply();
+                $recorder = new ChannelRecorder($this->externalApp('activity'));
+                $recorder->record($editor->apply());
 
                 $target_uri = '/newsroom/';
                 return new RedirectResponse($target_uri);
