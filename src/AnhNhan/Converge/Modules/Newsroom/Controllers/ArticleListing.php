@@ -94,7 +94,7 @@ final class ArticleListing extends ArticleController
                         , 'person-stalker')
                     )
                     ->addDetail(
-                        a(cv\icon_ion('edit article', 'edit'), $article_uri . '/edit')
+                        cv\icon_ion(a('edit article', $article_uri . '/edit'), 'edit')
                     )
                 );
             }
