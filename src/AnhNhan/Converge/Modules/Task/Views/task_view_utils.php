@@ -48,11 +48,7 @@ function task_listing_add_object(Listing $listing, Task $task)
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
     if ($task->assigned)
     {
-        $assigned_linked = array_map('phutil_safe_html', (array_map('link_user', mpull($task->assigned, 'user'))));
-        if ($assigned_linked)
-        {
-            $object->addDetail(cv\ht('strong', cv\safeHtml(phutil_implode_html(', ', $assigned_linked))));
-        }
+        $object->addDetail(strong(implode_link_user(', ', mpull($task->assigned, 'user'))));
     }
     else
     {
@@ -93,11 +89,11 @@ function render_task(Task $task, $authenticated)
     $midriff->push($mid_container);
     $midriff->push(cv\ht('span')->addClass('clearfix'));
 
-    $assigned_linked = array_map('phutil_safe_html', array_map('strong', array_map('link_user', mpull($task->assigned, 'user'))));
+    $assigned_linked = strong(implode_link_user(', ', mpull($task->assigned, 'user')));
 
     $mid_container
         ->addEntry('Priority', $task->priority->label)
-        ->addEntry('Assigned to', $assigned_linked ? cv\safeHtml(phutil_implode_html(', ', $assigned_linked)) : span('muted', 'up for grabs'))
+        ->addEntry('Assigned to', $task->assigned ? $assigned_linked : span('muted', 'up for grabs'))
     ;
 
     return $panel;

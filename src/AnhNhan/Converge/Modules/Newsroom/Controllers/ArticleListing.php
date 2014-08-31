@@ -61,11 +61,20 @@ final class ArticleListing extends ArticleController
             $header->push($header_buttons);
             $header->push(cv\ht('div')->addClass('clearfix'));
 
+            // mkey as a fancy unique function
+            $channel_authors = mkey(array_mergev(pull($_articles, function ($article) { return mpull($article->authors->toArray(), 'user'); })), 'uid');
+
             $midriff = $panel->midriff();
-            count($_articles) and $midriff->push(cv\hsprintf(
-                '%d articles by %d different authors',
-                count($_articles),
-                count(array_unique(array_mergev(pull($_articles, function ($article) { return mpull($article->authors->toArray(), 'userId'); }))))));
+            if (count($_articles))
+            {
+                $midriff->push(cv\hsprintf(
+                    '<span style="padding: 0 1.5em">%d articles by %d different authors</span>',
+                    count($_articles),
+                    count($channel_authors)));
+                $proplist = new PropertyList;
+                $proplist->addEntry('Participating authors', strong(implode_link_user(', ', $channel_authors)));
+                $midriff->push($proplist);
+            }
 
             $listing = (new Listing)
                 ->setEmptyMessage(cv\hsprintf('No articles in %s', $channel->label))
@@ -80,7 +89,7 @@ final class ArticleListing extends ArticleController
                     ->setHeadHref($article_uri)
                     ->setByLine($article->byline ?: nbsp())
                     ->addDetail(cv\icon_ion($article->authors->count()
-                        ? cv\safeHtml(implode(', ', array_map('strong', array_map('link_user', mpull($article->authors->toArray(), 'user')))))
+                        ? strong(implode_link_user(', ', mpull($article->authors->toArray(), 'user')))
                         : span('muted', 'nobody')
                         , 'person-stalker')
                     )

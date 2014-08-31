@@ -47,10 +47,7 @@ final class DMADisplay extends ArticleController
 
         $article_detail = div('article-detail', cv\hsprintf(
             'Written by %s in <span class="article-channel-name">%s</span>',
-            $authors ? phutil_implode_html(', ', array_map(function ($user)
-                {
-                    return phutil_safe_html('<span class="article-author-name"><strong>' . link_user($user->user) . '</strong></span>');
-                }, $authors))
+            $authors ? span('article-author-name', strong(implode_link_user(', ', mpull($authors, 'user'))))
                 : 'nobody',
             $article->channel->label
         ));
