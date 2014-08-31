@@ -289,10 +289,22 @@ return array(
       "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Modules\Newsroom\Activity\ArticleRecorder" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Activity/ArticleRecorder.php",
+      "deriv" => "AnhNhan\Converge\Modules\Activity\ActivityRecorder",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Activity\ChannelRecorder" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Activity/ChannelRecorder.php",
+      "deriv" => "AnhNhan\Converge\Modules\Activity\ActivityRecorder",
+    ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/ArticleController.php",
       "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController",
       "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleListing" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/ArticleListing.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/ChannelController.php",
@@ -920,6 +932,10 @@ return array(
     "post_activity_body" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "forum_activity_class" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "get_custom_markup_rules" => "AnhNhan/Converge/Modules/Markup/markup_utils.php",
+    "article_activity_label" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
+    "article_activity_body" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
+    "article_activity_class" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
+    "channel_activity_label" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
     "link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "render_task_listing" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
@@ -959,6 +975,7 @@ return array(
     "AnhNhan\Converge\ht" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\icon_ic" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\icon_ion" => "AnhNhan/Converge/functions_html.php",
+    "nbsp" => "AnhNhan/Converge/functions_html_global.php",
     "grid" => "AnhNhan/Converge/functions_html_global.php",
     "panel" => "AnhNhan/Converge/functions_html_global.php",
     "popover" => "AnhNhan/Converge/functions_html_global.php",
@@ -1108,6 +1125,8 @@ return array(
     "AnhNhan\Converge\Modules\Activity\ActivityRecorder" => array(
       "AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder",
       "AnhNhan\Converge\Modules\Forum\Activity\PostRecorder",
+      "AnhNhan\Converge\Modules\Newsroom\Activity\ArticleRecorder",
+      "AnhNhan\Converge\Modules\Newsroom\Activity\ChannelRecorder",
       "AnhNhan\Converge\Modules\Task\Activity\TaskRecorder",
     ),
     "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
@@ -1236,16 +1255,18 @@ return array(
     "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController",
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleListing",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit",
-      "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
-    ),
-    "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController" => array(
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleListing",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController" => array(
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction" => array(
       "AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction",
