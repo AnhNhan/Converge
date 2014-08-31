@@ -343,13 +343,15 @@ final class DMAEdit extends ArticleController
                 ->setError($e_text)
                 ->addClass('forum-markup-processing-form'))
             ->append(form_submitcontrol($art_uid ? 'a/' . $art_slug : '/'))
-            ->append(div('markup-preview-output', 'Foo'))
+            ->append(h2(cv\hsprintf('Preview <small>(without most styles and colors)</small>')))
+            ->append(div('article', div('article-body markup-preview-output', 'Foo')))
         ;
 
         $container->push($form);
 
         $this->resMgr
             ->requireCss('newsroom-pck')
+            ->requireCss('application-newsroom-article-page')
             ->requireJs('application-forum-markup-preview')
         ;
 
