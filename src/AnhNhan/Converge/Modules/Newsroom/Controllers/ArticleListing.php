@@ -67,7 +67,9 @@ final class ArticleListing extends ArticleController
                 count($_articles),
                 count(array_unique(array_mergev(pull($_articles, function ($article) { return mpull($article->authors->toArray(), 'userId'); }))))));
 
-            $listing = new Listing;
+            $listing = (new Listing)
+                ->setEmptyMessage(cv\hsprintf('No articles in %s', $channel->label))
+            ;
             $panel->append($listing);
             foreach ($_articles as $article)
             {
