@@ -240,8 +240,8 @@ return array(
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
       "path" => "layout/fancy/text-shadows.less",
-      "hash" => "721b79af3e950d44e42a462c588e232d",
-      "orig" => "9fae4eb1650c71cca3b0b4dd281401c6",
+      "hash" => "288e6ba70102b44f0850308d4344c294",
+      "orig" => "feeb9460cc080905da559eef8b102da6",
     ),
     "layout-form" => array(
       "name" => "layout-form",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "s6pk2hdd",
+      "hash" => "a4x2gbpr",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,7 +688,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "e64bbb12d4be340ead5852b3dd969429",
+      "hash" => "f88ffe665112046e1866dd606245787f",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
@@ -696,7 +696,7 @@ return array(
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "7a109918b6e3d249c52c766ce2e55a6b",
         "layout-core" => "fdcf9ad9f279089dad64f14e768c71dc",
-        "layout-fancy-text-shadows" => "721b79af3e950d44e42a462c588e232d",
+        "layout-fancy-text-shadows" => "288e6ba70102b44f0850308d4344c294",
         "layout-form" => "a828edca63442ace40c892a42cc4bf63",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
