@@ -106,7 +106,7 @@ final class ChannelEdit extends ChannelController
 
                 $editor->apply();
 
-                $target_uri = '/';
+                $target_uri = '/newsroom/';
                 return new RedirectResponse($target_uri);
             }
         }
