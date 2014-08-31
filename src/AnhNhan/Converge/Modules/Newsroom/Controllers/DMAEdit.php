@@ -90,9 +90,9 @@ final class DMAEdit extends ArticleController
         ];
 
         $enum_fonts = [
+            'adelle' => 'Adelle',
             'freight-text' => 'Freight Text Pro',
             'open-sans' => 'None (Open Sans)',
-            'adelle' => 'Adelle',
         ];
 
         $enum_headers = [
