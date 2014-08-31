@@ -38,7 +38,7 @@ final class ArticleQuery extends Query
         $queryString = "SELECT art, ch, art_author
             FROM {$eArticle} art
                 JOIN art.channel ch
-                JOIN art.authors art_author
+                LEFT JOIN art.authors art_author
             WHERE
                 (ch.uid = :channel_id OR ch.slug = :channel_id)
             AND
@@ -71,7 +71,7 @@ final class ArticleQuery extends Query
         $queryString = "SELECT art, ch, art_author
             FROM {$eArticle} art
                 JOIN art.channel ch
-                JOIN art.authors art_author
+                LEFT JOIN art.authors art_author
         ";
 
         $query = $this->em()
