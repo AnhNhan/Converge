@@ -6,11 +6,6 @@ tags:
     displayOrder: -110
     description: "Smash 'em"
 
-  - name: draft
-    color: danger
-    displayOrder: -60
-    description: Very well unfinished
-
   - name: caw
     color: project
     displayOrder: -50
@@ -160,3 +155,8 @@ tags:
   - name: spam
     displayOrder: 30
     description: To be spammed...
+
+  - name: draft
+    color: danger
+    displayOrder: 60
+    description: Very well unfinished
