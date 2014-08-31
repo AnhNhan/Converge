@@ -52,16 +52,16 @@ final class TaskListing extends AbstractTaskController
 
         $container->push(cv\safeHtml('<style>.objects-list-container{margin-top: 0;}</style>'));
 
-        $container->unshift(cv\ht("a", $all_tasks_flag ? 'show incomplete only' : 'show all tasks', array(
+        $button_container = div('pull-right');
+        $container->unshift($button_container);
+        $button_container->getContent()->unshift(cv\ht("a", $all_tasks_flag ? 'show incomplete only' : 'show all tasks', array(
             "href"  => "/task/?all_tasks=" . ($all_tasks_flag ? '0' : '1'),
             "class" => "btn btn-default",
-            "style" => "float: right;",
         )));
         // Add link to create new task
-        $this->isGranted('ROLE_USER') and $container->unshift(cv\ht("a", "create new task", array(
+        $this->isGranted('ROLE_USER') and $button_container->getContent()->unshift(cv\ht("a", "create new task", array(
             "href"  => "/task/create",
             "class" => "btn btn-primary",
-            "style" => "float: right;",
         )));
 
         $this->resMgr

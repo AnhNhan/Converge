@@ -123,6 +123,14 @@ body {
         margin-right: 0 !important;
 
         & > .content {
+            .pull-right:first-child
+            {
+                + h1, + h2, + h3, + h4, + h5, + h6
+                {
+                    margin-top: 0;
+                }
+            }
+
             ul,
             ol {
                 list-style-position: inside;
