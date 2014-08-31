@@ -342,7 +342,8 @@ final class DMAEdit extends ArticleController
                 ->setHelp('optional')
                 ->setError($e_text)
                 ->addClass('forum-markup-processing-form'))
-            ->append(form_submitcontrol($art_uid ? 'a/' . $art_slug : '/'))
+            ->append(a(cv\icon_ion('formatting help text', 'help-buoy'), 'newsroom/markup/help')->addClass('btn btn-info btn-large pull-right'))
+            ->append(form_submitcontrol($art_uid ? 'a/' . $art_slug : '/newsroom/'))
             ->append(h2(cv\hsprintf('Preview <small>(without most styles and colors)</small>')))
             ->append(div('article', div('article-body markup-preview-output', 'Foo')))
         ;
