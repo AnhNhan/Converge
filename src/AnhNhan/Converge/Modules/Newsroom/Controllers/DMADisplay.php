@@ -62,7 +62,7 @@ final class DMADisplay extends ArticleController
 
         if ($byline = $article->byline)
         {
-            $article_body->append(cv\hsprintf('<h1><small>%s</small></h1>', $byline));
+            $article_body->append(cv\hsprintf('<h3 class="article-byline">%s</h3>', $byline));
         }
 
         $text = MarkupEngine::fastParse($article->rawText, $custom_rules);
