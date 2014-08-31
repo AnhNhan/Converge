@@ -62,7 +62,7 @@ final class ArticleListing extends ArticleController
             $header->push(cv\ht('div')->addClass('clearfix'));
 
             $midriff = $panel->midriff();
-            $midriff->push(cv\hsprintf(
+            count($_articles) and $midriff->push(cv\hsprintf(
                 '%d articles by %d different authors',
                 count($_articles),
                 count(array_unique(array_mergev(pull($_articles, function ($article) { return mpull($article->authors->toArray(), 'userId'); }))))));
