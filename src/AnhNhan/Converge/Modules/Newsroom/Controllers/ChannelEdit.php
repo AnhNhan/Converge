@@ -137,7 +137,7 @@ final class ChannelEdit extends ChannelController
                 ->addOption('disabled', $channel_uid ? 'disabled' : null)
                 ->addOption('placeholder', 'a-great-journey')
             )
-            ->append(form_submitcontrol($channel_uid ? 'a/' . $channel_slug : '/'))
+            ->append(form_submitcontrol('newsroom/#' . $channel_uid))
         ;
         $container->push($form);
 
