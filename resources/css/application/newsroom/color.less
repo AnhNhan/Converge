@@ -1,134 +1,105 @@
 
-.article
+.article-color-default,
+.article-color-midnight-blue
 {
-    &.article-color-default,
-    &.article-color-midnight-blue
+    .article-colorized (@color-midnight-blue);
+
+    // Midnight Blue is a little bit hard to see compared to black
+    // Use default link color instead
+    .article-body
     {
-        .article-colorized (@color-midnight-blue);
+        a {
+            color: @linkColor !important;
 
-        // Midnight Blue is a little bit hard to see compared to black
-        // Use default link color instead
-        .article-body
-        {
-            a {
-                color: @linkColor !important;
-
-                &:hover, &:focus {
-                    color: @linkColorActive !important;
-                }
-                &:visited {
-                    color: @linkColorVisited !important;
-                }
+            &:hover, &:focus {
+                color: @linkColorActive !important;
+            }
+            &:visited {
+                color: @linkColorVisited !important;
             }
         }
-    }
-
-    &.article-color-nephritis
-    {
-        .article-colorized (@color-nephritis);
-    }
-
-    &.article-color-pumpkin
-    {
-        .article-colorized (@color-pumpkin);
-    }
-
-    &.article-color-amethyst
-    {
-        .article-colorized (@color-amethyst);
-    }
-
-    &.article-color-wisteria
-    {
-        .article-colorized (@color-wisteria);
-    }
-
-    &.article-color-greensea
-    {
-        .article-colorized (@color-greensea);
-    }
-
-    &.article-color-belize-hole
-    {
-        .article-colorized (@color-belize-hole);
-    }
-
-    &.article-color-sunflower
-    {
-        .article-colorized (@color-sunflower);
-    }
-
-    &.article-color-orange
-    {
-        .article-colorized (@color-orange);
-    }
-
-    &.article-color-pomegranate
-    {
-        .article-colorized (@color-pomegranate);
-    }
-
-    &.article-color-alizarin
-    {
-        .article-colorized (@color-alizarin);
-    }
-
-    &.article-color-asbestos
-    {
-        .article-colorized (@color-asbestos);
     }
 }
 
-.article-colorized (@color, @header-color: @color, @headline-color: @header-color)
+.article-color-nephritis
 {
-    .article-header
+    .article-colorized (@color-nephritis);
+}
+
+.article-color-pumpkin
+{
+    .article-colorized (@color-pumpkin);
+}
+
+.article-color-amethyst
+{
+    .article-colorized (@color-amethyst);
+}
+
+.article-color-wisteria
+{
+    .article-colorized (@color-wisteria);
+}
+
+.article-color-greensea
+{
+    .article-colorized (@color-greensea);
+}
+
+.article-color-belize-hole
+{
+    .article-colorized (@color-belize-hole);
+}
+
+.article-color-sunflower
+{
+    .article-colorized (@color-sunflower);
+}
+
+.article-color-orange
+{
+    .article-colorized (@color-orange);
+}
+
+.article-color-pomegranate
+{
+    .article-colorized (@color-pomegranate);
+}
+
+.article-color-alizarin
+{
+    .article-colorized (@color-alizarin);
+}
+
+.article-color-asbestos
+{
+    .article-colorized (@color-asbestos);
+}
+
+.article-colorized (@color, @header-color: @color)
+{
+    h1, h2, h3, h4, h5, h6
     {
-        h1, h2, h3, h4, h5, h6
+        color: @header-color;
+    }
+
+    a
+    {
+        color: @color !important;
+
+        &:hover, &:focus
         {
-            color: @headline-color;
+            color: darken(@color, 10%) !important;
+        }
+        &:visited
+        {
+            color: darken(@color, 5%) !important;
         }
     }
 
-    .article-detail
+    .article-detail .article-channel-name
     {
-        .article-author-name
-        {
-            a {
-                color: @color !important;
-
-                &:hover, &:focus {
-                    color: darken(@color, 10%) !important;
-                }
-                &:visited {
-                    color: darken(@color, 5%) !important;
-                }
-            }
-        }
-
-        .article-channel-name
-        {
-            color: @color !important;
-        }
-    }
-
-    .article-detail,
-    .article-body
-    {
-        h1, h2, h3, h4, h5, h6
-        {
-            color: @header-color;
-        }
-
-        a {
-            color: @color;
-
-            &:hover, &:focus {
-                color: darken(@color, 10%);
-            }
-            &:visited {
-                color: darken(@color, 5%);
-            }
-        }
+        color: @color;
     }
 
     .qa-question
@@ -146,11 +117,6 @@
         &, a, a:hover, a:focus, a:visited
         {
             color: @color !important;
-        }
-
-        &:after
-        {
-            content: ":";
         }
     }
 
