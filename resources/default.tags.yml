@@ -6,58 +6,55 @@ tags:
     displayOrder: -110
     description: "Smash 'em"
 
-  - name: very-dev-only
-    color: dark
-    displayOrder: -100
-    description: Such dev. Very amaze. Much awesome. So wow
-
-  - name: dev-only
-    color: dark
-    displayOrder: -100
-    description: Excludes moderators etc.
-
-  - name: staff-only
-    color: dark
-    displayOrder: -100
-    description: Only Staff can post in here. It's craaazy!
-
-  - name: rookie-area
-    color: dark
-    displayOrder: -90
-    description: A place where you can master the skills of awesome until you are deemed good enough
+  - name: draft
+    color: danger
+    displayOrder: -60
+    description: Very well unfinished
 
   - name: caw
-    color: blue
+    color: project
     displayOrder: -50
     description: Covenant at War
 
   - name: sotp
-    color: blue
+    color: project
     displayOrder: -50
     description: Sins of the Prophets
 
   - name: homefront
-    color: blue
+    color: project
     displayOrder: -50
     description: Homefront
 
-  - name: draft
-    color: green
+  - name: very-dev-only
+    color: restricted
+    displayOrder: -40
+    description: Such dev. Very amaze. Much awesome. So wow
+
+  - name: dev-only
+    color: restricted
+    displayOrder: -40
+    description: Excludes moderators etc.
+
+  - name: staff-only
+    color: restricted
+    displayOrder: -40
+    description: Only Staff can post in here. It's craaazy!
+
+  - name: rookie-area
+    color: restricted
     displayOrder: -30
-    description: Very well unfinished
+    description: A place where you can master the skills of awesome until you are deemed good enough
 
   - name: application-review
-    color: info
     displayOrder: -10
     description: Deal? Or no Deal?
 
   - name: announcement
-    color: info
     displayOrder: -7
     description: Only announcements, please
 
   - name: news
-    color: info
     displayOrder: -7
     description: Old things new
 
