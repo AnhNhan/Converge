@@ -88,12 +88,12 @@ Who put that line in the way!?</code></pre>
 <h1>The lead character</h1>
 
 <pre><code>{{lead-char =
-    Qui in placeat iusto facilis distinctio est odit. Harum iste occaecati repellendus. Natus beatae inventore aspernatur necessitatibus omnis. Quasi enim dolor qui repellendus officiis praesentium explicabo. Id minus voluptas qui quo omnis iure adipisci. Nisi in in et aut laboriosam fugit id.
+    Qui in placeat iusto facilis distinctio est odit. Harum iste occaecati repellendus. Natus beatae inventore aspernatur necessitatibus omnis. Quasi enim dolor qui repellendus officiis praesentium explicabo. Id minus voluptas qui quo omnis iure adipisci. Nisi in in et aut laboriosam fugit id. Neque impedit aut nesciunt nostrum. Beatae sed ullam temporibus est amet ducimus neque. Qui et sunt neque ut. Error modi ullam hic odit libero nostrum. Mollitia omnis in in rerum placeat aut. Sunt voluptatibus delectus qui qui quidem corporis. Soluta quae dicta qui dolorem.
 }}
 </code></pre>
 
 <blockquote style="background: none; color: black;">
-    <p class="lead-char">Qui in placeat iusto facilis distinctio est odit. Harum iste occaecati repellendus. Natus beatae inventore aspernatur necessitatibus omnis. Quasi enim dolor qui repellendus officiis praesentium explicabo. Id minus voluptas qui quo omnis iure adipisci. Nisi in in et aut laboriosam fugit id.</p>
+    <p class="lead-char">Qui in placeat iusto facilis distinctio est odit. Harum iste occaecati repellendus. Natus beatae inventore aspernatur necessitatibus omnis. Quasi enim dolor qui repellendus officiis praesentium explicabo. Id minus voluptas qui quo omnis iure adipisci. Nisi in in et aut laboriosam fugit id. Neque impedit aut nesciunt nostrum. Beatae sed ullam temporibus est amet ducimus neque. Qui et sunt neque ut. Error modi ullam hic odit libero nostrum. Mollitia omnis in in rerum placeat aut. Sunt voluptatibus delectus qui qui quidem corporis. Soluta quae dicta qui dolorem.</p>
 </blockquote>
 
 <p>Please note that you need to have the whole paragraph wrapped inside. Only works with one paragraph. Do not include multiple paragraphs or anything that resembles multiple paragraphs inside. Please do not combine with the separator paragraph, results will be unspeakable. We have a special case for that.</p>
