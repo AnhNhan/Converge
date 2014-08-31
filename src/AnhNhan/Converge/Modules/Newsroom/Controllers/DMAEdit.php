@@ -49,6 +49,7 @@ final class DMAEdit extends ArticleController
         $e_authors = null;
         $e_color = null;
         $e_font = null;
+        $e_header_style = null;
         $e_text = null;
 
         $channel_id = $request->request->get('channel');
@@ -93,8 +94,16 @@ final class DMAEdit extends ArticleController
             'adelle' => 'Adelle',
         ];
 
+        $enum_headers = [
+            '' => 'Default (None)',
+            'cool-header' => 'Avant Garde All-Caps',
+            'deepshadow' => 'Deep Shadows',
+            'elegantshadow' => 'Elegant Shadows',
+        ];
+
         $art_theme_color = $article->get_setting('color');
         $art_theme_font = $article->get_setting('font');
+        $art_theme_header = $article->get_setting('header_style');
 
         if ($requestMethod == 'POST')
         {
@@ -109,6 +118,7 @@ final class DMAEdit extends ArticleController
             // Slugifying for normalization
             $art_theme_color = to_slug(trim($request->request->get('color')));
             $art_theme_font = to_slug(trim($request->request->get('font')));
+            $art_theme_header = to_slug(trim($request->request->get('header-style')));
 
             $art_text = trim($request->request->get('text'));
             $art_text = cv\normalize_newlines($art_text);
@@ -142,6 +152,12 @@ final class DMAEdit extends ArticleController
                 $e_font = 'invalid';
             }
 
+            if (!isset($enum_headers[$art_theme_header]))
+            {
+                $errors[] = cv\hsprintf('We don\'t know about the header style \'<em>%s</em>\'', $art_theme_header);
+                $e_header_style = 'invalid';
+            }
+
             $art_authors_objects = $user_query->retrieveUsersForCanonicalNames($art_authors);
             $art_authors_objects = mkey($art_authors_objects, 'canonical_name');
             if ($art_authors && count($art_authors_objects) < count($art_authors))
@@ -160,6 +176,7 @@ final class DMAEdit extends ArticleController
             {
                 $art_settings['color'] = $art_theme_color;
                 $art_settings['font'] = $art_theme_font;
+                $art_settings['header_style'] = $art_theme_header;
 
                 $em = $this->app->getEntityManager();
 
@@ -283,6 +300,22 @@ final class DMAEdit extends ArticleController
             ]);
         }
 
+        $header_style_control = id(new SelectControl)
+            ->setLabel('Header Style')
+            ->setName('header-style')
+            ->setHelp('main header style')
+            ->setError($e_header_style)
+            ->setSelected($art_theme_header)
+        ;
+        foreach ($enum_headers as $key => $label)
+        {
+            $header_style_control->addEntry([
+                'label' => $label,
+                'value' => $key,
+                'class' => $key,
+            ]);
+        }
+
         $form = form($page_title, $request->getPathInfo(), 'POST')
             ->append(form_textcontrol('Title', 'title', $art_title)
                 ->setError($e_title)
@@ -302,6 +335,7 @@ final class DMAEdit extends ArticleController
             )
             ->append($color_control)
             ->append($font_control)
+            ->append($header_style_control)
             ->append(form_textareacontrol('Text', 'text', $art_text)
                 ->setHelp('optional')
                 ->setError($e_text)

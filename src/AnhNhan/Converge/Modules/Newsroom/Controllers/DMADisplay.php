@@ -42,7 +42,7 @@ final class DMADisplay extends ArticleController
         ;
         $container->push($article_container);
 
-        $article_header = div('article-header', h1($article->title));
+        $article_header = div('article-header', h1($article->title)->addClass($article->get_setting('header_style')));
         $article_container->append($article_header);
 
         $article_detail = div('article-detail', cv\hsprintf(
