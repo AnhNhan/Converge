@@ -95,7 +95,7 @@ final class DMAEdit extends ArticleController
         ];
 
         $enum_headers = [
-            '' => 'Default (None)',
+            'no-header' => 'Default (None)',
             'cool-header' => 'Avant Garde All-Caps',
             'deepshadow' => 'Deep Shadows',
             'elegantshadow' => 'Elegant Shadows',
