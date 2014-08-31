@@ -35,6 +35,14 @@ final class NewsroomApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
+    public function getActivityRenderers()
+    {
+        return [
+            'ARTL-DMAR' => $this->createActivityRenderer('article_activity_label', 'article_activity_body', 'article_activity_class'),
+            'CHAN' => $this->createActivityRenderer('channel_activity_label'),
+        ];
+    }
+
     public function routeToController(Request $request)
     {
         $routeName = $request->attributes->get("route-name");
