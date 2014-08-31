@@ -27,6 +27,11 @@ final class NewsroomApplication extends BaseApplication
             new Markup\CenterText,
             new Markup\FancyHeader,
             new Markup\FontSize,
+            new Markup\LeadChar,
+            new Markup\SeparatorParagraph,
+            new Markup\LeadCharSepParagraph,
+            new Markup\QaQuestion,
+            new Markup\QaAnswerer,
         ];
     }
 

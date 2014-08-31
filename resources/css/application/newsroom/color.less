@@ -130,4 +130,49 @@
             }
         }
     }
+
+    .qa-question
+    {
+        color: @color;
+
+        &:before
+        {
+            background: @color;
+        }
+    }
+
+    .qa-answerer
+    {
+        &, a, a:hover, a:focus, a:visited
+        {
+            color: @color !important;
+        }
+
+        &:after
+        {
+            content: ":";
+        }
+    }
+
+    .lead-char:first-letter
+    {
+        color: @white;
+        background: @color;
+    }
+
+    //
+    // Muted accent color
+    //
+
+    @color-muted: lighten(desaturate(@color, 20%), 20%);
+
+    hr
+    {
+        border-top-color: @color-muted;
+    }
+
+    .separator-paragraph:after
+    {
+        background-color: @color-muted;
+    }
 }

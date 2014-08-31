@@ -48,20 +48,20 @@ return array(
     "application-newsroom-article-page" => array(
       "name" => "application-newsroom-article-page",
       "path" => "application/newsroom/article-page.less",
-      "hash" => "720e01ee5ea99310d1ae4474167d541a",
-      "orig" => "56c145f94954e3a5fad9e04fb55d7d47",
+      "hash" => "3ac2609fbf4f7fa0f6da4a136d3b9b3c",
+      "orig" => "841ad403613011781ad6e895cd4c1eb9",
     ),
     "application-newsroom-color" => array(
       "name" => "application-newsroom-color",
       "path" => "application/newsroom/color.less",
-      "hash" => "92fe0a6dc76b094959f39284afe7dea5",
-      "orig" => "f13908458b6043d64f077bfea61c63c2",
+      "hash" => "fc13624bbc35b7db42f33fa81d7a54c0",
+      "orig" => "6c13480ede9fbf3963c270bff347d8b9",
     ),
     "application-newsroom-core" => array(
       "name" => "application-newsroom-core",
       "path" => "application/newsroom/core.less",
-      "hash" => "3af413d44b1262786e25093dc8c92875",
-      "orig" => "e31911edd1bcc53a71e3312577d55b4e",
+      "hash" => "8f7cdaea0613a2a4827df0fa116e1c99",
+      "orig" => "36ca75594492f9cbcb5486466fd2baf1",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "y336co5i",
+      "hash" => "af6mns2v",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -711,10 +711,10 @@ return array(
     "newsroom-pck" => array(
       "name" => "newsroom-pck",
       "type" => "css",
-      "hash" => "47988b15365412c84a285b934b175b8d",
+      "hash" => "587e291c3576c7fa875269b2aa4bffca",
       "contents" => array(
-        "application-newsroom-core" => "3af413d44b1262786e25093dc8c92875",
-        "application-newsroom-color" => "92fe0a6dc76b094959f39284afe7dea5",
+        "application-newsroom-core" => "8f7cdaea0613a2a4827df0fa116e1c99",
+        "application-newsroom-color" => "fc13624bbc35b7db42f33fa81d7a54c0",
       ),
     ),
     "libs-pck" => array(
