@@ -46,7 +46,8 @@ class MarkupEngine
             {
                 $text = $rule->apply($text);
             }
-            $this->outputText[$key] = static::fixupText($text);
+            $text = static::fixupText($text);
+            $this->outputText[$key] = $text;
         }
 
         return $this;
@@ -57,8 +58,15 @@ class MarkupEngine
         $replace_map = [
             '<p><div' => '<div',
             '</div></p>' => '</div>',
+            '<p><p>' => '<p>',
+            '<p><p class' => '<p class',
+            '</p></p>' => '</p>',
         ];
-        return str_replace(array_keys($replace_map), array_values($replace_map), $text);
+        $text = str_replace(array_keys($replace_map), array_values($replace_map), $text);
+        $text = preg_replace('/<p><p(.*?)>/', '<p$1>', $text);
+        $text = preg_replace('/<p><h(\d)(.*?)>/', '<h$1$2>', $text);
+        $text = preg_replace('/<\\/h(\d)><\\/p>/', '</h$1>', $text);
+        return $text;
     }
 
     public function getOutputText($key = "default")
