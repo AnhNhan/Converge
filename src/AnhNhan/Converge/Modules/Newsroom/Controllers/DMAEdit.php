@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Newsroom\Controllers;
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Newsroom\Activity\ArticleRecorder;
 use AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle;
 use AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction;
 use AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor;
@@ -235,7 +236,8 @@ final class DMAEdit extends ArticleController
                 $em->beginTransaction();
                 try
                 {
-                    $editor->apply();
+                    $recorder = new ArticleRecorder($this->externalApp('activity'));
+                    $recorder->record($editor->apply());
                     $em->commit();
                 }
                 catch (\Doctrine\DBAL\Exception\DuplicateKeyException $e)
