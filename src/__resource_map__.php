@@ -60,8 +60,8 @@ return array(
     "application-newsroom-core" => array(
       "name" => "application-newsroom-core",
       "path" => "application/newsroom/core.less",
-      "hash" => "961cc3344b8b0b940ca197af6fdabb42",
-      "orig" => "ff722dd6774c2dc314987769604d9e4a",
+      "hash" => "12a2a7df78037470d32fbb17d5ec2cf9",
+      "orig" => "ba51adb104e6b3a652581e2a83fbbd30",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "uqd4vsc4",
+      "hash" => "h5lsezft",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -711,9 +711,9 @@ return array(
     "newsroom-pck" => array(
       "name" => "newsroom-pck",
       "type" => "css",
-      "hash" => "3245f59f9e4baacf32a100bee5f9da10",
+      "hash" => "77afb4d520ad38c05ac00bb6e6dfc1fb",
       "contents" => array(
-        "application-newsroom-core" => "961cc3344b8b0b940ca197af6fdabb42",
+        "application-newsroom-core" => "12a2a7df78037470d32fbb17d5ec2cf9",
         "application-newsroom-color" => "914edb3181906e22a8de55b1dc5d64f7",
       ),
     ),
