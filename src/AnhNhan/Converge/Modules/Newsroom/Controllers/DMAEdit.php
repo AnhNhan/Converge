@@ -61,7 +61,7 @@ final class DMAEdit extends ArticleController
         }
         $orig_authors = $article->authors ? $article->authors->toArray() : [];
         $user_query = create_user_query($this->externalApp('user'));
-        fetch_external_authors($orig_authors, $user_query, 'userId', 'setUser', 'user');
+        $query->fetchExternalsForArticles($articles);
 
         $art_uid = $article->uid;
         $art_title = $article->title;

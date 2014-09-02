@@ -81,4 +81,13 @@ final class ArticleQuery extends Query
         ;
         return $query->getResult();
     }
+
+    public function fetchExternalsForArticles(array $articles)
+    {
+        assert_instances_of($articles, self::ENTITY_ARTICLE);
+
+        $authors = mpull(mpull($articles, 'authors'), 'toArray');
+        $authors = array_mergev($authors);
+        fetch_external_authors($authors, $this->requireExternalQuery(self::EXT_QUERY_USER), 'userId', 'setUser', 'user');
+    }
 }

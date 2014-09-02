@@ -27,9 +27,8 @@ final class DMADisplay extends ArticleController
         {
             return (new ResponseHtml404)->setText('This is not the article you are looking for.');
         }
+        $query->fetchExternalsForArticles([$article]);
         $authors = $article->authors ? $article->authors->toArray() : [];
-        $user_query = create_user_query($this->externalApp('user'));
-        fetch_external_authors($authors, $user_query, 'userId', 'setUser', 'user');
 
         $article_color = $article->get_setting('color');
         $article_font = $article->get_setting('font');

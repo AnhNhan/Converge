@@ -18,7 +18,7 @@ final class ArticleListing extends ArticleController
     {
         $query = $this->buildArticleQuery();
         $articles = $query->retrieveArticles();
-        fetch_external_authors(array_mergev(pull($articles, function ($article) { return $article->authors->toArray(); })), create_user_query($this->externalApp('user')), 'userId', 'setUser', 'user');
+        $query->fetchExternalsForArticles($articles);
 
         $article_channels = group($articles, function ($article) { return $article->channel->label; });
         $channels = $query->retrieveChannels();
