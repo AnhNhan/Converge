@@ -41,6 +41,7 @@ final class TaskDisplay extends AbstractTaskController
         $external_uids = array_filter(array_mergev(array_filter(array_map('task_xact_type_fetch_external_uids', $transactions))));
         $grouped_external_uids = group($external_uids, 'uid_get_type');
 
+        $external_tag_uids = idx($grouped_external_uids, 'TTAG', []);
         $external_user_uids = idx($grouped_external_uids, 'USER', []);
         $external_status_uids = idx($grouped_external_uids, 'TASK-STAT', []);
         $external_priority_uids = idx($grouped_external_uids, 'TASK-PRIO', []);
@@ -57,6 +58,10 @@ final class TaskDisplay extends AbstractTaskController
 
         $task->setAuthor(idx($user_objects, $task->authorId));
         pull($task->assigned, function ($assigned) use ($user_objects) { $assigned->setUser(idx($user_objects, $assigned->userId)); });
+
+        $tag_query = create_tag_query($this->externalApp('tag'));
+        $tags = mkey($tag_query->retrieveTagsForIDs(array_merge(mpull($task->tags->toArray(), 'tagId'), $external_tag_uids)), 'uid');
+        pull($task->tags, function ($assoc_tag) use ($tags) { $assoc_tag->setTag(idx($tags, $assoc_tag->tagId)); });
 
         $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
 
@@ -76,6 +81,7 @@ final class TaskDisplay extends AbstractTaskController
             'priorities'   => $external_priorities,
             'status'       => $external_status,
             'users'        => $user_objects,
+            'tags'         => $tags,
         ];
 
         foreach ($transactions as $xact)

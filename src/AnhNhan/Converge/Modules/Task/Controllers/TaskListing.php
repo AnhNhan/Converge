@@ -27,6 +27,7 @@ final class TaskListing extends AbstractTaskController
         $assigned_objs = mpull($tasks, 'assigned');
         $assigned_objs = array_mergev($assigned_objs);
         fetch_external_authors($assigned_objs, $user_query, 'userId', 'setUser', 'user');
+        $query->fetchExternalTags($tasks);
 
         $container = new MarkupContainer;
 

@@ -13,6 +13,7 @@ abstract class AbstractTaskController extends BaseApplicationController
     protected function buildQuery()
     {
         $query = new TaskQuery($this->app);
+        $query->addExternalQueryFromApplication(TaskQuery::EXT_QUERY_TAG, $this->externalApp('tag'));
         return $query;
     }
 

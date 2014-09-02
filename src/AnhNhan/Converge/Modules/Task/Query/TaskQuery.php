@@ -15,7 +15,7 @@ final class TaskQuery extends Query
     public function retrieveTasks($limit = null, $offset = null)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -27,7 +27,7 @@ final class TaskQuery extends Query
     public function retrieveIncompleteTasks($limit = null, $offset = null)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.completed = 0";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.completed = 0";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -40,7 +40,7 @@ final class TaskQuery extends Query
     {
         $completed_sql = $completed === null ? '' : ' AND t.completed = ' . ($completed ? '1' : '0');
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE ta.user IN (:assigned_ids){$completed_sql}";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE ta.user IN (:assigned_ids){$completed_sql}";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -53,7 +53,7 @@ final class TaskQuery extends Query
     public function retrieveTasksForUids(array $ids)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.uid IN (:task_ids)";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.uid IN (:task_ids)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_ids" => $ids))
@@ -64,7 +64,7 @@ final class TaskQuery extends Query
     public function retrieveTasksForLabels(array $labels)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.label IN (:task_labels)";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.label IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
@@ -75,7 +75,7 @@ final class TaskQuery extends Query
     public function retrieveTasksForCanonicalLabels(array $labels)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta WHERE t.label_canonical IN (:task_labels)";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.label_canonical IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
@@ -86,12 +86,22 @@ final class TaskQuery extends Query
     public function retrieveTasksForCanonicalLabelsWithXacts(array $labels)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta, tx FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.xacts tx WHERE t.label_canonical IN (:task_labels)";
+        $queryString = "SELECT t, ts, tp, ta, tt, tx FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt LEFT JOIN t.xacts tx WHERE t.label_canonical IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
         ;
         return $query->getResult();
+    }
+
+    public function fetchExternalTags(array $tasks)
+    {
+        assert_instances_of($tasks, self::TASK_ENTITY);
+
+        $task_tags = mpull(array_filter(mpull($tasks, 'tags')), 'toArray');
+        $tags_flat = array_mergev($task_tags);
+        $tag_query = $this->requireExternalQuery(self::EXT_QUERY_TAG);
+        fetch_external_tags($tags_flat, $tag_query);
     }
 
     public function retrieveTaskStatus($limit = null, $offset = null)

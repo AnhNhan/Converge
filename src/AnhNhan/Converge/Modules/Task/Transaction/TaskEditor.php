@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Task\Transaction;
 
 use AnhNhan\Converge\Modules\Task\Storage\TaskAssigned;
+use AnhNhan\Converge\Modules\Task\Storage\TaskTag;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
@@ -23,6 +24,8 @@ final class TaskEditor extends TransactionEditor
         $types[] = TaskTransaction::TYPE_ADD_COMMENT;
         $types[] = TaskTransaction::TYPE_ADD_ASSIGN;
         $types[] = TaskTransaction::TYPE_DEL_ASSIGN;
+        $types[] = TaskTransaction::TYPE_ADD_TAG;
+        $types[] = TaskTransaction::TYPE_DEL_TAG;
 
         return $types;
     }
@@ -33,8 +36,10 @@ final class TaskEditor extends TransactionEditor
             case TransactionEntity::TYPE_CREATE:
             case TaskTransaction::TYPE_ADD_COMMENT:
             case TaskTransaction::TYPE_ADD_ASSIGN:
+            case TaskTransaction::TYPE_ADD_TAG:
                 return null;
             case TaskTransaction::TYPE_DEL_ASSIGN:
+            case TaskTransaction::TYPE_DEL_TAG:
                 return $transaction->newValue;
             case TaskTransaction::TYPE_EDIT_DESC:
                 return $entity->description();
@@ -60,8 +65,10 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_EDIT_STATUS:
             case TaskTransaction::TYPE_EDIT_PRIORITY:
             case TaskTransaction::TYPE_EDIT_COMPLETED:
+            case TaskTransaction::TYPE_ADD_TAG:
                 return $transaction->newValue();
             case TaskTransaction::TYPE_DEL_ASSIGN:
+            case TaskTransaction::TYPE_DEL_TAG:
                 return null;
         }
     }
@@ -95,6 +102,15 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_ADD_ASSIGN:
             case TaskTransaction::TYPE_DEL_ASSIGN:
                 // Do nothing
+                break;
+            case TaskTransaction::TYPE_ADD_TAG:
+                $taskTag = new TaskTag($entity, $transaction->newValue);
+                $this->persistLater($taskTag);
+                break;
+            case TaskTransaction::TYPE_DEL_TAG:
+                $taskTag = new TaskTag($entity, $transaction->oldValue);
+                $taskTag = $this->em()->merge($taskTag);
+                $this->em()->remove($taskTag);
                 break;
         }
 

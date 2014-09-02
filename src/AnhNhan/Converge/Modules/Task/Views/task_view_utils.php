@@ -44,6 +44,7 @@ function task_listing_add_object(Listing $listing, Task $task)
     {
         $object->addAttribute($task->status->label);
     }
+    $task->tags->count() and $object->addAttribute(implode_link_tag(' ', mpull($task->tags->toArray(), 'tag'), true));
 
     $object->addDetail($task->modifiedAt->format("D, d M 'y"));
     if ($task->assigned)
@@ -94,6 +95,7 @@ function render_task(Task $task, $authenticated)
     $mid_container
         ->addEntry('Priority', $task->priority->label)
         ->addEntry('Assigned to', $task->assigned ? $assigned_linked : span('muted', 'up for grabs'))
+        ->addEntry('Tags', $task->tags->count() ? implode_link_tag(' ', mpull($task->tags->toArray(), 'tag'), true) : span('muted', 'no tags'))
     ;
 
     return $panel;
@@ -129,6 +131,7 @@ function render_task_transaction(Task $task, TaskTransaction $xact, array $other
 
 function task_xact_type_label(Task $task, TaskTransaction $xact, array $other = [])
 {
+    $tags = idx($other, 'tags', []);
     $users = idx($other, 'users', []);
     $statuses = idx($other, 'status', []);
     $priorities = idx($other, 'priorities', []);
@@ -160,6 +163,10 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, array $other = 
             return cv\hsprintf('added <strong>%s</strong> to the task\'s assignees', link_user(idx($users, $xact->newValue)));
         case TaskTransaction::TYPE_DEL_ASSIGN:
             return cv\hsprintf('removed <strong>%s</strong> from this task\'s assignees', link_user(idx($users, $xact->oldValue)));
+        case TaskTransaction::TYPE_ADD_TAG:
+            return cv\hsprintf('added tag <strong>%s</strong>', link_tag(idx($tags, $xact->newValue)));
+        case TaskTransaction::TYPE_DEL_TAG:
+            return cv\hsprintf('removed tag <strong>%s</strong>', link_tag(idx($tags, $xact->oldValue)));
         default:
             return 'did something';
     }
@@ -203,8 +210,10 @@ function task_xact_type_fetch_external_uids(TaskTransaction $xact)
     switch ($xact->type)
     {
         case TaskTransaction::TYPE_ADD_ASSIGN:
+        case TaskTransaction::TYPE_ADD_TAG:
             return [$xact->newValue];
         case TaskTransaction::TYPE_DEL_ASSIGN:
+        case TaskTransaction::TYPE_DEL_TAG:
             return [$xact->oldValue];
         case TaskTransaction::TYPE_EDIT_STATUS:
         case TaskTransaction::TYPE_EDIT_PRIORITY:

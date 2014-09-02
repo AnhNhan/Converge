@@ -5,6 +5,7 @@ use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
+use AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector;
 use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
@@ -40,6 +41,7 @@ final class TaskEdit extends AbstractTaskController
         }
         $user_query = create_user_query($this->externalApp('user'));
         fetch_external_authors($task->assigned, $user_query, 'userId', 'setUser', 'user');
+        $query->fetchExternalTags([$task]);
 
         $priorities = mkey($query->retrieveTaskPriorities(), 'label_canonical');
         $statuses   = mkey($query->retrieveTaskStatus(), 'label_canonical');
@@ -52,6 +54,7 @@ final class TaskEdit extends AbstractTaskController
         $e_assigned = null;
         $e_status = null;
         $e_priority = null;
+        $e_tags = null;
 
         $assigned = mpull($task->assigned, 'user');
 
@@ -61,6 +64,8 @@ final class TaskEdit extends AbstractTaskController
         $task_status = $task->status ? $task->status->label_canonical : null;
         $task_priority = $task->priority ? $task->priority->label_canonical : null;
         $task_description = $task->description;
+        $task_tags_orig = $task->tags ? mkey(mpull($task->tags->toArray(), 'tag'), 'uid') : [];
+        $task_tags = mpull($task_tags_orig, 'label');
 
         $task_assigned_orig = mpull($assigned, null, 'canonical_name');
 
@@ -79,6 +84,8 @@ final class TaskEdit extends AbstractTaskController
 
             $task_status = trim($request->request->get('status'));
             $task_status = to_canonical($task_status);
+
+            $_tags = $request->request->get("tags");
 
             $task_label_canonical = to_canonical($task_label);
 
@@ -119,10 +126,28 @@ final class TaskEdit extends AbstractTaskController
                 $e_assigned = 'contains imaginary users';
             }
 
+            $tag_result = validate_tags_from_form_input($_tags, $this->externalApp('tag'));
+            if (is_array($tag_result))
+            {
+                $tag_objects = $tag_result;
+                $task_tags = mpull($tag_objects, 'label', 'uid');
+            }
+            else
+            {
+                $errors[] = $tag_result;
+                $e_tags = 'invalid value';
+            }
+
             if (!$errors)
             {
                 $task_priority_object = $priorities[$task_priority];
                 $task_status_object   = $statuses[$task_status];
+
+                $orig_tag_ids = array_keys($task_tags_orig);
+                $curr_tag_ids = array_keys($task_tags);
+
+                $new_tag_ids = array_diff($curr_tag_ids, $orig_tag_ids);
+                $del_tag_ids = array_diff($orig_tag_ids, $curr_tag_ids);
 
                 $em = $this->app->getEntityManager();
 
@@ -177,6 +202,18 @@ final class TaskEdit extends AbstractTaskController
                 {
                     $editor->addTransaction(
                         TaskTransaction::create(TaskTransaction::TYPE_EDIT_PRIORITY, $task_priority_object)
+                    );
+                }
+
+                foreach ($new_tag_ids as $tag_id) {
+                    $editor->addTransaction(
+                        TaskTransaction::create(TaskTransaction::TYPE_ADD_TAG, $tag_id)
+                    );
+                }
+
+                foreach ($del_tag_ids as $tag_id) {
+                    $editor->addTransaction(
+                        TaskTransaction::create(TaskTransaction::TYPE_DEL_TAG, $tag_id)
                     );
                 }
 
@@ -241,6 +278,18 @@ final class TaskEdit extends AbstractTaskController
             ]);
         }
 
+        if (is_array($task_tags)) {
+            $task_tags = implode(", ", $task_tags);
+        }
+
+        $tag_selector = id(new TagSelector)
+            ->addClass("disq-tag-selector")
+            ->setLabel("Tags")
+            ->setName("tags")
+            ->setValue($task_tags)
+            ->setError($e_tags)
+        ;
+
         $page_title = $task_uid ? "Edit task '{$task_label}'" : 'Create a new task';
 
         $form = form($page_title, $request->getPathInfo(), 'POST')
@@ -248,6 +297,7 @@ final class TaskEdit extends AbstractTaskController
             ->append(form_textcontrol('Assigned to', 'assigned', implode(', ', $task_assigned))
                 ->setHelp('comma separated list; optional')
                 ->setError($e_assigned))
+            ->append($tag_selector)
             ->append($priority_control)
             ->append($status_control)
             ->append(form_textareacontrol('Description', 'description', $task_description)
@@ -259,6 +309,7 @@ final class TaskEdit extends AbstractTaskController
         $container->push($form);
 
         $this->app->getService('resource_manager')
+            ->requireJS('application-forum-tag-selector')
             ->requireJs('application-forum-markup-preview');
 
         $payload = $this->payload_html;
