@@ -60,8 +60,8 @@ return array(
     "application-newsroom-core" => array(
       "name" => "application-newsroom-core",
       "path" => "application/newsroom/core.less",
-      "hash" => "12a2a7df78037470d32fbb17d5ec2cf9",
-      "orig" => "ba51adb104e6b3a652581e2a83fbbd30",
+      "hash" => "bc95fa0296f0122e587134a139c0d4a4",
+      "orig" => "faa8b83f3bab1ff036884c8c6b9f7715",
     ),
     "application-role-listing" => array(
       "name" => "application-role-listing",
@@ -222,8 +222,8 @@ return array(
     "layout-bs-button-groups" => array(
       "name" => "layout-bs-button-groups",
       "path" => "layout/bs-button-groups.less",
-      "hash" => "fe9cc878366368b488f5268507ad7e53",
-      "orig" => "c59fa81d8d0fa557044dabf7a1a96f4e",
+      "hash" => "ac686c544ef657874dea4c2d891e6e52",
+      "orig" => "39f4ae8aa8414203c57d0450c9531c6e",
     ),
     "layout-buttons" => array(
       "name" => "layout-buttons",
@@ -282,8 +282,8 @@ return array(
     "layout-tag-tag" => array(
       "name" => "layout-tag-tag",
       "path" => "layout/tag/tag.less",
-      "hash" => "5d570d723caedd691557d4a13b3cf1c0",
-      "orig" => "dccbb381186f3bc0df175f3540568370",
+      "hash" => "e0ae3cbac08c51a45594ded9d38e7e91",
+      "orig" => "43bc62b17953cfc669e31843d3d6433e",
     ),
   ),
   "js" => array(
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "h5lsezft",
+      "hash" => "crzt2kd6",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,7 +688,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "6c2e584517e6481f8d595952e0ebe833",
+      "hash" => "1d1662870774199e3c9076f88f9aaefd",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
@@ -701,19 +701,19 @@ return array(
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
         "layout-buttons" => "6ff6f0b28db9422fffaf850de6050bfa",
-        "layout-bs-button-groups" => "fe9cc878366368b488f5268507ad7e53",
+        "layout-bs-button-groups" => "ac686c544ef657874dea4c2d891e6e52",
         "layout-objects" => "d2e549cf8587bde66cfe74856e196420",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",
         "layout-panel-panel" => "fb0fbbcf4841f5b76d5cf19aa756926a",
-        "layout-tag-tag" => "5d570d723caedd691557d4a13b3cf1c0",
+        "layout-tag-tag" => "e0ae3cbac08c51a45594ded9d38e7e91",
       ),
     ),
     "newsroom-pck" => array(
       "name" => "newsroom-pck",
       "type" => "css",
-      "hash" => "77afb4d520ad38c05ac00bb6e6dfc1fb",
+      "hash" => "bac0af19e447028a321f0c44513d6345",
       "contents" => array(
-        "application-newsroom-core" => "12a2a7df78037470d32fbb17d5ec2cf9",
+        "application-newsroom-core" => "bc95fa0296f0122e587134a139c0d4a4",
         "application-newsroom-color" => "914edb3181906e22a8de55b1dc5d64f7",
       ),
     ),
