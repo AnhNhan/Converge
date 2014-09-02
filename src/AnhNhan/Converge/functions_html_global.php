@@ -6,6 +6,19 @@ use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Views\Grid\Grid;
 use AnhNhan\Converge\Views\Panel\Panel;
 
+use YamwLibs\Libs\Html\Markup\TextNode;
+
+function implode_safeHtml($glue, array $pieces)
+{
+    $escape_fun = function ($x) { return new TextNode($x); };
+    $_pieces = [];
+    foreach (array_map($escape_fun, $pieces) as $escaped_piece)
+    {
+        $_pieces[] = $escaped_piece;
+    }
+    return cv\safeHtml(implode($escape_fun($glue), $_pieces));
+}
+
 function nbsp()
 {
     return cv\safeHtml('&nbsp;');

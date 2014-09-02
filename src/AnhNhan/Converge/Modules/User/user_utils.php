@@ -33,9 +33,8 @@ function link_user(User $user, $full_name = true, $extra = UserLinkExtra_Tooltip
 function implode_link_user($glue, array $users, $full_name = true, $extra = UserLinkExtra_Tooltip)
 {
     assert_instances_of($users, 'AnhNhan\Converge\Modules\User\Storage\User');
-    $curried_link_user = function ($user) use ($full_name, $extra)
-    {
-        return link_user($user, $full_name, $extra);
-    };
-    return cv\safeHtml(implode($glue, array_map($curried_link_user, $users)));
+    return implode_safeHtml($glue, array_map(
+        function ($user) use ($full_name, $extra) { return link_user($user, $full_name, $extra); },
+        $users
+    ));
 }
