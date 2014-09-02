@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\Task\Query;
 
+use AnhNhan\Converge\Modules\Task\Storage\Task;
 use AnhNhan\Converge\Storage\Query;
 
 /**
@@ -11,6 +12,9 @@ final class TaskQuery extends Query
     const TASK_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\Task';
     const TASK_STATUS_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskStatus';
     const TASK_PRIORITY_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskPriority';
+    const TASK_RELATION_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskRelation';
+    const TASK_SUBTASK_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskSubTask';
+    const TASK_BLOCKER_ENTITY = 'AnhNhan\Converge\Modules\Task\Storage\TaskBlocker';
 
     public function retrieveTasks($limit = null, $offset = null)
     {
@@ -170,5 +174,21 @@ final class TaskQuery extends Query
             ->setParameters(array("task_labels" => $labels))
         ;
         return mkey($query->getResult(), 'uid');
+    }
+
+    public function searchBlocker(Task $parent, Task $child, $limit = null, $offset = null)
+    {
+        return $this
+            ->repository(self::TASK_BLOCKER_ENTITY)
+            ->findBy(['parentTask' => $parent, 'blockingTask' => $child], [], $limit, $offset)
+        ;
+    }
+
+    public function searchSubTask(Task $parent, Task $child, $limit = null, $offset = null)
+    {
+        return $this
+            ->repository(self::TASK_SUBTASK_ENTITY)
+            ->findBy(['parentTask' => $parent, 'subTask' => $child], [], $limit, $offset)
+        ;
     }
 }

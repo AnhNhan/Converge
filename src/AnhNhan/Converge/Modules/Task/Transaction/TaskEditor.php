@@ -43,7 +43,7 @@ final class TaskEditor extends TransactionEditor
                 return null;
             case TaskTransaction::TYPE_DEL_ASSIGN:
             case TaskTransaction::TYPE_DEL_TAG:
-            case TaskTransaction::TYPE_DEL_ASSIGN:
+            case TaskTransaction::TYPE_DEL_RELATION:
                 return $transaction->newValue;
             case TaskTransaction::TYPE_EDIT_DESC:
                 return $entity->description();
