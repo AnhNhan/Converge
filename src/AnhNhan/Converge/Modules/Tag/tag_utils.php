@@ -67,3 +67,55 @@ function fetch_external_tags(array $assoc_tags, TagQuery $query, $id_field = 'ta
     }
 }
 
+/**
+ * @return true   if successful
+ *         string if encountered an error, with the contents being the error message
+ *                note that due to PHP's truth semantics, strings are regarded as true, too
+ */
+function validate_tags_from_form_input($_tags, $tag_query_or_app)
+{
+    // Parse tags
+    if (preg_match('/^\\[.*\\]$/', $_tags)) {
+        // It's a Json array
+        $tags = json_decode($_tags);
+
+        // Validate JSON structure
+        try {
+            foreach ($tags as $t) {
+                assert_stringlike($t);
+                if (empty($t)) {
+                    return "Somehow you could sneak up an empty tag?...";
+                }
+            }
+        } catch (\InvalidArgumentException $e) {
+            // <ignore>
+            return "Invalid tag structure";
+        }
+    } else {
+        // A, B, C
+        $tags = explode(',', $_tags);
+        $tags = array_map('trim', $tags);
+    }
+
+    // People might add existing tags - just ignore such changes, they add unnecessary noise to error messages
+    $tags = array_unique($tags);
+
+    // Tags empty?
+    if (!$tags) {
+        return "We can't create an discussion without any tags";
+    }
+
+    // Load tags
+    $tag_query  = new TagQuery($tag_query_or_app);
+    $tagObjects = $tag_query->retrieveTagsForLabels($tags);
+
+    // Validate tags
+    // Far-future TODO: Put suggestions there?
+    if (count($tagObjects) != count($tags)) {
+        $tabOjectLabels = mpull($tagObjects, "label");
+        $diffTags = array_diff($tags, $tabOjectLabels);
+        return sprintf("The following tags are invalid: '%s'", implode("', '", $diffTags));
+    }
+
+    return $tagObjects;
+}

@@ -76,50 +76,15 @@ final class DiscussionEditController extends AbstractForumController
                 $errors[] = "Please write a text so other people know how to respond";
             }
 
-            // Parse tags
-            if (preg_match('/^\\[.*\\]$/', $_tags)) {
-                // It's a Json array
-                $tags = json_decode($_tags);
-
-                // Validate JSON structure
-                try {
-                    foreach ($tags as $_) {
-                        assert_stringlike($_);
-                        if (empty($_)) {
-                            $errors[] = "Somehow you could sneak up an empty tag?...";
-                            throw new \InvalidArgumentException;
-                        }
-                    }
-                } catch (\InvalidArgumentException $e) {
-                    // <ignore>
-
-                    $errors[] = "Invalid tags";
-                }
-            } else {
-                // A, B, C
-                $tags = explode(',', $_tags);
-                array_walk($tags, function ($string) { return trim($string); });
+            $tag_result = validate_tags_from_form_input($_tags, $this->externalApp('tag'));
+            if (is_array($tag_result))
+            {
+                $tagObjects = $tag_result;
+                $tags = mpull($tagObjects, 'label');
             }
-
-            // People might add existing tags - just ignore such changes, they add unnecessary noise to error messages
-            $tags = array_unique($tags);
-
-            // Tags empty?
-            if (!$tags) {
-                $errors[] = "We can't create an discussion without any tags";
-            }
-
-            // Load tags
-            $tagApp = $this->app->getService("app.list")->app("tag");
-            $tagQuery  = new TagQuery($tagApp->getEntityManager());
-            $tagObjects = $tagQuery->retrieveTagsForLabels($tags);
-
-            // Validate tags
-            // Far-future TODO: Put suggestions there?
-            if (count($tagObjects) != count($tags)) {
-                $tabOjectLabels = mpull($tagObjects, "label");
-                $diffTags = array_diff($tags, $tabOjectLabels);
-                $errors[] = sprintf("The following tags are invalid: '%s'", implode("', '", $diffTags));
+            else
+            {
+                $errors[] = $tag_result;
             }
 
             if (!$errors) {
