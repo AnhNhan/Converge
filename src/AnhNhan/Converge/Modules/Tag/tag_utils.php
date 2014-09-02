@@ -12,9 +12,9 @@ const TagLinkExtra_Hovercard = 'tag.extra.hovercard';
 /**
  * Generates a link to a tag using tag view.
  */
-function link_tag(Tag $tag, $extra = TagLinkExtra_Tooltip)
+function link_tag(Tag $tag, $extra = TagLinkExtra_None)
 {
-    $tag_view = new TagView($tag->label, $tag->color);
+    $tag_view = render_tag($tag);
     $link = a($tag_view, urisprintf('tag/%s', $tag->cleanId));
     $link->addClass('tag-link');
     if ($extra == TagLinkExtra_Tooltip)
@@ -28,11 +28,37 @@ function link_tag(Tag $tag, $extra = TagLinkExtra_Tooltip)
 /**
  * Generates a link to a tag as a hashtag.
  */
-function link_hashtag(Tag $tag, $extra = UserLinkExtra_Tooltip)
+function link_hashtag(Tag $tag, $extra = TagLinkExtra_None)
 {
     $link = a('#' . $tag->label, urisprintf('tag/%s', $tag->cleanId));
     $link->addClass('tag-link hashtag');
     return $link;
+}
+
+function render_tag(Tag $tag)
+{
+    return new TagView($tag->label, $tag->color);
+}
+
+function render_tags(array $tags, $linked = false)
+{
+    assert_instances_of($tags, 'AnhNhan\Converge\Modules\Tag\Storage\Tag');
+    $rendered = [];
+    $fun = $linked ? 'link_tag' : 'render_tag';
+    foreach (msort($tags, 'displayOrder') as $tag)
+    {
+        $rendered[] = $fun($tag);
+    }
+    return $rendered;
+}
+
+/**
+ * Common use case of rendering multiple tags separated by a glue.
+ */
+function implode_link_tag($glue, array $tags, $linked = false)
+{
+    assert_instances_of($tags, 'AnhNhan\Converge\Modules\Tag\Storage\Tag');
+    return implode_safeHtml($glue, render_tags($tags, $linked));
 }
 
 function create_tag_query($app_or_em)
