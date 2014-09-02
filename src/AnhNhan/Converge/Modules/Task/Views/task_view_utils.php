@@ -60,7 +60,7 @@ function task_listing_add_object(Listing $listing, Task $task)
     $listing->addObject($object);
 }
 
-function render_task(Task $task, $authenticated)
+function render_task(Task $task, $authenticated, $full_view = true)
 {
     $completed_msg = $task->completed
         ? cv\icon_ion('completed', 'checkmark', false)
@@ -87,9 +87,13 @@ function render_task(Task $task, $authenticated)
             ->addOption('name', '__submit__')
         )
     ;
+    $subtask_button = a(cv\icon_ion('create subtask', 'fork-repo'), urisprintf('task/create?parent_task_id=%s', $task->label_canonical))
+        ->addClass('btn btn-default btn-small')
+    ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)
         ->append($complete_button)
+        ->append($subtask_button)
     ;
 
     $midriff = $panel->midriff();
@@ -105,6 +109,50 @@ function render_task(Task $task, $authenticated)
         ->addEntry('Assigned to', $task->assigned ? $assigned_linked : span('muted', 'up for grabs'))
         ->addEntry('Tags', $task->tags->count() ? implode_link_tag(' ', mpull($task->tags->toArray(), 'tag'), true) : span('muted', 'no tags'))
     ;
+
+    if (!$full_view)
+    {
+        return $panel;
+    }
+
+    $relation_map = [
+        [
+            'access' => 'blockedBy',
+            'task'   => 'blockingTask',
+            'label'  => 'Blocking',
+        ],
+        [
+            'access' => 'subTasks',
+            'task'   => 'subTask',
+            'label'  => 'Sub tasks',
+        ],
+        [
+            'access' => 'blockedTasks',
+            'task'   => 'parentTask',
+            'label'  => 'Blocked by',
+        ],
+        [
+            'access' => 'parentTasks',
+            'task'   => 'parentTask',
+            'label'  => 'Parent tasks',
+        ],
+    ];
+
+    foreach ($relation_map as $_)
+    {
+        $_access = $_['access'];
+        $_task = $_['task'];
+        $_label = $_['label'];
+        if ($task->$_access->count())
+        {
+            $blockers = pull($task->$_access, function ($blocker) use ($_task)
+            {
+                $task = $blocker->$_task;
+                return a(phutil_utf8_shorten($task->label, 50), 'task/' . $task->label_canonical);
+            });
+            $mid_container->addEntry($_label, implode_safeHtml(', ', array_map('strong', $blockers)));
+        }
+    }
 
     return $panel;
 }

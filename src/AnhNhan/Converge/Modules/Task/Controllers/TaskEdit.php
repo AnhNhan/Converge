@@ -7,11 +7,14 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector;
 use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
+use AnhNhan\Converge\Modules\Task\Storage\TaskBlocker;
+use AnhNhan\Converge\Modules\Task\Storage\TaskSubTask;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 
+use AnhNhan\Converge\Views\Form\Controls\DummyControl;
 use AnhNhan\Converge\Views\Form\Controls\SelectControl;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -39,9 +42,17 @@ final class TaskEdit extends AbstractTaskController
         {
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
+        $parent_task_id = $request->query->get('parent_task_id');
+        $parent_tasks = [];
+        $task->uid or $parent_tasks = $query->retrieveTasksForCanonicalLabels([$parent_task_id]);
+        $parent_task = head($parent_tasks);
+
+        $tasks = $parent_tasks;
+        $tasks[] = $task;
+
         $user_query = create_user_query($this->externalApp('user'));
-        fetch_external_authors($task->assigned, $user_query, 'userId', 'setUser', 'user');
-        $query->fetchExternalTags([$task]);
+        fetch_external_authors(array_mergev(mpull($tasks, 'assigned')), $user_query, 'userId', 'setUser', 'user');
+        $query->fetchExternalTags($tasks);
 
         $priorities = mkey($query->retrieveTaskPriorities(), 'label_canonical');
         $statuses   = mkey($query->retrieveTaskStatus(), 'label_canonical');
@@ -155,6 +166,7 @@ final class TaskEdit extends AbstractTaskController
                     ->setActor($this->user->uid)
                     ->setEntity($task)
                     ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_SKIP)
+                    ->setFlushBehaviour(TransactionEditor::FLUSH_FLUSH)
                 ;
 
                 if (!$task->uid) {
@@ -214,6 +226,13 @@ final class TaskEdit extends AbstractTaskController
                 foreach ($del_tag_ids as $tag_id) {
                     $editor->addTransaction(
                         TaskTransaction::create(TaskTransaction::TYPE_DEL_TAG, $tag_id)
+                    );
+                }
+
+                if ($parent_task)
+                {
+                    $editor->addTransaction(
+                        TaskTransaction::create(TaskTransaction::TYPE_ADD_RELATION, new TaskSubTask($parent_task, $task))
                     );
                 }
 
@@ -292,7 +311,20 @@ final class TaskEdit extends AbstractTaskController
 
         $page_title = $task_uid ? "Edit task '{$task_label}'" : 'Create a new task';
 
-        $form = form($page_title, $request->getPathInfo(), 'POST')
+        $form = form($page_title, $request->getRequestUri(), 'POST');
+
+        if ($parent_task)
+        {
+            $form->append(
+                (new DummyControl(
+                    render_task($parent_task, false, false)->addOption('style', 'font-size: 0.8em; display: inline-block; width: auto;')
+                ))
+                    ->setLabel('Parent Task')
+                    ->addOption('style', 'height: auto; background: none')
+            );
+        }
+
+        $form
             ->append(form_textcontrol('Label', 'label', $task_label)->setError($e_label))
             ->append(form_textcontrol('Assigned to', 'assigned', implode(', ', $task_assigned))
                 ->setHelp('comma separated list; optional')
