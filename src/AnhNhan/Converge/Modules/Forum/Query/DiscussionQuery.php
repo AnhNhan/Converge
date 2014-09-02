@@ -155,21 +155,8 @@ final class DiscussionQuery extends Query
 
         $disq_tags = mpull(mpull($disqs, 'tags'), 'toArray');
         $tags_flat = array_mergev($disq_tags);
-
-        try {
-            // Test if >=1 DiscussionTags don't have a tag set by accessing it
-            mpull($tags_flat, 'tag');
-        } catch (\Exception $e) {
-            // Apparently we have >=1 tags not loaded - batch load them
-            $tag_ids = mpull($tags_flat, 'tagId');
-            $tagQuery = $this->requireExternalQuery(self::EXT_QUERY_TAG);
-            $tag_objs = $tagQuery->retrieveTagsForIDs($tag_ids);
-            $tag_objs = mkey($tag_objs, 'uid');
-
-            foreach ($tags_flat as $tag) {
-                $tag->setTag($tag_objs[$tag->tagId]);
-            }
-        }
+        $tagQuery = $this->requireExternalQuery(self::EXT_QUERY_TAG);
+        fetch_external_tags($tags_flat, $tagQuery);
     }
 
     /**
