@@ -13,4 +13,6 @@ abstract class ArticleTransaction extends TransactionEntity
     const TYPE_EDIT_BYLINE = 'article.edit.byline';
     const TYPE_ADD_AUTHOR = 'article.add.author';
     const TYPE_DEL_AUTHOR = 'article.del.author';
+    const TYPE_ADD_TAG = 'article.add.tag';
+    const TYPE_DEL_TAG = 'article.del.tag';
 }

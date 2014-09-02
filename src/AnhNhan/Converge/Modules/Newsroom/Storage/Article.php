@@ -67,6 +67,12 @@ abstract class Article extends EntityDefinition implements TransactionAwareEntit
      */
     protected $modifiedAt;
 
+    /**
+     * @OneToMany(targetEntity="ArticleTag", fetch="EAGER", mappedBy="article")
+     * @Cache("NONSTRICT_READ_WRITE")
+     */
+    private $tags;
+
     public function __construct() {
         $this->createdAt = new \DateTime;
         $this->modifiedAt = new \DateTime;
@@ -100,6 +106,11 @@ abstract class Article extends EntityDefinition implements TransactionAwareEntit
     public function channel()
     {
         return $this->channel;
+    }
+
+    public function tags()
+    {
+        return $this->tags;
     }
 
     public function createdAt()

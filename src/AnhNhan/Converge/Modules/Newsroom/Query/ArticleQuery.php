@@ -35,9 +35,10 @@ final class ArticleQuery extends Query
     public function searchArticlesInChannel($channel_id, array $ids, $limit = null, $offset = null)
     {
         $eArticle = self::ENTITY_ARTICLE;
-        $queryString = "SELECT art, ch, art_author
+        $queryString = "SELECT art, ch, art_tag, art_author
             FROM {$eArticle} art
                 JOIN art.channel ch
+                LEFT JOIN art.tags art_tag
                 LEFT JOIN art.authors art_author
             WHERE
                 (ch.uid = :channel_id OR ch.slug = :channel_id)
@@ -68,9 +69,10 @@ final class ArticleQuery extends Query
     public function retrieveArticles($limit = null, $offset = null)
     {
         $eArticle = self::ENTITY_ARTICLE;
-        $queryString = "SELECT art, ch, art_author
+        $queryString = "SELECT art, ch, art_tag, art_author
             FROM {$eArticle} art
                 JOIN art.channel ch
+                LEFT JOIN art.tags art_tag
                 LEFT JOIN art.authors art_author
         ";
 
@@ -86,8 +88,13 @@ final class ArticleQuery extends Query
     {
         assert_instances_of($articles, self::ENTITY_ARTICLE);
 
-        $authors = mpull(mpull($articles, 'authors'), 'toArray');
+        $authors = mpull(array_filter(mpull($articles, 'authors')), 'toArray');
         $authors = array_mergev($authors);
         fetch_external_authors($authors, $this->requireExternalQuery(self::EXT_QUERY_USER), 'userId', 'setUser', 'user');
+
+        $article_tags = mpull(array_filter(mpull($articles, 'tags')), 'toArray');
+        $tags_flat = array_mergev($article_tags);
+        $tag_query = $this->requireExternalQuery(self::EXT_QUERY_TAG);
+        fetch_external_tags($tags_flat, $tag_query);
     }
 }

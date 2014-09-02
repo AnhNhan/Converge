@@ -6,6 +6,7 @@ use AnhNhan\Converge\Modules\Newsroom\Activity\ArticleRecorder;
 use AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle;
 use AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction;
 use AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor;
+use AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Views\Form\Controls\SelectControl;
@@ -52,6 +53,7 @@ final class DMAEdit extends ArticleController
         $e_font = null;
         $e_header_style = null;
         $e_text = null;
+        $e_tags = null;
 
         $channel_id = $request->request->get('channel');
         $channel = head($query->searchChannels([$channel_id]));
@@ -61,7 +63,7 @@ final class DMAEdit extends ArticleController
         }
         $orig_authors = $article->authors ? $article->authors->toArray() : [];
         $user_query = create_user_query($this->externalApp('user'));
-        $query->fetchExternalsForArticles($articles);
+        $query->fetchExternalsForArticles([$article]);
 
         $art_uid = $article->uid;
         $art_title = $article->title;
@@ -70,6 +72,8 @@ final class DMAEdit extends ArticleController
         $art_authors = $orig_authors ? mpull(mpull($orig_authors, 'user'), 'name') : [];
         $art_settings = $article->settings;
         $art_text = $article->rawText;
+        $art_tags_orig = $article->tags ? mkey(mpull($article->tags->toArray(), 'tag'), 'uid') : [];
+        $art_tags = mpull($art_tags_orig, 'label');
 
         $art_authors_orig = mpull(mpull($orig_authors, 'user'), null, 'canonical_name');
 
@@ -124,6 +128,8 @@ final class DMAEdit extends ArticleController
             $art_text = trim($request->request->get('text'));
             $art_text = cv\normalize_newlines($art_text);
 
+            $_tags = $request->request->get("tags");
+
             if (!strlen($art_slug))
             {
                 $art_slug = to_slug($art_title);
@@ -173,11 +179,29 @@ final class DMAEdit extends ArticleController
                 $e_authors = 'contains imaginary users';
             }
 
+            $tag_result = validate_tags_from_form_input($_tags, $this->externalApp('tag'));
+            if (is_array($tag_result))
+            {
+                $tag_objects = $tag_result;
+                $art_tags = mpull($tag_objects, 'label', 'uid');
+            }
+            else
+            {
+                $errors[] = $tag_result;
+                $e_tags = 'invalid value';
+            }
+
             if (!$errors)
             {
                 $art_settings['color'] = $art_theme_color;
                 $art_settings['font'] = $art_theme_font;
                 $art_settings['header_style'] = $art_theme_header;
+
+                $orig_tag_ids = array_keys($art_tags_orig);
+                $curr_tag_ids = array_keys($art_tags);
+
+                $new_tag_ids = array_diff($curr_tag_ids, $orig_tag_ids);
+                $del_tag_ids = array_diff($orig_tag_ids, $curr_tag_ids);
 
                 $em = $this->app->getEntityManager();
 
@@ -231,6 +255,18 @@ final class DMAEdit extends ArticleController
                             );
                         }
                     }
+                }
+
+                foreach ($new_tag_ids as $tag_id) {
+                    $editor->addTransaction(
+                        DMArticleTransaction::create(DMArticleTransaction::TYPE_ADD_TAG, $tag_id)
+                    );
+                }
+
+                foreach ($del_tag_ids as $tag_id) {
+                    $editor->addTransaction(
+                        DMArticleTransaction::create(DMArticleTransaction::TYPE_DEL_TAG, $tag_id)
+                    );
                 }
 
                 $em->beginTransaction();
@@ -318,6 +354,18 @@ final class DMAEdit extends ArticleController
             ]);
         }
 
+        if (is_array($art_tags)) {
+            $art_tags = implode(", ", $art_tags);
+        }
+
+        $tag_selector = id(new TagSelector)
+            ->addClass("disq-tag-selector")
+            ->setLabel("Tags")
+            ->setName("tags")
+            ->setValue($art_tags)
+            ->setError($e_tags)
+        ;
+
         $form = form($page_title, $request->getPathInfo(), 'POST')
             ->append(form_textcontrol('Title', 'title', $art_title)
                 ->setError($e_title)
@@ -335,6 +383,7 @@ final class DMAEdit extends ArticleController
                 ->setHelp('comma separated list; optional')
                 ->setError($e_authors)
             )
+            ->append($tag_selector)
             ->append($color_control)
             ->append($font_control)
             ->append($header_style_control)
@@ -354,6 +403,7 @@ final class DMAEdit extends ArticleController
             ->requireCss('newsroom-pck')
             ->requireCss('application-newsroom-article-page')
             ->requireJs('application-forum-markup-preview')
+            ->requireJS("application-forum-tag-selector")
         ;
 
         $payload = $this->payload_html;
