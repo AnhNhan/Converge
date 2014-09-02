@@ -17,7 +17,7 @@ services:
   security.encoder.bcrypt:
     class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder
     public: false
-    arguments: [15]
+    arguments: [13]
 
   security.encoder.factory:
     class: Symfony\Component\Security\Core\Encoder\EncoderFactory
