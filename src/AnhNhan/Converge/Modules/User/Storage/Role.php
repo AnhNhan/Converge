@@ -6,7 +6,11 @@ use AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
- * @Entity @Table
+ * @Entity
+ * @Table(indexes={
+ *   @Index(name="idx_object", columns={"id", "object_id"})
+ * })
+ * @Cache
  */
 class Role extends EntityDefinition implements TransactionAwareEntityInterface
 {
@@ -51,7 +55,6 @@ class Role extends EntityDefinition implements TransactionAwareEntityInterface
 
     /**
      * @OneToMany(targetEntity="RoleTransaction", mappedBy="object", fetch="LAZY")
-     * @OrderBy({"createdAt"="ASC"})
      */
     private $xacts;
 

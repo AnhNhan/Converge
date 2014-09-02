@@ -47,7 +47,6 @@ class Channel extends EntityDefinition implements TransactionAwareEntityInterfac
 
     /**
      * @OneToMany(targetEntity="ChannelTransaction", mappedBy="object", fetch="LAZY")
-     * @OrderBy({"createdAt"="ASC"})
      * @var \Doctrine\ORM\PersistentCollection
      */
     private $xacts;

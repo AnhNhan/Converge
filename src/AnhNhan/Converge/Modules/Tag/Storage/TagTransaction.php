@@ -8,7 +8,7 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  * @Entity
  * @Cache
  * @Table(indexes={
- *   @Index(name="insertion_order", columns={"createdAt"})
+ *   @Index(name="idx_object", columns={"id", "object_id"})
  * })
  */
 class TagTransaction extends TransactionEntity

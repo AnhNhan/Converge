@@ -7,7 +7,7 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
  * @Table(indexes={
- *   @Index(name="idx_object", columns={"id", "object"})
+ *   @Index(name="idx_object", columns={"id", "object_id"})
  * })
  * @Cache
  */
@@ -21,6 +21,8 @@ class TaskTransaction extends TransactionEntity
     const TYPE_ADD_COMMENT    = "task.add.comment";
     const TYPE_ADD_ASSIGN     = "task.add.assigned";
     const TYPE_DEL_ASSIGN     = "task.del.assigned";
+    const TYPE_ADD_TAG        = 'task.add.tag';
+    const TYPE_DEL_TAG        = 'task.del.tag';
 
     /**
      * @ManyToOne(targetEntity="Task", inversedBy="xacts", fetch="EAGER")

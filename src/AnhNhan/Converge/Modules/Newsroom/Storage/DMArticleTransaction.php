@@ -4,7 +4,9 @@ namespace AnhNhan\Converge\Modules\Newsroom\Storage;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
- * @Table
+ * @Table(indexes={
+ *   @Index(name="idx_object", columns={"id", "object_id"})
+ * })
  * @Cache
  */
 class DMArticleTransaction extends ArticleTransaction

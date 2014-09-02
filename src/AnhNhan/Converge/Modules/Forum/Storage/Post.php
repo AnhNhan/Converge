@@ -73,7 +73,6 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
 
     /**
      * @OneToMany(targetEntity="PostTransaction", mappedBy="object", fetch="LAZY")
-     * @OrderBy({"createdAt"="ASC"})
      * @var \Doctrine\ORM\PersistentCollection
      */
     private $xacts;

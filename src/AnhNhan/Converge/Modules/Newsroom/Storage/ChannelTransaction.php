@@ -6,7 +6,9 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
- * @Table
+ * @Table(indexes={
+ *   @Index(name="idx_object", columns={"id", "object_id"})
+ * })
  * @Cache
  */
 class ChannelTransaction extends TransactionEntity

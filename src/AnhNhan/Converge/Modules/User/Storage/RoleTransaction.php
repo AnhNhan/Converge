@@ -7,7 +7,7 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
  * @Table(indexes={
- *   @Index(name="insertion_order", columns={"createdAt"})
+ *   @Index(name="idx_object", columns={"id", "object_id"})
  * })
  */
 class RoleTransaction extends TransactionEntity

@@ -82,7 +82,6 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
 
     /**
      * @OneToMany(targetEntity="UserTransaction", mappedBy="object", fetch="LAZY")
-     * @OrderBy({"createdAt"="ASC"})
      */
     private $xacts;
 

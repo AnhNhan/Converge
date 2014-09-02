@@ -95,8 +95,13 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     private $modifiedAt;
 
     /**
+     * @OneToMany(targetEntity="TaskTag", fetch="EAGER", mappedBy="task")
+     * @Cache("NONSTRICT_READ_WRITE")
+     */
+    private $tags;
+
+    /**
      * @OneToMany(targetEntity="TaskTransaction", mappedBy="object", fetch="LAZY")
-     * @OrderBy({"createdAt"="ASC"})
      * @var \Doctrine\ORM\PersistentCollection
      */
     private $xacts;
@@ -150,6 +155,11 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     public function description()
     {
         return $this->description;
+    }
+
+    public function tags()
+    {
+        return $this->tags;
     }
 
     /**

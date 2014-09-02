@@ -7,6 +7,10 @@ use AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
+ * @Table(indexes={
+ *   @Index(name="idx_object", columns={"id", "object_id"})
+ * })
+ * @Cache
  */
 class DumbMarkdownArticle extends Article
 {
