@@ -98,6 +98,7 @@ function validate_tags_from_form_input($_tags, $tag_query_or_app)
     }
 
     // People might add existing tags - just ignore such changes, they add unnecessary noise to error messages
+    $tags = array_filter($tags);
     $tags = array_unique($tags);
 
     // Tags empty?
