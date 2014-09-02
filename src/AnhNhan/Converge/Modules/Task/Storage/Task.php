@@ -101,6 +101,26 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     private $tags;
 
     /**
+     * @OneToMany(targetEntity="TaskBlocker", fetch="LAZY", mappedBy="parentTask")
+     */
+    private $blockedBy;
+
+    /**
+     * @OneToMany(targetEntity="TaskBlocker", fetch="LAZY", mappedBy="blockingTask")
+     */
+    private $blockedTasks;
+
+    /**
+     * @OneToMany(targetEntity="TaskSubTask", fetch="LAZY", mappedBy="parentTask")
+     */
+    private $subTasks;
+
+    /**
+     * @OneToMany(targetEntity="TaskSubTask", fetch="LAZY", mappedBy="subTask")
+     */
+    private $parentTasks;
+
+    /**
      * @OneToMany(targetEntity="TaskTransaction", mappedBy="object", fetch="LAZY")
      * @var \Doctrine\ORM\PersistentCollection
      */
@@ -160,6 +180,26 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     public function tags()
     {
         return $this->tags;
+    }
+
+    public function blockedTasks()
+    {
+        return $this->blockedTasks;
+    }
+
+    public function blockedBy()
+    {
+        return $this->blockedBy;
+    }
+
+    public function subTasks()
+    {
+        return $this->subTasks;
+    }
+
+    public function parentTasks()
+    {
+        return $this->parentTasks;
     }
 
     /**

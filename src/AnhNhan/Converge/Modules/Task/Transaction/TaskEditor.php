@@ -26,6 +26,8 @@ final class TaskEditor extends TransactionEditor
         $types[] = TaskTransaction::TYPE_DEL_ASSIGN;
         $types[] = TaskTransaction::TYPE_ADD_TAG;
         $types[] = TaskTransaction::TYPE_DEL_TAG;
+        $types[] = TaskTransaction::TYPE_ADD_RELATION;
+        $types[] = TaskTransaction::TYPE_DEL_RELATION;
 
         return $types;
     }
@@ -37,9 +39,11 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_ADD_COMMENT:
             case TaskTransaction::TYPE_ADD_ASSIGN:
             case TaskTransaction::TYPE_ADD_TAG:
+            case TaskTransaction::TYPE_ADD_RELATION:
                 return null;
             case TaskTransaction::TYPE_DEL_ASSIGN:
             case TaskTransaction::TYPE_DEL_TAG:
+            case TaskTransaction::TYPE_DEL_ASSIGN:
                 return $transaction->newValue;
             case TaskTransaction::TYPE_EDIT_DESC:
                 return $entity->description();
@@ -66,9 +70,11 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_EDIT_PRIORITY:
             case TaskTransaction::TYPE_EDIT_COMPLETED:
             case TaskTransaction::TYPE_ADD_TAG:
+            case TaskTransaction::TYPE_ADD_RELATION:
                 return $transaction->newValue();
             case TaskTransaction::TYPE_DEL_ASSIGN:
             case TaskTransaction::TYPE_DEL_TAG:
+            case TaskTransaction::TYPE_DEL_RELATION:
                 return null;
         }
     }
@@ -111,6 +117,12 @@ final class TaskEditor extends TransactionEditor
                 $taskTag = new TaskTag($entity, $transaction->oldValue);
                 $taskTag = $this->em()->merge($taskTag);
                 $this->em()->remove($taskTag);
+                break;
+            case TaskTransaction::TYPE_ADD_RELATION:
+                $this->persistLater($transaction->newValue);
+                break;
+            case TaskTransaction::TYPE_DEL_RELATION:
+                $this->em()->remove($this->em()->merge($transaction->oldValue));
                 break;
         }
 

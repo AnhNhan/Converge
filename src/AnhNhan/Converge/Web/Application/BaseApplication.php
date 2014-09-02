@@ -211,6 +211,7 @@ abstract class BaseApplication
 
         $eventManager = new \Doctrine\Common\EventManager;
         $eventManager->addEventSubscriber(new \AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator);
+        $eventManager->addEventSubscriber(new \AnhNhan\Converge\Modules\Task\Doctrine\LifeCycleTaskRelationXActSerializer);
 
         self::initialize_doctrine_types();
         $entityManager = EntityManager::create($dbConfig, $config, $eventManager);

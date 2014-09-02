@@ -23,6 +23,8 @@ class TaskTransaction extends TransactionEntity
     const TYPE_DEL_ASSIGN     = "task.del.assigned";
     const TYPE_ADD_TAG        = 'task.add.tag';
     const TYPE_DEL_TAG        = 'task.del.tag';
+    const TYPE_ADD_RELATION   = 'task.add.relation';
+    const TYPE_DEL_RELATION   = 'task.del.relation';
 
     /**
      * @ManyToOne(targetEntity="Task", inversedBy="xacts", fetch="EAGER")
