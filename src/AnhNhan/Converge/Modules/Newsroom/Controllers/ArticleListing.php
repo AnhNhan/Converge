@@ -78,9 +78,9 @@ final class ArticleListing extends ArticleController
                 $article_uri = urisprintf('/a/%p/%p', $article->channel->slug, $article->slug);
                 $listing->addObject($object = (new Object)
                     ->setId($article->uid)
-                    ->setHeadline(h2($article->title))
+                    ->setHeadline(h3($article->title))
                     ->setHeadHref($article_uri)
-                    ->setByLine(h3($article->byline ?: cv\ht('em', 'No byline given :/'), 'muted'))
+                    ->setByLine($article->byline ?: cv\ht('em', 'No byline given :/')->addClass('muted'))
                     ->addDetail($article->authors->count()
                         ? strong(implode_link_user(', ', mpull($article->authors->toArray(), 'user')))
                         : span('muted', 'nobody')
