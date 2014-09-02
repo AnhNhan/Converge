@@ -77,6 +77,8 @@ final class DiscussionEditController extends AbstractForumController
             }
 
             $tag_result = validate_tags_from_form_input($_tags, $this->externalApp('tag'));
+            $tag_result or $tag_result = "We can't create a discussion without any tags";
+
             if (is_array($tag_result))
             {
                 $tagObjects = $tag_result;

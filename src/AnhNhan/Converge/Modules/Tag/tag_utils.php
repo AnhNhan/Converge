@@ -127,9 +127,9 @@ function validate_tags_from_form_input($_tags, $tag_query_or_app)
     $tags = array_filter($tags);
     $tags = array_unique($tags);
 
-    // Tags empty?
+    // Save ourselves the workload
     if (!$tags) {
-        return "We can't create an discussion without any tags";
+        return [];
     }
 
     // Load tags
