@@ -145,10 +145,16 @@ function render_task(Task $task, $authenticated, $full_view = true)
         $_label = $_['label'];
         if ($task->$_access->count())
         {
-            $blockers = pull($task->$_access, function ($blocker) use ($_task)
+            $tasks = mpull($task->$_access->toArray(), $_task);
+            $sorted = msort($tasks, 'completed');
+            $blockers = pull($sorted, function ($task) use ($_task)
             {
-                $task = $blocker->$_task;
-                return a(phutil_utf8_shorten($task->label, 50), 'task/' . $task->label_canonical);
+                $link = a(phutil_utf8_shorten($task->label, 50), 'task/' . $task->label_canonical);
+                if ($task->completed)
+                {
+                    $link = cv\ht('del', $link)->addClass('muted');
+                }
+                return $link;
             });
             $mid_container->addEntry($_label, implode_safeHtml(', ', array_map('strong', $blockers)));
         }
