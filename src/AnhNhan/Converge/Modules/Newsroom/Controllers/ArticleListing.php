@@ -81,12 +81,12 @@ final class ArticleListing extends ArticleController
                     ->setHeadline(h2($article->title))
                     ->setHeadHref($article_uri)
                     ->setByLine(h3($article->byline ?: cv\ht('em', 'No byline given :/'), 'muted'))
-                    ->addDetail(cv\icon_ion($article->authors->count()
+                    ->addDetail($article->authors->count()
                         ? strong(implode_link_user(', ', mpull($article->authors->toArray(), 'user')))
                         : span('muted', 'nobody')
-                        , 'person-stalker')
+                        , 'person-stalker'
                     )
-                    ->addDetail($article->modifiedAt->format("D, d M 'y"))
+                    ->addDetail($article->modifiedAt->format("D, d M 'y"), 'calendar')
                     ->addAttribute(
                         a(cv\icon_ion('edit article', 'edit'), $article_uri . '/edit')->addClass('btn btn-primary btn-small')
                     )

@@ -57,8 +57,8 @@ function disq_listing_add_object(ForumListing $listing, Discussion $discussion, 
         }
     }
 
-    $object->addDetail($discussion->lastActivity->format("D, d M 'y"));
-    $object->addDetail(cv\ht('strong', link_user($discussion->author)));
+    $object->addDetail($discussion->lastActivity->format("D, d M 'y"), 'calendar');
+    $object->addDetail(cv\ht('strong', link_user($discussion->author)), 'person-stalker');
 
     $listing->addObject($object);
 }

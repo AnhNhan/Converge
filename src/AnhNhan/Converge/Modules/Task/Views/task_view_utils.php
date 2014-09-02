@@ -47,10 +47,10 @@ function task_listing_add_object(Listing $listing, Task $task)
     }
     $task->tags->count() and $object->addAttribute(implode_link_tag(' ', mpull($task->tags->toArray(), 'tag'), true));
 
-    $object->addDetail($task->modifiedAt->format("D, d M 'y"));
+    $object->addDetail($task->modifiedAt->format("D, d M 'y"), 'calendar');
     if ($task->assigned)
     {
-        $object->addDetail(strong(implode_link_user(', ', mpull($task->assigned, 'user'))));
+        $object->addDetail(strong(implode_link_user(', ', mpull($task->assigned, 'user'))), 'person-stalker');
     }
     else
     {

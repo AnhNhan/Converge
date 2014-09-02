@@ -45,9 +45,12 @@ class Object extends AbstractObject
         return $this;
     }
 
-    public function addDetail($detail)
+    public function addDetail($detail, $icon = null)
     {
-        $this->details[] = $detail;
+        $this->details[] = [
+            'detail' => $detail,
+            'icon' => $icon,
+        ];
         return $this;
     }
 
@@ -66,8 +69,13 @@ class Object extends AbstractObject
             $detailContainer = div('objects-object-details');
             foreach ($this->details as $detail)
             {
+                $detail_text = $detail['detail'];
+                if ($icon = idx($detail, 'icon'))
+                {
+                    $detail_text = Converge\icon_ion($detail_text, $icon);
+                }
                 $detailContainer->append(
-                    div('objects-object-detail', $detail)
+                    div('objects-object-detail', $detail_text)
                 );
             }
             $container->append($detailContainer);
