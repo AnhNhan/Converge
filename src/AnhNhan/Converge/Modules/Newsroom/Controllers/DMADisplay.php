@@ -28,7 +28,8 @@ final class DMADisplay extends ArticleController
             return (new ResponseHtml404)->setText('This is not the article you are looking for.');
         }
         $query->fetchExternalsForArticles([$article]);
-        $authors = $article->authors ? $article->authors->toArray() : [];
+        $authors = $article->authors->toArray();
+        $tags = $article->tags->toArray();
 
         $article_color = $article->get_setting('color');
         $article_font = $article->get_setting('font');
@@ -50,6 +51,10 @@ final class DMADisplay extends ArticleController
                 : 'nobody',
             $article->channel->label
         ));
+        if ($tags)
+        {
+            $article_detail->append(div('article-detail-tags', implode_link_tag(' ', mpull($tags, 'tag'), true)));
+        }
         $article_container->append($article_detail);
 
         $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));

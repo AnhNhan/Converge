@@ -76,20 +76,22 @@ final class ArticleListing extends ArticleController
             foreach ($_articles as $article)
             {
                 $article_uri = urisprintf('/a/%p/%p', $article->channel->slug, $article->slug);
-                $listing->addObject((new Object)
+                $listing->addObject($object = (new Object)
                     ->setId($article->uid)
                     ->setHeadline($article->title)
                     ->setHeadHref($article_uri)
-                    ->setByLine($article->byline ?: nbsp())
+                    ->setByLine($article->byline ?: cv\ht('em', 'No byline given :/'))
                     ->addDetail(cv\icon_ion($article->authors->count()
                         ? strong(implode_link_user(', ', mpull($article->authors->toArray(), 'user')))
                         : span('muted', 'nobody')
                         , 'person-stalker')
                     )
-                    ->addDetail(
-                        cv\icon_ion(a('edit article', $article_uri . '/edit'), 'edit')
+                    ->addDetail($article->modifiedAt->format("D, d M 'y"))
+                    ->addAttribute(
+                        a(cv\icon_ion('edit article', 'edit'), $article_uri . '/edit')
                     )
                 );
+                $article->tags->count() and $object->addAttribute(implode_link_tag(' ', mpull($article->tags->toArray(), 'tag'), true));
             }
 
             $container->append($panel);
