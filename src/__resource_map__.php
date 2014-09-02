@@ -42,8 +42,8 @@ return array(
     "application-front-dashboard" => array(
       "name" => "application-front-dashboard",
       "path" => "application/front/dashboard.less",
-      "hash" => "075a7e6efa77ffa40099877dcccfaf3a",
-      "orig" => "dc91ee097bac6be30c66c464ef552060",
+      "hash" => "0bb638a1a1ae82e90e8b8007946f0871",
+      "orig" => "b51e9cfa48c49f7bf3e9b01d35f72362",
     ),
     "application-newsroom-article-page" => array(
       "name" => "application-newsroom-article-page",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "mneignqb",
+      "hash" => "ae3xr2hy",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,10 +688,10 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "1dee4da6a305e4b2ea7d7d31412a348c",
+      "hash" => "51ff22c0b710495714d5d63cee4a33f8",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
-        "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
+        "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
         "application-tag-core" => "54cbe9cd887e86f2d66878b5ed1c50fc",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "7a109918b6e3d249c52c766ce2e55a6b",
