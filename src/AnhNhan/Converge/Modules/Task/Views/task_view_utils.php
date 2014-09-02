@@ -120,43 +120,90 @@ function render_task(Task $task, $authenticated, $full_view = true)
             'access' => 'blockedBy',
             'task'   => 'blockingTask',
             'label'  => 'Blocking',
+            'type'   => 'taskblocker',
         ],
         [
             'access' => 'subTasks',
             'task'   => 'subTask',
             'label'  => 'Sub tasks',
+            'type'   => 'tasksubtask',
         ],
         [
             'access' => 'blockedTasks',
             'task'   => 'parentTask',
             'label'  => 'Blocked by',
+            'type'   => 'taskblocker',
         ],
         [
             'access' => 'parentTasks',
             'task'   => 'parentTask',
             'label'  => 'Parent tasks',
+            'type'   => 'tasksubtask',
         ],
     ];
 
     foreach ($relation_map as $_)
     {
         $_access = $_['access'];
-        $_task = $_['task'];
+        $task_property = $_['task'];
         $_label = $_['label'];
+        $type = $_['type'];
         if ($task->$_access->count())
         {
-            $tasks = mpull($task->$_access->toArray(), $_task);
+            $tasks = mpull($task->$_access->toArray(), $task_property);
             $sorted = msort($tasks, 'completed');
-            $blockers = pull($sorted, function ($task) use ($_task)
+            $blockers = pull($sorted, function ($a_task) use ($task, $type, $task_property, $authenticated)
             {
-                $link = a(phutil_utf8_shorten($task->label, 50), 'task/' . $task->label_canonical);
-                if ($task->completed)
+                $contents = phutil_utf8_shorten($a_task->label, 40);
+                if ($a_task->completed)
                 {
-                    $link = cv\ht('del', $link)->addClass('muted');
+                    $contents = cv\ht('del', $contents);
                 }
-                return $link;
+                $group = span('btn-group');
+                $link = a($contents, 'task/' . $a_task->label_canonical)
+                    ->addClass('btn btn-entity btn-small btn-task-rel')
+                ;
+                $group->append($link);
+
+                if ($authenticated)
+                {
+                    $parent_task = $task_property == 'parentTask' ? $a_task : $task;
+                    $child_task  = $task_property == 'parentTask' ? $task : $a_task;
+                    $group
+                        ->append(
+                            form('', urisprintf('task/delete_assoc/%p', $task->label_canonical), 'POST')
+                                ->addClass('btn btn-small btn-entity btn-form btn-task-rel')
+                                ->append(
+                                    (new HiddenControl)
+                                        ->setName('parent_uid')
+                                        ->setValue($parent_task->uid)
+                                )
+                                ->append(
+                                    (new HiddenControl)
+                                        ->setName('child_uid')
+                                        ->setValue($child_task->uid)
+                                )
+                                ->append(
+                                    (new HiddenControl)
+                                        ->setName('type')
+                                        ->setValue($type)
+                                )
+                                ->append(
+                                    (new HiddenControl)
+                                        ->setName('action')
+                                        ->setValue('deassoc')
+                                )
+                                ->append(cv\ht('button', cv\icon_ion('', 'close-circled'))
+                                    ->addClass('btn btn-small btn-entity btn-task-rel')
+                                    ->addOption('name', '__submit__')
+                                )
+                        )
+                    ;
+                }
+
+                return $group;
             });
-            $mid_container->addEntry($_label, implode_safeHtml(', ', array_map('strong', $blockers)));
+            $mid_container->addEntry($_label, implode_safeHtml(' ', array_map('strong', $blockers)));
         }
     }
 

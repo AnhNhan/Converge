@@ -78,8 +78,8 @@ return array(
     "application-task-display" => array(
       "name" => "application-task-display",
       "path" => "application/task/display.less",
-      "hash" => "863d5248ad4ef9927c947fac7d5f5dc4",
-      "orig" => "8f9e3a5286a51d8a588b872b148c418b",
+      "hash" => "48913e5e9f408bb42e1608f6a61108c8",
+      "orig" => "9ccfca7118e598c4db041321ed12b0d9",
     ),
     "application-task-listing" => array(
       "name" => "application-task-listing",
@@ -228,8 +228,8 @@ return array(
     "layout-buttons" => array(
       "name" => "layout-buttons",
       "path" => "layout/buttons.less",
-      "hash" => "6ff6f0b28db9422fffaf850de6050bfa",
-      "orig" => "4dd8ed4aa9ce9eb6794921d6a0bc08a1",
+      "hash" => "df1f6362eaf9cbf38adeb822fc10e806",
+      "orig" => "9e8d8a0444603ed6a1ef04cc00cd12fe",
     ),
     "layout-core" => array(
       "name" => "layout-core",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "joa4453w",
+      "hash" => "mneignqb",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,7 +688,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "c401107da29ea3c09ecb75a6879556c4",
+      "hash" => "1dee4da6a305e4b2ea7d7d31412a348c",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "075a7e6efa77ffa40099877dcccfaf3a",
@@ -700,7 +700,7 @@ return array(
         "layout-form" => "a828edca63442ace40c892a42cc4bf63",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
-        "layout-buttons" => "6ff6f0b28db9422fffaf850de6050bfa",
+        "layout-buttons" => "df1f6362eaf9cbf38adeb822fc10e806",
         "layout-bs-button-groups" => "ac686c544ef657874dea4c2d891e6e52",
         "layout-objects" => "d2e549cf8587bde66cfe74856e196420",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",
