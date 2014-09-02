@@ -78,9 +78,9 @@ final class ArticleListing extends ArticleController
                 $article_uri = urisprintf('/a/%p/%p', $article->channel->slug, $article->slug);
                 $listing->addObject($object = (new Object)
                     ->setId($article->uid)
-                    ->setHeadline($article->title)
+                    ->setHeadline(h2($article->title))
                     ->setHeadHref($article_uri)
-                    ->setByLine($article->byline ?: cv\ht('em', 'No byline given :/'))
+                    ->setByLine(h3($article->byline ?: cv\ht('em', 'No byline given :/'), 'muted'))
                     ->addDetail(cv\icon_ion($article->authors->count()
                         ? strong(implode_link_user(', ', mpull($article->authors->toArray(), 'user')))
                         : span('muted', 'nobody')
@@ -88,7 +88,7 @@ final class ArticleListing extends ArticleController
                     )
                     ->addDetail($article->modifiedAt->format("D, d M 'y"))
                     ->addAttribute(
-                        a(cv\icon_ion('edit article', 'edit'), $article_uri . '/edit')
+                        a(cv\icon_ion('edit article', 'edit'), $article_uri . '/edit')->addClass('btn btn-primary btn-small')
                     )
                 );
                 $article->tags->count() and $object->addAttribute(implode_link_tag(' ', mpull($article->tags->toArray(), 'tag'), true));
