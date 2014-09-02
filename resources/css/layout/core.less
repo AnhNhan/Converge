@@ -149,6 +149,17 @@ body {
                     color: @linkColorVisited;
                 }
             }
+
+            a.muted, .muted a {
+                color: mix(@linkColor, @grey);
+
+                &:hover, &:focus {
+                    color: mix(@linkColorActive, @grey);
+                }
+                &:visited {
+                    color: mix(@linkColorVisited, @grey);
+                }
+            }
         }
     }
 }
