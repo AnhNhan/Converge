@@ -3,20 +3,15 @@ namespace AnhNhan\Converge\Modules\Forum\Controllers;
 
 use AnhNhan\Converge;
 use AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder;
-use AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
 use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
-use AnhNhan\Converge\Modules\Forum\Storage\Post;
 use AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor;
-use AnhNhan\Converge\Modules\Tag\TagQuery;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Views\Form\FormView;
 use AnhNhan\Converge\Views\Form\Controls\SubmitControl;
 use AnhNhan\Converge\Views\Form\Controls\TextAreaControl;
 use AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector;
 use AnhNhan\Converge\Views\Form\Controls\TextControl;
-use AnhNhan\Converge\Views\Panel\Panel;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -39,7 +34,7 @@ final class DiscussionEditController extends AbstractForumController
         $requestMethod = $request->getMethod();
 
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html;
         $payload->setPayloadContents($container);
 
         $errors = array();
@@ -57,6 +52,7 @@ final class DiscussionEditController extends AbstractForumController
             $discussion = new Discussion;
         }
 
+        $uid = $discussion->uid;
         $label = $discussion->label;
         $text  = $discussion->text;
         $origTags = mpull($discussion->tags ? $discussion->tags->toArray() : array(), "tag");
@@ -140,8 +136,7 @@ final class DiscussionEditController extends AbstractForumController
         }
 
         if ($errors) {
-            $panel = new Panel;
-            $panel->setHeader(h2("Oops, something looks wrong"));
+            $panel = panel(h2("Oops, something looks wrong"));
             $panel->append(Converge\ht("p", "We can't continue until these issue(s) have been resolved:"));
 
             $list = Converge\ht("ul");
@@ -157,10 +152,13 @@ final class DiscussionEditController extends AbstractForumController
             $tags = implode(", ", $tags);
         }
 
+        $page_title = ($uid ? "Edit Discussion '$label'" : "New discussion") . " - Converge Discussions";
+        $payload->setTitle($page_title);
+
         $form = new FormView;
         $form->setDualColumnMode(false);
         $form
-            ->setTitle("New discussion")
+            ->setTitle($page_title)
             ->setAction($request->getPathInfo())
             ->setMethod("POST");
 
