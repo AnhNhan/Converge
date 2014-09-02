@@ -30,6 +30,7 @@ final class TaskComment extends AbstractTaskController
     {
         $request = $this->request();
         $requestMethod = $request->getMethod();
+        assert($requestMethod == 'POST');
 
         $query = $this->buildQuery();
         $task = $this->retrieveTaskObject($request, $query);
@@ -38,7 +39,7 @@ final class TaskComment extends AbstractTaskController
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
 
-        $inputText = $request->get('comment');
+        $inputText = $request->request->get('comment');
 
         if (!$inputText) {
             throw new \Exception("Input 'comment' can't be empty!");

@@ -7,6 +7,7 @@ use AnhNhan\Converge\Modules\Task\Storage\TaskStatus;
 use AnhNhan\Converge\Modules\Task\Storage\TaskPriority;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
+use AnhNhan\Converge\Views\Form\Controls\HiddenControl;
 use AnhNhan\Converge\Views\Objects\Listing;
 use AnhNhan\Converge\Views\Objects\Object;
 use AnhNhan\Converge\Views\Property\PropertyList;
@@ -75,9 +76,16 @@ function render_task(Task $task, $authenticated)
     ;
     $complete_button_label = $task->completed ? 'mark as incomplete' : 'mark as complete';
     $complete_button_icon  = $task->completed ? 'archive' : 'checkmark';
-    $complete_button = cv\ht('a', cv\icon_ion($complete_button_label, $complete_button_icon))
-        ->addClass('btn btn-default btn-small')
-        ->addOption('href', urisprintf('task/complete/%p?completed=%b', $task->label_canonical, !$task->completed))
+    $complete_button = form('', urisprintf('task/complete/%p', $task->label_canonical), 'POST')
+        ->append(
+            (new HiddenControl)
+                ->setName('completed')
+                ->setValue(sprintf('%d', !$task->completed))
+        )
+        ->append(cv\ht('button', cv\icon_ion($complete_button_label, $complete_button_icon))
+            ->addClass('btn btn-default btn-small')
+            ->addOption('name', '__submit__')
+        )
     ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)

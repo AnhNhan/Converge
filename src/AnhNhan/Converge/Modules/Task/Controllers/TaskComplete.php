@@ -30,6 +30,7 @@ final class TaskComplete extends AbstractTaskController
     {
         $request = $this->request();
         $requestMethod = $request->getMethod();
+        assert($requestMethod == 'POST');
 
         $query = $this->buildQuery();
         $task = $this->retrieveTaskObject($request, $query);
@@ -38,12 +39,12 @@ final class TaskComplete extends AbstractTaskController
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
 
-        if (!$request->query->has('completed'))
+        if (!$request->request->has('completed'))
         {
             throw new \Exception('We require the completed query parameter to be set!');
         }
 
-        $completed = $request->query->get('completed');
+        $completed = $request->request->get('completed');
 
         $em = $this->app->getEntityManager();
 
