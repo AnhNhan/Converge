@@ -42,10 +42,12 @@ final class TaskDisplay extends AbstractTaskController
         $grouped_external_uids = group($external_uids, 'uid_get_type');
 
         $external_tag_uids = idx($grouped_external_uids, 'TTAG', []);
+        $external_task_uids = idx($grouped_external_uids, 'TASK', []);
         $external_user_uids = idx($grouped_external_uids, 'USER', []);
         $external_status_uids = idx($grouped_external_uids, 'TASK-STAT', []);
         $external_priority_uids = idx($grouped_external_uids, 'TASK-PRIO', []);
 
+        $external_tasks = $external_task_uids ? mkey($query->retrieveTasksForUids(array_values($external_task_uids)), 'uid') : [];
         $external_status = $external_status_uids ? $query->retrieveTaskStatusForUids($external_status_uids) : [];
         $external_priorities = $external_priority_uids ? $query->retrieveTaskPriorityForUids($external_priority_uids) : [];
 
@@ -81,6 +83,7 @@ final class TaskDisplay extends AbstractTaskController
             'priorities'   => $external_priorities,
             'status'       => $external_status,
             'users'        => $user_objects,
+            'tasks'        => $external_tasks,
             'tags'         => $tags,
         ];
 

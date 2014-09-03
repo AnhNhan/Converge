@@ -376,9 +376,35 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, array $other = 
             return cv\hsprintf('added tag <strong>%s</strong>', link_tag(idx($tags, $xact->newValue)));
         case TaskTransaction::TYPE_DEL_TAG:
             return cv\hsprintf('removed tag <strong>%s</strong>', link_tag(idx($tags, $xact->oldValue)));
+        case TaskTransaction::TYPE_ADD_RELATION:
+        case TaskTransaction::TYPE_DEL_RELATION:
+            $val = (array) ($xact->newValue ? json_decode($xact->newValue) : json_decode($xact->oldValue));
+            return task_xact_relation_label($val, $xact->type == TaskTransaction::TYPE_ADD_RELATION, $task, $other);
         default:
             return 'did something';
     }
+}
+
+function task_xact_relation_label($val, $is_add, Task $task, array $other = [])
+{
+    $tasks = $other['tasks'];
+    $parent_task = $tasks[$val['parent']];
+    $child_task = $tasks[$val['child']];
+
+    $is_parent = $val['parent'] == $task->uid;
+    $other_task = $is_parent ? $child_task : $parent_task;
+    $other_link = a(phutil_utf8_shorten($other_task->label, 40), 'task/' . $other_task->label_canonical);
+    $action = $is_add ? 'added' : 'removed';
+    if ($val['type'] == 'taskblocker')
+    {
+        $type = $is_parent ? 'blocking task' : 'blocked task';
+    }
+    else
+    {
+        $type = $is_parent ? 'sub task' : 'parent task';
+    }
+
+    return cv\hsprintf('%s %s <strong>%s</strong>', $action, $type, $other_link);
 }
 
 function task_xact_type_body(Task $task, TaskTransaction $xact, $other = null)
@@ -427,6 +453,10 @@ function task_xact_type_fetch_external_uids(TaskTransaction $xact)
         case TaskTransaction::TYPE_EDIT_STATUS:
         case TaskTransaction::TYPE_EDIT_PRIORITY:
             return [$xact->oldValue, $xact->newValue];
+        case TaskTransaction::TYPE_ADD_RELATION:
+        case TaskTransaction::TYPE_DEL_ASSIGN:
+            $val = (array) ($xact->newValue ? json_decode($xact->newValue) : json_decode($xact->oldValue));
+            return array_values(array_select_keys($val, ['parent', 'child']));
     }
 }
 
