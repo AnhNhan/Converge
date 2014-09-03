@@ -317,10 +317,10 @@ final class TaskEdit extends AbstractTaskController
         {
             $form->append(
                 (new DummyControl(
-                    render_task($parent_task, false, false)->addOption('style', 'font-size: 0.8em; display: inline-block; width: auto;')
+                    render_task($parent_task, false, false)->addOption('style', 'font-size: 0.8em;')
                 ))
                     ->setLabel('Parent Task')
-                    ->addOption('style', 'height: auto; background: none')
+                    ->addOption('style', 'height: auto;')
             );
         }
 
