@@ -9,8 +9,8 @@ use AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface;
  *
  * @Entity
  * @Table(indexes={
- *   @Index(name="idx_completed", columns={"id", "completed"}),
- *   @Index(name="completed_flag", columns={"completed"})
+ *   @Index(name="idx_closed", columns={"id", "closed"}),
+ *   @Index(name="closed_flag", columns={"closed"})
  * })
  */
 class Task extends EntityDefinition implements TransactionAwareEntityInterface
@@ -80,7 +80,7 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
     /**
      * @Column(type="boolean")
      */
-    private $completed = false;
+    private $closed = false;
 
     /**
      * @Column(type="datetime")
@@ -218,9 +218,9 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
         return $this->status;
     }
 
-    public function completed()
+    public function closed()
     {
-        return $this->completed;
+        return $this->closed;
     }
 
     public function createdAt()

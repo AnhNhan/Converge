@@ -37,10 +37,10 @@ function task_listing_basic_object(Task $task)
         ->setHeadHref("/task/" . $task->label_canonical)
     ;
 
-    if ($task->completed)
+    if ($task->closed)
     {
-        $object->addAttribute(cv\icon_ion('completed', 'checkmark', false));
-        $object->addClass('task-object-completed');
+        $object->addAttribute(cv\icon_ion('closed', 'checkmark', false));
+        $object->addClass('task-object-closed');
     }
     else
     {
@@ -147,11 +147,11 @@ function task_assoc_picker_add_object($return_uri, Task $base_task, Listing $lis
 
 function render_task(Task $task, $authenticated, $full_view = true)
 {
-    $completed_msg = $task->completed
-        ? cv\icon_ion('completed', 'checkmark', false)
+    $closed_msg = $task->closed
+        ? cv\icon_ion('closed', 'checkmark', false)
         : $task->status->label
     ;
-    $header_text = cv\hsprintf('<h2>%s <small>%s</small></h2>', $task->label, $completed_msg);
+    $header_text = cv\hsprintf('<h2>%s <small>%s</small></h2>', $task->label, $closed_msg);
     $panel = panel($header_text, 'task-panel');
     $panel->setId($task->uid);
 
@@ -159,16 +159,16 @@ function render_task(Task $task, $authenticated, $full_view = true)
         ->addClass('btn btn-primary btn-small')
         ->addOption('href', urisprintf('task/edit/%p', $task->label_canonical))
     ;
-    $complete_button_label = $task->completed ? 'mark as incomplete' : 'mark as complete';
-    $complete_button_icon  = $task->completed ? 'archive' : 'checkmark';
-    $complete_button = form('', urisprintf('task/complete/%p', $task->label_canonical), 'POST')
+    $close_button_label = $task->closed ? 'open task' : 'close task';
+    $close_button_icon  = $task->closed ? 'archive' : 'checkmark';
+    $close_button = form('', urisprintf('task/close/%p', $task->label_canonical), 'POST')
         ->addClass('btn btn-form btn-default btn-small')
         ->append(
             (new HiddenControl)
-                ->setName('completed')
-                ->setValue(sprintf('%d', !$task->completed))
+                ->setName('closed')
+                ->setValue(sprintf('%d', !$task->closed))
         )
-        ->append(cv\ht('button', cv\icon_ion($complete_button_label, $complete_button_icon))
+        ->append(cv\ht('button', cv\icon_ion($close_button_label, $close_button_icon))
             ->addOption('name', '__submit__')
         )
     ;
@@ -181,7 +181,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
     ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)
-        ->append($complete_button)
+        ->append($close_button)
         ->append($subtask_button)
         ->append($assoc_button)
     ;
@@ -241,13 +241,13 @@ function render_task(Task $task, $authenticated, $full_view = true)
         if ($task->$_access->count())
         {
             $tasks = mpull($task->$_access->toArray(), $task_property);
-            $sorted = msort($tasks, 'completed');
+            $sorted = msort($tasks, 'closed');
             $blockers = pull($sorted, function ($a_task) use ($task, $type, $task_property, $authenticated)
             {
                 $contents = phutil_utf8_shorten($a_task->label, 40);
                 $is_shortened = $contents != $a_task->label;
 
-                if ($a_task->completed)
+                if ($a_task->closed)
                 {
                     $contents = cv\ht('del', $contents);
                 }
@@ -356,10 +356,10 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, array $other = 
             return 'changed the description';
         case TaskTransaction::TYPE_ADD_COMMENT:
             return 'added a comment';
-        case TaskTransaction::TYPE_EDIT_COMPLETED:
+        case TaskTransaction::TYPE_EDIT_CLOSED:
             if ($xact->newValue)
             {
-                return 'completed this task';
+                return 'closed this task';
             }
             else
             {
@@ -484,10 +484,10 @@ function task_activity_label(RecordedActivity $activity, array $other = [])
             return cv\hsprintf('renamed task %s to %s', $object_label_link, $new_label_link);
         case TaskTransaction::TYPE_ADD_COMMENT:
             return cv\hsprintf('commented on task %s', $object_label_link);
-        case TaskTransaction::TYPE_EDIT_COMPLETED:
+        case TaskTransaction::TYPE_EDIT_CLOSED:
             if ($activity->xact_contents)
             {
-                return cv\hsprintf('completed task %s', $object_label_link);
+                return cv\hsprintf('closed task %s', $object_label_link);
             }
             else
             {

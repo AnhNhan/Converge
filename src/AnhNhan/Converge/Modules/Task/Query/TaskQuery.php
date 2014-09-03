@@ -28,10 +28,10 @@ final class TaskQuery extends Query
         return $query->getResult();
     }
 
-    public function retrieveIncompleteTasks($limit = null, $offset = null)
+    public function retrieveUnclosedTasks($limit = null, $offset = null)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.completed = 0";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.closed = 0";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)
@@ -40,11 +40,11 @@ final class TaskQuery extends Query
         return $query->getResult();
     }
 
-    public function retrieveTasksForAssigned(array $assigned_ids, $completed = null, $limit = null, $offset = null)
+    public function retrieveTasksForAssigned(array $assigned_ids, $closed = null, $limit = null, $offset = null)
     {
-        $completed_sql = $completed === null ? '' : ' AND t.completed = ' . ($completed ? '1' : '0');
+        $closed_sql = $closed === null ? '' : ' AND t.closed = ' . ($closed ? '1' : '0');
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE ta.user IN (:assigned_ids){$completed_sql}";
+        $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE ta.user IN (:assigned_ids){$closed_sql}";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)

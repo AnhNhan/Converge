@@ -564,12 +564,12 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskAssoc.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
     ),
-    "AnhNhan\Converge\Modules\Task\Controllers\TaskComment" => array(
-      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComment.php",
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskClose" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskClose.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
     ),
-    "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete" => array(
-      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComplete.php",
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskComment" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComment.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay" => array(
@@ -1015,6 +1015,7 @@ return array(
     "render_task" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "render_task_transaction" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_label" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_xact_relation_label" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_body" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_class" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_fetch_external_uids" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
@@ -1125,8 +1126,8 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskAssoc",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskClose",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
-      "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
@@ -1403,8 +1404,8 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
       "AnhNhan\Converge\Modules\Task\Controllers\TaskAssoc",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskClose",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
-      "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",

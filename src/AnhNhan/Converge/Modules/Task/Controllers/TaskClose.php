@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-final class TaskComplete extends AbstractTaskController
+final class TaskClose extends AbstractTaskController
 {
     public function requiredUserRoles($request)
     {
@@ -39,12 +39,12 @@ final class TaskComplete extends AbstractTaskController
             return id(new ResponseHtml404)->setText('This is not the task you are looking for.');
         }
 
-        if (!$request->request->has('completed'))
+        if (!$request->request->has('closed'))
         {
-            throw new \Exception('We require the completed query parameter to be set!');
+            throw new \Exception('We require the closed query parameter to be set!');
         }
 
-        $completed = $request->request->get('completed');
+        $closed = $request->request->get('closed');
 
         $em = $this->app->getEntityManager();
 
@@ -52,7 +52,7 @@ final class TaskComplete extends AbstractTaskController
             ->setActor($this->user->uid)
             ->setEntity($task)
             ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
-            ->addTransaction(TaskTransaction::create(TaskTransaction::TYPE_EDIT_COMPLETED, $completed))
+            ->addTransaction(TaskTransaction::create(TaskTransaction::TYPE_EDIT_CLOSED, $closed))
         ;
 
         $activityRecorder = new TaskRecorder($this->externalApp('activity'));

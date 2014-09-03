@@ -31,7 +31,7 @@ final class TaskDisplay extends AbstractTaskController
         $non_skippable_types = [
             TransactionEntity::TYPE_CREATE       => true,
             TaskTransaction::TYPE_ADD_COMMENT    => true,
-            TaskTransaction::TYPE_EDIT_COMPLETED => true,
+            TaskTransaction::TYPE_EDIT_CLOSED => true,
         ];
         $transactions = $task->transactions->toArray();
         $transactions = array_filter($transactions, function ($xact) use ($task, $non_skippable_types) {

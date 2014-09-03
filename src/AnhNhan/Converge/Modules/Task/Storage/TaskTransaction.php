@@ -17,7 +17,7 @@ class TaskTransaction extends TransactionEntity
     const TYPE_EDIT_DESC      = "task.edit.description";
     const TYPE_EDIT_STATUS    = "task.edit.status";
     const TYPE_EDIT_PRIORITY  = "task.edit.priority";
-    const TYPE_EDIT_COMPLETED = "task.edit.completed";
+    const TYPE_EDIT_CLOSED    = "task.edit.closed";
     const TYPE_ADD_COMMENT    = "task.add.comment";
     const TYPE_ADD_ASSIGN     = "task.add.assigned";
     const TYPE_DEL_ASSIGN     = "task.del.assigned";

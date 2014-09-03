@@ -16,7 +16,7 @@ final class TaskRecorder extends ActivityRecorder
             TransactionEntity::TYPE_CREATE => true,
             TaskTransaction::TYPE_EDIT_LABEL => true,
             TaskTransaction::TYPE_EDIT_DESC => true,
-            TaskTransaction::TYPE_EDIT_COMPLETED => true,
+            TaskTransaction::TYPE_EDIT_CLOSED => true,
             TaskTransaction::TYPE_ADD_COMMENT => true,
             TaskTransaction::TYPE_ADD_ASSIGN => true,
             TaskTransaction::TYPE_DEL_ASSIGN => true,

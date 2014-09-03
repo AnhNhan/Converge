@@ -22,7 +22,7 @@ final class TaskListing extends AbstractTaskController
         }
         else
         {
-            $tasks = $query->retrieveIncompleteTasks(null);
+            $tasks = $query->retrieveUnclosedTasks(null);
         }
 
         $parent_task = null;
@@ -74,7 +74,7 @@ final class TaskListing extends AbstractTaskController
 
         $button_container = div('pull-right');
         !$parent_task and $container->unshift($button_container);
-        $button_container->getContent()->unshift(cv\ht("a", $all_tasks_flag ? 'show incomplete only' : 'show all tasks', array(
+        $button_container->getContent()->unshift(cv\ht("a", $all_tasks_flag ? 'show open tasks only' : 'show all tasks', array(
             "href"  => "/task/?all_tasks=" . ($all_tasks_flag ? '0' : '1'),
             "class" => "btn btn-default",
         )));

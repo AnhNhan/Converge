@@ -20,7 +20,7 @@ final class TaskEditor extends TransactionEditor
         $types[] = TaskTransaction::TYPE_EDIT_DESC;
         $types[] = TaskTransaction::TYPE_EDIT_STATUS;
         $types[] = TaskTransaction::TYPE_EDIT_PRIORITY;
-        $types[] = TaskTransaction::TYPE_EDIT_COMPLETED;
+        $types[] = TaskTransaction::TYPE_EDIT_CLOSED;
         $types[] = TaskTransaction::TYPE_ADD_COMMENT;
         $types[] = TaskTransaction::TYPE_ADD_ASSIGN;
         $types[] = TaskTransaction::TYPE_DEL_ASSIGN;
@@ -53,8 +53,8 @@ final class TaskEditor extends TransactionEditor
                 return $entity->status() ? $entity->status()->uid : null;
             case TaskTransaction::TYPE_EDIT_PRIORITY:
                 return $entity->priority() ? $entity->priority()->uid : null;
-            case TaskTransaction::TYPE_EDIT_COMPLETED:
-                return $entity->completed();
+            case TaskTransaction::TYPE_EDIT_CLOSED:
+                return $entity->closed();
         }
     }
 
@@ -68,7 +68,7 @@ final class TaskEditor extends TransactionEditor
             case TaskTransaction::TYPE_EDIT_LABEL:
             case TaskTransaction::TYPE_EDIT_STATUS:
             case TaskTransaction::TYPE_EDIT_PRIORITY:
-            case TaskTransaction::TYPE_EDIT_COMPLETED:
+            case TaskTransaction::TYPE_EDIT_CLOSED:
             case TaskTransaction::TYPE_ADD_TAG:
             case TaskTransaction::TYPE_ADD_RELATION:
                 return $transaction->newValue();
@@ -101,8 +101,8 @@ final class TaskEditor extends TransactionEditor
                 $this->setPropertyPerReflection($entity, 'priority', $transaction->newValue);
                 $this->setPropertyPerReflection($transaction, 'newValue', $transaction->newValue->uid);
                 break;
-            case TaskTransaction::TYPE_EDIT_COMPLETED:
-                $this->setPropertyPerReflection($entity, 'completed', $transaction->newValue);
+            case TaskTransaction::TYPE_EDIT_CLOSED:
+                $this->setPropertyPerReflection($entity, 'closed', $transaction->newValue);
                 break;
             case TaskTransaction::TYPE_ADD_COMMENT:
             case TaskTransaction::TYPE_ADD_ASSIGN:

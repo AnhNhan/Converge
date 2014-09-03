@@ -47,8 +47,8 @@ final class TaskApplication extends BaseApplication
             case "task-comment":
                 return new Controllers\TaskComment($this);
                 break;
-            case "task-complete":
-                return new Controllers\TaskComplete($this);
+            case "task-close":
+                return new Controllers\TaskClose($this);
                 break;
             case "task-rel-assoc":
                 return new Controllers\TaskAssoc($this);
