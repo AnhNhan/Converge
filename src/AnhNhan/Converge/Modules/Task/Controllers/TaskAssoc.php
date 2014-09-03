@@ -97,16 +97,23 @@ final class TaskAssoc extends AbstractTaskController
         }
 
         $em = $this->app->getEntityManager();
+        $activityRecorder = new TaskRecorder($this->externalApp('activity'));
 
-        $editor = TaskEditor::create($em)
+        $editor_1 = TaskEditor::create($em)
             ->setActor($this->user->uid)
-            ->setEntity($task)
+            ->setEntity(array_pop($tasks))
             ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
             ->addTransaction(TaskTransaction::create($xact_type, $object))
         ;
+        $activityRecorder->record($editor_1->apply());
 
-        $activityRecorder = new TaskRecorder($this->externalApp('activity'));
-        $activityRecorder->record($editor->apply());
+        $editor_2 = TaskEditor::create($em)
+            ->setActor($this->user->uid)
+            ->setEntity(array_pop($tasks))
+            ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
+            ->addTransaction(TaskTransaction::create($xact_type, $object))
+        ;
+        $activityRecorder->record($editor_2->apply());
 
         $targetURI = $request->query->has('return_to')
             ? $request->query->get('return_to')
