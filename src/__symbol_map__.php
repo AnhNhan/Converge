@@ -269,6 +269,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Markup/Markup/AsianText.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
     ),
+    "AnhNhan\Converge\Modules\Markup\Markup\SoundCloudEmbedTrack" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Markup/SoundCloudEmbedTrack.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
     "AnhNhan\Converge\Modules\Markup\MarkupApplication" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/MarkupApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
@@ -323,6 +327,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/DMAEdit.php",
       "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
     ),
+    "AnhNhan\Converge\Modules\Newsroom\Controllers\MarkupHelp" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/MarkupHelp.php",
+      "deriv" => "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
+    ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Controllers/NewsroomController.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -338,6 +346,26 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/FontSize.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\LeadChar" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/LeadChar.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\LeadCharSepParagraph" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/LeadCharSepParagraph.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\QaAnswerer" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/QaAnswerer.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\QaQuestion" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/QaQuestion.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Markup\SeparatorParagraph" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Markup/SeparatorParagraph.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
     ),
     "AnhNhan\Converge\Modules\Newsroom\NewsroomApplication" => array(
@@ -358,6 +386,10 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleAuthor" => array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/ArticleAuthor.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTag" => array(
+      "file" => "AnhNhan/Converge/Modules/Newsroom/Storage/ArticleTag.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction" => array(
@@ -528,6 +560,10 @@ return array(
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Modules\Task\Controllers\TaskAssoc" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskAssoc.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
+    ),
     "AnhNhan\Converge\Modules\Task\Controllers\TaskComment" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskComment.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
@@ -548,6 +584,12 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Task/Controllers/TaskListing.php",
       "deriv" => "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
     ),
+    "AnhNhan\Converge\Modules\Task\Doctrine\LifeCycleTaskRelationXActSerializer" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Doctrine/LifeCycleTaskRelationXActSerializer.php",
+      "impls" => array(
+        "Doctrine\Common\EventSubscriber",
+      ),
+    ),
     "AnhNhan\Converge\Modules\Task\Query\TaskQuery" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Query/TaskQuery.php",
       "deriv" => "AnhNhan\Converge\Storage\Query",
@@ -563,6 +605,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskAssigned.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskBlocker" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskBlocker.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Storage\TaskRelation",
+    ),
     "AnhNhan\Converge\Modules\Task\Storage\TaskPriority" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskPriority.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
@@ -574,6 +620,11 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskPriorityTransaction.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskRelation" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskRelation.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "abstr" => "1",
+    ),
     "AnhNhan\Converge\Modules\Task\Storage\TaskStatus" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskStatus.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
@@ -584,6 +635,14 @@ return array(
     "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskStatusTransaction.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskSubTask" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskSubTask.php",
+      "deriv" => "AnhNhan\Converge\Modules\Task\Storage\TaskRelation",
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskTag" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskTag.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
     "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Storage/TaskTransaction.php",
@@ -769,6 +828,10 @@ return array(
       ),
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Views\Form\Controls\DummyControl" => array(
+      "file" => "AnhNhan/Converge/Views/Form/Controls/DummyControl.php",
+      "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
+    ),
     "AnhNhan\Converge\Views\Form\Controls\HiddenControl" => array(
       "file" => "AnhNhan/Converge/Views/Form/Controls/HiddenControl.php",
       "deriv" => "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
@@ -938,8 +1001,17 @@ return array(
     "channel_activity_label" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
     "link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "render_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "render_tags" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "implode_link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "create_tag_query" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "fetch_external_tags" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
+    "validate_tags_from_form_input" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "render_task_listing" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_listing_basic_object" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_listing_add_object" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "render_task_assoc_picker_listing" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
+    "task_assoc_picker_add_object" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "render_task" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "render_task_transaction" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_xact_type_label" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
@@ -953,6 +1025,7 @@ return array(
     "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
     "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
+    "implode_link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
     "uid_get_type" => "AnhNhan/Converge/Storage/Types/uid_utils.php",
     "form" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_textcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
@@ -970,11 +1043,13 @@ return array(
     "AnhNhan\Converge\sdx" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\pdx" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\normalize_newlines" => "AnhNhan/Converge/functions.php",
+    "curry_fa" => "AnhNhan/Converge/functions_functional.php",
     "AnhNhan\Converge\safeHtml" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\hsprintf" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\ht" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\icon_ic" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\icon_ion" => "AnhNhan/Converge/functions_html.php",
+    "implode_safeHtml" => "AnhNhan/Converge/functions_html_global.php",
     "nbsp" => "AnhNhan/Converge/functions_html_global.php",
     "grid" => "AnhNhan/Converge/functions_html_global.php",
     "panel" => "AnhNhan/Converge/functions_html_global.php",
@@ -1049,6 +1124,7 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Controllers\TagCreationController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagDisplayController",
       "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController",
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskAssoc",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
@@ -1081,18 +1157,23 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleAuthor",
+      "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTag",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Channel",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
       "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskRelation",
       "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskTag",
       "AnhNhan\Converge\Modules\User\Storage\Email",
       "AnhNhan\Converge\Modules\User\Storage\OAuthInfo",
       "AnhNhan\Converge\Modules\User\Storage\Role",
       "AnhNhan\Converge\Modules\User\Storage\User",
       "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
       "AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskBlocker",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskSubTask",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
@@ -1233,9 +1314,15 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
+      "AnhNhan\Converge\Modules\Markup\Markup\SoundCloudEmbedTrack",
       "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
       "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
       "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\LeadChar",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\LeadCharSepParagraph",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\QaAnswerer",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\QaQuestion",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\SeparatorParagraph",
     ),
     "PhutilRemarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
@@ -1248,9 +1335,15 @@ return array(
       "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
+      "AnhNhan\Converge\Modules\Markup\Markup\SoundCloudEmbedTrack",
       "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
       "AnhNhan\Converge\Modules\Newsroom\Markup\FancyHeader",
       "AnhNhan\Converge\Modules\Newsroom\Markup\FontSize",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\LeadChar",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\LeadCharSepParagraph",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\QaAnswerer",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\QaQuestion",
+      "AnhNhan\Converge\Modules\Newsroom\Markup\SeparatorParagraph",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
@@ -1258,12 +1351,14 @@ return array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleListing",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit",
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\MarkupHelp",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleListing",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMADisplay",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\DMAEdit",
+      "AnhNhan\Converge\Modules\Newsroom\Controllers\MarkupHelp",
     ),
     "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController" => array(
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelEdit",
@@ -1299,6 +1394,7 @@ return array(
     ),
     "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl" => array(
       "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
+      "AnhNhan\Converge\Views\Form\Controls\DummyControl",
       "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
       "AnhNhan\Converge\Views\Form\Controls\PasswordControl",
       "AnhNhan\Converge\Views\Form\Controls\SelectControl",
@@ -1306,11 +1402,16 @@ return array(
       "AnhNhan\Converge\Views\Form\Controls\TextControl",
     ),
     "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController" => array(
+      "AnhNhan\Converge\Modules\Task\Controllers\TaskAssoc",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComment",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskComplete",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
+    ),
+    "AnhNhan\Converge\Modules\Task\Storage\TaskRelation" => array(
+      "AnhNhan\Converge\Modules\Task\Storage\TaskBlocker",
+      "AnhNhan\Converge\Modules\Task\Storage\TaskSubTask",
     ),
     "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
       "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
@@ -1333,6 +1434,7 @@ return array(
     "YamwLibs\Libs\Html\Markup\HtmlTag" => array(
       "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
       "AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector",
+      "AnhNhan\Converge\Views\Form\Controls\DummyControl",
       "AnhNhan\Converge\Views\Form\Controls\HiddenControl",
       "AnhNhan\Converge\Views\Form\Controls\PasswordControl",
       "AnhNhan\Converge\Views\Form\Controls\SelectControl",
@@ -1373,6 +1475,10 @@ return array(
       "AnhNhan\Converge\Modules\User\Storage\Role",
       "AnhNhan\Converge\Modules\User\Storage\User",
     ),
+    "Doctrine\Common\EventSubscriber" => array(
+      "AnhNhan\Converge\Modules\Task\Doctrine\LifeCycleTaskRelationXActSerializer",
+      "AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator",
+    ),
     "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
       "AnhNhan\Converge\Modules\User\DependencyInjection\SecurityExtension",
       "AnhNhan\Converge\Modules\User\DependencyInjection\UserExtension",
@@ -1382,9 +1488,6 @@ return array(
     ),
     "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
       "AnhNhan\Converge\Modules\User\Storage\User",
-    ),
-    "Doctrine\Common\EventSubscriber" => array(
-      "AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator",
     ),
     "YamwLibs\Libs\View\ViewInterface" => array(
       "AnhNhan\Converge\Views\AbstractView",
