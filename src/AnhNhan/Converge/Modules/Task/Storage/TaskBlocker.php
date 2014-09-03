@@ -29,4 +29,9 @@ class TaskBlocker extends TaskRelation
     {
         $this->blockingTask = $task;
     }
+
+    protected function getType()
+    {
+        return 'taskblocker';
+    }
 }

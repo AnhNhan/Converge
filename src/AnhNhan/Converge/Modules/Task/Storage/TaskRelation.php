@@ -44,13 +44,14 @@ abstract class TaskRelation extends EntityDefinition
 
     abstract protected function setChildTask(Task $child);
     abstract protected function getChildTask();
+    abstract protected function getType();
 
     public function serializeForXAct()
     {
         return json_encode([
             'parent' => $this->parentTask->uid,
             'child' => $this->getChildTask->uid,
-            'type' => get_class($this),
+            'type' => $this->getType,
         ]);
     }
 }

@@ -29,4 +29,9 @@ class TaskSubTask extends TaskRelation
     {
         $this->subTask = $task;
     }
+
+    protected function getType()
+    {
+        return 'tasksubtask';
+    }
 }
