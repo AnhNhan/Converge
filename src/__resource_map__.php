@@ -84,8 +84,8 @@ return array(
     "application-task-listing" => array(
       "name" => "application-task-listing",
       "path" => "application/task/listing.less",
-      "hash" => "d54e133ff21b04ded624917baef71b1c",
-      "orig" => "58b71e9ed106a761bcbe0c2006394f3a",
+      "hash" => "b317b4491db1b34c34e4370f16f3d82a",
+      "orig" => "e4cbb9fffa340eec47ff95f0f5623fcb",
     ),
     "application-user-core" => array(
       "name" => "application-user-core",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "2qoxaojq",
+      "hash" => "u434bcp3",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
