@@ -177,6 +177,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
     ;
     $assoc_button = a(cv\icon_ion(cv\icon_ion('add associations', 'android-share'), 'android-add'), urisprintf('task/?parent_task=%s', $task->label_canonical))
         ->addClass('btn btn-default btn-small')
+        ->addOption('target', '_blank')
     ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)
