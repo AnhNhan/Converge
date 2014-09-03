@@ -1,0 +1,23 @@
+
+.task-entity
+{
+    .round-border (@border-radius-button);
+    background: @colorInfo;
+    color: @white;
+    display: inline-block;
+    padding: 0 0.33em;
+    font-weight: bold;
+}
+
+.task-entity-closed
+{
+}
+
+a.task-entity
+{
+    &, &:hover, &:focus, &:visited
+    {
+        color: @white;
+        text-decoration: none;
+    }
+}

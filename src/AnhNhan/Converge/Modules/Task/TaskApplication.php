@@ -25,6 +25,13 @@ final class TaskApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
     }
 
+    public function getCustomMarkupRules()
+    {
+        return [
+            new Markup\TaskEntity($this),
+        ];
+    }
+
     public function getActivityRenderers()
     {
         return [

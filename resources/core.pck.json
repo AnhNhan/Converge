@@ -5,6 +5,7 @@
         "application-colors",
         "application-front-dashboard",
         "application-tag-core",
+        "application-task-core",
         "application-user-core",
         "layout-boilerplate",
         "layout-core",
