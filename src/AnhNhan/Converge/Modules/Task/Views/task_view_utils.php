@@ -194,10 +194,13 @@ function render_task(Task $task, $authenticated, $full_view = true)
 
     $assigned_linked = strong(implode_link_user(', ', mpull($task->assigned, 'user')));
 
+    $embed_code = $task->label_canonical == to_canonical($task->label) ? to_slug($task->label) : $task->label_canonical;
+
     $mid_container
         ->addEntry('Priority', $task->priority->label)
         ->addEntry('Assigned to', $task->assigned ? $assigned_linked : span('muted', 'up for grabs'))
         ->addEntry('Tags', $task->tags->count() ? implode_link_tag(' ', mpull($task->tags->toArray(), 'tag'), true) : span('muted', 'no tags'))
+        ->addEntry('Embed Code', cv\ht('code', '~' . $embed_code))
     ;
 
     if (!$full_view)
