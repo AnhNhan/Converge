@@ -155,11 +155,22 @@ function render_task(Task $task, $authenticated, $full_view = true)
             $blockers = pull($sorted, function ($a_task) use ($task, $type, $task_property, $authenticated)
             {
                 $contents = phutil_utf8_shorten($a_task->label, 40);
+                $is_shortened = $contents != $a_task->label;
+
                 if ($a_task->completed)
                 {
                     $contents = cv\ht('del', $contents);
                 }
+
                 $group = span('btn-group');
+                if ($is_shortened)
+                {
+                    $group
+                        ->addOption("data-toggle", "tooltip")
+                        ->addOption("title", $a_task->label)
+                    ;
+                }
+
                 $link = a($contents, 'task/' . $a_task->label_canonical)
                     ->addClass('btn btn-entity btn-small btn-task-rel')
                 ;
