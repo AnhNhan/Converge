@@ -90,7 +90,19 @@ final class TaskQuery extends Query
     public function retrieveTasksForCanonicalLabelsWithXacts(array $labels)
     {
         $eTask = self::TASK_ENTITY;
-        $queryString = "SELECT t, ts, tp, ta, tt, tx FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt LEFT JOIN t.xacts tx WHERE t.label_canonical IN (:task_labels)";
+        $queryString = "SELECT t, ts, tp, ta, tt, tx, t_blocking, t_blocked, t_sub, t_parent
+        FROM {$eTask} t
+            JOIN t.status ts
+            JOIN t.priority tp
+            LEFT JOIN t.assigned ta
+            LEFT JOIN t.tags tt
+            LEFT JOIN t.xacts tx
+            LEFT JOIN t.blockedTasks t_blocking
+            LEFT JOIN t.blockedBy t_blocked
+            LEFT JOIN t.subTasks t_sub
+            LEFT JOIN t.parentTasks t_parent
+        WHERE t.label_canonical IN (:task_labels)
+        ";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("task_labels" => $labels))
