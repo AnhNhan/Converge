@@ -136,30 +136,6 @@ body {
                 list-style-position: inside;
                 padding: 0 @defaultFontSize;
             }
-
-            a {
-                color: @linkColor;
-                text-decoration: none;
-
-                &:hover, &:focus {
-                    color: @linkColorActive;
-                    text-decoration: underline;
-                }
-                &:visited {
-                    color: @linkColorVisited;
-                }
-            }
-
-            a.muted, .muted a {
-                color: mix(@linkColor, @grey);
-
-                &:hover, &:focus {
-                    color: mix(@linkColorActive, @grey);
-                }
-                &:visited {
-                    color: mix(@linkColorVisited, @grey);
-                }
-            }
         }
     }
 }
