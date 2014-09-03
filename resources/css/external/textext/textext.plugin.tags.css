@@ -39,6 +39,10 @@
   display: block;
   width: 1em;
   height: 1em;
+  &, &:hover, &:focus, &:visited
+  {
+    color: white;
+  }
 }
 .text-core .text-wrap .text-tags .text-tag .text-button a.text-remove:before {
   font-family: Ionicons;
