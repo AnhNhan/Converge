@@ -15,19 +15,20 @@ use AnhNhan\Converge\Views\Property\PropertyList;
 use Diff as DiffEngine;
 use AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline as InlineDiffRenderer;
 
-function render_task_listing(array $tasks, $title = null, $empty_message = 'No tasks available')
+function render_task_listing(array $tasks, $title = null, $empty_message = 'No tasks available', callable $object_adder = null)
 {
+    $object_adder = $object_adder ?: 'task_listing_add_object';
     $listing = new Listing;
     $listing->setTitle($title);
     $listing->setEmptyMessage($empty_message);
     foreach ($tasks as $task) {
-        task_listing_add_object($listing, $task);
+        $object_adder($listing, $task);
     }
 
     return $listing;
 }
 
-function task_listing_add_object(Listing $listing, Task $task)
+function task_listing_basic_object(Task $task)
 {
     $object = new Object;
     $object
@@ -46,6 +47,13 @@ function task_listing_add_object(Listing $listing, Task $task)
         $object->addAttribute($task->status->label);
     }
     $task->tags->count() and $object->addAttribute(implode_link_tag(' ', mpull($task->tags->toArray(), 'tag'), true));
+
+    return $object;
+}
+
+function task_listing_add_object(Listing $listing, Task $task)
+{
+    $object = task_listing_basic_object($task);
 
     $object->addDetail($task->modifiedAt->format("D, d M 'y"), 'calendar');
     if ($task->assigned)
