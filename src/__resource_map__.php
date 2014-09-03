@@ -222,8 +222,8 @@ return array(
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "8bce9101c45b2061d0c8e4b70ecaf96c",
-      "orig" => "93b8a3daa11e32282540b6614012ea96",
+      "hash" => "3061aeba6e7257f0b441d456b48622b1",
+      "orig" => "1a700fb15a9bfc49f6f2be0a4a431528",
     ),
     "layout-bs-button-groups" => array(
       "name" => "layout-bs-button-groups",
@@ -614,7 +614,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "5nedc5ez",
+      "hash" => "xwzuvrvy",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -694,14 +694,14 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "1be1e558e7dde100ac7fe6dd03bfdf29",
+      "hash" => "6265910ad46e8f2b74e041c3f7b64cf5",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
         "application-tag-core" => "54cbe9cd887e86f2d66878b5ed1c50fc",
         "application-task-core" => "9ecc41d5b2bce3d488c1768e998244b6",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
-        "layout-boilerplate" => "8bce9101c45b2061d0c8e4b70ecaf96c",
+        "layout-boilerplate" => "3061aeba6e7257f0b441d456b48622b1",
         "layout-core" => "2f69f25781650956d9190f6c76a73535",
         "layout-fancy-text-shadows" => "288e6ba70102b44f0850308d4344c294",
         "layout-form" => "a828edca63442ace40c892a42cc4bf63",
