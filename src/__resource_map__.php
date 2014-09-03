@@ -228,8 +228,8 @@ return array(
     "layout-buttons" => array(
       "name" => "layout-buttons",
       "path" => "layout/buttons.less",
-      "hash" => "df1f6362eaf9cbf38adeb822fc10e806",
-      "orig" => "9e8d8a0444603ed6a1ef04cc00cd12fe",
+      "hash" => "11f5a185a120a037adfcb64e36a5819b",
+      "orig" => "9567684f9696783a8c26cfc4e8c5fc13",
     ),
     "layout-core" => array(
       "name" => "layout-core",
@@ -608,7 +608,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "cwqjnvx7",
+      "hash" => "2qoxaojq",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,7 +688,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "51ff22c0b710495714d5d63cee4a33f8",
+      "hash" => "02996813aad67a753988eb5195aead6b",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
@@ -700,7 +700,7 @@ return array(
         "layout-form" => "a828edca63442ace40c892a42cc4bf63",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
-        "layout-buttons" => "df1f6362eaf9cbf38adeb822fc10e806",
+        "layout-buttons" => "11f5a185a120a037adfcb64e36a5819b",
         "layout-bs-button-groups" => "ac686c544ef657874dea4c2d891e6e52",
         "layout-objects" => "d2e549cf8587bde66cfe74856e196420",
         "layout-forum-object" => "8db504c8412fdbb7fbcf03b6f488a2d5",

@@ -116,31 +116,31 @@ input[type="submit"] {
     font-weight: normal !important;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary.btn-form button {
     .btn-mixin(mix(@darkBlue, @coolBlue, 30%), light);
 }
 
-.btn-default {
+.btn-default, .btn-default.btn-form button {
     .btn-mixin(darken(@veryLightGrey, 5%), dark);
 }
 
-.btn-entity {
+.btn-entity, .btn-entity.btn-form button {
     .btn-mixin(@colorInfo, light);
 }
 
-.btn-danger {
+.btn-danger, .btn-danger.btn-form button {
     .btn-mixin(@color-danger-real, light);
 }
 
-.btn-info {
+.btn-info, .btn-info.btn-form button {
     .btn-mixin(@color-info-real, light);
 }
 
-.btn-success {
+.btn-success, .btn-success.btn-form button {
     .btn-mixin(@color-success-real, light);
 }
 
-.btn-warning {
+.btn-warning, .btn-warning.btn-form button {
     .btn-mixin(@color-warning-real, light);
 }
 
@@ -152,8 +152,7 @@ form.btn.btn-form {
 
     button {
         background: inherit;
-        font: inherit;
-        font-size: inherit !important;
+        font: inherit !important;
         color: inherit;
         display: block;
         margin: 0;

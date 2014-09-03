@@ -162,13 +162,13 @@ function render_task(Task $task, $authenticated, $full_view = true)
     $complete_button_label = $task->completed ? 'mark as incomplete' : 'mark as complete';
     $complete_button_icon  = $task->completed ? 'archive' : 'checkmark';
     $complete_button = form('', urisprintf('task/complete/%p', $task->label_canonical), 'POST')
+        ->addClass('btn btn-form btn-default btn-small')
         ->append(
             (new HiddenControl)
                 ->setName('completed')
                 ->setValue(sprintf('%d', !$task->completed))
         )
         ->append(cv\ht('button', cv\icon_ion($complete_button_label, $complete_button_icon))
-            ->addClass('btn btn-default btn-small')
             ->addOption('name', '__submit__')
         )
     ;
