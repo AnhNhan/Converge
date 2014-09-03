@@ -6,6 +6,11 @@ tags:
     displayOrder: -110
     description: "Smash 'em"
 
+  - name: converge
+    color: project
+    displayOrder: -51
+    description: On the verge
+
   - name: caw
     color: project
     displayOrder: -50
@@ -41,6 +46,29 @@ tags:
     displayOrder: -30
     description: A place where you can master the skills of awesome until you are deemed good enough
 
+  - name: converge-application
+    color: project
+    displayOrder: -25
+
+  - name: newsroom-application
+    color: project
+    displayOrder: -20
+  - name: task-management
+    color: project
+    displayOrder: -20
+  - name: forum-application
+    color: project
+    displayOrder: -20
+  - name: activity-application
+    color: project
+    displayOrder: -20
+  - name: user-application
+    color: project
+    displayOrder: -20
+  - name: static-resource-management
+    color: project
+    displayOrder: -20
+
   - name: application-review
     displayOrder: -10
     description: Deal? Or no Deal?
@@ -74,6 +102,13 @@ tags:
   - name: flood
     displayOrder: -2
     description: Not eating braaaaiiiiins
+
+  - name: user-experience
+  - name: interface-design
+  - name: non-core-experience
+  - name: security-related
+  - name: improvement
+  - name: infrastructure
 
   - name: audio
     description: Building the spirit of the mod through its sound
