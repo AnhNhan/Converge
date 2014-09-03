@@ -208,7 +208,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
         [
             'access' => 'blockedBy',
             'task'   => 'blockingTask',
-            'label'  => 'Blocking',
+            'label'  => 'Blocked by',
             'type'   => 'taskblocker',
         ],
         [
@@ -220,7 +220,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
         [
             'access' => 'blockedTasks',
             'task'   => 'parentTask',
-            'label'  => 'Blocked by',
+            'label'  => 'Blocking',
             'type'   => 'taskblocker',
         ],
         [
