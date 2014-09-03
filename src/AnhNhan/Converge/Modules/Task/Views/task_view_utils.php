@@ -68,6 +68,83 @@ function task_listing_add_object(Listing $listing, Task $task)
     $listing->addObject($object);
 }
 
+function render_task_assoc_picker_listing($return_uri, Task $base_task, array $tasks, $title = null, $empty_message = 'No tasks available')
+{
+    return render_task_listing(
+            $tasks,
+            $title,
+            $empty_message,
+            curry_fa(curry_fa('task_assoc_picker_add_object', $return_uri), $base_task)
+        )
+        ->addClass('task-assoc-picker-listing')
+    ;
+}
+
+function task_assoc_picker_add_object($return_uri, Task $base_task, Listing $listing, Task $task)
+{
+    $object = task_listing_basic_object($task)
+        ->addClass('task-assoc-picker-object')
+        ->addDetail(
+            form('', urisprintf('task/assoc/%p?return_to=%s', $base_task->label_canonical, $return_uri), 'POST')
+                ->addClass('btn btn-small btn-entity btn-form btn-task-rel')
+                ->append(
+                    (new HiddenControl)
+                        ->setName('parent_uid')
+                        ->setValue($base_task->uid)
+                )
+                ->append(
+                    (new HiddenControl)
+                        ->setName('child_uid')
+                        ->setValue($task->uid)
+                )
+                ->append(
+                    (new HiddenControl)
+                        ->setName('type')
+                        ->setValue('taskblocker')
+                )
+                ->append(
+                    (new HiddenControl)
+                        ->setName('action')
+                        ->setValue('assoc')
+                )
+                ->append(cv\ht('button', cv\icon_ion('add as task blocker', 'android-hand'))
+                    ->addClass('btn btn-small btn-entity btn-task-rel')
+                    ->addOption('name', '__submit__')
+                )
+        )
+        ->addDetail(
+            form('', urisprintf('task/assoc/%p?return_to=%s', $base_task->label_canonical, $return_uri), 'POST')
+                ->addClass('btn btn-small btn-entity btn-form btn-task-rel')
+                ->append(
+                    (new HiddenControl)
+                        ->setName('parent_uid')
+                        ->setValue($base_task->uid)
+                )
+                ->append(
+                    (new HiddenControl)
+                        ->setName('child_uid')
+                        ->setValue($task->uid)
+                )
+                ->append(
+                    (new HiddenControl)
+                        ->setName('type')
+                        ->setValue('tasksubtask')
+                )
+                ->append(
+                    (new HiddenControl)
+                        ->setName('action')
+                        ->setValue('assoc')
+                )
+                ->append(cv\ht('button', cv\icon_ion('add as sub task', 'fork-repo'))
+                    ->addClass('btn btn-small btn-entity btn-task-rel')
+                    ->addOption('name', '__submit__')
+                )
+        )
+    ;
+
+    $listing->addObject($object);
+}
+
 function render_task(Task $task, $authenticated, $full_view = true)
 {
     $completed_msg = $task->completed
@@ -98,10 +175,14 @@ function render_task(Task $task, $authenticated, $full_view = true)
     $subtask_button = a(cv\icon_ion('create subtask', 'fork-repo'), urisprintf('task/create?parent_task_id=%s', $task->label_canonical))
         ->addClass('btn btn-default btn-small')
     ;
+    $assoc_button = a(cv\icon_ion(cv\icon_ion('add associations', 'android-share'), 'android-add'), urisprintf('task/?parent_task=%s', $task->label_canonical))
+        ->addClass('btn btn-default btn-small')
+    ;
     $button_container = div('task-panel-buttons pull-right')
         ->append($edit_button)
         ->append($complete_button)
         ->append($subtask_button)
+        ->append($assoc_button)
     ;
 
     $midriff = $panel->midriff();

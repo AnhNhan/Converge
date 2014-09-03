@@ -13,7 +13,8 @@ final class TaskListing extends AbstractTaskController
 {
     public function handle()
     {
-        $all_tasks_flag = (boolean) $this->request->get('all_tasks');
+        $request = $this->request;
+        $all_tasks_flag = (boolean) $request->get('all_tasks');
         $query = $this->buildQuery();
         if ($all_tasks_flag)
         {
@@ -23,15 +24,31 @@ final class TaskListing extends AbstractTaskController
         {
             $tasks = $query->retrieveIncompleteTasks(null);
         }
+
+        $parent_task = null;
+        if ($parent_task_id = $request->query->get('parent_task'))
+        {
+            $parent_task = head($query->retrieveTasksForCanonicalLabels([$parent_task_id]));
+            if (!$parent_task)
+            {
+                return (new ResponseHtml404)->setText('Parent task does not exist!');
+            }
+        }
+
         $user_query = create_user_query($this->externalApp('user'));
         $assigned_objs = mpull($tasks, 'assigned');
+        $parent_task and $assigned_objs[] = $parent_task->assigned;
         $assigned_objs = array_mergev($assigned_objs);
         fetch_external_authors($assigned_objs, $user_query, 'userId', 'setUser', 'user');
-        $query->fetchExternalTags($tasks);
+        $query->fetchExternalTags(array_merge($tasks, $parent_task ? [$parent_task] : []));
 
         $container = new MarkupContainer;
 
-        $container->push(h1('Task Listing'));
+        $page_title = $parent_task ? 'Pick associations for ' . $parent_task->label : 'Task Listing';
+
+        $container->push(h1($page_title));
+
+        $parent_task and $container->push(render_task($parent_task, false));
 
         $priorities = mpull($tasks, 'priority');
         $priorities = mkey($priorities, 'label');
@@ -40,9 +57,11 @@ final class TaskListing extends AbstractTaskController
         $task_groups = group($tasks, function ($task) { return $task->priority->label; });
         $sorted_task_groups = array_select_keys($task_groups, array_keys($priorities));
 
+        $render_listing = $parent_task ? curry_fa(curry_fa('render_task_assoc_picker_listing', $request->getRequestUri()), $parent_task) : 'render_task_listing';
+
         foreach ($sorted_task_groups as $priority_label => $task_group)
         {
-            $listing = render_task_listing($task_group, $priority_label);
+            $listing = $render_listing($task_group, $priority_label);
             $container->push($listing);
         }
 
@@ -54,7 +73,7 @@ final class TaskListing extends AbstractTaskController
         $container->push(cv\safeHtml('<style>.objects-list-container{margin-top: 0;}</style>'));
 
         $button_container = div('pull-right');
-        $container->unshift($button_container);
+        !$parent_task and $container->unshift($button_container);
         $button_container->getContent()->unshift(cv\ht("a", $all_tasks_flag ? 'show incomplete only' : 'show all tasks', array(
             "href"  => "/task/?all_tasks=" . ($all_tasks_flag ? '0' : '1'),
             "class" => "btn btn-default",
@@ -66,11 +85,12 @@ final class TaskListing extends AbstractTaskController
         )));
 
         $this->resMgr
+            ->requireCss('application-task-display')
             ->requireCss('application-task-listing')
         ;
 
         $payload = new HtmlPayload;
-        $payload->setTitle('Task Listing');
+        $payload->setTitle($page_title);
         $payload->setPayloadContents($container);
         return $payload;
     }

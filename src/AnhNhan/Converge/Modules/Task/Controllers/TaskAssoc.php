@@ -108,7 +108,9 @@ final class TaskAssoc extends AbstractTaskController
         $activityRecorder = new TaskRecorder($this->externalApp('activity'));
         $activityRecorder->record($editor->apply());
 
-        $targetURI = "/task/" . $task->label_canonical;
+        $targetURI = $request->query->has('return_to')
+            ? $request->query->get('return_to')
+            : '/task/' . $task->label_canonical;
         return new RedirectResponse($targetURI);
     }
 }

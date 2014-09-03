@@ -16,6 +16,8 @@ routes:
   - pattern: task/complete/:id
     route-name: task-complete
 
+  - pattern: task/assoc/:id
+    route-name: task-rel-assoc
   - pattern: task/delete_assoc/:id
     route-name: task-rel-deassoc
 

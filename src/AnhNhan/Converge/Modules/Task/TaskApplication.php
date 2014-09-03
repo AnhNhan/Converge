@@ -50,6 +50,9 @@ final class TaskApplication extends BaseApplication
             case "task-complete":
                 return new Controllers\TaskComplete($this);
                 break;
+            case "task-rel-assoc":
+                return new Controllers\TaskAssoc($this);
+                break;
             case "task-rel-deassoc":
                 return new Controllers\TaskAssoc($this);
                 break;
