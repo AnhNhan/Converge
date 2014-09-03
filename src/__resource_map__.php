@@ -75,11 +75,17 @@ return array(
       "hash" => "54cbe9cd887e86f2d66878b5ed1c50fc",
       "orig" => "95aa9d98fdcb95455afe2980082b8e00",
     ),
+    "application-task-core" => array(
+      "name" => "application-task-core",
+      "path" => "application/task/core.less",
+      "hash" => "9ecc41d5b2bce3d488c1768e998244b6",
+      "orig" => "117fb93d00d82d3e160dc9d1d8b323ea",
+    ),
     "application-task-display" => array(
       "name" => "application-task-display",
       "path" => "application/task/display.less",
-      "hash" => "8d92407cde91e462a2ab83c65885994f",
-      "orig" => "ad257884e0cfdbb63168c78010dba5b6",
+      "hash" => "77cea167f022086665d9aebe573c5f3f",
+      "orig" => "e694efe05337bf2418c6ff37e2e82f42",
     ),
     "application-task-listing" => array(
       "name" => "application-task-listing",
@@ -210,14 +216,14 @@ return array(
     "external-textext-textext-plugin-tags" => array(
       "name" => "external-textext-textext-plugin-tags",
       "path" => "external/textext/textext.plugin.tags.css",
-      "hash" => "ea7bc4001940997eaee5e66b4d4bfa95",
-      "orig" => "21a7e0d39d518c6241f7e6c65bdde513",
+      "hash" => "a1140f23579ef90df79b65be4539b323",
+      "orig" => "ef0f237243d78b00a59b305bc68fafcc",
     ),
     "layout-boilerplate" => array(
       "name" => "layout-boilerplate",
       "path" => "layout/boilerplate.less",
-      "hash" => "7a109918b6e3d249c52c766ce2e55a6b",
-      "orig" => "f32d32a207aa51799a682b3e900a4016",
+      "hash" => "8bce9101c45b2061d0c8e4b70ecaf96c",
+      "orig" => "93b8a3daa11e32282540b6614012ea96",
     ),
     "layout-bs-button-groups" => array(
       "name" => "layout-bs-button-groups",
@@ -234,8 +240,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "98423081f183cdbd84ff28b846f8d58a",
-      "orig" => "aacd645200b6fc9f3cb46fe1b54acf24",
+      "hash" => "2f69f25781650956d9190f6c76a73535",
+      "orig" => "7f6196d0bac98be33709859bd1a10ae7",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -608,7 +614,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "ruc5pfkw",
+      "hash" => "5nedc5ez",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -688,14 +694,15 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "02996813aad67a753988eb5195aead6b",
+      "hash" => "1be1e558e7dde100ac7fe6dd03bfdf29",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
         "application-tag-core" => "54cbe9cd887e86f2d66878b5ed1c50fc",
+        "application-task-core" => "9ecc41d5b2bce3d488c1768e998244b6",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
-        "layout-boilerplate" => "7a109918b6e3d249c52c766ce2e55a6b",
-        "layout-core" => "98423081f183cdbd84ff28b846f8d58a",
+        "layout-boilerplate" => "8bce9101c45b2061d0c8e4b70ecaf96c",
+        "layout-core" => "2f69f25781650956d9190f6c76a73535",
         "layout-fancy-text-shadows" => "288e6ba70102b44f0850308d4344c294",
         "layout-form" => "a828edca63442ace40c892a42cc4bf63",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
@@ -749,7 +756,7 @@ return array(
     "static-styles-pck" => array(
       "name" => "static-styles-pck",
       "type" => "css",
-      "hash" => "1e55de4b67cf70fb4cde8e1fb91c9b8c",
+      "hash" => "efbdd4183f78f779df74dd31399edc91",
       "contents" => array(
         "external-html5-boilerplate-normalize" => "92a16e5d6e997865028d291d0ab1aba8",
         "external-html5-boilerplate-main" => "287c6110eb25ca9e3b64888529625278",
@@ -769,7 +776,7 @@ return array(
         "external-textext-textext-plugin-clear" => "d2bf0150d81cdaf93187c9c8d2cda9e3",
         "external-textext-textext-plugin-focus" => "d7ef6a64173063429709dd28657f3514",
         "external-textext-textext-plugin-prompt" => "0867b1ef4abb81620ff028104d0c26fe",
-        "external-textext-textext-plugin-tags" => "ea7bc4001940997eaee5e66b4d4bfa95",
+        "external-textext-textext-plugin-tags" => "a1140f23579ef90df79b65be4539b323",
       ),
     ),
   ),
