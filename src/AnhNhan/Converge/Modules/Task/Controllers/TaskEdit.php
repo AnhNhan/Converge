@@ -229,18 +229,27 @@ final class TaskEdit extends AbstractTaskController
                     );
                 }
 
-                if ($parent_task)
-                {
-                    $editor->addTransaction(
-                        TaskTransaction::create(TaskTransaction::TYPE_ADD_RELATION, new TaskSubTask($parent_task, $task))
-                    );
-                }
-
                 $em->beginTransaction();
                 try
                 {
                     $activityRecorder = new TaskRecorder($this->externalApp('activity'));
                     $activityRecorder->record($editor->apply());
+
+                    if ($parent_task)
+                    {
+                        $this->internalSubRequest(
+                            'task/assoc/' . $parent_task->label_canonical,
+                            [
+                                'action'     => 'assoc',
+                                'type'       => 'tasksubtask',
+                                'parent_uid' => $parent_task->uid,
+                                'child_uid'  => $task->uid,
+                            ],
+                            'POST',
+                            false
+                        );
+                    }
+
                     $em->commit();
                 }
                 catch (\Doctrine\DBAL\Exception\DuplicateKeyException $e)
