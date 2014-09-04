@@ -354,9 +354,27 @@ function task_xact_type_label(Task $task, TaskTransaction $xact, array $other = 
         case TransactionEntity::TYPE_CREATE:
             return 'created this task';
         case TaskTransaction::TYPE_EDIT_LABEL:
-            return 'changed the label';
+            return cv\hsprintf('renamed task from %s to %s', strong($xact->oldValue), strong($xact->newValue));
         case TaskTransaction::TYPE_EDIT_DESC:
-            return 'changed the description';
+            $old_text = explode("\n", $xact->oldValue);
+            $new_text = explode("\n", $xact->newValue);
+            $add_lines = array_diff($new_text, $old_text);
+            $del_lines = array_diff($old_text, $new_text);
+            $add_count = count($add_lines);
+            $del_count = count($del_lines);
+            $actual_additions = array_diff(array_keys($add_lines), array_keys($del_lines));
+            $actual_deletions = array_diff(array_keys($del_lines), array_keys($add_lines));
+            $actual_add_count = count($actual_additions);
+            $actual_del_count = count($actual_deletions);
+            $replaced_count = min($add_count - $actual_add_count, $del_count - $actual_del_count);
+            return cv\hsprintf(
+                'changed the description (<strong class="color-fg-belize-hole">%d+</strong> <strong class="color-fg-orange">%d-</strong> <strong class="color-fg-wisteria">%d~</strong>) %s',
+                $actual_add_count,
+                $actual_del_count,
+                $replaced_count,
+                span('show-diff-link btn btn-small btn-default', '(diff)')
+                    ->addOption('data-xact-panel-id', $xact->uid)
+            );
         case TaskTransaction::TYPE_ADD_COMMENT:
             return 'added a comment';
         case TaskTransaction::TYPE_EDIT_CLOSED:
@@ -415,9 +433,6 @@ function task_xact_type_body(Task $task, TaskTransaction $xact, $other = null)
 {
     switch ($xact->type)
     {
-        case TaskTransaction::TYPE_EDIT_LABEL:
-            $diff = new DiffEngine([$xact->oldValue], [$xact->newValue], []);
-            return cv\safeHtml($diff->render(new InlineDiffRenderer));
         case TaskTransaction::TYPE_EDIT_DESC:
             $diff = new DiffEngine(explode("\n", $xact->oldValue), explode("\n", $xact->newValue), []);
             return cv\safeHtml($diff->render(new InlineDiffRenderer));

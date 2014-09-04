@@ -124,6 +124,13 @@ final class TaskDisplay extends AbstractTaskController
             $container->push(div('objects-list-empty-message', 'You have to be logged in to comment.'));
         }
 
+        $container->push(cv\ht('script', cv\safeHtml('
+$(".show-diff-link").click(_.debounce(function (e) {
+    $panel_body = $("#" + $(this).attr("data-xact-panel-id") + ".task-panel-xact-diff .panel-body");
+    $panel_body.fadeToggle();
+}, 300, true));
+        ')));
+
         $this->app->getService('resource_manager')
             ->requireCss('application-diff')
             ->requireCss('application-task-display')
