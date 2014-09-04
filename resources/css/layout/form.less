@@ -70,14 +70,14 @@
     padding: @form-control-element-padding;
     border: 1px @grey solid;
     vertical-align: middle;
-    height: unit(32 * (@defaultFontSize / 14), 'px');
+    height: unit(32 * (@defaultFontSize / @fontSizeBase), 'px');
 
     &:first-child {
-        .round-border-left(5px);
+        .round-border-left(unit(5px / @fontSizeBase, 'em'));
     }
 
     &:last-child {
-        .round-border-right(5px);
+        .round-border-right(unit(5px / @fontSizeBase, 'em'));
     }
 }
 
