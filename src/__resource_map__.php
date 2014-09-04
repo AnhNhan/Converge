@@ -36,8 +36,8 @@ return array(
     "application-forum-discussion-display" => array(
       "name" => "application-forum-discussion-display",
       "path" => "application/forum/discussion-display.less",
-      "hash" => "3612aed27e8c3448ef6053d895f17e48",
-      "orig" => "dbb1e87f8fe688f3094e0440d0ffdba5",
+      "hash" => "d9f3ebbe19534ee42cabefaa1aecf951",
+      "orig" => "4e3869b9965190032073f4b5b4fdfb53",
     ),
     "application-front-dashboard" => array(
       "name" => "application-front-dashboard",
@@ -240,8 +240,8 @@ return array(
     "layout-core" => array(
       "name" => "layout-core",
       "path" => "layout/core.less",
-      "hash" => "2f69f25781650956d9190f6c76a73535",
-      "orig" => "9b7953e0aa1556937b25704d2d1af86e",
+      "hash" => "762b257ff0dd41df084d5e04eeb808f4",
+      "orig" => "d2cc3b775ba9a8982ebda82335d9d243",
     ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
@@ -614,7 +614,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "hag4awmy",
+      "hash" => "reem4o3q",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -694,7 +694,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "a89f9aa92c36a4098456e1583809667e",
+      "hash" => "125f6722ab4e8a4741e13488aed6b0f1",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
@@ -702,7 +702,7 @@ return array(
         "application-task-core" => "9ecc41d5b2bce3d488c1768e998244b6",
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "3061aeba6e7257f0b441d456b48622b1",
-        "layout-core" => "2f69f25781650956d9190f6c76a73535",
+        "layout-core" => "762b257ff0dd41df084d5e04eeb808f4",
         "layout-fancy-text-shadows" => "288e6ba70102b44f0850308d4344c294",
         "layout-form" => "218264e28bf24edbc25337b7633caa69",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
