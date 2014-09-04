@@ -194,13 +194,12 @@ abstract class BaseApplicationController
         return $this->app->getService("stopwatch");
     }
 
-    protected function internalSubRequest($uri, array $params = [])
+    protected function internalSubRequest($uri, array $params = [], $method = 'GET', $catch = true)
     {
-        $request = new Request;
+        $request = Request::create($uri, $method, $params);
         $request->server->set('REQUEST_URI', $uri);
-        $request->query->replace($params);
 
         $kernel = $this->app->getService('http_kernel');
-        return $kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
+        return $kernel->handle($request, HttpKernelInterface::SUB_REQUEST, $catch);
     }
 }
