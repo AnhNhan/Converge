@@ -43,10 +43,10 @@ function renderDiscussion($disq, $markup)
 function renderPost($post, $markup)
 {
     if ($post->deleted) {
-        return id(new DeletedPostView)
+        return panel()
+            ->setHeader(div('', h3(cv\icon_ion('Deleted Post ', 'close', false))->append(cv\ht('small', $post->createdAt->format("D, d M 'y"))->addClass('minor-stuff'))))
             ->setId(hash_hmac("sha512", $post->uid, time())) // Fuzzy id
             ->addClass("post-deleted")
-            ->setDate($post->createdAt->format("D, d M 'y"))
         ;
     }
 
