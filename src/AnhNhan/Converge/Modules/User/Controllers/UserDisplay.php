@@ -74,7 +74,7 @@ final class UserDisplay extends AbstractUserController
         $external_uids = array_merge($external_uids, ppull($activities, 'actor_uid'));
 
         $task_query = new TaskQuery($this->externalApp('task'));
-        $tasks = mgroup($task_query->retrieveTasksForAssigned([$user->uid], null, 10), 'completed');
+        $tasks = mgroup($task_query->retrieveTasksForAssigned([$user->uid], null, 10), 'closed');
         $assigned_objs = mpull(array_mergev($tasks), 'assigned');
         $assigned_objs = array_mergev($assigned_objs);
         $external_uids = array_merge($external_uids, mpull($assigned_objs, 'userId'));
@@ -87,6 +87,9 @@ final class UserDisplay extends AbstractUserController
         pull($assigned_objs, function ($assigned) use ($external_user_objects) { $assigned->setUser(idx($external_user_objects, $assigned->userId)); });
         pull($activities, function ($activity) use ($external_user_objects) { $activity->actor_object = idx($external_user_objects, $activity->actor_uid); });
 
+        $tag_query = create_tag_query($this->externalApp('tag'));
+        fetch_external_tags(array_mergev(pull(array_mergev($tasks), function ($x) {return $x->tags->toArray();}), pull($disqs, function ($x) {return $x->tags->toArray();})), $tag_query);
+
         $disqQuery->fetchExternalsForDiscussions($disqs);
         $postCounts = $disqQuery->fetchPostCountsForDiscussions($disqs);
 
@@ -97,7 +100,7 @@ final class UserDisplay extends AbstractUserController
         // Tasks
         $row->column(6)
             ->push(render_task_listing(idx($tasks, 0, []), 'Recent assigned tasks'))
-            ->push(render_task_listing(idx($tasks, 1, []), 'Recent completed tasks'))
+            ->push(render_task_listing(idx($tasks, 1, []), 'Recent closed tasks'))
         ;
 
         // Activities
