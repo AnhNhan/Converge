@@ -111,6 +111,10 @@ return array(
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Modules\Forum\Controllers\Comment" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Controllers/Comment.php",
+      "deriv" => "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
+    ),
     "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Controllers/DiscussionDisplayController.php",
       "deriv" => "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
@@ -150,6 +154,17 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Forum/Storage/DiscussionTransaction.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
     ),
+    "AnhNhan\Converge\Modules\Forum\Storage\ForumComment" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/ForumComment.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\Forum\Storage\ForumCommentTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Storage/ForumCommentTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
     "AnhNhan\Converge\Modules\Forum\Storage\Post" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Storage/Post.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
@@ -165,6 +180,10 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Forum/Transaction/DiscussionTransactionEditor.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
     ),
+    "AnhNhan\Converge\Modules\Forum\Transaction\ForumCommentEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Transaction/ForumCommentEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
     "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Transaction/PostTransactionEditor.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
@@ -172,10 +191,6 @@ return array(
     "AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Transform/DiscussionTransformer.php",
       "deriv" => "League\Fractal\TransformerAbstract",
-    ),
-    "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost" => array(
-      "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/DeletedPost.php",
-      "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject",
     ),
     "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/Discussion.php",
@@ -215,6 +230,10 @@ return array(
     "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeText" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Views/Display/TextChangeText.php",
       "deriv" => "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction",
+    ),
+    "AnhNhan\Converge\Modules\Forum\Views\ForumPanel" => array(
+      "file" => "AnhNhan/Converge/Modules/Forum/Views/ForumPanel.php",
+      "deriv" => "AnhNhan\Converge\Views\Panel\Panel",
     ),
     "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing" => array(
       "file" => "AnhNhan/Converge/Modules/Forum/Views/Objects/ForumListing.php",
@@ -589,6 +608,10 @@ return array(
       "impls" => array(
         "Doctrine\Common\EventSubscriber",
       ),
+    ),
+    "AnhNhan\Converge\Modules\Task\Markup\TaskEntity" => array(
+      "file" => "AnhNhan/Converge/Modules/Task/Markup/TaskEntity.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
     ),
     "AnhNhan\Converge\Modules\Task\Query\TaskQuery" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Query/TaskQuery.php",
@@ -1111,6 +1134,7 @@ return array(
       "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
       "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
       "AnhNhan\Converge\Modules\Activity\Controllers\ActivityListing",
+      "AnhNhan\Converge\Modules\Forum\Controllers\Comment",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionListingController",
@@ -1155,6 +1179,7 @@ return array(
       "AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity",
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
+      "AnhNhan\Converge\Modules\Forum\Storage\ForumComment",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleAuthor",
@@ -1176,6 +1201,7 @@ return array(
       "AnhNhan\Converge\Modules\Task\Storage\TaskBlocker",
       "AnhNhan\Converge\Modules\Task\Storage\TaskSubTask",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\Converge\Modules\Forum\Storage\ForumCommentTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction",
@@ -1212,6 +1238,7 @@ return array(
       "AnhNhan\Converge\Modules\Task\Activity\TaskRecorder",
     ),
     "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController" => array(
+      "AnhNhan\Converge\Modules\Forum\Controllers\Comment",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionListingController",
@@ -1219,6 +1246,7 @@ return array(
     ),
     "AnhNhan\Converge\Storage\Transaction\TransactionEntity" => array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction",
+      "AnhNhan\Converge\Modules\Forum\Storage\ForumCommentTransaction",
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction",
@@ -1232,6 +1260,7 @@ return array(
     ),
     "AnhNhan\Converge\Storage\Transaction\TransactionEditor" => array(
       "AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor",
+      "AnhNhan\Converge\Modules\Forum\Transaction\ForumCommentEditor",
       "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor",
       "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor",
       "AnhNhan\Converge\Modules\Newsroom\Transaction\ChannelEditor",
@@ -1247,7 +1276,6 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer",
     ),
     "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject" => array(
-      "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\Converge\Modules\Forum\Views\Display\Post",
     ),
@@ -1271,7 +1299,6 @@ return array(
       "AnhNhan\Converge\Views\Panel\Panel",
       "AnhNhan\Converge\Views\Property\Entry",
       "AnhNhan\Converge\Views\Property\PropertyList",
-      "AnhNhan\Converge\Modules\Forum\Views\Display\DeletedPost",
       "AnhNhan\Converge\Modules\Forum\Views\Display\Discussion",
       "AnhNhan\Converge\Modules\Forum\Views\Display\Post",
       "AnhNhan\Converge\Modules\Forum\Views\Display\TagAdd",
@@ -1281,6 +1308,7 @@ return array(
       "AnhNhan\Converge\Views\Objects\Object",
       "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing",
       "AnhNhan\Converge\Views\Page\BarePageView",
+      "AnhNhan\Converge\Modules\Forum\Views\ForumPanel",
     ),
     "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction" => array(
       "AnhNhan\Converge\Modules\Forum\Views\Display\TagAdd",
@@ -1289,6 +1317,9 @@ return array(
     "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction" => array(
       "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeLabel",
       "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeText",
+    ),
+    "AnhNhan\Converge\Views\Panel\Panel" => array(
+      "AnhNhan\Converge\Modules\Forum\Views\ForumPanel",
     ),
     "AnhNhan\Converge\Views\Objects\Listing" => array(
       "AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing",
@@ -1329,11 +1360,13 @@ return array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
       "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
+      "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
     ),
     "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
       "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
+      "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
       "AnhNhan\Converge\Modules\Markup\Markup\SoundCloudEmbedTrack",
@@ -1466,6 +1499,7 @@ return array(
   "implementations" => array(
     "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface" => array(
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
+      "AnhNhan\Converge\Modules\Forum\Storage\ForumComment",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Channel",

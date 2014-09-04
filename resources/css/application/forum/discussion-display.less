@@ -22,18 +22,15 @@
         }
     }
 
+    .minor-stuff {
+        color: #888888;
+        font-weight: normal;
+        line-height: 1;
+    }
+
     .panel-container {
-        &[id^="DISQ-"], &[id^="POST-"], &.post-deleted {
-            .panel-header {
-                .minor-stuff {
-                    color: #888888;
-                    font-weight: normal;
-                    line-height: 1;
-                }
-            }
-            .panel-body {
-                font-size: @font-size-content;
-            }
+        .panel-body {
+            font-size: @font-size-content;
         }
 
         &[id^="POST-"] {
@@ -77,6 +74,88 @@
     .panel-body {
         .hashtag.tag-link {
             font-size: unit(14 / 16, 'em');
+        }
+    }
+}
+
+.forum-tail-object {
+    border: none;
+    .round-border (0);
+    margin: 0 -(@panel-padding * 1.33);
+    background: @veryLightGrey;
+
+    &:last-child {
+        margin-bottom: -@panel-padding;
+    }
+
+    .panel-container-inner {
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    .panel-body {
+        font-size: @defaultFontSize !important;
+    }
+}
+
+.forum-tail-object-comment {
+    @forum-comment-padding: 0.5em;
+    .panel-body {
+        padding: @forum-comment-padding (@forum-comment-padding * 1.33);
+    }
+
+    .user-profile-image {
+        margin-left: -(@forum-comment-padding * 1.33);
+        margin-top: -@forum-comment-padding;
+        margin-bottom: -@forum-comment-padding;
+        margin-right: 0.67em;
+        height: 34px;
+        width: auto;
+        .pull-left;
+    }
+}
+
+.forum-tail-comment-form-container {
+    display: table;
+
+    &, & .panel-body
+    {
+        width: 100%;
+    }
+}
+
+.forum-tail-comment-form {
+    display: table-row;
+    width: 100%;
+
+    .form-control {
+        display: inline-block;
+    }
+
+    .form-control-label {
+        display: none;
+    }
+
+    .form-control-container {
+        display: table-cell;
+        width: 99%;
+        margin: 0;
+        padding: 0.33em;
+
+        &.form-control-submit {
+            width: 1%;
+
+            button {
+                font-size: 1.7em;
+                margin: 0;
+                padding: 0.05em 0.5em !important;
+                border: none;
+
+                .ion-checkmark:before {
+                    content: "\f1ba";
+                }
+            }
         }
     }
 }

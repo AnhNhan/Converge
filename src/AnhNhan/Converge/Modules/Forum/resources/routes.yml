@@ -20,3 +20,6 @@ routes:
     pattern: disq/:disq-id/post
   - route-name: disq-posting
     pattern: disq/:disq-id/:post-id/edit
+
+  - route-name: forum-comment
+    pattern: forum/:id/comment

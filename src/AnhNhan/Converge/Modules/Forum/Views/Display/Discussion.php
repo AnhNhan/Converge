@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Forum\Views\Display;
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Forum\Views\ForumPanel;
 use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
 use AnhNhan\Converge\Views\Panel\Panel;
@@ -56,7 +57,7 @@ class Discussion extends ForumDisplayObject
 
     public function render()
     {
-        $discussionPanel = new Panel;
+        $discussionPanel = new ForumPanel;
 
         $headerRiff = new MarkupContainer;
         $headerRiff->push($this->buildProfileImage());

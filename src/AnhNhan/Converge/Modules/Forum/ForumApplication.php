@@ -50,6 +50,9 @@ final class ForumApplication extends BaseApplication
             case "disq-posting":
                 return new Controllers\PostEditController($this);
                 break;
+            case "forum-comment":
+                return new Controllers\Comment($this);
+                break;
         }
 
         return null;

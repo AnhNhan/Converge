@@ -17,6 +17,7 @@ final class PostTransactionEditor extends TransactionEditor
 
         $types[] = PostTransaction::TYPE_EDIT_POST;
         $types[] = PostTransaction::TYPE_EDIT_DELETED;
+        $types[] = PostTransaction::TYPE_ADD_COMMENT;
 
         return $types;
     }
@@ -25,6 +26,7 @@ final class PostTransactionEditor extends TransactionEditor
     {
         switch ($transaction->type()) {
             case TransactionEntity::TYPE_CREATE:
+            case PostTransaction::TYPE_ADD_COMMENT:
                 return null;
             case PostTransaction::TYPE_EDIT_DELETED:
                 return $entity->deleted();
@@ -43,6 +45,7 @@ final class PostTransactionEditor extends TransactionEditor
                 }
                 // Fall through
             case PostTransaction::TYPE_EDIT_DELETED:
+            case PostTransaction::TYPE_ADD_COMMENT:
             case PostTransaction::TYPE_EDIT_POST:
                 return $transaction->newValue();
         }

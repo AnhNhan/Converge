@@ -24,7 +24,7 @@ final class DiscussionQuery extends Query
     public function retrieveDiscussion($id)
     {
         $eDisq = self::ENTITY_DISCUSSION;
-        $queryString = "SELECT d, dt FROM {$eDisq} d LEFT JOIN d.tags dt WHERE d.uid = :disq_id";
+        $queryString = "SELECT d, dt, dc FROM {$eDisq} d LEFT JOIN d.tags dt LEFT JOIN d.comments dc WHERE d.uid = :disq_id";
         $query = $this->em()
             ->createQuery($queryString)
             ->setParameters(array("disq_id" => $id))

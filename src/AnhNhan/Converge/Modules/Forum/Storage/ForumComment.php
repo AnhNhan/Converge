@@ -8,14 +8,9 @@ use AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface;
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  * @Entity
  * @Cache("NONSTRICT_READ_WRITE")
- * @Table(indexes={
- *   @Index(name="creation_order", columns={"createdAt"}),
- *   @Index(name="author_disq_rel", columns={"disq_id", "author"}),
- *   @Index(name="deleted_disq_rel", columns={"disq_id", "deleted"}),
- *   @Index(name="deleted_flag", columns={"deleted"})
- * })
+ * @Table
  */
-class Post extends EntityDefinition implements TransactionAwareEntityInterface
+class ForumComment extends EntityDefinition implements TransactionAwareEntityInterface
 {
     /**
      * @Id
@@ -30,13 +25,9 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     private $uid;
 
     /**
-     * The UID of the discussion this post is contained in
-     *
-     * @ManyToOne(targetEntity="Discussion", fetch="EAGER", inversedBy="posts")
-     * @Cache("NONSTRICT_READ_WRITE")
-     * @var Discussion
+     * @Column(type="string")
      */
-    private $disq;
+    private $parent_uid;
 
     /**
      * @Column(type="string")
@@ -72,14 +63,7 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     private $modifiedAt;
 
     /**
-     * // Abusing ManyToMany so we don't need a mappedBy field
-     * @ManyToMany(targetEntity="ForumComment", fetch="EAGER")
-     * @Cache("NONSTRICT_READ_WRITE")
-     */
-    private $comments;
-
-    /**
-     * @OneToMany(targetEntity="PostTransaction", mappedBy="object", fetch="LAZY")
+     * @OneToMany(targetEntity="ForumCommentTransaction", mappedBy="object", fetch="LAZY")
      * @var \Doctrine\ORM\PersistentCollection
      */
     private $xacts;
@@ -89,26 +73,9 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
         $this->modifiedAt = new \DateTime;
     }
 
-    public static function initializeForDiscussion(Discussion $disq)
-    {
-        $post = new static;
-        $post->disq = $disq;
-        return $post;
-    }
-
     public function uid()
     {
         return $this->uid;
-    }
-
-    public function parentDisq()
-    {
-        return $this->disq;
-    }
-
-    public function parentDisqId()
-    {
-        return $this->parentDisq()->uid();
     }
 
     public function authorId()
@@ -132,20 +99,9 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
         return $this->rawText;
     }
 
-    public function setRawText($text)
-    {
-        $this->rawText = $text;
-        return $this;
-    }
-
     public function deleted()
     {
         return $this->deleted;
-    }
-
-    public function comments()
-    {
-        return $this->comments;
     }
 
     public function createdAt()
@@ -166,7 +122,7 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
 
     public function getUIDType()
     {
-        return "POST";
+        return "FORU-CMNT";
     }
 
     /**

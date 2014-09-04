@@ -20,6 +20,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
         $types[] = DiscussionTransaction::TYPE_ADD_TAG;
         $types[] = DiscussionTransaction::TYPE_REMOVE_TAG;
         $types[] = DiscussionTransaction::TYPE_ADD_POST;
+        $types[] = DiscussionTransaction::TYPE_ADD_COMMENT;
 
         return $types;
     }
@@ -30,6 +31,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
             case TransactionEntity::TYPE_CREATE:
             case DiscussionTransaction::TYPE_ADD_TAG:
             case DiscussionTransaction::TYPE_ADD_POST:
+            case DiscussionTransaction::TYPE_ADD_COMMENT:
                 return null;
             case DiscussionTransaction::TYPE_EDIT_LABEL:
                 return $entity->label();
@@ -47,6 +49,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
             case DiscussionTransaction::TYPE_EDIT_TEXT:
             case DiscussionTransaction::TYPE_ADD_TAG:  // Set new value to UID
             case DiscussionTransaction::TYPE_ADD_POST: // Set new value to UID
+            case DiscussionTransaction::TYPE_ADD_COMMENT: // Set new value to UID
                 return $transaction->newValue();
             case TransactionEntity::TYPE_CREATE:
             case DiscussionTransaction::TYPE_REMOVE_TAG:
@@ -86,6 +89,7 @@ final class DiscussionTransactionEditor extends TransactionEditor
                 $this->em()->remove($tag);
                 break;
             case DiscussionTransaction::TYPE_ADD_POST:
+            case DiscussionTransaction::TYPE_ADD_COMMENT:
                 // <do nothing (handled by controller)>
                 break;
         }

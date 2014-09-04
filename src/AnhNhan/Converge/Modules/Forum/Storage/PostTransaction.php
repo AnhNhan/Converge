@@ -15,6 +15,7 @@ class PostTransaction extends TransactionEntity
 {
     const TYPE_EDIT_POST    = "post.edit.text";
     const TYPE_EDIT_DELETED = "post.edit.delete";
+    const TYPE_ADD_COMMENT  = "post.add.comment";
 
     /**
      * @ManyToOne(targetEntity="Post", inversedBy="xacts", fetch="EAGER")

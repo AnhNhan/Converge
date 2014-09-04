@@ -37,7 +37,10 @@ function renderDiscussion($disq, $markup)
         }
     }
 
-    return $discussionView;
+    $panel = $discussionView->render();
+    $panel->setId($disq->uid);
+    array_map([$panel, 'addComment'], $disq->comments->toArray());
+    return $panel;
 }
 
 function renderPost($post, $markup)
@@ -63,7 +66,10 @@ function renderPost($post, $markup)
         ->setBodyText(cv\safeHtml($markup))
     ;
 
-    return $postView;
+    $panel = $postView->render();
+    $panel->setId($post->uid);
+    array_map([$panel, 'addComment'], $post->comments->toArray());
+    return $panel;
 }
 
 function attach_xacts($post_container, array $transactions, array $tags)

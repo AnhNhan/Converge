@@ -70,6 +70,13 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     private $tags;
 
     /**
+     * // Abusing ManyToMany so we don't need a mappedBy field
+     * @ManyToMany(targetEntity="ForumComment", fetch="EAGER")
+     * @Cache("NONSTRICT_READ_WRITE")
+     */
+    private $comments;
+
+    /**
      * Mapping with posts
      *
      * // Extra lazy fetching since we *could* have a lot of posts in a discussion
@@ -152,6 +159,11 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     public function tags()
     {
         return $this->tags;
+    }
+
+    public function comments()
+    {
+        return $this->comments;
     }
 
     public function posts()

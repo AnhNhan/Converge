@@ -2,6 +2,7 @@
 namespace AnhNhan\Converge\Modules\Forum\Views\Display;
 
 use AnhNhan\Converge as cv;
+use AnhNhan\Converge\Modules\Forum\Views\ForumPanel;
 use AnhNhan\Converge\Views\AbstractView;
 use AnhNhan\Converge\Views\Panel\Panel;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
@@ -15,7 +16,7 @@ abstract class ForumDisplayObject extends AbstractView
 
     protected function buildBasicPanel()
     {
-        $panel = new Panel;
+        $panel = new ForumPanel;
 
         $title = new MarkupContainer;
         $title->push($this->buildProfileImage());

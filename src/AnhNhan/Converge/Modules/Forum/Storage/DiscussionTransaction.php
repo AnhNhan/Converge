@@ -13,11 +13,12 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  */
 class DiscussionTransaction extends TransactionEntity
 {
-    const TYPE_EDIT_LABEL = "disq.edit.label";
-    const TYPE_EDIT_TEXT  = "disq.edit.text";
-    const TYPE_ADD_TAG    = "disq.add.tag";
-    const TYPE_REMOVE_TAG = "disq.remove.tag";
-    const TYPE_ADD_POST   = "disq.add.post";
+    const TYPE_EDIT_LABEL  = "disq.edit.label";
+    const TYPE_EDIT_TEXT   = "disq.edit.text";
+    const TYPE_ADD_TAG     = "disq.add.tag";
+    const TYPE_REMOVE_TAG  = "disq.remove.tag";
+    const TYPE_ADD_POST    = "disq.add.post";
+    const TYPE_ADD_COMMENT = "disq.add.comment";
 
     /**
      * @ManyToOne(targetEntity="Discussion", inversedBy="xacts", fetch="EAGER")
