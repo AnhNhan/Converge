@@ -3,7 +3,7 @@ namespace AnhNhan\Converge;
 
 use YamwLibs\Libs\Html\Markup\SafeTextNode;
 use YamwLibs\Libs\Html\Markup\TextNode;
-use YamwLibs\Libs\Html\Markup\HtmlTag;
+use AnhNhan\Converge\Infrastructure\Markup\HtmlTag;
 
 /**
  * Use with care. Could allow for XSS attacks!
