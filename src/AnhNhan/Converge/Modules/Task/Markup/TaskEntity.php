@@ -14,7 +14,7 @@ final class TaskEntity extends MarkupRule
 {
     // We allow underscores, dashes and dots as characters for readability.
     // These get filtered out during application.
-    const Regex = '/(?<!\w|~|\\)~([\w-_.]+[\w])/';
+    const Regex = '/(?<!\w|~)~([\w-_.]+[\w])/';
 
     private $query;
 

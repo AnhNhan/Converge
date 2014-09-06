@@ -14,7 +14,7 @@ final class UserMention extends MarkupRule
 {
     // Users may use dashes, underscores and periods regardless what we tell
     // them, so match them anyway.
-    const Regex = '/(?<!\w|@|\\)@([\w-_.]+[\w])/';
+    const Regex = '/(?<!\w|@)@([\w-_.]+[\w])/';
 
     private $query;
 
