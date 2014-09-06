@@ -44,7 +44,7 @@ final class TaskListing extends AbstractTaskController
 
         $container = new MarkupContainer;
 
-        $page_title = $parent_task ? 'Pick associations for ' . $parent_task->label : 'Task Listing';
+        $page_title = $parent_task ? 'Pick associations for ' . $parent_task->label : cv\hsprintf('Task Listing <small>(%d)</small>', count($tasks));
 
         $container->push(h1($page_title));
 
@@ -61,7 +61,7 @@ final class TaskListing extends AbstractTaskController
 
         foreach ($sorted_task_groups as $priority_label => $task_group)
         {
-            $listing = $render_listing($task_group, $priority_label);
+            $listing = $render_listing($task_group, cv\hsprintf('%s <small>(%d)</small>', $priority_label, count($task_group)));
             $container->push($listing);
         }
 
