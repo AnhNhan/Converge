@@ -189,7 +189,7 @@ final class DiscussionQuery extends Query
     public function retrivePostsForDiscussion(Discussion $disq, $limit = null, $offset = null)
     {
         $ePost = self::ENTITY_POST;
-        $queryString = "SELECT p FROM {$ePost} p WHERE p.disq = :disq ORDER BY p.createdAt ASC";
+        $queryString = "SELECT p, pc FROM {$ePost} p LEFT JOIN p.comments pc WHERE p.disq = :disq ORDER BY p.createdAt ASC";
         $query = $this->em()
             ->createQuery($queryString)
             ->setFirstResult($offset)

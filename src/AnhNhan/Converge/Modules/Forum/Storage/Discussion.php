@@ -71,7 +71,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
 
     /**
      * // Abusing ManyToMany so we don't need a mappedBy field
-     * @ManyToMany(targetEntity="ForumComment", fetch="EAGER")
+     * @ManyToMany(targetEntity="ForumComment", fetch="LAZY")
      * @Cache("NONSTRICT_READ_WRITE")
      */
     private $comments;
