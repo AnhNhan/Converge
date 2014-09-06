@@ -336,6 +336,7 @@ final class TaskEdit extends AbstractTaskController
         $form
             ->append(form_textcontrol('Label', 'label', $task_label)->setError($e_label))
             ->append(form_textcontrol('Assigned to', 'assigned', implode(', ', $task_assigned))
+                ->addOption('placeholder', 'nobody')
                 ->setHelp('comma separated list; optional')
                 ->setError($e_assigned))
             ->append($tag_selector)
