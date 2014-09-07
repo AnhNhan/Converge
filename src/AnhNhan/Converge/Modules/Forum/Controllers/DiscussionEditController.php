@@ -58,6 +58,15 @@ final class DiscussionEditController extends AbstractForumController
         $origTags = mpull($discussion->tags ? $discussion->tags->toArray() : array(), "tag");
         $tags = mpull($origTags, "label");
 
+        $draft_key = 'create-new-disq';
+        $contents_draft_date = null;
+        if (!$uid && $requestMethod != 'POST')
+        {
+            $contents_draft = $this->getDraftObject($draft_key);
+            $text = $contents_draft ? $contents_draft['contents'] : null;
+            $contents_draft_date = $contents_draft ? 'Draft originally loaded on ' . date("h:i - D, d M 'y", $contents_draft['modified_at']) : null;
+        }
+
         if ($requestMethod == "POST") {
             $label = trim($request->request->get("label"));
             $text = trim($request->request->get("text"));
@@ -127,6 +136,11 @@ final class DiscussionEditController extends AbstractForumController
                     );
                 }
 
+                if (!$uid)
+                {
+                    $this->deleteDraftObject($draft_key);
+                }
+
                 $activityRecorder = new DiscussionRecorder($this->externalApp('activity'));
                 $activityRecorder->record($editor->apply());
 
@@ -174,6 +188,8 @@ final class DiscussionEditController extends AbstractForumController
             ->setName("tags"));
 
         $form->append(id(new TextAreaControl)
+            ->setHelp($contents_draft_date)
+            ->addOption('data-draft-key', !$uid ? $draft_key : null)
             ->addClass("forum-markup-processing-form")
             ->setLabel("Text")
             ->setName("text")

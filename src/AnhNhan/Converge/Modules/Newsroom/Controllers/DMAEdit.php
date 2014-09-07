@@ -77,6 +77,15 @@ final class DMAEdit extends ArticleController
 
         $art_authors_orig = mpull(mpull($orig_authors, 'user'), null, 'canonical_name');
 
+        $draft_key = 'create-article-text-at-channel-' . $channel->slug;
+        $contents_draft_date = null;
+        if (!$art_uid && $requestMethod != 'POST')
+        {
+            $contents_draft = $this->getDraftObject($draft_key);
+            $art_text = $contents_draft ? $contents_draft['contents'] : null;
+            $contents_draft_date = $contents_draft ? 'Draft originally loaded on ' . date("h:i - D, d M 'y", $contents_draft['modified_at']) : null;
+        }
+
         $enum_colors = [
             'midnight-blue' => 'Default (Midnight Blue)',
             'none' => 'None',
@@ -272,6 +281,11 @@ final class DMAEdit extends ArticleController
                 $em->beginTransaction();
                 try
                 {
+                    if (!$art_uid)
+                    {
+                        $this->deleteDraftObject($draft_key);
+                    }
+
                     $recorder = new ArticleRecorder($this->externalApp('activity'));
                     $recorder->record($editor->apply());
                     $em->commit();
@@ -388,8 +402,9 @@ final class DMAEdit extends ArticleController
             ->append($font_control)
             ->append($header_style_control)
             ->append(form_textareacontrol('Text', 'text', $art_text)
-                ->setHelp('optional')
+                ->setHelp($contents_draft_date ?: 'optional')
                 ->setError($e_text)
+                ->addOption('data-draft-key', !$art_uid ? $draft_key : null)
                 ->addClass('forum-markup-processing-form'))
             ->append(a(cv\icon_ion('formatting help text', 'help-buoy'), 'newsroom/markup/help')->addClass('btn btn-info btn-large pull-right'))
             ->append(form_submitcontrol($art_uid ? 'a/' . $art_slug : '/newsroom/'))

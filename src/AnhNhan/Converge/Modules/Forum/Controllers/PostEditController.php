@@ -55,11 +55,21 @@ final class PostEditController extends AbstractForumController
             $post = Post::initializeForDiscussion($discussion);
         }
 
-        if ($requestMethod == "POST") {
-            $text = trim($request->request->get("text"));
-            $text = Converge\normalize_newlines($text);
+        $post_text = $post->rawText;
+        $draft_key = $discussion->uid . '~post';
+        $contents_draft_date = null;
+        if (!$post->uid && $requestMethod != 'POST')
+        {
+            $contents_draft = $this->getDraftObject($draft_key);
+            $post_text = $contents_draft ? $contents_draft['contents'] : null;
+            $contents_draft_date = $contents_draft ? 'Draft originally loaded on ' . date("h:i - D, d M 'y", $contents_draft['modified_at']) : null;
+        }
 
-            if (empty($text)) {
+        if ($requestMethod == "POST") {
+            $post_text = trim($request->request->get("text"));
+            $post_text = Converge\normalize_newlines($post_text);
+
+            if (empty($post_text)) {
                 $errors[] = "Text is empty!";
             }
 
@@ -81,9 +91,14 @@ final class PostEditController extends AbstractForumController
 
                 $editor
                     ->addTransaction(
-                        PostTransaction::create(PostTransaction::TYPE_EDIT_POST, $text)
+                        PostTransaction::create(PostTransaction::TYPE_EDIT_POST, $post_text)
                     )
                 ;
+
+                if (!$post->uid)
+                {
+                    $this->deleteDraftObject($draft_key);
+                }
 
                 $activityRecorder = new PostRecorder($this->externalApp('activity'));
                 $activityRecorder->record($editor->apply());
@@ -101,7 +116,9 @@ final class PostEditController extends AbstractForumController
             ->append(id(new TextAreaControl)
                 ->setLabel("Text")
                 ->setName("text")
-                ->setValue($post->rawText)
+                ->setValue($post_text)
+                ->setHelp($contents_draft_date)
+                ->addOption('data-draft-key', !$post->uid ? $draft_key : null)
                 ->addClass("forum-markup-processing-form")
             )
             ->append(id(new SubmitControl)

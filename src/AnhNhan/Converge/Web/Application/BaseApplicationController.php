@@ -202,4 +202,29 @@ abstract class BaseApplicationController
         $kernel = $this->app->getService('http_kernel');
         return $kernel->handle($request, HttpKernelInterface::SUB_REQUEST, $catch);
     }
+
+    protected function getDraftObject($draft_object_key)
+    {
+        if ($user = $this->user)
+        {
+            $result = $this->internalSubRequest(
+                urisprintf('draft/%s/%s', $user->uid, $draft_object_key)
+            );
+            if ($result->getStatusCode() != 200)
+            {
+                return null;
+            }
+            return idx(json_decode($result->getContent(), true), 'payloads');
+        }
+    }
+
+    protected function deleteDraftObject($draft_object_key)
+    {
+        if ($user = $this->user)
+        {
+            $result = $this->internalSubRequest(
+                urisprintf('draft/%s/%s', $user->uid, $draft_object_key), [], 'DELETE'
+            );
+        }
+    }
 }

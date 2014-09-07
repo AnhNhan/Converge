@@ -55,6 +55,9 @@ final class TaskComment extends AbstractTaskController
             ->addTransaction(TaskTransaction::create(TaskTransaction::TYPE_ADD_COMMENT, $inputText))
         ;
 
+        $draft_key = $task->uid . '~comment';
+        $this->deleteDraftObject($task->uid);
+
         $activityRecorder = new TaskRecorder($this->externalApp('activity'));
         $activityRecorder->record($editor->apply());
 

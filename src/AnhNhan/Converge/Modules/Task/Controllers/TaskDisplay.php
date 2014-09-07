@@ -97,6 +97,11 @@ final class TaskDisplay extends AbstractTaskController
             $container->push($rendered_xact);
         }
 
+        $draft_key = $task->uid . '~comment';
+        $comment_draft = $this->getDraftObject($draft_key);
+        $comment_draft_text = $comment_draft ? $comment_draft['contents'] : null;
+        $comment_draft_date = $comment_draft ? 'Draft originally loaded on ' . date("h:i - D, d M 'y", $comment_draft['modified_at']) : null;
+
         $comment_grid = grid();
         $comment_row  = $comment_grid->row();
         $comment_form = form('', urisprintf('task/comment/%s', $task->label_canonical), 'POST')
@@ -105,8 +110,9 @@ final class TaskDisplay extends AbstractTaskController
         ;
         $comment_row->column(6)
             ->push(
-                form_textareacontrol(h2('Comment'), 'comment')
+                form_textareacontrol(h2('Comment'), 'comment', $comment_draft_text)
                     ->addClass('forum-markup-processing-form')
+                    ->addOption('data-draft-key', $draft_key)
             )
             ->push(
                 form_submitcontrol(null)
@@ -114,6 +120,7 @@ final class TaskDisplay extends AbstractTaskController
         ;
         $comment_row->column(6)
             ->push(h2('Preview'))
+            ->push(span('muted', $comment_draft_date))
             ->push(cv\ht('div', 'Foo')->addClass('markup-preview-output'))
         ;
         if ($user_authenticated)
