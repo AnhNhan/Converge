@@ -48,7 +48,7 @@ final class MarkupProcessingController extends AbstractMarkupController
         $payload->setPayloadContents(array(
             "contents" => (string) $output,
             "time"     => $time,
-            "last_saved" => $last_saved_time ? "Last saved " . date("D d M h:m", $last_saved_time) : "Not saved",
+            "last_saved" => $last_saved_time ? "Last saved " . date("D d M h:i", $last_saved_time) : "Not saved",
         ));
         return $payload;
     }
