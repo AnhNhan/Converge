@@ -81,12 +81,12 @@ final class TaskEdit extends AbstractTaskController
         $task_assigned_orig = mpull($assigned, null, 'canonical_name');
 
         $draft_key = 'create-task-description';
+        $description_draft_date = null;
         if (!$task_uid && $requestMethod != 'POST')
         {
             $description_draft = $this->getDraftObject($draft_key);
-            $description_draft_text = $description_draft ? $description_draft['contents'] : null;
+            $task_description = $description_draft ? $description_draft['contents'] : null;
             $description_draft_date = $description_draft ? 'Draft originally loaded on ' . date("h:i - D, d M 'y", $description_draft['modified_at']) : null;
-            $task_description = $description_draft_text;
         }
 
         if ($requestMethod == 'POST')
