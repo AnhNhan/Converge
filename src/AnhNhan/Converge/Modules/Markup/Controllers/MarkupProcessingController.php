@@ -15,6 +15,7 @@ final class MarkupProcessingController extends AbstractMarkupController
         $request = $this->request();
         $requestMethod = $request->getMethod();
         $inputText = $request->get("text");
+        $draft_object_key = $request->get("draft_object_key");
 
         if (!$inputText) {
             throw new \Exception("Input 'text' can't be empty!");
@@ -30,12 +31,24 @@ final class MarkupProcessingController extends AbstractMarkupController
         $engine->process();
         $output = $engine->getOutputText();
 
+        $last_saved_time = null;
+        if ($draft_object_key && $user = $this->user)
+        {
+            $result = $this->internalSubRequest(
+                urisprintf("draft/%s/%s", $user->uid, $draft_object_key),
+                ["contents" => $inputText],
+                "POST"
+            );
+            $last_saved_time = idx((array) idx((array) json_decode($result->getContent()), "payloads", []), "modified_at");
+        }
+
         $time = $timer->stop()->getDuration();
 
         $payload = new JsonPayload();
         $payload->setPayloadContents(array(
             "contents" => (string) $output,
             "time"     => $time,
+            "last_saved" => $last_saved_time ? "Last saved " . date("D d M h:m", $last_saved_time) : "Not saved",
         ));
         return $payload;
     }
