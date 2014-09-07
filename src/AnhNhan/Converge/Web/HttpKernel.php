@@ -87,6 +87,15 @@ final class HttpKernel implements HttpKernelInterface
 
         $container->set("request", $request);
 
+        $origResMgr = null;
+        try
+        {
+            $origResMgr = $container->get("resource_manager");
+        }
+        catch (\RunTimeException $e)
+        {
+            // <ignore>
+        }
         $resMgr = new ResMgr(Converge\path("__resource_map__.php"));
         $container->set("resource_manager", $resMgr);
 
@@ -159,6 +168,8 @@ final class HttpKernel implements HttpKernelInterface
             // Into the void!
             $this->getCapturedOverflow();
         }
+
+        $origResMgr and $container->set("resource_manager", $origResMgr);
 
         return $this->filterResponse($response, $request, $type);
     }
