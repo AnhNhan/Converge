@@ -24,6 +24,22 @@ return array(
       "deriv" => "Symfony\Component\Console\Command\Command",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Infrastructure\Markup\AbstractMarkup" => array(
+      "file" => "AnhNhan/Converge/Infrastructure/Markup/AbstractMarkup.php",
+      "impls" => array(
+        "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface",
+        "YamwLibs\Libs\View\ViewInterface",
+      ),
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Infrastructure\Markup\HtmlTag" => array(
+      "file" => "AnhNhan/Converge/Infrastructure/Markup/HtmlTag.php",
+      "deriv" => "AnhNhan\Converge\Infrastructure\Markup\XmlTag",
+    ),
+    "AnhNhan\Converge\Infrastructure\Markup\XmlTag" => array(
+      "file" => "AnhNhan/Converge/Infrastructure/Markup/XmlTag.php",
+      "deriv" => "AnhNhan\Converge\Infrastructure\Markup\AbstractMarkup",
+    ),
     "AnhNhan\Converge\Modules\Activity\ActivityApplication" => array(
       "file" => "AnhNhan/Converge/Modules/Activity/ActivityApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
@@ -57,6 +73,27 @@ return array(
     "AnhNhan\Converge\Modules\Database\Command\DoctrineManager" => array(
       "file" => "AnhNhan/Converge/Modules/Database/Command/DoctrineManager.php",
       "deriv" => "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
+    ),
+    "AnhNhan\Converge\Modules\Draft\Controllers\Draft" => array(
+      "file" => "AnhNhan/Converge/Modules/Draft/Controllers/Draft.php",
+      "deriv" => "AnhNhan\Converge\Modules\Draft\Controllers\DraftController",
+    ),
+    "AnhNhan\Converge\Modules\Draft\Controllers\DraftController" => array(
+      "file" => "AnhNhan/Converge/Modules/Draft/Controllers/DraftController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Draft\DraftApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Draft/DraftApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Draft\DraftQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/Draft/DraftQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
+    ),
+    "AnhNhan\Converge\Modules\Draft\Storage\DraftObject" => array(
+      "file" => "AnhNhan/Converge/Modules/Draft/Storage/DraftObject.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
     "AnhNhan\Converge\Modules\Examples\Controllers\ExampleListing" => array(
       "file" => "AnhNhan/Converge/Modules/Examples/Controllers/ExampleListing.php",
@@ -1105,8 +1142,16 @@ return array(
       "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand",
       "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand",
     ),
+    "AnhNhan\Converge\Infrastructure\Markup\XmlTag" => array(
+      "AnhNhan\Converge\Infrastructure\Markup\HtmlTag",
+    ),
+    "AnhNhan\Converge\Infrastructure\Markup\AbstractMarkup" => array(
+      "AnhNhan\Converge\Infrastructure\Markup\XmlTag",
+      "AnhNhan\Converge\Infrastructure\Markup\HtmlTag",
+    ),
     "AnhNhan\Converge\Web\Application\BaseApplication" => array(
       "AnhNhan\Converge\Modules\Activity\ActivityApplication",
+      "AnhNhan\Converge\Modules\Draft\DraftApplication",
       "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
       "AnhNhan\Converge\Modules\Forum\ForumApplication",
       "AnhNhan\Converge\Modules\Front\FrontApplication",
@@ -1120,6 +1165,7 @@ return array(
     ),
     "AnhNhan\Converge\Web\Application\BaseApplicationController" => array(
       "AnhNhan\Converge\Modules\Activity\Controllers\ActivityController",
+      "AnhNhan\Converge\Modules\Draft\Controllers\DraftController",
       "AnhNhan\Converge\Modules\Examples\Controllers\ExampleListing",
       "AnhNhan\Converge\Modules\Examples\Controllers\StandardExamplesController",
       "AnhNhan\Converge\Modules\Forum\Controllers\AbstractForumController",
@@ -1134,6 +1180,7 @@ return array(
       "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
       "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
       "AnhNhan\Converge\Modules\Activity\Controllers\ActivityListing",
+      "AnhNhan\Converge\Modules\Draft\Controllers\Draft",
       "AnhNhan\Converge\Modules\Forum\Controllers\Comment",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionDisplayController",
       "AnhNhan\Converge\Modules\Forum\Controllers\DiscussionEditController",
@@ -1168,6 +1215,7 @@ return array(
     ),
     "AnhNhan\Converge\Storage\Query" => array(
       "AnhNhan\Converge\Modules\Activity\Query\ActivityQuery",
+      "AnhNhan\Converge\Modules\Draft\DraftQuery",
       "AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery",
       "AnhNhan\Converge\Modules\Newsroom\Query\ArticleQuery",
       "AnhNhan\Converge\Modules\Tag\TagQuery",
@@ -1177,6 +1225,7 @@ return array(
     ),
     "AnhNhan\Converge\Storage\EntityDefinition" => array(
       "AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity",
+      "AnhNhan\Converge\Modules\Draft\Storage\DraftObject",
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\Converge\Modules\Forum\Storage\ForumComment",
@@ -1221,6 +1270,9 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand" => array(
       "AnhNhan\Converge\Modules\Database\Command\DoctrineManager",
+    ),
+    "AnhNhan\Converge\Modules\Draft\Controllers\DraftController" => array(
+      "AnhNhan\Converge\Modules\Draft\Controllers\Draft",
     ),
     "AnhNhan\Converge\Modules\Examples\Examples\AbstractExample" => array(
       "AnhNhan\Converge\Modules\Examples\Examples\BootstrapExample",
@@ -1497,6 +1549,18 @@ return array(
     ),
   ),
   "implementations" => array(
+    "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
+      "AnhNhan\Converge\Infrastructure\Markup\AbstractMarkup",
+      "AnhNhan\Converge\Views\AbstractView",
+      "AnhNhan\Converge\Views\Form\Controls\SubmitControl",
+    ),
+    "YamwLibs\Libs\View\ViewInterface" => array(
+      "AnhNhan\Converge\Infrastructure\Markup\AbstractMarkup",
+      "AnhNhan\Converge\Views\AbstractView",
+      "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
+      "AnhNhan\Converge\Views\Form\Controls\SubmitControl",
+      "AnhNhan\Converge\Views\Page\FooterView",
+    ),
     "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface" => array(
       "AnhNhan\Converge\Modules\Forum\Storage\Discussion",
       "AnhNhan\Converge\Modules\Forum\Storage\ForumComment",
@@ -1523,16 +1587,6 @@ return array(
     ),
     "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
       "AnhNhan\Converge\Modules\User\Storage\User",
-    ),
-    "YamwLibs\Libs\View\ViewInterface" => array(
-      "AnhNhan\Converge\Views\AbstractView",
-      "AnhNhan\Converge\Views\Form\Controls\AbstractFormControl",
-      "AnhNhan\Converge\Views\Form\Controls\SubmitControl",
-      "AnhNhan\Converge\Views\Page\FooterView",
-    ),
-    "YamwLibs\Libs\Html\Interfaces\YamwMarkupInterface" => array(
-      "AnhNhan\Converge\Views\AbstractView",
-      "AnhNhan\Converge\Views\Form\Controls\SubmitControl",
     ),
     "Symfony\Component\Routing\Matcher\RequestMatcherInterface" => array(
       "AnhNhan\Converge\Web\AppRouting",
