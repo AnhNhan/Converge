@@ -56,7 +56,7 @@ final class TaskComment extends AbstractTaskController
         ;
 
         $draft_key = $task->uid . '~comment';
-        $this->deleteDraftObject($task->uid);
+        $this->deleteDraftObject($draft_key);
 
         $activityRecorder = new TaskRecorder($this->externalApp('activity'));
         $activityRecorder->record($editor->apply());

@@ -69,6 +69,8 @@ final class TaskEdit extends AbstractTaskController
 
         $assigned = mpull($task->assigned, 'user');
 
+        $is_new = !$task->uid;
+
         $task_uid = $task->uid;
         $task_label = $task->label;
         $task_assigned = mpull($assigned, 'canonical_name');
@@ -82,7 +84,7 @@ final class TaskEdit extends AbstractTaskController
 
         $draft_key = 'create-task-description';
         $description_draft_date = null;
-        if (!$task_uid && $requestMethod != 'POST')
+        if ($is_new && $requestMethod != 'POST')
         {
             $description_draft = $this->getDraftObject($draft_key);
             $task_description = $description_draft ? $description_draft['contents'] : null;
@@ -244,10 +246,7 @@ final class TaskEdit extends AbstractTaskController
                     $activityRecorder = new TaskRecorder($this->externalApp('activity'));
                     $activityRecorder->record($editor->apply());
 
-                    if (!$task_uid)
-                    {
-                        $this->deleteDraftObject($draft_key);
-                    }
+                    $is_new and $this->deleteDraftObject($draft_key);
 
                     if ($parent_task)
                     {
@@ -359,7 +358,7 @@ final class TaskEdit extends AbstractTaskController
             ->append(form_textareacontrol('Description', 'description', $task_description)
                 ->setHelp($description_draft_date ?: 'optional')
                 ->addClass('forum-markup-processing-form')
-                ->addOption('data-draft-key', !$task_uid ? $draft_key : null)
+                ->addOption('data-draft-key', $is_new ? $draft_key : null)
             )
             ->append(form_submitcontrol($task_uid ? 'task/' . $task->label_canonical : '/task/', 'Hasta la vista!'))
             ->append(div('markup-preview-output', 'Foo'))
