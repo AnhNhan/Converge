@@ -1,0 +1,5 @@
+
+routes:
+
+  - pattern: draft/:user-id/:object-id
+    route-name: draft-user-object
