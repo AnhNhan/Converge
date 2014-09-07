@@ -39,7 +39,7 @@ final class MarkupProcessingController extends AbstractMarkupController
                 ["contents" => $inputText],
                 "POST"
             );
-            $last_saved_time = idx((array) idx((array) json_decode($result->getContent()), "payloads", []), "modified_at");
+            $last_saved_time = idx(idx(json_decode($result->getContent(), true), "payloads", []), "modified_at");
         }
 
         $time = $timer->stop()->getDuration();
