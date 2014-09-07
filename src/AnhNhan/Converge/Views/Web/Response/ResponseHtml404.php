@@ -21,6 +21,8 @@ final class ResponseHtml404 extends HttpPayload
 
     public function renderHttpBody()
     {
+        $this->setHttpCode(404);
+
         $payload = new HtmlPayload;
         $payload->setTitle('Resource not found');
         $payload->setResMgr($this->resMgr);
