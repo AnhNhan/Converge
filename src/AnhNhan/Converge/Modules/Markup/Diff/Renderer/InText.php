@@ -73,8 +73,8 @@ class InText extends ArrayRenderer2
 
             $fun = function ($class, array $lines)
             {
-                $lines = implode("\n", $lines) ?: '&nbsp;';
-                $tag = preg_match('/^<(div|p|h\d)>/', $lines) ? 'div' : 'span';
+                $lines = implode("\n", array_map('\diff\utils\restore_html', $lines)) ?: '&nbsp;';
+                $tag = (preg_match('/^<(div|p|h\d)>/', $lines) || $lines == '&nbsp;') ? 'div' : 'span';
                 return cv\ht($tag, cv\safeHtml($lines))->addClass($class);
             };
 
