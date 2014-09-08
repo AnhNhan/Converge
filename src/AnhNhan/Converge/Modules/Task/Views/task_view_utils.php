@@ -13,7 +13,7 @@ use AnhNhan\Converge\Views\Objects\Object;
 use AnhNhan\Converge\Views\Property\PropertyList;
 
 use Diff as DiffEngine;
-use AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline as InlineDiffRenderer;
+use AnhNhan\Converge\Modules\Markup\Diff\Renderer\InText as InlineDiffRenderer;
 
 function render_task_listing(array $tasks, $title = null, $empty_message = 'No tasks available', callable $object_adder = null)
 {
@@ -434,8 +434,11 @@ function task_xact_type_body(Task $task, TaskTransaction $xact, $other = null)
     switch ($xact->type)
     {
         case TaskTransaction::TYPE_EDIT_DESC:
-            $diff = new DiffEngine(explode("\n", $xact->oldValue), explode("\n", $xact->newValue), []);
-            return cv\safeHtml($diff->render(new InlineDiffRenderer));
+            $oldValue = diff\utils\save_html(MarkupEngine::fastParse($xact->oldValue, idx($other, 'markup_rules', [])));
+            $newValue = diff\utils\save_html(MarkupEngine::fastParse($xact->newValue, idx($other, 'markup_rules', [])));
+            $diff = new DiffEngine(explode("\n", $oldValue), explode("\n", $newValue), []);
+            $body = diff\utils\restore_html($diff->render(new InlineDiffRenderer));
+            return cv\safeHtml($body);
         case TaskTransaction::TYPE_ADD_COMMENT:
             return cv\safeHtml(MarkupEngine::fastParse($xact->newValue, idx($other, 'markup_rules', [])));
         default:

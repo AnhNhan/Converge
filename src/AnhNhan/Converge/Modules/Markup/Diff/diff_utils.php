@@ -12,13 +12,6 @@ class MarkupDiffBlockStorage
     private $map = [];
     private $index;
 
-    public function store_($piece)
-    {
-        $key = self::MAGIC_BYTE . (++$this->index) . self::MAGIC_TERM;
-        $this->map[$key] = $piece;
-        return $key;
-    }
-
     public function store($piece)
     {
         if (isset($this->map_inverse[$piece]))
@@ -77,13 +70,4 @@ function restore_html($text)
 {
     global $block_storage;
     return $block_storage->restore($text);
-}
-
-function fixup_text($text)
-{
-    $replace_map = [
-    ];
-    //$text = preg_replace('@<diff(.*?)><(h\d|div|p|blockquote)>(.*?)</\2></diff>@', '<$2$1>$3</$2>', $text);
-    $text = str_replace(array_keys($replace_map), array_values($replace_map), $text);
-    return $text;
 }
