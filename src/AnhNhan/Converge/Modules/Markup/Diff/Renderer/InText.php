@@ -42,6 +42,8 @@
 
 namespace AnhNhan\Converge\Modules\Markup\Diff\Renderer;
 
+use AnhNhan\Converge as cv;
+
 class InText extends ArrayRenderer2
 {
     /**
@@ -69,7 +71,12 @@ class InText extends ArrayRenderer2
                 $html .= '</div>';
             }
 
-            $last_block = null;
+            $fun = function ($class, array $lines)
+            {
+                $lines = implode("\n", $lines) ?: '&nbsp;';
+                $tag = preg_match('/^<(div|p|h\d)>/', $lines) ? 'div' : 'span';
+                return cv\ht($tag, cv\safeHtml($lines))->addClass($class);
+            };
 
             foreach($blocks as $change) {
                 $html_prefix = '';
@@ -77,53 +84,21 @@ class InText extends ArrayRenderer2
 
                 // Equal changes should be shown on both sides of the diff
                 if($change['tag'] == 'equal') {
-                    $html .= '<span class="diff-equal">';
-
-                    foreach($change['base']['lines'] as $no => $line) {
-                        $html .= $line . "\n";
-                    }
-
-                    $html .= '</span>';
+                    $html .= $fun('diff-equal', $change['base']['lines']);
                 }
                 // Added lines only on the right side
                 else if($change['tag'] == 'insert') {
-                    $html .= '<span class="diff-insert-full color-bg-diff-insert-bg">';
-
-                    foreach($change['changed']['lines'] as $no => $line) {
-                        $html .= $line . "\n";
-                    }
-
-                    $html .= '</span>';
+                    $html .= $fun('diff-insert-full color-bg-diff-insert-bg', $change['changed']['lines']);
                 }
                 // Show deleted lines only on the left side
                 else if($change['tag'] == 'delete') {
-                    $html .= '<span class="diff-delete-full color-bg-diff-delete-bg">';
-
-                    foreach($change['base']['lines'] as $no => $line) {
-                        $html .= $line . "\n";
-                    }
-
-                    $html .= '</span>';
+                    $html .= $fun('diff-delete-full color-bg-diff-delete-bg', $change['base']['lines']);
                 }
                 // Show modified lines on both sides
                 else if($change['tag'] == 'replace') {
-                    $html .= '<span class="Left diff-delete-replace color-bg-diff-delete-bg">';
-
-                    foreach($change['base']['lines'] as $no => $line) {
-                        $html .= $line . "\n";
-                    }
-
-                    $html .= '</span>';
-                    $html .= '<span class="Right diff-insert-replace color-bg-diff-insert-bg">';
-
-                    foreach($change['changed']['lines'] as $no => $line) {
-                        $html .= $line . "\n";
-                    }
-
-                    $html .= '</span>';
+                    $html .= $fun('diff-delete-replace color-bg-diff-delete-bg', $change['base']['lines']);
+                    $html .= $fun('diff-insert-replace color-bg-diff-insert-bg', $change['changed']['lines']);
                 }
-
-                $last_block = $change['tag'];
             }
         }
         $html .= '</div>';
