@@ -13,7 +13,7 @@ final class Hashtag extends MarkupRule
 {
     // Tags may use dashes, underscores and periods regardless what we tell
     // them, so match them anyway.
-    const Regex = '/(?<!#)#([\w-]+[\w])/';
+    const Regex = '/(?<!#|\w)#([\w-]+[\w])/';
 
     private $query;
 
