@@ -96,3 +96,29 @@ function any($list, callable $bool_predicate = null)
 
     return false;
 }
+
+function mkey(array $array, $key)
+{
+    return mpull($array, null, $key);
+}
+
+function pkey(array $array, $key)
+{
+    return ppull($array, null, $key);
+}
+
+function ikey(array $array, $key)
+{
+    return ipull($array, null, $key);
+}
+
+function curry_fa(callable $fun, $first_arg)
+{
+    return function () use ($fun, $first_arg)
+    {
+        return call_user_func_array(
+            $fun,
+            array_merge([$first_arg], func_get_args())
+        );
+    };
+}
