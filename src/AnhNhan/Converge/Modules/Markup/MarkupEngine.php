@@ -11,6 +11,13 @@ class MarkupEngine
 
     private $custom_rules = [];
 
+    private $storage;
+
+    public function __construct()
+    {
+        $this->storage = new MarkupTokenStorage;
+    }
+
     public function addInputText($text, $key = "default")
     {
         if (isset($this->inputTexts[$key])) {
@@ -44,10 +51,20 @@ class MarkupEngine
             $text = preg_replace('/&amp;([\w\d]{1,6};)/', '&$1', $text);
             foreach ($this->custom_rules as $rule)
             {
+                $rule->setBlockStorage($this->storage);
                 $text = $rule->apply($text);
             }
             $text = static::fixupText($text);
             $this->outputText[$key] = $text;
+        }
+
+        foreach ($this->custom_rules as $rule)
+        {
+            $rule->didMarkupText();
+        }
+        foreach ($this->outputText as $key => $text)
+        {
+            $this->outputText[$key] = $this->storage->restore($text);
         }
 
         return $this;

@@ -6,6 +6,14 @@ namespace AnhNhan\Converge\Modules\Markup;
  */
 abstract class MarkupRule extends \PhutilRemarkupRule
 {
+    protected $storage;
+
+    public function setBlockStorage($storage)
+    {
+        $this->storage = $storage;
+        return $this;
+    }
+
     public function getEngine()
     {
         throw new \BadMethodCallException('We don\'t use PhutilMarkupEngine!');
