@@ -35,6 +35,17 @@ class MarkupDiffBlockStorage
         }
         return $big_text;
     }
+
+    public function overwrite($key, $piece)
+    {
+        assert_stringlike($piece);
+        $piece = (string) $piece;
+        unset($this->map_inverse[$this->map[$key]]);
+        $this->map_inverse[$piece] = $key;
+
+        $this->map[$key] = $piece;
+        return $this;
+    }
 }
 
 global $block_storage;
