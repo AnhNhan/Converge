@@ -34,16 +34,15 @@ final class TaskEntity extends MarkupRule
 
     public function applyOccurence($matches)
     {
-        $task_name = to_canonical($matches[0]);
-        $task     = head($this->query->retrieveTasksForCanonicalLabels([$task_name]));
-
-        if (!$task)
-        {
-            // Reusing bad-username class so I won't have to write a new one
-            return tooltip('span', $matches[0], 'task not found')->addClass('bad-username');
-        }
-
-        return $this->link_task($task);
+        $original = $matches[0];
+        $taskname = to_canonical($original);
+        $metadata = [
+            'original' => $original,
+            'taskname' => $taskname,
+        ];
+        $token = $this->storage->store($original);
+        $this->storage->addTokenToSet('task-mention', $token, $metadata);
+        return $token;
     }
 
     private function link_task(Task $task)
@@ -60,5 +59,23 @@ final class TaskEntity extends MarkupRule
             $contents = 'Task - ' . $contents;
         }
         return a($contents, 'task/' . $task->label_canonical)->addClass($classes);
+    }
+
+    public function didMarkupText()
+    {
+        $token_set = $this->storage->getTokenSet('task-mention');
+        if (!$token_set)
+        {
+            return;
+        }
+
+        $task_names = ipull($token_set, 'taskname');
+        $tasks      = $this->query->retrieveTasksForCanonicalLabels(array_values($task_names));
+        $tasks      = mkey($tasks, 'label_canonical');
+        $tasks      = array_map([$this, 'link_task'], $tasks);
+        foreach ($token_set as $token => $metadata)
+        {
+            $this->storage->overwrite($token, idx($tasks, $metadata['taskname'], tooltip('span', $metadata['original'], 'task not found')->addClass('bad-username')));
+        }
     }
 }
