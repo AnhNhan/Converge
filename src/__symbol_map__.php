@@ -352,6 +352,9 @@ return array(
       "deriv" => "PhutilRemarkupRule",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Modules\Markup\MarkupTokenStorage" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/MarkupTokenStorage.php",
+    ),
     "AnhNhan\Converge\Modules\Markup\TOCExtractor" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/TOCExtractor.php",
     ),
@@ -582,6 +585,10 @@ return array(
     "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController" => array(
       "file" => "AnhNhan/Converge/Modules/Tag/Controllers/TagListingController.php",
       "deriv" => "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
+    ),
+    "AnhNhan\Converge\Modules\Tag\Markup\TagMention" => array(
+      "file" => "AnhNhan/Converge/Modules/Tag/Markup/TagMention.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
     ),
     "AnhNhan\Converge\Modules\Tag\Storage\Tag" => array(
       "file" => "AnhNhan/Converge/Modules/Tag/Storage/Tag.php",
@@ -1102,9 +1109,6 @@ return array(
     "form_textcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_textareacontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_submitcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
-    "mkey" => "AnhNhan/Converge/cv_utils.php",
-    "pkey" => "AnhNhan/Converge/cv_utils.php",
-    "ikey" => "AnhNhan/Converge/cv_utils.php",
     "AnhNhan\Converge\get_root" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\get_root_super" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\path" => "AnhNhan/Converge/functions.php",
@@ -1114,7 +1118,6 @@ return array(
     "AnhNhan\Converge\sdx" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\pdx" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\normalize_newlines" => "AnhNhan/Converge/functions.php",
-    "curry_fa" => "AnhNhan/Converge/functions_functional.php",
     "AnhNhan\Converge\safeHtml" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\hsprintf" => "AnhNhan/Converge/functions_html.php",
     "AnhNhan\Converge\ht" => "AnhNhan/Converge/functions_html.php",
@@ -1136,7 +1139,6 @@ return array(
     "h4" => "AnhNhan/Converge/functions_html_global.php",
     "h5" => "AnhNhan/Converge/functions_html_global.php",
     "h6" => "AnhNhan/Converge/functions_html_global.php",
-    "generate_search_prep_stmt_part" => "AnhNhan/Converge/functions_sql.php",
     "to_canonical" => "AnhNhan/Converge/functions_very_global.php",
     "to_slug" => "AnhNhan/Converge/functions_very_global.php",
     "ascii_non_w_replace" => "AnhNhan/Converge/functions_very_global.php",
@@ -1144,6 +1146,10 @@ return array(
     "pull" => "AnhNhan/Converge/functions_very_global.php",
     "all" => "AnhNhan/Converge/functions_very_global.php",
     "any" => "AnhNhan/Converge/functions_very_global.php",
+    "mkey" => "AnhNhan/Converge/functions_very_global.php",
+    "pkey" => "AnhNhan/Converge/functions_very_global.php",
+    "ikey" => "AnhNhan/Converge/functions_very_global.php",
+    "curry_fa" => "AnhNhan/Converge/functions_very_global.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -1426,11 +1432,13 @@ return array(
     "PhutilRemarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+      "AnhNhan\Converge\Modules\Tag\Markup\TagMention",
       "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
     ),
     "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+      "AnhNhan\Converge\Modules\Tag\Markup\TagMention",
       "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
