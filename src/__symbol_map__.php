@@ -313,6 +313,14 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/ArrayRenderer.php",
       "deriv" => "Diff_Renderer_Abstract",
     ),
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer2" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/ArrayRenderer2.php",
+      "deriv" => "Diff_Renderer_Abstract",
+    ),
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\InText" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/InText.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer2",
+    ),
     "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/Inline.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
@@ -320,6 +328,9 @@ return array(
     "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/Diff/Renderer/SideBySide.php",
       "deriv" => "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
+    ),
+    "diff\utils\MarkupDiffBlockStorage" => array(
+      "file" => "AnhNhan/Converge/Modules/Markup/Diff/diff_utils.php",
     ),
     "AnhNhan\Converge\Modules\Markup\Markup\AsianText" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/Markup/AsianText.php",
@@ -571,10 +582,6 @@ return array(
     "AnhNhan\Converge\Modules\Tag\Controllers\TagListingController" => array(
       "file" => "AnhNhan/Converge/Modules/Tag/Controllers/TagListingController.php",
       "deriv" => "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
-    ),
-    "AnhNhan\Converge\Modules\Tag\Markup\Hashtag" => array(
-      "file" => "AnhNhan/Converge/Modules/Tag/Markup/Hashtag.php",
-      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
     ),
     "AnhNhan\Converge\Modules\Tag\Storage\Tag" => array(
       "file" => "AnhNhan/Converge/Modules/Tag/Storage/Tag.php",
@@ -1054,6 +1061,9 @@ return array(
     "post_activity_label" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "post_activity_body" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "forum_activity_class" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
+    "diff\utils\_static_init" => "AnhNhan/Converge/Modules/Markup/Diff/diff_utils.php",
+    "diff\utils\save_html" => "AnhNhan/Converge/Modules/Markup/Diff/diff_utils.php",
+    "diff\utils\restore_html" => "AnhNhan/Converge/Modules/Markup/Diff/diff_utils.php",
     "get_custom_markup_rules" => "AnhNhan/Converge/Modules/Markup/markup_utils.php",
     "article_activity_label" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
     "article_activity_body" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
@@ -1389,8 +1399,13 @@ return array(
     ),
     "Diff_Renderer_Abstract" => array(
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer",
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer2",
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline",
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\SideBySide",
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\InText",
+    ),
+    "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer2" => array(
+      "AnhNhan\Converge\Modules\Markup\Diff\Renderer\InText",
     ),
     "AnhNhan\Converge\Modules\Markup\Diff\Renderer\ArrayRenderer" => array(
       "AnhNhan\Converge\Modules\Markup\Diff\Renderer\Inline",
@@ -1411,13 +1426,11 @@ return array(
     "PhutilRemarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
-      "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
       "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
     ),
     "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
-      "AnhNhan\Converge\Modules\Tag\Markup\Hashtag",
       "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
       "AnhNhan\Converge\Modules\User\Markup\UserMention",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",

@@ -28,7 +28,7 @@ final class TagApplication extends BaseApplication
     public function getCustomMarkupRules()
     {
         return [
-            new Markup\Hashtag($this),
+            new Markup\TagMention($this),
         ];
     }
 
