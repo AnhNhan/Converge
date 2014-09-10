@@ -65,6 +65,9 @@ tags:
   - name: user-application
     color: project
     displayOrder: -20
+  - name: file-management-application
+    color: project
+    displayOrder: -20
   - name: static-resource-management
     color: project
     displayOrder: -20
@@ -109,6 +112,9 @@ tags:
   - name: security-related
   - name: improvement
   - name: infrastructure
+  - name: performance
+  - name: markup-related
+  - name: image-collection-feature
 
   - name: audio
     description: Building the spirit of the mod through its sound
