@@ -1,6 +1,7 @@
 <?php
 
 use AnhNhan\Converge\Views\Form\FormView;
+use AnhNhan\Converge\Views\Form\Controls\HiddenControl;
 use AnhNhan\Converge\Views\Form\Controls\SelectControl;
 use AnhNhan\Converge\Views\Form\Controls\SubmitControl;
 use AnhNhan\Converge\Views\Form\Controls\TextAreaControl;
@@ -38,5 +39,13 @@ function form_submitcontrol($cancel_uri, $submit_text = 'Submit', $cancel_text =
     return (new SubmitControl)
         ->addCancelButton($cancel_uri, $cancel_text)
         ->addSubmitButton($submit_text)
+    ;
+}
+
+function form_hidden($name, $value)
+{
+    return (new HiddenControl)
+        ->setName($name)
+        ->setValue($value)
     ;
 }
