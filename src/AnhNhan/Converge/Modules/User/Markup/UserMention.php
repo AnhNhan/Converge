@@ -3,7 +3,6 @@ namespace AnhNhan\Converge\Modules\User\Markup;
 
 use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Modules\User\UserApplication;
-use AnhNhan\Converge\Modules\User\Query\UserQuery;
 use AnhNhan\Converge\Modules\User\Storage\User;
 use AnhNhan\Converge\Modules\Markup\MarkupRule;
 
@@ -20,7 +19,7 @@ final class UserMention extends MarkupRule
 
     public function __construct(UserApplication $app)
     {
-        $this->query = new UserQuery($app);
+        $this->query = create_user_query($app);
     }
 
     public function apply($text)
@@ -34,13 +33,35 @@ final class UserMention extends MarkupRule
 
     public function applyMention($matches)
     {
-        $username = to_canonical($matches[0]);
-        $user     = head($this->query->retrieveUsersForCanonicalNames([$username]));
-        if (!$user)
+        $original = $matches[0];
+        $username = to_canonical($original);
+        $metadata = [
+            'original' => $original,
+            'username' => $username,
+        ];
+        $token = $this->storage->store($original);
+        $this->storage->addTokenToSet('user-mention', $token, $metadata);
+        return $token;
+    }
+
+    public function didMarkupText()
+    {
+        $token_set = $this->storage->getTokenSet('user-mention');
+        if (!$token_set)
         {
-            return tooltip('span', $matches[0], 'user not found')->addClass('bad-username');
+            return;
         }
 
-        return link_user($user)->addClass('user-mention');
+        $usernames = ipull($token_set, 'username');
+        $users     = $this->query->retrieveUsersForCanonicalNames($usernames);
+        $users     = mkey($users, 'canonical_name');
+        $users     = array_map(function ($user)
+            {
+                return link_user($user)->addClass('user-mention');
+            }, $users);
+        foreach ($token_set as $token => $metadata)
+        {
+            $this->storage->overwrite($token, idx($users, $metadata['username'], tooltip('span', $metadata['original'], 'user not found')->addClass('bad-username')));
+        }
     }
 }
