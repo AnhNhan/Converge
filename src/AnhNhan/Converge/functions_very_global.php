@@ -26,7 +26,7 @@ function ascii_non_w_replace($str, $replace_with = '', $combine_replaced = true)
         ;
     };
     $replaced = implode('', array_map($callback, $_str));
-    if ($replace_with && $combine_replaced)
+    if (strlen($replace_with) && $combine_replaced)
     {
         $replaced = preg_replace('/(' . preg_quote($replace_with) . ')+/', $replace_with, $replaced);
     }
