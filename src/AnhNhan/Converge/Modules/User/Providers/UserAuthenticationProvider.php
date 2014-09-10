@@ -27,6 +27,11 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
     private $query;
 
     /**
+     * @var EntityManager
+     */
+    private $entity_manager;
+
+    /**
      * @var \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface
      */
     private $encoderFactory;
@@ -41,12 +46,8 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 
     public function setEntityManager(EntityManager $em)
     {
-        return $this->setQuery(new UserQuery($em));
-    }
-
-    public function setQuery(UserQuery $query)
-    {
-        $this->query = $query;
+        $this->entity_manager = $em;
+        $this->query = create_user_query($em);
         return $this;
     }
 
@@ -69,6 +70,7 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
         if (!$user) {
             throw new UsernameNotFoundException("A user with the name '{$username}' could not be found!");
         }
+        $this->entity_manager->detach($user);
 
         return $user;
     }
