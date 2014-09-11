@@ -112,13 +112,26 @@ function ikey(array $array, $key)
     return ipull($array, null, $key);
 }
 
-function curry_fa(callable $fun, $first_arg)
+function curry_fa(callable $fun, $first_arg /* , ... */)
 {
-    return function () use ($fun, $first_arg)
+    $first_args = array_slice(func_get_args(), 1);
+    return function () use ($fun, $first_args)
     {
         return call_user_func_array(
             $fun,
-            array_merge([$first_arg], func_get_args())
+            array_merge($first_args, func_get_args())
+        );
+    };
+}
+
+function curry_la(callable $fun, $last_arg /* , ... */)
+{
+    $last_args = array_slice(func_get_args(), 1);
+    return function () use ($fun, $last_args)
+    {
+        return call_user_func_array(
+            $fun,
+            array_merge(func_get_args(), $last_args)
         );
     };
 }
