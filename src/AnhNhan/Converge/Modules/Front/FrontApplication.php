@@ -13,29 +13,29 @@ final class FrontApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Front Site";
+        return 'Front Site';
     }
 
     public function getInternalName()
     {
-        return "front";
+        return 'front';
     }
 
     public function getRoutes()
     {
         return array(
-            new Route("std-route", "/", $this),
-            new Route("dash-route", "/dash", $this),
+            new Route('std-route', '/', $this),
+            new Route('dash-route', '/dash', $this),
         );
     }
 
     public function routeToController(Request $request)
     {
-        switch ($request->attributes->get("route-name")) {
-            case "std-route":
+        switch ($request->attributes->get('route-name')) {
+            case 'std-route':
                 return new Controllers\StandardFrontController($this);
                 break;
-            case "dash-route":
+            case 'dash-route':
                 return new Controllers\Dashboard($this);
                 break;
         }

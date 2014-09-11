@@ -18,28 +18,28 @@ final class SymbolGenerationCommand extends AbstractSymbolsCommand
     protected function configure()
     {
         $this
-            ->setName("symbols:generate")
+            ->setName('symbols:generate')
             ->setDefinition($this->createDefinition())
-            ->setDescription("Generate symbol definition list");
+            ->setDescription('Generate symbol definition list');
     }
 
     private function createDefinition()
     {
         return new InputDefinition(array(
-            new InputOption("no-git", null, InputOption::VALUE_NONE, "Don't use Git to discover files"),
+            new InputOption('no-git', null, InputOption::VALUE_NONE, 'Don\'t use Git to discover files'),
         ));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $useGit = !$input->getOption("no-git");
+        $useGit = !$input->getOption('no-git');
 
         if ($useGit) {
-            $output->writeln("Using Git to discover files");
+            $output->writeln('Using Git to discover files');
             $files = $this->discoverFilesGit(Converge\get_root_super());
-            $files = preg_grep("/\\.php$/", $files);
+            $files = preg_grep('/\\.php$/', $files);
         } else {
-            $output->writeln("Not using Git to discover files");
+            $output->writeln('Not using Git to discover files');
             $files = $this->discoverFiles(Converge\get_root());
         }
 
@@ -52,8 +52,8 @@ final class SymbolGenerationCommand extends AbstractSymbolsCommand
 
         $filesToBeParsed = array();
         foreach ($files as $file) {
-            if (preg_match("/Test\\.php$/i", $file)) {
-                echo "S";
+            if (preg_match('/Test\\.php$/i', $file)) {
+                echo 'S';
                 $skipped[] = $file;
                 continue;
             }
@@ -62,37 +62,37 @@ final class SymbolGenerationCommand extends AbstractSymbolsCommand
         $symbolGenerator->addFiles($filesToBeParsed);
 
         $symbolGenerator->onFileTraverse(function ($fileName) use ($output) {
-            $output->write(".");
+            $output->write('.');
         });
         $errors = array();
         $symbolGenerator->onFileTraverseError(function ($fileName, \PHPParser_Error $exc) use ($output, &$errors) {
             $errors[] = array($fileName, $exc);
-            $output->write("F");
+            $output->write('F');
         });
 
         $symbolGenerator->start();
 
         $symbolTree = $symbolGenerator->getTree();
 
-        $output->writeln("");
+        $output->writeln('');
 
         if ($errors) {
-            $output->writeln("");
+            $output->writeln('');
 
-            $output->writeln("Errors:");
+            $output->writeln('Errors:');
             foreach ($errors as $err) {
                 list($fileName, $exc) = $err;
-                $output->writeln("  - " . str_pad($fileName, 40) . ":\t" . str_replace("\n", "\\n", $exc->getMessage()));
+                $output->writeln('  - ' . str_pad($fileName, 40) . ":\t" . str_replace("\n", "\\n", $exc->getMessage()));
             }
 
-            $output->writeln("");
+            $output->writeln('');
         }
 
-        $output->writeln("Writing to disk...");
+        $output->writeln('Writing to disk...');
 
         $this->printToDisk($symbolTree->toSymbolMap());
 
-        $output->writeln("Successfully wrote to disk!");
+        $output->writeln('Successfully wrote to disk!');
     }
 
     private function printToDisk($symbolTree)
@@ -122,7 +122,7 @@ EOT;
         $symbolMapString .= $arrayPrinter->printForFile($symbolTree);
 
         return file_put_contents(
-            Converge\path("__symbol_map__.php"),
+            Converge\path('__symbol_map__.php'),
             $symbolMapString
         );
     }
@@ -142,7 +142,7 @@ EOT;
         chdir($path);
         exec('git ls-files --full-name -c src/', $rawFiles, $retVal);
         if ($retVal !== 0) {
-            throw new \Exception("Git failed!");
+            throw new \Exception('Git failed!');
         }
         $files = FileFunc::sanitizeStringsFromPrefix(
             $rawFiles,

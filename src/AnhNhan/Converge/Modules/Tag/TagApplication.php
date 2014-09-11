@@ -12,17 +12,17 @@ final class TagApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Discussion Tags";
+        return 'Discussion Tags';
     }
 
     public function getInternalName()
     {
-        return "tag";
+        return 'tag';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function getCustomMarkupRules()
@@ -34,16 +34,16 @@ final class TagApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
 
         switch ($routeName) {
-            case "tag-listing":
+            case 'tag-listing':
                 return new Controllers\TagListingController($this);
                 break;
-            case "tag-creation":
+            case 'tag-creation':
                 return new Controllers\TagCreationController($this);
                 break;
-            case "tag-display":
+            case 'tag-display':
                 return new Controllers\TagDisplayController($this);
                 break;
         }
@@ -53,6 +53,6 @@ final class TagApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

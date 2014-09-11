@@ -9,13 +9,13 @@ use Doctrine\ORM\Query as DoctrineQuery;
  */
 final class DraftQuery extends Query
 {
-    const ENTITY_DRAFT = "AnhNhan\\Converge\\Modules\\Draft\\Storage\\DraftObject";
+    const ENTITY_DRAFT = 'AnhNhan\Converge\Modules\Draft\Storage\DraftObject';
 
     public function retrieveDraftsForUsers(array $ids, $limit = null, $offset = null)
     {
         return $this
             ->repository(self::ENTITY_DRAFT)
-            ->findBy(["user_uid" => $ids], [], $limit, $offset)
+            ->findBy(['user_uid' => $ids], [], $limit, $offset)
         ;
     }
 
@@ -23,7 +23,7 @@ final class DraftQuery extends Query
     {
         return head($this
             ->repository(self::ENTITY_DRAFT)
-            ->findBy(["user_uid" => $user_uid, "object_uid" => $object_uid])
+            ->findBy(['user_uid' => $user_uid, 'object_uid' => $object_uid])
         );
     }
 }

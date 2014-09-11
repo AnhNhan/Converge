@@ -13,14 +13,14 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  */
 class TaskTransaction extends TransactionEntity
 {
-    const TYPE_EDIT_LABEL     = "task.edit.label";
-    const TYPE_EDIT_DESC      = "task.edit.description";
-    const TYPE_EDIT_STATUS    = "task.edit.status";
-    const TYPE_EDIT_PRIORITY  = "task.edit.priority";
-    const TYPE_EDIT_CLOSED    = "task.edit.closed";
-    const TYPE_ADD_COMMENT    = "task.add.comment";
-    const TYPE_ADD_ASSIGN     = "task.add.assigned";
-    const TYPE_DEL_ASSIGN     = "task.del.assigned";
+    const TYPE_EDIT_LABEL     = 'task.edit.label';
+    const TYPE_EDIT_DESC      = 'task.edit.description';
+    const TYPE_EDIT_STATUS    = 'task.edit.status';
+    const TYPE_EDIT_PRIORITY  = 'task.edit.priority';
+    const TYPE_EDIT_CLOSED    = 'task.edit.closed';
+    const TYPE_ADD_COMMENT    = 'task.add.comment';
+    const TYPE_ADD_ASSIGN     = 'task.add.assigned';
+    const TYPE_DEL_ASSIGN     = 'task.del.assigned';
     const TYPE_ADD_TAG        = 'task.add.tag';
     const TYPE_DEL_TAG        = 'task.del.tag';
     const TYPE_ADD_RELATION   = 'task.add.relation';
@@ -41,6 +41,6 @@ class TaskTransaction extends TransactionEntity
 
     protected function getUIDSubType()
     {
-        return "TASK";
+        return 'TASK';
     }
 }

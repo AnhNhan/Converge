@@ -2,7 +2,6 @@
 namespace AnhNhan\Converge\Modules\Search\Controllers;
 
 use AnhNhan\Converge;
-use AnhNhan\Converge\Modules\Tag\TagQuery;
 use AnhNhan\Converge\Web\Application\JsonPayload;
 use AnhNhan\Converge\Web\Application\RawHttpPayload;
 
@@ -42,7 +41,7 @@ final class AutocompleteTags extends Autocomplete
         $data = $this->retrieveData();
         $payload = new RawHttpPayload;
         $payload->setPayloadContents(json_encode((array) $data));
-        $payload->setHttpHeader("Content-Type", "application/json");
+        $payload->setHttpHeader('Content-Type', 'application/json');
         return $payload;
     }
 
@@ -50,10 +49,10 @@ final class AutocompleteTags extends Autocomplete
     {
         $request = $this->request;
         $requestMethod = $request->getMethod();
-        $inputQuery = $request->query->get("q");
+        $inputQuery = $request->query->get('q');
 
-        $tagApp = $this->app->getService("app.list")->app("tag");
-        $query  = new TagQuery($tagApp->getEntityManager());
+        $tagApp = $this->externalApp('tag');
+        $query  = create_tag_query($tagApp->getEntityManager());
 
         $tagLabels = $query->searchTagLabelsStartingWith($inputQuery);
         return $tagLabels;

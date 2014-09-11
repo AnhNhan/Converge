@@ -21,7 +21,7 @@ abstract class AbstractTaskController extends BaseApplicationController
     {
         if ($roleId = $request->request->get('id'))
         {
-            $role = $query->retrieveTasksForUids(["TASK-" . $roleId]);
+            $role = $query->retrieveTasksForUids(['TASK-' . $roleId]);
             if (!$role)
             {
                 $role = $query->retrieveTasksForCanonicalLabels([$roleId]);

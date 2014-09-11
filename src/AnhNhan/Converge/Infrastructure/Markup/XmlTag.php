@@ -64,7 +64,7 @@ class XmlTag extends AbstractMarkup
         $name = $this->getTagName();
         $contents = $this->getContent();
 
-        $generated_options = "";
+        $generated_options = '';
         if ($this->options) {
             ob_start();
             foreach ($this->options as $attr => $val) {
@@ -79,7 +79,7 @@ class XmlTag extends AbstractMarkup
             $generated_options = ob_get_clean();
         }
 
-        $end = " /";
+        $end = ' /';
         if (count($contents)) {
             $end = ">".$contents."</{$name}";
         }

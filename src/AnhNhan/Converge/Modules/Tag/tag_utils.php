@@ -43,12 +43,8 @@ function render_tag(Tag $tag)
 function render_tags(array $tags, $linked = false)
 {
     assert_instances_of($tags, 'AnhNhan\Converge\Modules\Tag\Storage\Tag');
-    $rendered = [];
     $fun = $linked ? 'link_tag' : 'render_tag';
-    foreach (msort($tags, 'displayOrder') as $tag)
-    {
-        $rendered[] = $fun($tag);
-    }
+    $rendered = array_map($fun, msort($tags, 'displayOrder'));
     return $rendered;
 }
 
@@ -110,12 +106,12 @@ function validate_tags_from_form_input($_tags, $tag_query_or_app)
             foreach ($tags as $t) {
                 assert_stringlike($t);
                 if (empty($t)) {
-                    return "Somehow you could sneak up an empty tag?...";
+                    return 'Somehow you could sneak up an empty tag?...';
                 }
             }
         } catch (\InvalidArgumentException $e) {
             // <ignore>
-            return "Invalid tag structure";
+            return 'Invalid tag structure';
         }
     } else {
         // A, B, C
@@ -139,7 +135,7 @@ function validate_tags_from_form_input($_tags, $tag_query_or_app)
     // Validate tags
     // Far-future TODO: Put suggestions there?
     if (count($tagObjects) != count($tags)) {
-        $tabOjectLabels = mpull($tagObjects, "label");
+        $tabOjectLabels = mpull($tagObjects, 'label');
         $diffTags = array_diff($tags, $tabOjectLabels);
         return sprintf("The following tags are invalid: '%s'", implode("', '", $diffTags));
     }

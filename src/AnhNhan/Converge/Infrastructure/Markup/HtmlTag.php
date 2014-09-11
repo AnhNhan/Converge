@@ -24,10 +24,10 @@ class HtmlTag extends XmlTag
             $class = array($class);
         }
 
-        $string = " ".$this->getOption('class')." ";
+        $string = ' '.$this->getOption('class').' ';
 
         foreach ($class as $name) {
-            if (!strpos($string, $name." ")) {
+            if (!strpos($string, $name.' ')) {
                 $string = trim($string)." $name";
             }
         }
@@ -44,15 +44,15 @@ class HtmlTag extends XmlTag
             return $this;
         }
 
-        $name = $name . " ";
+        $name = $name . ' ';
         $string = $this->getOption('class');
         $current_classes = $string ?
             substr($string, 0, strlen($string) - 1) : null;
 
         $name = preg_quote($name);
-        $current_classes = preg_replace("/(?<=\\b)$name(?=\b)/i", "", $current_classes);
+        $current_classes = preg_replace("/(?<=\\b)$name(?=\b)/i", '', $current_classes);
 
-        $this->addOption('class', $current_classes. " ");
+        $this->addOption('class', $current_classes. '');
         return $this;
     }
 
@@ -97,7 +97,7 @@ class HtmlTag extends XmlTag
             'source'  => true,
         );
         if (!isset($selfClosingTags[$this->getTagName()]) && $this->getContent()->count() === 0) {
-            $this->setContent("");
+            $this->setContent('');
         } else if (isset($selfClosingTags[$this->getTagName()])) {
             // Force-close them. No mercy.
             $this->setContent(null);

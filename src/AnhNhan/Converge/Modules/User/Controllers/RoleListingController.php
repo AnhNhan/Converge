@@ -24,16 +24,16 @@ final class RoleListingController extends AbstractUserController
         $container = new MarkupContainer;
 
         // Currently not paged
-        $roles = id(new RoleQuery($this->app))
+        $roles = (new RoleQuery($this->app))
             ->retrieveRoles()
         ;
 
-        $user_authenticated and $container->push(Converge\ht("a", "Create new role", array(
-            "href"  => "/role/create",
-            "class" => "btn btn-primary pull-right",
+        $user_authenticated and $container->push(Converge\ht('a', 'Create new role', array(
+            'href'  => '/role/create',
+            'class' => 'btn btn-primary pull-right',
         )));
 
-        $container->push(Converge\ht("h1", "Roles / Permissions"));
+        $container->push(h1('Roles / Permissions'));
 
         $grid = new Grid;
         $row = $grid->row();
@@ -43,14 +43,14 @@ final class RoleListingController extends AbstractUserController
             $headerRow  = $headerGrid->row();
             $headerRow
                 ->column(10)
-                ->push(Converge\ht("h3", $role->label)
-                    ->append(Converge\ht("small", " " . $role->name))
+                ->push(h3($role->label)
+                    ->append(Converge\ht('small', ' ' . $role->name))
                 )
             ;
             $user_authenticated and $headerRow->column(2)->push(
-                Converge\ht("a", Converge\icon_ion("edit", "edit"))
-                    ->addClass("btn btn-default btn-small pull-right")
-                    ->addOption("href", "role/{$role->cleanId}/edit")
+                Converge\ht('a', Converge\icon_ion('edit', 'edit'))
+                    ->addClass('btn btn-default btn-small pull-right')
+                    ->addOption('href', "role/{$role->cleanId}/edit")
             );
 
             $row->column(4)->push(
@@ -63,11 +63,11 @@ final class RoleListingController extends AbstractUserController
         $container->push($grid);
 
         $payload = new HtmlPayload;
-        $payload->setTitle("Roles");
-        $payload->setPayloadContents(Converge\ht("div", $container)->addClass("role-listing"));
+        $payload->setTitle('Roles');
+        $payload->setPayloadContents(div('role-listing', $container));
 
-        $this->app->getService("resource_manager")
-            ->requireCss("application-role-listing")
+        $this->app->getService('resource_manager')
+            ->requireCss('application-role-listing')
         ;
 
         return $payload;

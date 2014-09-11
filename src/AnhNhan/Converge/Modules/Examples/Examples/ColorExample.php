@@ -12,83 +12,83 @@ final class ColorExample extends AbstractExample
 {
     public function getName()
     {
-        return "colors";
+        return 'colors';
     }
 
     private $colors = array(
-        "font" => true,
-        "link" => true,
-        "link-active" => true,
-        "link-visited" => true,
-        "header" => true,
-        "white" => false,
-        "black" => true,
-        "grey" => true,
-        "light-grey" => true,
-        "very-light-grey" => false,
-        "dark-grey" => true,
-        "very-dark-grey" => true,
-        "bright-red" => true,
-        "dark-blue" => true,
-        "cool-blue" => true,
-        "olive-green" => true,
-        "bright-olive-green" => true,
-        "unsc" => true,
-        "covenant" => true,
-        "flood" => true,
-        "yellow" => true,
-        "pink" => true,
-        "tinted-gred" => true,
-        "bone-meal" => true,
-        "purple" => true,
-        "diff-insert-bg" => true,
-        "diff-insert-fg" => true,
-        "diff-delete-bg" => true,
-        "diff-delete-fg" => true,
+        'font' => true,
+        'link' => true,
+        'link-active' => true,
+        'link-visited' => true,
+        'header' => true,
+        'white' => false,
+        'black' => true,
+        'grey' => true,
+        'light-grey' => true,
+        'very-light-grey' => false,
+        'dark-grey' => true,
+        'very-dark-grey' => true,
+        'bright-red' => true,
+        'dark-blue' => true,
+        'cool-blue' => true,
+        'olive-green' => true,
+        'bright-olive-green' => true,
+        'unsc' => true,
+        'covenant' => true,
+        'flood' => true,
+        'yellow' => true,
+        'pink' => true,
+        'tinted-gred' => true,
+        'bone-meal' => true,
+        'purple' => true,
+        'diff-insert-bg' => true,
+        'diff-insert-fg' => true,
+        'diff-delete-bg' => true,
+        'diff-delete-fg' => true,
     );
 
     private $specialColors1 = array(
-        "info" => true,
-        "success" => true,
-        "danger" => true,
-        "warning" => true,
+        'info' => true,
+        'success' => true,
+        'danger' => true,
+        'warning' => true,
     );
 
     private $specialColors2 = array(
-        "info-real" => true,
-        "success-real" => true,
-        "danger-real" => true,
-        "warning-real" => true,
+        'info-real' => true,
+        'success-real' => true,
+        'danger-real' => true,
+        'warning-real' => true,
     );
 
     private $flatColors = array(
-        "turquoise" => true,
-        "emerland" => true,
-        "peterriver" => true,
-        "amethyst" => true,
-        "wet-asphalt" => true,
-        "greensea" => true,
-        "nephritis" => true,
-        "belize-hole" => true,
-        "wisteria" => true,
-        "midnight-blue" => true,
-        "sunflower" => true,
-        "carrot" => true,
-        "alizarin" => true,
-        "clouds" => true,
-        "concrete" => true,
-        "orange" => true,
-        "pumpkin" => true,
-        "pomegranate" => true,
-        "silver" => true,
-        "asbestos" => true,
+        'turquoise' => true,
+        'emerland' => true,
+        'peterriver' => true,
+        'amethyst' => true,
+        'wet-asphalt' => true,
+        'greensea' => true,
+        'nephritis' => true,
+        'belize-hole' => true,
+        'wisteria' => true,
+        'midnight-blue' => true,
+        'sunflower' => true,
+        'carrot' => true,
+        'alizarin' => true,
+        'clouds' => true,
+        'concrete' => true,
+        'orange' => true,
+        'pumpkin' => true,
+        'pomegranate' => true,
+        'silver' => true,
+        'asbestos' => true,
     );
 
     private $headers = array(
-        "Colors",
-        "Special purpose",
-        "", // Continuation
-        "Flat UI colors",
+        'Colors',
+        'Special purpose',
+        '', // Continuation
+        'Flat UI colors',
     );
 
     public function getExample()
@@ -98,7 +98,7 @@ final class ColorExample extends AbstractExample
         foreach (array($this->colors, $this->specialColors1, $this->specialColors2, $this->flatColors) as $key => $colors) {
             $container->push(h2(idx($this->headers, $key)));
             $colorContainer = new MarkupContainer;
-            $container->push(div("clearfix", $colorContainer));
+            $container->push(div('clearfix', $colorContainer));
             $this->generateColors($colors, $colorContainer);
         }
 
@@ -117,8 +117,8 @@ final class ColorExample extends AbstractExample
 </div>
 EOT
                 ,
-                "color-bg-" . $color, // class
-                $brightFont ? "#FFFFFF" : "#111111",// font color
+                'color-bg-' . $color, // class
+                $brightFont ? '#FFFFFF' : '#111111',// font color
                 $color // text
             ));
         }

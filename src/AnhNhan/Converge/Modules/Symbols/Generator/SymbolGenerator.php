@@ -28,7 +28,7 @@ final class SymbolGenerator
      */
     private $symbol_emitter;
 
-    public function __construct($basePath = "", $output = "__symbol_map__.php")
+    public function __construct($basePath = '', $output = '__symbol_map__.php')
     {
         $this->basePath = $basePath;
 

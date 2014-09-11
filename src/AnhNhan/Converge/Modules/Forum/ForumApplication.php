@@ -12,17 +12,17 @@ final class ForumApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Forum";
+        return 'Forum';
     }
 
     public function getInternalName()
     {
-        return "forum";
+        return 'forum';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function getActivityRenderers()
@@ -35,22 +35,22 @@ final class ForumApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
 
         switch ($routeName) {
-            case "main-listing":
+            case 'main-listing':
                 return new Controllers\DiscussionListingController($this);
                 break;
-            case "disq-creation":
+            case 'disq-creation':
                 return new Controllers\DiscussionEditController($this);
                 break;
-            case "disq-display":
+            case 'disq-display':
                 return new Controllers\DiscussionDisplayController($this);
                 break;
-            case "disq-posting":
+            case 'disq-posting':
                 return new Controllers\PostEditController($this);
                 break;
-            case "forum-comment":
+            case 'forum-comment':
                 return new Controllers\Comment($this);
                 break;
         }
@@ -60,6 +60,6 @@ final class ForumApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

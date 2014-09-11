@@ -1,9 +1,6 @@
 <?php
 namespace AnhNhan\Converge\Modules\Tag\Controllers;
 
-use AnhNhan\Converge;
-use AnhNhan\Converge\Modules\Tag\TagQuery;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 /**
@@ -14,19 +11,19 @@ final class TagDisplayController extends AbstractTagController
     public function handle()
     {
         $request = $this->request();
-        $currentId = $request->request->get("id");
-        $payload = new HtmlPayload;
+        $currentId = $request->request->get('id');
+        $payload = $this->payload_html;
         $container = new MarkupContainer;
-        $tag = id(new TagQuery($this->app()->getEntityManager()))
-            ->retrieveTag("TTAG-" . $currentId)
+        $tag = create_tag_query($this->app()->getEntityManager())
+            ->retrieveTag('TTAG-' . $currentId)
         ;
 
         if ($tag) {
-            $container->push(Converge\ht("h1", $tag->label()));
+            $container->push(h1($tag->label()));
 
-            $container->push(Converge\ht("h2", $tag->description()));
+            $container->push(h2($tag->description()));
         } else {
-            $container->push(Converge\ht("h1", "Could not find a tag for '" . $currentId . "'"));
+            $container->push(h1('Could not find a tag for \'' . $currentId . '\''));
         }
 
         $payload->setPayloadContents($container);

@@ -81,7 +81,7 @@ abstract class AbstractMarkup implements YamwMarkupInterface, ViewInterface
             !is_scalar($content) &&
             !($content instanceof YamwMarkupInterface)
         ) {
-            throw new \InvalidArgumentException("\$content has to be a YamwMarkupInterface");
+            throw new \InvalidArgumentException('$content has to be a YamwMarkupInterface');
         }
 
         if (is_scalar($content)) {

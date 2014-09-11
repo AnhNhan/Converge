@@ -12,7 +12,7 @@ class TagView extends AbstractView
     private $color;
     private $text;
 
-    public function __construct($text, $color = "")
+    public function __construct($text, $color = '')
     {
         $this->text = $text;
         $this->color = $color;
@@ -20,10 +20,9 @@ class TagView extends AbstractView
 
     public function render()
     {
-        $tag = Converge\ht("span")
-            ->addClass("tag-object");
+        $tag = span('tag-object');
         if ($this->color) {
-            $tag->addClass("tag-color-" . $this->color);
+            $tag->addClass('tag-color-' . $this->color);
         }
         if ($this->text) {
             $tag->setContent($this->text);

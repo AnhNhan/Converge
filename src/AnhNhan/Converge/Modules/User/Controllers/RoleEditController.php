@@ -13,9 +13,6 @@ use AnhNhan\Converge\Views\Form\FormView;
 use AnhNhan\Converge\Views\Form\Controls\SubmitControl;
 use AnhNhan\Converge\Views\Form\Controls\TextAreaControl;
 use AnhNhan\Converge\Views\Form\Controls\TextControl;
-use AnhNhan\Converge\Views\Grid\Grid;
-use AnhNhan\Converge\Views\Panel\Panel;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -40,17 +37,17 @@ final class RoleEditController extends AbstractUserController
         $requestMethod = $request->getMethod();
 
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html;
         $payload->setPayloadContents($container);
         $query = new RoleQuery($this->app);
 
         $errors = array();
 
         if ($roleId = $request->request->get('id')) {
-            $role = $query->retrieveRole("ROLE-" . $roleId);
+            $role = $query->retrieveRole('ROLE-' . $roleId);
             if (!$role)
             {
-                return id(new ResponseHtml404)->setText('Could not find that role.');
+                return (new ResponseHtml404)->setText('Could not find that role.');
             }
         } else {
             $role = new Role;
@@ -62,14 +59,14 @@ final class RoleEditController extends AbstractUserController
         $role_label       = $role->label;
         $role_description = $role->description;
 
-        if ($requestMethod == "POST") {
-            $role_name        = trim($request->request->get("name"));
-            $role_label       = trim($request->request->get("label"));
-            $role_description = trim($request->request->get("description"));
+        if ($requestMethod == 'POST') {
+            $role_name        = trim($request->request->get('name'));
+            $role_label       = trim($request->request->get('label'));
+            $role_description = trim($request->request->get('description'));
             $role_description = Converge\normalize_newlines($role_description);
 
             if (empty($role_name) || empty($role_label)) {
-                $errors[] = "Text is empty!";
+                $errors[] = 'Text is empty!';
             }
 
             if (!$errors) {
@@ -107,7 +104,7 @@ final class RoleEditController extends AbstractUserController
                     goto form_rendering;
                 }
 
-                $targetURI = "/role/" . $role->cleanId;
+                $targetURI = '/role/' . $role->cleanId;
                 return new RedirectResponse($targetURI);
             }
         }
@@ -115,47 +112,31 @@ final class RoleEditController extends AbstractUserController
         form_rendering:
 
         if ($errors) {
-            $panel = id(new Panel)
-                ->setHeader(Converge\ht("h2", "Sorry, there had been an error"))
-                ->append(Converge\ht("p", "We can't continue until these issue(s) have been resolved:"))
+            $panel = panel(h2('Sorry, there had been an error'))
+                ->append(Converge\ht('p', 'We can\'t continue until these issue(s) have been resolved:'))
             ;
-            $list = Converge\ht("ul");
+            $list = Converge\ht('ul');
             foreach ($errors as $e) {
-                $list->append(Converge\ht("li", $e));
+                $list->append(Converge\ht('li', $e));
             }
             $panel->append($list);
             $container->push($panel);
         }
 
-        $form = id(new FormView)
-            ->setTitle($role_uid ? "Edit role '{$role_label}'" : "Create a new role")
-            ->setAction($request->getPathInfo())
-            ->setMethod("POST")
-            ->append(id(new TextControl)
-                ->setLabel("Name")
-                ->setName("name")
-                ->setValue($role_name)
-                ->addOption("disabled", $role_uid ? "disabled" : null))
-            ->append(id(new TextControl)
-                ->setLabel("Label")
-                ->setName("label")
-                ->setValue($role_label))
-            ->append(id(new TextAreaControl)
-                ->setLabel("Description")
-                ->setName("description")
-                ->setValue($role_description)
-                ->addClass("forum-markup-processing-form")
+        $form = form($role_uid ? "Edit role '{$role_label}'" : 'Create a new role', $request->getPathInfo(), 'POST')
+            ->append(form_textcontrol('Name', 'name', $role_name)
+                ->addOption('disabled', $role_uid ? 'disabled' : null))
+            ->append(form_textcontrol('Label', 'label', $role_label))
+            ->append(form_textareacontrol('Description', 'description', $role_description)
+                ->addClass('forum-markup-processing-form')
             )
-            ->append(id(new SubmitControl)
-                ->addCancelButton("/roles/" . $role->cleanId)
-                ->addSubmitButton("Hasta la vista!")
-            )
-            ->append(Converge\ht("div", "Foo")->addClass("markup-preview-output"))
+            ->append(form_submitcontrol('/roles/' . $role->cleanId, 'Hasta la vista!'))
+            ->append(div('markup-preview-output', 'Foo'))
         ;
         $container->push($form);
 
-        $this->app->getService("resource_manager")
-            ->requireJs("application-forum-markup-preview");
+        $this->app->getService('resource_manager')
+            ->requireJs('application-forum-markup-preview');
 
         return $payload;
     }

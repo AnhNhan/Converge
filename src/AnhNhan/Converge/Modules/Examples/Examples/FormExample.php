@@ -15,12 +15,12 @@ final class FormExample extends AbstractExample
 {
     public function getName()
     {
-        return "form";
+        return 'form';
     }
 
     public function getExample()
     {
-        $container = Converge\ht("div")->addClass("row-flex");
+        $container = div('row-flex');
 
         $form1 = $this->getForm1();
         $container->append($form1);
@@ -36,65 +36,43 @@ final class FormExample extends AbstractExample
 
     public function getForm1()
     {
-        $form = new FormView();
-        $form->setTitle("Dual column (default)");
+        $form = form('Dual column (default)');
         $this->buildForm($form);
-        return Converge\ht("div", $form->render())->addClass("width12");
+        return div('width12', $form->render());
     }
 
     public function getForm2()
     {
-        $form = new FormView();
+        $form = form('Single column');
         $form->setDualColumnMode(false);
-        $form->setTitle("Single column");
         $this->buildForm($form);
-        return Converge\ht("div", $form->render())->addClass("width12");
+        return div('width12', $form->render())->addClass('width12');
     }
 
     public function getForm3()
     {
         // Load example-specific JS
-        $this->getResMgr()->requireJS("application-example-form-tag-selector");
+        $this->getResMgr()->requireJS('application-example-form-tag-selector');
 
-        $form = new FormView;
+        $form = form('TagSelector');
         $form->setDualColumnMode(false);
-        $form->setTitle("TagSelector");
 
-        $form->append(id(new \AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector)
-            ->setId("form-tag-selector")
-            ->setLabel("Tag selection"));
+        $form->append((new \AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector)
+            ->setId('form-tag-selector')
+            ->setLabel('Tag selection'));
 
-        $form->append(id(new SubmitControl)
-            ->addCancelButton('/')
-            ->addSubmitButton('Hasta la vista!'));
+        $form->append(form_submitcontrol('/', 'Hasta la vista!'));
 
-        return Converge\ht("div", $form->render())->addClass("width12");
+        return div('width12', $form->render());
     }
 
     private function buildForm(FormView $form)
     {
-        $form->enableFileUpload()
-            ->setAction("user/login");
-        $form->append(id(new TextControl())
-            ->setLabel('Reason for your coming')
-            ->setValue('Peace'));
-
-        $textControl = new TextControl();
-        $textControl->setName('username')
-            ->setHelp('Put your name here')
-            ->setValue('Your name')
-            ->setLabel('This is the label for your name');
-        $form->append($textControl);
-
-        $form->append(id(new TextControl())
-            ->setError('That ain\' your mother!')
-            ->setLabel('Name of your mom')
-            ->setValue('Dorothy'));
-        $form->append(id(new TextAreaControl())
-            ->setValue("This is some text")
-            ->setLabel("Description"));
-        $form->append(id(new SubmitControl())
-            ->addCancelButton('/')
-            ->addSubmitButton('Hasta la vista!'));
+        $form->append(form_textcontrol('Reason for your coming', null, 'Peace'));
+        $form->append(form_textcontrol('Your name', 'username', 'Your name')
+            ->setHelp('Put your name here'));
+        $form->append(form_textcontrol('Name of your mom', null, 'Dorothy')->setError('That ain\' your mother!'));
+        $form->append(form_textareacontrol('Description', 'This is some text'));
+        $form->append(form_submitcontrol('/', 'Hasta la vista!'));
     }
 }

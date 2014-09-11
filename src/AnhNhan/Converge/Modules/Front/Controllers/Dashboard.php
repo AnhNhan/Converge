@@ -6,7 +6,6 @@ use AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject;
 use AnhNhan\Converge\Modules\Forum\Views\Objects\PaneledForumListing;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
-use AnhNhan\Converge\Views\Grid\Grid;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use AnhNhan\Converge\Web\Application\BaseApplicationController;
 
@@ -38,7 +37,7 @@ final class Dashboard extends BaseApplicationController
             ['news', 'homefront'],
         ];
 
-        $grid = new Grid;
+        $grid = grid();
         $grid->setId('dashboard-grid');
         $row = $grid->row();
         $container->push($grid);

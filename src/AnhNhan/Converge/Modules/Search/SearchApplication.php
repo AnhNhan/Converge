@@ -12,26 +12,26 @@ final class SearchApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Search";
+        return 'Search';
     }
 
     public function getInternalName()
     {
-        return "search";
+        return 'search';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function routeToController(Request $request)
     {
-        switch ($request->attributes->get("route-name")) {
-            case "autocomplete-tags":
+        switch ($request->attributes->get('route-name')) {
+            case 'autocomplete-tags':
                 return new Controllers\AutocompleteTags($this);
                 break;
-            case "search-disq":
+            case 'search-disq':
                 return new Controllers\SearchDiscussion($this);
                 break;
         }

@@ -2,9 +2,7 @@
 namespace AnhNhan\Converge\Modules\Tag\Controllers;
 
 use AnhNhan\Converge;
-use AnhNhan\Converge\Modules\Tag\TagQuery;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
 use AnhNhan\Converge\Web\Application\JsonPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
@@ -37,24 +35,24 @@ final class TagListingController extends AbstractTagController
     {
         $container = new MarkupContainer;
 
-        $tags = id(new TagQuery($this->app()))
+        $tags = create_tag_query($this->app())
             ->retrieveTags()
         ;
 
-        $container->push(Converge\ht("h1", "Tags"));
+        $container->push(h1('Tags'));
 
         foreach ($tags as $tag) {
             $container->push(link_tag($tag, TagLinkExtra_None));
         }
 
         // Add link to create new tag
-        $container->unshift(Converge\ht("a", "Create new tag!", array(
-            "href"  => "/tag/create",
-            "class" => "btn btn-primary",
-            "style" => "float: right;",
+        $container->unshift(Converge\ht('a', 'Create new tag!', array(
+            'href'  => '/tag/create',
+            'class' => 'btn btn-primary',
+            'style' => 'float: right;',
         )));
 
-        $payload = new HtmlPayload($container);
+        $payload = $this->payload_html->setPayloadContents($container);
         return $payload;
     }
 
@@ -62,10 +60,10 @@ final class TagListingController extends AbstractTagController
     {
         $result = array();
 
-        $stopWatch = $this->app()->getService("stopwatch");
-        $timer = $stopWatch->start("tag-listing-json");
+        $stopWatch = $this->app()->getService('stopwatch');
+        $timer = $stopWatch->start('tag-listing-json');
 
-        $tags = id(new TagQuery($this->app()))
+        $tags = create_tag_query($this->app())
             ->retrieveTags()
         ;
 
@@ -77,8 +75,8 @@ final class TagListingController extends AbstractTagController
 
         $payload = new JsonPayload();
         $payload->setPayloadContents(array(
-            "tags" => $result,
-            "time" => $time,
+            'tags' => $result,
+            'time' => $time,
         ));
         return $payload;
     }

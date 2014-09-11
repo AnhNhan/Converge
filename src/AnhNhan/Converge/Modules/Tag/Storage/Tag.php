@@ -147,17 +147,17 @@ class Tag extends EntityDefinition implements TransactionAwareEntityInterface
 
     public function getUIDType()
     {
-        return "TTAG";
+        return 'TTAG';
     }
 
     public function toDictionary()
     {
         return array(
-            "uid"          => $this->uid(),
-            "label"        => $this->label(),
-            "color"        => $this->color(),
-            "displayOrder" => $this->displayOrder(),
-            "description"  => $this->description(),
+            'uid'          => $this->uid(),
+            'label'        => $this->label(),
+            'color'        => $this->color(),
+            'displayOrder' => $this->displayOrder(),
+            'description'  => $this->description(),
         );
     }
 

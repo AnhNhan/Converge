@@ -14,7 +14,7 @@ final class StandardExamplesController extends BaseApplicationController
     public function handle()
     {
         $request = $this->request();
-        $exampleName = $request->request->get("name");
+        $exampleName = $request->request->get('name');
 
         $classes = SymbolLoader::getInstance()
             ->getConcreteClassesThatDeriveFromThisOne('AnhNhan\Converge\Modules\Examples\Examples\AbstractExample');
@@ -22,19 +22,19 @@ final class StandardExamplesController extends BaseApplicationController
         foreach ($classes as $class) {
             $instances[] = new $class;
         }
-        $examples = mpull($instances, null, "getName");
+        $examples = mpull($instances, null, 'getName');
 
         $example = idx($examples, $exampleName);
         if ($example) {
-            $example->setResMgr($this->app->getService("resource_manager"));
+            $example->setResMgr($this->app->getService('resource_manager'));
             $example = $example->getExample();
         } else {
-            $example = Converge\ht("h1", "Example " . $exampleName . " not found!");
+            $example = Converge\ht('h1', 'Example ' . $exampleName . ' not found!');
         }
 
         $payload = new HtmlPayload($example);
 
-        $title = ucwords(preg_replace("/[-]/", " ", $exampleName)) . " Example";
+        $title = ucwords(preg_replace('/[-]/', ' ', $exampleName)) . ' Example';
         $payload->setTitle($title);
 
         return $payload;

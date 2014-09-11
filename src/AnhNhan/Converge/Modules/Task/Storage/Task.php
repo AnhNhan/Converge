@@ -241,7 +241,7 @@ class Task extends EntityDefinition implements TransactionAwareEntityInterface
 
     public function getUIDType()
     {
-        return "TASK";
+        return 'TASK';
     }
 
     /**

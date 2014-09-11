@@ -40,11 +40,11 @@ final class TagCreationController extends AbstractTagController
         $e_label = null;
         $e_text  = null;
 
-        if ($requestMethod == "POST") {
-            $label = trim($request->request->get("label"));
-            $color = trim($request->request->get("color"));
-            $order = trim($request->request->get("disporder"));
-            $descr = trim($request->request->get("description"));
+        if ($requestMethod == 'POST') {
+            $label = trim($request->request->get('label'));
+            $color = trim($request->request->get('color'));
+            $order = trim($request->request->get('disporder'));
+            $descr = trim($request->request->get('description'));
             $descr = Converge\normalize_newlines($descr);
 
             if (!$color) {
@@ -80,41 +80,38 @@ final class TagCreationController extends AbstractTagController
                 ;
                 $editor->apply();
 
-                $targetURI = "/tag/" . $tag->cleanId();
+                $targetURI = '/tag/' . $tag->cleanId();
                 return new RedirectResponse($targetURI);
             }
         }
 
         $form = new FormView;
-        $form->setId("tag-creation");
+        $form->setId('tag-creation');
         $form
-            ->setTitle("Create new tag")
-            ->setAction("/tag/create")
-            ->setMethod("POST");
+            ->setTitle('Create new tag')
+            ->setAction('/tag/create')
+            ->setMethod('POST');
 
         $form->append(id(new TextControl())
-            ->setLabel("Label")
-            ->setName("label")
-            ->setValue(""));
+            ->setLabel('Label')
+            ->setName('label'));
 
         $form->append(id(new TextControl())
-            ->setLabel("Color")
-            ->setName("color")
-            ->setValue(""));
+            ->setLabel('Color')
+            ->setName('color'));
 
         $form->append(id(new TextControl())
-            ->setLabel("Display order")
-            ->setName("disporder")
-            ->setValue("0"));
+            ->setLabel('Display order')
+            ->setName('disporder')
+            ->setValue('0'));
 
         $form->append(id(new TextAreaControl())
-            ->setLabel("Description")
-            ->setName("description")
-            ->setValue(""));
+            ->setLabel('Description')
+            ->setName('description'));
 
         $form->append(id(new SubmitControl())
-            ->addCancelButton("/tag/")
-            ->addSubmitButton("Press the button!"));
+            ->addCancelButton('/tag/')
+            ->addSubmitButton('Press the button!'));
 
         $container->push($form);
 

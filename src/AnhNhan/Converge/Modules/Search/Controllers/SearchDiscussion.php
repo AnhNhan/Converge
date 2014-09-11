@@ -57,7 +57,7 @@ final class SearchDiscussion extends Search
         assert(is_array($tagIdInc));
         assert(is_array($tagIdExc));
 
-        $forumApp = $this->app->getService('app.list')->app('forum');
+        $forumApp = $this->externalApp('forum');
         $query  = new DiscussionQuery($forumApp->getEntityManager());
 
         $disqs = $query->retrieveDiscussionsSearchTags($tagIdInc, $tagIdExc, $limit);

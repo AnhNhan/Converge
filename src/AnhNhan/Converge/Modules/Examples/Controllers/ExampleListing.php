@@ -16,25 +16,25 @@ final class ExampleListing extends BaseApplicationController
     {
         $instances = SymbolLoader::getInstance()
             ->getObjectsThatDeriveFrom('AnhNhan\Converge\Modules\Examples\Examples\AbstractExample');
-        $examples = mpull($instances, "getName");
+        $examples = mpull($instances, 'getName');
         foreach ($examples as $example) {
-            $title = preg_replace("/[-]/", ' ', $example);
+            $title = preg_replace('/[-]/', ' ', $example);
             $title = ucwords($title);
             $list[] = array(
-                "label" => $title,
-                "href"  => "example/$example/"
+                'label' => $title,
+                'href'  => "example/$example/"
             );
         }
 
         $container = new MarkupContainer;
 
         foreach ($list as $example) {
-            $container->push(div("", a($example["label"], $example["href"])->addClass("btn btn-default")));
+            $container->push(div('', a($example['label'], $example['href'])->addClass('btn btn-default')));
         }
 
         $payload = new HtmlPayload;
         $payload->setPayloadContents($container);
-        $payload->setTitle("Examples");
+        $payload->setTitle('Examples');
         return $payload;
     }
 }

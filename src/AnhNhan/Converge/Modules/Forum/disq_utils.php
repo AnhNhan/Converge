@@ -16,7 +16,7 @@ function render_disq_listing(array $disqs, array $postCounts, $title = null)
     $listing = new ForumListing;
     $listing->setTitle($title);
     foreach ($disqs as $discussion) {
-        disq_listing_add_object($listing, $discussion, idx($postCounts, $discussion->uid)["postcount"]);
+        disq_listing_add_object($listing, $discussion, $postCounts[$discussion->uid]["postcount"]);
     }
 
     return $listing;
@@ -33,7 +33,7 @@ function render_disq_paneled_listing(array $disqs, array $postCounts, array $tag
     }
 
     foreach ($disqs as $discussion) {
-        disq_listing_add_object($panelForumListing, $discussion, idx($postCounts, $discussion->uid)["postcount"]);
+        disq_listing_add_object($panelForumListing, $discussion, $postCounts[$discussion->uid]['postcount']);
     }
 
     return $panelForumListing;
@@ -44,13 +44,13 @@ function disq_listing_add_object(ForumListing $listing, Discussion $discussion, 
     $object = new ForumObject;
     $object
         ->setHeadline($discussion->label)
-        ->setHeadHref("/disq/" . $discussion->cleanId)
+        ->setHeadHref('/disq/' . $discussion->cleanId)
         ->postCount($postCount);
 
-    $tags = mpull($discussion->tags->toArray(), "tag");
-    $tags = msort($tags, "label");
+    $tags = mpull($discussion->tags->toArray(), 'tag');
+    $tags = msort($tags, 'label');
     $tags = array_reverse($tags);
-    $tags = msort($tags, "displayOrder");
+    $tags = msort($tags, 'displayOrder');
     foreach ($tags as $tag) {
         if (!empty($tag)) {
             $object->addTagObject($tag);
@@ -58,7 +58,7 @@ function disq_listing_add_object(ForumListing $listing, Discussion $discussion, 
     }
 
     $object->addDetail($discussion->lastActivity->format("D, d M 'y"), 'calendar');
-    $object->addDetail(cv\ht('strong', link_user($discussion->author)), 'person-stalker');
+    $object->addDetail(strong(link_user($discussion->author)), 'person-stalker');
 
     $listing->addObject($object);
 }

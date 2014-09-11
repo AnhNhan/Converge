@@ -11,12 +11,12 @@ final class BootstrapExample extends AbstractExample
 {
     public function getName()
     {
-        return "bootstrap-styles";
+        return 'bootstrap-styles';
     }
 
     public function getExample()
     {
-        $container = Converge\ht("div");
+        $container = div();
         $container->append(Converge\safeHtml(<<<EOT
 <div class="bs-docs-container">
 

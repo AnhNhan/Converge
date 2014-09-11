@@ -14,7 +14,7 @@ final class GenericStyles extends AbstractExample
 {
     public function getName()
     {
-        return "generic-styles";
+        return 'generic-styles';
     }
 
     private $tag_colors = [
@@ -47,14 +47,14 @@ final class GenericStyles extends AbstractExample
     {
         $container = new MarkupContainer;
 
-        $container->push($tags = div()->append(h2('Tags')));
+        $container->push($tags = div('', h2('Tags')));
         $this->buildTags($tags, $this->tag_colors);
 
-        $container->push($buttons = div()->append(h2('Buttons')));
+        $container->push($buttons = div('', h2('Buttons')));
         $this->buildButtons($buttons, $this->button_sizes, $this->button_colors);
         $this->buildButtons($buttons, ['disabled'], $this->button_colors, true);
 
-        $container->push($listing = div()->append(h2('Object Listing')));
+        $container->push($listing = div('', h2('Object Listing')));
         $this->buildObjectListing($listing);
 
         return $container;
@@ -65,19 +65,19 @@ final class GenericStyles extends AbstractExample
         $container->append($listing1 = new Objects\Listing);
         $listing1
             ->setTitle('Title here.')
-            ->addObject(id(new Objects\Object)
+            ->addObject((new Objects\Object)
                 ->setHeadline('Big news')
                 ->addAttribute('some attribute')
                 ->addAttribute('other things')
             )
-            ->addObject(id(new Objects\Object)
+            ->addObject((new Objects\Object)
                 ->setHeadline('Big news')
                 ->addAttribute('some attribute')
                 ->addAttribute('other things')
                 ->addDetail('1st April 2015')
                 ->addDetail('by Nyan Cat')
             )
-            ->addObject(id(new Objects\Object)
+            ->addObject((new Objects\Object)
                 ->setHeadline('Important news')
                 ->setByLine('very important subtitle')
                 ->addAttribute('foo')
@@ -98,7 +98,7 @@ final class GenericStyles extends AbstractExample
     private function buildButtons($container, array $button_sizes, array $button_colors, $disabled = null)
     {
         array_walk($button_sizes, function ($s) use ($container, $button_colors, $disabled) {
-            $container->append($buttons = div()->append(h3(ucwords($s))));
+            $container->append($buttons = div('', h3(ucwords($s))));
             $this->buildButtonsForSize($buttons, $s, $button_colors, $disabled);
         });
     }

@@ -17,59 +17,59 @@ final class DoctrineManager extends AbstractDbCommand
     protected function configure()
     {
         $this
-            ->setName("doctrine:manage")
+            ->setName('doctrine:manage')
             ->setDefinition($this->createDefinition())
-            ->setDescription("Compiles static resources")
+            ->setDescription('Compiles static resources')
         ;
     }
 
     private function createDefinition()
     {
         return new InputDefinition(array(
-            new InputArgument("applications", InputArgument::REQUIRED, "The application(s) to manage. Comma-separated."),
-            new InputArgument("action", InputArgument::REQUIRED, "What action should be done. [rebuild]"),
-            // new InputOption("preview", null, InputOption::VALUE_NONE, "Don't. Move."),
+            new InputArgument('applications', InputArgument::REQUIRED, 'The application(s) to manage. Comma-separated.'),
+            new InputArgument('action', InputArgument::REQUIRED, 'What action should be done. [rebuild]'),
+            // new InputOption('preview', null, InputOption::VALUE_NONE, 'Don\'t. Move.'),
         ));
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $apps = $input->getArgument("applications");
-        $action = $input->getArgument("action");
+        $apps = $input->getArgument('applications');
+        $action = $input->getArgument('action');
         $action = strtolower(trim($action));
 
         $allowed_actions = [
-            "rebuild" => true,
-            "update"  => true,
-            "create"  => true,
+            'rebuild' => true,
+            'update'  => true,
+            'create'  => true,
         ];
 
         if (!isset($allowed_actions[$action])) {
             throw new \InvalidArgumentException("Not supported action: $action");
         }
 
-        foreach (explode(",", $apps) as $app) {
+        foreach (explode(',', $apps) as $app) {
             $app = trim($app);
 
-            $output->writeln(str_repeat("-", 79));
-            $output->writeln(str_pad("-- $app  ", 79, "-"));
-            $output->writeln(str_repeat("-", 79));
-            $output->writeln("");
+            $output->writeln(str_repeat('-', 79));
+            $output->writeln(str_pad("-- $app  ", 79, '-'));
+            $output->writeln(str_repeat('-', 79));
+            $output->writeln('');
             switch ($action) {
-                case "rebuild":
-                    $output->writeln("Dropping old tables.");
+                case 'rebuild':
+                    $output->writeln('Dropping old tables.');
                     $this->dropTables($app, $output);
                     // Fallthrough
-                case "create":
-                    $output->writeln("Creating tables.");
+                case 'create':
+                    $output->writeln('Creating tables.');
                     $this->createTables($app, $output);
 
-                    $output->writeln("Done.");
+                    $output->writeln('Done.');
                     break;
-                case "update":
-                    $output->writeln("Updating tables.");
+                case 'update':
+                    $output->writeln('Updating tables.');
                     $this->updateTables($app, $output);
-                    $output->writeln("Done.");
+                    $output->writeln('Done.');
             }
         }
     }

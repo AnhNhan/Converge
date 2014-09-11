@@ -119,13 +119,12 @@ function render_task(Task $task, $authenticated, $full_view = true)
         ? cv\icon_ion('closed', 'checkmark', false)
         : $task->status->label
     ;
-    $header_text = cv\hsprintf('<h2>%s <small>%s</small></h2>', $task->label, $closed_msg);
+    $header_text = h2(cv\hsprintf('%s <small>%s</small>', $task->label, $closed_msg));
     $panel = panel($header_text, 'task-panel');
     $panel->setId($task->uid);
 
-    $edit_button = cv\ht('a', cv\icon_ion('edit task', 'edit'))
+    $edit_button = a(cv\icon_ion('edit task', 'edit'), urisprintf('task/edit/%p', $task->label_canonical))
         ->addClass('btn btn-primary btn-small')
-        ->addOption('href', urisprintf('task/edit/%p', $task->label_canonical))
     ;
     $close_button_label = $task->closed ? 'open task' : 'close task';
     $close_button_icon  = $task->closed ? 'archive' : 'checkmark';
@@ -154,7 +153,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
     $mid_container = new PropertyList;
     $authenticated and $midriff->push($button_container);
     $midriff->push($mid_container);
-    $midriff->push(cv\ht('span')->addClass('clearfix'));
+    $midriff->push(span('clearfix'));
 
     $assigned_linked = strong(implode_link_user(', ', mpull($task->assigned, 'user')));
 
@@ -223,8 +222,8 @@ function render_task(Task $task, $authenticated, $full_view = true)
                 if ($is_shortened)
                 {
                     $group
-                        ->addOption("data-toggle", "tooltip")
-                        ->addOption("title", $a_task->label)
+                        ->addOption('data-toggle', 'tooltip')
+                        ->addOption('title', $a_task->label)
                     ;
                 }
 

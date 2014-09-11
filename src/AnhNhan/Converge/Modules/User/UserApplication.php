@@ -12,17 +12,17 @@ class UserApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "User Application";
+        return 'User Application';
     }
 
     public function getInternalName()
     {
-        return "user";
+        return 'user';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function getCustomMarkupRules()
@@ -34,20 +34,20 @@ class UserApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        switch ($request->attributes->get("route-name")) {
-            case "role-edit":
+        switch ($request->attributes->get('route-name')) {
+            case 'role-edit':
                 return new Controllers\RoleEditController($this);
-            case "role-listing":
+            case 'role-listing':
                 return new Controllers\RoleListingController($this);
-            case "join":
+            case 'join':
                 return new Controllers\UserRegisterController($this);
-            case "login":
+            case 'login':
                 return new Controllers\UserLoginForm($this);
-            case "login_check":
+            case 'login_check':
                 return new Controllers\UserLoginCheck($this);
-            case "logout":
+            case 'logout':
                 return new Controllers\UserLogout($this);
-            case "user-display":
+            case 'user-display':
                 return new Controllers\UserDisplay($this);
         }
 
@@ -56,6 +56,6 @@ class UserApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

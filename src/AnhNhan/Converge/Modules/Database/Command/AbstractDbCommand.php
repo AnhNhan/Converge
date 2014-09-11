@@ -102,80 +102,80 @@ abstract class AbstractDbCommand extends ConsoleCommand
     protected function logSql($sql, $intent)
     {
         $superpath = Converge\get_root_super();
-        if (!(file_exists($superpath . "log") && is_dir($superpath . "log"))) {
-            mkdir($superpath . "log");
+        if (!(file_exists($superpath . 'log') && is_dir($superpath . 'log'))) {
+            mkdir($superpath . 'log');
         }
-        if (!(file_exists($superpath . "log/sql") && is_dir($superpath . "log/sql"))) {
-            mkdir($superpath . "log/sql");
+        if (!(file_exists($superpath . 'log/sql') && is_dir($superpath . 'log/sql'))) {
+            mkdir($superpath . 'log/sql');
         }
 
-        $filename = sprintf("%slog/sql/%s-%s.sql", $superpath, date("Y-m-d_H-i-s", time()), $intent);
+        $filename = sprintf('%slog/sql/%s-%s.sql', $superpath, date('Y-m-d_H-i-s', time()), $intent);
         return \Filesystem::writeUniqueFile($filename, $sql);
     }
 
     protected function dropTables($app, $output)
     {
-        $command = "orm:schema-tool:drop";
+        $command = 'orm:schema-tool:drop';
         $cmdOutput = new BufferedOutput;
-        list($sql) = $this->runDoctrineConsole($app, $command . " --dump-sql", $cmdOutput);
+        list($sql) = $this->runDoctrineConsole($app, $command . ' --dump-sql', $cmdOutput);
         $sql = $sql->fetch();
         if ($sql) {
-            $logpath = $this->logSql($sql, "drop");
+            $logpath = $this->logSql($sql, 'drop');
             $output->writeln("Logging Sql: $logpath");
-            $output->writeln("Dropping tables.");
-            $output->writeln("");
+            $output->writeln('Dropping tables.');
+            $output->writeln('');
 
             // Force the drop
-            list($cmdOutput) = $this->runDoctrineConsole($app, $command . " --force", $cmdOutput);
+            list($cmdOutput) = $this->runDoctrineConsole($app, $command . ' --force', $cmdOutput);
             $output->writeln($cmdOutput->fetch());
-            $output->writeln("Dropped");
+            $output->writeln('Dropped');
         } else {
-            $output->writeln("Nothing to drop. Skipping.");
-            $output->writeln("");
+            $output->writeln('Nothing to drop. Skipping.');
+            $output->writeln('');
         }
     }
 
     protected function createTables($app, $output)
     {
-        $command = "orm:schema-tool:create";
+        $command = 'orm:schema-tool:create';
         $cmdOutput = new BufferedOutput;
-        list($sql) = $this->runDoctrineConsole($app, $command . " --dump-sql", $cmdOutput, $cmdOutput);
+        list($sql) = $this->runDoctrineConsole($app, $command . ' --dump-sql', $cmdOutput, $cmdOutput);
         $sql = $sql->fetch();
         if ($sql) {
-            $logpath = $this->logSql($sql, "create");
+            $logpath = $this->logSql($sql, 'create');
             $output->writeln("Logging Sql: $logpath");
-            $output->writeln("Creating tables.");
-            $output->writeln("");
+            $output->writeln('Creating tables.');
+            $output->writeln('');
 
             // Force the drop
             list($cmdOutput) = $this->runDoctrineConsole($app, $command, $cmdOutput);
             $output->writeln($cmdOutput->fetch());
-            $output->writeln("Created.");
+            $output->writeln('Created.');
         } else {
-            $output->writeln("Nothing to create. Skipping.");
-            $output->writeln("");
+            $output->writeln('Nothing to create. Skipping.');
+            $output->writeln('');
         }
     }
 
     protected function updateTables($app, $output)
     {
-        $command = "orm:schema-tool:update";
+        $command = 'orm:schema-tool:update';
         $cmdOutput = new BufferedOutput;
-        list($sql) = $this->runDoctrineConsole($app, $command . " --dump-sql", $cmdOutput);
+        list($sql) = $this->runDoctrineConsole($app, $command . ' --dump-sql', $cmdOutput);
         $sql = $sql->fetch();
         if (trim($sql)) {
-            $logpath = $this->logSql($sql, "update");
+            $logpath = $this->logSql($sql, 'update');
             $output->writeln("Logging Sql: $logpath");
-            $output->writeln("Really updating tables.");
-            $output->writeln("");
+            $output->writeln('Really updating tables.');
+            $output->writeln('');
 
             // Force the drop
-            list($cmdOutput) = $this->runDoctrineConsole($app, $command . " --force", $cmdOutput);
+            list($cmdOutput) = $this->runDoctrineConsole($app, $command . ' --force', $cmdOutput);
             $output->writeln($cmdOutput->fetch());
-            $output->writeln("Updated.");
+            $output->writeln('Updated.');
         } else {
-            $output->writeln("Nothing to update. Skipping.");
-            $output->writeln("");
+            $output->writeln('Nothing to update. Skipping.');
+            $output->writeln('');
         }
     }
 }

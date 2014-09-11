@@ -15,9 +15,6 @@ use AnhNhan\Converge\Views\Form\FormView;
 use AnhNhan\Converge\Views\Form\Controls\SubmitControl;
 use AnhNhan\Converge\Views\Form\Controls\TextAreaControl;
 use AnhNhan\Converge\Views\Form\Controls\TextControl;
-use AnhNhan\Converge\Views\Grid\Grid;
-use AnhNhan\Converge\Views\Panel\Panel;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -34,22 +31,22 @@ final class UserRegisterController extends AbstractUserController
 
         $errors = array();
 
-        $username  = trim($request->request->get("username"));
-        $email     = trim($request->request->get("email"));
-        $password  = trim($request->request->get("password"));
+        $username  = trim($request->request->get('username'));
+        $email     = trim($request->request->get('email'));
+        $password  = trim($request->request->get('password'));
 
         $email = strtolower($email);
         $canon_name = to_canonical($username);
 
-        if ($requestMethod == "POST")
+        if ($requestMethod == 'POST')
         {
             if (empty($username) || empty($email))
             {
-                $errors[] = "One or more texts are empty.";
+                $errors[] = 'One or more texts are empty.';
             }
             if (empty($canon_name))
             {
-                $errors[] = "Your canonical name would be empty. Other users would not be able to address you. Please choose another name.";
+                $errors[] = 'Your canonical name would be empty. Other users would not be able to address you. Please choose another name.';
             }
             if (strlen($canon_name) < 3)
             {
@@ -57,11 +54,11 @@ final class UserRegisterController extends AbstractUserController
             }
             if (strlen($username) > 60)
             {
-                $errors[] = "Your username is too long. Max 60 letters, please.";
+                $errors[] = 'Your username is too long. Max 60 letters, please.';
             }
             if (stripos($username, 'bot') !== false)
             {
-                $errors[] = "You ain't a bot. Please choose a different name.";
+                $errors[] = 'You ain\'t a bot. Please choose a different name.';
             }
 
             $em = $this->app->getEntityManager();
@@ -72,17 +69,17 @@ final class UserRegisterController extends AbstractUserController
 
             if ($_user)
             {
-                $errors[] = "A user with a similar name already exists.";
+                $errors[] = 'A user with a similar name already exists.';
             }
             if ($_email)
             {
-                $errors[] = "Another user already has this email occupied.";
+                $errors[] = 'Another user already has this email occupied.';
             }
 
             // Simple pw constraint - don't make it too elaborate
             if (strlen($password) < 6)
             {
-                $errors[] = "Trust us, you want to set a longer password.";
+                $errors[] = 'Trust us, you want to set a longer password.';
             }
 
             if (!$errors)
@@ -152,11 +149,11 @@ final class UserRegisterController extends AbstractUserController
                     ob_start();
                     var_dump($e);
                     $errors[] = cv\safeHtml(ob_get_clean());
-                    $errors[] = "Something happened. No idea.";
+                    $errors[] = 'Something happened. No idea.';
                     goto pre_form;
                 }
 
-                $targetURI = "/";
+                $targetURI = '/';
                 return new RedirectResponse($targetURI);
             }
         }
@@ -164,20 +161,19 @@ final class UserRegisterController extends AbstractUserController
         pre_form:
 
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html;
         $payload->setPayloadContents($container);
-        $payload->setTitle("Join us!");
+        $payload->setTitle('Join us!');
 
         $panel = null;
         if ($errors)
         {
-            $panel = new Panel;
-            $panel->setHeader(h2("Oops, something looks wrong"));
-            $panel->append(cv\ht("p", "We can't continue until these issue(s) have been resolved:"));
+            $panel = panel(h2('Oops, something looks wrong'));
+            $panel->append(cv\ht('p', 'We can\'t continue until these issue(s) have been resolved:'));
 
-            $list = cv\ht("ul");
+            $list = cv\ht('ul');
             foreach ($errors as $e) {
-                $list->append(cv\ht("li", $e));
+                $list->append(cv\ht('li', $e));
             }
             $panel->append($list);
         }
@@ -212,8 +208,8 @@ EOT
         );
         $container->push($form);
 
-        $this->app->getService("resource_manager")
-            ->requireJs("application-forum-markup-preview");
+        $this->app->getService('resource_manager')
+            ->requireJs('application-forum-markup-preview');
 
         return $payload;
     }

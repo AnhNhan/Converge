@@ -131,7 +131,7 @@ final class TaskEditor extends TransactionEditor
 
     public function postApplyHook($entity, array $transactions)
     {
-        $grpd_xacts = mgroup($transactions, "type");
+        $grpd_xacts = mgroup($transactions, 'type');
         $assign_add_xacts = idx($grpd_xacts, TaskTransaction::TYPE_ADD_ASSIGN, []);
 
         foreach ($assign_add_xacts as $xact)

@@ -33,7 +33,7 @@ abstract class AbstractExample
         if (!$this->resMgr) {
             throw new \RunTimeException(
                 sprintf(
-                    "Tried to access non-existing ResMgr service from class '%s'!",
+                    'Tried to access non-existing ResMgr service from class \'%s\'!',
                     get_class($this)
                 )
             );

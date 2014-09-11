@@ -17,7 +17,7 @@ final class MarkupTestingController extends AbstractMarkupController
 {
     public function handle()
     {
-        $template = file_get_contents(__DIR__ . "/../resources/template/testing.html");
+        $template = file_get_contents(__DIR__ . '/../resources/template/testing.html');
 
         Templater::loadCache($template);
         Templater::setMarkupMgr($this->getMarkupMgr());
@@ -26,15 +26,14 @@ final class MarkupTestingController extends AbstractMarkupController
         $generatedTemplate = Templater::retrieveTemplate();
 
         $payload = new HtmlPayload(Converge\safeHtml($generatedTemplate));
-        $payload->setTitle("Markup Testing");
+        $payload->setTitle('Markup Testing');
         return $payload;
     }
 
     private function buildForm()
     {
-        $form = new FormView;
+        $form = form('Markup Test Form');
         $form->setDualColumnMode(false);
-        $form->setTitle("Markup Test Form");
 
         $form->append(id(new TextAreaControl())
             ->setValue(<<<EOT
@@ -87,7 +86,7 @@ Notice: Link references added here (only visible in source)
  [2]: http://microsoft.com/
 EOT
             )
-            ->setLabel("Text"));
+            ->setLabel('Text'));
 
         $form->append(id(new SubmitControl())
             ->addCancelButton('/markup/test/')
@@ -99,7 +98,7 @@ EOT
     private function getMarkupMgr()
     {
         $markupMgr = new MarkupManager;
-        $markupMgr->registerMarkup(new Markup\SimpleTemplateMarkup("form", "FORM", $this->buildForm()));
+        $markupMgr->registerMarkup(new Markup\SimpleTemplateMarkup('form', 'FORM', $this->buildForm()));
         return $markupMgr;
     }
 }

@@ -12,27 +12,27 @@ final class ExamplesApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Examples";
+        return 'Examples';
     }
 
     public function getInternalName()
     {
-        return "examples";
+        return 'examples';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
 
         switch ($routeName) {
-            case "example-display":
+            case 'example-display':
                 return new Controllers\StandardExamplesController($this);
-            case "example-listing":
+            case 'example-listing':
                 return new Controllers\ExampleListing($this);
         }
     }

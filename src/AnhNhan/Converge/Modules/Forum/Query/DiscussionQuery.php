@@ -12,11 +12,11 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 final class DiscussionQuery extends Query
 {
-    const ENTITY_DISCUSSION = "AnhNhan\\Converge\\Modules\\Forum\\Storage\\Discussion";
-    const ENTITY_DISCUSSION_XACT = "AnhNhan\\Converge\\Modules\\Forum\\Storage\\DiscussionTransaction";
-    const ENTITY_DISCUSSION_TAG = "AnhNhan\\Converge\\Modules\\Forum\\Storage\\DiscussionTag";
-    const ENTITY_POST = "AnhNhan\\Converge\\Modules\\Forum\\Storage\\Post";
-    const ENTITY_POST_XACT = "AnhNhan\\Converge\\Modules\\Forum\\Storage\\PostTransaction";
+    const ENTITY_DISCUSSION = 'AnhNhan\\Converge\\Modules\\Forum\\Storage\\Discussion';
+    const ENTITY_DISCUSSION_XACT = 'AnhNhan\\Converge\\Modules\\Forum\\Storage\\DiscussionTransaction';
+    const ENTITY_DISCUSSION_TAG = 'AnhNhan\\Converge\\Modules\\Forum\\Storage\\DiscussionTag';
+    const ENTITY_POST = 'AnhNhan\\Converge\\Modules\\Forum\\Storage\\Post';
+    const ENTITY_POST_XACT = 'AnhNhan\\Converge\\Modules\\Forum\\Storage\\PostTransaction';
 
     /**
      * @return \AnhNhan\Converge\Modules\Forum\Storage\Discussion
@@ -27,7 +27,7 @@ final class DiscussionQuery extends Query
         $queryString = "SELECT d, dt, dc FROM {$eDisq} d LEFT JOIN d.tags dt LEFT JOIN d.comments dc WHERE d.uid = :disq_id";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("disq_id" => $id))
+            ->setParameters(array('disq_id' => $id))
         ;
         return idx($query->getResult(), 0);
     }
@@ -36,7 +36,7 @@ final class DiscussionQuery extends Query
     {
         return $this
             ->repository(self::ENTITY_DISCUSSION)
-            ->findBy(array("uid" => $ids), array("lastActivity" => "DESC"), $limit, $offset)
+            ->findBy(array('uid' => $ids), array('lastActivity' => 'DESC'), $limit, $offset)
         ;
     }
 
@@ -48,7 +48,7 @@ final class DiscussionQuery extends Query
             ->createQuery($queryString)
             ->setFirstResult($offset)
             ->setMaxResults($limit)
-            ->setParameters(["author_ids" => $author_ids])
+            ->setParameters(['author_ids' => $author_ids])
         ;
 
         return $query->getResult();
@@ -86,7 +86,7 @@ final class DiscussionQuery extends Query
     {
         if ($tags_exc)
         {
-            throw new \Exception("Tag exclusions are not supported yet.");
+            throw new \Exception('Tag exclusions are not supported yet.');
         }
 
         // Using two separate queries because Doctrine would not allow us to
@@ -166,7 +166,7 @@ final class DiscussionQuery extends Query
     {
         return idx($this
             ->repository(self::ENTITY_POST)
-            ->findBy(array("uid" => $id), array(), 1)
+            ->findBy(array('uid' => $id), array(), 1)
         , 0);
     }
 
@@ -174,7 +174,7 @@ final class DiscussionQuery extends Query
     {
         return $this
             ->repository(self::ENTITY_POST)
-            ->findBy(array("uid" => $ids), array("createdAt" => "ASC"), $limit, $offset)
+            ->findBy(array('uid' => $ids), array('createdAt' => 'ASC'), $limit, $offset)
         ;
     }
 
@@ -182,7 +182,7 @@ final class DiscussionQuery extends Query
     {
         return $this
             ->repository(self::ENTITY_POST)
-            ->findBy(array(), array("createdAt" => "ASC"), $limit, $offset)
+            ->findBy(array(), array('createdAt' => 'ASC'), $limit, $offset)
         ;
     }
 

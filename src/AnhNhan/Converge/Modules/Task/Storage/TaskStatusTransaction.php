@@ -13,8 +13,8 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  */
 class TaskStatusTransaction extends TransactionEntity
 {
-    const TYPE_EDIT_LABEL = "task.status.edit.label";
-    const TYPE_EDIT_COLOR = "task.status.edit.color";
+    const TYPE_EDIT_LABEL = 'task.status.edit.label';
+    const TYPE_EDIT_COLOR = 'task.status.edit.color';
 
     /**
      * @ManyToOne(targetEntity="TaskStatus", inversedBy="xacts", fetch="EAGER")
@@ -31,6 +31,6 @@ class TaskStatusTransaction extends TransactionEntity
 
     protected function getUIDSubType()
     {
-        return "TSTA";
+        return 'TSTA';
     }
 }

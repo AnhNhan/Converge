@@ -43,21 +43,11 @@ final class DiscussionDisplayController extends AbstractForumController
         $tocs = [];
         $markups = [];
 
-        $page_nr = 1;
-        $page_size = 30;
-
-        if ($request->request->has('page-nr') && ($r_page_nr = $request->request->get('page-nr')) && preg_match('/^\\d+$/', $r_page_nr)) {
-            $page_nr = $r_page_nr;
-        }
-
-        $offset = ($page_nr - 1) * $page_size;
-
         $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
         $merged = array_merge($posts, [$disq]);
-        $merged = array_mergev(pull($merged, function ($obj) { return array_merge([$obj], $obj->comments->toArray()); }));
+        $merged = array_mergev(array_map(function ($obj) { return array_merge([$obj], $obj->comments->toArray()); }, $merged));
         fetch_external_authors($merged, create_user_query($this->externalApp('user')));
         $query->fetchExternalsForDiscussions([$disq]);
-
 
         foreach (array_merge($posts, $disq ? [$disq] : []) as $post) {
             list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
@@ -77,7 +67,6 @@ final class DiscussionDisplayController extends AbstractForumController
         }
 
         $tocContainer = panel(h2('Table of Contents'), 'forum-toc-affix');
-        $tocContainer->addClass('forum-toc-affix');
         $tagColumn->push($tocContainer);
 
         $ulCont = Converge\ht('ul')->addClass('nav forum-toc-nav');
@@ -136,7 +125,7 @@ final class DiscussionDisplayController extends AbstractForumController
     private static function toc_link($type, $name, $id)
     {
         return a(
-            Converge\hsprintf('<em>%s</em> by <strong>%s</strong>', $type, $name),
+            Converge\hsprintf('%s by <strong>%s</strong>', $type, $name),
             '#' . $id
         );
     }

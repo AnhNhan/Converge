@@ -15,7 +15,7 @@ final class ForumListingExample extends AbstractExample
 {
     public function getName()
     {
-        return "forum-listing";
+        return 'forum-listing';
     }
 
     public function getExample()
@@ -26,52 +26,52 @@ final class ForumListingExample extends AbstractExample
         $listing->setTitle('Forum Listing');
 
         $listing->addObject(
-            id(new ForumObject)
+            (new ForumObject)
                 ->setHeadline('A little story of the future')
-                ->addTag(new TagView("internal", "dark"))
-                ->addTag(new TagView("caw"))
+                ->addTag(new TagView('internal', 'dark'))
+                ->addTag(new TagView('caw'))
         );
         $listing->addObject(
-            id(new ForumObject)
+            (new ForumObject)
                 ->setHeadline('Why the future is the future')
-                ->addTag(new TagView("caw"))
-                ->addTag(new TagView("homefront"))
-                ->addTag(new TagView("sotp"))
-                ->addTag(new TagView("discussion"))
+                ->addTag(new TagView('caw'))
+                ->addTag(new TagView('homefront'))
+                ->addTag(new TagView('sotp'))
+                ->addTag(new TagView('discussion'))
         );
         $listing->addObject(
-            id(new ForumObject)
+            (new ForumObject)
                 ->setHeadline('Future, I am your father')
-                ->addTag(new TagView("caw"))
-                ->addTag(new TagView("sotp"))
+                ->addTag(new TagView('caw'))
+                ->addTag(new TagView('sotp'))
         );
 
         $renderedListing = $listing->render();
 
-        $panelForumListing = id(new PaneledForumListing)
-            ->setTitle(Converge\ht("h3", "Forum Listing... IN PANELS!"))
-            ->addTag(new TagView("caw"))
-            ->addTag(new TagView("sotp"))
+        $panelForumListing = (new PaneledForumListing)
+            ->setTitle(Converge\ht('h3', 'Forum Listing... IN PANELS!'))
+            ->addTag(new TagView('caw'))
+            ->addTag(new TagView('sotp'))
             ->addObject(
-                id(new ForumObject)
+                (new ForumObject)
                     ->setHeadline('A little story of the future')
-                    ->addTag(new TagView("caw"))
-                    ->addTag(new TagView("sotp"))
+                    ->addTag(new TagView('caw'))
+                    ->addTag(new TagView('sotp'))
             )
             ->addObject(
-            id(new ForumObject)
+            (new ForumObject)
                     ->setHeadline('Why the future is the future')
-                    ->addTag(new TagView("internal", "dark"))
-                    ->addTag(new TagView("caw"))
-                    ->addTag(new TagView("homefront"))
-                    ->addTag(new TagView("sotp"))
-                    ->addTag(new TagView("discussion"))
+                    ->addTag(new TagView('internal', 'dark'))
+                    ->addTag(new TagView('caw'))
+                    ->addTag(new TagView('homefront'))
+                    ->addTag(new TagView('sotp'))
+                    ->addTag(new TagView('discussion'))
             )
             ->addObject(
-                id(new ForumObject)
+                (new ForumObject)
                     ->setHeadline('Future, I am your father')
-                    ->addTag(new TagView("caw"))
-                    ->addTag(new TagView("sotp"))
+                    ->addTag(new TagView('caw'))
+                    ->addTag(new TagView('sotp'))
             )
             ->render()
         ;

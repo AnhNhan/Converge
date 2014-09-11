@@ -12,12 +12,12 @@ final class NewsroomApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Newsroom";
+        return 'Newsroom';
     }
 
     public function getInternalName()
     {
-        return "newsroom";
+        return 'newsroom';
     }
 
     // TODO: Only include them during article rendering - they can be annoying
@@ -37,7 +37,7 @@ final class NewsroomApplication extends BaseApplication
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function getActivityRenderers()
@@ -50,27 +50,27 @@ final class NewsroomApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
         $controller = null;
         switch ($routeName) {
-            case "article-display-test":
+            case 'article-display-test':
                 $controller = new Controllers\DisplayTest($this);
                 break;
-            case "markup-help":
+            case 'markup-help':
                 $controller = new Controllers\MarkupHelp($this);
                 break;
-            case "article-edit":
+            case 'article-edit':
                 // TODO: Dispatch by article type
                 $controller = new Controllers\DMAEdit($this);
                 break;
-            case "article-display":
+            case 'article-display':
                 // TODO: Dispatch by article type
                 $controller = new Controllers\DMADisplay($this);
                 break;
-            case "article-listing":
+            case 'article-listing':
                 $controller = new Controllers\ArticleListing($this);
                 break;
-            case "channel-edit":
+            case 'channel-edit':
                 $controller = new Controllers\ChannelEdit($this);
                 break;
         }
@@ -79,6 +79,6 @@ final class NewsroomApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

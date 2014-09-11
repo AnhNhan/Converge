@@ -101,7 +101,7 @@ class TaskStatus extends EntityDefinition implements TransactionAwareEntityInter
 
     public function getUIDType()
     {
-        return "TASK-STAT";
+        return 'TASK-STAT';
     }
 
     /**

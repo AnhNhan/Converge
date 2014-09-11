@@ -13,9 +13,9 @@ use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
  */
 class TaskPriorityTransaction extends TransactionEntity
 {
-    const TYPE_EDIT_LABEL = "task.priority.edit.label";
-    const TYPE_EDIT_ORDER = "task.priority.edit.order";
-    const TYPE_EDIT_COLOR = "task.priority.edit.color";
+    const TYPE_EDIT_LABEL = 'task.priority.edit.label';
+    const TYPE_EDIT_ORDER = 'task.priority.edit.order';
+    const TYPE_EDIT_COLOR = 'task.priority.edit.color';
 
     /**
      * @ManyToOne(targetEntity="TaskPriority", inversedBy="xacts", fetch="EAGER")
@@ -32,6 +32,6 @@ class TaskPriorityTransaction extends TransactionEntity
 
     protected function getUIDSubType()
     {
-        return "TPRI";
+        return 'TPRI';
     }
 }

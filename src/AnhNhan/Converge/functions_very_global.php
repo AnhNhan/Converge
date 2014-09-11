@@ -44,7 +44,8 @@ function group($list, callable $predicate)
         $groups[$group] = [];
     }
 
-    foreach ($map as $key => $group) {
+    foreach ($map as $key => $group)
+    {
         $groups[$group][$key] = $list[$key];
     }
 

@@ -12,17 +12,17 @@ final class TaskApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Task";
+        return 'Task';
     }
 
     public function getInternalName()
     {
-        return "task";
+        return 'task';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function getCustomMarkupRules()
@@ -41,29 +41,29 @@ final class TaskApplication extends BaseApplication
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
 
         switch ($routeName) {
-            case "task-listing":
+            case 'task-listing':
                 return new Controllers\TaskListing($this);
                 break;
-            case "task-create":
-            case "task-edit":
+            case 'task-create':
+            case 'task-edit':
                 return new Controllers\TaskEdit($this);
                 break;
-            case "task-comment":
+            case 'task-comment':
                 return new Controllers\TaskComment($this);
                 break;
-            case "task-close":
+            case 'task-close':
                 return new Controllers\TaskClose($this);
                 break;
-            case "task-rel-assoc":
+            case 'task-rel-assoc':
                 return new Controllers\TaskAssoc($this);
                 break;
-            case "task-rel-deassoc":
+            case 'task-rel-deassoc':
                 return new Controllers\TaskAssoc($this);
                 break;
-            case "task-display":
+            case 'task-display':
                 return new Controllers\TaskDisplay($this);
                 break;
         }
@@ -73,6 +73,6 @@ final class TaskApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

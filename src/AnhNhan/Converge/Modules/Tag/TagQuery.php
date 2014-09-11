@@ -25,7 +25,7 @@ final class TagQuery extends Query
     {
         $tagRepo = $this->repository(self::TAG_ENTITY);
 
-        $tags = $tagRepo->findBy(array("uid" => $ids), array("displayOrder" => "ASC", "label" => "ASC"), $limit, $offset);
+        $tags = $tagRepo->findBy(array('uid' => $ids), array('displayOrder' => 'ASC', 'label' => 'ASC'), $limit, $offset);
         return $tags;
     }
 
@@ -33,7 +33,7 @@ final class TagQuery extends Query
     {
         $tagRepo = $this->repository(self::TAG_ENTITY);
 
-        $tags = $tagRepo->findBy(array(), array("displayOrder" => "ASC", "label" => "ASC"), $limit = null, $offset = null);
+        $tags = $tagRepo->findBy(array(), array('displayOrder' => 'ASC', 'label' => 'ASC'), $limit = null, $offset = null);
         return $tags;
     }
 
@@ -41,7 +41,7 @@ final class TagQuery extends Query
     {
         $tagRepo = $this->repository(self::TAG_ENTITY);
 
-        $tags = $tagRepo->findBy(array("label" => $labels), array("displayOrder" => "ASC", "label" => "ASC"), $limit, $offset);
+        $tags = $tagRepo->findBy(array('label' => $labels), array('displayOrder' => 'ASC', 'label' => 'ASC'), $limit, $offset);
         return $tags;
     }
 
@@ -54,13 +54,13 @@ final class TagQuery extends Query
             ->setFirstResult($offset)
             ->setMaxResults($limit)
             ->setParameters(array(
-                "search_string" => $label . "%",
+                'search_string' => $label . '%',
             ))
         ;
 
         $result = $query->getResult();
         if ($result) {
-            $result = ipull($result, "label");
+            $result = ipull($result, 'label');
         }
         return $result;
     }

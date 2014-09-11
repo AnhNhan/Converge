@@ -74,14 +74,14 @@ final class TaskListing extends AbstractTaskController
 
         $button_container = div('pull-right');
         !$parent_task and $container->unshift($button_container);
-        $button_container->getContent()->unshift(cv\ht("a", $all_tasks_flag ? 'show open tasks only' : 'show all tasks', array(
-            "href"  => "/task/?all_tasks=" . ($all_tasks_flag ? '0' : '1'),
-            "class" => "btn btn-default",
+        $button_container->getContent()->unshift(cv\ht('a', $all_tasks_flag ? 'show open tasks only' : 'show all tasks', array(
+            'href'  => '/task/?all_tasks=' . ($all_tasks_flag ? '0' : '1'),
+            'class' => 'btn btn-default',
         )));
         // Add link to create new task
-        $this->isGranted('ROLE_USER') and $button_container->getContent()->unshift(cv\ht("a", "create new task", array(
-            "href"  => "/task/create",
-            "class" => "btn btn-primary",
+        $this->isGranted('ROLE_USER') and $button_container->getContent()->unshift(cv\ht('a', 'create new task', array(
+            'href'  => '/task/create',
+            'class' => 'btn btn-primary',
         )));
 
         $this->resMgr

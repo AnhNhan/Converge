@@ -12,25 +12,25 @@ final class DraftApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Draft";
+        return 'Draft';
     }
 
     public function getInternalName()
     {
-        return "draft";
+        return 'draft';
     }
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
 
         switch ($routeName) {
-            case "draft-user-object":
+            case 'draft-user-object':
                 return new Controllers\Draft($this);
                 break;
         }
@@ -40,6 +40,6 @@ final class DraftApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

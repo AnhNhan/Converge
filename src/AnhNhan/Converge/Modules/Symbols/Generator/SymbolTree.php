@@ -15,10 +15,10 @@ final class SymbolTree
     public function addClass($name, $file, $deriv, array $impls, $abstract)
     {
         $this->classes[$name] = array(
-            "file"  => $file,
-            "deriv" => $deriv,
-            "impls" => $impls,
-            "abstr" => $abstract,
+            'file'  => $file,
+            'deriv' => $deriv,
+            'impls' => $impls,
+            'abstr' => $abstract,
         );
 
         if (!$deriv) {
@@ -34,15 +34,15 @@ final class SymbolTree
     public function addInterface($name, $file, $deriv)
     {
         $this->interfaces[$name] = array(
-            "file"  => $file,
-            "deriv" => $deriv,
+            'file'  => $file,
+            'deriv' => $deriv,
         );
     }
 
     public function addFunction($name, $file)
     {
         $this->functions[$name] = array(
-            "file"  => $file,
+            'file'  => $file,
         );
     }
 
@@ -50,8 +50,8 @@ final class SymbolTree
     {
         $classImpls = array();
         foreach ($this->classes as $className => $classArr) {
-            if ($classArr["impls"]) {
-                foreach ($classArr["impls"] as $interface) {
+            if ($classArr['impls']) {
+                foreach ($classArr['impls'] as $interface) {
                     if (!isset($classImpls[$interface])) {
                         $classImpls[$interface] = array();
                     }
@@ -76,10 +76,10 @@ final class SymbolTree
         }
 
         $symbolMap = array(
-            "classes" => $this->classes,
-            "functions" => ipull($this->functions, "file"),
-            "xmap" => $this->derivs,
-            "implementations" => $classImpls,
+            'classes' => $this->classes,
+            'functions' => ipull($this->functions, 'file'),
+            'xmap' => $this->derivs,
+            'implementations' => $classImpls,
         );
 
         return $symbolMap;

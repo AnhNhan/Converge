@@ -60,7 +60,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.uid IN (:task_ids)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_ids" => $ids))
+            ->setParameters(array('task_ids' => $ids))
         ;
         return $query->getResult();
     }
@@ -71,7 +71,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.label IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_labels" => $labels))
+            ->setParameters(array('task_labels' => $labels))
         ;
         return $query->getResult();
     }
@@ -82,7 +82,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT t, ts, tp, ta, tt FROM {$eTask} t JOIN t.status ts JOIN t.priority tp LEFT JOIN t.assigned ta LEFT JOIN t.tags tt WHERE t.label_canonical IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_labels" => $labels))
+            ->setParameters(array('task_labels' => $labels))
         ;
         return $query->getResult();
     }
@@ -105,7 +105,7 @@ final class TaskQuery extends Query
         ";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_labels" => $labels))
+            ->setParameters(array('task_labels' => $labels))
         ;
         return $query->getResult();
     }
@@ -138,7 +138,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT ts FROM {$eTask} ts WHERE ts.uid IN (:task_ids)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_ids" => $ids))
+            ->setParameters(array('task_ids' => $ids))
         ;
         return mkey($query->getResult(), 'uid');
     }
@@ -149,7 +149,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT ts FROM {$eTask} ts WHERE ts.label IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_labels" => $labels))
+            ->setParameters(array('task_labels' => $labels))
         ;
         return mkey($query->getResult(), 'uid');
     }
@@ -172,7 +172,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT tp FROM {$eTask} tp WHERE tp.uid IN (:task_ids)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_ids" => $ids))
+            ->setParameters(array('task_ids' => $ids))
         ;
         return mkey($query->getResult(), 'uid');
     }
@@ -183,7 +183,7 @@ final class TaskQuery extends Query
         $queryString = "SELECT tp FROM {$eTask} tp WHERE tp.label IN (:task_labels)";
         $query = $this->em()
             ->createQuery($queryString)
-            ->setParameters(array("task_labels" => $labels))
+            ->setParameters(array('task_labels' => $labels))
         ;
         return mkey($query->getResult(), 'uid');
     }

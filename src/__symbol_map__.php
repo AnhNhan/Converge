@@ -1059,7 +1059,6 @@ return array(
     "activity_get_external_uids" => "AnhNhan/Converge/Modules/Activity/activity_view_utils.php",
     "renderDiscussion" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
     "renderPost" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
-    "attach_xacts" => "AnhNhan/Converge/Modules/Forum/Views/render.php",
     "render_disq_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "render_disq_paneled_listing" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
     "disq_listing_add_object" => "AnhNhan/Converge/Modules/Forum/disq_utils.php",
@@ -1109,6 +1108,7 @@ return array(
     "form_textcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_textareacontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_submitcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
+    "form_hidden" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "AnhNhan\Converge\get_root" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\get_root_super" => "AnhNhan/Converge/functions.php",
     "AnhNhan\Converge\path" => "AnhNhan/Converge/functions.php",
@@ -1150,6 +1150,7 @@ return array(
     "pkey" => "AnhNhan/Converge/functions_very_global.php",
     "ikey" => "AnhNhan/Converge/functions_very_global.php",
     "curry_fa" => "AnhNhan/Converge/functions_very_global.php",
+    "curry_la" => "AnhNhan/Converge/functions_very_global.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(

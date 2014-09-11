@@ -12,12 +12,12 @@ final class ActivityApplication extends BaseApplication
 {
     public function getHumanReadableName()
     {
-        return "Activity";
+        return 'Activity';
     }
 
     public function getInternalName()
     {
-        return "activity";
+        return 'activity';
     }
 
     public function getCustomMarkupRules()
@@ -28,14 +28,14 @@ final class ActivityApplication extends BaseApplication
 
     public function getRoutes()
     {
-        return $this->generateRoutesFromYaml(__DIR__ . "/resources/routes.yml");
+        return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
     public function routeToController(Request $request)
     {
-        $routeName = $request->attributes->get("route-name");
+        $routeName = $request->attributes->get('route-name');
         switch ($routeName) {
-            case "activity-main":
+            case 'activity-main':
                 return new Controllers\ActivityListing($this);
                 break;
         }
@@ -43,6 +43,6 @@ final class ActivityApplication extends BaseApplication
 
     protected function buildEntityManager($dbConfig)
     {
-        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . "/Storage"));
+        return $this->buildDefaultEntityManager($dbConfig, array(__DIR__ . '/Storage'));
     }
 }

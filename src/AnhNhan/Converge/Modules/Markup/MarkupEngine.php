@@ -18,7 +18,7 @@ class MarkupEngine
         $this->storage = new MarkupTokenStorage;
     }
 
-    public function addInputText($text, $key = "default")
+    public function addInputText($text, $key = 'default')
     {
         if (isset($this->inputTexts[$key])) {
             throw new \Exception("Input $key already exists. Can't add it again!");
@@ -86,7 +86,7 @@ class MarkupEngine
         return $text;
     }
 
-    public function getOutputText($key = "default")
+    public function getOutputText($key = 'default')
     {
         return $this->outputText[$key];
     }

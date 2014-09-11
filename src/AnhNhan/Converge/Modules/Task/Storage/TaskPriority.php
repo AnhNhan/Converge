@@ -111,7 +111,7 @@ class TaskPriority extends EntityDefinition implements TransactionAwareEntityInt
 
     public function getUIDType()
     {
-        return "TASK-PRIO";
+        return 'TASK-PRIO';
     }
 
     /**

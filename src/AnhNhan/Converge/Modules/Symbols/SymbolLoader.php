@@ -63,11 +63,11 @@ final class SymbolLoader
         $this->rootDir = $rootDir . DIRECTORY_SEPARATOR;
         $symbolMap = include $this->rootDir . '__symbol_map__.php';
 
-        $this->classes = $symbolMap["classes"];
-        $this->locClasses = ipull($this->classes, "file");
-        $this->locFunctions = $symbolMap["functions"];
-        $this->treeDerivs = $symbolMap["xmap"];
-        $this->treeImpls = $symbolMap["implementations"];
+        $this->classes = $symbolMap['classes'];
+        $this->locClasses = ipull($this->classes, 'file');
+        $this->locFunctions = $symbolMap['functions'];
+        $this->treeDerivs = $symbolMap['xmap'];
+        $this->treeImpls = $symbolMap['implementations'];
 
         $this->allFunctions = array_unique(array_values($this->locFunctions));
         $this->allClasses = array_unique(array_values($this->locClasses));
@@ -141,7 +141,7 @@ final class SymbolLoader
         $concreteClasses = array();
 
         foreach ($derivs as $deriv) {
-            if (!idx($this->classes[$deriv], "abstr")) {
+            if (!idx($this->classes[$deriv], 'abstr')) {
                 $concreteClasses[] = $deriv;
             }
         }
@@ -163,7 +163,7 @@ final class SymbolLoader
         $concreteClasses = array();
 
         foreach ($impls as $impl) {
-            if (!idx($this->classes[$impl], "abstr")) {
+            if (!idx($this->classes[$impl], 'abstr')) {
                 $concreteClasses[] = $impl;
             }
         }
