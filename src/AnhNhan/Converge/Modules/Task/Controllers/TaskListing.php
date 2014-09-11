@@ -57,7 +57,7 @@ final class TaskListing extends AbstractTaskController
         $task_groups = group($tasks, function ($task) { return $task->priority->label; });
         $sorted_task_groups = array_select_keys($task_groups, array_keys($priorities));
 
-        $render_listing = $parent_task ? curry_fa(curry_fa('render_task_assoc_picker_listing', $request->getRequestUri()), $parent_task) : 'render_task_listing';
+        $render_listing = $parent_task ? curry_fa('render_task_assoc_picker_listing', $request->getRequestUri(), $parent_task) : 'render_task_listing';
 
         foreach ($sorted_task_groups as $priority_label => $task_group)
         {

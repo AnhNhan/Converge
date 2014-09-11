@@ -74,7 +74,7 @@ function render_task_assoc_picker_listing($return_uri, Task $base_task, array $t
             $tasks,
             $title,
             $empty_message,
-            curry_fa(curry_fa('task_assoc_picker_add_object', $return_uri), $base_task)
+            curry_fa('task_assoc_picker_add_object', $return_uri, $base_task)
         )
         ->addClass('task-assoc-picker-listing')
     ;
