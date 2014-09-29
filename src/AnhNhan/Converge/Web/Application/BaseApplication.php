@@ -31,6 +31,11 @@ abstract class BaseApplication
     abstract public function getHumanReadableName();
     abstract public function getInternalName();
 
+    public function isApplicationEnabled()
+    {
+        return true;
+    }
+
     abstract public function getRoutes();
 
     /**

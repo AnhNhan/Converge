@@ -21,6 +21,7 @@ final class ApplicationList
 
     private $app_classes = array();
     private $apps = array();
+    private $active_apps = array();
 
     public function __construct(ContainerInterface $container, $base_class = self::APPLICATION_BASE_CLASS)
     {
@@ -34,9 +35,16 @@ final class ApplicationList
             $app->setContainer($this->container);
             $this->apps[$app->getInternalName()] = $app;
         }
+
+        $this->active_apps = mfilter($this->apps, 'isApplicationEnabled');
     }
 
     public function apps()
+    {
+        return $this->active_apps;
+    }
+
+    public function allApps()
     {
         return $this->apps;
     }
