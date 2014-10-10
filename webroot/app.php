@@ -41,6 +41,14 @@ $container->set('request_stack', $request_stack);
 
 $event_dispatcher = $container->get('event_dispatcher');
 
+foreach (mpull($container->get('app.list')->apps(), 'getRegisteredEventListeners') as $listeners)
+{
+    foreach ($listeners as $listener_data)
+    {
+        $event_dispatcher->addListener($listener_data['event.name'], $listener_data['event.listener']);
+    }
+}
+
 $kernel = new HttpKernel($event_dispatcher, $router, $request_stack);
 $kernel->setContainer($container);
 $container->set('http_kernel', $kernel);

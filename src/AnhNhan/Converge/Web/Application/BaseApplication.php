@@ -119,6 +119,21 @@ abstract class BaseApplication
         return [];
     }
 
+    /*
+        Return something like this:
+
+        return [
+            [
+                'event.name' => 'kernel.finish_request',
+                'event.listener' => function ($event, $event_name, $dispatcher) { },
+            ],
+        ];
+     */
+    public function getRegisteredEventListeners()
+    {
+        return [];
+    }
+
     /**
      * Return something like
      * [
