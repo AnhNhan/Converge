@@ -264,7 +264,7 @@ abstract class BaseApplication
      */
     final protected function getExternalApplication($internalName)
     {
-        return $this->getService('app.list')->app($name);
+        return $this->getService('app.list')->app($internalName);
     }
 
     /**
