@@ -6,7 +6,6 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
-use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Storage\TaskBlocker;
 use AnhNhan\Converge\Modules\Task\Storage\TaskSubTask;
@@ -97,7 +96,6 @@ final class TaskAssoc extends AbstractTaskController
         }
 
         $em = $this->app->getEntityManager();
-        $activityRecorder = new TaskRecorder($this->externalApp('activity'));
 
         $editor_1 = TaskEditor::create($em)
             ->setActor($this->user->uid)
@@ -105,7 +103,6 @@ final class TaskAssoc extends AbstractTaskController
             ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
             ->addTransaction(TaskTransaction::create($xact_type, $object))
         ;
-        $activityRecorder->record($editor_1->apply());
 
         $editor_2 = TaskEditor::create($em)
             ->setActor($this->user->uid)
@@ -113,7 +110,11 @@ final class TaskAssoc extends AbstractTaskController
             ->setBehaviourOnNoEffect(TransactionEditor::NO_EFFECT_ERROR)
             ->addTransaction(TaskTransaction::create($xact_type, $object))
         ;
-        $activityRecorder->record($editor_2->apply());
+
+        $xacts_1 = $editor_1->apply();
+        $this->dispatchEvent(Event_TaskTransaction_Record, arrayDataEvent($xacts_1));
+        $xacts_2 = $editor_2->apply();
+        $this->dispatchEvent(Event_TaskTransaction_Record, arrayDataEvent($xacts_2));
 
         $targetURI = $request->query->has('return_to')
             ? $request->query->get('return_to')

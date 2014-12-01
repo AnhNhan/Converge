@@ -6,7 +6,6 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
 use AnhNhan\Converge\Modules\Tag\Views\FormControls\TagSelector;
-use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskBlocker;
 use AnhNhan\Converge\Modules\Task\Storage\TaskSubTask;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
@@ -243,8 +242,8 @@ final class TaskEdit extends AbstractTaskController
                 $em->beginTransaction();
                 try
                 {
-                    $activityRecorder = new TaskRecorder($this->externalApp('activity'));
-                    $activityRecorder->record($editor->apply());
+                    $xacts = $editor->apply();
+                    $this->dispatchEvent(\Event_TaskTransaction_Record, arrayDataEvent($xacts));
 
                     $is_new and $this->deleteDraftObject($draft_key);
 
@@ -270,6 +269,11 @@ final class TaskEdit extends AbstractTaskController
                     $em->rollback();
                     $errors[] = cv\safeHtml("A task with the label <em>'{$task_label}'</em> (or similar) already exists.");
                     goto form_rendering;
+                }
+                catch (\Exception $e)
+                {
+                    $em->rollback();
+                    throw new \Exception('Something bad happened. We have no idea what.');
                 }
 
                 $targetURI = "/task/" . $task->label_canonical;

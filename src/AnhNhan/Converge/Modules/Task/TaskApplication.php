@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\Task;
 
+use AnhNhan\Converge\Events\ArrayDataEvent;
 use AnhNhan\Converge\Web\Application\BaseApplication;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,26 @@ final class TaskApplication extends BaseApplication
     {
         return [
             new Markup\TaskEntity($this),
+        ];
+    }
+
+    public function getRegisteredEventListeners()
+    {
+        $recorder = new Activity\TaskRecorder($this->getExternalApplication('activity'));
+
+        return [
+            [
+                'event.name' => \Event_TaskTransaction_Record,
+                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($recorder)
+                {
+                    if (!$event->check_array_object_type('AnhNhan\Converge\Modules\Task\Storage\TaskTransaction'))
+                    {
+                        throw new \InvalidArgumentException('Received invalid object array.');
+                    }
+
+                    $recorder->record($event->data);
+                },
+            ],
         ];
     }
 

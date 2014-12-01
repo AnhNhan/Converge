@@ -3,14 +3,10 @@ namespace AnhNhan\Converge\Modules\Task\Controllers;
 
 use AnhNhan\Converge as cv;
 use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
-use AnhNhan\Converge\Web\Application\HtmlPayload;
-use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
-use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
-use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -55,8 +51,8 @@ final class TaskClose extends AbstractTaskController
             ->addTransaction(TaskTransaction::create(TaskTransaction::TYPE_EDIT_CLOSED, $closed))
         ;
 
-        $activityRecorder = new TaskRecorder($this->externalApp('activity'));
-        $activityRecorder->record($editor->apply());
+        $xacts = $editor->apply();
+        $this->dispatchEvent(Event_TaskTransaction_Record, arrayDataEvent($xacts));
 
         $targetURI = "/task/" . $task->label_canonical;
         return new RedirectResponse($targetURI);

@@ -6,7 +6,6 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
-use AnhNhan\Converge\Modules\Task\Activity\TaskRecorder;
 use AnhNhan\Converge\Modules\Task\Storage\TaskTransaction;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
@@ -58,8 +57,8 @@ final class TaskComment extends AbstractTaskController
         $draft_key = $task->uid . '~comment';
         $this->deleteDraftObject($draft_key);
 
-        $activityRecorder = new TaskRecorder($this->externalApp('activity'));
-        $activityRecorder->record($editor->apply());
+        $xacts = $editor->apply();
+        $this->dispatchEvent(Event_TaskTransaction_Record, arrayDataEvent($xacts));
 
         $targetURI = "/task/" . $task->label_canonical;
         return new RedirectResponse($targetURI);
