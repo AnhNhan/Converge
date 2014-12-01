@@ -6,7 +6,6 @@ use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
 
-use AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder;
 use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\Converge\Modules\Forum\Storage\ForumComment;
 use AnhNhan\Converge\Modules\Forum\Storage\ForumCommentTransaction;
@@ -57,6 +56,10 @@ final class Comment extends AbstractForumController
             'POST' => 'AnhNhan\Converge\Modules\Forum\Storage\PostTransaction',
             'DISQ' => 'AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction',
         ];
+        $record_event_type = [
+            'POST' => Event_PostTransaction_Record,
+            'DISQ' => Event_DiscussionTransaction_Record,
+        ];
         assert(isset($enum_object_types[$object_type]));
 
         $object = $query->{$map_retrieval_method[$object_type]}($object_id);
@@ -102,8 +105,8 @@ final class Comment extends AbstractForumController
                     $xact_t::create($xact_t::TYPE_ADD_COMMENT, $comment->uid)
                 )
             ;
-            $activityRecorder = new DiscussionRecorder($this->externalApp('activity'));
-            $activityRecorder->record($editor->apply());
+            $xacts = $editor->apply();
+            $this->dispatchEvent($record_event_type[$object_type], arrayDataEvent($xacts));
             $em->flush();
             $em->commit();
         }

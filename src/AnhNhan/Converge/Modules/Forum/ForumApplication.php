@@ -25,6 +25,39 @@ final class ForumApplication extends BaseApplication
         return $this->generateRoutesFromYaml(__DIR__ . '/resources/routes.yml');
     }
 
+    public function getRegisteredEventListeners()
+    {
+        $discussionRecorder = new Activity\DiscussionRecorder($this->getExternalApplication('activity'));
+        $postRecorder = new Activity\PostRecorder($this->getExternalApplication('activity'));
+
+        return [
+            [
+                'event.name' => \Event_DiscussionTransaction_Record,
+                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($recorder)
+                {
+                    if (!$event->check_array_object_type('AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction'))
+                    {
+                        throw new \InvalidArgumentException('Received invalid object array.');
+                    }
+
+                    $discussionRecorder->record($event->data);
+                },
+            ],
+            [
+                'event.name' => \Event_PostTransaction_Record,
+                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($recorder)
+                {
+                    if (!$event->check_array_object_type('AnhNhan\Converge\Modules\Forum\Storage\PostTransaction'))
+                    {
+                        throw new \InvalidArgumentException('Received invalid object array.');
+                    }
+
+                    $postRecorder->record($event->data);
+                },
+            ],
+        ];
+    }
+
     public function getActivityRenderers()
     {
         return [

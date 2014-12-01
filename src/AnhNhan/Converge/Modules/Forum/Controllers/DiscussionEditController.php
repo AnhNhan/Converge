@@ -2,7 +2,6 @@
 namespace AnhNhan\Converge\Modules\Forum\Controllers;
 
 use AnhNhan\Converge;
-use AnhNhan\Converge\Modules\Forum\Activity\DiscussionRecorder;
 use AnhNhan\Converge\Modules\Forum\Storage\Discussion;
 use AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction;
 use AnhNhan\Converge\Modules\Forum\Transaction\DiscussionTransactionEditor;
@@ -141,8 +140,8 @@ final class DiscussionEditController extends AbstractForumController
                     $this->deleteDraftObject($draft_key);
                 }
 
-                $activityRecorder = new DiscussionRecorder($this->externalApp('activity'));
-                $activityRecorder->record($editor->apply());
+                $xacts = $editor->apply();
+                $this->dispatchEvent(Event_DiscussionTransaction_Record, arrayDataEvent($xacts));
 
                 $targetURI = "/disq/" . $discussion->cleanId;
                 return new RedirectResponse($targetURI);

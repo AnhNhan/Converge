@@ -2,7 +2,6 @@
 namespace AnhNhan\Converge\Modules\Forum\Controllers;
 
 use AnhNhan\Converge;
-use AnhNhan\Converge\Modules\Forum\Activity\PostRecorder;
 use AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery;
 use AnhNhan\Converge\Modules\Forum\Storage\Post;
 use AnhNhan\Converge\Modules\Forum\Storage\PostTransaction;
@@ -100,8 +99,8 @@ final class PostEditController extends AbstractForumController
                     $this->deleteDraftObject($draft_key);
                 }
 
-                $activityRecorder = new PostRecorder($this->externalApp('activity'));
-                $activityRecorder->record($editor->apply());
+                $xacts = $editor->apply();
+                $this->dispatchEvent(Event_PostTransaction_Record, arrayDataEvent($xacts));
 
                 $targetURI = "/disq/" . $discussion->cleanId;
                 return new RedirectResponse($targetURI);
