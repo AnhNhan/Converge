@@ -3,6 +3,7 @@ namespace AnhNhan\Converge\Web\Application;
 
 use AnhNhan\Converge\Web\Application\HtmlPayload;
 
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -177,6 +178,11 @@ abstract class BaseApplicationController
     protected function stopwatch()
     {
         return $this->app->getService("stopwatch");
+    }
+
+    protected function dispatchEvent($event_name, Event $event = null)
+    {
+        return $this->app->getService('event_dispatcher')->dispatch($event_name, $event);
     }
 
     protected function internalSubRequest($uri, array $params = [], $method = 'GET', $catch = true)
