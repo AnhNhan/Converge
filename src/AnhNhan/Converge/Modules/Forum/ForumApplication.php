@@ -33,7 +33,7 @@ final class ForumApplication extends BaseApplication
         return [
             [
                 'event.name' => \Event_DiscussionTransaction_Record,
-                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($recorder)
+                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($discussionRecorder)
                 {
                     if (!$event->check_array_object_type('AnhNhan\Converge\Modules\Forum\Storage\DiscussionTransaction'))
                     {
@@ -45,7 +45,7 @@ final class ForumApplication extends BaseApplication
             ],
             [
                 'event.name' => \Event_PostTransaction_Record,
-                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($recorder)
+                'event.listener' => function (ArrayDataEvent $event, $event_name, $dispatcher) use ($postRecorder)
                 {
                     if (!$event->check_array_object_type('AnhNhan\Converge\Modules\Forum\Storage\PostTransaction'))
                     {
