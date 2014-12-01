@@ -24,6 +24,10 @@ return array(
       "deriv" => "Symfony\Component\Console\Command\Command",
       "abstr" => "1",
     ),
+    "AnhNhan\Converge\Events\ArrayDataEvent" => array(
+      "file" => "AnhNhan/Converge/Events/ArrayDataEvent.php",
+      "deriv" => "Symfony\Component\EventDispatcher\Event",
+    ),
     "AnhNhan\Converge\Infrastructure\Markup\AbstractMarkup" => array(
       "file" => "AnhNhan/Converge/Infrastructure/Markup/AbstractMarkup.php",
       "impls" => array(
@@ -1151,6 +1155,7 @@ return array(
     "ikey" => "AnhNhan/Converge/functions_very_global.php",
     "curry_fa" => "AnhNhan/Converge/functions_very_global.php",
     "curry_la" => "AnhNhan/Converge/functions_very_global.php",
+    "arrayDataEvent" => "AnhNhan/Converge/ns.php",
   ),
   "xmap" => array(
     "Symfony\Component\Console\Command\Command" => array(
@@ -1158,6 +1163,9 @@ return array(
       "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
       "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand",
       "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand",
+    ),
+    "Symfony\Component\EventDispatcher\Event" => array(
+      "AnhNhan\Converge\Events\ArrayDataEvent",
     ),
     "AnhNhan\Converge\Infrastructure\Markup\XmlTag" => array(
       "AnhNhan\Converge\Infrastructure\Markup\HtmlTag",
