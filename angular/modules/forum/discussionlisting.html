@@ -1,0 +1,16 @@
+<h1>Forum Listing</h1>
+
+<div ="objects-list-container forum-list-container">
+    <div class="objects-list-objects">
+        <div class="objects-object-container" ng-repeat="discussion in discussions track by discussion.uid">
+            <div class="objects-object-details">
+                <div class="objects-object-detail">{{discussion.lastActivityRendered}} <i class="ion-calendar" /></div>
+                <div class="objects-object-detail"><strong><a title="@{{discussion.authorNameCanonical}}" href="#/u/{{discussion.authorNameCanonical}}" class="user-link" data-toggle="tooltip">{{discussion.authorName}}</a></strong> <i class="ion-person-stalker"></i></div>
+            </div>
+            <a class="objects-object-title" href="#/disq/{{discussion.uid}}">{{discussion.label}}</a>
+            <div class="objects-object-attributes">
+                <div class="post-count">{{discussion.postCount}} <i class="ion-chatbubbles"></i></div>
+            </div>
+        </div>
+    </div>
+</div>

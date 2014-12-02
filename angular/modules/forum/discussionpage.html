@@ -1,0 +1,18 @@
+<div class="grid-system"><div class="row-flex">
+    <div id="disq-column" class="width9">
+        <div ng-repeat="obj in objects" class="panel-container" id="{{obj.uid}}"><div class="panel-container-inner">
+            <div class="panel-header">
+                <img class="user-profile-image" ng-src="{{obj.author.image}}">
+                <div>
+                    <h2>{{obj.title}}</h2>
+                    <h3><strong><a href="#/u/{{obj.author.uid}}">{{obj.author.name}}</a></strong> created this discussion on {{obj.modifiedOnRendered}}</h3>
+                </div>
+            </div>
+            <div class="panel-midriff"></div>
+            <div class="panel-body"></div>
+        </div></div>
+    </div>
+    <div class="width3 tag-column">
+        //
+    </div>
+</div></div>
