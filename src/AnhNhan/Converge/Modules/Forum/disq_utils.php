@@ -16,7 +16,7 @@ function render_disq_listing(array $disqs, array $postCounts, $title = null)
     $listing = new ForumListing;
     $listing->setTitle($title);
     foreach ($disqs as $discussion) {
-        disq_listing_add_object($listing, $discussion, $postCounts[$discussion->uid]["postcount"]);
+        disq_listing_add_object($listing, $discussion, isset($postCounts[$discussion->uid]) ? $postCounts[$discussion->uid]["postcount"] : '?');
     }
 
     return $listing;

@@ -1,6 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\Forum;
 
+use AnhNhan\Converge\Events\ArrayDataEvent;
 use AnhNhan\Converge\Web\Application\BaseApplication;
 
 use Symfony\Component\HttpFoundation\Request;
