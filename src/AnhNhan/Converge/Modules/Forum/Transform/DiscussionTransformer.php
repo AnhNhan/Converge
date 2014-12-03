@@ -34,18 +34,18 @@ final class DiscussionTransformer extends TransformerAbstract
     public function transform(Discussion $disq)
     {
         $tags = mpull($disq->tags->toArray(), "tagId");
-        $author = $disq->author;
-        $authorName = $author ? $author->dispname : null;
 
         return array(
             "uid"          => $disq->uid,
             "label"        => $disq->label,
             "authorId"     => $disq->authorId,
-            "authorName"   => $authorName,
-            // "rawText"   => $this->rawText,
+            "authorName"   => $disq->author ? $disq->author->name : null,
+            "authorNameCanonical" => $disq->author ? $disq->author->canonical_name : null,
             "postCount"    => $disq->posts->count(),
             "createdAt"    => (int) $disq->createdAt->getTimestamp(),
             "lastActivity" => (int) $disq->lastActivity->getTimestamp(),
+            "createdAtRendered"    => $disq->createdAt->format("D, d M 'y"),
+            "lastActivityRendered" => $disq->lastActivity->format("D, d M 'y"),
             "tagIds"         => $tags,
         );
     }
