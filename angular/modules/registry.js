@@ -6,6 +6,6 @@ angular.module('converge.registry', [])
     $ConvergeGlobals.registerMenuEntry('ion-paper-airplane', '#/newsroom/', 'newsroom');
     $ConvergeGlobals.registerMenuEntry('ion-ios7-partlysunny', '#/activity/', 'activity stream');
     $ConvergeGlobals.registerMenuEntry('ion-checkmark', '#/task/', 'task listing');
-    $ConvergeGlobals.registerMenuEntry('ion-compose', '#/disq/', 'discussion listing');
+    $ConvergeGlobals.registerMenuEntry('ion-navicon-round', '#/disq/', 'discussion listing');
 })
 ;

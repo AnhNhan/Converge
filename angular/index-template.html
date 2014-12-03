@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-app="converge" ng-controller="ConvergePage">
 <head>
-<title>{{title}} - {{installationName}}</title>
+<title>{{title}} {{::pageTitleSeparator}} {{::installationName}}</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -41,7 +41,7 @@ $(function () {
                 <a ng-repeat="entry in entries" href="{{entry.href}}" class="btn btn-default" data-toggle="tooltip-bottom" title="{{entry.text}}"><i class="{{entry.icon}}"></i></a>
             </div>
             <a href="#/">
-                <h2>{{installationName}}</h2>
+                <h2>{{::installationName}}</h2>
                 <h4>{{title}}</h4> <!-- Relies on parent controller to update -->
             </a>
         </div>

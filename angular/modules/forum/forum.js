@@ -1,9 +1,11 @@
 'use strict';
 
 var forum = angular.module('converge.modules.forum', [
+    'ngAnimate',
     'ngRoute',
     'converge.config',
-    'converge.globals'
+    'converge.globals',
+    'converge.utilities'
 ]);
 
 forum.config(function($routeProvider) {
@@ -19,24 +21,38 @@ forum.config(function($routeProvider) {
     ;
 });
 
-forum.controller('DiscussionListing', function ($scope, $http, $ConvergeConfig, $ConvergeGlobals) {
+forum.controller('DiscussionListing', function ($scope, $http, $ConvergeConfig, $ConvergeGlobals, oneAfterEachOther) {
     $ConvergeGlobals.setPageTitle('Discussion Listing');
     $scope.discussions = [];
-    $scope.currentPage = 1;
+    $scope.currentPage = 0;
+
+    var loadingClass = 'loading-progress';
+    var notLoading = '';
+    $scope.loadingClass = notLoading;
 
     $scope.pushLoad = function (offset) {
+    $scope.loadingClass = loadingClass;
         $http.get($ConvergeConfig.apiServerUri + '/disq/?page-nr=' + offset)
             .success(function (data) {
-                for (var i = data.payloads.discussions.length - 1; i >= 0; i--) {
+                var length = data.payloads.discussions.length;
+                oneAfterEachOther(40, data.payloads.discussions.length, function (i) {
                     $scope.discussions.push(data.payloads.discussions[i]);
-                };
+                    if (i == length - 1) {
+                        $scope.loadingClass = notLoading;
+                    }
+                    $scope.$apply();
+                });
             })
-            .error(function (e) {
+            .error(function () {
                 console.log('error');
             })
         ;
     }
     $scope.pushLoad($scope.currentPage);
+
+    $scope.loadNextPage = function () {
+        $scope.pushLoad(++$scope.currentPage);
+    };
 });
 
 forum.controller('DiscussionPage', function ($scope, $http, $ConvergeConfig) {

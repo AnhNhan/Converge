@@ -20,7 +20,7 @@ ConvergeGlobal.provider('$ConvergeGlobals', function () {
 ConvergeGlobal.provider('$ConvergeTopMenuEntries', function () {
     var _entries = {
         entries: [],
-        addEntry: function (href, icon, title = 'hi') {
+        addEntry: function (href, icon, title) {
             var entry = {
                 "href": href,
                 "icon": icon,
@@ -34,4 +34,4 @@ ConvergeGlobal.provider('$ConvergeTopMenuEntries', function () {
     this.$get = function() {
         return _entries;
     };
-})
+});
