@@ -5,6 +5,7 @@ var forum = angular.module('converge.modules.forum', [
     'ngRoute',
     'converge.config',
     'converge.globals',
+    'converge.modules.forum.views',
     'converge.utilities'
 ]);
 
