@@ -17,7 +17,7 @@ use AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer;
  */
 final class DiscussionListingController extends AbstractForumController
 {
-    private $discussionsPerPage = 20;
+    private $discussionsPerPage = 10;
 
     public function process()
     {
@@ -42,7 +42,7 @@ final class DiscussionListingController extends AbstractForumController
     private function fetchDiscussions($limit, $offset, $query = null)
     {
         $query = $query ?: $this->buildQuery();
-        $disqs = $query->retrieveDiscussions($this->discussionsPerPage, $offset);
+        $disqs = $query->retrieveDiscussions($limit, $offset);
         $query->fetchExternalsForDiscussions($disqs);
         return $disqs;
     }
@@ -53,7 +53,7 @@ final class DiscussionListingController extends AbstractForumController
 
         $pageNr = 1;
 
-        if ($request->request->has("page-nr") && ($r_pageNr = $request->request->get("page-nr")) && preg_match("/^\\d+$/", $r_pageNr)) {
+        if (($r_pageNr = $request->get("page-nr")) && preg_match("/^\\d+$/", $r_pageNr)) {
             $pageNr = $r_pageNr;
         }
 
@@ -82,7 +82,11 @@ final class DiscussionListingController extends AbstractForumController
         $stopWatch = $this->app()->getService("stopwatch");
         $timer = $stopWatch->start("discussion-listing-json");
 
+        $request = $this->request();
         $pageNr = 0;
+        if (($r_pageNr = $request->get("page-nr")) && preg_match("/^\\d+$/", $r_pageNr)) {
+            $pageNr = $r_pageNr;
+        }
         $offset = $pageNr * $this->discussionsPerPage;
         $disqs = $this->fetchDiscussions($this->discussionsPerPage, $offset);
 
