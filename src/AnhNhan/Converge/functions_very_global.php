@@ -136,3 +136,21 @@ function curry_la(callable $fun, $last_arg /* , ... */)
         );
     };
 }
+
+// Those two may have swapped names, I do not exactly remember which is which
+
+function flatten(callable $fun)
+{
+    return function ($args) use ($fun)
+    {
+        return call_user_func_array($fun, $args);
+    };
+}
+
+function unflatten(callable $fun)
+{
+    return function () use ($fun)
+    {
+        return call_user_func_array($fun, func_get_args());
+    };
+}
