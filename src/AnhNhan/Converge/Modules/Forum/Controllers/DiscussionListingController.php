@@ -51,13 +51,11 @@ final class DiscussionListingController extends AbstractForumController
     {
         $request = $this->request();
 
-        $pageNr = 1;
+        $pageNr = 0;
 
         if (($r_pageNr = $request->get("page-nr")) && preg_match("/^\\d+$/", $r_pageNr)) {
             $pageNr = $r_pageNr;
         }
-
-        --$pageNr;
 
         $offset = $pageNr * $this->discussionsPerPage;
 
@@ -71,6 +69,7 @@ final class DiscussionListingController extends AbstractForumController
         $container->push(h1('Forum Listing'));
         $listing = render_disq_listing($disqs, $postCounts);
         $container->push($listing);
+        $container->push(a('Next page', 'disq/?page-nr=' . ($pageNr+1))->addClass('btn btn-large btn-primary'));
         $container->push(Converge\safeHtml('<style>.objects-list-container.forum-list-container{margin-top: 0;}</style>'));
 
         $payload = new HtmlPayload($container);
