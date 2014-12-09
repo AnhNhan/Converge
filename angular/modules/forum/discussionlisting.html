@@ -1,11 +1,18 @@
 <h1>Forum Listing</h1>
 
 <forum-listing>
-    <forum-listing-entry ng-repeat="discussion in discussions track by discussion.uid" />
+    <forum-listing-entry ng-repeat-start="discussion in discussions track by discussion.uid">
+    </forum-listing-entry>
+    <div class="special-child" ng-if="( $index + 1 ) % pageSize == 0 || $last" ng-repeat-end>
+        <center>
+            <h2>^ Page {{($index + 1) / pageSize}} ^</h2>
+            <h4>before {{discussion.createdAtRendered}}</h4>
+        </center>
+    </div>
 </forum-listing>
 
 <div class="objects-list-empty-message discussions-loading {{loadingClass}}">Loading...</div>
-<a ng-click="loadNextPage()" class="btn btn-large btn-primary">Load next page</a>
+<center><a ng-click="loadNextPage()" class="btn btn-large btn-primary">Load next page</a></center>
 
 <link rel="stylesheet" type="text/css" href="css/modules/forum/listing.css" />
 <style>.objects-list-container.forum-list-container{margin-top: 0;}</style>
