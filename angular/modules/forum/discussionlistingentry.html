@@ -3,7 +3,7 @@
         <div class="objects-object-detail">{{discussion.lastActivityRendered}} <i class="ion-calendar" /></div>
         <div class="objects-object-detail"><strong><a title="@{{discussion.authorNameCanonical}}" href="#/u/{{discussion.authorNameCanonical}}" class="user-link" data-toggle="tooltip">{{discussion.authorName}}</a></strong> <i class="ion-person-stalker"></i></div>
     </div>
-    <a class="objects-object-title" href="#/disq/{{discussion.uid | cleanId}}">{{discussion.label}}</a>
+    <a class="objects-object-title" href="#/disq/{{discussion.uid | cleanId}}~{{discussion.label | encodeURIComponent}}">{{discussion.label}}</a>
     <div class="objects-object-attributes">
         <div class="post-count">{{discussion.postCount}} <i class="ion-chatbubbles"></i></div>
     </div>
