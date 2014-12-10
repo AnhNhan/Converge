@@ -8,6 +8,10 @@ var $InfiniteScroll = {
     addPageBottomCallback: function (callback) {
         pageBottomCallbacks.push(callback);
 
+        // TODO: Test this function. I don't remember JavaScript well enough to
+        //       know whether `cb != callback` actually works.
+        // Consideration: Have the callback remove only this specific instance,
+        //                or have it remove *all* instances?
         return function () {
             pageBottomCallbacks = _.filter(pageBottomCallbacks, function (cb) {
                 return cb != callback;
