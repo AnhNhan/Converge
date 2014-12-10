@@ -17,7 +17,7 @@ use AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer;
  */
 final class DiscussionListingController extends AbstractForumController
 {
-    private $discussionsPerPage = 10;
+    private $discussionsPerPage = 20;
 
     public function process()
     {
@@ -89,8 +89,13 @@ final class DiscussionListingController extends AbstractForumController
         $offset = $pageNr * $this->discussionsPerPage;
         $disqs = $this->fetchDiscussions($this->discussionsPerPage, $offset);
 
+        $tags = ikey(array_mergev(pull($disqs, function ($disq)
+        {
+            return mpull(mpull($disq->tags->toArray(), 'tag'), 'toDictionary');
+        })), 'uid');
+
         $fractal = new Fractal\Manager;
-        $resource = new Fractal\Resource\Collection($disqs, new DiscussionTransformer);
+        $resource = new Fractal\Resource\Collection($disqs, new DiscussionTransformer($tags));
 
         $result = $fractal->createData($resource)->toArray();
 

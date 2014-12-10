@@ -14,17 +14,12 @@ use League\Fractal\TransformerAbstract;
  */
 final class DiscussionTransformer extends TransformerAbstract
 {
-    /**
-     * List of resources possible to embed via this transformer
-     *
-     * @var array
-     */
-    protected $availableEmbeds = array(
-        'posts',
-        'transactions',
-        'rawText',
-        'renderedText',
-    );
+    private $tags = [];
+
+    public function __construct($tags = [])
+    {
+        $this->tags = $tags;
+    }
 
     /**
      * Turn this item object into a generic array
@@ -41,22 +36,14 @@ final class DiscussionTransformer extends TransformerAbstract
             "authorId"     => $disq->authorId,
             "authorName"   => $disq->author ? $disq->author->name : null,
             "authorNameCanonical" => $disq->author ? $disq->author->canonical_name : null,
+            "authorImage"  => $disq->author ? $disq->author->getGravatarImagePath() : null,
             "postCount"    => $disq->posts->count(),
             "createdAt"    => (int) $disq->createdAt->getTimestamp(),
             "lastActivity" => (int) $disq->lastActivity->getTimestamp(),
             "createdAtRendered"    => $disq->createdAt->format("D, d M 'y"),
             "lastActivityRendered" => $disq->lastActivity->format("D, d M 'y"),
-            "tagIds"         => $tags,
+            "tagIds"       => $tags,
+            "tagObjects"   => array_select_keys($this->tags, $tags),
         );
-    }
-
-    public function embedRawText(Discussion $disq)
-    {
-        return $this->item(array("rawText" => $disq->rawText), function () { });
-    }
-
-    public function embedRenderedText(Discussion $disq)
-    {
-        return $this->item(array("rawText" => $disq->rawText), function () { });
     }
 }

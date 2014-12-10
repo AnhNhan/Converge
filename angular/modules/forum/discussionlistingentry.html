@@ -7,5 +7,6 @@
     <a class="objects-object-title" href="#/disq/{{discussion.uid | cleanId}}~{{discussion.label | encodeURIComponent}}">{{discussion.label}}</a>
     <div class="objects-object-attributes">
         <div class="post-count">{{discussion.postCount}} <i class="ion-chatbubbles"></i></div>
+        <span ng-if="discussion.tagObjects"> &middot;<a ng-repeat="tag in discussion.tagObjects" href="#tag/{{tag.uid}}"> <span class="tag-object tag-color-{{tag.color}}">{{tag.label}}</span></a></span>
     </div>
 </div>
