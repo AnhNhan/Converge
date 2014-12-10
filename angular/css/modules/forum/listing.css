@@ -50,3 +50,11 @@
     opacity: 1;
     height: 42px;
 }
+
+.discussion-object-entry .user-profile-image {
+    height: 47px;
+    width: 47px;
+    margin: -5px -8px;
+    margin-left: 0.5em;
+    border-radius: 5px;
+}
