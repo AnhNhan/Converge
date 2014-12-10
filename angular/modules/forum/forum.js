@@ -40,10 +40,11 @@ forum.controller('DiscussionListing', function ($scope, $http, $window, $Converg
 
     $scope.loadingClass = $scope.loadingClass || notLoading;
 
-    $scope.pushLoad = function (offset) {
+    $scope.loadPage = function (offset) {
         $scope.loadingClass = loadingClass;
         $http.get($ConvergeConfig.apiServerUri + '/disq/?page-nr=' + offset)
             .success(function (data) {
+                $scope.currentPage++;
                 var length = data.payloads.discussions.length;
                 oneAfterEachOther(50, data.payloads.discussions.length, function (i) {
                     $scope.discussions.push(data.payloads.discussions[i]);
@@ -55,14 +56,19 @@ forum.controller('DiscussionListing', function ($scope, $http, $window, $Converg
             })
             .error(function () {
                 console.log('error');
+                $scope.loadingClass = notLoading;
+                // TODO: Tell about the error
             })
         ;
     }
-    $scope.pushLoad($scope.currentPage);
+    $scope.loadPage($scope.currentPage);
 
-    $scope.loadNextPage = function () {
-        $scope.pushLoad(++$scope.currentPage);
-    };
+    $scope.loadNextPage = _.debounce(function () {
+        if ($scope.loadingClass == notLoading)
+        {
+            $scope.loadPage($scope.currentPage);
+        }
+    }, 1000, true);
 
     // TODO: Removing the callback once we leave the page is preferred
     $InfiniteScroll.addPageBottomCallback(function () {
