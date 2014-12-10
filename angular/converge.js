@@ -8,6 +8,7 @@ angular.module('converge',
         'converge.modules.home',
         'converge.modules.forum',
         'converge.registry',
+        'converge.modules.test',
         'converge.toplevel'
     ]
 )
