@@ -10,7 +10,7 @@ var forum = angular.module('converge.modules.forum', [
     'converge.utilities'
 ]);
 
-forum.value('pageSize', 10);
+forum.value('pageSize', 20);
 
 forum.config(function($routeProvider) {
     $routeProvider
