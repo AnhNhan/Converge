@@ -18,15 +18,15 @@ use AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer;
 final class DiscussionListingController extends AbstractForumController
 {
     private $acceptableSorts = [
-        'createdAt' => true,
-        'createdAtInverted' => true,
-        'lastActivity' => true,
-        'lastActivityInverted' => true,
+        'newestFirst' => true,
+        'oldestFirst' => true,
+        'lastActiveFirst' => true,
+        'oldestActiveFirst' => true,
     ];
 
     private $settings = [
         'page-size' => 20,
-        'sorting'   => 'createdAt',
+        'sorting'   => 'newestFirst',
     ];
 
     private $pageNr = 0;
