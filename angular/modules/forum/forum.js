@@ -70,9 +70,12 @@ forum.controller('DiscussionListing', function ($scope, $http, $window, $Converg
         }
     }, 1000, true);
 
-    // TODO: Removing the callback once we leave the page is preferred
-    $InfiniteScroll.addPageBottomCallback(function () {
+    var removeInfiniteScrollCallback = $InfiniteScroll.addPageBottomCallback(function () {
         $scope.loadNextPage();
+    });
+
+    $scope.$on('$destroy', function () {
+        removeInfiniteScrollCallback();
     });
 });
 
