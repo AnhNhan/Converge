@@ -94,6 +94,11 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
         $this->lastActivity = new \DateTime;
     }
 
+    public function id()
+    {
+        return $this->id;
+    }
+
     public function uid()
     {
         return $this->uid;
