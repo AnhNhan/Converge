@@ -11,14 +11,13 @@ use YamwLibs\Libs\Html\Markup\MarkupContainer;
  */
 final class DiscussionDisplayController extends AbstractForumController
 {
-    public function handle()
+    public function fetchData($query = null)
     {
         $request = $this->request;
-        $app = $this->app;
 
         $currentId = $request->request->get('id');
 
-        $query = $this->buildQuery();
+        $query = $query ?: $this->buildQuery();
         $disq = $query
             ->retrieveDiscussion('DISQ-' . $currentId)
         ;
@@ -27,6 +26,33 @@ final class DiscussionDisplayController extends AbstractForumController
         {
             return id(new ResponseHtml404)->setText('Could not find a discussion for \'' . $currentId . '\'');
         }
+
+        $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
+        $merged = array_merge($posts, [$disq]);
+        $merged = array_mergev(array_map(function ($obj) { return array_merge([$obj], $obj->comments->toArray()); }, $merged));
+        fetch_external_authors($merged, create_user_query($this->externalApp('user')));
+        $query->fetchExternalsForDiscussions([$disq]);
+
+        return [
+            'disq' => $disq,
+            'posts' => $posts,
+        ];
+    }
+
+    public function handle()
+    {
+        $request = $this->request;
+        $app = $this->app;
+
+        $currentId = $request->request->get('id');
+
+        $data = $this->fetchData();
+        if ($data instanceof ResponseHtml404)
+        {
+            return $data;
+        }
+        $disq = $data['disq'];
+        $posts = $data['posts'];
 
         $container = new MarkupContainer;
         $payload = new HtmlPayload;
@@ -42,12 +68,6 @@ final class DiscussionDisplayController extends AbstractForumController
         $tocExtractor = new \AnhNhan\Converge\Modules\Markup\TOCExtractor($custom_rules);
         $tocs = [];
         $markups = [];
-
-        $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
-        $merged = array_merge($posts, [$disq]);
-        $merged = array_mergev(array_map(function ($obj) { return array_merge([$obj], $obj->comments->toArray()); }, $merged));
-        fetch_external_authors($merged, create_user_query($this->externalApp('user')));
-        $query->fetchExternalsForDiscussions([$disq]);
 
         foreach (array_merge($posts, $disq ? [$disq] : []) as $post) {
             list($toc, $markup) = $tocExtractor->parseExtractAndProcess($post->rawText);
