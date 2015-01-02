@@ -178,3 +178,55 @@ function unflatten(callable $fun)
         return call_user_func_array($fun, func_get_args());
     };
 }
+
+function typeDescr($val)
+{
+    if (is_object($val))
+    {
+        $descr = sprintf('Object::%s', get_class($val));
+
+        // if (method_exists($val, 'toString'))
+        // {
+        //     $descr .= sprintf(' {\n    %s\n}', $val);
+        // }
+
+        return $descr;
+    }
+    else
+    {
+        if (is_array($val))
+        {
+            $descr = sprintf('Array[%d]', count($val));
+            if (count($val) < 15)
+            {
+                $descr .= sprintf(' {%s}', implode(' + ', array_map('typeDescr', $val)));
+            }
+            return $descr;
+        }
+        else if (is_string($val))
+        {
+            return sprintf('String[%d]', strlen($val));
+        }
+        else if (is_scalar($val))
+        {
+            return sprintf('Scalar(%s)', $val);
+        }
+        else
+        {
+            throw new \Exception('I forgot a type...');
+        }
+    }
+}
+
+function map_apply_instance_method($method_name, array $params = [])
+{
+    return function ($obj) use ($method_name, $params)
+    {
+        if (!is_object($obj))
+        {
+            throw new \Exception(sprintf("Passed value is not an object! Is of type '%s'", typeDescr($obj)));
+        }
+
+        return call_user_method_array($method_name, $obj, $params);
+    };
+}
