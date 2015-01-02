@@ -257,4 +257,26 @@ class User extends EntityDefinition implements AdvancedUserInterface, Transactio
     {
         return "USER";
     }
+
+    public function toDictionary($prefix = '', $full = false)
+    {
+        $dict = [
+            "name" => $this->username,
+            "nameCanonical" => $this->name_canon,
+            "image" => $this->getGravatarImagePath(),
+        ];
+
+        if ($full)
+        {
+            // TODO: Expand here
+            throw new \Exception("Full mode not supported yet.");
+        }
+
+        if (strlen($prefix))
+        {
+            $dict = array_combine(array_map(function ($key) use ($prefix) { return $prefix . $key; }, array_map('ucfirst', array_keys($dict))), array_values($dict));
+        }
+
+        return $dict;
+    }
 }

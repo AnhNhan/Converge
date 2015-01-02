@@ -176,4 +176,35 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
     {
         return $this->xacts;
     }
+
+    public function toDictionary($with_comments = true)
+    {
+        if ($this->deleted)
+        {
+            return [
+                "deleted" => true,
+            ];
+        }
+
+        $dict = [
+            "deleted" => $this->deleted,
+            "uid" => $this->uid,
+            "disqUid" => $this->parentDisqId,
+            "disqLabel" => $this->parentDisq->label,
+            "createdAt" => (int) $this->createdAt->getTimestamp(),
+            "modifiedAt" => (int) $this->modifiedAt->getTimestamp(),
+            "createdAtRendered"    => $this->createdAt->format("D, d M 'y"),
+            "lastActivityRendered" => $this->modifiedAt->format("D, d M 'y"),
+        ];
+
+        $comments = [];
+        if ($with_comments)
+        {
+            $comments = [
+                "comments" => array_map(map_apply_instance_method('toDictionary'), $this->comments->toArray()),
+            ];
+        }
+
+        return array_merge($dict, $this->author_object->toDictionary('author'));
+    }
 }

@@ -132,4 +132,29 @@ class ForumComment extends EntityDefinition implements TransactionAwareEntityInt
     {
         return $this->xacts;
     }
+
+    public function toDictionary()
+    {
+        if ($this->deleted)
+        {
+            return [
+                "deleted" => true,
+            ];
+        }
+
+        $dict = [
+            "uid" => $this->uid,
+            "parentUid" => $this->parent_uid,
+            "rawText" => $this->rawText,
+            "deleted" => false,
+            "createdAt" => (int) $this->createdAt->getTimestamp(),
+            "modifiedAt" => (int) $this->modifiedAt->getTimestamp(),
+            "createdAtRendered"    => $this->createdAt->format("D, d M 'y"),
+            "lastActivityRendered" => $this->modifiedAt->format("D, d M 'y"),
+        ];
+
+        $dict = array_merge($dict, $this->author_object->toDictionary('author'));
+
+        return $dict;
+    }
 }
