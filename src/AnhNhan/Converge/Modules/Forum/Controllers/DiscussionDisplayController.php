@@ -4,13 +4,37 @@ namespace AnhNhan\Converge\Modules\Forum\Controllers;
 use AnhNhan\Converge;
 use AnhNhan\Converge\Views\Web\Response\ResponseHtml404;
 use AnhNhan\Converge\Web\Application\HtmlPayload;
+use AnhNhan\Converge\Web\Application\JsonPayload;
 use YamwLibs\Libs\Html\Markup\MarkupContainer;
+
+use League\Fractal;
+use AnhNhan\Converge\Modules\Forum\Transform\DiscussionTransformer;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
 final class DiscussionDisplayController extends AbstractForumController
 {
+    public function process()
+    {
+        $request = $this->request();
+        $accepts = $request->getAcceptableContentTypes();
+
+        foreach ($accepts as $accept) {
+            switch ($accept) {
+                case 'application/json':
+                case 'text/json':
+                    return $this->handleJson();
+                    break;
+                case 'text/html':
+                    return $this->handle();
+                    break;
+            }
+        }
+
+        return $this->handle();
+    }
+
     public function fetchData($query = null)
     {
         $request = $this->request;
@@ -37,6 +61,36 @@ final class DiscussionDisplayController extends AbstractForumController
             'disq' => $disq,
             'posts' => $posts,
         ];
+    }
+
+    public function handleJson()
+    {
+        $stopWatch = $this->app()->getService("stopwatch");
+        $timer = $stopWatch->start("discussion-listing-json");
+
+        $data = $this->fetchData();
+        $disq = $data['disq'];
+        $posts = array_map(map_apply_instance_method('toDictionary'), $data['posts']);
+
+        $tags = mpull(mpull($disq->tags->toArray(), 'tag'), 'toDictionary');
+
+        $fractal = new Fractal\Manager;
+        $resource = new Fractal\Resource\Collection([$disq], new DiscussionTransformer($tags));
+
+        $result = $fractal->createData($resource)->toArray();
+        $dictDisq = $result["data"];
+        $dictDisq["rawText"] = $disq->rawText;
+
+        $time = $timer->stop()->getDuration();
+
+        $payload = new JsonPayload();
+        $payload->setPayloadContents(array(
+            "disq" => $dictDisq,
+            "posts" => $posts,
+            "toc" => [],
+            "time" => $time,
+        ));
+        return $payload;
     }
 
     public function handle()
