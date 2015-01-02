@@ -137,6 +137,30 @@ function curry_la(callable $fun, $last_arg /* , ... */)
     };
 }
 
+// TODO: Check whether this actually works
+/**
+ * Memoizes a function, remembering function call results and thus saving
+ * repeated invocation of a function.
+ *
+ * @param Return(Args) $fun
+ * @return Return(Args)
+ */
+function memoize(callable $fun)
+{
+    $memory = [];
+    return function () use ($fun)
+    {
+        $args = func_get_args();
+        if (isset($memory[$args]))
+        {
+            return $memory[$args];
+        }
+        $result = call_user_func_array($fun, $args);
+        $memory[$args] = $result;
+        return $result;
+    };
+}
+
 // Those two may have swapped names, I do not exactly remember which is which
 
 function flatten(callable $fun)
