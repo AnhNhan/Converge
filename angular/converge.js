@@ -30,6 +30,7 @@ angular.module('converge.toplevel', [
     $scope.setPageTitle($ConvergeGlobals.defaultTitle);
     $scope.installationName = $ConvergeConfig.installationName;
     $scope.pageTitleSeparator = $ConvergeConfig.pageTitleSeparator;
+    $scope.thisYear = $ConvergeConfig.copyrightLatestYear;
 })
 .controller('ConvergeTopMenu', function ($scope, $ConvergeGlobals, registerAllModules) {
     $scope.entries = [];
