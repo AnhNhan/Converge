@@ -1,19 +1,52 @@
 <div class="grid-system"><div class="row-flex">
     <div id="disq-column" class="width9">
-        <h1>{{uriDisqLabel}} (DISQ-{{uriDisqId}})</h1>
-        <div ng-repeat="obj in objects" class="panel-container" id="{{obj.uid}}"><div class="panel-container-inner">
+        <h1> Loading {{uriDisqLabel}} (DISQ-{{uriDisqId}})</h1> <!-- Will be hidden -->
+
+        <div class="panel-container" id="{{disq.uid}}" ng-if="disq.uid"><div class="panel-container-inner">
             <div class="panel-header">
-                <img class="user-profile-image" ng-src="{{obj.author.image}}">
+                <img ng-src="{{disq.authorImage}}" class="user-profile-image" />
+                <div><h2>{{disq.label}}</h2><div>
+                <h3><a href="u/{{disq.authorNameCanonical}}" class="user-link" data-toggle="tooltip" title="@{{disq.authorNameCanonical}}">{{disq.authorName}}</a> <span class="minor-stuff">created this discussion on {{disq.createdAtRendered}}</span></h3></div></div>
+            </div>
+            <div class="panel-midriff">
+                <div class="panel-midriff-right"><a href="disq/{{disq.uid | cleanId}}/edit" class="btn btn-info">edit discussion <i class="ion-edit"></i> </a></div>
+                <a ng-repeat="tag in disq.tagObjects | orderBy:displayOrder" href="tag/{{tag.uid | cleanId}}" class="tag-link"><span class="tag-object tag-color-{{tag.color}}">{{tag.label}}</span></a>
+            </div>
+            <div class="panel-body">
+                {{disq.rawText}}
+                <div id="{{disq.uid}}-comments"></div>
+                <div class="panel-container forum-tail-object"><div class="panel-container-inner"><div class="panel-body"><div class="forum-tail-comment-form-container"><form class="form form-single-column forum-tail-comment-form" action="{{'forum/' + (disq.uid | encodeURIComponent) + '/comment'}}" method="POST"><div class="form-control-container"><div class="form-control-label">&nbsp;</div><div class="form-control-element"><input type="text" class="form-control form-control-text" name="comment_text" placeholder="Suggest improvements, request clarifications, point out flaws, or just insult the author here ;)"></div></div><div class="form-control-container form-control-submit"><button name="__submit__" class="btn btn-primary">  <i class="ion-checkmark"></i> </button></div><input type="hidden" name="__form__" value="1"></form></div></div></div></div>
+            </div>
+        </div></div>
+
+        <div ng-repeat="post in posts | orderBy:createdAt" class="panel-container {{deletedClass(post)}}" id="{{post.uid}}"><div class="panel-container-inner">
+            <div class="panel-header" ng-if="!post.deleted">
+                <img class="user-profile-image" ng-src="{{post.authorImage}}" style="height: 52px; width: 52px;">
+                <div class="pull-right">
+                    <a href="disq/{{disq.uid | cleanId}}/{{post.uid | cleanId}}/edit" class="btn btn-default btn-small">edit post <i class="ion-edit"></i> </a>
+                </div>
                 <div>
-                    <h2>{{obj.title}}</h2>
-                    <h3><strong><a href="#/u/{{obj.author.uid}}">{{obj.author.name}}</a></strong> created this discussion on {{obj.modifiedOnRendered}}</h3>
+                    <h3><a href="#/u/{{post.authorNameCanonical}}">{{post.authorName}}</a></h3>
+                    <div class="minor-stuff">{{post.createdAtRendered}}</div>
                 </div>
             </div>
-            <div class="panel-midriff"></div>
-            <div class="panel-body"></div>
+            <div class="panel-body" ng-if="!post.deleted">{{post.rawText}}</div>
+
+            <div class="panel-header" ng-if="post.deleted">
+                <h3> <i class="ion-close"></i> Deleted Post <small class="minor-stuff">{{post.createdAtRendered}}</small></h3>
+            </div>
         </div></div>
     </div>
     <div class="width3 tag-column">
-        //
+        <div class="panel-container"><div class="panel-container-inner">
+            <div class="panel-header">
+                <h2>There was supposed to be something here...</h2>
+            </div>
+            <div class="panel-body">
+                <p>Yup, yup. Somebody do the table of contents, please. PLEASHE!</p>
+            </div>
+        </div></div>
     </div>
 </div></div>
+
+<link rel="stylesheet" type="text/css" charset="utf-8" href="//api.converge.dev/rsrc/css/application-forum-discussion-display.css">

@@ -83,4 +83,21 @@ forum.controller('DiscussionPage', function ($scope, $http, $routeParams, $Conve
     $ConvergeGlobals.setPageTitle('Loading ' + ($routeParams.disq_label || $routeParams.disq_id) + '...');
     $scope.uriDisqId = $routeParams.disq_id;
     $scope.uriDisqLabel = $routeParams.disq_label;
+
+    $scope.disq = $scope.disq || {};
+    $scope.posts = $scope.posts || [];
+
+    $scope.deletedClass = function (post) {
+        return post.deleted ? 'post-deleted' : '';
+    };
+
+    $http.get($ConvergeConfig.apiServerUri + '/disq/' + $scope.uriDisqId)
+        .success(function (data) {
+            $scope.disq = data.payloads.disq;
+            $scope.posts = data.payloads.posts;
+
+            $('#disq-column > h1:first-child').slideUp(400);
+        })
+        .error()
+    ;
 });
