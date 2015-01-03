@@ -183,6 +183,11 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
         {
             return [
                 "deleted" => true,
+                "uid" => "<scrambled>",
+                "createdAt" => (int) $this->createdAt->getTimestamp(),
+                "modifiedAt" => (int) $this->modifiedAt->getTimestamp(),
+                "createdAtRendered"    => $this->createdAt->format("D, d M 'y"),
+                "lastActivityRendered" => $this->modifiedAt->format("D, d M 'y"),
             ];
         }
 

@@ -65,30 +65,39 @@ final class DiscussionDisplayController extends AbstractForumController
 
     public function handleJson()
     {
-        $stopWatch = $this->app()->getService("stopwatch");
-        $timer = $stopWatch->start("discussion-listing-json");
+        $stopWatch = $this->app()->getService('stopwatch');
+        $timer = $stopWatch->start('discussion-listing-json');
 
         $data = $this->fetchData();
         $disq = $data['disq'];
-        $posts = array_map(map_apply_instance_method('toDictionary'), $data['posts']);
+        $posts = mpull($data['posts'], 'toDictionary');
+        $posts = array_map(function ($dict) use ($data)
+            {
+                if (!$dict['deleted'])
+                {
+                    $dict['rawText'] = $data['posts'][$dict['uid']]->rawText;
+                }
+                return $dict;
+            }, $posts);
 
         $tags = mpull(mpull($disq->tags->toArray(), 'tag'), 'toDictionary');
+        $tags = ikey($tags, 'uid');
 
         $fractal = new Fractal\Manager;
         $resource = new Fractal\Resource\Collection([$disq], new DiscussionTransformer($tags));
 
         $result = $fractal->createData($resource)->toArray();
-        $dictDisq = $result["data"];
-        $dictDisq["rawText"] = $disq->rawText;
+        $dictDisq = head($result['data']);
+        $dictDisq['rawText'] = $disq->rawText;
 
         $time = $timer->stop()->getDuration();
 
         $payload = new JsonPayload();
         $payload->setPayloadContents(array(
-            "disq" => $dictDisq,
-            "posts" => $posts,
-            "toc" => [],
-            "time" => $time,
+            'disq' => $dictDisq,
+            'posts' => $posts,
+            'toc' => [],
+            'time' => $time,
         ));
         return $payload;
     }
