@@ -40,6 +40,11 @@ abstract class BaseApplicationController
         return $this->app->getService('app.list')->app($name);
     }
 
+    final protected function isAppEnapled($name)
+    {
+        return $app = $this->externalApp($name) && $app->isApplicationEnabled();
+    }
+
     protected function getRepository($entityName)
     {
         $app = $this->app();
