@@ -96,6 +96,7 @@ forum.controller('DiscussionPage', function ($scope, $http, $routeParams, $Conve
             $scope.disq = data.payloads.disq;
             $scope.posts = data.payloads.posts;
 
+            $ConvergeGlobals.setPageTitle($scope.disq.label);
             $('#disq-column > h1:first-child').slideUp(400);
         })
         .error()
