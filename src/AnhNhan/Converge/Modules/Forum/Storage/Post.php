@@ -188,6 +188,7 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
                 "modifiedAt" => (int) $this->modifiedAt->getTimestamp(),
                 "createdAtRendered"    => $this->createdAt->format("D, d M 'y"),
                 "lastActivityRendered" => $this->modifiedAt->format("D, d M 'y"),
+                "comments" => [],
             ];
         }
 
@@ -210,6 +211,6 @@ class Post extends EntityDefinition implements TransactionAwareEntityInterface
             ];
         }
 
-        return array_merge($dict, $this->author_object->toDictionary('author'));
+        return array_merge($dict, $this->author_object->toDictionary('author'), $comments);
     }
 }

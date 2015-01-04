@@ -89,6 +89,7 @@ final class DiscussionDisplayController extends AbstractForumController
         $result = $fractal->createData($resource)->toArray();
         $dictDisq = head($result['data']);
         $dictDisq['rawText'] = $disq->rawText;
+        $dictDisq['comments'] = mpull($disq->comments->toArray(), 'toDictionary');
 
         $time = $timer->stop()->getDuration();
 
