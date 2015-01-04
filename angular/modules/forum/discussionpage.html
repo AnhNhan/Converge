@@ -14,7 +14,11 @@
             </div>
             <div class="panel-body">
                 {{disq.rawText}}
-                <div id="{{disq.uid}}-comments"></div>
+
+                <div ng-repeat="comment in disq.comments" class="panel-container  forum-tail-object forum-tail-object-comment" id="{{comment.uid}}"><div class="panel-container-inner">
+                    <div class="panel-body"><div class="comment-date pull-right hidden-phone">{{comment.createdAtRendered}}</div><div class="forum-comment"><strong><a href="u/{{comment.authorNameCanonical}}" class="user-link" data-toggle="tooltip" title="@{{comment.authorNameCanonical}}">{{comment.authorName}}</a></strong> {{comment.rawText}}</div></div>
+                </div></div>
+
                 <div class="panel-container forum-tail-object"><div class="panel-container-inner"><div class="panel-body"><div class="forum-tail-comment-form-container"><form class="form form-single-column forum-tail-comment-form" action="{{'forum/' + (disq.uid | encodeURIComponent) + '/comment'}}" method="POST"><div class="form-control-container"><div class="form-control-label">&nbsp;</div><div class="form-control-element"><input type="text" class="form-control form-control-text" name="comment_text" placeholder="Suggest improvements, request clarifications, point out flaws, or just insult the author here ;)"></div></div><div class="form-control-container form-control-submit"><button name="__submit__" class="btn btn-primary">  <i class="ion-checkmark"></i> </button></div><input type="hidden" name="__form__" value="1"></form></div></div></div></div>
             </div>
         </div></div>
@@ -30,7 +34,13 @@
                     <div class="minor-stuff">{{post.createdAtRendered}}</div>
                 </div>
             </div>
-            <div class="panel-body" ng-if="!post.deleted">{{post.rawText}}</div>
+            <div class="panel-body" ng-if="!post.deleted">{{post.rawText}}
+
+                <div ng-repeat="comment in post.comments" class="panel-container  forum-tail-object forum-tail-object-comment" id="{{comment.uid}}"><div class="panel-container-inner">
+                    <div class="panel-body"><div class="comment-date pull-right hidden-phone">{{comment.createdAtRendered}}</div><div class="forum-comment"><strong><a href="u/{{comment.authorNameCanonical}}" class="user-link" data-toggle="tooltip" title="@{{comment.authorNameCanonical}}">{{comment.authorName}}</a></strong> {{comment.rawText}}</div></div>
+                </div></div>
+
+                <div class="panel-container forum-tail-object"><div class="panel-container-inner"><div class="panel-body"><div class="forum-tail-comment-form-container"><form class="form form-single-column forum-tail-comment-form" action="{{'forum/' + (post.uid | encodeURIComponent) + '/comment'}}" method="POST"><div class="form-control-container"><div class="form-control-label">&nbsp;</div><div class="form-control-element"><input type="text" class="form-control form-control-text" name="comment_text" placeholder="Suggest improvements, request clarifications, point out flaws, or just insult the author here ;)"></div></div><div class="form-control-container form-control-submit"><button name="__submit__" class="btn btn-primary">  <i class="ion-checkmark"></i> </button></div><input type="hidden" name="__form__" value="1"></form></div></div></div></div></div>
 
             <div class="panel-header" ng-if="post.deleted">
                 <h3> <i class="ion-close"></i> Deleted Post <small class="minor-stuff">{{post.createdAtRendered}}</small></h3>
