@@ -1,16 +1,25 @@
 Converge
-======
+========
 
-Converge is a next-generation communication and collaboration platform that
-enables fast and hassle-free exchange and consumption of opinions with a high
-signal-to-noise ratio.
+NOTE: Not usable. Not a single feature is usable. Stop looking.
+
+Collaboration and Communication platform. Currently mostly for discussions. If I would add the buttons for posting things.
 
 It also provides some other fun, like:
 
- * task management
- * activity streams (to be done)
- * content publishing (to be done)
+ * task management (rudimentary)
+ * activity streams (rudimentary, to be done)
+ * content publishing (rudimentary, to be done)
  * converging all other kinds of communications, like IM and email (to be done)
+
+See? We are disruptive. Innovative. What do you want more? A finished app?
+
+**OMGz!**
+
+License
+-------
+
+Released under Apache v2.0.
 
 Contributing
 ============
