@@ -1,0 +1,5 @@
+
+routes:
+
+  - pattern: subscription/:action/:object-id
+    route-name: subscription-subscribe

@@ -1,0 +1,4 @@
+
+routes:
+  - pattern: log
+    route-name: seogj
