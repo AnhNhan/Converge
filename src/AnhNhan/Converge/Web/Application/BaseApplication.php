@@ -176,9 +176,9 @@ abstract class BaseApplication
                 return array(
                     "driver"   => $driver,
                     "host"     => "127.0.0.1",
-                    "user"     => "modhub",
-                    "password" => "",
-                    "dbname"   => "modhub_" . $dbName,
+                    "user"     => "converge",
+                    "password" => "p4YVXLqSKp7TtBL2",
+                    "dbname"   => "converge_" . $dbName,
                 );
                 break;
             default:

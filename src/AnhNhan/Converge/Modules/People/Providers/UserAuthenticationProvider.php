@@ -1,7 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\People\Providers;
 
-use AnhNhan\Converge\Modules\People\Query\UserQuery;
+use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 use AnhNhan\Converge\Modules\People\Storage\User;
 use AnhNhan\Converge\Modules\People\UserApplication;
 
@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 {
     /**
-     * @var UserQuery
+     * @var PeopleQuery
      */
     private $query;
 

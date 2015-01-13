@@ -15,10 +15,10 @@ use AnhNhan\Converge\Modules\Task\Transaction\TaskEditor;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskStatusEditor;
 use AnhNhan\Converge\Modules\Task\Transaction\TaskPriorityEditor;
 
-use AnhNhan\Converge\Modules\User\UserApplication;
+use AnhNhan\Converge\Modules\People\PeopleApplication;
 
 use AnhNhan\Converge\Modules\Task\Query\TaskQuery;
-use AnhNhan\Converge\Modules\User\Query\UserQuery;
+use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Types\UID;
@@ -39,8 +39,8 @@ $defaultTasksConfigPath = cv\get_root_super() . 'resources/default.task.props.ym
 $parsed = Yaml::parse($defaultTasksConfigPath);
 $taskPropContainter = $parsed['tasks'];
 
-$userQuery = new UserQuery(id(new UserApplication)->setContainer($container));
-$anh_nhan  = $userQuery->retrieveUsersForCanonicalNames(['anhnhan']);
+$PeopleQuery = new PeopleQuery(id(new PeopleApplication)->setContainer($container));
+$anh_nhan  = $PeopleQuery->retrieveUsersForCanonicalNames(['anhnhan']);
 $anh_nhan  = head($anh_nhan);
 if (!$anh_nhan)
 {

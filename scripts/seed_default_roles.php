@@ -4,14 +4,14 @@ require_once __DIR__ . '/../src/__init__.php';
 
 use AnhNhan\Converge as cv;
 
-use AnhNhan\Converge\Modules\User\UserApplication;
-use AnhNhan\Converge\Modules\User\Storage\Role;
-use AnhNhan\Converge\Modules\User\Storage\RoleTransaction;
-use AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor;
-use AnhNhan\Converge\Modules\User\Storage\User;
+use AnhNhan\Converge\Modules\People\PeopleApplication;
+use AnhNhan\Converge\Modules\People\Storage\Role;
+use AnhNhan\Converge\Modules\People\Storage\RoleTransaction;
+use AnhNhan\Converge\Modules\People\Transaction\RoleTransactionEditor;
+use AnhNhan\Converge\Modules\People\Storage\User;
 
-use AnhNhan\Converge\Modules\User\Query\RoleQuery;
-use AnhNhan\Converge\Modules\User\Query\UserQuery;
+use AnhNhan\Converge\Modules\People\Query\RoleQuery;
+use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Types\UID;
@@ -20,17 +20,17 @@ use Symfony\Component\Yaml\Yaml;
 
 $container = \AnhNhan\Converge\Web\Core::loadSfDIContainer();
 
-$userApp = new UserApplication;
+$userApp = new PeopleApplication;
 $userApp->setContainer($container);
 $userEm  = $userApp->getEntityManager();
-$roleRepo = $userEm->getRepository('AnhNhan\Converge\Modules\User\Storage\Role');
+$roleRepo = $userEm->getRepository('AnhNhan\Converge\Modules\People\Storage\Role');
 
 $defaultRolesConfigPath = cv\get_root_super() . 'resources/default.roles.yml';
 $parsed = Yaml::parse($defaultRolesConfigPath);
 $defaultRoles = $parsed['roles'];
 
-$userQuery = new UserQuery($userApp);
-$anh_nhan  = $userQuery->retrieveUsersForCanonicalNames(['anhnhan']);
+$PeopleQuery = new PeopleQuery($userApp);
+$anh_nhan  = $PeopleQuery->retrieveUsersForCanonicalNames(['anhnhan']);
 $anh_nhan  = head($anh_nhan);
 if (!$anh_nhan)
 {

@@ -7,7 +7,7 @@ use AnhNhan\Converge\Modules\People\Storage\UserTransaction;
 use AnhNhan\Converge\Modules\People\Transaction\UserTransactionEditor;
 use AnhNhan\Converge\Modules\People\Storage\Email;
 use AnhNhan\Converge\Modules\People\Query\RoleQuery;
-use AnhNhan\Converge\Modules\People\Query\UserQuery;
+use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 use AnhNhan\Converge\Storage\Transaction\TransactionEditor;
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 
@@ -62,7 +62,7 @@ final class UserRegisterController extends AbstractPeopleController
             }
 
             $em = $this->app->getEntityManager();
-            $query = new UserQuery($em);
+            $query = new PeopleQuery($em);
 
             $_user  = $query->retrieveUsersForCanonicalNames([$canon_name], 1);
             $_email = $query->retrieveEmailsForNames([$email], 1);
@@ -112,7 +112,7 @@ final class UserRegisterController extends AbstractPeopleController
                 $role      = idx($roleQuery->retrieveRolesForNames(['ROLE_USER'], 1), 0);
                 if (!$role)
                 {
-                    throw new \LogicException('Something\'s terribly wrong here. Seeded default roles?');
+                    //throw new \LogicException('Something\'s terribly wrong here. Seeded default roles?');
                 }
 
                 $editor = UserTransactionEditor::create($em)
@@ -131,9 +131,9 @@ final class UserRegisterController extends AbstractPeopleController
                     ->addTransaction(
                         UserTransaction::create(UserTransaction::TYPE_ADD_EMAIL, $email)
                     )
-                    ->addTransaction(
-                        UserTransaction::create(UserTransaction::TYPE_ADD_ROLE, $role->uid)
-                    )
+                    //->addTransaction(
+                    //    UserTransaction::create(UserTransaction::TYPE_ADD_ROLE, $role->uid)
+                    //)
                 ;
 
                 $em->beginTransaction();

@@ -9,10 +9,10 @@ use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Storage\TagTransaction;
 use AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor;
 
-use AnhNhan\Converge\Modules\User\UserApplication;
+use AnhNhan\Converge\Modules\People\PeopleApplication;
 
 use AnhNhan\Converge\Modules\Tag\TagQuery;
-use AnhNhan\Converge\Modules\User\Query\UserQuery;
+use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Types\UID;
@@ -30,8 +30,8 @@ $defaultTagsConfigPath = cv\get_root_super() . 'resources/default.tags.yml';
 $parsed = Yaml::parse($defaultTagsConfigPath);
 $defaultTags = $parsed['tags'];
 
-$userQuery = new UserQuery(id(new UserApplication)->setContainer($container));
-$anh_nhan  = $userQuery->retrieveUsersForCanonicalNames(['anhnhan']);
+$PeopleQuery = new PeopleQuery(id(new PeopleApplication)->setContainer($container));
+$anh_nhan  = $PeopleQuery->retrieveUsersForCanonicalNames(['anhnhan']);
 $anh_nhan  = head($anh_nhan);
 if (!$anh_nhan)
 {

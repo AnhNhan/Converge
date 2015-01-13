@@ -67,7 +67,7 @@ abstract class Query
             self::EXT_QUERY_FORUM => 'AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery',
             self::EXT_QUERY_ROLE  => 'AnhNhan\Converge\Modules\People\Query\RoleQuery',
             self::EXT_QUERY_TAG   => 'AnhNhan\Converge\Modules\Tag\TagQuery',
-            self::EXT_QUERY_USER  => 'AnhNhan\Converge\Modules\People\Query\UserQuery',
+            self::EXT_QUERY_USER  => 'AnhNhan\Converge\Modules\People\Query\PeopleQuery',
         ), $name);
     }
 

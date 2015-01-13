@@ -15,12 +15,12 @@ use AnhNhan\Converge\Modules\Tag\Storage\Tag;
 use AnhNhan\Converge\Modules\Tag\Storage\TagTransaction;
 use AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor;
 
-use AnhNhan\Converge\Modules\User\UserApplication;
-use AnhNhan\Converge\Modules\User\Query\RoleQuery;
-use AnhNhan\Converge\Modules\User\Storage\Email;
-use AnhNhan\Converge\Modules\User\Storage\User;
-use AnhNhan\Converge\Modules\User\Storage\UserTransaction;
-use AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor;
+use AnhNhan\Converge\Modules\People\PeopleApplication;
+use AnhNhan\Converge\Modules\People\Query\RoleQuery;
+use AnhNhan\Converge\Modules\People\Storage\Email;
+use AnhNhan\Converge\Modules\People\Storage\User;
+use AnhNhan\Converge\Modules\People\Storage\UserTransaction;
+use AnhNhan\Converge\Modules\People\Transaction\UserTransactionEditor;
 
 use AnhNhan\Converge\Storage\Transaction\TransactionEntity;
 use AnhNhan\Converge\Storage\Types\UID;
@@ -40,7 +40,7 @@ $tagApp = new TagApplication;
 $tagApp->setContainer($container);
 $tagEm = $tagApp->getEntityManager();
 
-$userApp = new UserApplication;
+$userApp = new PeopleApplication;
 $userApp->setContainer($container);
 $userEm  = $userApp->getEntityManager();
 

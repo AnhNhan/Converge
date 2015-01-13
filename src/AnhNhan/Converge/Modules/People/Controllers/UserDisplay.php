@@ -8,7 +8,7 @@ use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumListing;
 use AnhNhan\Converge\Modules\Forum\Views\Objects\ForumObject;
 use AnhNhan\Converge\Modules\Tag\Views\TagView;
 use AnhNhan\Converge\Modules\Task\Query\TaskQuery;
-use AnhNhan\Converge\Modules\People\Query\UserQuery;
+use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 use AnhNhan\Converge\Modules\People\Storage\User;
 use AnhNhan\Converge\Views\Grid\Grid;
 use AnhNhan\Converge\Views\Panel\Panel;
@@ -27,7 +27,7 @@ final class UserDisplay extends AbstractPeopleController
 
         $req_canon_name = $request->get('name');
 
-        $query = new UserQuery($this->app);
+        $query = new PeopleQuery($this->app);
         $user  = head($query->retrieveUsersForCanonicalNames([$req_canon_name], 1));
 
         if (!$user)

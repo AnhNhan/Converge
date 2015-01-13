@@ -18,6 +18,7 @@ services:
     arguments:
       - cookie_httponly: true
         cookie_lifetime: 15552000 # 180 days
+        name: "ConvergeSession"
       #- @session.storage.handler.default
 
   session.default:
