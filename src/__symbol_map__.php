@@ -300,6 +300,18 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Front/FrontApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
     ),
+    "AnhNhan\Converge\Modules\Log\LogApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Log/LogApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Log\Storage\Request" => array(
+      "file" => "AnhNhan/Converge/Modules/Log/Storage/Request.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Log\Storage\RequestPerformance" => array(
+      "file" => "AnhNhan/Converge/Modules/Log/Storage/RequestPerformance.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
     "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController" => array(
       "file" => "AnhNhan/Converge/Modules/Markup/Controllers/AbstractMarkupController.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -503,6 +515,120 @@ return array(
       "file" => "AnhNhan/Converge/Modules/Newsroom/Transaction/DMAEditor.php",
       "deriv" => "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor",
     ),
+    "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/AbstractUserController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\RoleEditController" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/RoleEditController.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\RoleListingController" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/RoleListingController.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\UserDisplay" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/UserDisplay.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\UserLoginCheck" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/UserLoginCheck.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\UserLoginForm" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/UserLoginForm.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\UserLogout" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/UserLogout.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\UserRegisterController" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Controllers/UserRegisterController.php",
+      "deriv" => "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
+    ),
+    "AnhNhan\Converge\Modules\People\DependencyInjection\SecurityExtension" => array(
+      "file" => "AnhNhan/Converge/Modules/People/DependencyInjection/SecurityExtension.php",
+      "impls" => array(
+        "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\People\DependencyInjection\PeopleExtension" => array(
+      "file" => "AnhNhan/Converge/Modules/People/DependencyInjection/UserExtension.php",
+      "impls" => array(
+        "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\People\Markup\UserMention" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Markup/UserMention.php",
+      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
+    ),
+    "AnhNhan\Converge\Modules\People\PeopleApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/People/PeopleApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\People\Providers\DefaultUserProvider" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Providers/DefaultUserProvider.php",
+      "impls" => array(
+        "Symfony\Component\Security\Core\User\UserProviderInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\People\Providers\UserAuthenticationProvider" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Providers/UserAuthenticationProvider.php",
+      "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
+    ),
+    "AnhNhan\Converge\Modules\People\Query\PeopleQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Query/PeopleQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
+    ),
+    "AnhNhan\Converge\Modules\People\Query\RoleQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Query/RoleQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
+    ),
+    "AnhNhan\Converge\Modules\People\Storage\Email" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Storage/Email.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\People\Storage\OAuthInfo" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Storage/OAuthInfo.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\People\Storage\Role" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Storage/Role.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\People\Storage\RoleTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Storage/RoleTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
+    "AnhNhan\Converge\Modules\People\Storage\User" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Storage/User.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+      "impls" => array(
+        "Symfony\Component\Security\Core\User\AdvancedUserInterface",
+        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
+      ),
+    ),
+    "AnhNhan\Converge\Modules\People\Storage\UserTransaction" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Storage/UserTransaction.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
+    ),
+    "AnhNhan\Converge\Modules\People\Transaction\RoleTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Transaction/RoleTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\Converge\Modules\People\Transaction\UserTransactionEditor" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Transaction/UserTransactionEditor.php",
+      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
+    ),
+    "AnhNhan\Converge\Modules\People\Views\UserPlateView" => array(
+      "file" => "AnhNhan/Converge/Modules/People/Views/UserPlateView.php",
+      "deriv" => "AnhNhan\Converge\Views\AbstractView",
+    ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "file" => "AnhNhan/Converge/Modules/Search/Controllers/Autocomplete.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
@@ -550,6 +676,23 @@ return array(
     "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication" => array(
       "file" => "AnhNhan/Converge/Modules/StaticResources/StaticResourcesApplication.php",
       "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Subscription\Controllers\SubscriptionController" => array(
+      "file" => "AnhNhan/Converge/Modules/Subscriptions/Controllers/SubscriptionController.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
+      "abstr" => "1",
+    ),
+    "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionEntry" => array(
+      "file" => "AnhNhan/Converge/Modules/Subscriptions/Storage/SubscriptionObject.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Subscription\SubscriptionApplication" => array(
+      "file" => "AnhNhan/Converge/Modules/Subscriptions/SubscriptionApplication.php",
+      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
+    ),
+    "AnhNhan\Converge\Modules\Subscription\SubscriptionQuery" => array(
+      "file" => "AnhNhan/Converge/Modules/Subscriptions/SubscriptionQuery.php",
+      "deriv" => "AnhNhan\Converge\Storage\Query",
     ),
     "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
       "file" => "AnhNhan/Converge/Modules/Symbols/Console/AbstractSymbolsCommand.php",
@@ -741,120 +884,6 @@ return array(
     "AnhNhan\Converge\Modules\Task\Transaction\TaskStatusEditor" => array(
       "file" => "AnhNhan/Converge/Modules/Task/Transaction/TaskStatusEditor.php",
       "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/AbstractUserController.php",
-      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplicationController",
-      "abstr" => "1",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\RoleEditController" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/RoleEditController.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\RoleListingController" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/RoleListingController.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\UserDisplay" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserDisplay.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLoginCheck.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLoginForm.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\UserLogout" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserLogout.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\UserRegisterController" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Controllers/UserRegisterController.php",
-      "deriv" => "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
-    ),
-    "AnhNhan\Converge\Modules\User\DependencyInjection\SecurityExtension" => array(
-      "file" => "AnhNhan/Converge/Modules/User/DependencyInjection/SecurityExtension.php",
-      "impls" => array(
-        "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
-      ),
-    ),
-    "AnhNhan\Converge\Modules\User\DependencyInjection\UserExtension" => array(
-      "file" => "AnhNhan/Converge/Modules/User/DependencyInjection/UserExtension.php",
-      "impls" => array(
-        "Symfony\Component\DependencyInjection\Extension\ExtensionInterface",
-      ),
-    ),
-    "AnhNhan\Converge\Modules\User\Markup\UserMention" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Markup/UserMention.php",
-      "deriv" => "AnhNhan\Converge\Modules\Markup\MarkupRule",
-    ),
-    "AnhNhan\Converge\Modules\User\Providers\DefaultUserProvider" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Providers/DefaultUserProvider.php",
-      "impls" => array(
-        "Symfony\Component\Security\Core\User\UserProviderInterface",
-      ),
-    ),
-    "AnhNhan\Converge\Modules\User\Providers\UserAuthenticationProvider" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Providers/UserAuthenticationProvider.php",
-      "deriv" => "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider",
-    ),
-    "AnhNhan\Converge\Modules\User\Query\RoleQuery" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Query/RoleQuery.php",
-      "deriv" => "AnhNhan\Converge\Storage\Query",
-    ),
-    "AnhNhan\Converge\Modules\User\Query\UserQuery" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Query/UserQuery.php",
-      "deriv" => "AnhNhan\Converge\Storage\Query",
-    ),
-    "AnhNhan\Converge\Modules\User\Storage\Email" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Storage/Email.php",
-      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
-    ),
-    "AnhNhan\Converge\Modules\User\Storage\OAuthInfo" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Storage/OAuthInfo.php",
-      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
-    ),
-    "AnhNhan\Converge\Modules\User\Storage\Role" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Storage/Role.php",
-      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
-      "impls" => array(
-        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
-      ),
-    ),
-    "AnhNhan\Converge\Modules\User\Storage\RoleTransaction" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Storage/RoleTransaction.php",
-      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
-    ),
-    "AnhNhan\Converge\Modules\User\Storage\User" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Storage/User.php",
-      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
-      "impls" => array(
-        "Symfony\Component\Security\Core\User\AdvancedUserInterface",
-        "AnhNhan\Converge\Storage\Transaction\TransactionAwareEntityInterface",
-      ),
-    ),
-    "AnhNhan\Converge\Modules\User\Storage\UserTransaction" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Storage/UserTransaction.php",
-      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
-    ),
-    "AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Transaction/RoleTransactionEditor.php",
-      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
-    ),
-    "AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Transaction/UserTransactionEditor.php",
-      "deriv" => "AnhNhan\Converge\Storage\Transaction\TransactionEditor",
-    ),
-    "AnhNhan\Converge\Modules\User\UserApplication" => array(
-      "file" => "AnhNhan/Converge/Modules/User/UserApplication.php",
-      "deriv" => "AnhNhan\Converge\Web\Application\BaseApplication",
-    ),
-    "AnhNhan\Converge\Modules\User\Views\UserPlateView" => array(
-      "file" => "AnhNhan/Converge/Modules/User/Views/UserPlateView.php",
-      "deriv" => "AnhNhan\Converge\Views\AbstractView",
     ),
     "AnhNhan\Converge\Storage\Doctrine\JSONSerializedType" => array(
       "file" => "AnhNhan/Converge/Storage/Doctrine/JSONSerializedType.php",
@@ -1079,6 +1108,10 @@ return array(
     "article_activity_body" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
     "article_activity_class" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
     "channel_activity_label" => "AnhNhan/Converge/Modules/Newsroom/newsroom_utils.php",
+    "create_user_query" => "AnhNhan/Converge/Modules/People/Query/people_query_utils.php",
+    "fetch_external_authors" => "AnhNhan/Converge/Modules/People/Query/people_query_utils.php",
+    "link_user" => "AnhNhan/Converge/Modules/People/people_utils.php",
+    "implode_link_user" => "AnhNhan/Converge/Modules/People/people_utils.php",
     "link_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "link_hashtag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
     "render_tag" => "AnhNhan/Converge/Modules/Tag/tag_utils.php",
@@ -1103,10 +1136,6 @@ return array(
     "task_activity_body" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_activity_class" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
     "task_activity_external_uids" => "AnhNhan/Converge/Modules/Task/Views/task_view_utils.php",
-    "create_user_query" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
-    "fetch_external_authors" => "AnhNhan/Converge/Modules/User/Query/user_query_utils.php",
-    "link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
-    "implode_link_user" => "AnhNhan/Converge/Modules/User/user_utils.php",
     "uid_get_type" => "AnhNhan/Converge/Storage/Types/uid_utils.php",
     "form" => "AnhNhan/Converge/Views/Form/form_rendering.php",
     "form_textcontrol" => "AnhNhan/Converge/Views/Form/form_rendering.php",
@@ -1155,6 +1184,11 @@ return array(
     "ikey" => "AnhNhan/Converge/functions_very_global.php",
     "curry_fa" => "AnhNhan/Converge/functions_very_global.php",
     "curry_la" => "AnhNhan/Converge/functions_very_global.php",
+    "memoize" => "AnhNhan/Converge/functions_very_global.php",
+    "flatten" => "AnhNhan/Converge/functions_very_global.php",
+    "unflatten" => "AnhNhan/Converge/functions_very_global.php",
+    "typeDescr" => "AnhNhan/Converge/functions_very_global.php",
+    "map_apply_instance_method" => "AnhNhan/Converge/functions_very_global.php",
     "arrayDataEvent" => "AnhNhan/Converge/ns.php",
   ),
   "xmap" => array(
@@ -1180,13 +1214,15 @@ return array(
       "AnhNhan\Converge\Modules\Examples\ExamplesApplication",
       "AnhNhan\Converge\Modules\Forum\ForumApplication",
       "AnhNhan\Converge\Modules\Front\FrontApplication",
+      "AnhNhan\Converge\Modules\Log\LogApplication",
       "AnhNhan\Converge\Modules\Markup\MarkupApplication",
       "AnhNhan\Converge\Modules\Newsroom\NewsroomApplication",
+      "AnhNhan\Converge\Modules\People\PeopleApplication",
       "AnhNhan\Converge\Modules\Search\SearchApplication",
       "AnhNhan\Converge\Modules\StaticResources\StaticResourcesApplication",
+      "AnhNhan\Converge\Modules\Subscription\SubscriptionApplication",
       "AnhNhan\Converge\Modules\Tag\TagApplication",
       "AnhNhan\Converge\Modules\Task\TaskApplication",
-      "AnhNhan\Converge\Modules\User\UserApplication",
     ),
     "AnhNhan\Converge\Web\Application\BaseApplicationController" => array(
       "AnhNhan\Converge\Modules\Activity\Controllers\ActivityController",
@@ -1198,12 +1234,13 @@ return array(
       "AnhNhan\Converge\Modules\Front\Controllers\StandardFrontController",
       "AnhNhan\Converge\Modules\Markup\Controllers\AbstractMarkupController",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\NewsroomController",
+      "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController",
       "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete",
       "AnhNhan\Converge\Modules\Search\Controllers\Search",
       "AnhNhan\Converge\Modules\StaticResources\Controllers\AbstractStaticResourceController",
+      "AnhNhan\Converge\Modules\Subscription\Controllers\SubscriptionController",
       "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController",
       "AnhNhan\Converge\Modules\Task\Controllers\AbstractTaskController",
-      "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController",
       "AnhNhan\Converge\Modules\Activity\Controllers\ActivityListing",
       "AnhNhan\Converge\Modules\Draft\Controllers\Draft",
       "AnhNhan\Converge\Modules\Forum\Controllers\Comment",
@@ -1215,6 +1252,13 @@ return array(
       "AnhNhan\Converge\Modules\Markup\Controllers\MarkupTestingController",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ArticleController",
       "AnhNhan\Converge\Modules\Newsroom\Controllers\ChannelController",
+      "AnhNhan\Converge\Modules\People\Controllers\RoleEditController",
+      "AnhNhan\Converge\Modules\People\Controllers\RoleListingController",
+      "AnhNhan\Converge\Modules\People\Controllers\UserDisplay",
+      "AnhNhan\Converge\Modules\People\Controllers\UserLoginCheck",
+      "AnhNhan\Converge\Modules\People\Controllers\UserLoginForm",
+      "AnhNhan\Converge\Modules\People\Controllers\UserLogout",
+      "AnhNhan\Converge\Modules\People\Controllers\UserRegisterController",
       "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
       "AnhNhan\Converge\Modules\Search\Controllers\SearchDiscussion",
       "AnhNhan\Converge\Modules\StaticResources\Controllers\StaticResourceController",
@@ -1227,13 +1271,6 @@ return array(
       "AnhNhan\Converge\Modules\Task\Controllers\TaskDisplay",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskEdit",
       "AnhNhan\Converge\Modules\Task\Controllers\TaskListing",
-      "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
-      "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
-      "AnhNhan\Converge\Modules\User\Controllers\UserDisplay",
-      "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck",
-      "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm",
-      "AnhNhan\Converge\Modules\User\Controllers\UserLogout",
-      "AnhNhan\Converge\Modules\User\Controllers\UserRegisterController",
     ),
     "AnhNhan\Converge\Modules\Activity\Controllers\ActivityController" => array(
       "AnhNhan\Converge\Modules\Activity\Controllers\ActivityListing",
@@ -1243,10 +1280,11 @@ return array(
       "AnhNhan\Converge\Modules\Draft\DraftQuery",
       "AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery",
       "AnhNhan\Converge\Modules\Newsroom\Query\ArticleQuery",
+      "AnhNhan\Converge\Modules\People\Query\PeopleQuery",
+      "AnhNhan\Converge\Modules\People\Query\RoleQuery",
+      "AnhNhan\Converge\Modules\Subscription\SubscriptionQuery",
       "AnhNhan\Converge\Modules\Tag\TagQuery",
       "AnhNhan\Converge\Modules\Task\Query\TaskQuery",
-      "AnhNhan\Converge\Modules\User\Query\RoleQuery",
-      "AnhNhan\Converge\Modules\User\Query\UserQuery",
     ),
     "AnhNhan\Converge\Storage\EntityDefinition" => array(
       "AnhNhan\Converge\Modules\Activity\Storage\RecordedActivity",
@@ -1255,10 +1293,18 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\DiscussionTag",
       "AnhNhan\Converge\Modules\Forum\Storage\ForumComment",
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
+      "AnhNhan\Converge\Modules\Log\Storage\Request",
+      "AnhNhan\Converge\Modules\Log\Storage\RequestPerformance",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleAuthor",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTag",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Channel",
+      "AnhNhan\Converge\Modules\People\Storage\Email",
+      "AnhNhan\Converge\Modules\People\Storage\OAuthInfo",
+      "AnhNhan\Converge\Modules\People\Storage\Role",
+      "AnhNhan\Converge\Modules\People\Storage\User",
+      "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionEntry",
+      "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionEntry",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
       "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
@@ -1266,10 +1312,6 @@ return array(
       "AnhNhan\Converge\Modules\Task\Storage\TaskRelation",
       "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
       "AnhNhan\Converge\Modules\Task\Storage\TaskTag",
-      "AnhNhan\Converge\Modules\User\Storage\Email",
-      "AnhNhan\Converge\Modules\User\Storage\OAuthInfo",
-      "AnhNhan\Converge\Modules\User\Storage\Role",
-      "AnhNhan\Converge\Modules\User\Storage\User",
       "AnhNhan\Converge\Storage\Transaction\TransactionEntity",
       "AnhNhan\Converge\Modules\Newsroom\Storage\DumbMarkdownArticle",
       "AnhNhan\Converge\Modules\Task\Storage\TaskBlocker",
@@ -1279,12 +1321,12 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction",
+      "AnhNhan\Converge\Modules\People\Storage\RoleTransaction",
+      "AnhNhan\Converge\Modules\People\Storage\UserTransaction",
       "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
-      "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
-      "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
     ),
     "AnhNhan\Converge\Console\ConsoleCommand" => array(
       "AnhNhan\Converge\Modules\Database\Command\AbstractDbCommand",
@@ -1327,12 +1369,12 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\PostTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ArticleTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\ChannelTransaction",
+      "AnhNhan\Converge\Modules\People\Storage\RoleTransaction",
+      "AnhNhan\Converge\Modules\People\Storage\UserTransaction",
       "AnhNhan\Converge\Modules\Tag\Storage\TagTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriorityTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskStatusTransaction",
       "AnhNhan\Converge\Modules\Task\Storage\TaskTransaction",
-      "AnhNhan\Converge\Modules\User\Storage\RoleTransaction",
-      "AnhNhan\Converge\Modules\User\Storage\UserTransaction",
       "AnhNhan\Converge\Modules\Newsroom\Storage\DMArticleTransaction",
     ),
     "AnhNhan\Converge\Storage\Transaction\TransactionEditor" => array(
@@ -1341,12 +1383,12 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor",
       "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor",
       "AnhNhan\Converge\Modules\Newsroom\Transaction\ChannelEditor",
+      "AnhNhan\Converge\Modules\People\Transaction\RoleTransactionEditor",
+      "AnhNhan\Converge\Modules\People\Transaction\UserTransactionEditor",
       "AnhNhan\Converge\Modules\Tag\Transaction\TagTransactionEditor",
       "AnhNhan\Converge\Modules\Task\Transaction\TaskEditor",
       "AnhNhan\Converge\Modules\Task\Transaction\TaskPriorityEditor",
       "AnhNhan\Converge\Modules\Task\Transaction\TaskStatusEditor",
-      "AnhNhan\Converge\Modules\User\Transaction\RoleTransactionEditor",
-      "AnhNhan\Converge\Modules\User\Transaction\UserTransactionEditor",
       "AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor",
     ),
     "League\Fractal\TransformerAbstract" => array(
@@ -1360,8 +1402,8 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Views\Display\ForumDisplayObject",
       "AnhNhan\Converge\Modules\Forum\Views\Display\TagAction",
       "AnhNhan\Converge\Modules\Forum\Views\Display\TextChangeAction",
+      "AnhNhan\Converge\Modules\People\Views\UserPlateView",
       "AnhNhan\Converge\Modules\Tag\Views\TagView",
-      "AnhNhan\Converge\Modules\User\Views\UserPlateView",
       "AnhNhan\Converge\Views\Form\FormView",
       "AnhNhan\Converge\Views\Grid\Column",
       "AnhNhan\Converge\Views\Grid\Grid",
@@ -1441,15 +1483,15 @@ return array(
     "PhutilRemarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\MarkupRule",
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+      "AnhNhan\Converge\Modules\People\Markup\UserMention",
       "AnhNhan\Converge\Modules\Tag\Markup\TagMention",
       "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
-      "AnhNhan\Converge\Modules\User\Markup\UserMention",
     ),
     "AnhNhan\Converge\Modules\Markup\MarkupRule" => array(
       "AnhNhan\Converge\Modules\Markup\TemplateMarkupRule",
+      "AnhNhan\Converge\Modules\People\Markup\UserMention",
       "AnhNhan\Converge\Modules\Tag\Markup\TagMention",
       "AnhNhan\Converge\Modules\Task\Markup\TaskEntity",
-      "AnhNhan\Converge\Modules\User\Markup\UserMention",
       "AnhNhan\Converge\Modules\Markup\Markup\AsianText",
       "AnhNhan\Converge\Modules\Markup\Markup\SoundCloudEmbedTrack",
       "AnhNhan\Converge\Modules\Newsroom\Markup\CenterText",
@@ -1487,6 +1529,18 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Newsroom\Transaction\ArticleEditor" => array(
       "AnhNhan\Converge\Modules\Newsroom\Transaction\DMAEditor",
+    ),
+    "AnhNhan\Converge\Modules\People\Controllers\AbstractPeopleController" => array(
+      "AnhNhan\Converge\Modules\People\Controllers\RoleEditController",
+      "AnhNhan\Converge\Modules\People\Controllers\RoleListingController",
+      "AnhNhan\Converge\Modules\People\Controllers\UserDisplay",
+      "AnhNhan\Converge\Modules\People\Controllers\UserLoginCheck",
+      "AnhNhan\Converge\Modules\People\Controllers\UserLoginForm",
+      "AnhNhan\Converge\Modules\People\Controllers\UserLogout",
+      "AnhNhan\Converge\Modules\People\Controllers\UserRegisterController",
+    ),
+    "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
+      "AnhNhan\Converge\Modules\People\Providers\UserAuthenticationProvider",
     ),
     "AnhNhan\Converge\Modules\Search\Controllers\Autocomplete" => array(
       "AnhNhan\Converge\Modules\Search\Controllers\AutocompleteTags",
@@ -1528,18 +1582,6 @@ return array(
     "AnhNhan\Converge\Modules\Task\Storage\TaskRelation" => array(
       "AnhNhan\Converge\Modules\Task\Storage\TaskBlocker",
       "AnhNhan\Converge\Modules\Task\Storage\TaskSubTask",
-    ),
-    "AnhNhan\Converge\Modules\User\Controllers\AbstractUserController" => array(
-      "AnhNhan\Converge\Modules\User\Controllers\RoleEditController",
-      "AnhNhan\Converge\Modules\User\Controllers\RoleListingController",
-      "AnhNhan\Converge\Modules\User\Controllers\UserDisplay",
-      "AnhNhan\Converge\Modules\User\Controllers\UserLoginCheck",
-      "AnhNhan\Converge\Modules\User\Controllers\UserLoginForm",
-      "AnhNhan\Converge\Modules\User\Controllers\UserLogout",
-      "AnhNhan\Converge\Modules\User\Controllers\UserRegisterController",
-    ),
-    "Symfony\Component\Security\Core\Authentication\Provider\UserAuthenticationProvider" => array(
-      "AnhNhan\Converge\Modules\User\Providers\UserAuthenticationProvider",
     ),
     "Doctrine\DBAL\Types\Type" => array(
       "AnhNhan\Converge\Storage\Doctrine\JSONSerializedType",
@@ -1597,26 +1639,26 @@ return array(
       "AnhNhan\Converge\Modules\Forum\Storage\Post",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Article",
       "AnhNhan\Converge\Modules\Newsroom\Storage\Channel",
+      "AnhNhan\Converge\Modules\People\Storage\Role",
+      "AnhNhan\Converge\Modules\People\Storage\User",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
       "AnhNhan\Converge\Modules\Task\Storage\TaskPriority",
       "AnhNhan\Converge\Modules\Task\Storage\TaskStatus",
-      "AnhNhan\Converge\Modules\User\Storage\Role",
-      "AnhNhan\Converge\Modules\User\Storage\User",
+    ),
+    "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
+      "AnhNhan\Converge\Modules\People\DependencyInjection\SecurityExtension",
+      "AnhNhan\Converge\Modules\People\DependencyInjection\PeopleExtension",
+    ),
+    "Symfony\Component\Security\Core\User\UserProviderInterface" => array(
+      "AnhNhan\Converge\Modules\People\Providers\DefaultUserProvider",
+    ),
+    "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
+      "AnhNhan\Converge\Modules\People\Storage\User",
     ),
     "Doctrine\Common\EventSubscriber" => array(
       "AnhNhan\Converge\Modules\Task\Doctrine\LifeCycleTaskRelationXActSerializer",
       "AnhNhan\Converge\Storage\Doctrine\LifeCycleUIDGenerator",
-    ),
-    "Symfony\Component\DependencyInjection\Extension\ExtensionInterface" => array(
-      "AnhNhan\Converge\Modules\User\DependencyInjection\SecurityExtension",
-      "AnhNhan\Converge\Modules\User\DependencyInjection\UserExtension",
-    ),
-    "Symfony\Component\Security\Core\User\UserProviderInterface" => array(
-      "AnhNhan\Converge\Modules\User\Providers\DefaultUserProvider",
-    ),
-    "Symfony\Component\Security\Core\User\AdvancedUserInterface" => array(
-      "AnhNhan\Converge\Modules\User\Storage\User",
     ),
     "Symfony\Component\Routing\Matcher\RequestMatcherInterface" => array(
       "AnhNhan\Converge\Web\AppRouting",

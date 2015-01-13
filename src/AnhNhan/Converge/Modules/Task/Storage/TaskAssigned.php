@@ -1,7 +1,7 @@
 <?php
 namespace AnhNhan\Converge\Modules\Task\Storage;
 
-use AnhNhan\Converge\Modules\User\Storage\User;
+use AnhNhan\Converge\Modules\People\Storage\User;
 use AnhNhan\Converge\Storage\EntityDefinition;
 use AnhNhan\Converge\Storage\Types\UID;
 

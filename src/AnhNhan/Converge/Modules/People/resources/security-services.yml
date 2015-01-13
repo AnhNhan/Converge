@@ -1,0 +1,84 @@
+
+parameters:
+  security.hide_user_not_found_exception: false
+  security.erase_credentials: true
+  security.always_authenticate: false
+  security.class.anonymous: stdClass
+  security.class.rememberme: stdClass
+  security.accessdecision.voter.role.default.prefix: ROLE_
+  security.accessdecision.strategy: unanimous
+
+services:
+
+  security.user.userchecker:
+    class: Symfony\Component\Security\Core\People\UserChecker
+    public: false
+
+  security.encoder.bcrypt:
+    class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder
+    public: false
+    arguments: [13]
+
+  security.encoder.factory:
+    class: Symfony\Component\Security\Core\Encoder\EncoderFactory
+    arguments:
+      - AnhNhan\Converge\Modules\People\Storage\User: "@security.encoder.bcrypt"
+
+  security.authentication.provider.default:
+    class: AnhNhan\Converge\Modules\People\Providers\UserAuthenticationProvider
+    public: false
+    arguments:
+      - "@security.user.userchecker"
+      - "%security.provider_key%"
+      - "%security.hide_user_not_found_exception%"
+    calls:
+      - [ setPasswordEncoderFactory, ["@security.encoder.factory"] ]
+      - [ setEntityManager, ["@application.user.entitymanager"] ]
+
+  security.authentication.manager.default:
+    class: Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager
+    public: false
+    arguments:
+      -
+        - "@security.authentication.provider.default"
+      - "%security.erase_credentials%"
+    calls:
+      - [ setEventDispatcher, [ @event_dispatcher ] ]
+
+  security.authentication.trustresolver.default:
+    class: Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver
+    public: false
+    arguments:
+      - "%security.class.anonymous%"
+      - "%security.class.rememberme%"
+
+  security.accessdecision.voter.authorized.default:
+    class: Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter
+    public: false
+    arguments:
+      - "@security.authentication.trustresolver.default"
+
+  security.accessdecision.voter.role.default:
+    class: Symfony\Component\Security\Core\Authorization\Voter\RoleVoter
+    public: false
+    arguments:
+      - "%security.accessdecision.voter.role.default.prefix%"
+
+  security.accessdecision.manager.default:
+    class: Symfony\Component\Security\Core\Authorization\AccessDecisionManager
+    public: false
+    arguments:
+      -
+        - "@security.accessdecision.voter.authorized.default"
+        - "@security.accessdecision.voter.role.default"
+      - "%security.accessdecision.strategy%"
+
+  security.context.default:
+    class: Symfony\Component\Security\Core\SecurityContext
+    arguments:
+      - "@security.authentication.manager.default"
+      - "@security.accessdecision.manager.default"
+      - "%security.always_authenticate%"
+
+  security.context:
+    alias: security.context.default

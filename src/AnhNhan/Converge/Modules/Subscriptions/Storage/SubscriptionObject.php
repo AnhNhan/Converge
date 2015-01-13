@@ -18,7 +18,7 @@ class SubscriptionEntry extends EntityDefinition
     private $subscriber_uid;
 
     /**
-     * @var \AnhNhan\Converge\Modules\User\Storage\User
+     * @var \AnhNhan\Converge\Modules\People\Storage\User
      */
     private $subscriber_object;
 
@@ -48,7 +48,7 @@ class SubscriptionEntry extends EntityDefinition
         return $this->subscriber_object;
     }
 
-    public function setSubscriber(\AnhNhan\Converge\Modules\User\Storage\User $subscriber_object)
+    public function setSubscriber(\AnhNhan\Converge\Modules\People\Storage\User $subscriber_object)
     {
         $this->subscriber_object = $subscriber_object;
         return $this;

@@ -2,8 +2,8 @@
 namespace AnhNhan\Converge\Views\Page;
 
 use AnhNhan\Converge as cv;
-use AnhNhan\Converge\Modules\User\Storage\User;
-use AnhNhan\Converge\Modules\User\Views\UserPlateView;
+use AnhNhan\Converge\Modules\People\Storage\User;
+use AnhNhan\Converge\Modules\People\Views\UserPlateView;
 use AnhNhan\Converge\Views\AbstractView;
 
 /**

@@ -36,7 +36,7 @@ class ForumComment extends EntityDefinition implements TransactionAwareEntityInt
     private $author;
 
     /**
-     * @var \AnhNhan\Converge\Modules\User\Storage\User
+     * @var \AnhNhan\Converge\Modules\People\Storage\User
      */
     private $author_object;
 
@@ -88,7 +88,7 @@ class ForumComment extends EntityDefinition implements TransactionAwareEntityInt
         return $this->author_object;
     }
 
-    public function setAuthor(\AnhNhan\Converge\Modules\User\Storage\User $author_object)
+    public function setAuthor(\AnhNhan\Converge\Modules\People\Storage\User $author_object)
     {
         $this->author_object = $author_object;
         return $this;

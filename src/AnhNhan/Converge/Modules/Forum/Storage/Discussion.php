@@ -39,7 +39,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
     private $author;
 
     /**
-     * @var \AnhNhan\Converge\Modules\User\Storage\User
+     * @var \AnhNhan\Converge\Modules\People\Storage\User
      */
     private $author_object;
 
@@ -125,7 +125,7 @@ class Discussion extends EntityDefinition implements TransactionAwareEntityInter
         return $this->author_object;
     }
 
-    public function setAuthor(\AnhNhan\Converge\Modules\User\Storage\User $author_object)
+    public function setAuthor(\AnhNhan\Converge\Modules\People\Storage\User $author_object)
     {
         $this->author_object = $author_object;
         return $this;

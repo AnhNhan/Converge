@@ -65,9 +65,9 @@ abstract class Query
     {
         return idx(array(
             self::EXT_QUERY_FORUM => 'AnhNhan\Converge\Modules\Forum\Query\DiscussionQuery',
-            self::EXT_QUERY_ROLE  => 'AnhNhan\Converge\Modules\User\Query\RoleQuery',
+            self::EXT_QUERY_ROLE  => 'AnhNhan\Converge\Modules\People\Query\RoleQuery',
             self::EXT_QUERY_TAG   => 'AnhNhan\Converge\Modules\Tag\TagQuery',
-            self::EXT_QUERY_USER  => 'AnhNhan\Converge\Modules\User\Query\UserQuery',
+            self::EXT_QUERY_USER  => 'AnhNhan\Converge\Modules\People\Query\UserQuery',
         ), $name);
     }
 

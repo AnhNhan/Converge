@@ -110,7 +110,7 @@ final class Core
         $container = new $className;
         $container->set(
             "application.user",
-            id(new \AnhNhan\Converge\Modules\User\UserApplication)->setContainer($container)
+            id(new \AnhNhan\Converge\Modules\People\PeopleApplication)->setContainer($container)
         );
 
         return $container;
