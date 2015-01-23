@@ -1,4 +1,0 @@
-class_name: UserCodeGuy
-modules:
-    enabled:
-      - CodeHelper
