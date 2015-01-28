@@ -4,14 +4,12 @@ namespace AnhNhan\Converge\Infrastructure;
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-trait MagicGetter
+trait MagicProperty
 {
-    // Magic properties :)
-    // $this->app instead of $this->app()
     public function __get($name)
     {
-        if (method_exists($this, $name)) {
-            return $this->$name();
+        if (property_exists($this, $name)) {
+            return $this->$name;
         }
 
         throw new \RunTimeException(sprintf(
