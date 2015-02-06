@@ -52,7 +52,7 @@ final class ApplicationList
     public function app($name)
     {
         if (!isset($this->apps[$name])) {
-            throw new \Exeption("App '$name' does not exist!");
+            throw new \Exception("App '$name' does not exist!");
         }
         return $this->apps[$name];
     }
