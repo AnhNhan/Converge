@@ -13,7 +13,7 @@ abstract class AbstractForumController extends BaseApplicationController
     {
         $query = new DiscussionQuery($this->app);
         $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_TAG, $this->externalApp('tag'));
-        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('user'));
+        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('people'));
         return $query;
     }
 }

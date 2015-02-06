@@ -97,7 +97,7 @@ final class Dashboard extends BaseApplicationController
     {
         $query = new DiscussionQuery($this->externalApp('forum'));
         $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_TAG, $this->externalApp('tag'));
-        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('user'));
+        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('people'));
         return $query;
     }
 
