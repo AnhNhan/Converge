@@ -26,6 +26,39 @@ final class UserRegisterController extends AbstractPeopleController
 {
     public function handle()
     {
+        $em = $this->app->getEntityManager();
+        $roleQuery = new RoleQuery($em);
+        $role      = idx($roleQuery->retrieveRolesForNames(['ROLE_USER'], 1), 0);
+
+        if (!$role)
+        {
+            $payload = $this->payload_html;
+            $payload->setTitle('Application not installed yet');
+            $payload->setPayloadContents(
+                (new MarkupContainer)
+                    ->push(h2('The application is not installed yet.'))
+                    ->push(cv\ht('p', cv\safeHtml(<<<EOT
+<div style="max-width: 600px;">
+<p>
+    The application operator has not configured this application and run through
+    the installation procedure yet. This means we can not enable user
+    registrations yet.
+</p>
+<p>
+    If you have the authority, are brave and know what you are doing, please
+    navigate with the command line to the application directory on the server,
+    and type
+</p>
+<p>
+    <code>php scripts/install.php</code>
+</p>
+</div>
+EOT
+)))
+            );
+            return $payload;
+        }
+
         $request = $this->request;
         $requestMethod = $request->getMethod();
 
@@ -61,7 +94,6 @@ final class UserRegisterController extends AbstractPeopleController
                 $errors[] = 'You ain\'t a bot. Please choose a different name.';
             }
 
-            $em = $this->app->getEntityManager();
             $query = new PeopleQuery($em);
 
             $_user  = $query->retrieveUsersForCanonicalNames([$canon_name], 1);
@@ -108,8 +140,6 @@ final class UserRegisterController extends AbstractPeopleController
                 $pw               = $pwEncoder->encodePassword($password, $salt);
                 $xact_pw          = $salt . UserTransactionEditor::SALT_PW_SEPARATOR . $pw;
 
-                $roleQuery = new RoleQuery($em);
-                $role      = idx($roleQuery->retrieveRolesForNames(['ROLE_USER'], 1), 0);
                 if (!$role)
                 {
                     //throw new \LogicException('Something\'s terribly wrong here. Seeded default roles?');
@@ -131,9 +161,9 @@ final class UserRegisterController extends AbstractPeopleController
                     ->addTransaction(
                         UserTransaction::create(UserTransaction::TYPE_ADD_EMAIL, $email)
                     )
-                    //->addTransaction(
-                    //    UserTransaction::create(UserTransaction::TYPE_ADD_ROLE, $role->uid)
-                    //)
+                    ->addTransaction(
+                        UserTransaction::create(UserTransaction::TYPE_ADD_ROLE, $role->uid)
+                    )
                 ;
 
                 $em->beginTransaction();
