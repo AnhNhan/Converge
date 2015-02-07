@@ -3,7 +3,7 @@ namespace AnhNhan\Converge\Modules\People\Providers;
 
 use AnhNhan\Converge\Modules\People\Query\PeopleQuery;
 use AnhNhan\Converge\Modules\People\Storage\User;
-use AnhNhan\Converge\Modules\People\UserApplication;
+use AnhNhan\Converge\Modules\People\PeopleApplication;
 
 use Doctrine\ORM\EntityManager;
 
@@ -38,7 +38,7 @@ class UserAuthenticationProvider extends BaseUserAuthenticationProvider
 
     const USER_ENTITY_TYPE_NAME = "AnhNhan\Converge\Modules\People\Storage\User";
 
-    public function setUserApplication(UserApplication $userApp)
+    public function setPeopleApplication(PeopleApplication $userApp)
     {
         $this->setEntityManager($userApp->getEntityManager());
         return $this;

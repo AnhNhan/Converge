@@ -1,8 +1,6 @@
 <?php
 namespace AnhNhan\Converge\Modules\People\DependencyInjection;
 
-use AnhNhan\Converge\Modules\People\UserApplication;
-
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;

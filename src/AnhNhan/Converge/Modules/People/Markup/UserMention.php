@@ -2,7 +2,7 @@
 namespace AnhNhan\Converge\Modules\People\Markup;
 
 use AnhNhan\Converge as cv;
-use AnhNhan\Converge\Modules\People\UserApplication;
+use AnhNhan\Converge\Modules\People\PeopleApplication;
 use AnhNhan\Converge\Modules\People\Storage\User;
 use AnhNhan\Converge\Modules\Markup\MarkupRule;
 
@@ -17,7 +17,7 @@ final class UserMention extends MarkupRule
 
     private $query;
 
-    public function __construct(UserApplication $app)
+    public function __construct(PeopleApplication $app)
     {
         $this->query = create_user_query($app);
     }
