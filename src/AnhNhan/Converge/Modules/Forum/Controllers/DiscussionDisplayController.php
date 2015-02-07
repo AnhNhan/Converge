@@ -53,8 +53,8 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $posts = mkey($query->retrivePostsForDiscussion($disq), 'uid');
         $merged = array_merge($posts, [$disq]);
-        $merged = array_mergev(array_map(function ($obj) { return array_merge([$obj], $obj->comments->toArray()); }, $merged));
-        fetch_external_authors($merged, create_user_query($this->externalApp('user')));
+        $merged = flat_map($merged, function ($obj) { return array_merge([$obj], $obj->comments->toArray()); });
+        fetch_external_authors($merged, create_user_query($this->externalApp('people')));
         $query->fetchExternalsForDiscussions([$disq]);
 
         return [

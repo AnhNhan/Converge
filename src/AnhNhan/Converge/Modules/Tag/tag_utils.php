@@ -71,7 +71,7 @@ function fetch_external_tags(array $assoc_tags, TagQuery $query, $id_field = 'ta
 
     try
     {
-        pull($assoc_tags, function ($assoc_tag) { return $assoc_tag->tag_field; });
+        map(function ($assoc_tag) { return $assoc_tag->tag_field; }, $assoc_tags);
         // We could successfully traverse the whole array - we have all loaded
         return;
     }

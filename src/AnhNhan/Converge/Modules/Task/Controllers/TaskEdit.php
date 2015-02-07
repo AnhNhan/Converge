@@ -49,7 +49,7 @@ final class TaskEdit extends AbstractTaskController
         $tasks = $parent_tasks;
         $tasks[] = $task;
 
-        $user_query = create_user_query($this->externalApp('user'));
+        $user_query = create_user_query($this->externalApp('people'));
         fetch_external_authors(array_mergev(mpull($tasks, 'assigned')), $user_query, 'userId', 'setUser', 'user');
         $query->fetchExternalTags($tasks);
 

@@ -53,19 +53,19 @@ final class TaskDisplay extends AbstractTaskController
         $external_status = $external_status_uids ? $query->retrieveTaskStatusForUids($external_status_uids) : [];
         $external_priorities = $external_priority_uids ? $query->retrieveTaskPriorityForUids($external_priority_uids) : [];
 
-        $user_query = create_user_query($this->externalApp('user'));
+        $user_query = create_user_query($this->externalApp('people'));
         $user_uids = mpull($transactions, 'actorId');
         $user_uids = array_merge($user_uids, $external_user_uids);
         $user_uids[] = $task->authorId;
-        pull($task->assigned, function ($assigned) use (&$user_uids) { $user_uids[] = $assigned->userId; });
+        map(function ($assigned) use (&$user_uids) { $user_uids[] = $assigned->userId; }, $task->assigned);
         $user_objects = $user_query->retrieveUsersForUIDs($user_uids);
 
         $task->setAuthor(idx($user_objects, $task->authorId));
-        pull($task->assigned, function ($assigned) use ($user_objects) { $assigned->setUser(idx($user_objects, $assigned->userId)); });
+        map(function ($assigned) use ($user_objects) { $assigned->setUser(idx($user_objects, $assigned->userId)); }, $task->assigned);
 
         $tag_query = create_tag_query($this->externalApp('tag'));
         $tags = mkey($tag_query->retrieveTagsForIDs(array_merge(mpull($task->tags->toArray(), 'tagId'), $external_tag_uids)), 'uid');
-        pull($task->tags, function ($assoc_tag) use ($tags) { $assoc_tag->setTag(idx($tags, $assoc_tag->tagId)); });
+        map(function ($assoc_tag) use ($tags) { $assoc_tag->setTag(idx($tags, $assoc_tag->tagId)); }, $task->tags);
 
         $custom_rules = get_custom_markup_rules($this->app->getService('app.list'));
 

@@ -20,7 +20,7 @@ final class DisplayTest extends ArticleController
         $container = new MarkupContainer;
         $payload->setPayloadContents($container);
 
-        $user_query = create_user_query($this->externalApp('user'));
+        $user_query = create_user_query($this->externalApp('people'));
         $user  = head($user_query->retrieveUsersForCanonicalNames(['anhnhan'], 1));
         $author_link = strong(link_user($user));
 

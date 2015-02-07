@@ -14,9 +14,11 @@ function to_slug($name)
 function ascii_non_w_replace($str, $replace_with = '', $combine_replaced = true)
 {
     // Also replace underscores explicitly, they usually are considered
-    // towards the alphanumerical characters.
+    // towards word characters.
     // We disallow any multibyte characters - we may exempt certain character
     // ranges like CJK and arabian characters later on by white-listing them.
+    // Also characters like â or é don't get normalized, but deleted. We will
+    // prefer normalization. Thank you.
     $_str = phutil_utf8v($str);
     $callback = function ($x) use ($replace_with)
     {
@@ -35,7 +37,7 @@ function ascii_non_w_replace($str, $replace_with = '', $combine_replaced = true)
 
 function group($list, callable $predicate)
 {
-    $map = pull($list, $predicate);
+    $map = array_map($predicate, $list);
 
     $groups = [];
     // Pre-allocate groups
@@ -52,7 +54,8 @@ function group($list, callable $predicate)
     return $groups;
 }
 
-function pull($list, callable $value_predicate)
+/// Maps over any iterable value. Like array_map, but is not restricted to arrays.
+function map(callable $value_predicate, $list)
 {
     $result = [];
     foreach ($list as $key => $value)
@@ -229,4 +232,9 @@ function map_apply_instance_method($method_name, array $params = [])
 
         return call_user_method_array($method_name, $obj, $params);
     };
+}
+
+function flat_map(array $array, callable $fun)
+{
+    return array_mergev(array_map($fun, $array));
 }

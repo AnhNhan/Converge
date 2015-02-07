@@ -103,10 +103,10 @@ final class DiscussionListingController extends AbstractForumController
         $offset = $this->pageNr * $this->settings['page-size'];
         $disqs = $this->fetchDiscussions($this->settings['page-size'], $offset);
 
-        $tags = ikey(array_mergev(pull($disqs, function ($disq)
+        $tags = ikey(array_mergev(map(function ($disq)
         {
             return mpull(mpull($disq->tags->toArray(), 'tag'), 'toDictionary');
-        })), 'uid');
+        }, $disqs)), 'uid');
 
         $fractal = new Fractal\Manager;
         $resource = new Fractal\Resource\Collection($disqs, new DiscussionTransformer($tags));

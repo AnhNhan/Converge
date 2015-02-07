@@ -13,7 +13,7 @@ abstract class NewsroomController extends BaseApplicationController
     {
         $query = new ArticleQuery($this->app);
         $query->addExternalQueryFromApplication(ArticleQuery::EXT_QUERY_TAG, $this->externalApp('tag'));
-        $query->addExternalQueryFromApplication(ArticleQuery::EXT_QUERY_USER, $this->externalApp('user'));
+        $query->addExternalQueryFromApplication(ArticleQuery::EXT_QUERY_USER, $this->externalApp('people'));
         return $query;
     }
 }

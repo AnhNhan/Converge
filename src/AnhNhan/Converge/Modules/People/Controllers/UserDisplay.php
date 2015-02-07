@@ -83,12 +83,12 @@ final class UserDisplay extends AbstractPeopleController
 
         $external_user_uids = idx($grouped_external_uids, 'USER', []);
         $external_user_objects = $query->retrieveUsersForUIDs($external_user_uids);
-        pull($disqs, function ($disq) use ($external_user_objects) { $disq->setAuthor(idx($external_user_objects, $disq->authorId)); });
-        pull($assigned_objs, function ($assigned) use ($external_user_objects) { $assigned->setUser(idx($external_user_objects, $assigned->userId)); });
-        pull($activities, function ($activity) use ($external_user_objects) { $activity->actor_object = idx($external_user_objects, $activity->actor_uid); });
+        map(function ($disq) use ($external_user_objects) { $disq->setAuthor(idx($external_user_objects, $disq->authorId)); }, $disqs);
+        map(function ($assigned) use ($external_user_objects) { $assigned->setUser(idx($external_user_objects, $assigned->userId)); }, $assigned_objs);
+        map(function ($activity) use ($external_user_objects) { $activity->actor_object = idx($external_user_objects, $activity->actor_uid); }, $activities);
 
         $tag_query = create_tag_query($this->externalApp('tag'));
-        fetch_external_tags(array_mergev(pull(array_mergev($tasks), function ($x) {return $x->tags->toArray();}), pull($disqs, function ($x) {return $x->tags->toArray();})), $tag_query);
+        fetch_external_tags(array_mergev(map(function ($x) {return $x->tags->toArray();}, array_mergev($tasks)), map(function ($x) {return $x->tags->toArray();}, $disqs)), $tag_query);
 
         $disqQuery->fetchExternalsForDiscussions($disqs);
         $postCounts = $disqQuery->fetchPostCountsForDiscussions($disqs);
@@ -122,7 +122,7 @@ final class UserDisplay extends AbstractPeopleController
     {
         $query = new DiscussionQuery($this->externalApp('forum'));
         $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_TAG, $this->externalApp('tag'));
-        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('user'));
+        $query->addExternalQueryFromApplication(DiscussionQuery::EXT_QUERY_USER, $this->externalApp('people'));
         return $query;
     }
 

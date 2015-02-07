@@ -55,7 +55,7 @@ final class ArticleListing extends ArticleController
             $header->push(cv\ht('div')->addClass('clearfix'));
 
             // mkey as a fancy unique function
-            $channel_authors = mkey(array_mergev(pull($_articles, function ($article) { return mpull($article->authors->toArray(), 'user'); })), 'uid');
+            $channel_authors = mkey(array_mergev(map(function ($article) { return mpull($article->authors->toArray(), 'user'); }, $_articles)), 'uid');
 
             $midriff = $panel->midriff();
             if (count($_articles))

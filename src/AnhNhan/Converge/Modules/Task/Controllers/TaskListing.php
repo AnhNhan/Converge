@@ -35,7 +35,7 @@ final class TaskListing extends AbstractTaskController
             }
         }
 
-        $user_query = create_user_query($this->externalApp('user'));
+        $user_query = create_user_query($this->externalApp('people'));
         $assigned_objs = mpull($tasks, 'assigned');
         $parent_task and $assigned_objs[] = $parent_task->assigned;
         $assigned_objs = array_mergev($assigned_objs);

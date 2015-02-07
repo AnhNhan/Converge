@@ -208,7 +208,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
         {
             $tasks = mpull($task->$_access->toArray(), $task_property);
             $sorted = msort($tasks, 'closed');
-            $blockers = pull($sorted, function ($a_task) use ($task, $type, $task_property, $authenticated)
+            $blockers = map(function ($a_task) use ($task, $type, $task_property, $authenticated)
             {
                 $contents = phutil_utf8_shorten($a_task->label, 40);
                 $is_shortened = $contents != $a_task->label;
@@ -253,7 +253,7 @@ function render_task(Task $task, $authenticated, $full_view = true)
                 }
 
                 return $group;
-            });
+            }, $sorted);
             $mid_container->addEntry($_label, implode_safeHtml(' ', array_map('strong', $blockers)));
         }
     }

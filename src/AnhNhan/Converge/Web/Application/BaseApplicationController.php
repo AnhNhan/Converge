@@ -81,14 +81,14 @@ abstract class BaseApplicationController
         $roles = $user->roles;
         $not_included = [];
         // Using pull here and all later, so we can construct error messages
-        $result = pull($required_roles, function ($role) use ($roles, &$not_included) {
+        $result = map(function ($role) use ($roles, &$not_included) {
             $result = isset($roles[$role]);
             if (!$result)
             {
                 $not_included[] = $role;
             }
             return $result;
-        });
+        }, $required_roles);
         if (!all($result))
         {
             throw new \Exception('You require the following roles: ' . implode(', ', $not_included));

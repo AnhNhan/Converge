@@ -62,7 +62,7 @@ final class DMAEdit extends ArticleController
             return (new ResponseHtml404)->setText(cv\hsprintf('The channel <em>%s</em> is not the channel you are looking for!', $channel_id));
         }
         $orig_authors = $article->authors ? $article->authors->toArray() : [];
-        $user_query = create_user_query($this->externalApp('user'));
+        $user_query = create_user_query($this->externalApp('people'));
         $query->fetchExternalsForArticles([$article]);
 
         $art_uid = $article->uid;
