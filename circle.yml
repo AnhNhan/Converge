@@ -2,3 +2,7 @@
 machine:
   php:
     version: 5.4.21
+
+test:
+  override:
+    - phpunit --log-junit $CIRCLE_TEST_REPORTS/junit.xml --coverage-clover $CIRCLE_ARTIFACTS/clover.xml
