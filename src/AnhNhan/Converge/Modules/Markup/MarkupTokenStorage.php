@@ -19,7 +19,7 @@ final class MarkupTokenStorage
 
     public function __call($method_name, array $args)
     {
-        return call_user_method_array($method_name, $this->block_storage, $args);
+        return call_user_func_array([$this->block_storage, $method_name], $args);
     }
 
     public function addTokenToSet($set_name, $token, array $metadata = [])
