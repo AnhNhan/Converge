@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.3
   - 5.4
   - 5.5
   - 5.6
@@ -9,7 +8,7 @@ php:
 
 before_script:
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev -v
+  - composer install --prefer-source --no-interaction -v
   - mkdir -p build/logs
 
 script:
