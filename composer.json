@@ -1,7 +1,7 @@
 {
     "name": "anhnhan/converge",
     "require": {
-        "php": ">=5.3.7",
+        "php": ">=5.4",
         "apexstudios/yamwlib": "dev-master",
         "facebook/libphutil": "dev-master",
         "ircmaxell/password-compat": "~1.0",
@@ -21,13 +21,11 @@
         "Respect/Validation": "dev-master",
         "knplabs/gaufrette": "0.1.*",
         "phpspec/php-diff": "1.0.2",
-        "redeyeventures/geopattern": "1.0.*",
-        "behat/behat": "3.0.*"
+        "redeyeventures/geopattern": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
         "phpunit/php-code-coverage": "*",
-        "satooshi/php-coveralls": "*",
         "symfony/console": "~2.5",
         "fzaninotto/faker": "~1.3"
     },
