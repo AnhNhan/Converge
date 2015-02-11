@@ -299,12 +299,6 @@ return array(
     ),
   ),
   "js" => array(
-    "app" => array(
-      "name" => "app",
-      "path" => "app.js",
-      "hash" => "bb5022dfaaeb1692d018eff1127269cf",
-      "orig" => "802108c3e25486b6c0867aedb9b8bee8",
-    ),
     "application-example-form-tag-selector" => array(
       "name" => "application-example-form-tag-selector",
       "path" => "application/example/form/tag-selector.js",
@@ -340,48 +334,6 @@ return array(
       "path" => "application/markup/markupform.js",
       "hash" => "3d887a3f352250731a78edd03b873395",
       "orig" => "b78aed4ad911e096b54ea3333a3ea34e",
-    ),
-    "backbone" => array(
-      "name" => "backbone",
-      "path" => "backbone.js",
-      "hash" => "1554b7c2c1d88e18b7c780017c89713e",
-      "orig" => "703b7e5936021d7f7caff20b6a2eee31",
-    ),
-    "collection-forum-discussions" => array(
-      "name" => "collection-forum-discussions",
-      "path" => "collection/forum/discussions.js",
-      "hash" => "305ac546a64f04c24bcf42abe03361ac",
-      "orig" => "4aad9743beb77d5388bec7d6aa6f03f6",
-    ),
-    "collection-tag-tagcollection" => array(
-      "name" => "collection-tag-tagcollection",
-      "path" => "collection/tag/tagcollection.js",
-      "hash" => "58b050c152537acdadd77889d6824a6f",
-      "orig" => "2c5af2061d9c55f43c82170ebb061f84",
-    ),
-    "controller-base" => array(
-      "name" => "controller-base",
-      "path" => "controller/base.js",
-      "hash" => "78a9de047288aae12ab08b80fed8c278",
-      "orig" => "70f4184e2e111b7761ec733fb7cd6ccb",
-    ),
-    "controller-forum-listing" => array(
-      "name" => "controller-forum-listing",
-      "path" => "controller/forum/listing.js",
-      "hash" => "e185a58ab1fee19b63bc0f9f7a0dcbf2",
-      "orig" => "8dd3e1c0b55fe7ab4e1c9750dc4ca8ca",
-    ),
-    "controller-front-frontpage" => array(
-      "name" => "controller-front-frontpage",
-      "path" => "controller/front/frontpage.js",
-      "hash" => "4d5a7f0c479f3e959c7e07dfd2d7ff32",
-      "orig" => "af2aa4ff82eb63bcc20c7064bcba3745",
-    ),
-    "controller-tag-listing" => array(
-      "name" => "controller-tag-listing",
-      "path" => "controller/tag/listing.js",
-      "hash" => "5b5c23860d35fe5e8cf616e2e9bf7da4",
-      "orig" => "858bde664bd8bfbbe76329d63a20ca87",
     ),
     "external-angular" => array(
       "name" => "external-angular",
@@ -623,89 +575,8 @@ return array(
       "hash" => "0032e6db6c0aa378760cb72f0cbd176e",
       "orig" => "fa53fc48c68af33d5f0f3ce01e31f1c7",
     ),
-    "jquery" => array(
-      "name" => "jquery",
-      "path" => "jquery.js",
-      "hash" => "c2ae600dc8644d02875a707734d9c938",
-      "orig" => "368e1f8f7d3c49510da42631fbb5917f",
-    ),
     "main" => array(
-      "name" => "main",
-      "path" => "main.js",
-      "hash" => "fh372ava",
-      "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
-    ),
-    "model-abstract-entity" => array(
-      "name" => "model-abstract-entity",
-      "path" => "model/abstract-entity.js",
-      "hash" => "87cfd5dc324c83638befcc8a6b894e28",
-      "orig" => "95ec1a3ee6eaf612b923da14b6e27bd0",
-    ),
-    "model-forum-discussion" => array(
-      "name" => "model-forum-discussion",
-      "path" => "model/forum/discussion.js",
-      "hash" => "0c1af9952e08ddcc365d4686e1f91557",
-      "orig" => "4e818aac6974349407df050c368cf067",
-    ),
-    "model-tag-tagmodel" => array(
-      "name" => "model-tag-tagmodel",
-      "path" => "model/tag/tagmodel.js",
-      "hash" => "c0e684e4de2769737d768c949122151d",
-      "orig" => "59082166996267fdba18f812154d3180",
-    ),
-    "router-forum-forumrouter" => array(
-      "name" => "router-forum-forumrouter",
-      "path" => "router/forum/forumrouter.js",
-      "hash" => "3a837098307602b55d40d6ac31a49b00",
-      "orig" => "b504b870d9ec0b23bfde0e094aa7f3f9",
-    ),
-    "router-front-frontrouter" => array(
-      "name" => "router-front-frontrouter",
-      "path" => "router/front/frontrouter.js",
-      "hash" => "4f05fd10341dc8eb41dd428619fbbd27",
-      "orig" => "a1685f22a638b3cddad57d703a77b501",
-    ),
-    "router-tag-tagrouter" => array(
-      "name" => "router-tag-tagrouter",
-      "path" => "router/tag/tagrouter.js",
-      "hash" => "b07556e6482809366475d1d3fcd54aae",
-      "orig" => "34a80691dc2a29b24c84f30668f5aaf6",
-    ),
-    "underscore" => array(
-      "name" => "underscore",
-      "path" => "underscore.js",
-      "hash" => "c5707c86338cd0a7338479854b46a68e",
-      "orig" => "4544a7371987950c8ff527ead812c894",
-    ),
-    "view-forum-discussionlisting" => array(
-      "name" => "view-forum-discussionlisting",
-      "path" => "view/forum/discussionlisting.js",
-      "hash" => "3d39df07e0ec5d3e8c452de11acaca8b",
-      "orig" => "7f8f8f8de699d8391628c5da847db300",
-    ),
-    "view-forum-discussionlistingitem" => array(
-      "name" => "view-forum-discussionlistingitem",
-      "path" => "view/forum/discussionlistingitem.js",
-      "hash" => "9a257b726498a4fc376c7de2a560f5e3",
-      "orig" => "cf737ace84665bc3cf5c5d748867a325",
-    ),
-    "view-maincontentview" => array(
-      "name" => "view-maincontentview",
-      "path" => "view/maincontentview.js",
-      "hash" => "1916f54bed6e5b226007bfe3008fd722",
-      "orig" => "f21213fa6bd0c2911b089da65e900edf",
-    ),
-    "view-tag-taglistview" => array(
-      "name" => "view-tag-taglistview",
-      "path" => "view/tag/taglistview.js",
-      "hash" => "c85675e5e3048546f391425b8980b09f",
-      "orig" => "485caecc62ad7b749fea42c01f65ec10",
-    ),
-    "view-tag-tagview" => array(
-      "name" => "view-tag-tagview",
-      "path" => "view/tag/tagview.js",
-      "hash" => "6fb185a733e983ed8bb82cec84fabd3a",
-      "orig" => "895f4d5afbfcb020836d02417162e7f0",
+      "hash" => "yvyehvny",
     ),
   ),
   "pck" => array(
@@ -741,6 +612,15 @@ return array(
       "contents" => array(
         "application-newsroom-core" => "bc95fa0296f0122e587134a139c0d4a4",
         "application-newsroom-color" => "914edb3181906e22a8de55b1dc5d64f7",
+      ),
+    ),
+    "jquery+underscore" => array(
+      "name" => "jquery+underscore",
+      "type" => "js",
+      "hash" => "a8861a6a4c171e7ba8850111d42e50df",
+      "contents" => array(
+        "external-jquery-1-10-2" => "91515770ce8c55de23b306444d8ea998",
+        "external-underscore" => "0032e6db6c0aa378760cb72f0cbd176e",
       ),
     ),
     "libs-pck" => array(
