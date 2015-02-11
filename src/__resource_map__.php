@@ -243,6 +243,12 @@ return array(
       "hash" => "762b257ff0dd41df084d5e04eeb808f4",
       "orig" => "d2cc3b775ba9a8982ebda82335d9d243",
     ),
+    "layout-detail-object" => array(
+      "name" => "layout-detail-object",
+      "path" => "layout/detail-object.less",
+      "hash" => "fcb7a9e7069dced18860aaa314d10745",
+      "orig" => "4f4c8b6aa112e102d0c76f5ada5505bb",
+    ),
     "layout-fancy-text-shadows" => array(
       "name" => "layout-fancy-text-shadows",
       "path" => "layout/fancy/text-shadows.less",
@@ -626,7 +632,7 @@ return array(
     "main" => array(
       "name" => "main",
       "path" => "main.js",
-      "hash" => "ihszkvx4",
+      "hash" => "fh372ava",
       "orig" => "a7c196eca30b304f310f2bdcf5bcfba6",
     ),
     "model-abstract-entity" => array(
@@ -706,7 +712,7 @@ return array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "125f6722ab4e8a4741e13488aed6b0f1",
+      "hash" => "3cc72d61e4d80e3bc8f5834ecc248388",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
@@ -715,6 +721,7 @@ return array(
         "application-user-core" => "c0d8399ef3e1273245407554dd030c16",
         "layout-boilerplate" => "3061aeba6e7257f0b441d456b48622b1",
         "layout-core" => "762b257ff0dd41df084d5e04eeb808f4",
+        "layout-detail-object" => "fcb7a9e7069dced18860aaa314d10745",
         "layout-fancy-text-shadows" => "288e6ba70102b44f0850308d4344c294",
         "layout-form" => "218264e28bf24edbc25337b7633caa69",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",

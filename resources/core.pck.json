@@ -9,6 +9,7 @@
         "application-user-core",
         "layout-boilerplate",
         "layout-core",
+        "layout-detail-object",
         "layout-fancy-text-shadows",
         "layout-form",
         "layout-grid",

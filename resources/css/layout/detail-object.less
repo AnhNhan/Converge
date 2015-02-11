@@ -1,0 +1,40 @@
+
+.detail-object {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: @defaultContentPadding;
+    padding-top: (@defaultContentPadding / 2);
+    max-width: 800px;
+    border: 1px solid @lightGrey;
+
+    @media screen and (min-width: @breakPointDesktop) {
+        margin-left: 2em;
+    }
+}
+
+.detail-object-image {
+    .pull-right;
+    padding: @defaultContentPadding;
+    padding-right: 0;
+    padding-top: (@defaultContentPadding / 2);
+
+    max-width: 300px;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.detail-object-header {
+
+}
+
+.detail-object-body {
+    font-family: @fontFamilyDefault;
+    font-size: @fontSizeBase;
+    text-align: justify;
+
+    &:after {
+        .clearfix;
+    }
+}
