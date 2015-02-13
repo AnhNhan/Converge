@@ -11,41 +11,6 @@ tags:
     displayOrder: -51
     description: On the verge
 
-  - name: caw
-    color: project
-    displayOrder: -50
-    description: Covenant at War
-
-  - name: sotp
-    color: project
-    displayOrder: -50
-    description: Sins of the Prophets
-
-  - name: homefront
-    color: project
-    displayOrder: -50
-    description: Homefront
-
-  - name: very-dev-only
-    color: restricted
-    displayOrder: -40
-    description: Such dev. Very amaze. Much awesome. So wow
-
-  - name: dev-only
-    color: restricted
-    displayOrder: -40
-    description: Excludes moderators etc.
-
-  - name: staff-only
-    color: restricted
-    displayOrder: -40
-    description: Only Staff can post in here. It's craaazy!
-
-  - name: rookie-area
-    color: restricted
-    displayOrder: -30
-    description: A place where you can master the skills of awesome until you are deemed good enough
-
   - name: converge-application
     color: project
     displayOrder: -25
@@ -72,40 +37,6 @@ tags:
     color: project
     displayOrder: -20
 
-  - name: application-review
-    displayOrder: -10
-    description: Deal? Or no Deal?
-
-  - name: announcement
-    displayOrder: -7
-    description: Only announcements, please
-
-  - name: news
-    displayOrder: -7
-    description: Old things new
-
-  - name: discussion
-    displayOrder: -5
-    description: Communication skills are important, so please train them
-
-  - name: help
-    displayOrder: -5
-    description: Heeeealp!
-
-  - name: knowledge-base
-    displayOrder: -5
-    description: What you need to know
-
-  - name: unsc
-    displayOrder: -2
-    description: 6 feet and counting
-  - name: covenant
-    displayOrder: -2
-    description: Very close to the Great Journey
-  - name: flood
-    displayOrder: -2
-    description: Not eating braaaaiiiiins
-
   - name: user-experience
   - name: interface-design
   - name: non-core-experience
@@ -116,54 +47,6 @@ tags:
   - name: markup-related
   - name: image-collection-feature
 
-  - name: audio
-    description: Building the spirit of the mod through its sound
-
-  - name: visual
-    description: An artist is not paid for his labor but for his vision
-
-  - name: code
-    description: Feel like you are at home in Silicon Valley
-
-  - name: space
-    description: Nobody can hear you scream
-
-  - name: ground
-    description: Into the mud
-
-  - name: skirmish
-    description: Into the foray
-
-  - name: campaign
-    description: The mantle is ours for the taking
-
-  - name: galactic-conquest
-    description: The dream of every overlord
-
-  - name: official
-    description: An edition by the creators of Halo - usually 343i
-
-  - name: halo-game
-    description: About the official Halo games
-
-  - name: expanded-universe
-    description: Hope Disney doesn't buy Halo
-
-  - name: gameplay
-    description: Gameplay-related discussions
-
-  - name: playtesting
-    description: Test the game 500 times until the end of the week, or you are fired
-
-  - name: event
-    description: Event, you are fired
-
-  - name: community
-    description: Together, we are strong
-
-  - name: promotional
-    description: Together, we make the world a better place
-
   - name: idea
     description: The more thinkiful may win
 
@@ -172,15 +55,6 @@ tags:
 
   - name: general
     description: There is much talk. And I have listened. Through rock and metal and time. Now I shall talk, and you shall listen.
-
-  - name: modding
-    description: You also mod games?
-
-  - name: art
-    description: Anything that looks like Arts is here
-
-  - name: halo
-    description: The Great Journey awaits us
 
   - name: off-topic
     description: Nothing that should fit into anything...
