@@ -30,9 +30,6 @@ final class CompileCommand extends ConsoleCommand
         return new InputDefinition(array(
             new InputOption("js", null, InputOption::VALUE_NONE, "Compile JS"),
             new InputOption("css", null, InputOption::VALUE_NONE, "Compile LESS/CSS"),
-            new InputOption("templates", null, InputOption::VALUE_NONE,
-                "Compile templates (actually just copy-pasting them)"
-            ),
         ));
     }
 
@@ -41,7 +38,6 @@ final class CompileCommand extends ConsoleCommand
     private static $path_resource_map;
     private static $path_css;
     private static $path_js;
-    private static $path_tmpls;
 
     private $origResMap = array();
 
@@ -62,7 +58,6 @@ final class CompileCommand extends ConsoleCommand
         self::$path_resource_map = Converge\get_root() . "__resource_map__.php";
         self::$path_css = self::$path_resource . "css" . DIRECTORY_SEPARATOR;
         self::$path_js = self::$path_resource . "javascript" . DIRECTORY_SEPARATOR;
-        self::$path_tmpls = self::$path_resource . "templates" . DIRECTORY_SEPARATOR;
 
         $this->origResMap = include self::$path_resource_map;
     }
@@ -71,12 +66,10 @@ final class CompileCommand extends ConsoleCommand
     {
         $js = $input->getOption("js");
         $css = $input->getOption("css");
-        $tmpls = $input->getOption("templates");
 
-        if (!$js && !$css && !$tmpls) {
+        if (!$js && !$css) {
             $js = true;
             $css = true;
-            $tmpls = true;
         }
 
         $this->input = $input;
@@ -90,7 +83,6 @@ final class CompileCommand extends ConsoleCommand
         $output->writeln("ResMap path:\t" . self::$path_resource_map);
         $output->writeln("CSS path:\t" . self::$path_css);
         $output->writeln("JS path:\t" . self::$path_js);
-        $output->writeln("Template path:\t" . self::$path_tmpls);
         $output->writeln("");
 
         if (!file_exists(self::$path_cache)) {
@@ -116,16 +108,6 @@ final class CompileCommand extends ConsoleCommand
         } else {
             // Copy old values
             $this->resMap["js"] = idx($this->origResMap, "js", array());
-        }
-
-        if ($tmpls) {
-            $this->output->writeln("Will now process Template files (beta)");
-
-            $tmplsBuilderClass = 'AnhNhan\Converge\Modules\StaticResources\Builders\TemplateBuilder';
-            $this->genericBuild(self::$path_tmpls, 'tmpls', "\\.(html)", $tmplsBuilderClass);
-        } else {
-            // Copy old values
-            $this->resMap["tmpls"] = idx($this->origResMap, "tmpls", array());
         }
 
         $this->buildPackFiles();
@@ -176,9 +158,6 @@ final class CompileCommand extends ConsoleCommand
                 "-",
                 $resName
             );
-            if ($type == "tmpls") {
-                $resName = "tmpl-" . $resName;
-            }
 
             $resEntry = array(
                 "name" => $resName,
