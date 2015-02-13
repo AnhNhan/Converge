@@ -157,11 +157,9 @@ abstract class BaseApplication
     }
 
     /**
-     * Dummy until we get containers going
-     *
      * @return array
      */
-    protected function getDatabaseConfigForDoctrine($dbName, $dbType = "mysql")
+    private function getDatabaseConfigForDoctrine($dbName, $dbType = "mysql")
     {
         switch ($dbType) {
             case "sqlite":
@@ -170,7 +168,6 @@ abstract class BaseApplication
                     'driver' => 'pdo_sqlite',
                     'path' => $dbPath,
                 );
-                break;
             case "mysql":
                 $driver = "pdo_mysql";
                 return array(
@@ -180,10 +177,8 @@ abstract class BaseApplication
                     "password" => "p4YVXLqSKp7TtBL2",
                     "dbname"   => "converge_" . $dbName,
                 );
-                break;
             default:
                 throw new \Exception("DB Type $dbType not supported yet!");
-                break;
         }
     }
 
