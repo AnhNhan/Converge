@@ -97,8 +97,8 @@ abstract class BaseApplication
         foreach ($routes as $blob) {
             $route = new Route(idx($blob, "route-name", "route-$file-$ii"), $blob["pattern"], $this);
 
-            $reqs = idx($blob, "requirements");
-            $params = idx($blob, "parameters");
+            $reqs = idx($blob, "requirements", []);
+            $params = idx($blob, "parameters", []);
 
             if ($reqs) {
                 $route->setRequirements($reqs);
