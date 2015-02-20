@@ -16,7 +16,7 @@ final class HtmlPayload extends HttpPayload
     /*
      * @var ResMgr
      */
-    private $resMgr;
+    public $resMgr;
 
     private $user_details;
 

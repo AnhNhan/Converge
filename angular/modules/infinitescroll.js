@@ -9,7 +9,8 @@ var $InfiniteScroll = {
         pageBottomCallbacks.push(callback);
 
         // TODO: Test this function. I don't remember JavaScript well enough to
-        //       know whether `cb != callback` actually works.
+        //       know whether `cb != callback` works for a single instance, or
+        //       for all instances (originating from the same code).
         // Consideration: Have the callback remove only this specific instance,
         //                or have it remove *all* instances?
         return function () {
@@ -20,9 +21,10 @@ var $InfiniteScroll = {
     }
 };
 
+// Already instantiated service
 InfiniteScroll.value('$InfiniteScroll', $InfiniteScroll);
 
-var strgrsdeds = _.debounce(function (e) {
+$(window).scroll(_.debounce(function (e) {
     // Yes, always re-calc these values
     // The user may have resized windows, we may have added items, etc.
     var $window = $(window);
@@ -38,6 +40,4 @@ var strgrsdeds = _.debounce(function (e) {
             pageBottomCallbacks[i]();
         };
     }
-}, 300);
-
-$(window).scroll(strgrsdeds);
+}, 300));

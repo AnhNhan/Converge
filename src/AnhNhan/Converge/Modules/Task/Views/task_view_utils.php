@@ -15,12 +15,12 @@ use AnhNhan\Converge\Views\Property\PropertyList;
 use Diff as DiffEngine;
 use AnhNhan\Converge\Modules\Markup\Diff\Renderer\InText as InlineDiffRenderer;
 
-function render_task_listing(array $tasks, $title = null, $empty_message = 'No tasks available', callable $object_adder = null)
+function render_task_listing(array $tasks, $title = null, $empty_message = null, callable $object_adder = null)
 {
     $object_adder = $object_adder ?: 'task_listing_add_object';
     $listing = new Listing;
     $listing->setTitle($title);
-    $listing->setEmptyMessage($empty_message);
+    $listing->setEmptyMessage(is_null($empty_message) ? 'No tasks available' : $empty_message);
     foreach ($tasks as $task) {
         $object_adder($listing, $task);
     }

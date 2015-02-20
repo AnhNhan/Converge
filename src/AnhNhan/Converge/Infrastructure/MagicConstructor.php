@@ -9,6 +9,7 @@ namespace AnhNhan\Converge\Infrastructure;
 trait MagicConstructor
 {
     // TODO: Cache constructor per class
+    // TODO: Typecheck properties from docblock annotations?
     public function __construct()
     {
         $args = func_get_args();

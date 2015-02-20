@@ -37,7 +37,7 @@ function ascii_non_w_replace($str, $replace_with = '', $combine_replaced = true)
 
 function group($list, callable $predicate)
 {
-    $map = array_map($predicate, $list);
+    $map = map($predicate, $list);
 
     $groups = [];
     // Pre-allocate groups
@@ -54,7 +54,7 @@ function group($list, callable $predicate)
     return $groups;
 }
 
-/// Maps over any iterable value. Like array_map, but is not restricted to arrays.
+/// Maps eagerly over any iterable value. Like array_map, but is not restricted to arrays.
 function map(callable $value_predicate, $list)
 {
     $result = [];
@@ -151,7 +151,7 @@ function curry_la(callable $fun, $last_arg /* , ... */)
 function memoize(callable $fun)
 {
     $memory = [];
-    return function () use ($fun)
+    return function () use ($fun, &$memory)
     {
         $args = func_get_args();
         if (isset($memory[$args]))
@@ -230,7 +230,7 @@ function map_apply_instance_method($method_name, array $params = [])
             throw new \Exception(sprintf("Passed value is not an object! Is of type '%s'", typeDescr($obj)));
         }
 
-        return call_user_method_array($method_name, $obj, $params);
+        return call_user_func_array([$obj, $method_name], $params);
     };
 }
 

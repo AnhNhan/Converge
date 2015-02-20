@@ -9,7 +9,7 @@ use AnhNhan\Converge\Storage\EntityDefinition;
  * @Cache("NONSTRICT_READ_WRITE")
  * @Table
  */
-class SubscriptionEntry extends EntityDefinition
+class SubscriptionObject extends EntityDefinition
 {
     /**
      * @Id
