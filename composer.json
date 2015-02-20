@@ -15,6 +15,7 @@
         "monolog/monolog": "~1.12",
         "symfony/config": "~2.6",
         "symfony/routing": "~2.6",
+        "symfony/yaml": "~2.6",
         "league/fractal": "0.6.*",
         "league/monga": "1.*",
         "react/react": "0.3.*",
