@@ -72,7 +72,7 @@ final class DMADisplay extends ArticleController
         $text = MarkupEngine::fastParse($article->rawText, $custom_rules);
         $article_body->append(cv\safeHtml($text));
 
-        $this->resMgr
+        $payload->resMgr
             ->requireCss('newsroom-pck')
             ->requireCss('application-newsroom-article-page')
         ;

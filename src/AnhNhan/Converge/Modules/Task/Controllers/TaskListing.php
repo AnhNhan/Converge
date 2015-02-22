@@ -84,7 +84,7 @@ final class TaskListing extends AbstractTaskController
             'class' => 'btn btn-primary',
         )));
 
-        $this->resMgr
+        $payload->resMgr
             ->requireCss('application-task-display')
             ->requireCss('application-task-listing')
         ;

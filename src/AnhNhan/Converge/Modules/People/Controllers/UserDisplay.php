@@ -110,7 +110,7 @@ final class UserDisplay extends AbstractPeopleController
         ];
         $container->push(render_activity_listing($activities, $activity_renderers, $other, 'Recent activity')->addClass('feed-activity-listing'));
 
-        $this->resMgr
+        $payload->resMgr
             ->requireCss('application-activity-listing')
             ->requireCss('application-task-listing')
         ;

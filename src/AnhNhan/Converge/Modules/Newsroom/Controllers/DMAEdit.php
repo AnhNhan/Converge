@@ -414,7 +414,7 @@ final class DMAEdit extends ArticleController
 
         $container->push($form);
 
-        $this->resMgr
+        $payload->resMgr
             ->requireCss('newsroom-pck')
             ->requireCss('application-newsroom-article-page')
             ->requireJs('application-forum-markup-preview')

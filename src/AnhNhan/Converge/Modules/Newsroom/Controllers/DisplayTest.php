@@ -60,7 +60,7 @@ final class DisplayTest extends ArticleController
 EOT
         ));
 
-        $this->resMgr
+        $payload->resMgr
             ->requireCss('newsroom-pck')
             ->requireCss('application-newsroom-article-page')
         ;

@@ -154,7 +154,7 @@ Who put that line in the way!?</code></pre>
 EOT
         ));
 
-        $this->resMgr
+        $payload->resMgr
             ->requireCss('newsroom-pck')
             ->requireCss('application-newsroom-article-page')
         ;

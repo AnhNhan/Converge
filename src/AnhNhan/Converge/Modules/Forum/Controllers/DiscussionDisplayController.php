@@ -191,7 +191,7 @@ final class DiscussionDisplayController extends AbstractForumController
 
         $container->push($grid);
 
-        $this->resMgr
+        $payload->resMgr
             ->requireJs('application-forum-toc-affix')
             ->requireJs('application-forum-show-changes')
             ->requireCss('application-forum-discussion-display')
