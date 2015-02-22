@@ -75,7 +75,7 @@ if (!$role)
 }
 
 $pwEncoderFactory = $userApp->getService('security.encoder.factory');
-$pwEncoder        = $pwEncoderFactory->getEncoder($obj_user);
+$pwEncoder        = $pwEncoderFactory->getEncoder(new User);
 
 $users = array();
 $emails = array();
