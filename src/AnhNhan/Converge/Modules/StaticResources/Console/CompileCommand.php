@@ -112,11 +112,6 @@ final class CompileCommand extends ConsoleCommand
 
         $this->buildPackFiles();
 
-        // This file is the key point to our front end application. We do change
-        // its dependencies, but the file itself may not be changed, so we simply
-        // generate a random hash each time to enforce proper cache invalidation
-        $this->resMap["js"]["main"]["hash"] = \Filesystem::readRandomCharacters(8);
-
         $this->printResMap($this->resMap, self::$path_resource_map);
     }
 
