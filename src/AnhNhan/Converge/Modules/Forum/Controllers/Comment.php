@@ -45,8 +45,8 @@ final class Comment extends AbstractForumController
             'DISQ' => true,
         ];
         $map_retrieval_method = [
-            'POST' => 'retrievePost',
-            'DISQ' => 'retrieveDiscussion',
+            'POST' => [$query, 'retrievePost'],
+            'DISQ' => [$query, 'retrieveDiscussion'],
         ];
         $map_editor_type = [
             'POST' => 'AnhNhan\Converge\Modules\Forum\Transaction\PostTransactionEditor',
@@ -62,7 +62,7 @@ final class Comment extends AbstractForumController
         ];
         assert(isset($enum_object_types[$object_type]));
 
-        $object = $query->{$map_retrieval_method[$object_type]}($object_id);
+        $object = $map_retrieval_method[$object_type]($object_id);
         if (!$object)
         {
             return (new ResponseHtml404)->setText("Object $object_id does not exist.");
