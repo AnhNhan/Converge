@@ -23,7 +23,7 @@ final class StandardFrontController extends BaseApplicationController
         $container = new MarkupContainer();
         $container->push(Converge\safeHtml(file_get_contents(Converge\path("/../resources/templates/front/frontpage.html"))));
 
-        $payload = new HtmlPayload();
+        $payload = $this->payload_html();
         $payload->setPayloadContents($container);
         return $payload;
     }

@@ -119,7 +119,7 @@ final class DiscussionDisplayController extends AbstractForumController
         $posts = $data['posts'];
 
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setTitle($disq->label);
         $payload->setPayloadContents($container);
 

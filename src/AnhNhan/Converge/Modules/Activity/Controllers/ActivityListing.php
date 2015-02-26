@@ -46,7 +46,7 @@ final class ActivityListing extends ActivityController
             ->requireCss('application-activity-listing')
         ;
 
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setTitle('Activity Listing');
         $payload->setPayloadContents($container);
         return $payload;

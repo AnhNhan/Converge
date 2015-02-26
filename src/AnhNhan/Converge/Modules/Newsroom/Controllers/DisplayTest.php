@@ -15,7 +15,7 @@ final class DisplayTest extends ArticleController
 {
     public function handle()
     {
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setTitle('Article Display Test');
         $container = new MarkupContainer;
         $payload->setPayloadContents($container);

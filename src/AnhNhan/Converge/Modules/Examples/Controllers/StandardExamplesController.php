@@ -32,7 +32,7 @@ final class StandardExamplesController extends BaseApplicationController
             $example = Converge\ht('h1', 'Example ' . $exampleName . ' not found!');
         }
 
-        $payload = new HtmlPayload($example);
+        $payload = $this->payload_html($example);
 
         $title = ucwords(preg_replace('/[-]/', ' ', $exampleName)) . ' Example';
         $payload->setTitle($title);

@@ -91,7 +91,7 @@ final class DiscussionListingController extends AbstractForumController
         $container->push(a('Next page', 'disq/?page-nr=' . ($this->pageNr+1))->addClass('btn btn-large btn-primary'));
         $container->push(Converge\safeHtml('<style>.objects-list-container.forum-list-container{margin-top: 0;}</style>'));
 
-        $payload = new HtmlPayload($container);
+        $payload = $this->payload_html($container);
         return $payload;
     }
 

@@ -140,15 +140,14 @@ $(".show-diff-link").click(_.debounce(function (e) {
 }, 300, true));
         ')));
 
-        $this->app->getService('resource_manager')
+        $payload = $this->payload_html();
+        $payload->setTitle('Task ' . $task->label);
+        $payload->setPayloadContents($container);
+        $payload->resMgr
             ->requireCss('application-diff')
             ->requireCss('application-task-display')
             ->requireJs('application-forum-markup-preview')
         ;
-
-        $payload = new HtmlPayload;
-        $payload->setTitle('Task ' . $task->label);
-        $payload->setPayloadContents($container);
         return $payload;
     }
 }

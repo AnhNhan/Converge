@@ -35,7 +35,7 @@ final class PostEditController extends AbstractForumController
         $requestMethod = $request->getMethod();
 
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setPayloadContents($container);
         $query = new DiscussionQuery($this->app);
 

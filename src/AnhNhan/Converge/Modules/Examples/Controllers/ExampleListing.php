@@ -32,7 +32,7 @@ final class ExampleListing extends BaseApplicationController
             $container->push(div('', a($example['label'], $example['href'])->addClass('btn btn-default')));
         }
 
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setPayloadContents($container);
         $payload->setTitle('Examples');
         return $payload;

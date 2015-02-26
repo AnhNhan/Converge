@@ -25,7 +25,7 @@ final class MarkupTestingController extends AbstractMarkupController
 
         $generatedTemplate = Templater::retrieveTemplate();
 
-        $payload = new HtmlPayload(Converge\safeHtml($generatedTemplate));
+        $payload = $this->payload_html(Converge\safeHtml($generatedTemplate));
         $payload->setTitle('Markup Testing');
         return $payload;
     }

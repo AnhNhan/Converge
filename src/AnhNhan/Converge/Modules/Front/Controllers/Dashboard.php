@@ -67,7 +67,7 @@ final class Dashboard extends BaseApplicationController
             $row->column(6)->push($panelForumListing);
         }
 
-        $payload = new HtmlPayload();
+        $payload = $this->payload_html();
         $payload->setPayloadContents($container);
         return $payload;
     }

@@ -84,14 +84,13 @@ final class TaskListing extends AbstractTaskController
             'class' => 'btn btn-primary',
         )));
 
+        $payload = $this->payload_html();
+        $payload->setTitle($page_title);
+        $payload->setPayloadContents($container);
         $payload->resMgr
             ->requireCss('application-task-display')
             ->requireCss('application-task-listing')
         ;
-
-        $payload = new HtmlPayload;
-        $payload->setTitle($page_title);
-        $payload->setPayloadContents($container);
         return $payload;
     }
 }

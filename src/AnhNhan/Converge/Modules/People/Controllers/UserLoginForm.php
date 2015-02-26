@@ -21,7 +21,7 @@ final class UserLoginForm extends AbstractPeopleController
     public function handle()
     {
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setPayloadContents($container);
         $request = $this->request;
 

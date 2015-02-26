@@ -36,7 +36,7 @@ final class UserDisplay extends AbstractPeopleController
             return id(new ResponseHtml404)->setText('Could not find a user with the name \'' . $req_canon_name . '\'.');
         }
 
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setTitle(sprintf('User \'%s\'', $user->name));
         $container = new MarkupContainer;
         $payload->setPayloadContents($container);

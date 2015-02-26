@@ -131,9 +131,9 @@ abstract class BaseApplicationController
      */
     abstract public function handle();
 
-    final protected function payload_html()
+    final protected function payload_html($contents = null, $flags = [])
     {
-        $payload = new HtmlPayload;
+        $payload = new HtmlPayload($contents, $flags);
         $payload->setResMgr($this->resMgr);
 
         $user = $this->user;

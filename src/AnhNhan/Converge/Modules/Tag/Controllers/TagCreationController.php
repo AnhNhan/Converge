@@ -33,7 +33,7 @@ final class TagCreationController extends AbstractTagController
         $request = $this->request();
         $requestMethod = $request->getMethod();
         $container = new MarkupContainer;
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setPayloadContents($container);
 
         $errors  = array();

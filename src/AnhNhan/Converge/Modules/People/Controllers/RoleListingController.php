@@ -62,7 +62,7 @@ final class RoleListingController extends AbstractPeopleController
         }
         $container->push($grid);
 
-        $payload = new HtmlPayload;
+        $payload = $this->payload_html();
         $payload->setTitle('Roles');
         $payload->setPayloadContents(div('role-listing', $container));
 
