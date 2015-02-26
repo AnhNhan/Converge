@@ -654,9 +654,6 @@ return array(
     "AnhNhan\Converge\Modules\StaticResources\Builders\JsBuilder" => array(
       "file" => "AnhNhan/Converge/Modules/StaticResources/Builders/JsBuilder.php",
     ),
-    "AnhNhan\Converge\Modules\StaticResources\Builders\TemplateBuilder" => array(
-      "file" => "AnhNhan/Converge/Modules/StaticResources/Builders/TemplateBuilder.php",
-    ),
     "AnhNhan\Converge\Modules\StaticResources\Console\CompileCommand" => array(
       "file" => "AnhNhan/Converge/Modules/StaticResources/Console/CompileCommand.php",
       "deriv" => "AnhNhan\Converge\Console\ConsoleCommand",
@@ -683,6 +680,10 @@ return array(
       "abstr" => "1",
     ),
     "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionEntry" => array(
+      "file" => "AnhNhan/Converge/Modules/Subscriptions/Storage/SubscriptionLog.php",
+      "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
+    ),
+    "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionObject" => array(
       "file" => "AnhNhan/Converge/Modules/Subscriptions/Storage/SubscriptionObject.php",
       "deriv" => "AnhNhan\Converge\Storage\EntityDefinition",
     ),
@@ -1176,7 +1177,7 @@ return array(
     "to_slug" => "AnhNhan/Converge/functions_very_global.php",
     "ascii_non_w_replace" => "AnhNhan/Converge/functions_very_global.php",
     "group" => "AnhNhan/Converge/functions_very_global.php",
-    "pull" => "AnhNhan/Converge/functions_very_global.php",
+    "map" => "AnhNhan/Converge/functions_very_global.php",
     "all" => "AnhNhan/Converge/functions_very_global.php",
     "any" => "AnhNhan/Converge/functions_very_global.php",
     "mkey" => "AnhNhan/Converge/functions_very_global.php",
@@ -1189,6 +1190,8 @@ return array(
     "unflatten" => "AnhNhan/Converge/functions_very_global.php",
     "typeDescr" => "AnhNhan/Converge/functions_very_global.php",
     "map_apply_instance_method" => "AnhNhan/Converge/functions_very_global.php",
+    "flat_map" => "AnhNhan/Converge/functions_very_global.php",
+    "phutil_utf8_shorten" => "AnhNhan/Converge/libphutil.php",
     "arrayDataEvent" => "AnhNhan/Converge/ns.php",
   ),
   "xmap" => array(
@@ -1304,7 +1307,7 @@ return array(
       "AnhNhan\Converge\Modules\People\Storage\Role",
       "AnhNhan\Converge\Modules\People\Storage\User",
       "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionEntry",
-      "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionEntry",
+      "AnhNhan\Converge\Modules\Forum\Storage\SubscriptionObject",
       "AnhNhan\Converge\Modules\Tag\Storage\Tag",
       "AnhNhan\Converge\Modules\Task\Storage\Task",
       "AnhNhan\Converge\Modules\Task\Storage\TaskAssigned",
