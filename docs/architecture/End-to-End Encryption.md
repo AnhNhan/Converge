@@ -10,7 +10,7 @@ Encrypted data fields
 Ceylon: Annotated with `encrypted`.
 PHP: Uhh...
 
-Data payload (API, serialized database)
+Data payload (API)
 ```json
 {
     "fieldName": "description",
@@ -68,7 +68,7 @@ interface WorkspaceKey
 }
 // ...
 
-interface EncryptedField<T>
+interface EncryptedField<T = String>
 {
     shared formal
     String fieldName;
@@ -79,8 +79,8 @@ interface EncryptedField<T>
     shared formal
     String payload;
 
-    shared formal
-    T(String) transform;
+    shared default
+    T(String) transform => identity<T>;
 
     // Not to be used on the server-side
     shared formal throws(`WrongKeyException`, "when you supplied a non-fitting key.")
@@ -131,16 +131,18 @@ User Authentication and Authorization
     * We reverse it a little bit. Now, we generate a test package using the user's public encryption key, which has to be successfully decrypted by the user's private key (re-)generated from his password client-side, and the result verified with the server for it to grant an access token & other encryption keys
         * requires lots of sniffing (more sniffed attempts yields more data to verify against), and offline brute forcing (it helps that encryption keys are *way* longer than idiomatic password hashes)
         * it's just less stressful to guess to password. *way* less stress than with regular password hashing
-        * I better familiarize with how encryption key pairs look like again. I think it's possible to generate decryption keys, but a whole key-*pair*?
-        * Uh, just use the salted (+ hashed?) user password as a seed?
-          * This would require us to send the salt over the wire.
+        * Encryption key IV generated more or less solely from password
+        * Uh, just use the salted (+ hashed?) user password as a seed/iv?
+            * This would require us to send the salt over the wire. Free offline attacks :/
+            * Another approach: Another key-exchange (:/). Server generates encryption key pair, sends encryption key to client. Client generates authentication test payload and sends using that encryption key.
+            * Why don't we just use TLS?
 
 Data retrieval by client
 --------------------------
 
 * Client sends along the access token with each request, from which we can be certain that a client is authenticated
 * We do visibility checks on each single piece of data, maybe hiding it from the server response
-* We do de-normalization as far as possible (we may or may not encrypt associations, too. those get resolved on the client. lovely n+1 :))
+* We do de-normalization as far as possible (we may or may not encrypt associations, too. those would get resolved on the client. lovely n+1 :))
 
 Data operations
 ---------------
