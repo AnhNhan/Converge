@@ -210,9 +210,9 @@ abstract class BaseApplication
         $cache->setNamespace("dc2_" . md5($proxyDir) . "_"); // to avoid collisions
 
         $config = new Configuration();
-        $config->setMetadataCacheImpl($cache);
+        /*$config->setMetadataCacheImpl($cache);
         $config->setQueryCacheImpl($cache);
-        $config->setResultCacheImpl($cache);
+        $config->setResultCacheImpl($cache);*/
         $config->setProxyDir($proxyDir);
         $config->setProxyNamespace('DoctrineProxies');
         $config->setAutoGenerateProxyClasses($isDevMode);
