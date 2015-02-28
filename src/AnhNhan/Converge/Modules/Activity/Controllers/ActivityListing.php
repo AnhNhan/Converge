@@ -42,13 +42,12 @@ final class ActivityListing extends ActivityController
         $listing = render_activity_listing($activities, $activity_renderers, $other)->addClass('feed-activity-listing');
         $container->push($listing);
 
-        $payload->resMgr
-            ->requireCss('application-activity-listing')
-        ;
-
         $payload = $this->payload_html();
         $payload->setTitle('Activity Listing');
         $payload->setPayloadContents($container);
+        $payload->resMgr
+            ->requireCss('application-activity-listing')
+        ;
         return $payload;
     }
 }
