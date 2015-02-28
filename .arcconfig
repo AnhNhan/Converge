@@ -1,3 +1,4 @@
 {
-    "project_id" : "modhub"
+    "phabricator.uri" : "https://converge.phoreplay.com/",
+    "arc.land.update.default" : "rebase"
 }
