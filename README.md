@@ -16,8 +16,36 @@ See? We are disruptive. Innovative. What do you want more? A finished app?
 
 **OMGz!**
 
+Requirements
+============
+
+* PHP 5.4 (should also work fine on HHVM)
+  * PDO
+* (currently) MySql
+
+Installation
+============
+
+Application
+-----------
+
+1. Install dependencies with Composer
+1. Run the `scripts/install.php` with your favorite PHP distribution. It will also set up the first user.
+  * If you want, also run `seed_default_tags.php` and `seed_task_properties.php` from the directory.
+1. Have the `/cache/` directory writable (by whoever runs the following command + who runs PHP in the web server context)
+1. Run `composer rsrc:compile` to compile all static resources (LESS, JavaScript [not minified yet])
+
+Webserver
+---------
+
+* Point your webserver at `/webroot/` (for old PHP-generated HTML) or `/angular/` (for experimental and feature-incomple Angular frontend)
+
+For `/webroot/` variant:
+
+* Additionally configure your webserver to serve all non-files from `app.php`
+
 License
--------
+=======
 
 Released under Apache v2.0.
 
@@ -33,5 +61,3 @@ When you contributing you have to accept the Contributor License Agreement.
 * You can not pull back the contributed content - not because we are evil corporate lawyers, but see above
 * You are still guaranteed credit where credit is due (usually your name and email as commit authorship attribute)
 * You can still say "I did this!" for bragging rights only
-
-
