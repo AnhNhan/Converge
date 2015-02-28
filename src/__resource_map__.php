@@ -258,8 +258,8 @@ return array(
     "layout-form" => array(
       "name" => "layout-form",
       "path" => "layout/form.less",
-      "hash" => "218264e28bf24edbc25337b7633caa69",
-      "orig" => "278e75e6bc049b63d2b1cf6ce4cfc48d",
+      "hash" => "a2c35a2f7fb08950547dcf982965b8e6",
+      "orig" => "53f26487e8cadbf6e67bddb30cf8c287",
     ),
     "layout-forum-object" => array(
       "name" => "layout-forum-object",
@@ -576,14 +576,14 @@ return array(
       "orig" => "fa53fc48c68af33d5f0f3ce01e31f1c7",
     ),
     "main" => array(
-      "hash" => "yvyehvny",
+      "hash" => "gn6pmltk",
     ),
   ),
   "pck" => array(
     "core-pck" => array(
       "name" => "core-pck",
       "type" => "css",
-      "hash" => "3cc72d61e4d80e3bc8f5834ecc248388",
+      "hash" => "6c72121615ecb15a5a85408ffac325ba",
       "contents" => array(
         "application-colors" => "fb78e25b9c32f89b119533ab1a8b1bf5",
         "application-front-dashboard" => "0bb638a1a1ae82e90e8b8007946f0871",
@@ -594,7 +594,7 @@ return array(
         "layout-core" => "762b257ff0dd41df084d5e04eeb808f4",
         "layout-detail-object" => "fcb7a9e7069dced18860aaa314d10745",
         "layout-fancy-text-shadows" => "288e6ba70102b44f0850308d4344c294",
-        "layout-form" => "218264e28bf24edbc25337b7633caa69",
+        "layout-form" => "a2c35a2f7fb08950547dcf982965b8e6",
         "layout-grid" => "ffd6f287386e5b6fcb8debc2189da0dd",
         "layout-property-list" => "4b4f82f8e9c5e61810c68d13ef96e07d",
         "layout-buttons" => "11f5a185a120a037adfcb64e36a5819b",
@@ -612,15 +612,6 @@ return array(
       "contents" => array(
         "application-newsroom-core" => "bc95fa0296f0122e587134a139c0d4a4",
         "application-newsroom-color" => "914edb3181906e22a8de55b1dc5d64f7",
-      ),
-    ),
-    "jquery+underscore" => array(
-      "name" => "jquery+underscore",
-      "type" => "js",
-      "hash" => "a8861a6a4c171e7ba8850111d42e50df",
-      "contents" => array(
-        "external-jquery-1-10-2" => "91515770ce8c55de23b306444d8ea998",
-        "external-underscore" => "0032e6db6c0aa378760cb72f0cbd176e",
       ),
     ),
     "libs-pck" => array(
@@ -677,32 +668,6 @@ return array(
         "external-textext-textext-plugin-prompt" => "0867b1ef4abb81620ff028104d0c26fe",
         "external-textext-textext-plugin-tags" => "37023a92b5785ecdd75a4c3c234d806d",
       ),
-    ),
-  ),
-  "tmpls" => array(
-    "tmpl-forum-discussionitem" => array(
-      "name" => "tmpl-forum-discussionitem",
-      "path" => "forum/discussionitem.html",
-      "hash" => "6084b41516ca0ebcab0fb1a66d6a370e",
-      "orig" => "c9269c1e67c6c370e4672f5623f6e213",
-    ),
-    "tmpl-forum-discussionlist" => array(
-      "name" => "tmpl-forum-discussionlist",
-      "path" => "forum/discussionlist.html",
-      "hash" => "b6ad35720e1494dd7e095c16ae6f7125",
-      "orig" => "e479519471d0898342745ea401de65f8",
-    ),
-    "tmpl-front-frontpage" => array(
-      "name" => "tmpl-front-frontpage",
-      "path" => "front/frontpage.html",
-      "hash" => "2358e19c4b392ff8d585a868edc0a3fa",
-      "orig" => "139518c012ee2217a98a07a589bf1037",
-    ),
-    "tmpl-tag-tagview" => array(
-      "name" => "tmpl-tag-tagview",
-      "path" => "tag/tagview.html",
-      "hash" => "41a8be083fec1bc462703dfb23cc006f",
-      "orig" => "ab35af9f656ea067097860c4789c6160",
     ),
   ),
 );
