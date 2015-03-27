@@ -1,11 +1,14 @@
 
-struct Email is AnhNhan.Converge.Storage::TransactionAwareEntity<UserTransaction>
+struct Email is AnhNhan.Converge.Storage::TransactionAwareEntity<EmailTransaction>
 {
     unique uid: UniqueId<"EMAIL_ADDR">
 
     unique email
     user: User
 
-    is_verified: Boolean = false
-    is_primary: Boolean = false
+    is_verified: Boolean = false #mutable
+    is_primary: Boolean = false #mutable
 }
+
+generateTransactionSet(Email)
+generateTransactionValue(Email)

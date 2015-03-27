@@ -11,3 +11,6 @@ struct VerificationCode is AnhNhan.Converge.Storage::Entity
     purpose
     user: User
 }
+
+generateTransactionSet(VerificationCode)
+generateTransactionValue(VerificationCode)

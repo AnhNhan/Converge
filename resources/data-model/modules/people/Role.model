@@ -7,8 +7,5 @@ struct Role is AnhNhan.Converge.Storage::TransactionAwareEntity<RoleTransaction>
     description: Text? = null #mutable
 }
 
-struct RoleTransaction is AnhNhan.Converge.Storage::TransactionEntity<Role, "ROLE">
-{
-    register_xact_type("role.edit.label", label)
-    register_xact_type("role.edit.description", description)
-}
+generateTransactionSet(Role)
+generateTransactionValue(Role)

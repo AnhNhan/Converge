@@ -1,13 +1,12 @@
 
 abstract struct TransactionEntity<TargetEntity: TransactionAwareEntity, uidSubType, Value = Text> is Entity
 {
-    register_xact_type("entity.create")
-
     unique uid: UniqueId<"XACT", uidSubType>
     actor: Actor
     object: TargetEntity
 
-    type: Enum<registered_xact_types()>
+    (* Not an enum since we don't support enum types anymore *)
+    type: String
 
     oldValue: Value?
     newValue: Value?

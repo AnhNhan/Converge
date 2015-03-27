@@ -8,6 +8,6 @@ abstract struct TransactionSet<TargetEntity: TransactionAwareEntity, uidSubType,
 
     previousSet: TransactionSet<TargetEntity, uidSubType, TransactionType>?
 
-    previousVersion: Integer?
+    previousVersion: Integer? = null
     nextVersion: Integer
 }

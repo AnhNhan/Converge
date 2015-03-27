@@ -15,13 +15,3 @@ struct Discussion is AnhNhan.Converge.Storage::TransactionAwareEntity<Discussion
 
 generateTransactionSet(Discussion)
 generateTransactionValue(Discussion)
-
-struct DiscussionTransaction is AnhNhan.Converge.Storage::TransactionEntity<Discussion, "DISQ">
-{
-    register_xact_type("disq.edit.label")
-    register_xact_type("disq.edit.text")
-    register_xact_type("disq.add.tag")
-    register_xact_type("disq.remove.tag")
-    register_xact_type("disq.add.post")
-    register_xact_type("disq.add.comment")
-}

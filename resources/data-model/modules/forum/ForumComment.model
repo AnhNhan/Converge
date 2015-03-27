@@ -8,8 +8,5 @@ struct ForumComment is AnhNhan.Converge.Storage::TransactionAwareEntity
     deleted: Boolean = false #mutable
 }
 
-struct ForumCommentTransaction is AnhNhan.Converge.Storage::TransactionEntity<ForumComment, "FCMT">
-{
-    register_xact_type("forum_comment.edit.text")
-    register_xact_type("forum_comment.edit.delete")
-}
+generateTransactionSet(ForumComment)
+generateTransactionValue(ForumComment)

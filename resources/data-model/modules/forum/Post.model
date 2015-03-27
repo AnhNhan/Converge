@@ -11,9 +11,5 @@ struct Post is AnhNhan.Converge.Storage::TransactionAwareEntity<PostTransaction>
     comments: Collection<ForumComment> #mutable
 }
 
-struct PostTransaction is AnhNhan.Converge.Storage::TransactionEntity<Post, "POST">
-{
-    register_xact_type("post.edit.text")
-    register_xact_type("post.edit.delete")
-    register_xact_type("post.add.comment")
-}
+generateTransactionSet(Post)
+generateTransactionValue(Post)

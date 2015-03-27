@@ -9,10 +9,5 @@ struct Tag is AnhNhan.Converge.Storage::TransactionAwareEntity<TagTransaction>
     description: Text? = null #mutable
 }
 
-struct TagTransaction is AnhNhan.Converge.Storage::TransactionEntity<Tag, "TAG">
-{
-    register_xact_type("tag.edit.label")
-    register_xact_type("tag.edit.description")
-    register_xact_type("tag.edit.color")
-    register_xact_type("tag.edit.displayorder")
-}
+generateTransactionSet(Tag)
+generateTransactionValue(Tag)

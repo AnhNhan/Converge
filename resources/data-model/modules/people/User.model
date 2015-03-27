@@ -11,11 +11,5 @@ struct User is AnhNhan.Converge.Storage::TransactionAwareEntity<UserTransaction>
     emails: Collection<Email>
 }
 
-struct UserTransaction is AnhNhan.Converge.Storage::TransactionEntity<User, "USER">
-{
-    register_xact_type("user.edit.password")
-    register_xact_type("user.add.role")
-    register_xact_type("user.remove.role")
-    register_xact_type("user.add.email")
-    register_xact_type("user.remove.email")
-}
+generateTransactionSet(User)
+generateTransactionValue(User)
