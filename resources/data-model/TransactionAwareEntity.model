@@ -1,0 +1,7 @@
+
+abstract struct TransactionAwareEntity<TransactionType> is Entity
+{
+    abstract unique uid: UniqueId
+    transactionSets: Collection<TransactionSet> #appended
+    currentTransactionSet: TransactionSet? #auto_init #appended
+}

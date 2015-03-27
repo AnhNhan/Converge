@@ -1,0 +1,27 @@
+
+struct Discussion is AnhNhan.Converge.Storage::TransactionAwareEntity<DiscussionTransaction>
+{
+    unique uid: UniqueId<"DISQ">
+    (* Types default to string *)
+    label #mutable
+    author: Actor
+    rawText: Text #mutable
+
+    comments: Collection<ForumComment>
+    posts: Collection<Post>
+
+    tags: ExternalCollection<Tag>
+}
+
+generateTransactionSet(Discussion)
+generateTransactionValue(Discussion)
+
+struct DiscussionTransaction is AnhNhan.Converge.Storage::TransactionEntity<Discussion, "DISQ">
+{
+    register_xact_type("disq.edit.label")
+    register_xact_type("disq.edit.text")
+    register_xact_type("disq.add.tag")
+    register_xact_type("disq.remove.tag")
+    register_xact_type("disq.add.post")
+    register_xact_type("disq.add.comment")
+}

@@ -1,0 +1,13 @@
+
+struct VerificationCode is AnhNhan.Converge.Storage::Entity
+{
+    unique uid: UniqueId<"VERIC">
+
+    unique code
+    used: Boolean = false
+    expires: DateTime
+
+    type
+    purpose
+    user: User
+}

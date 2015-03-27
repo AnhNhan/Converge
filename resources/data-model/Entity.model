@@ -1,0 +1,8 @@
+
+abstract struct Entity native_as AnhNhan\Converge\Storage\EntityDefinition
+{
+    unique id : AutoId
+
+    createdAt: DateTime #appended #auto_init
+    modifiedAt: DateTime #appended #auto_init #reinit_on_update
+}

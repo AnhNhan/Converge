@@ -1,0 +1,15 @@
+
+struct ForumComment is AnhNhan.Converge.Storage::TransactionAwareEntity
+{
+    unique uid: UniqueId<"FORUM", "COMMENT">
+    parent: Discussion|Post|ForumComment
+    author: Actor
+    rawText: Text #mutable
+    deleted: Boolean = false #mutable
+}
+
+struct ForumCommentTransaction is AnhNhan.Converge.Storage::TransactionEntity<ForumComment, "FCMT">
+{
+    register_xact_type("forum_comment.edit.text")
+    register_xact_type("forum_comment.edit.delete")
+}

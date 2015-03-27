@@ -1,0 +1,14 @@
+
+struct Role is AnhNhan.Converge.Storage::TransactionAwareEntity<RoleTransaction>
+{
+    unique uid: UniqueId<"ROLE">
+    unique name
+    unique label #mutable
+    description: Text? = null #mutable
+}
+
+struct RoleTransaction is AnhNhan.Converge.Storage::TransactionEntity<Role, "ROLE">
+{
+    register_xact_type("role.edit.label", label)
+    register_xact_type("role.edit.description", description)
+}

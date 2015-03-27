@@ -1,0 +1,16 @@
+
+abstract struct TransactionEntity<TargetEntity: TransactionAwareEntity, uidSubType, Value = Text> is Entity
+{
+    register_xact_type("entity.create")
+
+    unique uid: UniqueId<"XACT", uidSubType>
+    actor: Actor
+    object: TargetEntity
+
+    type: Enum<registered_xact_types()>
+
+    oldValue: Value?
+    newValue: Value?
+
+    metadata: Map<String, Text> #json_serialized
+}

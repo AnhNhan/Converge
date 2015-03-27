@@ -1,0 +1,19 @@
+
+struct Post is AnhNhan.Converge.Storage::TransactionAwareEntity<PostTransaction>
+{
+    unique uid: UniqueId<"POST">
+
+    discussion: Discussion
+    author: Actor
+    rawText: Text #mutable
+    deleted: Boolean = false #mutable
+
+    comments: Collection<ForumComment> #mutable
+}
+
+struct PostTransaction is AnhNhan.Converge.Storage::TransactionEntity<Post, "POST">
+{
+    register_xact_type("post.edit.text")
+    register_xact_type("post.edit.delete")
+    register_xact_type("post.add.comment")
+}

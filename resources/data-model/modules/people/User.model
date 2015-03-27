@@ -1,0 +1,21 @@
+
+struct User is AnhNhan.Converge.Storage::TransactionAwareEntity<UserTransaction>
+{
+    unique uid: UniqueId<"USER">
+    username
+    unique username_canon
+
+    credentials: Collection<UserCredentialSet>
+
+    roles: Collection<Role>
+    emails: Collection<Email>
+}
+
+struct UserTransaction is AnhNhan.Converge.Storage::TransactionEntity<User, "USER">
+{
+    register_xact_type("user.edit.password")
+    register_xact_type("user.add.role")
+    register_xact_type("user.remove.role")
+    register_xact_type("user.add.email")
+    register_xact_type("user.remove.email")
+}

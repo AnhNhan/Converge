@@ -1,0 +1,13 @@
+
+abstract struct TransactionSet<TargetEntity: TransactionAwareEntity, uidSubType, TransactionType: TransactionEntity<TargetEntity>> is Entity
+{
+    uid: UniqueId<"XSET", uidSubType>
+    subject: TargetEntity
+    actor: Actor
+    transactions: Collection<TransactionType>
+
+    previousSet: TransactionSet<TargetEntity, uidSubType, TransactionType>?
+
+    previousVersion: Integer?
+    nextVersion: Integer
+}
