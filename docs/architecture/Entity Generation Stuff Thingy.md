@@ -3,7 +3,7 @@ Stuff to be done later
 ======================
 
 * Have transaction editors generated
-* Have transaction values/entities generated
+* Have transaction values/entities + sets generated
 * Type checking
 * Built-in stuff
 
@@ -33,6 +33,11 @@ struct User is TransactionAwareEntity<UserTransaction>
 }
 ```
 
+Template parameters
+-------------------
+
+Used template parameters are to be substituted for the passed expression. Anything that bears the exact matching (case-sensitive) name of a template parameter gets substituted for the expression passed to the parameter at the same position (tl;dr: similar to how parameters are resolved in general, but with substitution instead of resolution(?))
+
 Function Calls
 --------------
 
@@ -46,7 +51,9 @@ There are currently two defined top-level functions:
  - `generateTransactionValue(SingleTypeSpec) : de.anhnhan.php.ast::Class`
    - This function returns a `Class` instance since it contains a few constants and specializations
 
-Should any other functions be encountered, an error is emitted.
+Should any other functions be encountered (speak: non-existing), an error is emitted.
+
+The purposeof these two functions is to generate additional program elements from existing structs.
 
 ### Embedded Functions
 
@@ -86,7 +93,7 @@ Maps to the sql `NULL` value of the respective engine, and is represented using 
 
 ### Multi-Types / Union Types
 
-Current behavior in the reference implementation just annotates them as `string` (`VARCHAR`) columns.
+Current behavior in the reference implementation just annotates them as `string` (`VARCHAR`) columns, since usually we rely on the UniqueId to discriminate between different types.
 
 A more sophisticated behavior is going to be required at some time.
 
@@ -129,6 +136,6 @@ Signifies that the targeted entity is situated in a place where your joins can't
 
 Like `Collection<Element>`, but uses proxy objects to connect the edges instead of the objects themselves.
 
-Considerations:
+*Considerations:*
 
 * Only surface the actual referenced elements, or surface the proxy objects?
