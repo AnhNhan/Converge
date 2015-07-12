@@ -15,7 +15,7 @@ var $InfiniteScroll = {
         //                or have it remove *all* instances?
         return function () {
             pageBottomCallbacks = _.filter(pageBottomCallbacks, function (cb) {
-                return cb != callback;
+                return cb !== callback;
             });
         };
     }

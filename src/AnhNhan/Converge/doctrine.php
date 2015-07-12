@@ -34,7 +34,9 @@ while ($initialArgV) {
 if (empty($appName)) {
     echo "You have to provide an application name as the first argument.";
     exit(1);
-} else if (!isset($appInstanceList[$appName])) {
+}
+
+if (!isset($appInstanceList[$appName])) {
     echo "Application '$appName' does not exist!";
     exit(1);
 }

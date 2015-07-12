@@ -42,7 +42,7 @@ Webserver
 
 For `/webroot/` variant:
 
-* Additionally configure your webserver to serve all non-files from `app.php`
+* Additionally configure your webserver to serve all non-files from `app.php`. You don't need to pass the original URL to the application, as long as your webserver is configured correctly with PHP.
 
 License
 =======

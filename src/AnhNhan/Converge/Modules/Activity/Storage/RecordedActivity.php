@@ -63,7 +63,7 @@ class RecordedActivity extends EntityDefinition
     public $xact_contents;
 
     /**
-     * @Column(type="text", nullable=true)
+     * @Column(type="json_object_array", nullable=true)
      */
     public $metadata;
 

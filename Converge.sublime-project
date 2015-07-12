@@ -1,0 +1,71 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"name": "angular",
+			"path": "angular"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "php-root",
+			"path": "src\\AnhNhan\\Converge"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "data-model",
+			"path": "resources\\data-model"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "css",
+			"path": "resources\\css"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "js",
+			"path": "resources\\javascript"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "tests",
+			"path": "tests"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "docs",
+			"path": "docs"
+		},
+		{
+			"folder_exclude_patterns":
+			[
+				"ModHub/src/AnhNhan/Converge",
+				"ModHub/resources/css",
+				"ModHub/resources/data-model",
+				"ModHub/resources/javascript",
+				"ModHub/tests",
+				"ModHub/angular",
+				"ModHub/vendor",
+				"ModHub/.vagrant",
+				"ModHub/nbproject",
+				"ModHub/log",
+				"ModHub/cache"
+			],
+			"follow_symlinks": true,
+			"name": "Converge",
+			"path": "."
+		},
+		{
+			"follow_symlinks": true,
+			"name": "3rd-party",
+			"path": "vendor"
+		}
+	],
+	"settings":
+	{
+		"phpcoverage":
+		{
+			"report_path": "tests/_log/coverage.xml"
+		}
+	}
+}

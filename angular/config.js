@@ -3,8 +3,6 @@
 var config = angular.module('converge.config', []);
 
 config.provider('$ConvergeConfig', function () {
-    var provider = this;
-
     var config = {
         copyrightLatestYear: 2015,
         apiServerUri: '//api.converge.dev',
