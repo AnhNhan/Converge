@@ -3,14 +3,14 @@ namespace AnhNhan\Converge\Modules\Symbols\Generator\NodeVisitor;
 
 use AnhNhan\Converge\Modules\Symbols\Generator\SymbolTree;
 
-use \PHPParser_Node_Stmt_Class as PP_Class;
-use \PHPParser_Node_Stmt_Interface as PP_Interface;
-use \PHPParser_Node_Stmt_Function as PP_Function;
+use PhpParser\Node\Stmt\Class_ as PP_Class;
+use PhpParser\Node\Stmt\Interface_ as PP_Interface;
+use PhpParser\Node\Stmt\Function_ as PP_Function;
 
 /**
  * @author Anh Nhan Nguyen <anhnhan@outlook.com>
  */
-class SymbolEmitter extends \PHPParser_NodeVisitorAbstract
+class SymbolEmitter extends \PhpParser\NodeVisitorAbstract
 {
     /**
      * @var SymbolTree
@@ -28,7 +28,7 @@ class SymbolEmitter extends \PHPParser_NodeVisitorAbstract
         $this->currentFile = $file;
     }
 
-    public function leaveNode(\PHPParser_Node $node)
+    public function leaveNode(\PhpParser\Node $node)
     {
         if ($node instanceof PP_Class) {
             $impls = array();

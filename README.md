@@ -8,20 +8,25 @@ Collaboration and Communication platform. Currently mostly for discussions. If I
 It also provides some other fun, like:
 
  * task management (rudimentary)
- * activity streams (rudimentary, to be done)
- * content publishing (rudimentary, to be done)
+ * activity streams (rudimentary, in progress)
+ * content publishing (rudimentary, in progress)
  * converging all other kinds of communications, like IM and email (to be done)
 
 See? We are disruptive. Innovative. What do you want more? A finished app?
 
 **OMGz!**
 
+This project is mostly about a few ideas I had while working on other projects.
+
+Some neat things being worked on in the introduce-xset branch and [converge-entity](https://github.com/AnhNhan/converge-entity) (written in [Ceylon](http://ceylon-lang.org/))
+
 Requirements
 ============
 
-* PHP 5.4 (should also work fine on HHVM)
+* PHP 5.6 (*may* work fine with PHP 7, HHVM)
   * PDO
 * (currently) MySql
+  * as we are currenty (still) using Doctrince, other database engines should work, too. no warranty.
 
 Installation
 ============
@@ -38,7 +43,7 @@ Application
 Webserver
 ---------
 
-* Point your webserver at `/webroot/` (for old PHP-generated HTML) or `/angular/` (for experimental and feature-incomple Angular frontend)
+* Point your webserver at `/webroot/` (for regular PHP-generated HTML) or `/angular/` (for experimental and feature-incomple Angular frontend)
 
 For `/webroot/` variant:
 
