@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "42521f583d84142856beccfffa65d5b0",
-    "content-hash": "76cc197653b87833a0f9730a1d24a20e",
+    "hash": "838435b9f98347cde6dc27015f7ad44d",
+    "content-hash": "e3f8ef94318f3535afa32bd45355808e",
     "packages": [
         {
             "name": "apexstudios/yamwlib",
@@ -13,22 +13,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apexstudios/yamwlib.git",
-                "reference": "6bfff4a788fc666f8130bd4c6bbad55c53f68707"
+                "reference": "486c1819a4a06cf785e7350b3a79ef07d25fc42b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apexstudios/yamwlib/zipball/6bfff4a788fc666f8130bd4c6bbad55c53f68707",
-                "reference": "6bfff4a788fc666f8130bd4c6bbad55c53f68707",
+                "url": "https://api.github.com/repos/apexstudios/yamwlib/zipball/486c1819a4a06cf785e7350b3a79ef07d25fc42b",
+                "reference": "486c1819a4a06cf785e7350b3a79ef07d25fc42b",
                 "shasum": ""
             },
             "require": {
-                "leafo/lessphp": "*",
-                "nikic/php-parser": "*",
+                "facebook/libphutil": "dev-master",
+                "leafo/lessphp": "~0.5",
+                "nikic/php-parser": "~1.4",
                 "php": ">=5.3.0"
             },
             "require-dev": {
                 "phpunit/php-code-coverage": "*",
-                "phpunit/phpunit": ">=3.6",
+                "phpunit/phpunit": "~4.5",
                 "satooshi/php-coveralls": "*"
             },
             "type": "library",
@@ -45,7 +46,7 @@
                 }
             ],
             "homepage": "http://github.com/apexstudios/yamwlib",
-            "time": "2014-09-05 21:27:33"
+            "time": "2016-08-10 12:10:45"
         },
         {
             "name": "doctrine/annotations",
@@ -870,24 +871,18 @@
         },
         {
             "name": "leafo/lessphp",
-            "version": "dev-master",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/lessphp.git",
-                "reference": "e701984d5d488599441623d3d56bd42103019ab6"
+                "reference": "0f5a7f5545d2bcf4e9fad9a228c8ad89cc9aa283"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafo/lessphp/zipball/e701984d5d488599441623d3d56bd42103019ab6",
-                "reference": "e701984d5d488599441623d3d56bd42103019ab6",
+                "url": "https://api.github.com/repos/leafo/lessphp/zipball/0f5a7f5545d2bcf4e9fad9a228c8ad89cc9aa283",
+                "reference": "0f5a7f5545d2bcf4e9fad9a228c8ad89cc9aa283",
                 "shasum": ""
             },
-            "require-dev": {
-                "phpunit/phpunit": "~4.3"
-            },
-            "bin": [
-                "plessc"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -913,7 +908,7 @@
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
             "homepage": "http://leafo.net/lessphp/",
-            "time": "2014-12-29 20:45:53"
+            "time": "2014-11-24 18:39:20"
         },
         {
             "name": "league/fractal",
@@ -1094,38 +1089,32 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "dev-master",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "f7cb00d6d30a5e90892924f2b1b2545f779c1c6e"
+                "reference": "c4bbc8e236a1f21b2b17cfbf3d46aa6ece69b9f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/f7cb00d6d30a5e90892924f2b1b2545f779c1c6e",
-                "reference": "f7cb00d6d30a5e90892924f2b1b2545f779c1c6e",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c4bbc8e236a1f21b2b17cfbf3d46aa6ece69b9f7",
+                "reference": "c4bbc8e236a1f21b2b17cfbf3d46aa6ece69b9f7",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=5.5"
+                "php": ">=5.3"
             },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
+                "files": [
+                    "lib/bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1141,7 +1130,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-07-25 19:02:53"
+            "time": "2016-01-15 21:03:42"
         },
         {
             "name": "paragonie/random_compat",
@@ -3868,7 +3857,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~5.4.11|~5.5.0|~5.6.0|~7.0|~7.1"
+        "php": "~5.6.0|~7.0|~7.1"
     },
     "platform-dev": []
 }
