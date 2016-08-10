@@ -53,7 +53,7 @@ There are currently two defined top-level functions:
 
 Should any other functions be encountered (speak: non-existing), an error is emitted.
 
-The purposeof these two functions is to generate additional program elements from existing structs.
+The purpose of these two functions is to generate additional program elements from existing structs.
 
 ### Embedded Functions
 
@@ -103,7 +103,7 @@ Signifies a `*-to-many` entity relation with another entity.
 
 * The attribute + getter will yield a collection type suitable on the platform used (`PersistentCollection` for PHP+Doctrine, `Iterable` for Ceylon)
 * Collections cannot be annotated `#mutable`, they are by definition
-* Collections cannot be unioned with another type
+* Collections cannot be unionized with another type
   * It's elements' type(s) can be, though (e.g. `Collection<User|Group>`)
 * Additional methods
   * `'add' + ucfirst(field.name)`
