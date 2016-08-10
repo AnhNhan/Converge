@@ -706,7 +706,7 @@ return array(
     ),
     "AnhNhan\Converge\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter" => array(
       "file" => "AnhNhan/Converge/Modules/Symbols/Generator/NodeVisitor/SymbolEmitter.php",
-      "deriv" => "PHPParser_NodeVisitorAbstract",
+      "deriv" => "PhpParser\NodeVisitorAbstract",
     ),
     "AnhNhan\Converge\Modules\Symbols\Generator\SymbolGenerator" => array(
       "file" => "AnhNhan/Converge/Modules/Symbols/Generator/SymbolGenerator.php",
@@ -1557,7 +1557,7 @@ return array(
     "AnhNhan\Converge\Modules\StaticResources\Console\AbstractSymbolsCommand" => array(
       "AnhNhan\Converge\Modules\StaticResources\Console\SymbolGenerationCommand",
     ),
-    "PHPParser_NodeVisitorAbstract" => array(
+    "PhpParser\NodeVisitorAbstract" => array(
       "AnhNhan\Converge\Modules\Symbols\Generator\NodeVisitor\SymbolEmitter",
     ),
     "AnhNhan\Converge\Modules\Tag\Controllers\AbstractTagController" => array(
