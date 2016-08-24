@@ -41,6 +41,8 @@ final class SymbolLoader
     private $allFunctions;
     private $allClasses;
 
+    private $enabledApps;
+
     /**
      * @return SymbolLoader
      */
@@ -177,5 +179,17 @@ final class SymbolLoader
             $objects[] = new $class;
         }
         return $objects;
+    }
+
+    public function getEnabledApplications()
+    {
+        if ($this->enabledApps === null)
+        {
+            $apps = $this->getObjectsThatDeriveFrom(
+                'AnhNhan\Converge\Web\Application\BaseApplication'
+            );
+            $this->enabledApps = mfilter($apps, 'isApplicationEnabled');
+        }
+        return $this->enabledApps;
     }
 }

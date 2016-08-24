@@ -13,11 +13,10 @@ function get_custom_markup_rules($app_list = null)
     else
     {
         $apps = \AnhNhan\Converge\Modules\Symbols\SymbolLoader::getInstance()
-            ->getObjectsThatDeriveFrom('AnhNhan\Converge\Web\Application\BaseApplication')
+            ->getEnabledApplications()
         ;
     }
 
-    $rules = mfilter($apps, 'isApplicationEnabled');
     $rules = mpull($apps, 'getCustomMarkupRules');
     $rules = array_mergev($rules);
     return $rules;
