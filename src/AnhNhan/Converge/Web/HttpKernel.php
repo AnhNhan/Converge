@@ -86,8 +86,15 @@ final class HttpKernel implements HttpKernelInterface
         $this->request_stack->push($request);
 
         $container->set("request", $request);
-
-        $origResMgr = $container->get("resource_manager", $container::NULL_ON_INVALID_REFERENCE);
+        $origResMgr = null;
+        try
+        {
+            $origResMgr = $container->get("resource_manager");
+        }
+        catch (\RunTimeException $e)
+        {
+            // <ignore>
+        }
         $resMgr = new ResMgr(Converge\path("__resource_map__.php"));
         $container->set("resource_manager", $resMgr);
 
