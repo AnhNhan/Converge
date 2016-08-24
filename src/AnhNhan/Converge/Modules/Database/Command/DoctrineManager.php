@@ -19,7 +19,7 @@ final class DoctrineManager extends AbstractDbCommand
         $this
             ->setName('doctrine:manage')
             ->setDefinition($this->createDefinition())
-            ->setDescription('Compiles static resources')
+            ->setDescription('Manages Doctrine stuff')
         ;
     }
 
