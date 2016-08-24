@@ -17,6 +17,7 @@ function get_custom_markup_rules($app_list = null)
         ;
     }
 
+    $rules = mfilter($apps, 'isApplicationEnabled');
     $rules = mpull($apps, 'getCustomMarkupRules');
     $rules = array_mergev($rules);
     return $rules;
